@@ -31,8 +31,6 @@
 
 		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
 			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-		Else If vars.poe_version
-			SendInput, ^{c}
 		Else SendInput, !^{c}
 
 		ClipWait, 0.1
@@ -74,9 +72,10 @@
 				}
 			Case "gemnotes":
 				MouseGetPos, xMouse, yMouse
-				Leveltracker_PobGemLinks(vars.omnikey.item.name,, xMouse, yMouse + 10)
+				vars.leveltracker.gemlinks.drag := 0, Leveltracker_PobGemLinks(vars.omnikey.item.name,, xMouse, yMouse + 10)
 				Omni_Release()
-				LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := ""
+				If !settings.leveltracker.gemlinksToggle
+					LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := ""
 			Case "gemregex":
 				Leveltracker_PobGemLinks(vars.omnikey.item.name,,,, 1)
 			Case "geartracker":
@@ -409,7 +408,8 @@ Omni_ContextMenu()
 	}
 
 	MouseGetPos, mouseX, mouseY
-	Gui, omni_context: Show, % "NA x10000 y10000"
+	Gui, omni_context: Show, % (!settings.general.dev && vars.omnikey.last ? "" : "NA ") "x10000 y10000"
+	ToggleClient()
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.omni_context.main
 	If (vars.general.input_method.1 = 2)
 	{
@@ -515,18 +515,13 @@ Omni_ItemInfo()
 	{
 		item.attributes := ""
 		Loop, Parse, % vars.omnikey.clipboard, `n, % "`r "
-		{
-			If !requirements
+			If InStr(A_LoopField, "Requires:")
 			{
-				If InStr(A_LoopField, "Requirements:")
-					requirements := 1
-				Continue
-			}
-			If requirements && InStr(A_LoopField, "---")
+				Loop, Parse, A_LoopField, `,, % "`n`r "
+					If !InStr(A_LoopField, "Level")
+						item.attributes .= "_" LLK_StringCase(SubStr(A_LoopField, InStr(A_LoopField, " ") + 1, 3))
 				Break
-			If !InStr(A_LoopField, "Level:") && InStr(A_LoopField, ":")
-				item.attributes .= "_" LLK_StringCase(SubStr(A_LoopField, 1, 3))
-		}
+			}
 	}
 
 	Loop, Parse, clip, `n, % "`r " ;store the item's class, rarity, and miscellaneous info

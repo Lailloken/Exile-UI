@@ -601,6 +601,10 @@ Iteminfo_Stats2()
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
 	}
+
+	If (item.quality >= 25)
+		vars.iteminfo.UI.cDivider := "ffd700" ;color of the dividing lines
+	Else vars.iteminfo.UI.cDivider := InStr(clip, "`r`n" Lang_Trans("items_corrupted") "`r`n", 1) ? "dc0000" : InStr(clip, "`r`n" Lang_Trans("items_mirrored") "`r`n", 1) ? "00cccc" : "e0e0e0"
 }
 
 Iteminfo_Mods()
@@ -820,16 +824,24 @@ Iteminfo_Mods2()
 
 	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item
 	clip2 := SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), clip2 := SubStr(clip2, InStr(clip2, "--`r`n") + 4), clip2 := Trim(LLK_StringCase(clip2), " `r`n")
+	clip2 := StrReplace(clip2, "`r`n", "|")
 
-	Loop, Parse, clip2, `n, % "`r "
+	Loop, Parse, clip2, |, % " "
 	{
 		If (A_Index = 1)
 			clip2 := ""
 		If clip2 && InStr(A_LoopField, "---")
 			Break
-		If LLK_PatternMatch(A_LoopField, "", ["(", "---"])
+		If LLK_PatternMatch(A_LoopField, "", ["rune)", "implicit)", "---", "enchant)"])
 			Continue
-		clip2 .= (!clip2 ? "" : "|") A_LoopField
+		Loop, Parse, A_LoopField, `n, % " "
+		{
+			If (A_Index = 1)
+				affix_group := ""
+			If (SubStr(A_LoopField, 1, 1) != "(")
+				affix_group .= (!affix_group ? "" : "`n") A_LoopField
+		}
+		clip2 .= (!clip2 ? "" : "|") affix_group
 	}
 
 	vars.iteminfo.clipboard2 := clip2
@@ -1295,7 +1307,7 @@ Iteminfo_GUI()
 	roll_stats := [], roll_colors := {0: tColors[1], 10: tColors[2], 20: tColors[3], 30: tColors[4], 40: tColors[5], 50: tColors[6]}
 	Loop, Parse, clip2, | ;parse the item-info affix by affix
 	{
-		If !vars.poe_version && (item.class != "base jewels")
+		If (item.class != "base jewels")
 			tier := unique ? "u" : InStr(A_LoopField, Lang_Trans("items_tier")) ? SubStr(A_LoopField, InStr(A_LoopField, Lang_Trans("items_tier")) + StrLen(Lang_Trans("items_tier")) + 1, 2) : InStr(A_LoopField, "(crafted)") ? "c" : "#", tier := InStr(tier, ")") ? StrReplace(tier, ")") : tier ;determine affix tier for non-jewel items
 		Else tier := "?"
 
@@ -1377,7 +1389,7 @@ Iteminfo_GUI()
 			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
-				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls [3] := rolls[4]
+				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
 			rolls_val := Abs(rolls.2 - rolls.1), rolls_max := Abs(rolls.3 - rolls.1), valid_rolls := (!IsNumber(rolls.1 + rolls.2 + rolls.3) || !InStr(text_check, "(")) ? 0 : 1
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
@@ -1533,7 +1545,8 @@ Iteminfo_GUI()
 		}
 	}
 
-	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000 ;show the GUI outside the monitor's area to get dimensions
+	Gui, %GUI_name%: Show, % (!settings.general.dev && vars.omnikey.last ? "" : "NA ") "AutoSize x10000 y10000" ;show the GUI outside the monitor's area to get dimensions
+	ToggleClient()
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.iteminfo.main
 	If (vars.general.input_method.1 = 2)
 	{
@@ -2501,8 +2514,6 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 		Sleep 350
 		If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
 			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-		Else If vars.poe_version
-			SendInput, ^{c}
 		Else SendInput, !^{c}
 		ClipWait, 0.1
 		If Clipboard

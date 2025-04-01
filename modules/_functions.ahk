@@ -489,6 +489,19 @@ StringSend(ByRef string, ByRef WindowTitle := "") ;based on example #4 on https:
 	Return (ErrorLevel = "FAIL" ? 0 : ErrorLevel)
 }
 
+ToggleClient()
+{
+	local
+	global vars, settings
+
+	If !settings.general.dev && vars.omnikey.last
+	{
+		WinWaitNotActive, % "ahk_id " vars.hwnd.poe_client
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+	}
+}
+
 UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this function was called via the timer or during script-start
 {
 	local
