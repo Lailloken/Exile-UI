@@ -317,7 +317,7 @@ LLK_ControlGetPos(cHWND, return_val)
 	}
 }
 
-LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", snap := 0, xOffset := "", yOffset := "", ignore_bounds := 0) ; top_left parameter: GUI will be aligned based on top-left corner
+LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", snap := 0, xOffset := 0, yOffset := 0, ignore_bounds := 0) ; top_left parameter: GUI will be aligned based on top-left corner
 {
 	local
 	global vars, settings
@@ -325,7 +325,7 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 	protect := (vars.pixelsearch.gamescreen.x1 < 8) ? 8 : vars.pixelsearch.gamescreen.x1 + 1, vars.general.drag := 1
 	MouseGetPos, xMouse, yMouse
 
-	If !Blank(xOffset)
+	If top_left
 		xPos := xMouse - xOffset, yPos := yMouse - yOffset
 	Else xPos := xMouse, yPos := yMouse
 
@@ -350,12 +350,12 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 	}
 
 	If (xPos >= vars.monitor.w / 2) && !top_left
-		xTarget := xPos - width + 1
-	Else xTarget := xPos
+		xTarget := xPos - width + 1 - xOffset
+	Else xTarget := xPos + (!top_left ? xOffset : 0)
 
 	If (yPos >= vars.monitor.h / 2) && !top_left
-		yTarget := yPos - height + 1
-	Else yTarget := yPos
+		yTarget := yPos - height + 1 - yOffset
+	Else yTarget := yPos + (!top_left ? yOffset : 0)
 
 	If !ignore_bounds
 	{

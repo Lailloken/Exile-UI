@@ -1696,19 +1696,21 @@ Settings_leveltracker()
 	Gui, %GUI%: Add, Text, % "ys hp cYellow x+" settings.general.fWidth/2, % "default guide originally derived`nfrom " (vars.poe_version ? "u/xebtria's guide" : "exile-leveling by heartofphos")
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_lvltracker_skilltree")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_lvltracker_poboverlays")
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Picture, % "ys BackgroundTrans hp HWNDhwnd0 w-1", % "HBitmap:*" vars.pics.global.help
-	vars.hwnd.help_tooltips["settings_leveltracker skilltree-info" (settings.leveltracker.pobmanual ? " manual" : "")] := hwnd0
+	vars.hwnd.help_tooltips["settings_leveltracker skilltree-info"] := hwnd0
 
 	If !settings.leveltracker.pobmanual && FileExist("data\global\[leveltracker] tree" vars.poe_version " *.json")
 	{
 		Gui, %GUI%: Add, Text, % "ys Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd", % " " Lang_Trans("m_lvltracker_treeclear") " "
-		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled Border HWNDhwnd1 BackgroundBlack cRed Range0-500", 0
+		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled Border HWNDhwnd1 BackgroundBlack Vertical cRed Range0-500", 0
 		vars.hwnd.settings.treeclear := hwnd, vars.hwnd.help_tooltips["settings_leveltracker skilltree clear"] := vars.hwnd.settings.treeclear_bar := hwnd1
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked"settings.leveltracker.pobmanual, % Lang_Trans("m_lvltracker_pobmanual")
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.gemlinksToggle, % Lang_Trans("m_lvltracker_pobgems")
+	vars.hwnd.settings.pobgems := vars.hwnd.help_tooltips["settings_leveltracker pob gems"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.pobmanual, % Lang_Trans("m_lvltracker_pobmanual")
 	vars.hwnd.settings.pobmanual := vars.hwnd.help_tooltips["settings_leveltracker pob manual"] := hwnd
 
 	If settings.leveltracker.pobmanual
@@ -1880,6 +1882,8 @@ Settings_leveltracker2(cHWND := "")
 			Return
 		}
 	}
+	Else If (check = "pobgems")
+		IniWrite, % (settings.leveltracker.gemlinksToggle := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\leveling tracker.ini", settings, toggle gem-links
 	Else If (check = "pobmanual")
 	{
 		IniWrite, % (settings.leveltracker.pobmanual := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\leveling tracker.ini", settings, manual pob-screencap

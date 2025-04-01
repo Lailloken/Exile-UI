@@ -324,19 +324,23 @@
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
+      "while hovering over a gem, hold the omni-key to show an overlay with gem setups/links",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu",
+      "",
       "while the skill-tree is on screen, press <tab> to show overlays with skill-tree schematics",
-      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
-    ],
-    "leveltracker skilltree-info manual": [
-      "while the skill-tree is on screen, hold the omni-key to show overlays with skill-tree screenshots",
       "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
     ],
     "leveltracker skilltree clear": [
       "long-click to delete the skill-tree files used to render schematics: they will be re-downloaded the next time they are needed",
       "deleting them is only required if the schematics are outdated or otherwise incorrect"
     ],
+    "leveltracker pob gems": [
+      "the gem-overlay will stay on screen after releasing the omni-key, until you press <esc>",
+      "this option also allows the overlay to be moved around by long-clicking a gem-name in the list(s)"
+    ],
     "leveltracker pob manual": [
-      "the overlay will use manual screen-caps instead of schematics rendered from pob's data"
+      "the tree-overlay will use manual screen-caps instead of schematics rendered from pob's data",
+      "this option also changes how the overlay is accessed: hold the omni-key while the skill-tree is on screen"
     ],
     "leveltracker pob": [
       "m-mouse in pob will open the screen-cap menu",

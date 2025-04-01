@@ -610,7 +610,7 @@ Loop_main()
 		Cloneframes_Thread(), Init_cloneframes()
 	}
 
-	If vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
+	If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
 	&& vars.general.cMouse && (check := LLK_HasVal(vars.hwnd.leveltracker_gemlinks, vars.general.cMouse)) && (vars.leveltracker.gemlinks.hover != SubStr(check, 0))
 		Leveltracker_PobGemLinks("", SubStr(check, 0))
 
