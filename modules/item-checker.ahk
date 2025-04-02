@@ -10,7 +10,7 @@
 
 	settings.iteminfo := {}, ini := IniBatchRead("ini" vars.poe_version "\item-checker.ini")
 	settings.iteminfo.profile := !Blank(check := ini.settings["current profile"]) ? check : 1
-	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : (vars.poe_version ? 0 : 1)
+	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 1
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
 	settings.iteminfo.ilvl := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
@@ -555,8 +555,9 @@ Iteminfo_Stats2()
 			Else If Lang_Match(A_LoopField, vars.lang.items_dmg)
 			{
 				ele_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
-				Loop, Parse, ele_dmg, % ","
-					ele_count += 1, ele_dmg%ele_count% := A_LoopField
+				If InStr(ele_dmg, "(")
+					ele_dmg := SubStr(ele_dmg, 1, InStr(ele_dmg, "(") - 2)
+				ele_count += 1, ele_dmg%ele_count% := ele_dmg
 			}
 
 			If InStr(A_LoopField, Lang_Trans("items_aps"))

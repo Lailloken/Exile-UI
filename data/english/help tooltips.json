@@ -190,6 +190,9 @@
     "cloneframes scroll": [
       "for fine-tuning, scroll the mouse-wheel to adjust this value by 1"
     ],
+    "donations howto": [
+      "github thread with more info"
+    ],
     "hotkeys ingame-keybinds": [
       "to avoid conflicts between custom in-game keybinds and the script's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
     ],

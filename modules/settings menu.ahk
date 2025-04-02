@@ -598,7 +598,8 @@ Settings_donations()
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 	If !live_list
 		Gui, %GUI%: Add, Text, % "xs Section cAqua y+" vars.settings.spacing, % placeholder
-	Gui, %GUI%: Add, Link, % "xs Section y+" vars.settings.spacing, <a href="https://github.com/Lailloken/Lailloken-UI/discussions/407">how to donate</a>
+	Gui, %GUI%: Add, Link, % "xs Section HWNDhwnd y+" vars.settings.spacing, <a href="https://github.com/Lailloken/Lailloken-UI/discussions/407">how to donate</a>
+	vars.hwnd.help_tooltips["settings_donations howto"] := hwnd
 }
 
 Settings_general()
@@ -1270,10 +1271,11 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.trigger, % Lang_Trans("m_iteminfo_shift")
 	vars.hwnd.settings.trigger := hwnd, vars.hwnd.help_tooltips["settings_iteminfo shift-click"] := hwnd
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("m_iteminfo_modrolls")
+	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
+
 	If !vars.poe_version
 	{
-		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("m_iteminfo_modrolls")
-		vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.compare (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_league")
 		vars.hwnd.settings.compare := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo league-start" : "lang unavailable") ] := hwnd
 		If !settings.iteminfo.compare
