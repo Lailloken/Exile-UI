@@ -2519,9 +2519,9 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 		If Clipboard
 		{
 			If settings.mapinfo.trigger && (Omni_Context(1) = "mapinfo")
-				Iteminfo_Close(), Mapinfo_Parse(1, vars.poe_version), Mapinfo_GUI()
+				Iteminfo_Close(), Mapinfo_Parse(1, vars.poe_version), vars.omnikey.last := 1, Mapinfo_GUI(), vars.omnikey.last := 0
 			Else If settings.iteminfo.trigger
-				LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), Iteminfo()
+				LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), vars.omnikey.last := 1, Iteminfo(), vars.omnikey.last := 0
 		}
 		Return
 	}
