@@ -408,8 +408,7 @@ Omni_ContextMenu()
 	}
 
 	MouseGetPos, mouseX, mouseY
-	Gui, omni_context: Show, % (!settings.general.dev && vars.omnikey.last ? "" : "NA ") "x10000 y10000"
-	ToggleClient()
+	Gui, omni_context: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.omni_context.main
 	If (vars.general.input_method.1 = 2)
 	{

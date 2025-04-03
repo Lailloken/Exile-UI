@@ -1590,6 +1590,13 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 			last_xPos := xPos, last_yPos := yPos
 		vars.general.drag := 0
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		If !longclick
+		{
+			regex := Trim(A_GuiControl, " |–"), regex := SubStr(regex, 1, InStr(regex, "(") - 2)
+			Clipboard := StrReplace(regex, " ", ".")
+			WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+			SendInput, ^{f}^{v}
+		}
 		Return
 	}
 
@@ -1727,9 +1734,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 			vars.hwnd.leveltracker_gemlinks["skillset" val] := hwnd
 		}
 
-	Gui, %GUI_name%: Show, % (!settings.general.dev && vars.omnikey.last && omnikey ? "" : "NA ") "x10000 y10000"
-	If omnikey
-		ToggleClient()
+	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, wWin, hWin, ahk_id %leveltracker_gemlinks%
 	If !vars.leveltracker.gemlinks.drag
 		xPos -= (orientation = "left") ? wWin - wHover//2 : wHover//2
