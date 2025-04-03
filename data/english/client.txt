@@ -414,6 +414,7 @@
 		items_class_Quivers		=	"Quivers"
 		items_class_Foci		=	"Foci"
 		items_class_Shields		=	"Shields"
+		items_class_Bucklers		=	"Bucklers"
 		items_class_Jewels		=	"Jewels"
 		items_class_Life Flasks		=	"Life Flasks"
 		items_class_Mana Flasks		=	"Mana Flasks"

@@ -1,0 +1,7544 @@
+{
+  "amulets": {
+    "amber amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "azure amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "bloodstone amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "crimson amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "gold amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "jade amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "lapis amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "lunar amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "solar amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    },
+    "stellar amulet": {
+      "tags": [
+        "amulet",
+        "default"
+      ]
+    }
+  },
+  "belts": {
+    "double belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "fine belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "heavy belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "linen belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "long belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "mail belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "ornate belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "plate belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "rawhide belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "utility belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    },
+    "wide belt": {
+      "tags": [
+        "belt",
+        "default"
+      ]
+    }
+  },
+  "body armours": {
+    "abyssal cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced altar robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced anchorite garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced chain mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced cloaked mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced explorer armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced feathered robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced full plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced fur plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced hermit garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced hexer's robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced iron cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced ironclad vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced keth raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced mail vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced marabout garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced maraketh cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced pathfinder coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced pelt mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced pilgrim vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced quilted vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced rhoahide coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced rogue armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced sacrificial mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced scale mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced scalper's jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced scout's vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced serpentscale coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced shaman mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced silk robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced steel plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced studded vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced vaal cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced vagabond armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced votive raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced waxed jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced wayfarer jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "altar robe": {
+      "tags": [
+        "body_armour",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "ancestral mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "anchorite garb": {
+      "tags": [
+        "body_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "arcane robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "armoured vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "ascetic garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "assassin garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "bone raiment": {
+      "tags": [
+        "body_armour",
+        "int_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "chain mail": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default"
+      ]
+    },
+    "champion cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "chieftain cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "clandestine jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "cleric vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "cloaked mail": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "colosseum plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "conqueror plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "corsair vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "corvus mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "devout garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "elementalist robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "enlightened robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert altar robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert cloaked mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert hexer's robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert iron cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert keth raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert pathfinder coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert pelt mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert rogue armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert sacrificial mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert scale mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert scalper's jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "expert serpentscale coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert shaman mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert steel plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert studded vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert vaal cuirass": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert waxed jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "expert wayfarer jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "explorer armour": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "exquisite vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "feathered robe": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "full plate": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "fur plate": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "garment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_int_armour",
+        "default"
+      ]
+    },
+    "gilded vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "gladiator armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "glorious plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "grand regalia": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_int_armour",
+        "default"
+      ]
+    },
+    "hardleather coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "havoc raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "hermit garb": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "heroic armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "hexer's robe": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "imperial robe": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "iron cuirass": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "ironclad vestments": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "juggernaut plate": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "keth raiment": {
+      "tags": [
+        "body_armour",
+        "int_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "knight armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "lamellar mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "leather vest": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "mail coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "mail vestments": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "marabout garb": {
+      "tags": [
+        "body_armour",
+        "maraketh_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "maraketh cuirass": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "monastic garb": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "mystic raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "pathfinder coat": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "pelt mantle": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default"
+      ]
+    },
+    "pilgrim vestments": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default"
+      ]
+    },
+    "plated raiment": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "quilted vest": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "raider plate": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "revered vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "rhoahide coat": {
+      "tags": [
+        "body_armour",
+        "dex_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "rogue armour": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default"
+      ]
+    },
+    "rusted cuirass": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "sacrificial mantle": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "scale mail": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "scalper's jacket": {
+      "tags": [
+        "body_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "scoundrel jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "scout's vest": {
+      "tags": [
+        "body_armour",
+        "dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "serpentscale coat": {
+      "tags": [
+        "body_armour",
+        "dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "shaman mantle": {
+      "tags": [
+        "body_armour",
+        "str_int_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "shrouded vest": {
+      "tags": [
+        "body_armour",
+        "dex_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "silk robe": {
+      "tags": [
+        "body_armour",
+        "int_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "slayer armour": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "smuggler coat": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "steel plate": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "strider vest": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "studded vest": {
+      "tags": [
+        "body_armour",
+        "dex_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "tattered robe": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "tideseer mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "torment jacket": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "tournament mail": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "vaal cuirass": {
+      "tags": [
+        "body_armour",
+        "str_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "vagabond armour": {
+      "tags": [
+        "body_armour",
+        "str_dex_armour",
+        "armour",
+        "maraketh_basetype",
+        "default"
+      ]
+    },
+    "venerated mantle": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "votive raiment": {
+      "tags": [
+        "body_armour",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "waxed jacket": {
+      "tags": [
+        "body_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "wayfarer jacket": {
+      "tags": [
+        "body_armour",
+        "maraketh_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "zenith vestments": {
+      "tags": [
+        "body_armour",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    }
+  },
+  "boots": {
+    "advanced braced sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced bronze greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced embossed boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced feathered sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced frayed shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced hunting shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced iron greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced laced boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced lattice sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced lizardscale boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced mail sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced padded leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced pelt leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced secured leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced silk slippers": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced stacked sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced steeltoe boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced stone greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced threaded shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "advanced trimmed greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced wrapped sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "bladed shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "bold sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "braced sabatons": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "bronze greaves": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "str_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "covered sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "elaborate sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "embossed boots": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "embroidered boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert braced sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert feathered sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert frayed shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert hunting shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert iron greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert laced boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert lizardscale boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert mail sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert padded leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert pelt leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert secured leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert silk slippers": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert stacked sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert steeltoe boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert stone greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert threaded shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "expert trimmed greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert wrapped sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "feathered sandals": {
+      "tags": [
+        "boots",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "flared boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "flax sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "flexile sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "frayed shoes": {
+      "tags": [
+        "boots",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "gilt leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "grand cuisses": {
+      "tags": [
+        "str_dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "hunting shoes": {
+      "tags": [
+        "boots",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "iron greaves": {
+      "tags": [
+        "boots",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "laced boots": {
+      "tags": [
+        "boots",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "lattice sandals": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "leatherplate boots": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "lizardscale boots": {
+      "tags": [
+        "boots",
+        "dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "mail sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "monument greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "padded leggings": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "pelt leggings": {
+      "tags": [
+        "str_int_armour",
+        "vaal_basetype",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "pious leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "rawhide boots": {
+      "tags": [
+        "boots",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "reefsteel greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "rough greaves": {
+      "tags": [
+        "boots",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "secured leggings": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "silk slippers": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "stacked sabatons": {
+      "tags": [
+        "str_dex_armour",
+        "vaal_basetype",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "steelpoint shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "steeltoe boots": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "stone greaves": {
+      "tags": [
+        "boots",
+        "str_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "straw sandals": {
+      "tags": [
+        "boots",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "studded sandals": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "threaded shoes": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "totemic greaves": {
+      "tags": [
+        "boots",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "trimmed greaves": {
+      "tags": [
+        "maraketh_basetype",
+        "boots",
+        "str_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "velour shoes": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "weaver leggings": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "boots",
+        "default"
+      ]
+    },
+    "wrapped sandals": {
+      "tags": [
+        "boots",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    }
+  },
+  "bows": {
+    "advanced composite bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "advanced cultist bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "advanced dualstring bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "advanced shortbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "advanced warden bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "advanced zealot bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "artillery bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "composite bow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "crude bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "cultist bow": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "double limb bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "dualstring bow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert composite bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert cultist bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert dualstring bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert shortbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert warden bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "expert zealot bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "greatbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "heavy bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "recurve bow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "shortbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "tribal bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "warden bow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    },
+    "zealot bow": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "ranged",
+        "weapon",
+        "default",
+        "twohand",
+        "bow"
+      ]
+    }
+  },
+  "charms": {
+    "amethyst charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "antidote charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "dousing charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "golden charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "grounding charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "ruby charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "sapphire charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "silver charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "staunching charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "stone charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "thawing charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    },
+    "topaz charm": {
+      "tags": [
+        "flask",
+        "utility_flask",
+        "default"
+      ]
+    }
+  },
+  "claws": {
+    "arced claw": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "armoured claw": {
+      "tags": [
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "crude claw": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "edged claw": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "forked claw": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "hooked claw": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "pict claw": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "piercing claw": {
+      "tags": [
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "plated claw": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "razorglass claw": {
+      "tags": [
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "sharktooth claw": {
+      "tags": [
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "talon claw": {
+      "tags": [
+        "onehand",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    },
+    "wolfbone claw": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "default",
+        "weapon",
+        "one_hand_weapon",
+        "claw"
+      ]
+    }
+  },
+  "crossbows": {
+    "advanced bombard crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "advanced dyad crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "advanced forlorn crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "advanced sturdy crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "advanced tense crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "advanced varnished crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "alloy crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "blackfire crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "bombard crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "construct crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "cumbrous crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "dedalian crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "dyad crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "esoteric crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert bombard crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert dyad crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert forlorn crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert sturdy crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert tense crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "expert varnished crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "makeshift crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "piercing crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "sturdy crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "tense crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    },
+    "varnished crossbow": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "ranged",
+        "weapon",
+        "twohand",
+        "crossbow",
+        "default"
+      ]
+    }
+  },
+  "daggers": {
+    "arcane dirk": {
+      "tags": [
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "bloodletting dagger": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "cinquedea": {
+      "tags": [
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "crone knife": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "engraved knife": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "ethereal blade": {
+      "tags": [
+        "onehand",
+        "not_for_sale",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "glass shank": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "kris knife": {
+      "tags": [
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "mail breaker": {
+      "tags": [
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "moon dagger": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "obsidian dagger": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "parrying dagger": {
+      "tags": [
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "simple dagger": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    },
+    "skinning knife": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "one_hand_weapon",
+        "weapon",
+        "dagger",
+        "default"
+      ]
+    }
+  },
+  "flasks": {
+    "colossal life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "colossal mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "gargantuan life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "gargantuan mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "giant life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "giant mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "grand life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "grand mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "greater life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "greater mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "lesser life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "lesser mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "medium life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "medium mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "transcendent life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "transcendent mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    },
+    "ultimate life flask": {
+      "tags": [
+        "flask",
+        "life_flask",
+        "default"
+      ]
+    },
+    "ultimate mana flask": {
+      "tags": [
+        "flask",
+        "mana_flask",
+        "default"
+      ]
+    }
+  },
+  "foci": {
+    "advanced antler focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "advanced crystal focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "advanced plumed focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "advanced tonal focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "advanced voodoo focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "advanced woven focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "antler focus": {
+      "tags": [
+        "focus",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "attuned focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "crystal focus": {
+      "tags": [
+        "maraketh_basetype",
+        "focus",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "elegant focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "engraved focus": {
+      "tags": [
+        "maraketh_basetype",
+        "focus",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "expert antler focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "expert crystal focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "expert plumed focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "jade focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "magus focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "paua focus": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "focus",
+        "default"
+      ]
+    },
+    "plumed focus": {
+      "tags": [
+        "focus",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "tonal focus": {
+      "tags": [
+        "maraketh_basetype",
+        "focus",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "twig focus": {
+      "tags": [
+        "focus",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "voodoo focus": {
+      "tags": [
+        "focus",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "woven focus": {
+      "tags": [
+        "focus",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    }
+  },
+  "gloves": {
+    "adorned gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced aged cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced bolstered mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced bound bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced doubled gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced firm bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced gauze wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced goldcast cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced intricate gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced jewelled gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced layered gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced linen wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced moulded mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced ringmail gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced riveted mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced rope cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced sectioned bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced sombre gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced spined bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced spiral wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced stitched gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "advanced tempered mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "aged cuffs": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "bolstered mitts": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "str_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "bound bracers": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "buckled wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "burnished gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "detailed mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "diviner cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "doubled gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "vaal_basetype",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "embroidered gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "engraved bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert aged cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert bolstered mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert doubled gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert firm bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert gauze wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert goldcast cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert intricate gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert jewelled gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert layered gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert linen wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert moulded mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert ringmail gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert riveted mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert rope cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert sectioned bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert sombre gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert spined bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "expert spiral wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "fine bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "firm bracers": {
+      "tags": [
+        "gloves",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "furtive wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "gauze wraps": {
+      "tags": [
+        "gloves",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "goldcast cuffs": {
+      "tags": [
+        "str_int_armour",
+        "vaal_basetype",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "grand manchettes": {
+      "tags": [
+        "str_dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "grand mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "hardened bracers": {
+      "tags": [
+        "dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "intricate gloves": {
+      "tags": [
+        "gloves",
+        "int_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "jewelled gloves": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "layered gauntlets": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "linen wraps": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "moulded mitts": {
+      "tags": [
+        "gloves",
+        "str_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "ornate gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "pauascale gloves": {
+      "tags": [
+        "int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "plate gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "righteous cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "ringmail gauntlets": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "riveted mitts": {
+      "tags": [
+        "gloves",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "rope cuffs": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "sectioned bracers": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "signet cuffs": {
+      "tags": [
+        "str_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    },
+    "sombre gloves": {
+      "tags": [
+        "gloves",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "spined bracers": {
+      "tags": [
+        "gloves",
+        "dex_armour",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "spiral wraps": {
+      "tags": [
+        "gloves",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "stitched gloves": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "stocky mitts": {
+      "tags": [
+        "gloves",
+        "str_armour",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "suede bracers": {
+      "tags": [
+        "gloves",
+        "ezomyte_basetype",
+        "dex_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "tempered mitts": {
+      "tags": [
+        "maraketh_basetype",
+        "gloves",
+        "str_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "titan mitts": {
+      "tags": [
+        "gloves",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "torn gloves": {
+      "tags": [
+        "gloves",
+        "ezomyte_basetype",
+        "int_armour",
+        "armour",
+        "default"
+      ]
+    },
+    "utility wraps": {
+      "tags": [
+        "dex_int_armour",
+        "armour",
+        "gloves",
+        "default"
+      ]
+    }
+  },
+  "helmets": {
+    "advanced beaded circlet": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced brimmed helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced chain tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced cowled helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced cultist crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced elite greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced face mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced feathered tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced felt cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced guarded helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced heavy crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced hewn mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced hooded mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced horned crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced hunter hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced iron crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced lace hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced martyr crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "advanced rusted greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced shabby hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced shielded helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced soldier greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced spired greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "advanced swathed cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "advanced tribal mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced twig circlet": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced veiled mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "advanced visored helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "advanced wicker tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "advanced wrapped greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "armoured cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "beaded circlet": {
+      "tags": [
+        "maraketh_basetype",
+        "int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "brimmed helm": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "chain tiara": {
+      "tags": [
+        "maraketh_basetype",
+        "int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "closed helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "commander greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "coral circlet": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "corsair cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "covert hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "cowled helm": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "cultist crown": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "death mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "decorated helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "dueling greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "elite greathelm": {
+      "tags": [
+        "str_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "expert chain tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert cowled helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert elite greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert face mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "expert feathered tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "expert felt cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert guarded helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert heavy crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert horned crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert hunter hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert martyr crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "expert shielded helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "expert soldier greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert spired greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "expert swathed cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "expert tribal mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "expert veiled mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "expert wicker tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "face mask": {
+      "tags": [
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "feathered tiara": {
+      "tags": [
+        "int_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "felt cap": {
+      "tags": [
+        "ezomyte_basetype",
+        "dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "fierce greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "gallant helm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_armour",
+        "default"
+      ]
+    },
+    "gold circlet": {
+      "tags": [
+        "int_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "goliath greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "grand visage": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_dex_int_armour",
+        "default"
+      ]
+    },
+    "guarded helm": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "guardian greathelm": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_armour",
+        "default"
+      ]
+    },
+    "heavy crown": {
+      "tags": [
+        "str_int_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "hewn mask": {
+      "tags": [
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "hooded mask": {
+      "tags": [
+        "maraketh_basetype",
+        "helmet",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "horned crown": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "hunter hood": {
+      "tags": [
+        "dex_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "iron crown": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "jade tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "lace hood": {
+      "tags": [
+        "maraketh_basetype",
+        "dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "lavish crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "leatherbound hood": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "magus tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "martyr crown": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "noble circlet": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "rusted greathelm": {
+      "tags": [
+        "str_armour",
+        "helmet",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "shabby hood": {
+      "tags": [
+        "ezomyte_basetype",
+        "dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "shaded mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "shielded helm": {
+      "tags": [
+        "str_dex_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "soldier greathelm": {
+      "tags": [
+        "str_armour",
+        "helmet",
+        "armour",
+        "ezomyte_basetype",
+        "default"
+      ]
+    },
+    "solid mask": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_int_armour",
+        "default"
+      ]
+    },
+    "spired greathelm": {
+      "tags": [
+        "maraketh_basetype",
+        "str_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "spiritbone crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "swathed cap": {
+      "tags": [
+        "maraketh_basetype",
+        "dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "templar crown": {
+      "tags": [
+        "helmet",
+        "armour",
+        "str_int_armour",
+        "default"
+      ]
+    },
+    "tribal mask": {
+      "tags": [
+        "vaal_basetype",
+        "helmet",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "twig circlet": {
+      "tags": [
+        "ezomyte_basetype",
+        "int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "twilight tiara": {
+      "tags": [
+        "helmet",
+        "armour",
+        "int_armour",
+        "default"
+      ]
+    },
+    "veiled mask": {
+      "tags": [
+        "maraketh_basetype",
+        "helmet",
+        "armour",
+        "default",
+        "dex_int_armour"
+      ]
+    },
+    "velvet cap": {
+      "tags": [
+        "helmet",
+        "armour",
+        "dex_armour",
+        "default"
+      ]
+    },
+    "viper cap": {
+      "tags": [
+        "dex_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "visored helm": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "warrior greathelm": {
+      "tags": [
+        "str_armour",
+        "helmet",
+        "armour",
+        "vaal_basetype",
+        "default"
+      ]
+    },
+    "wicker tiara": {
+      "tags": [
+        "ezomyte_basetype",
+        "int_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    },
+    "wrapped greathelm": {
+      "tags": [
+        "maraketh_basetype",
+        "str_armour",
+        "helmet",
+        "armour",
+        "default"
+      ]
+    }
+  },
+  "jewels": {
+    "diamond": {
+      "tags": [
+        "jewel",
+        "not_for_sale",
+        "default"
+      ]
+    },
+    "emerald": {
+      "tags": [
+        "dexjewel",
+        "jewel",
+        "default"
+      ]
+    },
+    "ruby": {
+      "tags": [
+        "strjewel",
+        "jewel",
+        "default"
+      ]
+    },
+    "sapphire": {
+      "tags": [
+        "jewel",
+        "intjewel",
+        "default"
+      ]
+    },
+    "time-lost diamond": {
+      "tags": [
+        "not_for_sale",
+        "jewel",
+        "radius_jewel",
+        "default"
+      ]
+    },
+    "time-lost emerald": {
+      "tags": [
+        "not_for_sale",
+        "jewel",
+        "dex_radius_jewel",
+        "radius_jewel",
+        "default"
+      ]
+    },
+    "time-lost ruby": {
+      "tags": [
+        "str_radius_jewel",
+        "not_for_sale",
+        "jewel",
+        "radius_jewel",
+        "default"
+      ]
+    },
+    "time-lost sapphire": {
+      "tags": [
+        "not_for_sale",
+        "radius_jewel",
+        "jewel",
+        "int_radius_jewel",
+        "default"
+      ]
+    },
+    "timeless jewel": {
+      "tags": [
+        "dexjewel",
+        "not_for_sale",
+        "strjewel",
+        "jewel",
+        "default",
+        "intjewel"
+      ]
+    }
+  },
+  "one handed axes": {
+    "bandit hatchet": {
+      "tags": [
+        "axe",
+        "onehand",
+        "maraketh_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "battle axe": {
+      "tags": [
+        "axe",
+        "onehand",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "bearded axe": {
+      "tags": [
+        "axe",
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "boarding hatchet": {
+      "tags": [
+        "axe",
+        "onehand",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "carving hatchet": {
+      "tags": [
+        "axe",
+        "onehand",
+        "vaal_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "crescent axe": {
+      "tags": [
+        "axe",
+        "onehand",
+        "maraketh_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "dread hatchet": {
+      "tags": [
+        "axe",
+        "onehand",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "dull hatchet": {
+      "tags": [
+        "axe",
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "extended cleaver": {
+      "tags": [
+        "axe",
+        "onehand",
+        "maraketh_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "fury cleaver": {
+      "tags": [
+        "axe",
+        "onehand",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "hook axe": {
+      "tags": [
+        "axe",
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "profane cleaver": {
+      "tags": [
+        "axe",
+        "onehand",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "sacrificial axe": {
+      "tags": [
+        "axe",
+        "onehand",
+        "vaal_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    }
+  },
+  "one handed maces": {
+    "advanced brigand mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "advanced construct hammer": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "advanced plated mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "advanced slim mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "advanced smithing hammer": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "advanced warpick": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "brigand mace": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "construct hammer": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "execratus hammer": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert brigand mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert construct hammer": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert plated mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert slim mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert smithing hammer": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "expert warpick": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "jade club": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "lumen mace": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "morning star": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "plated mace": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "slim mace": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "smithing hammer": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "spiked club": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "torment club": {
+      "tags": [
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "warpick": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "wooden club": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    }
+  },
+  "one handed swords": {
+    "broadsword": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "charred shortsword": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "commander sword": {
+      "tags": [
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "cutlass": {
+      "tags": [
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "dark blade": {
+      "tags": [
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "energy blade one handed": {
+      "tags": [
+        "onehand",
+        "not_for_sale",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "falchion": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "messer": {
+      "tags": [
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "runic shortsword": {
+      "tags": [
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "scimitar": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "shortsword": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "sickle sword": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "treasured blade": {
+      "tags": [
+        "onehand",
+        "vaal_basetype",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "vampiric blade": {
+      "tags": [
+        "onehand",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "one_hand_weapon",
+        "default"
+      ]
+    }
+  },
+  "quarterstaves": {
+    "advanced barrier quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced crackling quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced crescent quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced gothic quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced long quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced slicing quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "anima quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "barrier quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "vaal_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "crackling quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "maraketh_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "crescent quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "maraketh_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert barrier quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert crackling quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert crescent quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert gothic quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert long quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert slicing quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "gothic quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "ezomyte_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "graceful quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "hefty quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "long quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "ezomyte_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "slicing quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "vaal_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "smooth quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "steelpoint quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "maraketh_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "wrapped quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "ezomyte_basetype",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "wyrm quarterstaff": {
+      "tags": [
+        "two_hand_weapon",
+        "warstaff",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    }
+  },
+  "quivers": {
+    "blunt quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "broadhead quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "fire quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "penetrating quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "primed quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "sacral quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "serrated quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "toxic quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "two-point quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "visceral quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    },
+    "volant quiver": {
+      "tags": [
+        "quiver",
+        "default"
+      ]
+    }
+  },
+  "rings": {
+    "amethyst ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "breach ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "emerald ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "gold ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "iron ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "lazuli ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "pearl ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "prismatic ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "ruby ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "sapphire ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "topaz ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    },
+    "unset ring": {
+      "tags": [
+        "ring",
+        "default"
+      ]
+    }
+  },
+  "sceptres": {
+    "aromatic sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "clasped sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "devotional sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "devouring sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "hallowed sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "lupine sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "ochre sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "omen sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "pious sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "rattling sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "shrine sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "stoic sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    },
+    "wrath sceptre": {
+      "tags": [
+        "default",
+        "onehand",
+        "sceptre"
+      ]
+    }
+  },
+  "shields": {
+    "advanced blazon crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced braced tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced chiseled targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced crescent targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced edged buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced effigial tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced emblem crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced feathered targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced hardwood targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced heraldric tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced jingling crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced omen crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced painted tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced pelage targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced plated buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced rampart tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced ridged buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced ringed buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced sectarian crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced sigil crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced spiked buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced stone tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced studded targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "advanced wooden buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "aegis buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ancestor tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "array buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "aureate targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "barricade tower shield": {
+      "tags": [
+        "maraketh_basetype",
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "blacksteel tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "blazon crest shield": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "braced tower shield": {
+      "tags": [
+        "str_armour",
+        "ezomyte_basetype",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "carved targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "chiseled targe": {
+      "tags": [
+        "str_dex_armour",
+        "vaal_basetype",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "crescent targe": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "crucible tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "defiant tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "deified crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "edged buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "effigial tower shield": {
+      "tags": [
+        "maraketh_basetype",
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "emblem crest shield": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "empyreal crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert braced tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert crescent targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert edged buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert feathered targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert jingling crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert omen crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert pelage targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert plated buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert rampart tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert sigil crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert spiked buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "expert stone tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "feathered targe": {
+      "tags": [
+        "str_dex_armour",
+        "vaal_basetype",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "grand targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "hardwood targe": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "heraldric tower shield": {
+      "tags": [
+        "str_armour",
+        "vaal_basetype",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "iron buckler": {
+      "tags": [
+        "maraketh_basetype",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "jingling crest shield": {
+      "tags": [
+        "maraketh_basetype",
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "laminate buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "leather buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "mosaic targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "omen crest shield": {
+      "tags": [
+        "str_int_armour",
+        "vaal_basetype",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ornate buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "painted tower shield": {
+      "tags": [
+        "str_armour",
+        "ezomyte_basetype",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "pearl buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "pelage targe": {
+      "tags": [
+        "str_dex_armour",
+        "ezomyte_basetype",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "phalanx tower shield": {
+      "tags": [
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "plated buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "rampart tower shield": {
+      "tags": [
+        "maraketh_basetype",
+        "str_armour",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ridged buckler": {
+      "tags": [
+        "maraketh_basetype",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ringed buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "sectarian crest shield": {
+      "tags": [
+        "str_int_armour",
+        "vaal_basetype",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "seer crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "sigil crest shield": {
+      "tags": [
+        "str_int_armour",
+        "ezomyte_basetype",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "spiked buckler": {
+      "tags": [
+        "maraketh_basetype",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "splintered tower shield": {
+      "tags": [
+        "str_armour",
+        "ezomyte_basetype",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "stoic crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "stone tower shield": {
+      "tags": [
+        "str_armour",
+        "vaal_basetype",
+        "str_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "stratified targe": {
+      "tags": [
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "studded targe": {
+      "tags": [
+        "maraketh_basetype",
+        "str_dex_armour",
+        "str_dex_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "wayward crest shield": {
+      "tags": [
+        "str_int_armour",
+        "str_int_shield",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "wooden buckler": {
+      "tags": [
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    }
+  },
+  "spears": {
+    "barbed spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "vaal_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "broad spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "vaal_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "crossblade spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "forked spear": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "hardwood spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "helix spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "hunting spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "ironhead spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "ezomyte_basetype",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "seaglass spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "striking spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "sword spear": {
+      "tags": [
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "war spear": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    },
+    "winged spear": {
+      "tags": [
+        "maraketh_basetype",
+        "onehand",
+        "spear",
+        "weapon",
+        "one_hand_weapon",
+        "default"
+      ]
+    }
+  },
+  "staves": {
+    "ashen staff": {
+      "tags": [
+        "no_physical_spell_mods",
+        "no_lightning_spell_mods",
+        "no_cold_spell_mods",
+        "no_chaos_spell_mods",
+        "staff",
+        "twohand",
+        "default"
+      ]
+    },
+    "chiming staff": {
+      "tags": [
+        "default",
+        "twohand",
+        "staff"
+      ]
+    },
+    "cleric staff": {
+      "tags": [
+        "default",
+        "twohand",
+        "staff"
+      ]
+    },
+    "dark staff": {
+      "tags": [
+        "default",
+        "twohand",
+        "staff"
+      ]
+    },
+    "gelid staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_lightning_spell_mods",
+        "staff",
+        "no_physical_spell_mods",
+        "no_chaos_spell_mods",
+        "twohand",
+        "default"
+      ]
+    },
+    "icicle staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_lightning_spell_mods",
+        "staff",
+        "no_physical_spell_mods",
+        "no_chaos_spell_mods",
+        "twohand",
+        "default"
+      ]
+    },
+    "paralysing staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_physical_spell_mods",
+        "staff",
+        "no_chaos_spell_mods",
+        "no_cold_spell_mods",
+        "twohand",
+        "default"
+      ]
+    },
+    "pyrophyte staff": {
+      "tags": [
+        "no_physical_spell_mods",
+        "no_lightning_spell_mods",
+        "no_cold_spell_mods",
+        "no_chaos_spell_mods",
+        "staff",
+        "twohand",
+        "default"
+      ]
+    },
+    "reaping staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_lightning_spell_mods",
+        "staff",
+        "no_chaos_spell_mods",
+        "no_cold_spell_mods",
+        "twohand",
+        "default"
+      ]
+    },
+    "rending staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_lightning_spell_mods",
+        "staff",
+        "no_physical_spell_mods",
+        "no_cold_spell_mods",
+        "twohand",
+        "default"
+      ]
+    },
+    "roaring staff": {
+      "tags": [
+        "default",
+        "twohand",
+        "staff"
+      ]
+    },
+    "spriggan staff": {
+      "tags": [
+        "default",
+        "twohand",
+        "staff"
+      ]
+    },
+    "voltaic staff": {
+      "tags": [
+        "no_fire_spell_mods",
+        "no_physical_spell_mods",
+        "staff",
+        "no_chaos_spell_mods",
+        "no_cold_spell_mods",
+        "twohand",
+        "default"
+      ]
+    }
+  },
+  "traptools": {
+    "bladed trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "clamping trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "clay trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "coiled trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "dart trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "incense trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "intricate trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "lead trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "medallion trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "refined trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "shrapnel trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "spike trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    },
+    "urn trap": {
+      "tags": [
+        "twohand",
+        "trap",
+        "default"
+      ]
+    }
+  },
+  "two handed axes": {
+    "arched greataxe": {
+      "tags": [
+        "axe",
+        "maraketh_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "ceremonial halberd": {
+      "tags": [
+        "axe",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "elegant glaive": {
+      "tags": [
+        "axe",
+        "maraketh_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "ember greataxe": {
+      "tags": [
+        "axe",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "executioner greataxe": {
+      "tags": [
+        "axe",
+        "ezomyte_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "jagged greataxe": {
+      "tags": [
+        "axe",
+        "vaal_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "light halberd": {
+      "tags": [
+        "axe",
+        "ezomyte_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "monument greataxe": {
+      "tags": [
+        "axe",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "reaver glaive": {
+      "tags": [
+        "axe",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "rending halberd": {
+      "tags": [
+        "axe",
+        "vaal_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "savage greataxe": {
+      "tags": [
+        "axe",
+        "maraketh_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "splitting greataxe": {
+      "tags": [
+        "axe",
+        "ezomyte_basetype",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "vile greataxe": {
+      "tags": [
+        "axe",
+        "two_hand_weapon",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    }
+  },
+  "two handed maces": {
+    "advanced crumbling maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced cultist greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced forge maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced leaden greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced oak greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "advanced temple maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "crumbling maul": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "cultist greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert crumbling maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert cultist greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert forge maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert leaden greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert oak greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "expert temple maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "felled greatclub": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "forge maul": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "giant maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "greatmace": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "leaden greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "oak greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "pointed maul": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "precise greathammer": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "studded greatclub": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "temple maul": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    },
+    "totemic greatclub": {
+      "tags": [
+        "two_hand_weapon",
+        "mace",
+        "weapon",
+        "twohand",
+        "default"
+      ]
+    }
+  },
+  "two handed swords": {
+    "ancient greatblade": {
+      "tags": [
+        "two_hand_weapon",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "arced longsword": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "blessed claymore": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "broad greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "corroded longsword": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "energy blade two handed": {
+      "tags": [
+        "two_hand_weapon",
+        "not_for_sale",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "flanged greatblade": {
+      "tags": [
+        "two_hand_weapon",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "iron greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "ezomyte_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "keen greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "keyblade": {
+      "tags": [
+        "two_hand_weapon",
+        "not_for_sale",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "obsidian greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "regalia longsword": {
+      "tags": [
+        "two_hand_weapon",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "rippled greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "maraketh_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "stone greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "vaal_basetype",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    },
+    "ultra greatsword": {
+      "tags": [
+        "two_hand_weapon",
+        "weapon",
+        "sword",
+        "twohand",
+        "default"
+      ]
+    }
+  },
+  "wands": {
+    "acrid wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "attuned wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "bone wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_cold_spell_mods",
+        "no_lightning_spell_mods",
+        "no_chaos_spell_mods",
+        "default"
+      ]
+    },
+    "critical wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "dueling wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "frigid wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_physical_spell_mods",
+        "no_lightning_spell_mods",
+        "no_chaos_spell_mods",
+        "default"
+      ]
+    },
+    "galvanic wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_physical_spell_mods",
+        "no_cold_spell_mods",
+        "no_chaos_spell_mods",
+        "default"
+      ]
+    },
+    "offering wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_cold_spell_mods",
+        "no_lightning_spell_mods",
+        "no_chaos_spell_mods",
+        "default"
+      ]
+    },
+    "primordial wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_cold_spell_mods",
+        "no_lightning_spell_mods",
+        "no_physical_spell_mods",
+        "default"
+      ]
+    },
+    "random wand": {
+      "tags": [
+        "wand",
+        "default"
+      ]
+    },
+    "siphoning wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "torture wand": {
+      "tags": [
+        "default",
+        "onehand",
+        "wand"
+      ]
+    },
+    "volatile wand": {
+      "tags": [
+        "no_physical_spell_mods",
+        "onehand",
+        "no_cold_spell_mods",
+        "wand",
+        "no_lightning_spell_mods",
+        "no_chaos_spell_mods",
+        "default"
+      ]
+    },
+    "withered wand": {
+      "tags": [
+        "no_fire_spell_mods",
+        "onehand",
+        "wand",
+        "no_cold_spell_mods",
+        "no_lightning_spell_mods",
+        "no_physical_spell_mods",
+        "default"
+      ]
+    }
+  }
+}
