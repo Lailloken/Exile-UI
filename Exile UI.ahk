@@ -492,15 +492,22 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 			FileDelete, data\%val%
 			FileRemoveDir, data\%val%, 1
 		}
+
+	If FileExist("lailloken ui.ahk")
+		FileDelete, lailloken ui.ahk
+
 	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken"]
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
+
 	For index, val in ["the_wall_with_notes"]
 		If FileExist("img\GUI\leveling tracker\hints 2\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints 2\" val ".jpg"
+
 	For index, val in ["necropolis.ahk"]
 		If FileExist("modules\" val)
 			FileDelete, modules\%val%
+
 	If FileExist("data\global\default guide 2.txt")
 		FileDelete, data\global\default guide 2.txt
 	If FileExist("img\GUI\screen-checks\necro_lantern.jpg")
