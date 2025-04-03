@@ -274,6 +274,11 @@
       "click a box to open the color-palette, right click to reset",
       "<fr> refers to fractured, <#> to untiered mods"
     ],
+    "iteminfo item-tier 2": [
+      "click a box to open the color-palette, right click to reset",
+      "<fr> refers to fractured, <#> to untiered mods",
+      "note: poe2 tiers will be normalized / recalculated so that the best available mod on an item is t1 again. if that fails, highlighting will not be applied and the in-game tier will be displayed"
+    ],
     "iteminfo item-level": [
       "click a box to open the color-palette, right click to reset"
     ],

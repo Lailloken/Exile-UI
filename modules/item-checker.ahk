@@ -12,7 +12,7 @@
 	settings.iteminfo.profile := !Blank(check := ini.settings["current profile"]) ? check : 1
 	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 1
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
-	settings.iteminfo.ilvl := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
+	settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
@@ -206,7 +206,7 @@ Iteminfo(refresh := 0) ; refresh: 1 to refresh it normally, 2 for clipboard pars
 	{
 		If item.unid || (item.rarity = Lang_Trans("items_normal")) ;unid and normal items = name is also base-type
 			item.itembase := item.name
-		Else If !vars.poe_version && (settings.general.lang_client = "english") && (item.rarity = "magic")
+		Else If (settings.general.lang_client = "english") && (item.rarity = "magic")
 		{
 			Loop, Parse, % vars[(refresh = 2) ? "omnikey" : "iteminfo"].clipboard, `n, `r
 			{
@@ -833,7 +833,7 @@ Iteminfo_Mods2()
 			clip2 := ""
 		If clip2 && InStr(A_LoopField, "---")
 			Break
-		If LLK_PatternMatch(A_LoopField, "", ["rune)", "implicit)", "---", "enchant)"])
+		If !InStr(A_LoopField, "{") || LLK_PatternMatch(A_LoopField, "", ["rune)", "implicit)", "---", "enchant)"])
 			Continue
 		Loop, Parse, A_LoopField, `n, % " "
 		{
@@ -1326,26 +1326,25 @@ Iteminfo_GUI()
 			If !IsObject(db.item_mods)
 				DB_Load("item_mods")
 
-			For key, val in db.item_mods[db.item_mods.HasKey(search_class) ? search_class : "universal"]
-			{
-				If (val.affix = name) && (val.type = affix_type)
-				{
-					For index, text in val.texts ; to avoid ambiguity, also check if the mod-texts match
-						If !InStr(mod, text)
-							Continue 2
+			If !vars.poe_version
+				For key, val in db.item_mods[db.item_mods.HasKey(search_class) ? search_class : "universal"]
+					If (val.affix = name) && (val.type = affix_type)
+					{
+						For index, text in val.texts ; to avoid ambiguity, also check if the mod-texts match
+							If !InStr(mod, text)
+								Continue 2
 
-					tag_check := 0
-					For index, tag in item.tags ; to avoid ambiguity, also check if the tags match
-						If LLK_HasVal(val.tags, tag, 1)
-							tag_check += 1
+						tag_check := 0
+						For index, tag in item.tags ; to avoid ambiguity, also check if the tags match
+							If LLK_HasVal(val.tags, tag, 1)
+								tag_check += 1
 
-					If !tag_check
-						Continue
+						If !tag_check
+							Continue
 
-					ilvl := val.level
-					Break
-				}
-			}
+						ilvl := val.level
+						Break
+					}
 		}
 		mod := StrReplace(mod, Lang_Trans("mods_cluster_passive", 2) " "), mod := StrReplace(mod, Lang_Trans("mods_cluster_passive", 3) " ") ;trim cluster-jewel mod-texts
 
@@ -1444,19 +1443,40 @@ Iteminfo_GUI()
 							If (iTier := LLK_HasVal(oModName, name,,,, 1))
 							{
 								tier_override := oModName.Count() + 1 - iTier
+								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+									ilvl := oModName[iTier].2
 								Break 2
 							}
 
-				For kModName, oModName in db.item_mods.universal
+				For kModName, oModName in db.item_mods.universal ;check universal mod-list next
 					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
-						For i, WeightKey in oModName[iTier].2
+						For i, WeightKey in oModName[iTier].3
 						{
 							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, WeightKey)
 							{
-								While LLK_HasVal(oModName[max + 1].2, WeightKey)
+								While LLK_HasVal(oModName[max + 1].3, WeightKey)
 									max += 1
+								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+									ilvl := oModName[iTier].2
 								If tier_override
-									tier_override := "conflict"
+									tier_override := "conflict", ilvl := "??"
+								Else tier_override := max + 1 - iTier
+								Break
+							}
+						}
+
+				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
+					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
+						For i, WeightKey in oModName[iTier].3
+						{
+							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, WeightKey)
+							{
+								While LLK_HasVal(oModName[max + 1].3, WeightKey)
+									max += 1
+								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+									ilvl := oModName[iTier].2
+								If tier_override
+									tier_override := "conflict", ilvl := "??"
 								Else tier_override := max + 1 - iTier
 								Break
 							}

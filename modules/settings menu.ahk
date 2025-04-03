@@ -1280,9 +1280,10 @@ Settings_iteminfo()
 			Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.itembase, % Lang_Trans("m_iteminfo_base")
 			vars.hwnd.settings.itembase := hwnd, vars.hwnd.help_tooltips["settings_iteminfo base-info"] := hwnd
 		}
-		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.ilvl (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_ilvl")
-		vars.hwnd.settings.ilvl := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo enable item-level" : "lang unavailable||")] := hwnd
 	}
+
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.ilvl (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_ilvl")
+	vars.hwnd.settings.ilvl := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo enable item-level" : "lang unavailable||")] := hwnd
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_highlight")
@@ -1312,7 +1313,7 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " cBlack Center Border BackgroundTrans gSettings_iteminfo2 HWNDhwnd", % (A_Index = 1) ? Lang_Trans("m_iteminfo_fractured") : (A_Index = 2) ? "#" : parse
 		vars.hwnd.help_tooltips["settings_iteminfo item-tier"] := hwnd0, vars.hwnd.settings["tier_"parse] := hwnd, handle := (A_Index = 1) ? "|" : handle "|"
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_tier[parse], 100
-		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier"handle] := hwnd
+		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier" vars.poe_version . handle] := hwnd
 	}
 
 	If settings.iteminfo.ilvl
@@ -1516,7 +1517,7 @@ Settings_iteminfo2(cHWND)
 			GuiControl, % "+c"(color = "FFFFFF" ? "Red" : "Black"), % cHWND
 			GuiControl, movedraw, % cHWND
 		}
-		IniWrite, % """"  color """", % "ini" vars.poe_version "\item-checker.ini", UI, % "ilvl tier "control
+		IniWrite, % """" color """", % "ini" vars.poe_version "\item-checker.ini", UI, % "ilvl tier "control
 		settings.iteminfo.colors_ilvl[control] := color
 	}
 	Else If (check = "override")
