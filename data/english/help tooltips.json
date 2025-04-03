@@ -339,7 +339,8 @@
     ],
     "leveltracker pob gems": [
       "the gem-overlay will stay on screen after releasing the omni-key, until you press <esc>",
-      "this option also allows the overlay to be moved around by long-clicking a gem-name in the list(s)"
+      "this option also allows the overlay to be moved around by long-clicking a gem-name in the list(s)",
+      "clicking a gem-name in the list(s) will start an in-game search for that gem"
     ],
     "leveltracker pob manual": [
       "the tree-overlay will use manual screen-caps instead of schematics rendered from pob's data",
