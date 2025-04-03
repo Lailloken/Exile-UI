@@ -1409,18 +1409,6 @@
     ]
   },
   "flasks": {
-    "FlaskBleedCorruptingBloodImmunity": [
-      [
-        "of sealing",
-        "8"
-      ]
-    ],
-    "FlaskBleedingAndCorruptedBloodImmunityDuringEffect": [
-      [
-        "of the lizard",
-        "8"
-      ]
-    ],
     "FlaskChanceRechargeOnKill": [
       [
         "of the medic",
@@ -1485,18 +1473,6 @@
       [
         "of the chemist",
         "83"
-      ]
-    ],
-    "FlaskChillFreezeImmunity": [
-      [
-        "of convection",
-        "4"
-      ]
-    ],
-    "FlaskCurseImmunity": [
-      [
-        "of warding",
-        "18"
       ]
     ],
     "FlaskExtraCharges": [
@@ -1583,12 +1559,6 @@
         "45"
       ]
     ],
-    "FlaskFreezeAndChillImmunityDuringEffect": [
-      [
-        "of the deer",
-        "4"
-      ]
-    ],
     "FlaskFullInstantRecovery": [
       [
         "seething",
@@ -1615,18 +1585,6 @@
       [
         "necromancer's",
         "82"
-      ]
-    ],
-    "FlaskIgniteImmunity": [
-      [
-        "of damping",
-        "6"
-      ]
-    ],
-    "FlaskIgniteImmunityDuringEffect": [
-      [
-        "of the urchin",
-        "6"
       ]
     ],
     "FlaskIncreasedRecoveryAmount": [
@@ -1745,30 +1703,6 @@
       [
         "bubbling",
         "46"
-      ]
-    ],
-    "FlaskPoisonImmunity": [
-      [
-        "of the antitoxin",
-        "16"
-      ]
-    ],
-    "FlaskPoisonImmunityDuringEffect": [
-      [
-        "of the skunk",
-        "16"
-      ]
-    ],
-    "FlaskShockImmunity": [
-      [
-        "of earthing",
-        "6"
-      ]
-    ],
-    "FlaskShockImmunityDuringEffect": [
-      [
-        "of the conger",
-        "6"
       ]
     ]
   },
@@ -4285,20 +4219,6 @@
         ]
       ]
     ],
-    "AttackAndCastSpeed": [
-      [
-        "of zeal",
-        "15"
-      ],
-      [
-        "of fervour",
-        "45"
-      ],
-      [
-        "of haste",
-        "70"
-      ]
-    ],
     "AttackCriticalStrikeChance": [
       [
         "of menace",
@@ -4385,28 +4305,6 @@
         [
           "quiver"
         ]
-      ]
-    ],
-    "AttackDamagePercent": [
-      [
-        "bully's",
-        "4"
-      ],
-      [
-        "thug's",
-        "15"
-      ],
-      [
-        "brute's",
-        "30"
-      ],
-      [
-        "assailant's",
-        "60"
-      ],
-      [
-        "predator's",
-        "81"
       ]
     ],
     "AttackerTakesDamage": [
@@ -4775,50 +4673,6 @@
         ]
       ]
     ],
-    "ChanceToAvoidElementalStatusAilments": [
-      [
-        "of stoicism",
-        "23"
-      ],
-      [
-        "of resolve",
-        "41"
-      ],
-      [
-        "of fortitude",
-        "57"
-      ],
-      [
-        "of will",
-        "73"
-      ]
-    ],
-    "ChanceToBlockProjectileAttacks": [
-      [
-        "of deflection",
-        "8"
-      ],
-      [
-        "of protection",
-        "19"
-      ],
-      [
-        "of cover",
-        "30"
-      ],
-      [
-        "of asylum",
-        "55"
-      ],
-      [
-        "of refuge",
-        "70"
-      ],
-      [
-        "of sanctuary",
-        "81"
-      ]
-    ],
     "ChaosDamagePercent": [
       [
         "impure",
@@ -4995,16 +4849,6 @@
         ]
       ]
     ],
-    "ChaosNonAilmentDamageOverTimeMultiplierUber": [
-      [
-        "of the elder",
-        "68"
-      ],
-      [
-        "of the elder",
-        "80"
-      ]
-    ],
     "ChaosResist": [
       [
         "of the lost",
@@ -5065,16 +4909,6 @@
           "amulet",
           "belt"
         ]
-      ]
-    ],
-    "ColdDamageOverTimeMultiplierUber": [
-      [
-        "of shaping",
-        "68"
-      ],
-      [
-        "of shaping",
-        "80"
       ]
     ],
     "ColdDamagePercent": [
@@ -5333,12 +5167,6 @@
           "amulet",
           "belt"
         ]
-      ]
-    ],
-    "ColdResistancePenetrationWarbands": [
-      [
-        "deceiver's",
-        "60"
       ]
     ],
     "CriticalMultiplier": [
@@ -5779,16 +5607,6 @@
         ]
       ]
     ],
-    "FireDamageOverTimeMultiplierUber": [
-      [
-        "of shaping",
-        "68"
-      ],
-      [
-        "of shaping",
-        "80"
-      ]
-    ],
     "FireDamagePercent": [
       [
         "searing",
@@ -6047,54 +5865,6 @@
         ]
       ]
     ],
-    "FireResistancePenetrationWarbands": [
-      [
-        "betrayer's",
-        "60"
-      ]
-    ],
-    "FishingCastDistance": [
-      [
-        "of flight",
-        "1"
-      ]
-    ],
-    "FishingHookType": [
-      [
-        "of snaring",
-        "1"
-      ]
-    ],
-    "FishingLineStrength": [
-      [
-        "filigree",
-        "1"
-      ]
-    ],
-    "FishingLureType": [
-      [
-        "alluring",
-        "1"
-      ]
-    ],
-    "FishingPoolConsumption": [
-      [
-        "calming",
-        "1"
-      ]
-    ],
-    "FishingQuantity": [
-      [
-        "of fascination",
-        "1"
-      ]
-    ],
-    "FishingRarity": [
-      [
-        "of bounty",
-        "1"
-      ]
-    ],
     "FreezeDamageIncrease": [
       [
         "of freezing",
@@ -6140,50 +5910,6 @@
           "staff",
           "trap"
         ]
-      ]
-    ],
-    "GainLifeOnBlock": [
-      [
-        "of repairing",
-        "11"
-      ],
-      [
-        "of resurgence",
-        "22"
-      ],
-      [
-        "of renewal",
-        "36"
-      ],
-      [
-        "of revival",
-        "48"
-      ],
-      [
-        "of rebounding",
-        "60"
-      ],
-      [
-        "of revitalization",
-        "75"
-      ]
-    ],
-    "GainManaOnBlock": [
-      [
-        "of redirection",
-        "15"
-      ],
-      [
-        "of transformation",
-        "32"
-      ],
-      [
-        "of conservation",
-        "58"
-      ],
-      [
-        "of utilisation",
-        "75"
       ]
     ],
     "GlobalChaosSpellGemsLevel": [
@@ -7020,30 +6746,6 @@
         [
           "trap"
         ]
-      ]
-    ],
-    "GrantsBirdAspectCrafted": [
-      [
-        "of saqawal",
-        "20"
-      ]
-    ],
-    "GrantsCatAspectCrafted": [
-      [
-        "of farrul",
-        "20"
-      ]
-    ],
-    "GrantsCrabAspectCrafted": [
-      [
-        "of craiceann",
-        "20"
-      ]
-    ],
-    "GrantsSpiderAspectCrafted": [
-      [
-        "of fenumus",
-        "20"
       ]
     ],
     "IgniteChanceIncrease": [
@@ -9024,12 +8726,6 @@
         ]
       ]
     ],
-    "LightningPenetrationWarbands": [
-      [
-        "turncoat's",
-        "60"
-      ]
-    ],
     "LightningResist": [
       [
         "of the cloud",
@@ -9165,18 +8861,6 @@
           "sceptre",
           "ring"
         ]
-      ]
-    ],
-    "LocalAddedChaosDamage": [
-      [
-        "malicious",
-        "83"
-      ]
-    ],
-    "LocalAddedChaosDamageTwoHand": [
-      [
-        "malicious",
-        "83"
       ]
     ],
     "LocalAddedColdDamage": [
@@ -13627,16 +13311,6 @@
         ]
       ]
     ],
-    "PhysicalDamageOverTimeMultiplierUber": [
-      [
-        "of the elder",
-        "68"
-      ],
-      [
-        "of the elder",
-        "80"
-      ]
-    ],
     "PhysicalDamagePrefixOnTwoHandWeapon": [
       [
         "punishing",
@@ -13767,28 +13441,6 @@
           "wand",
           "trap"
         ]
-      ]
-    ],
-    "PhysicalDamageTakenAsFirePercentWarbands": [
-      [
-        "redblade",
-        "1"
-      ]
-    ],
-    "PoisonDuration": [
-      [
-        "of rot",
-        "30"
-      ],
-      [
-        "of putrefaction",
-        "60"
-      ]
-    ],
-    "PoisonDurationEnhancedMod": [
-      [
-        "of tacati",
-        "1"
       ]
     ],
     "PresenceRadius": [
@@ -14244,234 +13896,6 @@
           "staff",
           "trap"
         ]
-      ]
-    ],
-    "SpellAddedColdDamage": [
-      [
-        "frosted",
-        "1"
-      ],
-      [
-        "chilled",
-        "11"
-      ],
-      [
-        "icy",
-        "18"
-      ],
-      [
-        "frigid",
-        "26"
-      ],
-      [
-        "freezing",
-        "33"
-      ],
-      [
-        "frozen",
-        "42"
-      ],
-      [
-        "glaciated",
-        "51"
-      ],
-      [
-        "polar",
-        "62"
-      ],
-      [
-        "entombing",
-        "74"
-      ]
-    ],
-    "SpellAddedColdDamageTwoHand": [
-      [
-        "frosted",
-        "1"
-      ],
-      [
-        "chilled",
-        "11"
-      ],
-      [
-        "icy",
-        "18"
-      ],
-      [
-        "frigid",
-        "26"
-      ],
-      [
-        "freezing",
-        "33"
-      ],
-      [
-        "frozen",
-        "42"
-      ],
-      [
-        "glaciated",
-        "51"
-      ],
-      [
-        "polar",
-        "62"
-      ],
-      [
-        "entombing",
-        "74"
-      ]
-    ],
-    "SpellAddedFireDamage": [
-      [
-        "heated",
-        "1"
-      ],
-      [
-        "smouldering",
-        "11"
-      ],
-      [
-        "smoking",
-        "18"
-      ],
-      [
-        "burning",
-        "26"
-      ],
-      [
-        "flaming",
-        "33"
-      ],
-      [
-        "scorching",
-        "42"
-      ],
-      [
-        "incinerating",
-        "51"
-      ],
-      [
-        "blasting",
-        "62"
-      ],
-      [
-        "cremating",
-        "74"
-      ]
-    ],
-    "SpellAddedFireDamageTwoHand": [
-      [
-        "heated",
-        "1"
-      ],
-      [
-        "smouldering",
-        "11"
-      ],
-      [
-        "smoking",
-        "18"
-      ],
-      [
-        "burning",
-        "26"
-      ],
-      [
-        "flaming",
-        "33"
-      ],
-      [
-        "scorching",
-        "42"
-      ],
-      [
-        "incinerating",
-        "51"
-      ],
-      [
-        "blasting",
-        "62"
-      ],
-      [
-        "cremating",
-        "74"
-      ]
-    ],
-    "SpellAddedLightningDamage": [
-      [
-        "humming",
-        "1"
-      ],
-      [
-        "buzzing",
-        "11"
-      ],
-      [
-        "snapping",
-        "18"
-      ],
-      [
-        "crackling",
-        "26"
-      ],
-      [
-        "sparking",
-        "33"
-      ],
-      [
-        "arcing",
-        "42"
-      ],
-      [
-        "shocking",
-        "51"
-      ],
-      [
-        "discharging",
-        "62"
-      ],
-      [
-        "electrocuting",
-        "74"
-      ]
-    ],
-    "SpellAddedLightningDamageTwoHand": [
-      [
-        "humming",
-        "1"
-      ],
-      [
-        "buzzing",
-        "11"
-      ],
-      [
-        "snapping",
-        "18"
-      ],
-      [
-        "crackling",
-        "26"
-      ],
-      [
-        "sparking",
-        "33"
-      ],
-      [
-        "arcing",
-        "42"
-      ],
-      [
-        "shocking",
-        "51"
-      ],
-      [
-        "discharging",
-        "62"
-      ],
-      [
-        "electrocuting",
-        "74"
       ]
     ],
     "SpellCriticalStrikeChance": [
@@ -15171,24 +14595,6 @@
         [
           "belt"
         ]
-      ]
-    ],
-    "StunAvoidance": [
-      [
-        "of composure",
-        "1"
-      ],
-      [
-        "of surefootedness",
-        "1"
-      ],
-      [
-        "of persistence",
-        "1"
-      ],
-      [
-        "of relentlessness",
-        "1"
       ]
     ],
     "StunDamageIncrease": [
