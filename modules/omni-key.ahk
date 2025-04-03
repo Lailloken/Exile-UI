@@ -34,6 +34,8 @@
 		Else SendInput, !^{c}
 
 		ClipWait, 0.1
+		If !settings.general.dev
+			SendInput, {ALT up}
 	}
 
 	If Clipboard

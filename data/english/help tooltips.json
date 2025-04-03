@@ -197,6 +197,7 @@
       "to avoid conflicts between custom in-game keybinds and the script's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
     ],
     "hotkeys movekey": [
+      "note: only required when using cursor-movement, not wasd(/underline)",
       "specifying the key allows the script to adapt its behavior in certain situations",
       "example: not activating on-hover overlays while moving the character",
       "for special keys, check the links above to find proper names and formatting"
