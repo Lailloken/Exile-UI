@@ -1067,18 +1067,15 @@ Settings_hotkeys()
 
 	If !vars.client.stream
 	{
-		If !vars.poe_version
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked"settings.hotkeys.rebound_alt, % Lang_Trans("m_hotkeys_descriptions")
+		vars.hwnd.settings.rebound_alt := hwnd, vars.hwnd.help_tooltips["settings_hotkeys ingame-keybinds"] := hwnd0
+		If settings.hotkeys.rebound_alt
 		{
-			Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked"settings.hotkeys.rebound_alt, % Lang_Trans("m_hotkeys_descriptions")
-			vars.hwnd.settings.rebound_alt := hwnd, vars.hwnd.help_tooltips["settings_hotkeys ingame-keybinds"] := hwnd0
-			If settings.hotkeys.rebound_alt
-			{
-				Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 xp+" settings.general.fWidth * 1.5, % Lang_Trans("m_hotkeys_descriptions", 2)
-				Gui, %GUI%: font, % "s"settings.general.fSize - 4
-				Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp gSettings_hotkeys2 w"settings.general.fWidth*10 " HWNDhwnd cBlack", % settings.hotkeys.item_descriptions
-				vars.hwnd.help_tooltips["settings_hotkeys altkey"] := hwnd0, vars.hwnd.settings.item_descriptions := vars.hwnd.help_tooltips["settings_hotkeys altkey|"] := hwnd
-				Gui, %GUI%: font, % "s"settings.general.fSize
-			}
+			Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 xp+" settings.general.fWidth * 1.5, % Lang_Trans("m_hotkeys_descriptions", 2)
+			Gui, %GUI%: font, % "s"settings.general.fSize - 4
+			Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp gSettings_hotkeys2 w"settings.general.fWidth*10 " HWNDhwnd cBlack", % settings.hotkeys.item_descriptions
+			vars.hwnd.help_tooltips["settings_hotkeys altkey"] := hwnd0, vars.hwnd.settings.item_descriptions := vars.hwnd.help_tooltips["settings_hotkeys altkey|"] := hwnd
+			Gui, %GUI%: font, % "s"settings.general.fSize
 		}
 		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.rebound_c " x" x_anchor, % Lang_Trans("m_hotkeys_ckey")
 		vars.hwnd.settings.rebound_c := hwnd
@@ -1307,30 +1304,27 @@ Settings_iteminfo()
 		vars.hwnd.help_tooltips["settings_iteminfo marking " (A_Index = 1 ? "global" : "class") "|"] := hwnd2, vars.hwnd.help_tooltips["settings_iteminfo marking " (A_Index = 1 ? "global" : "class") "||"] := hwnd4
 	}
 
-	If !vars.poe_version
+	Loop 8
 	{
+		parse := (A_Index = 1) ? 7 : A_Index - 2
+		If (A_Index = 1)
+			Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 w" wText, % Lang_Trans("global_tier")
+		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " cBlack Center Border BackgroundTrans gSettings_iteminfo2 HWNDhwnd", % (A_Index = 1) ? Lang_Trans("m_iteminfo_fractured") : (A_Index = 2) ? "#" : parse
+		vars.hwnd.help_tooltips["settings_iteminfo item-tier"] := hwnd0, vars.hwnd.settings["tier_"parse] := hwnd, handle := (A_Index = 1) ? "|" : handle "|"
+		Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_tier[parse], 100
+		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier"handle] := hwnd
+	}
+
+	If settings.iteminfo.ilvl
 		Loop 8
 		{
-			parse := (A_Index = 1) ? 7 : A_Index - 2
 			If (A_Index = 1)
-				Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 w" wText, % Lang_Trans("global_tier")
-			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " cBlack Center Border BackgroundTrans gSettings_iteminfo2 HWNDhwnd", % (A_Index = 1) ? Lang_Trans("m_iteminfo_fractured") : (A_Index = 2) ? "#" : parse
-			vars.hwnd.help_tooltips["settings_iteminfo item-tier"] := hwnd0, vars.hwnd.settings["tier_"parse] := hwnd, handle := (A_Index = 1) ? "|" : handle "|"
-			Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_tier[parse], 100
-			vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier"handle] := hwnd
+				Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd00 w" wText, % Lang_Trans("global_ilvl")
+			color := (settings.iteminfo.colors_ilvl[A_Index] = "ffffff") && (A_Index = 1) ? "Red" : "Black", vars.hwnd.help_tooltips["settings_iteminfo item-level"] := hwnd00, handle := (A_Index = 1) ? "|" : handle "|"
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " c"color " Border Center BackgroundTrans gSettings_iteminfo2 HWNDhwnd0", % settings.iteminfo.ilevels[A_Index]
+			Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_ilvl[A_Index], 100
+			vars.hwnd.settings["ilvl_"A_Index] := hwnd0, vars.hwnd.settings["ilvlbar_"A_Index] := vars.hwnd.help_tooltips["settings_iteminfo item-level"handle] := hwnd
 		}
-
-		If settings.iteminfo.ilvl
-			Loop 8
-			{
-				If (A_Index = 1)
-					Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd00 w" wText, % Lang_Trans("global_ilvl")
-				color := (settings.iteminfo.colors_ilvl[A_Index] = "ffffff") && (A_Index = 1) ? "Red" : "Black", vars.hwnd.help_tooltips["settings_iteminfo item-level"] := hwnd00, handle := (A_Index = 1) ? "|" : handle "|"
-				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " c"color " Border Center BackgroundTrans gSettings_iteminfo2 HWNDhwnd0", % settings.iteminfo.ilevels[A_Index]
-				Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_ilvl[A_Index], 100
-				vars.hwnd.settings["ilvl_"A_Index] := hwnd0, vars.hwnd.settings["ilvlbar_"A_Index] := vars.hwnd.help_tooltips["settings_iteminfo item-level"handle] := hwnd
-			}
-	}
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section hp gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.override, % Lang_Trans("m_iteminfo_override")
 	vars.hwnd.settings.override := hwnd, vars.hwnd.help_tooltips["settings_iteminfo override"] := hwnd, colors := (settings.general.lang_client != "english") ? ["Gray", "Gray"] : [settings.iteminfo.colors_tier.1, settings.iteminfo.colors_tier.6]

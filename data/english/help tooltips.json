@@ -272,8 +272,7 @@
     ],
     "iteminfo item-tier": [
       "click a box to open the color-palette, right click to reset",
-      "<fr> refers to fractured, <#> to untiered mods",
-      "t1 and t6 are also used for desired/undesired"
+      "<fr> refers to fractured, <#> to untiered mods"
     ],
     "iteminfo item-level": [
       "click a box to open the color-palette, right click to reset"
