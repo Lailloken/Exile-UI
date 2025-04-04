@@ -1,5 +1,12 @@
 [
   [
+	["1.57.5", 15705, 1],
+	"reminder: requires manual install if you don't have 1.57.3+, check full release notes(/highlight)",
+	"fixes: item-info ele dps, poedb links",
+	"act-tracker: added poe2 zone layouts, improved pob gem overlay",
+	"item-info: fully functional now, automatic affix-tier conversion to t1 system"
+  ],
+  [
 	["1.57.4", 15704, 1],
 	"requires manual install if you don't have 1.57.3, check full release notes(/highlight)",
 	"tool and project rebranded to exile ui(/highlight)",
