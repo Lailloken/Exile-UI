@@ -35,7 +35,9 @@
 
 		ClipWait, 0.1
 		If !settings.general.dev
-			SendInput, {ALT up}
+			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+			Else SendInput, {ALT up}
 	}
 
 	If Clipboard
