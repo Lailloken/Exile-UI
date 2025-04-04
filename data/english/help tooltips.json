@@ -393,7 +393,7 @@
       "(hint)____",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
       "(hint)____",
-      "(img:in-out) (color:FEC076)zone-name for x = \"enter zone to get x, then leave again\"",
+      "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
@@ -420,7 +420,8 @@
     "leveltracker layouts": [
       "hold <tab> to overlay images with possible zone-layouts (guide-panel shows # zl)",
       "while active, hold <middle-mouse> to view an info-panel with explanations",
-      "click the overlay to toggle layout orientation, drag to move it, right-click to reset position, or scroll to resize it"
+      "click the overlay to toggle layout orientation, drag to move it, right-click to reset position, or scroll to resize it",
+      "note: these are rough guides and never 100% correct, especially after big game updates(/underline)"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"

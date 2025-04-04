@@ -1450,11 +1450,11 @@ Iteminfo_GUI()
 
 				For kModName, oModName in db.item_mods.universal ;check universal mod-list next
 					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
-						For i, WeightKey in oModName[iTier].3
+						For i, tag in oModName[iTier].3
 						{
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, WeightKey)
+							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 							{
-								While LLK_HasVal(oModName[max + 1].3, WeightKey)
+								While LLK_HasVal(oModName[max + 1].3, tag)
 									max += 1
 								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 									ilvl := oModName[iTier].2
@@ -1467,11 +1467,11 @@ Iteminfo_GUI()
 
 				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
 					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
-						For i, WeightKey in oModName[iTier].3
+						For i, tag in oModName[iTier].3
 						{
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, WeightKey)
+							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 							{
-								While LLK_HasVal(oModName[max + 1].3, WeightKey)
+								While LLK_HasVal(oModName[max + 1].3, tag)
 									max += 1
 								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 									ilvl := oModName[iTier].2
