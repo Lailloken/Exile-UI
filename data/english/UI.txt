@@ -344,7 +344,7 @@
 
 		lvltracker_endreached		=	"can't go further"
 		lvltracker_fastforwarderror	=	"current location is not;included in any remaining step"
-		lvltracker_guidemissing		=	"guide hasn't been;imported yet"
+		lvltracker_guidemissing		=	"guide hasn't been;loaded yet"
 		lvltracker_importerror		=	""gems only" guides;are not supported"		;## PoE1 only, exile-leveling has a "gems only" option
 		lvltracker_importerror		=	"invalid import data"
 		lvltracker_multipaste		=	"some files are;not supported"
@@ -853,8 +853,9 @@
 		m_lvltracker_zones		=	"zone-layouts"
 		m_lvltracker_recommend		=	"lvl recommendations"
 		m_lvltracker_hotkeys		=	"enable page-hotkeys"
-		m_lvltracker_skilltree		=	"skill-tree overlay settings:"
-		m_lvltracker_pobmanual	=	"use screen-caps instead of schematics"
+		m_lvltracker_poboverlays	=	"pob overlay settings:"
+		m_lvltracker_pobgems		=	"gems: use toggle instead of hold"
+		m_lvltracker_pobmanual		=	"tree: use screen-caps instead of schematics"
 		m_lvltracker_pob		=	"pob: middle-click opens screen-cap menu"
 		m_lvltracker_screencap		=	"screen-cap menu"
 		m_lvltracker_guide		=	"guides:"

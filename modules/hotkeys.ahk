@@ -85,6 +85,8 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
+		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
 	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
 		Gui, alarm_set: Destroy
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -340,7 +342,7 @@ Hotkeys_Tab()
 	{
 		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.leveltracker.overlays := 0
 		If (settings.leveltracker.sLayouts != settings.leveltracker.sLayouts0)
-			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), ini\leveling tracker.ini, Settings, zone-layouts size
+			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), % "ini" vars.poe_version "\leveling tracker.ini", Settings, zone-layouts size
 	}
 	If InStr(active, "mapinfo")
 		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), vars.mapinfo.toggle := 0
@@ -370,6 +372,10 @@ WheelDown::Leveltracker_GuideEditor(A_ThisHotkey)
 && LLK_IsBetween(vars.general.xMouse, vars.client.x + vars.stash.regex.x, vars.client.x + vars.stash.regex.x + vars.stash.regex.w)
 && LLK_IsBetween(vars.general.yMouse, vars.client.y + vars.stash.regex.y, vars.client.y + vars.stash.regex.y + vars.stash.regex.h)
 LButton::Stash_Hotkeys("regex")
+
+#If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
+SC010::Leveltracker_PobGemLinks("hotkey1")
+SC012::Leveltracker_PobGemLinks("hotkey2")
 
 #If vars.leveltracker.skilltree_schematics.GUI && WinExist("ahk_id " vars.hwnd.skilltree_schematics.main)
 RButton::Leveltracker_PobSkilltree("drag")

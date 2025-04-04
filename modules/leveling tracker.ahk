@@ -80,7 +80,7 @@
 	settings.leveltracker.fadetime := !Blank(check := ini.settings["fade-time"]) ? check : 5000
 	settings.leveltracker.fade_hover := !Blank(check := ini.settings["show on hover"]) ? check : 1
 	settings.leveltracker.geartracker := vars.client.stream || vars.poe_version ? 0 : !Blank(check := ini.settings["enable geartracker"]) ? check : 0
-	settings.leveltracker.layouts := vars.client.stream || vars.poe_version ? 0 : !Blank(check := ini.settings["enable zone-layout overlay"]) ? check : 0
+	settings.leveltracker.layouts := vars.client.stream ? 0 : !Blank(check := ini.settings["enable zone-layout overlay"]) ? check : 0
 	settings.leveltracker.recommend := !vars.poe_version && !Blank(check := ini.settings["enable level recommendations"]) ? check : 0
 	settings.leveltracker.hotkeys := !Blank(check := ini.settings["enable page hotkeys"]) ? check : vars.client.stream
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
@@ -100,6 +100,7 @@
 	settings.leveltracker.yLayouts := !Blank(check := ini.settings["zone-layouts y"]) ? check : ""
 	settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts := !Blank(check := ini.settings["zone-layouts size"]) ? check : 8
 	settings.leveltracker.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
+	settings.leveltracker.gemlinksToggle := !Blank(check := ini.settings["toggle gem-links"]) ? check : 0
 
 	If settings.leveltracker.hotkeys
 	{
@@ -1570,11 +1571,34 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	}
 }
 
-Leveltracker_PobGemLinks(gem_name := "", hover := 1, xPos := "", yPos := "", regex := 0)
+Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", regex := 0)
 {
 	local
 	global vars, settings, db
-	static toggle := 0, last_gem, stat_colors := ["d81c1c", "00bf40", "0077FF"], last_xPos, last_yPos
+	static toggle := 0, last_gem, stat_colors := ["d81c1c", "00bf40", "0077FF"], last_xPos, last_yPos, last_hover := {}, orientation
+
+	If InStr(A_Gui, "leveltracker_gemlinks")
+	{
+		start := A_TickCount, vars.general.drag := vars.leveltracker.gemlinks.drag := 1
+		While GetKeyState("LButton", "P")
+		{
+			If (A_TickCount >= start + 250)
+				LLK_Drag(vars.leveltracker.gemlinks.w, vars.leveltracker.gemlinks.h, xPos, yPos, 1, A_Gui,, -10), longclick := 1
+			Sleep 10
+		}
+		If longclick
+			last_xPos := xPos, last_yPos := yPos
+		vars.general.drag := 0
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		If !longclick
+		{
+			regex := Trim(A_GuiControl, " |–"), regex := SubStr(regex, 1, InStr(regex, "(") - 2)
+			Clipboard := StrReplace(regex, " ", ".")
+			WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+			SendInput, ^{f}^{v}
+		}
+		Return
+	}
 
 	If !regex && (!gem_name && !last_gem || Blank(xPos) && Blank(last_xPos) || Blank(yPos) && Blank(last_yPos))
 		Return
@@ -1586,18 +1610,24 @@ Leveltracker_PobGemLinks(gem_name := "", hover := 1, xPos := "", yPos := "", reg
 	pob := vars.leveltracker["pob" profile], item := vars.omnikey.item, wHover := settings.leveltracker.fWidth * 15
 	If !IsObject(vars.leveltracker.gemlinks)
 		vars.leveltracker.gemlinks := {}
-	If gem_name
+
+	hotkey := InStr(gem_name, "hotkey") ? SubStr(gem_name, 0) : "", omnikey := !gem_name || InStr(gem_name, "hotkey") ? 0 : 1
+	If gem_name && !hotkey
 		last_gem := gem_name
 	Else gem_name := last_gem
+
 	If !Blank(xPos)
 		last_xPos := xPos
 	Else xPos := last_xPos
+
 	If !Blank(yPos)
 		last_yPos := yPos
 	Else yPos := last_yPos
+
 	support := InStr(gem_name, " support") || (item.class = Lang_Trans("items_gem", 2)) ? 1 : 0, gem_name := StrReplace(gem_name, " support")
 	check := LLK_HasVal(pob.gems, (support ? " |–" : "") . gem_name,,, 1, 1)
-	orientation := (xPos - vars.monitor.x <= vars.monitor.x + vars.client.w//2) ? "right" : "left"
+	If !vars.leveltracker.gemlinks.drag
+		orientation := (xPos - vars.monitor.x <= vars.monitor.x + vars.client.w//2) ? "right" : "left"
 
 	If !check.Count()
 	{
@@ -1652,8 +1682,15 @@ Leveltracker_PobGemLinks(gem_name := "", hover := 1, xPos := "", yPos := "", reg
 	Gui, %GUI_name%: Margin, 0, 0
 	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.leveltracker_gemlinks.main, vars.hwnd.leveltracker_gemlinks := {"main": leveltracker_gemlinks}
-	hover := vars.leveltracker.gemlinks.hover := LLK_HasVal(check, hover) ? hover : check.1
 
+	If !hover && last_hover[gem_name] && LLK_HasVal(check, last_hover[gem_name])
+		hover := vars.leveltracker.gemlinks.hover := last_hover[gem_name]
+	Else hover := vars.leveltracker.gemlinks.hover := LLK_HasVal(check, hover) ? hover : check.1
+
+	If hotkey && check[LLK_HasVal(check, hover) + (hotkey = 1 ? -1 : 1)]
+		hover := vars.leveltracker.gemlinks.hover := check[LLK_HasVal(check, hover) + (hotkey = 1 ? -1 : 1)]
+
+	last_hover[gem_name] := hover
 	For index, val in (vars.poe_version && type ? check2[hover] : LLK_HasVal(pob.gems[hover].groups, (support ? " |–" : "") gem_name,,, 1, 1))
 	{
 		If !vars.poe_version
@@ -1672,7 +1709,9 @@ Leveltracker_PobGemLinks(gem_name := "", hover := 1, xPos := "", yPos := "", reg
 		{
 			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
 			style := (index = 1 && link = 1) ? (orientation = "left" || check.Count() = 1 ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-1")
-			Gui, %GUI_name%: Add, Text, % style " Section BackgroundTrans HWNDhwnd w" wLinks " h" hLinks - 2 . (!vars.poe_version ? " c" stat_colors[db.leveltracker.gems[gem_lookup].attribute] : ""), % " " gem
+			Gui, %GUI_name%: Add, Text, % style " Section BackgroundTrans HWNDhwnd w" wLinks " h" hLinks - 2 . (!vars.poe_version ? " c" stat_colors[db.leveltracker.gems[gem_lookup].attribute] : "")
+			. (settings.leveltracker.gemlinksToggle ? " gLeveltracker_PobGemLinks" : ""), % " " gem
+
 			gem := InStr(gem, "(") ? SubStr(gem, 1, InStr(gem, "(") - 2) : gem, gem := StrReplace(gem, " |–")
 			Gui, %GUI_name%: Add, Progress, % "xp+1 yp wp-2 hp Disabled Background" (InStr(gem_name, gem) || type && db.leveltracker.gems[type][gem] ? "303030" : "Black"), 0
 			ControlGetPos, xLast, yLast, wLast, hLast,, ahk_id %hwnd%
@@ -1695,12 +1734,18 @@ Leveltracker_PobGemLinks(gem_name := "", hover := 1, xPos := "", yPos := "", reg
 			vars.hwnd.leveltracker_gemlinks["skillset" val] := hwnd
 		}
 
-	Gui, %GUI_name%: Show, NA x10000 y10000
+	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, wWin, hWin, ahk_id %leveltracker_gemlinks%
-	xPos -= (orientation = "left") ? wWin - wHover//2 : wHover//2
-	Gui_CheckBounds(xPos, yPos, wWin, hWin)
+	If !vars.leveltracker.gemlinks.drag
+		xPos -= (orientation = "left") ? wWin - wHover//2 : wHover//2
+	Gui_CheckBounds(xPos, yPos, wWin, hWin), vars.leveltracker.gemlinks.w := wWin, vars.leveltracker.gemlinks.h := hWin
 	Gui, %GUI_name%: Show, % "NA x" xPos " y" yPos
 	LLK_Overlay(leveltracker_gemlinks, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+	If hotkey
+	{
+		KeyWait, SC010
+		KeyWait, SC012
+	}
 }
 
 Leveltracker_PobImport(b64, profile)
@@ -2372,7 +2417,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	vars.hwnd.leveltracker.dummy2 := hwnd
 
 	If settings.leveltracker.layouts
-		Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+		Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 			check += 1
 
 	Gui, %GUI_name_controls2%: New, % "-DPIScale +E0x20 +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_controls2 +Owner" GUI_name_controls1
@@ -2875,7 +2920,7 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 			Return
 	}
 
-	Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		check += 1
 
 	If !check
@@ -2886,21 +2931,29 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 	toggle := !toggle, GUI_name := "leveltracker_zones" toggle
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_zones"
-	Gui, %GUI_name%: Color, Black
+	Gui, %GUI_name%: Color, % vars.poe_version ? "Green" : "Black"
 	Gui, %GUI_name%: Margin, % Floor(vars.monitor.h/200), % Floor(vars.monitor.h/200)
-	WinSet, TransColor, Black
+	WinSet, TransColor, % vars.poe_version ? "Green" : "Black"
 	hwnd_old := vars.hwnd.leveltracker_zones.main, vars.hwnd.leveltracker_zones := {"main": leveltracker_zones}
 
-	Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 	{
 		If (settings.leveltracker.aLayouts = "vertical")
 			style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section" : (A_Index = 1) ? " Section" : " xs"
 		Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section" : (A_Index = 1) ? " Section" : " ys"
-		Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" style " w"vars.monitor.w/settings.leveltracker.sLayouts " h-1", % A_LoopFilePath
+
+		pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), pBitmap_resized := Gdip_ResizeBitmap(pBitmap, vars.monitor.w/settings.leveltracker.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
+		hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
+		Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" style, % "HBitmap:" hbmBitmap
 		vars.hwnd.leveltracker_zones[vars.log.areaID A_Index] := hwnd
 	}
 	If mode
-		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " w"vars.monitor.w/Ceil(settings.leveltracker.sLayouts/2) " h-1", % "img\GUI\leveling tracker\zones\explanation.png"
+	{
+		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\zones" vars.poe_version "\explanation." (vars.poe_version ? "jpg" : "png"))
+		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, vars.monitor.w//4, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
+		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
+		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys"), % "HBitmap:" hbmBitmap2
+	}
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id "vars.hwnd.leveltracker_zones.main
 	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.client.xc - w/2 : vars.client.x - vars.monitor.x) : settings.leveltracker.xLayouts

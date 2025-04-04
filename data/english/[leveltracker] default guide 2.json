@@ -33,7 +33,7 @@
     },
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidg1_6 for (img:waypoint) ;; the grim tangle",
-      "(hint)____ zone is diamond-shaped, exit is opposite the entrance.",
+      "(hint)____ zone is diamond-shaped, exit is often opposite the entrance.",
       "(hint)____ find closest (img:checkpoint) or (img:waypoint) for orientation in the diamond.",
       "find and enter (img:checkpoint) areaidg1_5 ;; the red vale"
     ],
@@ -123,9 +123,9 @@
         "yes"
       ],
       "lines": [
-        "find (quest:smithing_tools)",
-        "find and kill the_executioner",
-        "enter areaidg1_14 ;; the manor ramparts"
+        "find (quest:smithing_tools) near a (img:checkpoint)",
+        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts",
+        "(hint)____ usually (img:7) in the zone"
       ]
     },
     {
@@ -134,8 +134,8 @@
         "no"
       ],
       "lines": [
-        "find and kill the_executioner",
-        "enter areaidg1_14 ;; the manor ramparts"
+        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts",
+        "(hint)____ usually (img:7) in the zone"        
       ]
     },
     {
@@ -564,7 +564,7 @@
     },
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidc_g1_6 for (img:waypoint) ;; the grim tangle",
-      "(hint)____ zone is diamond-shaped, exit is opposite the entrance.",
+      "(hint)____ zone is diamond-shaped, exit is often opposite the entrance.",
       "(hint)____ find closest (img:checkpoint) or (img:waypoint) for orientation in the diamond.",
       "find and enter (img:checkpoint) areaidc_g1_5 ;; the red vale"
     ],
@@ -641,8 +641,8 @@
       "(img:waypoint) to areaidc_g1_13_2 ;; ogham village"
     ],
     [
-      "find and kill the_executioner",
-      "enter areaidc_g1_14 ;; the manor ramparts"
+      "find and kill the_executioner, enter areaidc_g1_14 ;; the manor ramparts",
+      "(hint)____ usually (img:7) in the zone"
     ],
     {
       "condition": [

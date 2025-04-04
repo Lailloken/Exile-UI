@@ -422,7 +422,7 @@ Init_vars()
 	vars.omnikey.poedb := {"Claws": 1, "Daggers": 1, "Wands": 1, "One Hand Swords": 1, "One Hand Axes": 1, "One Hand Maces": 1, "Sceptres": 1, "Spears": 1, "Flails": 1
 	, "Bows": 1, "Staves": 1, "Two Hand Swords": 1, "Two Hand Axes": 1, "Two Hand Maces": 1, "Quarterstaves": 1, "Crossbows": 1, "Traps": 1
 	, "Amulets": 1, "Rings": 1, "Belts": 1, "Gloves": 2, "Boots": 2, "Body Armours": 2, "Helmets": 2
-	, "Quivers": 1, "Foci": 1, "Shields": 2, "Jewels": 1, "Life Flasks": 1, "Mana Flasks": 1, "Charms": 1}
+	, "Quivers": 1, "Foci": 1, "Shields": 2, "Bucklers": 1, "Jewels": 1, "Life Flasks": 1, "Mana Flasks": 1, "Charms": 1}
 
 	vars.lang := {}, vars.lang2 := {}
 	vars.log := {} ;store data related to the game's log here
@@ -492,15 +492,22 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 			FileDelete, data\%val%
 			FileRemoveDir, data\%val%, 1
 		}
+
+	If FileExist("lailloken ui.ahk")
+		FileDelete, lailloken ui.ahk
+
 	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken"]
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
+
 	For index, val in ["the_wall_with_notes"]
 		If FileExist("img\GUI\leveling tracker\hints 2\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints 2\" val ".jpg"
+
 	For index, val in ["necropolis.ahk"]
 		If FileExist("modules\" val)
 			FileDelete, modules\%val%
+
 	If FileExist("data\global\default guide 2.txt")
 		FileDelete, data\global\default guide 2.txt
 	If FileExist("img\GUI\screen-checks\necro_lantern.jpg")
@@ -610,7 +617,7 @@ Loop_main()
 		Cloneframes_Thread(), Init_cloneframes()
 	}
 
-	If vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
+	If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
 	&& vars.general.cMouse && (check := LLK_HasVal(vars.hwnd.leveltracker_gemlinks, vars.general.cMouse)) && (vars.leveltracker.gemlinks.hover != SubStr(check, 0))
 		Leveltracker_PobGemLinks("", SubStr(check, 0))
 

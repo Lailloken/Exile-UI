@@ -259,7 +259,7 @@ Mapinfo_GUI(mode := 1)
 		WinGetPos, x, y,,, % "ahk_id "hwnd_old
 	Else
 	{
-		Gui, %GUI_name%: Show, NA x10000 y10000
+		Gui, %GUI_name%: Show, % "NA x10000 y10000"
 		WinGetPos,,, w, h, % "ahk_id "vars.hwnd.mapinfo.main
 		MouseGetPos, xPos, yPos
 		y := (mode = 2) ? vars.monitor.y + vars.client.yc - h/2 : (yPos - (h + vars.client.h/25) < vars.client.y) ? yPos + vars.client.h/25 : yPos - (h + vars.client.h/25), oob := (y + h > vars.client.y + vars.client.h) ? 1 : 0
@@ -554,7 +554,7 @@ Mapinfo_Parse2(mode)
 
 	Loop, Parse, raw_text, `n, `r
 	{
-		If InStr(A_LoopField, "---")
+		If LLK_PatternMatch(A_LoopField, "", ["---", "{"])
 			Continue
 		If (A_Index = 1)
 			raw_text := ""

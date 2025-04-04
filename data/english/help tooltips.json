@@ -190,10 +190,14 @@
     "cloneframes scroll": [
       "for fine-tuning, scroll the mouse-wheel to adjust this value by 1"
     ],
+    "donations howto": [
+      "github thread with more info"
+    ],
     "hotkeys ingame-keybinds": [
       "to avoid conflicts between custom in-game keybinds and the script's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
     ],
     "hotkeys movekey": [
+      "note: only required when using cursor-movement, not wasd(/underline)",
       "specifying the key allows the script to adapt its behavior in certain situations",
       "example: not activating on-hover overlays while moving the character",
       "for special keys, check the links above to find proper names and formatting"
@@ -268,8 +272,12 @@
     ],
     "iteminfo item-tier": [
       "click a box to open the color-palette, right click to reset",
+      "<fr> refers to fractured, <#> to untiered mods"
+    ],
+    "iteminfo item-tier 2": [
+      "click a box to open the color-palette, right click to reset",
       "<fr> refers to fractured, <#> to untiered mods",
-      "t1 and t6 are also used for desired/undesired"
+      "note: poe2 tiers will be normalized / recalculated so that the best available mod on an item is t1 again. if that fails, highlighting will not be applied and the in-game tier will be displayed"
     ],
     "iteminfo item-level": [
       "click a box to open the color-palette, right click to reset"
@@ -324,19 +332,24 @@
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
+      "while hovering over a gem, hold the omni-key to show an overlay with gem setups/links",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu",
+      "",
       "while the skill-tree is on screen, press <tab> to show overlays with skill-tree schematics",
-      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
-    ],
-    "leveltracker skilltree-info manual": [
-      "while the skill-tree is on screen, hold the omni-key to show overlays with skill-tree screenshots",
       "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
     ],
     "leveltracker skilltree clear": [
       "long-click to delete the skill-tree files used to render schematics: they will be re-downloaded the next time they are needed",
       "deleting them is only required if the schematics are outdated or otherwise incorrect"
     ],
+    "leveltracker pob gems": [
+      "the gem-overlay will stay on screen after releasing the omni-key, until you press <esc>",
+      "this option also allows the overlay to be moved around by long-clicking a gem-name in the list(s)",
+      "clicking a gem-name in the list(s) will start an in-game search for that gem"
+    ],
     "leveltracker pob manual": [
-      "the overlay will use manual screen-caps instead of schematics rendered from pob's data"
+      "the tree-overlay will use manual screen-caps instead of schematics rendered from pob's data",
+      "this option also changes how the overlay is accessed: hold the omni-key while the skill-tree is on screen"
     ],
     "leveltracker pob": [
       "m-mouse in pob will open the screen-cap menu",
@@ -380,7 +393,7 @@
       "(hint)____",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
       "(hint)____",
-      "(img:in-out) (color:FEC076)zone-name for x = \"enter zone to get x, then leave again\"",
+      "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
@@ -407,7 +420,8 @@
     "leveltracker layouts": [
       "hold <tab> to overlay images with possible zone-layouts (guide-panel shows # zl)",
       "while active, hold <middle-mouse> to view an info-panel with explanations",
-      "click the overlay to toggle layout orientation, drag to move it, right-click to reset position, or scroll to resize it"
+      "click the overlay to toggle layout orientation, drag to move it, right-click to reset position, or scroll to resize it",
+      "note: these are rough guides and never 100% correct, especially after big game updates(/underline)"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
