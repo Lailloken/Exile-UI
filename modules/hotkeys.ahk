@@ -342,7 +342,7 @@ Hotkeys_Tab()
 	{
 		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.leveltracker.overlays := 0
 		If (settings.leveltracker.sLayouts != settings.leveltracker.sLayouts0)
-			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), ini\leveling tracker.ini, Settings, zone-layouts size
+			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), % "ini" vars.poe_version "\leveling tracker.ini", Settings, zone-layouts size
 	}
 	If InStr(active, "mapinfo")
 		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), vars.mapinfo.toggle := 0

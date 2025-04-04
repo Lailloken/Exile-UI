@@ -80,7 +80,7 @@
 	settings.leveltracker.fadetime := !Blank(check := ini.settings["fade-time"]) ? check : 5000
 	settings.leveltracker.fade_hover := !Blank(check := ini.settings["show on hover"]) ? check : 1
 	settings.leveltracker.geartracker := vars.client.stream || vars.poe_version ? 0 : !Blank(check := ini.settings["enable geartracker"]) ? check : 0
-	settings.leveltracker.layouts := vars.client.stream || vars.poe_version ? 0 : !Blank(check := ini.settings["enable zone-layout overlay"]) ? check : 0
+	settings.leveltracker.layouts := vars.client.stream ? 0 : !Blank(check := ini.settings["enable zone-layout overlay"]) ? check : 0
 	settings.leveltracker.recommend := !vars.poe_version && !Blank(check := ini.settings["enable level recommendations"]) ? check : 0
 	settings.leveltracker.hotkeys := !Blank(check := ini.settings["enable page hotkeys"]) ? check : vars.client.stream
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
@@ -2417,7 +2417,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	vars.hwnd.leveltracker.dummy2 := hwnd
 
 	If settings.leveltracker.layouts
-		Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+		Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 			check += 1
 
 	Gui, %GUI_name_controls2%: New, % "-DPIScale +E0x20 +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_controls2 +Owner" GUI_name_controls1
@@ -2920,7 +2920,7 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 			Return
 	}
 
-	Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		check += 1
 
 	If !check
@@ -2931,21 +2931,29 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 	toggle := !toggle, GUI_name := "leveltracker_zones" toggle
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_zones"
-	Gui, %GUI_name%: Color, Black
+	Gui, %GUI_name%: Color, % vars.poe_version ? "Green" : "Black"
 	Gui, %GUI_name%: Margin, % Floor(vars.monitor.h/200), % Floor(vars.monitor.h/200)
-	WinSet, TransColor, Black
+	WinSet, TransColor, % vars.poe_version ? "Green" : "Black"
 	hwnd_old := vars.hwnd.leveltracker_zones.main, vars.hwnd.leveltracker_zones := {"main": leveltracker_zones}
 
-	Loop, Files, % "img\GUI\leveling tracker\zones\" vars.log.areaID " *"
+	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 	{
 		If (settings.leveltracker.aLayouts = "vertical")
 			style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section" : (A_Index = 1) ? " Section" : " xs"
 		Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section" : (A_Index = 1) ? " Section" : " ys"
-		Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" style " w"vars.monitor.w/settings.leveltracker.sLayouts " h-1", % A_LoopFilePath
+
+		pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), pBitmap_resized := Gdip_ResizeBitmap(pBitmap, vars.monitor.w/settings.leveltracker.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
+		hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
+		Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" style, % "HBitmap:" hbmBitmap
 		vars.hwnd.leveltracker_zones[vars.log.areaID A_Index] := hwnd
 	}
 	If mode
-		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " w"vars.monitor.w/Ceil(settings.leveltracker.sLayouts/2) " h-1", % "img\GUI\leveling tracker\zones\explanation.png"
+	{
+		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\zones" vars.poe_version "\explanation." (vars.poe_version ? "jpg" : "png"))
+		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, vars.monitor.w//4, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
+		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
+		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys"), % "HBitmap:" hbmBitmap2
+	}
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id "vars.hwnd.leveltracker_zones.main
 	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.client.xc - w/2 : vars.client.x - vars.monitor.x) : settings.leveltracker.xLayouts
