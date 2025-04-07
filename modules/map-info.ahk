@@ -556,7 +556,7 @@ Mapinfo_Parse2(mode)
 	{
 		If LLK_PatternMatch(A_LoopField, "", ["---", "{"])
 			Continue
-		If (A_Index = 1)
+		If !parsed_lines.Count()
 			raw_text := ""
 		Mapinfo_Lineparse(Iteminfo_ModRemoveRange(A_LoopField), text, value)
 		raw_text .= "`n" text "`n", parsed_lines[text] := !parsed_lines[text] ? value : parsed_lines[text] + value
@@ -567,13 +567,13 @@ Mapinfo_Parse2(mode)
 		{
 			map.mods += 1
 			Loop, Parse, key, % "|"
-				map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField], raw_text := StrReplace(raw_text, "`n" A_LoopField "`n")
+				map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField], raw_text := StrReplace(raw_text, A_LoopField)
 			If InStr(val.ID, "044") || (val.ID = 44)
 				map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
 		}
 
 	Loop, Parse, raw_text, `n, `r
-		If settings.general.dev && !Blank(A_LoopField)
+		If settings.general.dev && !Blank(A_LoopField) && !InStr(A_LoopField, "can be used in ")
 			MsgBox, % "unknown mod: " A_LoopField
 
 	For map_mod, value in map_mods

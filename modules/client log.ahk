@@ -248,7 +248,7 @@ Log_Get(log_text, data)
 			Else %data% .= (!InStr(log_text, "_noboss") && !InStr(log_text, "unique") ? " (" Lang_Trans("maps_boss") ")" : "")
 
 			Loop, Parse, % %data%
-				%data% := (A_Index = 1) ? "" : %data%, %data% .= (A_Index != 1 && RegExMatch(A_LoopField, "[A-Z]") ? " " : "") . A_LoopField
+				%data% := (A_Index = 1) ? "" : %data%, %data% .= (A_Index != 1 && (SubStr(%data%, 0) != " ") && RegExMatch(A_LoopField, "[A-Z]") ? " " : "") . A_LoopField
 
 			If InStr(%data%, "(" Lang_Trans("maps_tower") ")") || InStr(%data%, "lost towers")
 			{

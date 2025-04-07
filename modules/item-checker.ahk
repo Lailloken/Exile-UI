@@ -551,13 +551,20 @@ Iteminfo_Stats2()
 			If InStr(A_LoopField, Lang_Trans("items_phys_dmg"))
 				phys_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
 			Else If InStr(A_LoopField, Lang_Trans("items_chaos_dmg"))
+			{
 				chaos_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
+				If InStr(chaos_dmg, "(")
+					chaos_dmg := SubStr(chaos_dmg, 1, InStr(chaos_dmg, "(") - 2)
+			}
 			Else If Lang_Match(A_LoopField, vars.lang.items_dmg)
 			{
 				ele_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
-				If InStr(ele_dmg, "(")
-					ele_dmg := SubStr(ele_dmg, 1, InStr(ele_dmg, "(") - 2)
-				ele_count += 1, ele_dmg%ele_count% := ele_dmg
+				Loop, Parse, ele_dmg, `,
+				{
+					If InStr(A_LoopField, "(")
+						dmg := SubStr(A_LoopField, 1, InStr(A_LoopField, "(") - 2)
+					ele_count += 1, ele_dmg%ele_count% := dmg
+				}
 			}
 
 			If InStr(A_LoopField, Lang_Trans("items_aps"))
