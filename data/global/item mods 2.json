@@ -224,132 +224,6 @@
     ]
   },
   "exclusive": {
-    "AccuracyAndCritsJewel": [
-      [
-        "of deadliness",
-        "1"
-      ]
-    ],
-    "AllAttributesJewel": [
-      [
-        "of adaption",
-        "1"
-      ]
-    ],
-    "AllResistancesJewel": [
-      [
-        "of resistance",
-        "1"
-      ]
-    ],
-    "AreaDamageJewel": [
-      [
-        "of blasting",
-        "1"
-      ]
-    ],
-    "ArmourEnergyShieldJewel": [
-      [
-        "paladin's",
-        "1"
-      ]
-    ],
-    "ArmourEvasionJewel": [
-      [
-        "fighter's",
-        "1"
-      ]
-    ],
-    "AttackAndCastSpeedJewel": [
-      [
-        "of zeal",
-        "1"
-      ]
-    ],
-    "AttackSpeedJewel": [
-      [
-        "of berserking",
-        "1"
-      ]
-    ],
-    "AuraRadiusJewel": [
-      [
-        "hero's fix me",
-        "1"
-      ]
-    ],
-    "AvoidChillJewel": [
-      [
-        "heating fix me",
-        "1"
-      ]
-    ],
-    "AvoidFreezeJewel": [
-      [
-        "thawing fix me",
-        "1"
-      ]
-    ],
-    "AvoidIgniteJewel": [
-      [
-        "dousing fix me",
-        "1"
-      ]
-    ],
-    "AvoidShockJewel": [
-      [
-        "insulating fix me",
-        "1"
-      ]
-    ],
-    "AvoidStunJewel": [
-      [
-        "fix me",
-        "1"
-      ]
-    ],
-    "AxeAttackSpeedJewel": [
-      [
-        "cleaving",
-        "1"
-      ]
-    ],
-    "AxeDamageJewel": [
-      [
-        "sinister",
-        "1"
-      ]
-    ],
-    "BleedChanceAndDurationForJewel": [
-      [
-        "of bleeding",
-        "1"
-      ]
-    ],
-    "BleedDurationOnYouJewel": [
-      [
-        "of stemming",
-        "1"
-      ]
-    ],
-    "BlockDualWieldingJewel": [
-      [
-        "parrying",
-        "1"
-      ]
-    ],
-    "BlockShieldJewel": [
-      [
-        "shielding",
-        "1"
-      ]
-    ],
-    "BlockStaffJewel": [
-      [
-        "deflecting",
-        "1"
-      ]
-    ],
     "BowAttackSpeedJewel": [
       [
         "volleying",
@@ -368,378 +242,6 @@
         ]
       ]
     ],
-    "BurningDamageForJewel": [
-      [
-        "of combusting",
-        "1"
-      ]
-    ],
-    "CastSpeedJewel": [
-      [
-        "of enchanting",
-        "1"
-      ]
-    ],
-    "ChanceToFreezeJewel": [
-      [
-        "fix me",
-        "1"
-      ]
-    ],
-    "ChanceToIgniteJewel": [
-      [
-        "fix me",
-        "1"
-      ]
-    ],
-    "ChanceToShockJewel": [
-      [
-        "fix me",
-        "1"
-      ]
-    ],
-    "ChaosCritChanceJewel": [
-      [
-        "obliterating",
-        "1"
-      ]
-    ],
-    "ChaosDamageJewel": [
-      [
-        "chaotic",
-        "1"
-      ]
-    ],
-    "ChaosGemCastSpeedJewel": [
-      [
-        "withering",
-        "1"
-      ]
-    ],
-    "ChaosResistanceJewel": [
-      [
-        "of order",
-        "1"
-      ]
-    ],
-    "ChillAndShockEffectOnYouJewel": [
-      [
-        "of insulation",
-        "1"
-      ]
-    ],
-    "ChillEffectOnYouJewel": [
-      [
-        "of the snowbreather",
-        "1"
-      ]
-    ],
-    "ClawAttackSpeedJewel": [
-      [
-        "ripping",
-        "1"
-      ]
-    ],
-    "ClawDamageJewel": [
-      [
-        "savage",
-        "1"
-      ]
-    ],
-    "ColdCritChanceJewel": [
-      [
-        "avalanching",
-        "1"
-      ]
-    ],
-    "ColdCritMultiplier": [
-      [
-        "arctic",
-        "1"
-      ]
-    ],
-    "ColdDamageJewel": [
-      [
-        "chilling",
-        "1"
-      ]
-    ],
-    "ColdGemCastSpeedJewel": [
-      [
-        "cryomantic",
-        "1"
-      ]
-    ],
-    "ColdLightningResistanceJewel": [
-      [
-        "of shelter",
-        "1"
-      ]
-    ],
-    "ColdResistanceJewel": [
-      [
-        "of the beast",
-        "1"
-      ]
-    ],
-    "CritChanceWithAxeJewel": [
-      [
-        "of biting fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithBowJewel": [
-      [
-        "of the sniper fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithClawJewel": [
-      [
-        "of the eagle fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithDaggerJewel": [
-      [
-        "of needling fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithMaceJewel": [
-      [
-        "of striking fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithStaffJewel": [
-      [
-        "of tyranny fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithSwordJewel": [
-      [
-        "of stinging fix me",
-        "1"
-      ]
-    ],
-    "CritChanceWithWandJewel": [
-      [
-        "of divination fix me",
-        "1"
-      ]
-    ],
-    "CriticalStrikeChanceJewel": [
-      [
-        "of menace",
-        "1"
-      ]
-    ],
-    "CriticalStrikeMultiplierJewel": [
-      [
-        "of potency",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithAxeJewel": [
-      [
-        "of execution fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithBowJewel": [
-      [
-        "of the hunter fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithClawJewel": [
-      [
-        "of the bear fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithDaggerJewel": [
-      [
-        "of assassination fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithMaceJewel": [
-      [
-        "of crushing fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithStaffJewel": [
-      [
-        "of trauma fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithSwordJewel": [
-      [
-        "of severing fix me",
-        "1"
-      ]
-    ],
-    "CritMultiplierWithWandJewel": [
-      [
-        "of evocation fix me",
-        "1"
-      ]
-    ],
-    "CurseCastSpeedJewel": [
-      [
-        "of blasphemy",
-        "1"
-      ]
-    ],
-    "CurseEffectOnYouJewel": [
-      [
-        "of hexwarding",
-        "1"
-      ]
-    ],
-    "CurseRadiusJewel": [
-      [
-        "hexing fix me",
-        "1"
-      ]
-    ],
-    "DaggerAttackSpeedJewel": [
-      [
-        "slicing",
-        "1"
-      ]
-    ],
-    "DaggerDamageJewel": [
-      [
-        "lethal",
-        "1"
-      ]
-    ],
-    "DamageJewel": [
-      [
-        "of wounding",
-        "1"
-      ]
-    ],
-    "DamageOverTimeJewel": [
-      [
-        "of entropy",
-        "1"
-      ]
-    ],
-    "DexterityIntelligenceJewel": [
-      [
-        "of cunning",
-        "1"
-      ]
-    ],
-    "DexterityJewel": [
-      [
-        "of dexterity",
-        "1"
-      ]
-    ],
-    "DualWieldingAttackSpeedJewel": [
-      [
-        "harmonic",
-        "1"
-      ]
-    ],
-    "DualWieldingCastSpeedJewel": [
-      [
-        "resonant",
-        "1"
-      ]
-    ],
-    "DualWieldingCritChanceJewel": [
-      [
-        "technical",
-        "1"
-      ]
-    ],
-    "DualWieldingCritMultiplierJewel": [
-      [
-        "puncturing",
-        "1"
-      ]
-    ],
-    "DualWieldingMeleeDamageJewel": [
-      [
-        "gladiator's",
-        "1"
-      ]
-    ],
-    "DualWieldingSpellBlockForJewel": [
-      [
-        "dissipating",
-        "1"
-      ]
-    ],
-    "DualWieldingSpellDamageJewel": [
-      [
-        "sorcerer's",
-        "1"
-      ]
-    ],
-    "ElementalCritChanceJewel": [
-      [
-        "of the apocalypse",
-        "1"
-      ]
-    ],
-    "ElementalCritMultiplier": [
-      [
-        "of the elements",
-        "1"
-      ]
-    ],
-    "EnduranceChargeDurationJewel": [
-      [
-        "of endurance",
-        "1"
-      ]
-    ],
-    "EnergyShieldAndManaJewel": [
-      [
-        "wise",
-        "1"
-      ]
-    ],
-    "EnergyShieldDelayJewel": [
-      [
-        "serene",
-        "1"
-      ]
-    ],
-    "EnergyShieldJewel": [
-      [
-        "shimmering",
-        "1"
-      ]
-    ],
-    "EnergyShieldOnHitJewel": [
-      [
-        "of focus",
-        "1"
-      ]
-    ],
-    "EnergyShieldRateJewel": [
-      [
-        "fevered",
-        "1"
-      ]
-    ],
-    "EvasionEnergyShieldJewel": [
-      [
-        "rogue's",
-        "1"
-      ]
-    ],
     "FasterAilmentDamageJewel": [
       [
         "decrepifying",
@@ -748,186 +250,6 @@
           "dexjewel",
           "intjewel"
         ]
-      ]
-    ],
-    "FireColdResistanceJewel": [
-      [
-        "of the hearth",
-        "1"
-      ]
-    ],
-    "FireCritChanceJewel": [
-      [
-        "incinerating",
-        "1"
-      ]
-    ],
-    "FireCritMultiplier": [
-      [
-        "infernal",
-        "1"
-      ]
-    ],
-    "FireDamageJewel": [
-      [
-        "flaming",
-        "1"
-      ]
-    ],
-    "FireGemCastSpeedJewel": [
-      [
-        "pyromantic",
-        "1"
-      ]
-    ],
-    "FireLightningResistanceJewel": [
-      [
-        "of insulation",
-        "1"
-      ]
-    ],
-    "FireResistanceJewel": [
-      [
-        "of the dragon",
-        "1"
-      ]
-    ],
-    "FlaskDurationJewel": [
-      [
-        "prolonging",
-        "1"
-      ]
-    ],
-    "FreezeChanceAndDurationJewel": [
-      [
-        "of freezing",
-        "1"
-      ]
-    ],
-    "FreezeDurationJewel": [
-      [
-        "of the glacier",
-        "1"
-      ]
-    ],
-    "FrenzyChargeDurationJewel": [
-      [
-        "of frenzy",
-        "1"
-      ]
-    ],
-    "IgniteChanceAndDurationJewel": [
-      [
-        "of burning",
-        "1"
-      ]
-    ],
-    "IgniteDurationJewel": [
-      [
-        "of immolation",
-        "1"
-      ]
-    ],
-    "IgniteDurationOnYouJewel": [
-      [
-        "of the flameruler",
-        "1"
-      ]
-    ],
-    "ImpaleChanceForJewel": [
-      [
-        "of impaling",
-        "1"
-      ]
-    ],
-    "IncreasedAccuracyJewel": [
-      [
-        "of accuracy",
-        "1"
-      ]
-    ],
-    "IncreasedArmourJewel": [
-      [
-        "armoured",
-        "1"
-      ]
-    ],
-    "IncreasedDefensesJewel": [
-      [
-        "defensive",
-        "1"
-      ]
-    ],
-    "IncreasedEnergyShieldJewel": [
-      [
-        "glowing",
-        "1"
-      ]
-    ],
-    "IncreasedEvasionJewel": [
-      [
-        "evasive",
-        "1"
-      ]
-    ],
-    "IncreasedLifeAndManaJewel": [
-      [
-        "determined",
-        "1"
-      ]
-    ],
-    "IncreasedLifeJewel": [
-      [
-        "healthy",
-        "1"
-      ]
-    ],
-    "IncreasedManaJewel": [
-      [
-        "learned",
-        "1"
-      ]
-    ],
-    "IncreasedManaRegenJewel": [
-      [
-        "energetic",
-        "1"
-      ]
-    ],
-    "IntelligenceJewel": [
-      [
-        "of intelligence",
-        "1"
-      ]
-    ],
-    "ItemRarityJewel": [
-      [
-        "of raiding",
-        "1"
-      ]
-    ],
-    "KnockbackChanceJewel": [
-      [
-        "of fending",
-        "1"
-      ]
-    ],
-    "LifeAndEnergyShieldJewel": [
-      [
-        "faithful",
-        "1"
-      ]
-    ],
-    "LifeLeechPermyriadJewel": [
-      [
-        "hungering",
-        "1"
-      ]
-    ],
-    "LifeOnHitJewel": [
-      [
-        "of rejuvenation",
-        "1"
       ]
     ],
     "LifeRecoupJewel": [
@@ -939,42 +261,6 @@
         ]
       ]
     ],
-    "LightningCritChanceJewel": [
-      [
-        "thundering",
-        "1"
-      ]
-    ],
-    "LightningCritMultiplier": [
-      [
-        "surging",
-        "1"
-      ]
-    ],
-    "LightningDamageJewel": [
-      [
-        "humming",
-        "1"
-      ]
-    ],
-    "LightningGemCastSpeedJewel": [
-      [
-        "electromantic",
-        "1"
-      ]
-    ],
-    "LightningResistanceJewel": [
-      [
-        "of grounding",
-        "1"
-      ]
-    ],
-    "MaceAttackSpeedJewel": [
-      [
-        "beating",
-        "1"
-      ]
-    ],
     "MaceDamageJewel": [
       [
         "brutal",
@@ -982,72 +268,6 @@
         [
           "strjewel"
         ]
-      ]
-    ],
-    "ManaCostReductionJewel": [
-      [
-        "of efficiency",
-        "1"
-      ]
-    ],
-    "ManaLeechPermyriadJewel": [
-      [
-        "thirsting",
-        "1"
-      ]
-    ],
-    "ManaOnHitJewel": [
-      [
-        "of absorption",
-        "1"
-      ]
-    ],
-    "ManaReservationEfficiencyJewel": [
-      [
-        "cerebral",
-        "1"
-      ]
-    ],
-    "MeleeCritChanceJewel": [
-      [
-        "of weight",
-        "1"
-      ]
-    ],
-    "MeleeCritMultiplier": [
-      [
-        "of demolishing",
-        "1"
-      ]
-    ],
-    "MeleeDamageJewel": [
-      [
-        "of combat",
-        "1"
-      ]
-    ],
-    "MineCritChanceJewel": [
-      [
-        "crippling",
-        "1"
-      ]
-    ],
-    "MineCritMultiplier": [
-      [
-        "incapacitating",
-        "1"
-      ]
-    ],
-    "MineDamageJewel": [
-      [
-        "sabotage",
-        "1"
-      ]
-    ],
-    "MineLaySpeedJewel": [
-      [
-        "arming",
-        "1"
       ]
     ],
     "MinionAccuracyRatingJewel": [
@@ -1059,168 +279,6 @@
         ]
       ]
     ],
-    "MinionBlockJewel": [
-      [
-        "of the wall",
-        "1"
-      ]
-    ],
-    "MinionDamageJewel": [
-      [
-        "leadership",
-        "1"
-      ]
-    ],
-    "MinionElementalResistancesJewel": [
-      [
-        "of resilience",
-        "1"
-      ]
-    ],
-    "MinionLifeJewel": [
-      [
-        "master's",
-        "1"
-      ]
-    ],
-    "OneHandCritMultiplierJewel": [
-      [
-        "piercing",
-        "1"
-      ]
-    ],
-    "OneHandedCritChanceJewel": [
-      [
-        "harming",
-        "1"
-      ]
-    ],
-    "OneHandedMeleeAttackSpeedJewel": [
-      [
-        "bandit's",
-        "1"
-      ]
-    ],
-    "OneHandedMeleeDamageJewel": [
-      [
-        "soldier's",
-        "1"
-      ]
-    ],
-    "PercentIncreasedAccuracyJewel": [
-      [
-        "of precision",
-        "1"
-      ]
-    ],
-    "PercentIncreasedLifeAndManaJewel": [
-      [
-        "passionate",
-        "1"
-      ]
-    ],
-    "PercentIncreasedLifeJewel": [
-      [
-        "vivid",
-        "1"
-      ]
-    ],
-    "PercentIncreasedManaJewel": [
-      [
-        "enlightened",
-        "1"
-      ]
-    ],
-    "PhysicalDamageJewel": [
-      [
-        "sharpened",
-        "1"
-      ]
-    ],
-    "PhysicalDamageWhileHoldingAShield": [
-      [
-        "flanking",
-        "1"
-      ]
-    ],
-    "PoisonChanceAndDurationForJewel": [
-      [
-        "of poisoning",
-        "1"
-      ]
-    ],
-    "PoisonDurationOnYouJewel": [
-      [
-        "of neutralisation",
-        "1"
-      ]
-    ],
-    "PowerChargeDurationJewel": [
-      [
-        "of power",
-        "1"
-      ]
-    ],
-    "ProjectileDamageJewel": [
-      [
-        "of archery",
-        "1"
-      ]
-    ],
-    "ProjectileSpeedJewel": [
-      [
-        "of soaring",
-        "1"
-      ]
-    ],
-    "ShieldAttackSpeedJewel": [
-      [
-        "charging",
-        "1"
-      ]
-    ],
-    "ShieldCastSpeedJewel": [
-      [
-        "warding",
-        "1"
-      ]
-    ],
-    "ShieldSpellBlockJewel": [
-      [
-        "thwarting",
-        "1"
-      ]
-    ],
-    "ShieldSpellDamageJewel": [
-      [
-        "battlemage's",
-        "1"
-      ]
-    ],
-    "ShockChanceAndDurationJewel": [
-      [
-        "of shocking",
-        "1"
-      ]
-    ],
-    "ShockDurationJewel": [
-      [
-        "of the storm",
-        "1"
-      ]
-    ],
-    "ShockEffectOnYouJewel": [
-      [
-        "of the stormdweller",
-        "1"
-      ]
-    ],
-    "SpellCritChanceJewel": [
-      [
-        "of annihilation",
-        "1"
-      ]
-    ],
     "SpellCritMultiplier": [
       [
         "of unmaking",
@@ -1228,12 +286,6 @@
         [
           "intjewel"
         ]
-      ]
-    ],
-    "SpellDamageJewel": [
-      [
-        "of mysticism",
-        "1"
       ]
     ],
     "StaffAttackSpeedJewel": [
@@ -1245,12 +297,6 @@
         ]
       ]
     ],
-    "StaffCastSpeedJewel": [
-      [
-        "wright's",
-        "1"
-      ]
-    ],
     "StaffDamageJewel": [
       [
         "judging",
@@ -1260,60 +306,6 @@
         ]
       ]
     ],
-    "StaffSpellBlockJewel": [
-      [
-        "halting",
-        "1"
-      ]
-    ],
-    "StaffSpellDamageJewel": [
-      [
-        "wizard's",
-        "1"
-      ]
-    ],
-    "StrengthDexterityJewel": [
-      [
-        "of athletics",
-        "1"
-      ]
-    ],
-    "StrengthIntelligenceJewel": [
-      [
-        "of spirit",
-        "1"
-      ]
-    ],
-    "StrengthJewel": [
-      [
-        "of strength",
-        "1"
-      ]
-    ],
-    "StunDurationJewel": [
-      [
-        "of stunning",
-        "1"
-      ]
-    ],
-    "StunRecoveryJewel": [
-      [
-        "of recovery",
-        "1"
-      ]
-    ],
-    "SwordAttackSpeedJewel": [
-      [
-        "fencing",
-        "1"
-      ]
-    ],
-    "SwordDamageJewel": [
-      [
-        "vicious",
-        "1"
-      ]
-    ],
     "TotemDamageJewel": [
       [
         "shaman's",
@@ -1321,90 +313,6 @@
         [
           "strjewel"
         ]
-      ]
-    ],
-    "TotemElementalResistancesJewel": [
-      [
-        "of runes",
-        "1"
-      ]
-    ],
-    "TotemLifeJewel": [
-      [
-        "carved",
-        "1"
-      ]
-    ],
-    "TrapCritChanceJewel": [
-      [
-        "inescapable",
-        "1"
-      ]
-    ],
-    "TrapCritMultiplier": [
-      [
-        "debilitating",
-        "1"
-      ]
-    ],
-    "TrapDamageJewel": [
-      [
-        "trapping",
-        "1"
-      ]
-    ],
-    "TrapThrowSpeedJewel": [
-      [
-        "honed",
-        "1"
-      ]
-    ],
-    "TwoHandCritMultiplierJewel": [
-      [
-        "rupturing",
-        "1"
-      ]
-    ],
-    "TwoHandedCritChanceJewel": [
-      [
-        "sundering",
-        "1"
-      ]
-    ],
-    "TwoHandedMeleeAttackSpeedJewel": [
-      [
-        "warrior's",
-        "1"
-      ]
-    ],
-    "TwoHandedMeleeDamageJewel": [
-      [
-        "champion's",
-        "1"
-      ]
-    ],
-    "UnarmedAttackSpeedJewel": [
-      [
-        "furious",
-        "1"
-      ]
-    ],
-    "UnarmedMeleeDamageJewel": [
-      [
-        "brawling",
-        "1"
-      ]
-    ],
-    "WandAttackSpeedJewel": [
-      [
-        "jinxing",
-        "1"
-      ]
-    ],
-    "WandDamageJewel": [
-      [
-        "cruel",
-        "1"
       ]
     ]
   },
@@ -1797,6 +705,24 @@
         "1"
       ]
     ],
+    "JewelBannerArea": [
+      [
+        "rallying",
+        "1"
+      ]
+    ],
+    "JewelBannerDuration": [
+      [
+        "of inspiring",
+        "1"
+      ]
+    ],
+    "JewelBannerValourGained": [
+      [
+        "of valour",
+        "1"
+      ]
+    ],
     "JewelBleedingChance": [
       [
         "bleeding",
@@ -1902,6 +828,18 @@
     "JewelColdPenetration": [
       [
         "numbing",
+        "1"
+      ]
+    ],
+    "JewelCompanionDamage": [
+      [
+        "kinship",
+        "1"
+      ]
+    ],
+    "JewelCompanionLife": [
+      [
+        "kindred",
         "1"
       ]
     ],
@@ -2139,6 +1077,12 @@
         "1"
       ]
     ],
+    "JewelHazardDamage": [
+      [
+        "hazardous",
+        "1"
+      ]
+    ],
     "JewelHeraldDamage": [
       [
         "heralding",
@@ -2154,6 +1098,12 @@
     "JewelIgniteEffect": [
       [
         "burning",
+        "1"
+      ]
+    ],
+    "JewelIncisionChance": [
+      [
+        "incise",
         "1"
       ]
     ],
@@ -2313,6 +1263,12 @@
         "1"
       ]
     ],
+    "JewelMeleeDamageIfProjectileHitRecently": [
+      [
+        "engaging",
+        "1"
+      ]
+    ],
     "JewelMinionAccuracy": [
       [
         "training",
@@ -2397,6 +1353,18 @@
         "1"
       ]
     ],
+    "JewelParriedDebuffDuration": [
+      [
+        "of unsettling",
+        "1"
+      ]
+    ],
+    "JewelParryDamage": [
+      [
+        "parrying",
+        "1"
+      ]
+    ],
     "JewelPhysicalDamage": [
       [
         "sharpened",
@@ -2433,9 +1401,21 @@
         "1"
       ]
     ],
+    "JewelPresenceRadius": [
+      [
+        "iconic",
+        "1"
+      ]
+    ],
     "JewelProjectileDamage": [
       [
         "archer's",
+        "1"
+      ]
+    ],
+    "JewelProjectileDamageIfMeleeHitRecently": [
+      [
+        "retreating",
         "1"
       ]
     ],
@@ -2559,6 +1539,24 @@
         "1"
       ]
     ],
+    "JewelRadiusBannerArea": [
+      [
+        "rallying",
+        "1"
+      ]
+    ],
+    "JewelRadiusBannerDuration": [
+      [
+        "of inspiring",
+        "1"
+      ]
+    ],
+    "JewelRadiusBannerValourGained": [
+      [
+        "of valour",
+        "1"
+      ]
+    ],
     "JewelRadiusBleedingChance": [
       [
         "bleeding",
@@ -2664,6 +1662,18 @@
     "JewelRadiusColdPenetration": [
       [
         "numbing",
+        "1"
+      ]
+    ],
+    "JewelRadiusCompanionDamage": [
+      [
+        "kinship",
+        "1"
+      ]
+    ],
+    "JewelRadiusCompanionLife": [
+      [
+        "kindred",
         "1"
       ]
     ],
@@ -2895,6 +1905,12 @@
         "1"
       ]
     ],
+    "JewelRadiusHazardDamage": [
+      [
+        "hazardous",
+        "1"
+      ]
+    ],
     "JewelRadiusHeraldDamage": [
       [
         "heralding",
@@ -2910,6 +1926,12 @@
     "JewelRadiusIgniteEffect": [
       [
         "burning",
+        "1"
+      ]
+    ],
+    "JewelRadiusIncisionChance": [
+      [
+        "incise",
         "1"
       ]
     ],
@@ -3063,6 +2085,12 @@
         "1"
       ]
     ],
+    "JewelRadiusMeleeDamageIfProjectileHitRecently": [
+      [
+        "engaging",
+        "1"
+      ]
+    ],
     "JewelRadiusMinionAccuracy": [
       [
         "training",
@@ -3141,6 +2169,12 @@
         "1"
       ]
     ],
+    "JewelRadiusNotableEffectNew": [
+      [
+        "of supremacy",
+        "1"
+      ]
+    ],
     "JewelRadiusOfferingDuration": [
       [
         "of offering",
@@ -3150,6 +2184,18 @@
     "JewelRadiusOfferingLife": [
       [
         "sacrificial",
+        "1"
+      ]
+    ],
+    "JewelRadiusParriedDebuffDuration": [
+      [
+        "of unsettling",
+        "1"
+      ]
+    ],
+    "JewelRadiusParryDamage": [
+      [
+        "parrying",
         "1"
       ]
     ],
@@ -3189,9 +2235,21 @@
         "1"
       ]
     ],
+    "JewelRadiusPresenceRadius": [
+      [
+        "iconic",
+        "1"
+      ]
+    ],
     "JewelRadiusProjectileDamage": [
       [
         "archer's",
+        "1"
+      ]
+    ],
+    "JewelRadiusProjectileDamageIfMeleeHitRecently": [
+      [
+        "retreating",
         "1"
       ]
     ],
@@ -3279,7 +2337,7 @@
         "1"
       ]
     ],
-    "JewelRadiusSpearCriticalChance": [
+    "JewelRadiusSpearCriticalDamage": [
       [
         "of hunting",
         "1"
@@ -3318,6 +2376,12 @@
     "JewelRadiusStunThreshold": [
       [
         "of withstanding",
+        "1"
+      ]
+    ],
+    "JewelRadiusStunThresholdDuringParry": [
+      [
+        "of biding",
         "1"
       ]
     ],
@@ -3396,6 +2460,12 @@
     "JewelRadiusUnarmedDamage": [
       [
         "punching",
+        "1"
+      ]
+    ],
+    "JewelRadiusVolatilityOnKillChance": [
+      [
+        "of volatility",
         "1"
       ]
     ],
@@ -3483,7 +2553,7 @@
         "1"
       ]
     ],
-    "JewelSpearCriticalChance": [
+    "JewelSpearCriticalDamage": [
       [
         "of hunting",
         "1"
@@ -3522,6 +2592,12 @@
     "JewelStunThreshold": [
       [
         "of withstanding",
+        "1"
+      ]
+    ],
+    "JewelStunThresholdDuringParry": [
+      [
+        "of biding",
         "1"
       ]
     ],
@@ -3600,6 +2676,12 @@
     "JewelUnarmedDamage": [
       [
         "punching",
+        "1"
+      ]
+    ],
+    "JewelVolatilityOnKillChance": [
+      [
+        "of volatility",
         "1"
       ]
     ],
@@ -5912,20 +4994,6 @@
         ]
       ]
     ],
-    "GlobalChaosSpellGemsLevel": [
-      [
-        "of anarchy",
-        "5"
-      ],
-      [
-        "of turmoil",
-        "41"
-      ],
-      [
-        "of ruin",
-        "75"
-      ]
-    ],
     "GlobalChaosSpellGemsLevelTwoHandWeapon": [
       [
         "of anarchy",
@@ -5998,20 +5066,6 @@
         [
           "wand"
         ]
-      ]
-    ],
-    "GlobalColdSpellGemsLevel": [
-      [
-        "of snow",
-        "5"
-      ],
-      [
-        "of sleet",
-        "41"
-      ],
-      [
-        "of ice",
-        "75"
       ]
     ],
     "GlobalColdSpellGemsLevelTwoHandWeapon": [
@@ -6088,20 +5142,6 @@
         ]
       ]
     ],
-    "GlobalFireSpellGemsLevel": [
-      [
-        "of coals",
-        "5"
-      ],
-      [
-        "of cinders",
-        "41"
-      ],
-      [
-        "of flames",
-        "75"
-      ]
-    ],
     "GlobalFireSpellGemsLevelTwoHandWeapon": [
       [
         "of coals",
@@ -6174,20 +5214,6 @@
         [
           "wand"
         ]
-      ]
-    ],
-    "GlobalLightningSpellGemsLevel": [
-      [
-        "of sparks",
-        "5"
-      ],
-      [
-        "of static",
-        "41"
-      ],
-      [
-        "of electricity",
-        "75"
       ]
     ],
     "GlobalLightningSpellGemsLevelTwoHandWeapon": [
@@ -6331,6 +5357,7 @@
         "of combat",
         "2",
         [
+          "spear",
           "one_hand_weapon"
         ]
       ],
@@ -6338,6 +5365,7 @@
         "of dueling",
         "18",
         [
+          "spear",
           "one_hand_weapon"
         ]
       ],
@@ -6345,6 +5373,7 @@
         "of conflict",
         "36",
         [
+          "spear",
           "one_hand_weapon"
         ]
       ],
@@ -6352,6 +5381,7 @@
         "of battle",
         "55",
         [
+          "spear",
           "one_hand_weapon"
         ]
       ],
@@ -6359,6 +5389,7 @@
         "of war",
         "81",
         [
+          "spear",
           "one_hand_weapon"
         ]
       ]
@@ -6398,45 +5429,24 @@
       ],
       [
         "of the despot",
-        "18",
+        "25",
         [
           "sceptre"
         ]
       ],
       [
         "of the overseer",
-        "36",
-        [
-          "sceptre"
-        ]
-      ],
-      [
-        "of the slavedriver",
         "55",
         [
           "sceptre"
         ]
       ],
       [
-        "of the tyrant",
-        "81",
+        "of the slavedriver",
+        "78",
         [
           "sceptre"
         ]
-      ]
-    ],
-    "GlobalPhysicalSpellGemsLevel": [
-      [
-        "of agony",
-        "5"
-      ],
-      [
-        "of suffering",
-        "41"
-      ],
-      [
-        "of torment",
-        "75"
       ]
     ],
     "GlobalPhysicalSpellGemsLevelTwoHandWeapon": [
@@ -6580,35 +5590,40 @@
         "of the archer",
         "2",
         [
-          "bow"
+          "bow",
+          "spear"
         ]
       ],
       [
         "of the fletcher",
         "18",
         [
-          "bow"
+          "bow",
+          "spear"
         ]
       ],
       [
         "of the sharpshooter",
         "36",
         [
-          "bow"
+          "bow",
+          "spear"
         ]
       ],
       [
         "of the marksman",
         "55",
         [
-          "bow"
+          "bow",
+          "spear"
         ]
       ],
       [
         "of the sniper",
         "81",
         [
-          "bow"
+          "bow",
+          "spear"
         ]
       ]
     ],
@@ -6695,20 +5710,6 @@
         [
           "wand"
         ]
-      ]
-    ],
-    "GlobalTrapSkillGemLevel": [
-      [
-        "of explosives",
-        "5"
-      ],
-      [
-        "of shrapnel",
-        "41"
-      ],
-      [
-        "of sabotage",
-        "75"
       ]
     ],
     "GlobalTrapSkillGemLevelWeapon": [
@@ -7594,10 +6595,7 @@
         [
           "ring",
           "amulet",
-          "belt",
           "helmet",
-          "gloves",
-          "boots",
           "focus",
           "sceptre",
           "wand",
@@ -7610,10 +6608,6 @@
         [
           "ring",
           "amulet",
-          "belt",
-          "helmet",
-          "gloves",
-          "boots",
           "focus",
           "sceptre",
           "wand",
@@ -7625,22 +6619,13 @@
         "77",
         [
           "ring",
-          "amulet",
-          "belt",
-          "helmet",
-          "gloves",
-          "boots",
-          "focus",
-          "sceptre",
-          "wand",
-          "trap"
+          "amulet"
         ]
       ],
       [
         "ultramarine",
         "82",
         [
-          "ring",
           "amulet"
         ]
       ]
@@ -7719,13 +6704,6 @@
       [
         "blue",
         "69",
-        [
-          "staff"
-        ]
-      ],
-      [
-        "zaffre",
-        "77",
         [
           "staff"
         ]
@@ -8868,7 +7846,6 @@
         "frosted",
         "1",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8883,7 +7860,6 @@
         "chilled",
         "12",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8898,7 +7874,6 @@
         "icy",
         "19",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8913,7 +7888,6 @@
         "frigid",
         "27",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8928,7 +7902,6 @@
         "freezing",
         "34",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8943,7 +7916,6 @@
         "frozen",
         "43",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8958,7 +7930,6 @@
         "glaciated",
         "52",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8973,7 +7944,6 @@
         "polar",
         "63",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -8988,7 +7958,6 @@
         "entombing",
         "75",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9003,7 +7972,6 @@
         "crystalising",
         "81",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9020,6 +7988,7 @@
         "frosted",
         "1",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9030,6 +7999,7 @@
         "chilled",
         "12",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9040,6 +8010,7 @@
         "icy",
         "19",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9050,6 +8021,7 @@
         "frigid",
         "27",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9060,6 +8032,7 @@
         "freezing",
         "34",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9070,6 +8043,7 @@
         "frozen",
         "43",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9080,6 +8054,7 @@
         "glaciated",
         "52",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9090,6 +8065,7 @@
         "polar",
         "63",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9100,6 +8076,7 @@
         "entombing",
         "75",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9110,6 +8087,7 @@
         "crystalising",
         "81",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9122,7 +8100,6 @@
         "heated",
         "1",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9137,7 +8114,6 @@
         "smouldering",
         "11",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9152,7 +8128,6 @@
         "smoking",
         "18",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9167,7 +8142,6 @@
         "burning",
         "26",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9182,7 +8156,6 @@
         "flaming",
         "33",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9197,7 +8170,6 @@
         "scorching",
         "42",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9212,7 +8184,6 @@
         "incinerating",
         "51",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9227,7 +8198,6 @@
         "blasting",
         "62",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9242,7 +8212,6 @@
         "cremating",
         "74",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9257,7 +8226,6 @@
         "carbonising",
         "81",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9274,6 +8242,7 @@
         "heated",
         "1",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9284,6 +8253,7 @@
         "smouldering",
         "11",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9294,6 +8264,7 @@
         "smoking",
         "18",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9304,6 +8275,7 @@
         "burning",
         "26",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9314,6 +8286,7 @@
         "flaming",
         "33",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9324,6 +8297,7 @@
         "scorching",
         "42",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9334,6 +8308,7 @@
         "incinerating",
         "51",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9344,6 +8319,7 @@
         "blasting",
         "62",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9354,6 +8330,7 @@
         "cremating",
         "74",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9364,6 +8341,7 @@
         "carbonising",
         "81",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9376,7 +8354,6 @@
         "humming",
         "1",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9391,7 +8368,6 @@
         "buzzing",
         "13",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9406,7 +8382,6 @@
         "snapping",
         "19",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9421,7 +8396,6 @@
         "crackling",
         "31",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9436,7 +8410,6 @@
         "sparking",
         "34",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9451,7 +8424,6 @@
         "arcing",
         "42",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9466,7 +8438,6 @@
         "shocking",
         "51",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9481,7 +8452,6 @@
         "discharging",
         "63",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9496,7 +8466,6 @@
         "electrocuting",
         "74",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9511,7 +8480,6 @@
         "vapourising",
         "81",
         [
-          "crossbow",
           "bow",
           "sword",
           "axe",
@@ -9528,6 +8496,7 @@
         "humming",
         "1",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9538,6 +8507,7 @@
         "buzzing",
         "13",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9548,6 +8518,7 @@
         "snapping",
         "19",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9558,6 +8529,7 @@
         "crackling",
         "31",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9568,6 +8540,7 @@
         "sparking",
         "34",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9578,6 +8551,7 @@
         "arcing",
         "42",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9588,6 +8562,7 @@
         "shocking",
         "51",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9598,6 +8573,7 @@
         "discharging",
         "63",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9608,6 +8584,7 @@
         "electrocuting",
         "74",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9618,6 +8595,7 @@
         "vapourising",
         "81",
         [
+          "crossbow",
           "sword",
           "axe",
           "mace",
@@ -9630,7 +8608,6 @@
         "glinting",
         "2",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9639,7 +8616,6 @@
         "burnished",
         "13",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9648,7 +8624,6 @@
         "polished",
         "21",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9657,7 +8632,6 @@
         "honed",
         "29",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9666,7 +8640,6 @@
         "gleaming",
         "36",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9675,7 +8648,6 @@
         "annealed",
         "46",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9684,7 +8656,6 @@
         "razor-sharp",
         "54",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9693,7 +8664,6 @@
         "tempered",
         "65",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
@@ -9702,7 +8672,6 @@
         "flaring",
         "77",
         [
-          "crossbow",
           "bow",
           "one_hand_weapon"
         ]
