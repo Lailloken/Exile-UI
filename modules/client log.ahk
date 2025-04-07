@@ -209,6 +209,7 @@ Log_Get(log_text, data)
 {
 	local
 	global vars, settings
+	static unique_maps := {"merchant": "seer", "vault": "vaults", "wildwood": 0, "selenite": 0, "megalith": 0, "lake": 0, "castaway": 0, "paradise": 0}
 
 	If (data = "areaname")
 		If !LLK_StringCompare(log_text, ["map", "breach", "ritual"])
@@ -242,7 +243,13 @@ Log_Get(log_text, data)
 			If InStr(%data%, "uberboss_")
 				%data% := (settings.maptracker.rename ? Lang_Trans("maps_boss") ":" : "") . StrReplace(%data%, "uberboss_") . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
 			Else If LLK_StringCompare(%data%, ["unique"])
-				%data% := Lang_Trans("items_unique") ": " (InStr(%data%, "merchant") ? Lang_Trans("maps_seer") : InStr(%data%, "vault") ? Lang_Trans("maps_vaults") : SubStr(%data%, 7))
+			{
+				For key, val in unique_maps
+					If !override && InStr(%data%, key)
+						%data% := Lang_Trans("items_unique") ": " Lang_Trans("maps_" (val ? val : key)), override := 1
+				If !override
+					%data% := Lang_Trans("items_unique") ": " SubStr(%data%, 7)
+			}
 			Else If LLK_PatternMatch(log_text, "", ["losttowers", "swamptower", "mesa", "bluff", "alpineridge"],,, 0)
 				%data% .= !InStr(log_text, "losttowers") ? " (" Lang_Trans("maps_tower") ")" : ""
 			Else %data% .= (!InStr(log_text, "_noboss") && !InStr(log_text, "unique") ? " (" Lang_Trans("maps_boss") ")" : "")
