@@ -34,7 +34,7 @@
 		Else SendInput, !^{c}
 
 		ClipWait, 0.1
-		If !settings.general.dev
+		If !vars.poe_version && !settings.general.dev
 			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
 				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
 			Else SendInput, {ALT up}
