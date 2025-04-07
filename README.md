@@ -3,7 +3,7 @@ A light-weight AHK script with UI and QoL features for Path of Exile 1 and 2, em
 <br>
 
 ## Download & Setup
-| [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Lailloken-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_download.png)](https://github.com/Lailloken/Lailloken-UI/archive/refs/heads/main.zip) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_releases.png)](https://github.com/Lailloken/Lailloken-UI/releases) |
+| [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Lailloken-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_releases.png)](https://github.com/Lailloken/Lailloken-UI/releases) |
 |---|---|---|---|
 
 ## Contributions
