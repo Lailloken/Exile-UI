@@ -11,7 +11,7 @@
 	If !IsObject(settings.maptracker)
 		settings.maptracker := {}
 	ini := IniBatchRead("ini" vars.poe_version "\map tracker.ini")
-	settings.features.maptracker := (settings.general.lang_client = "unknown") ? 0 : LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable map tracker", 0)
+
 	settings.maptracker.loot := !Blank(check := ini.settings["enable loot tracker"]) ? check : 0
 	settings.maptracker.hide := !Blank(check := ini.settings["hide panel when paused"]) ? check : 0
 	settings.maptracker.kills := !Blank(check := ini.settings["enable kill tracker"]) ? check : 0

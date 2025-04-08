@@ -21,7 +21,6 @@
 			IniWrite, % "053=1`n054=1`n056=1", % "ini" vars.poe_version "\map info.ini", pinned
 			ini.pinned := {"053": 1, "054": 1, "056": 1}
 		}
-	settings.features.mapinfo := (settings.general.lang_client = "unknown") ? 0 : LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable map-info panel", 0)
 	settings.mapinfo := {"IDs": {}, "pinned": {}}
 
 	For key, val in ini.pinned

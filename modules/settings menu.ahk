@@ -1422,8 +1422,6 @@ Settings_iteminfo2(cHWND)
 		}
 		LLK_FontDimensions(settings.iteminfo.fSize, height, width), settings.iteminfo.fWidth := width, settings.iteminfo.fHeight := height, vars.iteminfo.UI := {}
 		IniWrite, % settings.iteminfo.fSize, % "ini" vars.poe_version "\item-checker.ini", settings, font-size
-		If !WinExist("ahk_id "vars.hwnd.iteminfo.main)
-			Iteminfo(1)
 	}
 	Else If (check = "trigger")
 	{

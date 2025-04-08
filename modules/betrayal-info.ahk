@@ -6,7 +6,6 @@
 	If vars.poe_version
 		Return
 
-	settings.features.betrayal := vars.poe_version ? 0 : LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable betrayal-info", 0)
 	ini := IniBatchRead("ini" vars.poe_version "\betrayal info.ini")
 	settings.betrayal := {}, file := FileExist("data\" settings.general.lang_client "\Betrayal.json") ? settings.general.lang_client : "english"
 	settings.betrayal.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize

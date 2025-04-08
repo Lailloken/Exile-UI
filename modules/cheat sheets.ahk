@@ -6,7 +6,6 @@
 	If !FileExist("ini" vars.poe_version "\cheat-sheets.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\cheat-sheets.ini", settings
 
-	settings.features.cheatsheets := LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable cheat-sheets", 0)
 	settings.cheatsheets := {}, ini := IniBatchRead("ini" vars.poe_version "\cheat-sheets.ini")
 	settings.cheatsheets.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.cheatsheets.fSize, font_height, font_width), settings.cheatsheets.fHeight := font_height, settings.cheatsheets.fWidth := font_width

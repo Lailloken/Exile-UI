@@ -34,7 +34,7 @@
 			settings.OCR.colors[index] := StrSplit(check, ",")
 		Else settings.OCR.colors[index] := color.Clone()
 
-	settings.features.OCR := LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable ocr", 0) * settings.OCR.allow
+	settings.features.OCR := settings.features.OCR * settings.OCR.allow
 	If settings.features.OCR && !Blank(settings.OCR.hotkey)
 	{
 		Hotkey, IfWinActive, ahk_group poe_ahk_window

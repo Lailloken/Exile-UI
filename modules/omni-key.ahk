@@ -288,11 +288,14 @@ Omni_Context(mode := 0)
 			}
 	}
 	
-	If WinExist("ahk_id " vars.hwnd.iteminfo.main)
-		Return "iteminfo"
-	While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
-		If (A_TickCount >= vars.omnikey.start + 200)
+	If settings.features.iteminfo && settings.iteminfo.omnikey
+	{
+		If WinExist("ahk_id " vars.hwnd.iteminfo.main)
 			Return "iteminfo"
+		While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
+			If (A_TickCount >= vars.omnikey.start + 200)
+				Return "iteminfo"
+	}
 
 	If WinExist("ahk_id " vars.hwnd.geartracker.main)
 		Return "geartracker"
