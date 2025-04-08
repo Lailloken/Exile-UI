@@ -708,7 +708,7 @@ Cheatsheet_Info(name)
 	Gui, cheatsheet_info: Add, Text, % "xs y+"settings.general.fHeight//2 " w"settings.general.fWidth*35, % "information:"
 	Gui, cheatsheet_info: Font, norm
 	Gui, cheatsheet_info: Add, Text, % "xs y+0 w"settings.general.fWidth*35 ;cont
-	, % "–> type: " vars.cheatsheets.list[name].type "`n–> screen-check: " vars.cheatsheets.list[name].area "`n–> activation: " vars.cheatsheets.list[name].activation
+	, % "–> type: " vars.cheatsheets.list[name].type "`n–> screen-check: " vars.cheatsheets.list[name].area "`n–> " Lang_Trans("global_activation") " " vars.cheatsheets.list[name].activation
 
 	IniRead, ini, % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, description, % A_Space
 	While (ini != "")
@@ -765,7 +765,7 @@ Cheatsheet_Menu(name, refresh := 0) ;refresh = 0 will flush data stored in vars.
 	Gui, %GUI_name%: Add, DDL, % "ys w" width + settings.general.fWidth " hp r2 gCheatsheet_Menu2 AltSubmit HWNDhwnd", % StrReplace(Lang_Trans("cheat_static") "|" Lang_Trans("cheat_dynamic") "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].area) "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].area) "||")
 	vars.hwnd.help_tooltips["cheatsheets_menu screencheck"] := hwnd0, vars.hwnd.cheatsheet_menu.check := vars.hwnd.help_tooltips["cheatsheets_menu screencheck|"] := hwnd
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize
-	Gui, %GUI_name%: Add, Text, % "Section xs cSilver Center HWNDhwnd0", % "activation:"
+	Gui, %GUI_name%: Add, Text, % "Section xs cSilver Center HWNDhwnd0", % Lang_Trans("global_activation")
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize - 4
 	LLK_PanelDimensions([Lang_Trans("cheat_hold"), Lang_Trans("global_toggle")], settings.general.fSize - 4, width, height,,, 1)
 	Gui, %GUI_name%: Add, DDL, % "ys w" width + settings.general.fWidth " hp r2 gCheatsheet_Menu2 AltSubmit HWNDhwnd", % StrReplace(Lang_Trans("cheat_hold") "|" Lang_Trans("global_toggle") "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].activation) "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].activation) "||")

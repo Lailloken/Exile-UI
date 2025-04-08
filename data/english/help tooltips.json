@@ -234,12 +234,28 @@
     "hotkeys restart": [
       "if the script crashes and stops responding, use this combination to restart it"
     ],
+    "iteminfo enable": [
+      "provides a customizable item tooltip which adds glance value to loot you pick up",
+      "hold the omni-key while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
+      "click into the game or press <esc> to close it"
+    ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
       "if the tooltip is on screen when selecting a profile, the changes will be applied on the fly"
     ],
     "iteminfo reset": [
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
+    ],
+    "iteminfo omni-key": [
+      "this is the default setting",
+      "hold the omni-key while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
+      "click into the game or press <esc> to close it"
+    ],
+    "iteminfo alt-key": [
+      "hold <alt> while hovering over items to activate the tooltip",
+      "the tooltip will close automatically once you release <alt>",
+      "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
+      "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
     "iteminfo modrolls": [
       "hides the min/max range on explicit mods",

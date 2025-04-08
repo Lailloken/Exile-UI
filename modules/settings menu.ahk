@@ -1235,6 +1235,12 @@ Settings_iteminfo()
 		Return
 	}
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section Center gSettings_iteminfo2 HWNDhwnd y+"vars.settings.spacing " Checked" (settings.features.iteminfo ? 1 : 0), % Lang_Trans("m_iteminfo_enable")
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_iteminfo enable"] := hwnd
+
+	If !settings.features.iteminfo
+		Return
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_profiles")
 	Gui, %GUI%: Font, norm
@@ -1257,6 +1263,13 @@ Settings_iteminfo()
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" settings.iteminfo.omnikey, % "omni-key"
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2 Checked" !settings.iteminfo.omnikey, % "alt"
+	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_iteminfo omni-key"] := hwnd1
+	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_iteminfo alt-key"] := hwnd2
+
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd0", % Lang_Trans("global_font")
 	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center gSettings_iteminfo2 Border HWNDhwnd w"settings.general.fWidth*2, % "–"
 	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
@@ -1368,7 +1381,15 @@ Settings_iteminfo2(cHWND)
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 
-	If InStr(check, "profile_")
+	If (check = "enable")
+	{
+		IniWrite, % (settings.features.iteminfo := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable item-info
+		If WinExist("ahk_id " vars.hwnd.iteminfo.main)
+			LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+		Settings_menu("item-info")
+		Return
+	}
+	Else If InStr(check, "profile_")
 	{
 		GuiControl, +cWhite, % vars.hwnd.settings["profile_"settings.iteminfo.profile]
 		GuiControl, movedraw, % vars.hwnd.settings["profile_"settings.iteminfo.profile]
@@ -1408,6 +1429,8 @@ Settings_iteminfo2(cHWND)
 		}
 		Else Return
 	}
+	Else If InStr("omni_key,alt_key", check)
+		IniWrite, % (settings.iteminfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\item-checker.ini", Settings, omni-key activation
 	Else If InStr(check, "font_")
 	{
 		While GetKeyState("LButton", "P")
@@ -2620,7 +2643,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width, vars.hwnd.settings["background_general"] := hwnd1
 	vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter"}
+	feature_check := {"betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo"}
 	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode

@@ -16,6 +16,7 @@
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
+	settings.iteminfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
 
 	settings.iteminfo.rules := {}
 	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
@@ -2127,6 +2128,10 @@ Iteminfo_GearParse(slot) ;parse the info of an equipped item and save it for ite
 		SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
 	Else SendInput, !^{c}
 	ClipWait, 0.1
+	If !vars.poe_version && !settings.general.dev
+		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+			SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+		Else SendInput, {ALT up}
 
 	If !Clipboard
 	{
@@ -2587,6 +2592,11 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
 		Else SendInput, !^{c}
 		ClipWait, 0.1
+		If !vars.poe_version && !settings.general.dev
+			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+			Else SendInput, {ALT up}
+
 		If Clipboard
 		{
 			If settings.mapinfo.trigger && (Omni_Context(1) = "mapinfo")
