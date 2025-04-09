@@ -1582,9 +1582,9 @@
   },
   "boots": {
     "adherent leggings": {
-      "AR": 60,
-      "ES": 28,
-      "HY": 60,
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1593,8 +1593,8 @@
       ]
     },
     "apostle leggings": {
-      "AR": 91,
-      "ES": 42,
+      "AR": 50,
+      "ES": 50,
       "HY": 91,
       "tags": [
         "str_int_armour",
@@ -1604,7 +1604,7 @@
       ]
     },
     "bangled sandals": {
-      "ES": 71,
+      "ES": 69,
       "tags": [
         "int_armour",
         "armour",
@@ -1613,8 +1613,8 @@
       ]
     },
     "bastion sabatons": {
-      "AR": 76,
-      "EV": 7,
+      "AR": 42,
+      "EV": 42,
       "HY": 76,
       "tags": [
         "str_dex_armour",
@@ -1624,8 +1624,8 @@
       ]
     },
     "bladed shoes": {
-      "ES": 42,
-      "EV": 82,
+      "ES": 46,
+      "EV": 45,
       "HY": 82,
       "tags": [
         "dex_int_armour",
@@ -1635,8 +1635,8 @@
       ]
     },
     "bold sabatons": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -1646,7 +1646,7 @@
       ]
     },
     "bound boots": {
-      "EV": 10,
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -1655,9 +1655,9 @@
       ]
     },
     "bound leggings": {
-      "AR": 67,
-      "ES": 28,
-      "HY": 66,
+      "AR": 36,
+      "ES": 38,
+      "HY": 67,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1666,7 +1666,7 @@
       ]
     },
     "bound sandals": {
-      "ES": 85,
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -1675,8 +1675,8 @@
       ]
     },
     "braced sabatons": {
-      "AR": 27,
-      "EV": 1,
+      "AR": 15,
+      "EV": 14,
       "HY": 26,
       "tags": [
         "maraketh_basetype",
@@ -1687,7 +1687,7 @@
       ]
     },
     "bronze greaves": {
-      "AR": 5,
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1697,7 +1697,7 @@
       ]
     },
     "bulwark greaves": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "boots",
         "armour",
@@ -1706,7 +1706,7 @@
       ]
     },
     "carved greaves": {
-      "AR": 13,
+      "AR": 76,
       "tags": [
         "boots",
         "armour",
@@ -1715,7 +1715,7 @@
       ]
     },
     "cavalry boots": {
-      "EV": 16,
+      "EV": 91,
       "tags": [
         "dex_armour",
         "armour",
@@ -1724,8 +1724,8 @@
       ]
     },
     "charmed shoes": {
-      "ES": 42,
-      "EV": 91,
+      "ES": 50,
+      "EV": 50,
       "HY": 91,
       "tags": [
         "dex_int_armour",
@@ -1735,7 +1735,7 @@
       ]
     },
     "cinched boots": {
-      "EV": 14,
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -1744,8 +1744,8 @@
       ]
     },
     "covered sabatons": {
-      "AR": 60,
-      "EV": 5,
+      "AR": 33,
+      "EV": 32,
       "HY": 60,
       "tags": [
         "str_dex_armour",
@@ -1755,7 +1755,7 @@
       ]
     },
     "dragonscale boots": {
-      "EV": 18,
+      "EV": 100,
       "tags": [
         "dex_armour",
         "armour",
@@ -1764,7 +1764,7 @@
       ]
     },
     "dunerunner sandals": {
-      "ES": 71,
+      "ES": 77,
       "tags": [
         "int_armour",
         "armour",
@@ -1773,7 +1773,7 @@
       ]
     },
     "elaborate sandals": {
-      "ES": 85,
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -1782,7 +1782,7 @@
       ]
     },
     "elegant greaves": {
-      "AR": 12,
+      "AR": 71,
       "tags": [
         "boots",
         "armour",
@@ -1791,7 +1791,7 @@
       ]
     },
     "elegant slippers": {
-      "ES": 71,
+      "ES": 73,
       "tags": [
         "int_armour",
         "armour",
@@ -1800,7 +1800,7 @@
       ]
     },
     "embossed boots": {
-      "EV": 4,
+      "EV": 25,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1810,7 +1810,7 @@
       ]
     },
     "embroidered boots": {
-      "EV": 14,
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -1819,8 +1819,8 @@
       ]
     },
     "faithful leggings": {
-      "AR": 83,
-      "ES": 42,
+      "AR": 45,
+      "ES": 46,
       "HY": 83,
       "tags": [
         "str_int_armour",
@@ -1830,7 +1830,7 @@
       ]
     },
     "feathered sandals": {
-      "ES": 42,
+      "ES": 50,
       "tags": [
         "boots",
         "int_armour",
@@ -1840,7 +1840,7 @@
       ]
     },
     "flared boots": {
-      "EV": 10,
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -1849,7 +1849,7 @@
       ]
     },
     "flax sandals": {
-      "ES": 57,
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -1858,8 +1858,8 @@
       ]
     },
     "flexile sabatons": {
-      "AR": 68,
-      "EV": 6,
+      "AR": 37,
+      "EV": 37,
       "HY": 67,
       "tags": [
         "str_dex_armour",
@@ -1869,8 +1869,8 @@
       ]
     },
     "fortress sabatons": {
-      "AR": 100,
-      "EV": 10,
+      "AR": 54,
+      "EV": 55,
       "HY": 100,
       "tags": [
         "str_dex_armour",
@@ -1880,7 +1880,9 @@
       ]
     },
     "frayed shoes": {
-      "EV": 11,
+      "ES": 12,
+      "EV": 6,
+      "HY": 14,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1890,9 +1892,9 @@
       ]
     },
     "gilt leggings": {
-      "AR": 68,
-      "ES": 28,
-      "HY": 67,
+      "AR": 37,
+      "ES": 38,
+      "HY": 68,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1901,9 +1903,9 @@
       ]
     },
     "goldwork sabatons": {
-      "AR": 67,
-      "EV": 6,
-      "HY": 67,
+      "AR": 36,
+      "EV": 36,
+      "HY": 66,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1912,9 +1914,9 @@
       ]
     },
     "grand cuisses": {
-      "AR": 55,
-      "ES": 28,
-      "EV": 54,
+      "AR": 30,
+      "ES": 30,
+      "EV": 30,
       "HY": 100,
       "tags": [
         "str_dex_int_armour",
@@ -1925,8 +1927,8 @@
     },
     "hunting shoes": {
       "ES": 28,
-      "EV": 45,
-      "HY": 45,
+      "EV": 25,
+      "HY": 46,
       "tags": [
         "boots",
         "vaal_basetype",
@@ -1936,7 +1938,7 @@
       ]
     },
     "iron greaves": {
-      "AR": 3,
+      "AR": 21,
       "tags": [
         "boots",
         "str_armour",
@@ -1946,7 +1948,7 @@
       ]
     },
     "laced boots": {
-      "EV": 2,
+      "EV": 19,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1956,7 +1958,7 @@
       ]
     },
     "laced sandals": {
-      "ES": 57,
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -1965,7 +1967,7 @@
       ]
     },
     "lattice sandals": {
-      "ES": 28,
+      "ES": 33,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1975,7 +1977,7 @@
       ]
     },
     "leatherplate boots": {
-      "EV": 11,
+      "EV": 67,
       "tags": [
         "dex_armour",
         "armour",
@@ -1984,7 +1986,7 @@
       ]
     },
     "lionheart greaves": {
-      "AR": 11,
+      "AR": 67,
       "tags": [
         "boots",
         "armour",
@@ -1993,7 +1995,7 @@
       ]
     },
     "lizardscale boots": {
-      "EV": 8,
+      "EV": 45,
       "tags": [
         "boots",
         "dex_armour",
@@ -2003,7 +2005,7 @@
       ]
     },
     "luxurious slippers": {
-      "ES": 85,
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -2012,9 +2014,9 @@
       ]
     },
     "mail sabatons": {
-      "AR": 15,
-      "EV": 0,
-      "HY": 15,
+      "AR": 8,
+      "EV": 7,
+      "HY": 14,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -2024,7 +2026,7 @@
       ]
     },
     "monument greaves": {
-      "AR": 12,
+      "AR": 68,
       "tags": [
         "boots",
         "armour",
@@ -2033,8 +2035,8 @@
       ]
     },
     "noble sabatons": {
-      "AR": 91,
-      "EV": 9,
+      "AR": 50,
+      "EV": 50,
       "HY": 91,
       "tags": [
         "str_dex_armour",
@@ -2044,7 +2046,7 @@
       ]
     },
     "ornate greaves": {
-      "AR": 16,
+      "AR": 91,
       "tags": [
         "boots",
         "armour",
@@ -2053,7 +2055,9 @@
       ]
     },
     "padded leggings": {
-      "AR": 15,
+      "AR": 8,
+      "ES": 12,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -2063,9 +2067,9 @@
       ]
     },
     "pelt leggings": {
-      "AR": 46,
+      "AR": 25,
       "ES": 28,
-      "HY": 46,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -2075,8 +2079,8 @@
       ]
     },
     "pious leggings": {
-      "AR": 83,
-      "ES": 42,
+      "AR": 45,
+      "ES": 46,
       "HY": 83,
       "tags": [
         "str_int_armour",
@@ -2086,7 +2090,7 @@
       ]
     },
     "plated greaves": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "boots",
         "armour",
@@ -2095,8 +2099,8 @@
       ]
     },
     "quickslip shoes": {
-      "ES": 57,
-      "EV": 100,
+      "ES": 56,
+      "EV": 55,
       "HY": 100,
       "tags": [
         "dex_int_armour",
@@ -2106,7 +2110,7 @@
       ]
     },
     "rawhide boots": {
-      "EV": 0,
+      "EV": 7,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -2116,7 +2120,7 @@
       ]
     },
     "reefsteel greaves": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "boots",
         "armour",
@@ -2125,7 +2129,7 @@
       ]
     },
     "rough greaves": {
-      "AR": 1,
+      "AR": 10,
       "tags": [
         "boots",
         "str_armour",
@@ -2144,9 +2148,9 @@
       ]
     },
     "secured leggings": {
-      "AR": 27,
-      "ES": 14,
-      "HY": 27,
+      "AR": 15,
+      "ES": 18,
+      "HY": 29,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -2156,7 +2160,7 @@
       ]
     },
     "serpentscale boots": {
-      "EV": 13,
+      "EV": 76,
       "tags": [
         "dex_armour",
         "armour",
@@ -2165,7 +2169,7 @@
       ]
     },
     "shamanistic leggings": {
-      "AR": 76,
+      "AR": 42,
       "ES": 42,
       "HY": 76,
       "tags": [
@@ -2176,7 +2180,7 @@
       ]
     },
     "silk slippers": {
-      "ES": 42,
+      "ES": 45,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -2186,9 +2190,9 @@
       ]
     },
     "silverbuckled shoes": {
-      "ES": 28,
-      "EV": 66,
-      "HY": 65,
+      "ES": 38,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -2197,7 +2201,7 @@
       ]
     },
     "sleek boots": {
-      "EV": 11,
+      "EV": 66,
       "tags": [
         "dex_armour",
         "armour",
@@ -2206,8 +2210,8 @@
       ]
     },
     "soldiering sabatons": {
-      "AR": 60,
-      "EV": 5,
+      "AR": 33,
+      "EV": 32,
       "HY": 60,
       "tags": [
         "str_dex_armour",
@@ -2217,8 +2221,8 @@
       ]
     },
     "stacked sabatons": {
-      "AR": 46,
-      "EV": 4,
+      "AR": 25,
+      "EV": 25,
       "HY": 46,
       "tags": [
         "str_dex_armour",
@@ -2229,9 +2233,9 @@
       ]
     },
     "steelpoint shoes": {
-      "ES": 28,
-      "EV": 59,
-      "HY": 58,
+      "ES": 34,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -2240,7 +2244,7 @@
       ]
     },
     "steeltoe boots": {
-      "EV": 6,
+      "EV": 39,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -2250,7 +2254,7 @@
       ]
     },
     "stone greaves": {
-      "AR": 8,
+      "AR": 46,
       "tags": [
         "boots",
         "str_armour",
@@ -2260,7 +2264,7 @@
       ]
     },
     "straw sandals": {
-      "ES": 14,
+      "ES": 18,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -2270,7 +2274,7 @@
       ]
     },
     "studded boots": {
-      "EV": 12,
+      "EV": 71,
       "tags": [
         "dex_armour",
         "armour",
@@ -2279,7 +2283,7 @@
       ]
     },
     "studded sandals": {
-      "ES": 71,
+      "ES": 70,
       "tags": [
         "int_armour",
         "armour",
@@ -2288,9 +2292,9 @@
       ]
     },
     "threaded shoes": {
-      "ES": 14,
-      "EV": 25,
-      "HY": 25,
+      "ES": 18,
+      "EV": 14,
+      "HY": 27,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -2300,7 +2304,7 @@
       ]
     },
     "totemic greaves": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "boots",
         "armour",
@@ -2310,7 +2314,7 @@
     },
     "treerunner shoes": {
       "ES": 42,
-      "EV": 76,
+      "EV": 42,
       "HY": 76,
       "tags": [
         "dex_int_armour",
@@ -2320,7 +2324,7 @@
       ]
     },
     "trimmed greaves": {
-      "AR": 6,
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -2330,7 +2334,7 @@
       ]
     },
     "vaal greaves": {
-      "AR": 17,
+      "AR": 100,
       "tags": [
         "boots",
         "armour",
@@ -2339,9 +2343,9 @@
       ]
     },
     "velour shoes": {
-      "ES": 28,
-      "EV": 67,
-      "HY": 66,
+      "ES": 38,
+      "EV": 37,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -2350,8 +2354,8 @@
       ]
     },
     "veteran sabatons": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -2361,8 +2365,8 @@
       ]
     },
     "wanderer shoes": {
-      "ES": 42,
-      "EV": 82,
+      "ES": 46,
+      "EV": 45,
       "HY": 82,
       "tags": [
         "dex_int_armour",
@@ -2372,8 +2376,8 @@
       ]
     },
     "warlock leggings": {
-      "AR": 100,
-      "ES": 57,
+      "AR": 54,
+      "ES": 56,
       "HY": 100,
       "tags": [
         "str_int_armour",
@@ -2383,9 +2387,9 @@
       ]
     },
     "wayfarer shoes": {
-      "ES": 28,
-      "EV": 59,
-      "HY": 58,
+      "ES": 34,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -2394,9 +2398,9 @@
       ]
     },
     "weaver leggings": {
-      "AR": 60,
-      "ES": 28,
-      "HY": 60,
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "armour",
@@ -2405,7 +2409,7 @@
       ]
     },
     "wrapped sandals": {
-      "ES": 28,
+      "ES": 29,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -3888,7 +3892,7 @@
   },
   "foci": {
     "antler focus": {
-      "ES": 16,
+      "ES": 26,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -3898,7 +3902,7 @@
       ]
     },
     "arrayed focus": {
-      "ES": 66,
+      "ES": 73,
       "tags": [
         "int_armour",
         "armour",
@@ -3907,7 +3911,7 @@
       ]
     },
     "attuned focus": {
-      "ES": 66,
+      "ES": 74,
       "tags": [
         "int_armour",
         "armour",
@@ -3916,7 +3920,7 @@
       ]
     },
     "crystal focus": {
-      "ES": 33,
+      "ES": 44,
       "tags": [
         "maraketh_basetype",
         "focus",
@@ -3926,7 +3930,7 @@
       ]
     },
     "cultist focus": {
-      "ES": 66,
+      "ES": 77,
       "tags": [
         "int_armour",
         "armour",
@@ -3935,7 +3939,7 @@
       ]
     },
     "druidic focus": {
-      "ES": 83,
+      "ES": 82,
       "tags": [
         "int_armour",
         "armour",
@@ -3944,7 +3948,7 @@
       ]
     },
     "elegant focus": {
-      "ES": 66,
+      "ES": 69,
       "tags": [
         "int_armour",
         "armour",
@@ -3963,7 +3967,7 @@
       ]
     },
     "hallowed focus": {
-      "ES": 83,
+      "ES": 79,
       "tags": [
         "int_armour",
         "armour",
@@ -3972,7 +3976,7 @@
       ]
     },
     "jade focus": {
-      "ES": 66,
+      "ES": 63,
       "tags": [
         "int_armour",
         "armour",
@@ -3981,7 +3985,7 @@
       ]
     },
     "jingling focus": {
-      "ES": 66,
+      "ES": 68,
       "tags": [
         "int_armour",
         "armour",
@@ -3990,7 +3994,7 @@
       ]
     },
     "leyline focus": {
-      "ES": 83,
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -3999,7 +4003,7 @@
       ]
     },
     "magus focus": {
-      "ES": 83,
+      "ES": 82,
       "tags": [
         "int_armour",
         "armour",
@@ -4008,7 +4012,7 @@
       ]
     },
     "paua focus": {
-      "ES": 66,
+      "ES": 68,
       "tags": [
         "int_armour",
         "armour",
@@ -4017,7 +4021,7 @@
       ]
     },
     "plumed focus": {
-      "ES": 50,
+      "ES": 53,
       "tags": [
         "focus",
         "int_armour",
@@ -4045,7 +4049,7 @@
       ]
     },
     "tonal focus": {
-      "ES": 33,
+      "ES": 39,
       "tags": [
         "maraketh_basetype",
         "focus",
@@ -4055,7 +4059,7 @@
       ]
     },
     "twig focus": {
-      "ES": 16,
+      "ES": 19,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -4075,7 +4079,7 @@
       ]
     },
     "woven focus": {
-      "ES": 16,
+      "ES": 23,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -4085,7 +4089,7 @@
       ]
     },
     "wreath focus": {
-      "ES": 66,
+      "ES": 63,
       "tags": [
         "int_armour",
         "armour",
@@ -4096,7 +4100,7 @@
   },
   "gloves": {
     "adorned gloves": {
-      "ES": 80,
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -4105,9 +4109,9 @@
       ]
     },
     "adorned wraps": {
-      "ES": 40,
-      "EV": 76,
-      "HY": 77,
+      "ES": 42,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -4116,7 +4120,9 @@
       ]
     },
     "aged cuffs": {
-      "AR": 27,
+      "AR": 15,
+      "ES": 18,
+      "HY": 28,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -4126,9 +4132,9 @@
       ]
     },
     "ancient cuffs": {
-      "AR": 92,
-      "ES": 40,
-      "HY": 92,
+      "AR": 50,
+      "ES": 50,
+      "HY": 91,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4137,7 +4143,7 @@
       ]
     },
     "ancient mitts": {
-      "AR": 12,
+      "AR": 71,
       "tags": [
         "gloves",
         "armour",
@@ -4146,8 +4152,8 @@
       ]
     },
     "bandage wraps": {
-      "ES": 20,
-      "EV": 60,
+      "ES": 34,
+      "EV": 33,
       "HY": 60,
       "tags": [
         "dex_int_armour",
@@ -4157,7 +4163,7 @@
       ]
     },
     "barbed bracers": {
-      "EV": 17,
+      "EV": 100,
       "tags": [
         "dex_armour",
         "armour",
@@ -4166,7 +4172,7 @@
       ]
     },
     "baroque gloves": {
-      "ES": 60,
+      "ES": 74,
       "tags": [
         "int_armour",
         "armour",
@@ -4175,7 +4181,7 @@
       ]
     },
     "bolstered mitts": {
-      "AR": 6,
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4185,7 +4191,7 @@
       ]
     },
     "bound bracers": {
-      "EV": 4,
+      "EV": 24,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4195,9 +4201,9 @@
       ]
     },
     "bound cuffs": {
-      "AR": 83,
-      "ES": 40,
-      "HY": 84,
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4206,9 +4212,9 @@
       ]
     },
     "braided cuffs": {
-      "AR": 60,
-      "ES": 20,
-      "HY": 59,
+      "AR": 32,
+      "ES": 34,
+      "HY": 60,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4217,8 +4223,8 @@
       ]
     },
     "buckled wraps": {
-      "ES": 20,
-      "EV": 60,
+      "ES": 34,
+      "EV": 33,
       "HY": 60,
       "tags": [
         "dex_int_armour",
@@ -4228,8 +4234,8 @@
       ]
     },
     "burnished gauntlets": {
-      "AR": 68,
-      "EV": 6,
+      "AR": 37,
+      "EV": 37,
       "HY": 68,
       "tags": [
         "str_dex_armour",
@@ -4239,9 +4245,9 @@
       ]
     },
     "cambric wraps": {
-      "ES": 20,
-      "EV": 67,
-      "HY": 66,
+      "ES": 38,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -4250,9 +4256,9 @@
       ]
     },
     "captain gauntlets": {
-      "AR": 67,
-      "EV": 5,
-      "HY": 66,
+      "AR": 36,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -4261,9 +4267,9 @@
       ]
     },
     "commander gauntlets": {
-      "AR": 92,
-      "EV": 8,
-      "HY": 91,
+      "AR": 50,
+      "EV": 50,
+      "HY": 92,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -4272,8 +4278,8 @@
       ]
     },
     "cultist gauntlets": {
-      "AR": 100,
-      "EV": 9,
+      "AR": 54,
+      "EV": 54,
       "HY": 100,
       "tags": [
         "str_dex_armour",
@@ -4283,7 +4289,7 @@
       ]
     },
     "detailed mitts": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "gloves",
         "armour",
@@ -4292,9 +4298,9 @@
       ]
     },
     "diviner cuffs": {
-      "AR": 60,
-      "ES": 20,
-      "HY": 59,
+      "AR": 32,
+      "ES": 34,
+      "HY": 60,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4303,8 +4309,8 @@
       ]
     },
     "doubled gauntlets": {
-      "AR": 46,
-      "EV": 4,
+      "AR": 25,
+      "EV": 24,
       "HY": 45,
       "tags": [
         "str_dex_armour",
@@ -4315,7 +4321,7 @@
       ]
     },
     "elegant mitts": {
-      "AR": 11,
+      "AR": 67,
       "tags": [
         "gloves",
         "armour",
@@ -4324,9 +4330,9 @@
       ]
     },
     "elegant wraps": {
-      "ES": 40,
-      "EV": 91,
-      "HY": 92,
+      "ES": 50,
+      "EV": 50,
+      "HY": 91,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -4335,7 +4341,7 @@
       ]
     },
     "embroidered gloves": {
-      "ES": 60,
+      "ES": 70,
       "tags": [
         "int_armour",
         "armour",
@@ -4344,7 +4350,7 @@
       ]
     },
     "engraved bracers": {
-      "EV": 15,
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -4353,7 +4359,7 @@
       ]
     },
     "feathered mitts": {
-      "AR": 13,
+      "AR": 76,
       "tags": [
         "gloves",
         "armour",
@@ -4362,7 +4368,7 @@
       ]
     },
     "fine bracers": {
-      "EV": 9,
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -4371,7 +4377,7 @@
       ]
     },
     "firm bracers": {
-      "EV": 2,
+      "EV": 19,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -4381,8 +4387,8 @@
       ]
     },
     "furtive wraps": {
-      "ES": 20,
-      "EV": 68,
+      "ES": 38,
+      "EV": 37,
       "HY": 68,
       "tags": [
         "dex_int_armour",
@@ -4392,7 +4398,9 @@
       ]
     },
     "gauze wraps": {
-      "EV": 10,
+      "ES": 12,
+      "EV": 6,
+      "HY": 13,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -4402,8 +4410,8 @@
       ]
     },
     "gleaming cuffs": {
-      "AR": 100,
-      "ES": 40,
+      "AR": 54,
+      "ES": 56,
       "HY": 100,
       "tags": [
         "str_int_armour",
@@ -4413,7 +4421,7 @@
       ]
     },
     "gold gloves": {
-      "ES": 60,
+      "ES": 78,
       "tags": [
         "int_armour",
         "armour",
@@ -4422,9 +4430,9 @@
       ]
     },
     "goldcast cuffs": {
-      "AR": 46,
-      "ES": 20,
-      "HY": 46,
+      "AR": 25,
+      "ES": 28,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -4434,7 +4442,7 @@
       ]
     },
     "grand bracers": {
-      "EV": 16,
+      "EV": 91,
       "tags": [
         "dex_armour",
         "armour",
@@ -4443,9 +4451,9 @@
       ]
     },
     "grand manchettes": {
-      "AR": 55,
-      "ES": 20,
-      "EV": 54,
+      "AR": 30,
+      "ES": 30,
+      "EV": 30,
       "HY": 100,
       "tags": [
         "str_dex_int_armour",
@@ -4455,7 +4463,7 @@
       ]
     },
     "grand mitts": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "gloves",
         "armour",
@@ -4464,7 +4472,7 @@
       ]
     },
     "grim gloves": {
-      "ES": 80,
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -4473,7 +4481,7 @@
       ]
     },
     "hardened bracers": {
-      "EV": 12,
+      "EV": 67,
       "tags": [
         "dex_armour",
         "armour",
@@ -4482,8 +4490,8 @@
       ]
     },
     "heirloom cuffs": {
-      "AR": 67,
-      "ES": 20,
+      "AR": 36,
+      "ES": 38,
       "HY": 67,
       "tags": [
         "str_int_armour",
@@ -4493,7 +4501,7 @@
       ]
     },
     "hunting bracers": {
-      "EV": 9,
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -4502,7 +4510,7 @@
       ]
     },
     "intricate gloves": {
-      "ES": 40,
+      "ES": 52,
       "tags": [
         "gloves",
         "int_armour",
@@ -4512,9 +4520,9 @@
       ]
     },
     "ironmail gauntlets": {
-      "AR": 60,
-      "EV": 5,
-      "HY": 59,
+      "AR": 32,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -4523,7 +4531,7 @@
       ]
     },
     "jewelled gloves": {
-      "ES": 40,
+      "ES": 44,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4533,7 +4541,7 @@
       ]
     },
     "knightly mitts": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "gloves",
         "armour",
@@ -4542,8 +4550,8 @@
       ]
     },
     "layered gauntlets": {
-      "AR": 27,
-      "EV": 1,
+      "AR": 15,
+      "EV": 13,
       "HY": 26,
       "tags": [
         "maraketh_basetype",
@@ -4554,7 +4562,9 @@
       ]
     },
     "linen wraps": {
-      "EV": 24,
+      "ES": 18,
+      "EV": 13,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4564,7 +4574,7 @@
       ]
     },
     "moulded mitts": {
-      "AR": 7,
+      "AR": 46,
       "tags": [
         "gloves",
         "str_armour",
@@ -4574,7 +4584,7 @@
       ]
     },
     "ominous gloves": {
-      "ES": 60,
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -4583,7 +4593,7 @@
       ]
     },
     "opulent gloves": {
-      "ES": 80,
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -4592,9 +4602,9 @@
       ]
     },
     "ornate cuffs": {
-      "AR": 76,
-      "ES": 40,
-      "HY": 76,
+      "AR": 41,
+      "ES": 42,
+      "HY": 75,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4603,8 +4613,8 @@
       ]
     },
     "ornate gauntlets": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -4614,7 +4624,7 @@
       ]
     },
     "ornate mitts": {
-      "AR": 16,
+      "AR": 91,
       "tags": [
         "gloves",
         "armour",
@@ -4623,7 +4633,7 @@
       ]
     },
     "pauascale gloves": {
-      "ES": 60,
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -4632,9 +4642,9 @@
       ]
     },
     "plate gauntlets": {
-      "AR": 60,
-      "EV": 5,
-      "HY": 59,
+      "AR": 32,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -4643,7 +4653,7 @@
       ]
     },
     "plated mitts": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "gloves",
         "armour",
@@ -4652,7 +4662,7 @@
       ]
     },
     "refined bracers": {
-      "EV": 12,
+      "EV": 71,
       "tags": [
         "dex_armour",
         "armour",
@@ -4661,8 +4671,8 @@
       ]
     },
     "righteous cuffs": {
-      "AR": 68,
-      "ES": 20,
+      "AR": 37,
+      "ES": 38,
       "HY": 68,
       "tags": [
         "str_int_armour",
@@ -4672,9 +4682,9 @@
       ]
     },
     "ringmail gauntlets": {
-      "AR": 16,
-      "EV": 1,
-      "HY": 16,
+      "AR": 8,
+      "EV": 7,
+      "HY": 15,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -4684,7 +4694,7 @@
       ]
     },
     "riveted mitts": {
-      "AR": 3,
+      "AR": 21,
       "tags": [
         "gloves",
         "str_armour",
@@ -4694,7 +4704,9 @@
       ]
     },
     "rope cuffs": {
-      "AR": 15,
+      "AR": 8,
+      "ES": 12,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -4704,7 +4716,7 @@
       ]
     },
     "sectioned bracers": {
-      "EV": 6,
+      "EV": 39,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4714,9 +4726,9 @@
       ]
     },
     "signet cuffs": {
-      "AR": 83,
-      "ES": 40,
-      "HY": 84,
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -4725,7 +4737,7 @@
       ]
     },
     "sombre gloves": {
-      "ES": 20,
+      "ES": 30,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -4735,7 +4747,7 @@
       ]
     },
     "spiked bracers": {
-      "EV": 13,
+      "EV": 75,
       "tags": [
         "dex_armour",
         "armour",
@@ -4744,7 +4756,7 @@
       ]
     },
     "spined bracers": {
-      "EV": 8,
+      "EV": 45,
       "tags": [
         "gloves",
         "dex_armour",
@@ -4754,9 +4766,9 @@
       ]
     },
     "spiral wraps": {
-      "ES": 20,
-      "EV": 45,
-      "HY": 45,
+      "ES": 28,
+      "EV": 24,
+      "HY": 46,
       "tags": [
         "gloves",
         "vaal_basetype",
@@ -4766,7 +4778,7 @@
       ]
     },
     "stalking bracers": {
-      "EV": 15,
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -4775,8 +4787,8 @@
       ]
     },
     "steelmail gauntlets": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -4786,7 +4798,7 @@
       ]
     },
     "stitched gloves": {
-      "ES": 20,
+      "ES": 34,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4796,7 +4808,7 @@
       ]
     },
     "stocky mitts": {
-      "AR": 1,
+      "AR": 10,
       "tags": [
         "gloves",
         "str_armour",
@@ -4806,7 +4818,7 @@
       ]
     },
     "suede bracers": {
-      "EV": 1,
+      "EV": 7,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -4816,7 +4828,7 @@
       ]
     },
     "swift bracers": {
-      "EV": 10,
+      "EV": 66,
       "tags": [
         "dex_armour",
         "armour",
@@ -4825,7 +4837,7 @@
       ]
     },
     "tempered mitts": {
-      "AR": 5,
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -4835,7 +4847,7 @@
       ]
     },
     "titan mitts": {
-      "AR": 12,
+      "AR": 68,
       "tags": [
         "gloves",
         "armour",
@@ -4844,6 +4856,7 @@
       ]
     },
     "torn gloves": {
+      "ES": 18,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -4853,9 +4866,9 @@
       ]
     },
     "utility wraps": {
-      "ES": 40,
-      "EV": 83,
-      "HY": 84,
+      "ES": 46,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -4873,7 +4886,7 @@
       ]
     },
     "vaal mitts": {
-      "AR": 17,
+      "AR": 100,
       "tags": [
         "gloves",
         "armour",
@@ -4882,8 +4895,8 @@
       ]
     },
     "vaal wraps": {
-      "ES": 40,
-      "EV": 100,
+      "ES": 56,
+      "EV": 54,
       "HY": 100,
       "tags": [
         "dex_int_armour",
@@ -4893,9 +4906,9 @@
       ]
     },
     "war wraps": {
-      "ES": 40,
-      "EV": 83,
-      "HY": 84,
+      "ES": 46,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -4904,9 +4917,9 @@
       ]
     },
     "zealot gauntlets": {
-      "AR": 76,
-      "EV": 6,
-      "HY": 75,
+      "AR": 41,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -4917,8 +4930,8 @@
   },
   "helmets": {
     "archon crown": {
-      "AR": 83,
-      "ES": 40,
+      "AR": 45,
+      "ES": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -4928,7 +4941,7 @@
       ]
     },
     "armoured cap": {
-      "EV": 15,
+      "EV": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4937,8 +4950,8 @@
       ]
     },
     "avian mask": {
-      "ES": 40,
-      "EV": 76,
+      "ES": 42,
+      "EV": 41,
       "HY": 76,
       "tags": [
         "helmet",
@@ -4948,7 +4961,7 @@
       ]
     },
     "avian tiara": {
-      "ES": 60,
+      "ES": 66,
       "tags": [
         "helmet",
         "armour",
@@ -4957,9 +4970,9 @@
       ]
     },
     "bandit mask": {
-      "ES": 30,
-      "EV": 63,
-      "HY": 62,
+      "ES": 36,
+      "EV": 34,
+      "HY": 64,
       "tags": [
         "helmet",
         "armour",
@@ -4968,7 +4981,7 @@
       ]
     },
     "beaded circlet": {
-      "ES": 30,
+      "ES": 33,
       "tags": [
         "maraketh_basetype",
         "int_armour",
@@ -4978,8 +4991,8 @@
       ]
     },
     "brigand mask": {
-      "ES": 40,
-      "EV": 83,
+      "ES": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -4989,8 +5002,8 @@
       ]
     },
     "brimmed helm": {
-      "AR": 14,
-      "EV": 0,
+      "AR": 7,
+      "EV": 6,
       "HY": 13,
       "tags": [
         "str_dex_armour",
@@ -5001,8 +5014,8 @@
       ]
     },
     "cabalist helm": {
-      "AR": 71,
-      "EV": 6,
+      "AR": 39,
+      "EV": 39,
       "HY": 71,
       "tags": [
         "helmet",
@@ -5012,7 +5025,7 @@
       ]
     },
     "chain tiara": {
-      "ES": 40,
+      "ES": 43,
       "tags": [
         "maraketh_basetype",
         "int_armour",
@@ -5022,8 +5035,8 @@
       ]
     },
     "champion helm": {
-      "AR": 100,
-      "EV": 9,
+      "AR": 54,
+      "EV": 54,
       "HY": 100,
       "tags": [
         "helmet",
@@ -5033,8 +5046,8 @@
       ]
     },
     "closed helm": {
-      "AR": 60,
-      "EV": 5,
+      "AR": 33,
+      "EV": 32,
       "HY": 60,
       "tags": [
         "helmet",
@@ -5044,7 +5057,7 @@
       ]
     },
     "commander greathelm": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "helmet",
         "armour",
@@ -5053,7 +5066,7 @@
       ]
     },
     "coral circlet": {
-      "ES": 60,
+      "ES": 62,
       "tags": [
         "helmet",
         "armour",
@@ -5062,7 +5075,7 @@
       ]
     },
     "corroded greathelm": {
-      "AR": 10,
+      "AR": 60,
       "tags": [
         "helmet",
         "armour",
@@ -5071,7 +5084,7 @@
       ]
     },
     "corsair cap": {
-      "EV": 10,
+      "EV": 59,
       "tags": [
         "helmet",
         "armour",
@@ -5080,7 +5093,7 @@
       ]
     },
     "covert hood": {
-      "EV": 13,
+      "EV": 72,
       "tags": [
         "helmet",
         "armour",
@@ -5089,9 +5102,9 @@
       ]
     },
     "cowled helm": {
-      "AR": 38,
-      "EV": 3,
-      "HY": 38,
+      "AR": 21,
+      "EV": 20,
+      "HY": 37,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -5101,8 +5114,8 @@
       ]
     },
     "cryptic helm": {
-      "AR": 91,
-      "EV": 8,
+      "AR": 50,
+      "EV": 50,
       "HY": 91,
       "tags": [
         "helmet",
@@ -5112,9 +5125,9 @@
       ]
     },
     "cultist crown": {
-      "AR": 27,
-      "ES": 10,
-      "HY": 27,
+      "AR": 15,
+      "ES": 18,
+      "HY": 29,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -5124,8 +5137,8 @@
       ]
     },
     "death mask": {
-      "ES": 40,
-      "EV": 83,
+      "ES": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -5135,8 +5148,8 @@
       ]
     },
     "decorated helm": {
-      "AR": 68,
-      "EV": 6,
+      "AR": 37,
+      "EV": 37,
       "HY": 68,
       "tags": [
         "helmet",
@@ -5146,7 +5159,7 @@
       ]
     },
     "deerstalker hood": {
-      "EV": 13,
+      "EV": 76,
       "tags": [
         "helmet",
         "armour",
@@ -5155,7 +5168,7 @@
       ]
     },
     "desert cap": {
-      "EV": 16,
+      "EV": 91,
       "tags": [
         "helmet",
         "armour",
@@ -5164,7 +5177,7 @@
       ]
     },
     "desert circlet": {
-      "ES": 70,
+      "ES": 69,
       "tags": [
         "helmet",
         "armour",
@@ -5173,8 +5186,8 @@
       ]
     },
     "divine crown": {
-      "AR": 100,
-      "ES": 50,
+      "AR": 54,
+      "ES": 54,
       "HY": 100,
       "tags": [
         "helmet",
@@ -5184,8 +5197,8 @@
       ]
     },
     "domed helm": {
-      "AR": 60,
-      "EV": 5,
+      "AR": 33,
+      "EV": 32,
       "HY": 60,
       "tags": [
         "helmet",
@@ -5195,7 +5208,7 @@
       ]
     },
     "druidic circlet": {
-      "ES": 60,
+      "ES": 62,
       "tags": [
         "helmet",
         "armour",
@@ -5204,8 +5217,8 @@
       ]
     },
     "druidic crown": {
-      "AR": 83,
-      "ES": 40,
+      "AR": 45,
+      "ES": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -5215,7 +5228,7 @@
       ]
     },
     "elegant greathelm": {
-      "AR": 13,
+      "AR": 71,
       "tags": [
         "helmet",
         "armour",
@@ -5224,7 +5237,7 @@
       ]
     },
     "elite greathelm": {
-      "AR": 8,
+      "AR": 46,
       "tags": [
         "str_armour",
         "helmet",
@@ -5234,8 +5247,8 @@
       ]
     },
     "engraved helm": {
-      "AR": 63,
-      "EV": 6,
+      "AR": 34,
+      "EV": 34,
       "HY": 63,
       "tags": [
         "helmet",
@@ -5245,9 +5258,9 @@
       ]
     },
     "face mask": {
-      "ES": 10,
-      "EV": 17,
-      "HY": 17,
+      "ES": 14,
+      "EV": 9,
+      "HY": 20,
       "tags": [
         "ezomyte_basetype",
         "helmet",
@@ -5258,7 +5271,7 @@
     },
     "faridun mask": {
       "ES": 50,
-      "EV": 91,
+      "EV": 50,
       "HY": 92,
       "tags": [
         "helmet",
@@ -5278,7 +5291,7 @@
       ]
     },
     "felt cap": {
-      "EV": 2,
+      "EV": 18,
       "tags": [
         "ezomyte_basetype",
         "dex_armour",
@@ -5288,7 +5301,7 @@
       ]
     },
     "fierce greathelm": {
-      "AR": 11,
+      "AR": 67,
       "tags": [
         "helmet",
         "armour",
@@ -5297,9 +5310,9 @@
       ]
     },
     "forest crown": {
-      "AR": 63,
-      "ES": 30,
-      "HY": 63,
+      "AR": 34,
+      "ES": 36,
+      "HY": 64,
       "tags": [
         "helmet",
         "armour",
@@ -5308,8 +5321,8 @@
       ]
     },
     "gallant helm": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -5319,9 +5332,9 @@
       ]
     },
     "gladiatoral helm": {
-      "AR": 76,
-      "EV": 7,
-      "HY": 77,
+      "AR": 42,
+      "EV": 41,
+      "HY": 76,
       "tags": [
         "helmet",
         "armour",
@@ -5330,7 +5343,7 @@
       ]
     },
     "gold circlet": {
-      "ES": 50,
+      "ES": 57,
       "tags": [
         "int_armour",
         "helmet",
@@ -5340,7 +5353,7 @@
       ]
     },
     "goliath greathelm": {
-      "AR": 13,
+      "AR": 73,
       "tags": [
         "helmet",
         "armour",
@@ -5349,9 +5362,9 @@
       ]
     },
     "grand visage": {
-      "AR": 55,
-      "ES": 30,
-      "EV": 54,
+      "AR": 30,
+      "ES": 29,
+      "EV": 30,
       "HY": 100,
       "tags": [
         "helmet",
@@ -5361,8 +5374,8 @@
       ]
     },
     "guarded helm": {
-      "AR": 21,
-      "EV": 1,
+      "AR": 11,
+      "EV": 10,
       "HY": 20,
       "tags": [
         "str_dex_armour",
@@ -5373,7 +5386,7 @@
       ]
     },
     "guardian greathelm": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "helmet",
         "armour",
@@ -5382,7 +5395,7 @@
       ]
     },
     "hallowed crown": {
-      "AR": 71,
+      "AR": 39,
       "ES": 40,
       "HY": 72,
       "tags": [
@@ -5393,9 +5406,9 @@
       ]
     },
     "heavy crown": {
-      "AR": 46,
-      "ES": 20,
-      "HY": 46,
+      "AR": 25,
+      "ES": 27,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "helmet",
@@ -5405,9 +5418,9 @@
       ]
     },
     "hewn mask": {
-      "ES": 10,
-      "EV": 12,
-      "HY": 12,
+      "ES": 11,
+      "EV": 6,
+      "HY": 14,
       "tags": [
         "ezomyte_basetype",
         "helmet",
@@ -5417,7 +5430,7 @@
       ]
     },
     "homeguard greathelm": {
-      "AR": 11,
+      "AR": 67,
       "tags": [
         "helmet",
         "armour",
@@ -5426,9 +5439,9 @@
       ]
     },
     "hooded mask": {
-      "ES": 10,
-      "EV": 25,
-      "HY": 25,
+      "ES": 18,
+      "EV": 13,
+      "HY": 27,
       "tags": [
         "maraketh_basetype",
         "helmet",
@@ -5438,9 +5451,9 @@
       ]
     },
     "horned crown": {
-      "AR": 20,
-      "ES": 10,
-      "HY": 20,
+      "AR": 11,
+      "ES": 14,
+      "HY": 22,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -5450,7 +5463,7 @@
       ]
     },
     "hunter hood": {
-      "EV": 8,
+      "EV": 45,
       "tags": [
         "dex_armour",
         "helmet",
@@ -5460,9 +5473,9 @@
       ]
     },
     "inquisitor crown": {
-      "AR": 76,
-      "ES": 40,
-      "HY": 76,
+      "AR": 42,
+      "ES": 42,
+      "HY": 77,
       "tags": [
         "helmet",
         "armour",
@@ -5471,9 +5484,9 @@
       ]
     },
     "iron crown": {
-      "AR": 14,
-      "ES": 10,
-      "HY": 14,
+      "AR": 7,
+      "ES": 11,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -5483,7 +5496,7 @@
       ]
     },
     "jade tiara": {
-      "ES": 60,
+      "ES": 68,
       "tags": [
         "helmet",
         "armour",
@@ -5492,7 +5505,7 @@
       ]
     },
     "jungle tiara": {
-      "ES": 70,
+      "ES": 77,
       "tags": [
         "helmet",
         "armour",
@@ -5510,7 +5523,7 @@
       ]
     },
     "lace hood": {
-      "EV": 4,
+      "EV": 25,
       "tags": [
         "maraketh_basetype",
         "dex_armour",
@@ -5520,9 +5533,9 @@
       ]
     },
     "lavish crown": {
-      "AR": 68,
-      "ES": 30,
-      "HY": 68,
+      "AR": 37,
+      "ES": 38,
+      "HY": 69,
       "tags": [
         "helmet",
         "armour",
@@ -5531,7 +5544,7 @@
       ]
     },
     "leatherbound hood": {
-      "EV": 11,
+      "EV": 66,
       "tags": [
         "helmet",
         "armour",
@@ -5540,7 +5553,7 @@
       ]
     },
     "magus tiara": {
-      "ES": 80,
+      "ES": 83,
       "tags": [
         "helmet",
         "armour",
@@ -5549,9 +5562,9 @@
       ]
     },
     "mailed crown": {
-      "AR": 60,
-      "ES": 30,
-      "HY": 60,
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "helmet",
         "armour",
@@ -5560,9 +5573,9 @@
       ]
     },
     "martyr crown": {
-      "AR": 41,
-      "ES": 20,
-      "HY": 41,
+      "AR": 22,
+      "ES": 24,
+      "HY": 42,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -5572,7 +5585,7 @@
       ]
     },
     "masked greathelm": {
-      "AR": 16,
+      "AR": 91,
       "tags": [
         "helmet",
         "armour",
@@ -5581,7 +5594,7 @@
       ]
     },
     "mercenary greathelm": {
-      "AR": 11,
+      "AR": 63,
       "tags": [
         "helmet",
         "armour",
@@ -5590,7 +5603,7 @@
       ]
     },
     "narrow hood": {
-      "EV": 11,
+      "EV": 66,
       "tags": [
         "helmet",
         "armour",
@@ -5608,7 +5621,7 @@
       ]
     },
     "noble greathelm": {
-      "AR": 13,
+      "AR": 76,
       "tags": [
         "helmet",
         "armour",
@@ -5617,9 +5630,9 @@
       ]
     },
     "oak mask": {
-      "ES": 30,
-      "EV": 59,
-      "HY": 59,
+      "ES": 34,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -5628,7 +5641,7 @@
       ]
     },
     "paragon greathelm": {
-      "AR": 18,
+      "AR": 100,
       "tags": [
         "helmet",
         "armour",
@@ -5638,7 +5651,7 @@
     },
     "pariah mask": {
       "ES": 40,
-      "EV": 71,
+      "EV": 39,
       "HY": 72,
       "tags": [
         "helmet",
@@ -5648,7 +5661,7 @@
       ]
     },
     "rotted hood": {
-      "EV": 10,
+      "EV": 59,
       "tags": [
         "helmet",
         "armour",
@@ -5657,7 +5670,7 @@
       ]
     },
     "rusted greathelm": {
-      "AR": 1,
+      "AR": 9,
       "tags": [
         "str_armour",
         "helmet",
@@ -5667,7 +5680,7 @@
       ]
     },
     "saintly crown": {
-      "AR": 91,
+      "AR": 50,
       "ES": 50,
       "HY": 92,
       "tags": [
@@ -5678,7 +5691,7 @@
       ]
     },
     "sandsworn tiara": {
-      "ES": 70,
+      "ES": 73,
       "tags": [
         "helmet",
         "armour",
@@ -5687,7 +5700,7 @@
       ]
     },
     "sentinel greathelm": {
-      "AR": 12,
+      "AR": 68,
       "tags": [
         "helmet",
         "armour",
@@ -5696,7 +5709,7 @@
       ]
     },
     "shabby hood": {
-      "EV": 0,
+      "EV": 7,
       "tags": [
         "ezomyte_basetype",
         "dex_armour",
@@ -5706,9 +5719,9 @@
       ]
     },
     "shaded mask": {
-      "ES": 30,
-      "EV": 67,
-      "HY": 67,
+      "ES": 38,
+      "EV": 37,
+      "HY": 68,
       "tags": [
         "helmet",
         "armour",
@@ -5717,8 +5730,8 @@
       ]
     },
     "shielded helm": {
-      "AR": 46,
-      "EV": 4,
+      "AR": 25,
+      "EV": 24,
       "HY": 46,
       "tags": [
         "str_dex_armour",
@@ -5729,9 +5742,9 @@
       ]
     },
     "skulking mask": {
-      "ES": 30,
-      "EV": 67,
-      "HY": 66,
+      "ES": 37,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "helmet",
         "armour",
@@ -5740,7 +5753,7 @@
       ]
     },
     "skycrown tiara": {
-      "ES": 80,
+      "ES": 83,
       "tags": [
         "helmet",
         "armour",
@@ -5749,8 +5762,8 @@
       ]
     },
     "soaring mask": {
-      "ES": 50,
-      "EV": 100,
+      "ES": 54,
+      "EV": 54,
       "HY": 100,
       "tags": [
         "helmet",
@@ -5760,7 +5773,7 @@
       ]
     },
     "soldier greathelm": {
-      "AR": 3,
+      "AR": 22,
       "tags": [
         "str_armour",
         "helmet",
@@ -5770,8 +5783,8 @@
       ]
     },
     "soldier helm": {
-      "AR": 67,
-      "EV": 6,
+      "AR": 36,
+      "EV": 36,
       "HY": 67,
       "tags": [
         "helmet",
@@ -5781,9 +5794,9 @@
       ]
     },
     "solid mask": {
-      "ES": 30,
-      "EV": 59,
-      "HY": 59,
+      "ES": 34,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -5792,7 +5805,7 @@
       ]
     },
     "sorcerous tiara": {
-      "ES": 90,
+      "ES": 91,
       "tags": [
         "helmet",
         "armour",
@@ -5801,7 +5814,7 @@
       ]
     },
     "spired greathelm": {
-      "AR": 6,
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -5811,9 +5824,9 @@
       ]
     },
     "spiritbone crown": {
-      "AR": 60,
-      "ES": 30,
-      "HY": 60,
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "helmet",
         "armour",
@@ -5822,7 +5835,7 @@
       ]
     },
     "swathed cap": {
-      "EV": 6,
+      "EV": 36,
       "tags": [
         "maraketh_basetype",
         "dex_armour",
@@ -5832,7 +5845,7 @@
       ]
     },
     "trapper hood": {
-      "EV": 17,
+      "EV": 100,
       "tags": [
         "helmet",
         "armour",
@@ -5841,9 +5854,9 @@
       ]
     },
     "tribal mask": {
-      "ES": 20,
-      "EV": 45,
-      "HY": 45,
+      "ES": 27,
+      "EV": 24,
+      "HY": 46,
       "tags": [
         "vaal_basetype",
         "helmet",
@@ -5853,7 +5866,7 @@
       ]
     },
     "twig circlet": {
-      "ES": 10,
+      "ES": 18,
       "tags": [
         "ezomyte_basetype",
         "int_armour",
@@ -5863,7 +5876,7 @@
       ]
     },
     "twilight tiara": {
-      "ES": 70,
+      "ES": 76,
       "tags": [
         "helmet",
         "armour",
@@ -5872,9 +5885,9 @@
       ]
     },
     "veiled mask": {
-      "ES": 20,
-      "EV": 39,
-      "HY": 39,
+      "ES": 24,
+      "EV": 21,
+      "HY": 41,
       "tags": [
         "maraketh_basetype",
         "helmet",
@@ -5884,7 +5897,7 @@
       ]
     },
     "velvet cap": {
-      "EV": 12,
+      "EV": 68,
       "tags": [
         "helmet",
         "armour",
@@ -5893,7 +5906,7 @@
       ]
     },
     "viper cap": {
-      "EV": 8,
+      "EV": 51,
       "tags": [
         "dex_armour",
         "helmet",
@@ -5903,9 +5916,9 @@
       ]
     },
     "visored helm": {
-      "AR": 27,
-      "EV": 2,
-      "HY": 27,
+      "AR": 15,
+      "EV": 13,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -5915,8 +5928,8 @@
       ]
     },
     "warded helm": {
-      "AR": 83,
-      "EV": 8,
+      "AR": 45,
+      "EV": 45,
       "HY": 83,
       "tags": [
         "helmet",
@@ -5926,7 +5939,7 @@
       ]
     },
     "warmonger greathelm": {
-      "AR": 15,
+      "AR": 83,
       "tags": [
         "helmet",
         "armour",
@@ -5935,7 +5948,7 @@
       ]
     },
     "warrior greathelm": {
-      "AR": 8,
+      "AR": 50,
       "tags": [
         "str_armour",
         "helmet",
@@ -5945,7 +5958,7 @@
       ]
     },
     "wicker tiara": {
-      "ES": 20,
+      "ES": 27,
       "tags": [
         "ezomyte_basetype",
         "int_armour",
@@ -5955,7 +5968,7 @@
       ]
     },
     "wool cap": {
-      "EV": 10,
+      "EV": 63,
       "tags": [
         "helmet",
         "armour",
@@ -5964,7 +5977,7 @@
       ]
     },
     "woven cap": {
-      "EV": 15,
+      "EV": 83,
       "tags": [
         "helmet",
         "armour",
@@ -5973,7 +5986,7 @@
       ]
     },
     "wrapped cap": {
-      "EV": 13,
+      "EV": 71,
       "tags": [
         "helmet",
         "armour",
@@ -5982,7 +5995,7 @@
       ]
     },
     "wrapped greathelm": {
-      "AR": 4,
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -5992,8 +6005,8 @@
       ]
     },
     "zealot crown": {
-      "AR": 67,
-      "ES": 30,
+      "AR": 36,
+      "ES": 37,
       "HY": 67,
       "tags": [
         "helmet",
@@ -7408,7 +7421,7 @@
   },
   "shields": {
     "aegis buckler": {
-      "EV": 12,
+      "EV": 83,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7439,7 +7452,7 @@
       ]
     },
     "ancient buckler": {
-      "EV": 14,
+      "EV": 100,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7450,7 +7463,7 @@
       ]
     },
     "array buckler": {
-      "EV": 9,
+      "EV": 71,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7462,7 +7475,7 @@
     },
     "aureate targe": {
       "AR": 40,
-      "EV": 74,
+      "EV": 51,
       "HY": 74,
       "tags": [
         "str_dex_armour",
@@ -7474,7 +7487,7 @@
     },
     "avian targe": {
       "AR": 43,
-      "EV": 80,
+      "EV": 54,
       "HY": 80,
       "tags": [
         "str_dex_armour",
@@ -7486,7 +7499,7 @@
     },
     "baroque targe": {
       "AR": 50,
-      "EV": 92,
+      "EV": 63,
       "HY": 92,
       "tags": [
         "str_dex_armour",
@@ -7518,7 +7531,7 @@
       ]
     },
     "bladeguard buckler": {
-      "EV": 10,
+      "EV": 78,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7564,7 +7577,7 @@
     },
     "carved targe": {
       "AR": 34,
-      "EV": 62,
+      "EV": 42,
       "HY": 62,
       "tags": [
         "str_dex_armour",
@@ -7576,7 +7589,7 @@
     },
     "chiseled targe": {
       "AR": 25,
-      "EV": 45,
+      "EV": 30,
       "HY": 46,
       "tags": [
         "str_dex_armour",
@@ -7588,7 +7601,7 @@
       ]
     },
     "coiled buckler": {
-      "EV": 8,
+      "EV": 66,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7600,7 +7613,7 @@
     },
     "crescent targe": {
       "AR": 21,
-      "EV": 37,
+      "EV": 25,
       "HY": 38,
       "tags": [
         "maraketh_basetype",
@@ -7678,7 +7691,7 @@
       ]
     },
     "edged buckler": {
-      "EV": 7,
+      "EV": 52,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7739,7 +7752,7 @@
     },
     "feathered targe": {
       "AR": 28,
-      "EV": 50,
+      "EV": 34,
       "HY": 50,
       "tags": [
         "str_dex_armour",
@@ -7762,7 +7775,7 @@
     },
     "fur-lined targe": {
       "AR": 35,
-      "EV": 63,
+      "EV": 43,
       "HY": 63,
       "tags": [
         "str_dex_armour",
@@ -7796,7 +7809,7 @@
     },
     "grand targe": {
       "AR": 46,
-      "EV": 83,
+      "EV": 57,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -7807,7 +7820,7 @@
       ]
     },
     "gutspike buckler": {
-      "EV": 13,
+      "EV": 91,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7819,7 +7832,7 @@
     },
     "hardwood targe": {
       "AR": 5,
-      "EV": 7,
+      "EV": 5,
       "HY": 8,
       "tags": [
         "str_dex_armour",
@@ -7854,7 +7867,7 @@
       ]
     },
     "iron buckler": {
-      "EV": 3,
+      "EV": 24,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -7867,7 +7880,7 @@
     },
     "ironwood targe": {
       "AR": 33,
-      "EV": 59,
+      "EV": 40,
       "HY": 60,
       "tags": [
         "str_dex_armour",
@@ -7878,7 +7891,7 @@
       ]
     },
     "jingling buckler": {
-      "EV": 10,
+      "EV": 75,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7902,7 +7915,7 @@
       ]
     },
     "laminate buckler": {
-      "EV": 7,
+      "EV": 59,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7913,7 +7926,7 @@
       ]
     },
     "leather buckler": {
-      "EV": 1,
+      "EV": 7,
       "tags": [
         "buckler",
         "dex_shield",
@@ -7926,7 +7939,7 @@
     },
     "mammoth targe": {
       "AR": 46,
-      "EV": 83,
+      "EV": 57,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -7938,7 +7951,7 @@
     },
     "mercenary targe": {
       "AR": 36,
-      "EV": 67,
+      "EV": 45,
       "HY": 67,
       "tags": [
         "str_dex_armour",
@@ -7960,7 +7973,7 @@
     },
     "mosaic targe": {
       "AR": 37,
-      "EV": 68,
+      "EV": 46,
       "HY": 68,
       "tags": [
         "str_dex_armour",
@@ -7981,7 +7994,7 @@
       ]
     },
     "oak buckler": {
-      "EV": 7,
+      "EV": 59,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8005,7 +8018,7 @@
       ]
     },
     "ornate buckler": {
-      "EV": 12,
+      "EV": 83,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8016,7 +8029,7 @@
       ]
     },
     "painted buckler": {
-      "EV": 8,
+      "EV": 63,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8050,7 +8063,7 @@
       ]
     },
     "pearl buckler": {
-      "EV": 8,
+      "EV": 63,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8062,7 +8075,7 @@
     },
     "pelage targe": {
       "AR": 9,
-      "EV": 15,
+      "EV": 10,
       "HY": 16,
       "tags": [
         "str_dex_armour",
@@ -8084,7 +8097,7 @@
       ]
     },
     "plated buckler": {
-      "EV": 2,
+      "EV": 19,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8097,7 +8110,7 @@
     },
     "polished targe": {
       "AR": 39,
-      "EV": 71,
+      "EV": 48,
       "HY": 71,
       "tags": [
         "str_dex_armour",
@@ -8131,7 +8144,7 @@
       ]
     },
     "ridged buckler": {
-      "EV": 4,
+      "EV": 32,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -8143,7 +8156,7 @@
       ]
     },
     "ringed buckler": {
-      "EV": 6,
+      "EV": 45,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8216,7 +8229,7 @@
     },
     "soaring targe": {
       "AR": 54,
-      "EV": 100,
+      "EV": 68,
       "HY": 100,
       "tags": [
         "str_dex_armour",
@@ -8227,7 +8240,7 @@
       ]
     },
     "spiked buckler": {
-      "EV": 4,
+      "EV": 36,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -8239,7 +8252,7 @@
       ]
     },
     "spikeward buckler": {
-      "EV": 9,
+      "EV": 71,
       "tags": [
         "buckler",
         "dex_shield",
@@ -8274,7 +8287,7 @@
     },
     "stone targe": {
       "AR": 42,
-      "EV": 76,
+      "EV": 52,
       "HY": 76,
       "tags": [
         "str_dex_armour",
@@ -8297,7 +8310,7 @@
     },
     "stratified targe": {
       "AR": 33,
-      "EV": 59,
+      "EV": 40,
       "HY": 60,
       "tags": [
         "str_dex_armour",
@@ -8309,7 +8322,7 @@
     },
     "studded targe": {
       "AR": 14,
-      "EV": 25,
+      "EV": 17,
       "HY": 26,
       "tags": [
         "maraketh_basetype",
@@ -8355,7 +8368,7 @@
       ]
     },
     "wooden buckler": {
-      "EV": 1,
+      "EV": 12,
       "tags": [
         "buckler",
         "dex_shield",
