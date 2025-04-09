@@ -74,9 +74,9 @@ Hotkeys_Alt()
 	global vars, settings
 
 	start := A_TickCount
-	While !longpress && (GetKeyState("ALT", "P") || settings.hotkeys.rebound_alt && GetKeyState(settings.hotkeys.item_descriptions, "P"))
+	While !longpress && !GetKeyState("TAB", "P") && (GetKeyState("ALT", "P") || settings.hotkeys.rebound_alt && GetKeyState(settings.hotkeys.item_descriptions, "P"))
 	{
-		If (A_TickCount >= start + 250)
+		If (A_TickCount >= start + 150)
 			longpress := 1
 		Sleep 10
 	}
