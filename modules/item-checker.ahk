@@ -1525,7 +1525,7 @@ Iteminfo_GUI()
 			rolls_val := Abs(rolls.2 - rolls.1), rolls_max := Abs(rolls.3 - rolls.1), valid_rolls := (!IsNumber(rolls.1 + rolls.2 + rolls.3) || !InStr(text_check, "(")) ? 0 : 1
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
-			mod_text := settings.iteminfo.modrolls ? Iteminfo_ModRemoveRange(text_check) : text_check
+			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRemoveRange(text_check) : text_check) . (tier_override = "conflict" && !settings.iteminfo.bars_tier ? " (?)" : "")
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
