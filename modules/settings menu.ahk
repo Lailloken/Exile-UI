@@ -1284,15 +1284,24 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("m_iteminfo_modrolls")
 	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
 
+	If vars.poe_version
+	{
+		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_iteminfo_modbars")
+		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd gSettings_iteminfo2 Checked" settings.iteminfo.bars_tier, % Lang_Trans("global_tier")
+		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" !settings.iteminfo.bars_tier, % Lang_Trans("global_global")
+		vars.hwnd.settings.bars_tier := vars.hwnd.help_tooltips["settings_iteminfo modbars tier"] := hwnd
+		vars.hwnd.settings.bars_tier2 := vars.hwnd.help_tooltips["settings_iteminfo modbars global"] := hwnd1
+	}
+
 	If !vars.poe_version
 	{
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.compare (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_league")
 		vars.hwnd.settings.compare := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo league-start" : "lang unavailable") ] := hwnd
-		If !settings.iteminfo.compare
-		{
-			Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.itembase, % Lang_Trans("m_iteminfo_base")
-			vars.hwnd.settings.itembase := hwnd, vars.hwnd.help_tooltips["settings_iteminfo base-info"] := hwnd
-		}
+	}
+	If !settings.iteminfo.compare
+	{
+		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.itembase, % Lang_Trans("m_iteminfo_base")
+		vars.hwnd.settings.itembase := hwnd, vars.hwnd.help_tooltips["settings_iteminfo base-info" vars.poe_version] := hwnd
 	}
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.ilvl (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_ilvl")
@@ -1456,6 +1465,8 @@ Settings_iteminfo2(cHWND)
 		settings.iteminfo.modrolls := LLK_ControlGet(cHWND)
 		IniWrite, % settings.iteminfo.modrolls, % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
 	}
+	Else If InStr(check, "bars_tier")
+		IniWrite, % (settings.iteminfo.bars_tier := LLK_ControlGet(vars.hwnd.settings.bars_tier)), % "ini" vars.poe_version "\item-checker.ini", settings, tier bars
 	Else If (check = "compare")
 	{
 		If (settings.general.lang_client != "english")
