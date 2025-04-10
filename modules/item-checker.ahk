@@ -1403,7 +1403,7 @@ Iteminfo_GUI()
 			divider := 1
 		}
 
-		If vars.poe_version
+		If vars.poe_version && !unique
 		{
 			tier_override := ""
 			If !IsObject(db.item_mods)
@@ -1518,7 +1518,7 @@ Iteminfo_GUI()
 		highlights := "", color_t := "Black" ;track (un)desired highlighting for every part of hybrid mods
 		Loop, Parse, mod, `n ;parse mod-text line by line
 		{
-			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := settings.iteminfo.bars_tier * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
+			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.bars_tier || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
 				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
@@ -1535,9 +1535,10 @@ Iteminfo_GUI()
 			GuiControlGet, text_, Pos, % hwnd ;get position and size of the text-panel
 			height += text_h ;sum up the heights of each line belonging to the same mod, so it can be used for the cells right next to them (highlight, tier, and potentially icon/ilvl)
 
-			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique ? minimum_rolls[A_Index].1 "-" maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1] : "0-100"
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100) 
-			If InStr(text_check, "(") && settings.iteminfo.bars_tier
+			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
+			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100) 
+			If InStr(text_check, "(") && (settings.iteminfo.bars_tier || unique)
 				vars.hwnd.iteminfo.inverted_mods[Iteminfo_ModHighlight(A_LoopField, "parse")] := hwnd
 
 			If unique ;add roll-% to unique mods
