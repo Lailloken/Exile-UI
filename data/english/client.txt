@@ -479,6 +479,7 @@
 		mods_armour_evasion_%		=	"% increased Armour and Evasion"
 		mods_armour_energy_%		=	"% increased Armour and Energy Shield"
 		mods_evasion_energy_%		=	"% increased Evasion and Energy Shield"
+		mods_damage_flat		=	"Adds # to # damage"					;## e.g. "adds 7 to 17 XYZ damage..."
 
 
 		mods_armour_evasion_energy_%	=	"% increased Armour, Evasion and Energy Shield"		;## PoE1 only (whole block), crafting bench

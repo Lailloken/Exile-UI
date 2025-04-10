@@ -21,7 +21,6 @@
 			IniWrite, % "053=1`n054=1`n056=1", % "ini" vars.poe_version "\map info.ini", pinned
 			ini.pinned := {"053": 1, "054": 1, "056": 1}
 		}
-	settings.features.mapinfo := (settings.general.lang_client = "unknown") ? 0 : LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable map-info panel", 0)
 	settings.mapinfo := {"IDs": {}, "pinned": {}}
 
 	For key, val in ini.pinned
@@ -347,7 +346,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 			{
 				If (A_Index = 1) || (SubStr(A_LoopField, 1, 1) = "(")
 					Continue
-				Mapinfo_Lineparse(Iteminfo_ModRemoveRange(A_LoopField), text, value)
+				Mapinfo_Lineparse(Iteminfo_ModRangeRemove(A_LoopField), text, value)
 				texts.Push(text)
 				If IsNumber(value)
 					values.Push(Format("{:0." (InStr(value, ".") ? 1 : 0) "f}", (mod_multi != 1) ? Floor(value * mod_multi) : value))
@@ -380,7 +379,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 		{
 			If (SubStr(A_LoopField, 1, 1) = "(")
 				Continue
-			Mapinfo_Lineparse(StrReplace(Iteminfo_ModRemoveRange(A_LoopField), " (enchant)"), enchant_text, enchant_value)
+			Mapinfo_Lineparse(StrReplace(Iteminfo_ModRangeRemove(A_LoopField), " (enchant)"), enchant_text, enchant_value)
 			If InStr(A_LoopField, Lang_Trans("mods_memory_magnitude"))
 				Mapinfo_Lineparse(A_LoopField, magnitude_text, magnitude_value), mod_multi := Format("{:0.2f}", mod_multi + magnitude_value / 100)
 			Else If mods.HasKey(enchant_text)
@@ -401,7 +400,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 		{
 			If (SubStr(A_LoopField, 1, 1) = "(")
 				Continue
-			Mapinfo_Lineparse(StrReplace(Iteminfo_ModRemoveRange(A_LoopField), " (implicit)"), implicit_text, implicit_value)
+			Mapinfo_Lineparse(StrReplace(Iteminfo_ModRangeRemove(A_LoopField), " (implicit)"), implicit_text, implicit_value)
 			If (mods[implicit_text].type = "expedition")
 			{
 				pushtext := InStr(mods[implicit_text].text, ": +") ? StrReplace(mods[implicit_text].text, ": +", ": +" implicit_value,, 1) : InStr(mods[implicit_text].text, "%") ? StrReplace(mods[implicit_text].text, "%", implicit_value "%",, 1) : mods[implicit_text].text
@@ -558,7 +557,7 @@ Mapinfo_Parse2(mode)
 			Continue
 		If !parsed_lines.Count()
 			raw_text := ""
-		Mapinfo_Lineparse(Iteminfo_ModRemoveRange(A_LoopField), text, value)
+		Mapinfo_Lineparse(Iteminfo_ModRangeRemove(A_LoopField), text, value)
 		raw_text .= "`n" text "`n", parsed_lines[text] := !parsed_lines[text] ? value : parsed_lines[text] + value
 	}
 

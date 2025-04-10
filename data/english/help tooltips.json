@@ -234,6 +234,12 @@
     "hotkeys restart": [
       "if the script crashes and stops responding, use this combination to restart it"
     ],
+    "iteminfo enable": [
+      "provides a customizable item tooltip which adds glance value to loot you pick up",
+      "hold the omni-key while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
+      "click into the game or press <esc> to close it",
+      "note: requires the <inventory> screen-check to be set up correctly(/underline)"
+    ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
       "if the tooltip is on screen when selecting a profile, the changes will be applied on the fly"
@@ -241,9 +247,28 @@
     "iteminfo reset": [
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
     ],
+    "iteminfo omni-key": [
+      "hold the omni-key while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
+      "click into the game or press <esc> to close it",
+      "(this is the default setting)"
+    ],
+    "iteminfo alt-key": [
+      "hold <alt> while hovering over items to activate the tooltip",
+      "the tooltip will close automatically once you release <alt>",
+      "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
+      "note: this setting might interfere with other 3rd-party tools(/underline)"
+    ],
     "iteminfo modrolls": [
       "hides the min/max range on explicit mods",
       "+89 to maximum life\nvs.\n+89(80-89) to maximum Life"
+    ],
+    "iteminfo modbars tier": [
+      "roll-ranges in mod-texts and on bars will represent the roll within the current tier, i.e. the divine orb range",
+      "(this is the default setting)"
+    ],
+    "iteminfo modbars global": [
+      "roll-ranges in mod-texts and on bars will represent the roll on a global scale",
+      "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
     ],
     "iteminfo shift-click": [
       "automatically refreshes the tooltip when applying currency to items via shift-click",
@@ -257,6 +282,9 @@
     "iteminfo base-info": [
       "adds a section that shows how the item's stats compare to the best-in-class stats",
       "it also shows the base-percentile roll and ilvl, highlighting good values"
+    ],
+    "iteminfo base-info 2": [
+      "adds a section that shows how the item's stats compare to the best-in-class stats"
     ],
     "iteminfo enable item-level": [
       "adds the ilvl requirement to each mod, which exposes high-tier but low-lvl mods",

@@ -1,5 +1,12 @@
 [
   [
+	["1.57.7", 15707],
+	"act-tracker: added support for latest pob",
+	"map-tracker: added <ea dawn> date filter",
+	"item-info: improved affix detection, enabled base-stat info",
+	"item-info: added option to activate with alt, added toggle for <tier> vs <global> scaling"
+  ],
+  [
 	["1.57.6", 15706],
 	"hotfix 1: in-game tooltip being stuck on screen",
 	"fixes: item-info ele dps, map-tracker unique maps",

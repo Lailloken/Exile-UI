@@ -12,7 +12,6 @@
 		vars.leveltracker := {"starter_gems": {"witch": ["fireball", "arcane surge"], "shadow": ["viper strike", "chance to poison"], "ranger": ["burning arrow", "momentum"], "duelist": ["double strike", "chance to bleed"]
 		, "marauder": ["heavy strike", "ruthless"], "templar": ["glacial hammer", "elemental proliferation"], "scion": ["spectral throw", "prismatic burst"]}}
 
-	settings.features.leveltracker := LLK_IniRead("ini" vars.poe_version "\config.ini", "Features", "enable leveling guide", 0)
 	settings.leveltracker := {}, ini := IniBatchRead("ini" vars.poe_version "\leveling tracker.ini")
 	settings.leveltracker.profile := !Blank(check := ini.settings["profile"]) ? check : ""
 
@@ -2044,7 +2043,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 				If tree.nodes[vNode].ascendancyname
 					If tree.nodes[vNode].isascendancystart
 						ascendancy_points.InsertAt(1, vNode)
-					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption ? 1 : 0
+					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption || tree.nodes[vNode].isfreeallocate ? 1 : 0
 			lab := (ascendancy_points.Count() - ascendant_points) // 2
 
 			If ascendancy_points.Count() && !ascendancy_trees[lab].Count()

@@ -155,6 +155,7 @@
   },
   "body armours": {
     "abyssal cuirass": {
+      "AR": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -163,6 +164,7 @@
       ]
     },
     "adherent's raiment": {
+      "ES": 64,
       "tags": [
         "body_armour",
         "armour",
@@ -171,6 +173,7 @@
       ]
     },
     "altar robe": {
+      "ES": 48,
       "tags": [
         "body_armour",
         "int_armour",
@@ -180,6 +183,9 @@
       ]
     },
     "ancestral mail": {
+      "AR": 30,
+      "EV": 29,
+      "HY": 54,
       "tags": [
         "body_armour",
         "armour",
@@ -188,6 +194,9 @@
       ]
     },
     "anchorite garb": {
+      "ES": 23,
+      "EV": 20,
+      "HY": 39,
       "tags": [
         "body_armour",
         "vaal_basetype",
@@ -197,6 +206,7 @@
       ]
     },
     "arcane robe": {
+      "ES": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -205,6 +215,7 @@
       ]
     },
     "armoured vest": {
+      "EV": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -213,6 +224,9 @@
       ]
     },
     "ascetic garb": {
+      "ES": 28,
+      "EV": 27,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -221,6 +235,9 @@
       ]
     },
     "assassin garb": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -229,6 +246,7 @@
       ]
     },
     "avian robe": {
+      "ES": 52,
       "tags": [
         "body_armour",
         "armour",
@@ -237,6 +255,7 @@
       ]
     },
     "barbarian plate": {
+      "AR": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -245,6 +264,9 @@
       ]
     },
     "bearskin mantle": {
+      "AR": 29,
+      "ES": 30,
+      "HY": 53,
       "tags": [
         "body_armour",
         "armour",
@@ -253,6 +275,7 @@
       ]
     },
     "bone raiment": {
+      "ES": 28,
       "tags": [
         "body_armour",
         "int_armour",
@@ -262,6 +285,7 @@
       ]
     },
     "ceremonial robe": {
+      "ES": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -270,6 +294,9 @@
       ]
     },
     "chain mail": {
+      "AR": 4,
+      "EV": 3,
+      "HY": 7,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -279,6 +306,9 @@
       ]
     },
     "chain vestments": {
+      "AR": 30,
+      "ES": 31,
+      "HY": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -287,6 +317,7 @@
       ]
     },
     "champion cuirass": {
+      "AR": 62,
       "tags": [
         "body_armour",
         "armour",
@@ -295,6 +326,7 @@
       ]
     },
     "chieftain cuirass": {
+      "AR": 55,
       "tags": [
         "body_armour",
         "armour",
@@ -303,6 +335,9 @@
       ]
     },
     "clandestine jacket": {
+      "ES": 32,
+      "EV": 31,
+      "HY": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -311,6 +346,9 @@
       ]
     },
     "cleric vestments": {
+      "AR": 27,
+      "ES": 28,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -319,6 +357,9 @@
       ]
     },
     "cloaked mail": {
+      "AR": 17,
+      "EV": 17,
+      "HY": 31,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -328,6 +369,7 @@
       ]
     },
     "colosseum plate": {
+      "AR": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -336,6 +378,9 @@
       ]
     },
     "conjurer mantle": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -344,6 +389,7 @@
       ]
     },
     "conqueror plate": {
+      "AR": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -352,6 +398,7 @@
       ]
     },
     "corsair vest": {
+      "EV": 49,
       "tags": [
         "body_armour",
         "armour",
@@ -360,6 +407,9 @@
       ]
     },
     "corvus mantle": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -368,6 +418,7 @@
       ]
     },
     "cursespeaker's robe": {
+      "ES": 54,
       "tags": [
         "body_armour",
         "armour",
@@ -376,6 +427,9 @@
       ]
     },
     "dastard armour": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -384,6 +438,9 @@
       ]
     },
     "death mail": {
+      "AR": 55,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -392,6 +449,9 @@
       ]
     },
     "death mantle": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -400,6 +460,9 @@
       ]
     },
     "devout garb": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -408,6 +471,7 @@
       ]
     },
     "elegant plate": {
+      "AR": 59,
       "tags": [
         "body_armour",
         "armour",
@@ -416,6 +480,7 @@
       ]
     },
     "elementalist robe": {
+      "ES": 52,
       "tags": [
         "body_armour",
         "armour",
@@ -424,6 +489,7 @@
       ]
     },
     "enlightened robe": {
+      "ES": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -432,6 +498,9 @@
       ]
     },
     "evangelist garb": {
+      "ES": 31,
+      "EV": 30,
+      "HY": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -440,6 +509,9 @@
       ]
     },
     "explorer armour": {
+      "AR": 21,
+      "EV": 20,
+      "HY": 38,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -449,6 +521,7 @@
       ]
     },
     "exquisite vest": {
+      "EV": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -457,6 +530,9 @@
       ]
     },
     "falconer's jacket": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -465,6 +541,7 @@
       ]
     },
     "feathered robe": {
+      "ES": 19,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -474,6 +551,7 @@
       ]
     },
     "flowing raiment": {
+      "ES": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -482,6 +560,7 @@
       ]
     },
     "full plate": {
+      "AR": 38,
       "tags": [
         "body_armour",
         "str_armour",
@@ -491,6 +570,7 @@
       ]
     },
     "fur plate": {
+      "AR": 11,
       "tags": [
         "body_armour",
         "str_armour",
@@ -508,6 +588,9 @@
       ]
     },
     "gilded vestments": {
+      "AR": 31,
+      "ES": 32,
+      "HY": 57,
       "tags": [
         "body_armour",
         "armour",
@@ -516,6 +599,9 @@
       ]
     },
     "gladiator armour": {
+      "AR": 34,
+      "EV": 34,
+      "HY": 62,
       "tags": [
         "body_armour",
         "armour",
@@ -524,6 +610,7 @@
       ]
     },
     "glorious plate": {
+      "AR": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -532,6 +619,9 @@
       ]
     },
     "golden mail": {
+      "AR": 36,
+      "EV": 36,
+      "HY": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -540,6 +630,10 @@
       ]
     },
     "grand regalia": {
+      "AR": 25,
+      "ES": 25,
+      "EV": 25,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -548,6 +642,7 @@
       ]
     },
     "hardleather coat": {
+      "EV": 60,
       "tags": [
         "body_armour",
         "armour",
@@ -556,6 +651,9 @@
       ]
     },
     "hatungo garb": {
+      "ES": 35,
+      "EV": 34,
+      "HY": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -564,6 +662,7 @@
       ]
     },
     "havoc raiment": {
+      "ES": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -572,6 +671,9 @@
       ]
     },
     "hawker's jacket": {
+      "ES": 36,
+      "EV": 36,
+      "HY": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -580,6 +682,9 @@
       ]
     },
     "heartcarver mantle": {
+      "AR": 36,
+      "ES": 36,
+      "HY": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -588,6 +693,7 @@
       ]
     },
     "heavy plate": {
+      "AR": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -596,6 +702,9 @@
       ]
     },
     "hermit garb": {
+      "ES": 8,
+      "EV": 3,
+      "HY": 8,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -605,6 +714,9 @@
       ]
     },
     "heroic armour": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -613,6 +725,7 @@
       ]
     },
     "hexer's robe": {
+      "ES": 23,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -622,6 +735,7 @@
       ]
     },
     "hunting coat": {
+      "EV": 52,
       "tags": [
         "body_armour",
         "armour",
@@ -630,6 +744,7 @@
       ]
     },
     "imperial robe": {
+      "ES": 58,
       "tags": [
         "body_armour",
         "armour",
@@ -638,6 +753,7 @@
       ]
     },
     "iron cuirass": {
+      "AR": 17,
       "tags": [
         "body_armour",
         "str_armour",
@@ -647,6 +763,9 @@
       ]
     },
     "ironclad vestments": {
+      "AR": 21,
+      "ES": 23,
+      "HY": 39,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -656,6 +775,9 @@
       ]
     },
     "itinerant jacket": {
+      "ES": 33,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "body_armour",
         "armour",
@@ -664,6 +786,7 @@
       ]
     },
     "juggernaut plate": {
+      "AR": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -672,6 +795,7 @@
       ]
     },
     "keth raiment": {
+      "ES": 38,
       "tags": [
         "body_armour",
         "int_armour",
@@ -681,6 +805,9 @@
       ]
     },
     "knight armour": {
+      "AR": 27,
+      "EV": 27,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -689,6 +816,9 @@
       ]
     },
     "lamellar mail": {
+      "AR": 31,
+      "EV": 31,
+      "HY": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -697,6 +827,7 @@
       ]
     },
     "layered vest": {
+      "EV": 59,
       "tags": [
         "body_armour",
         "armour",
@@ -705,6 +836,7 @@
       ]
     },
     "leather vest": {
+      "EV": 6,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -714,6 +846,7 @@
       ]
     },
     "lizardscale coat": {
+      "EV": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -722,6 +855,7 @@
       ]
     },
     "luxurious robe": {
+      "ES": 57,
       "tags": [
         "body_armour",
         "armour",
@@ -730,6 +864,7 @@
       ]
     },
     "mail coat": {
+      "EV": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -738,6 +873,9 @@
       ]
     },
     "mail vestments": {
+      "AR": 12,
+      "ES": 15,
+      "HY": 24,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -747,6 +885,9 @@
       ]
     },
     "mantled mail": {
+      "AR": 32,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "body_armour",
         "armour",
@@ -755,6 +896,9 @@
       ]
     },
     "marabout garb": {
+      "ES": 15,
+      "EV": 11,
+      "HY": 22,
       "tags": [
         "body_armour",
         "maraketh_basetype",
@@ -764,6 +908,7 @@
       ]
     },
     "maraketh cuirass": {
+      "AR": 26,
       "tags": [
         "body_armour",
         "str_armour",
@@ -773,6 +918,9 @@
       ]
     },
     "monastic garb": {
+      "ES": 34,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "body_armour",
         "armour",
@@ -781,6 +929,7 @@
       ]
     },
     "mystic raiment": {
+      "ES": 54,
       "tags": [
         "body_armour",
         "armour",
@@ -789,6 +938,9 @@
       ]
     },
     "occultist mantle": {
+      "AR": 32,
+      "ES": 33,
+      "HY": 60,
       "tags": [
         "body_armour",
         "armour",
@@ -797,6 +949,9 @@
       ]
     },
     "oiled jacket": {
+      "ES": 30,
+      "EV": 28,
+      "HY": 53,
       "tags": [
         "body_armour",
         "armour",
@@ -805,6 +960,7 @@
       ]
     },
     "ornate plate": {
+      "AR": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -813,6 +969,7 @@
       ]
     },
     "patchwork vest": {
+      "EV": 49,
       "tags": [
         "body_armour",
         "armour",
@@ -821,6 +978,7 @@
       ]
     },
     "pathfinder coat": {
+      "EV": 16,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -830,6 +988,9 @@
       ]
     },
     "pelt mantle": {
+      "AR": 9,
+      "ES": 12,
+      "HY": 18,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -839,6 +1000,9 @@
       ]
     },
     "pilgrim vestments": {
+      "AR": 4,
+      "ES": 8,
+      "HY": 10,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -848,6 +1012,7 @@
       ]
     },
     "plated raiment": {
+      "ES": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -856,6 +1021,9 @@
       ]
     },
     "plated vestments": {
+      "AR": 35,
+      "ES": 35,
+      "HY": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -864,6 +1032,7 @@
       ]
     },
     "quilted vest": {
+      "EV": 9,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -873,6 +1042,7 @@
       ]
     },
     "raider plate": {
+      "AR": 22,
       "tags": [
         "body_armour",
         "str_armour",
@@ -882,6 +1052,9 @@
       ]
     },
     "rambler jacket": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -890,6 +1063,9 @@
       ]
     },
     "revered vestments": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -898,6 +1074,7 @@
       ]
     },
     "rhoahide coat": {
+      "EV": 26,
       "tags": [
         "body_armour",
         "dex_armour",
@@ -907,6 +1084,7 @@
       ]
     },
     "riding coat": {
+      "EV": 55,
       "tags": [
         "body_armour",
         "armour",
@@ -915,6 +1093,9 @@
       ]
     },
     "ring mail": {
+      "AR": 27,
+      "EV": 27,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -923,6 +1104,7 @@
       ]
     },
     "river raiment": {
+      "ES": 60,
       "tags": [
         "body_armour",
         "armour",
@@ -931,6 +1113,9 @@
       ]
     },
     "rogue armour": {
+      "AR": 9,
+      "EV": 8,
+      "HY": 17,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -940,6 +1125,7 @@
       ]
     },
     "rugged cuirass": {
+      "AR": 53,
       "tags": [
         "body_armour",
         "armour",
@@ -948,6 +1134,7 @@
       ]
     },
     "runner vest": {
+      "EV": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -956,6 +1143,7 @@
       ]
     },
     "rusted cuirass": {
+      "AR": 8,
       "tags": [
         "body_armour",
         "str_armour",
@@ -965,6 +1153,7 @@
       ]
     },
     "sacramental robe": {
+      "ES": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -973,6 +1162,9 @@
       ]
     },
     "sacrificial mantle": {
+      "AR": 23,
+      "ES": 25,
+      "HY": 42,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -982,6 +1174,7 @@
       ]
     },
     "sandsworn cuirass": {
+      "AR": 55,
       "tags": [
         "body_armour",
         "armour",
@@ -990,6 +1183,9 @@
       ]
     },
     "scale mail": {
+      "AR": 23,
+      "EV": 22,
+      "HY": 42,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -999,6 +1195,9 @@
       ]
     },
     "scalper's jacket": {
+      "ES": 26,
+      "EV": 24,
+      "HY": 44,
       "tags": [
         "body_armour",
         "vaal_basetype",
@@ -1008,6 +1207,9 @@
       ]
     },
     "scoundrel armour": {
+      "AR": 29,
+      "EV": 28,
+      "HY": 52,
       "tags": [
         "body_armour",
         "armour",
@@ -1016,6 +1218,9 @@
       ]
     },
     "scoundrel jacket": {
+      "ES": 28,
+      "EV": 27,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -1024,6 +1229,7 @@
       ]
     },
     "scout's vest": {
+      "EV": 37,
       "tags": [
         "body_armour",
         "dex_armour",
@@ -1033,6 +1239,7 @@
       ]
     },
     "serpentscale coat": {
+      "EV": 40,
       "tags": [
         "body_armour",
         "dex_armour",
@@ -1042,6 +1249,9 @@
       ]
     },
     "shaman mantle": {
+      "AR": 18,
+      "ES": 21,
+      "HY": 35,
       "tags": [
         "body_armour",
         "str_int_armour",
@@ -1051,6 +1261,9 @@
       ]
     },
     "shrouded mail": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -1059,6 +1272,7 @@
       ]
     },
     "shrouded vest": {
+      "EV": 20,
       "tags": [
         "body_armour",
         "dex_armour",
@@ -1068,6 +1282,7 @@
       ]
     },
     "silk robe": {
+      "ES": 33,
       "tags": [
         "body_armour",
         "int_armour",
@@ -1077,6 +1292,9 @@
       ]
     },
     "slayer armour": {
+      "AR": 55,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1085,6 +1303,9 @@
       ]
     },
     "sleek jacket": {
+      "ES": 54,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1093,6 +1314,7 @@
       ]
     },
     "slipstrike vest": {
+      "EV": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1101,6 +1323,7 @@
       ]
     },
     "smuggler coat": {
+      "EV": 52,
       "tags": [
         "body_armour",
         "armour",
@@ -1109,6 +1332,7 @@
       ]
     },
     "soldier cuirass": {
+      "AR": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1117,6 +1341,7 @@
       ]
     },
     "steel plate": {
+      "AR": 33,
       "tags": [
         "body_armour",
         "str_armour",
@@ -1126,6 +1351,7 @@
       ]
     },
     "stone cuirass": {
+      "AR": 66,
       "tags": [
         "body_armour",
         "armour",
@@ -1134,6 +1360,7 @@
       ]
     },
     "strider vest": {
+      "EV": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -1142,6 +1369,7 @@
       ]
     },
     "studded vest": {
+      "EV": 30,
       "tags": [
         "body_armour",
         "dex_armour",
@@ -1151,6 +1379,7 @@
       ]
     },
     "swiftstalker coat": {
+      "EV": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -1159,6 +1388,7 @@
       ]
     },
     "tattered robe": {
+      "ES": 15,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -1168,6 +1398,9 @@
       ]
     },
     "templar vestments": {
+      "AR": 27,
+      "ES": 28,
+      "HY": 50,
       "tags": [
         "body_armour",
         "armour",
@@ -1176,6 +1409,9 @@
       ]
     },
     "tideseer mantle": {
+      "AR": 30,
+      "ES": 31,
+      "HY": 56,
       "tags": [
         "body_armour",
         "armour",
@@ -1184,6 +1420,9 @@
       ]
     },
     "torment jacket": {
+      "ES": 54,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1192,6 +1431,9 @@
       ]
     },
     "tournament mail": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -1200,6 +1442,9 @@
       ]
     },
     "trailblazer armour": {
+      "AR": 35,
+      "EV": 34,
+      "HY": 63,
       "tags": [
         "body_armour",
         "armour",
@@ -1208,6 +1453,7 @@
       ]
     },
     "utzaal cuirass": {
+      "AR": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -1216,6 +1462,7 @@
       ]
     },
     "vaal cuirass": {
+      "AR": 42,
       "tags": [
         "body_armour",
         "str_armour",
@@ -1225,6 +1472,9 @@
       ]
     },
     "vagabond armour": {
+      "AR": 12,
+      "EV": 11,
+      "HY": 21,
       "tags": [
         "body_armour",
         "str_dex_armour",
@@ -1234,6 +1484,9 @@
       ]
     },
     "venerated mantle": {
+      "AR": 32,
+      "ES": 33,
+      "HY": 59,
       "tags": [
         "body_armour",
         "armour",
@@ -1242,6 +1495,7 @@
       ]
     },
     "vile robe": {
+      "ES": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1250,6 +1504,7 @@
       ]
     },
     "votive raiment": {
+      "ES": 42,
       "tags": [
         "body_armour",
         "int_armour",
@@ -1259,6 +1514,9 @@
       ]
     },
     "wanderer armour": {
+      "AR": 30,
+      "EV": 30,
+      "HY": 55,
       "tags": [
         "body_armour",
         "armour",
@@ -1267,6 +1525,9 @@
       ]
     },
     "waxed jacket": {
+      "ES": 13,
+      "EV": 8,
+      "HY": 18,
       "tags": [
         "body_armour",
         "ezomyte_basetype",
@@ -1276,6 +1537,9 @@
       ]
     },
     "wayfarer jacket": {
+      "ES": 21,
+      "EV": 18,
+      "HY": 34,
       "tags": [
         "body_armour",
         "maraketh_basetype",
@@ -1285,6 +1549,9 @@
       ]
     },
     "wolfskin mantle": {
+      "AR": 55,
+      "ES": 54,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1293,6 +1560,7 @@
       ]
     },
     "wyrmscale coat": {
+      "EV": 83,
       "tags": [
         "body_armour",
         "armour",
@@ -1301,6 +1569,9 @@
       ]
     },
     "zenith vestments": {
+      "AR": 55,
+      "ES": 54,
+      "HY": 100,
       "tags": [
         "body_armour",
         "armour",
@@ -1311,6 +1582,9 @@
   },
   "boots": {
     "adherent leggings": {
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1319,6 +1593,9 @@
       ]
     },
     "apostle leggings": {
+      "AR": 50,
+      "ES": 50,
+      "HY": 91,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1327,6 +1604,7 @@
       ]
     },
     "bangled sandals": {
+      "ES": 69,
       "tags": [
         "int_armour",
         "armour",
@@ -1335,6 +1613,9 @@
       ]
     },
     "bastion sabatons": {
+      "AR": 42,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1343,6 +1624,9 @@
       ]
     },
     "bladed shoes": {
+      "ES": 46,
+      "EV": 45,
+      "HY": 82,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1351,6 +1635,9 @@
       ]
     },
     "bold sabatons": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1359,6 +1646,7 @@
       ]
     },
     "bound boots": {
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -1367,6 +1655,9 @@
       ]
     },
     "bound leggings": {
+      "AR": 36,
+      "ES": 38,
+      "HY": 67,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1375,6 +1666,7 @@
       ]
     },
     "bound sandals": {
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -1383,6 +1675,9 @@
       ]
     },
     "braced sabatons": {
+      "AR": 15,
+      "EV": 14,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -1392,6 +1687,7 @@
       ]
     },
     "bronze greaves": {
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1401,6 +1697,7 @@
       ]
     },
     "bulwark greaves": {
+      "AR": 83,
       "tags": [
         "boots",
         "armour",
@@ -1409,6 +1706,7 @@
       ]
     },
     "carved greaves": {
+      "AR": 76,
       "tags": [
         "boots",
         "armour",
@@ -1417,6 +1715,7 @@
       ]
     },
     "cavalry boots": {
+      "EV": 91,
       "tags": [
         "dex_armour",
         "armour",
@@ -1425,6 +1724,9 @@
       ]
     },
     "charmed shoes": {
+      "ES": 50,
+      "EV": 50,
+      "HY": 91,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1433,6 +1735,7 @@
       ]
     },
     "cinched boots": {
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -1441,6 +1744,9 @@
       ]
     },
     "covered sabatons": {
+      "AR": 33,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1449,6 +1755,7 @@
       ]
     },
     "dragonscale boots": {
+      "EV": 100,
       "tags": [
         "dex_armour",
         "armour",
@@ -1457,6 +1764,7 @@
       ]
     },
     "dunerunner sandals": {
+      "ES": 77,
       "tags": [
         "int_armour",
         "armour",
@@ -1465,6 +1773,7 @@
       ]
     },
     "elaborate sandals": {
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -1473,6 +1782,7 @@
       ]
     },
     "elegant greaves": {
+      "AR": 71,
       "tags": [
         "boots",
         "armour",
@@ -1481,6 +1791,7 @@
       ]
     },
     "elegant slippers": {
+      "ES": 73,
       "tags": [
         "int_armour",
         "armour",
@@ -1489,6 +1800,7 @@
       ]
     },
     "embossed boots": {
+      "EV": 25,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1498,6 +1810,7 @@
       ]
     },
     "embroidered boots": {
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -1506,6 +1819,9 @@
       ]
     },
     "faithful leggings": {
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1514,6 +1830,7 @@
       ]
     },
     "feathered sandals": {
+      "ES": 50,
       "tags": [
         "boots",
         "int_armour",
@@ -1523,6 +1840,7 @@
       ]
     },
     "flared boots": {
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -1531,6 +1849,7 @@
       ]
     },
     "flax sandals": {
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -1539,6 +1858,9 @@
       ]
     },
     "flexile sabatons": {
+      "AR": 37,
+      "EV": 37,
+      "HY": 67,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1547,6 +1869,9 @@
       ]
     },
     "fortress sabatons": {
+      "AR": 54,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1555,6 +1880,9 @@
       ]
     },
     "frayed shoes": {
+      "ES": 12,
+      "EV": 6,
+      "HY": 14,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1564,6 +1892,9 @@
       ]
     },
     "gilt leggings": {
+      "AR": 37,
+      "ES": 38,
+      "HY": 68,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1572,6 +1903,9 @@
       ]
     },
     "goldwork sabatons": {
+      "AR": 36,
+      "EV": 36,
+      "HY": 66,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1580,6 +1914,10 @@
       ]
     },
     "grand cuisses": {
+      "AR": 30,
+      "ES": 30,
+      "EV": 30,
+      "HY": 100,
       "tags": [
         "str_dex_int_armour",
         "armour",
@@ -1588,6 +1926,9 @@
       ]
     },
     "hunting shoes": {
+      "ES": 28,
+      "EV": 25,
+      "HY": 46,
       "tags": [
         "boots",
         "vaal_basetype",
@@ -1597,6 +1938,7 @@
       ]
     },
     "iron greaves": {
+      "AR": 21,
       "tags": [
         "boots",
         "str_armour",
@@ -1606,6 +1948,7 @@
       ]
     },
     "laced boots": {
+      "EV": 19,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1615,6 +1958,7 @@
       ]
     },
     "laced sandals": {
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -1623,6 +1967,7 @@
       ]
     },
     "lattice sandals": {
+      "ES": 33,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1632,6 +1977,7 @@
       ]
     },
     "leatherplate boots": {
+      "EV": 67,
       "tags": [
         "dex_armour",
         "armour",
@@ -1640,6 +1986,7 @@
       ]
     },
     "lionheart greaves": {
+      "AR": 67,
       "tags": [
         "boots",
         "armour",
@@ -1648,6 +1995,7 @@
       ]
     },
     "lizardscale boots": {
+      "EV": 45,
       "tags": [
         "boots",
         "dex_armour",
@@ -1657,6 +2005,7 @@
       ]
     },
     "luxurious slippers": {
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -1665,6 +2014,9 @@
       ]
     },
     "mail sabatons": {
+      "AR": 8,
+      "EV": 7,
+      "HY": 14,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -1674,6 +2026,7 @@
       ]
     },
     "monument greaves": {
+      "AR": 68,
       "tags": [
         "boots",
         "armour",
@@ -1682,6 +2035,9 @@
       ]
     },
     "noble sabatons": {
+      "AR": 50,
+      "EV": 50,
+      "HY": 91,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1690,6 +2046,7 @@
       ]
     },
     "ornate greaves": {
+      "AR": 91,
       "tags": [
         "boots",
         "armour",
@@ -1698,6 +2055,9 @@
       ]
     },
     "padded leggings": {
+      "AR": 8,
+      "ES": 12,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -1707,6 +2067,9 @@
       ]
     },
     "pelt leggings": {
+      "AR": 25,
+      "ES": 28,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -1716,6 +2079,9 @@
       ]
     },
     "pious leggings": {
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1724,6 +2090,7 @@
       ]
     },
     "plated greaves": {
+      "AR": 60,
       "tags": [
         "boots",
         "armour",
@@ -1732,6 +2099,9 @@
       ]
     },
     "quickslip shoes": {
+      "ES": 56,
+      "EV": 55,
+      "HY": 100,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1740,6 +2110,7 @@
       ]
     },
     "rawhide boots": {
+      "EV": 7,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1749,6 +2120,7 @@
       ]
     },
     "reefsteel greaves": {
+      "AR": 60,
       "tags": [
         "boots",
         "armour",
@@ -1757,6 +2129,7 @@
       ]
     },
     "rough greaves": {
+      "AR": 10,
       "tags": [
         "boots",
         "str_armour",
@@ -1766,6 +2139,7 @@
       ]
     },
     "sandsworn sandals": {
+      "ES": 100,
       "tags": [
         "int_armour",
         "armour",
@@ -1774,6 +2148,9 @@
       ]
     },
     "secured leggings": {
+      "AR": 15,
+      "ES": 18,
+      "HY": 29,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -1783,6 +2160,7 @@
       ]
     },
     "serpentscale boots": {
+      "EV": 76,
       "tags": [
         "dex_armour",
         "armour",
@@ -1791,6 +2169,9 @@
       ]
     },
     "shamanistic leggings": {
+      "AR": 42,
+      "ES": 42,
+      "HY": 76,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1799,6 +2180,7 @@
       ]
     },
     "silk slippers": {
+      "ES": 45,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1808,6 +2190,9 @@
       ]
     },
     "silverbuckled shoes": {
+      "ES": 38,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1816,6 +2201,7 @@
       ]
     },
     "sleek boots": {
+      "EV": 66,
       "tags": [
         "dex_armour",
         "armour",
@@ -1824,6 +2210,9 @@
       ]
     },
     "soldiering sabatons": {
+      "AR": 33,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1832,6 +2221,9 @@
       ]
     },
     "stacked sabatons": {
+      "AR": 25,
+      "EV": 25,
+      "HY": 46,
       "tags": [
         "str_dex_armour",
         "vaal_basetype",
@@ -1841,6 +2233,9 @@
       ]
     },
     "steelpoint shoes": {
+      "ES": 34,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1849,6 +2244,7 @@
       ]
     },
     "steeltoe boots": {
+      "EV": 39,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1858,6 +2254,7 @@
       ]
     },
     "stone greaves": {
+      "AR": 46,
       "tags": [
         "boots",
         "str_armour",
@@ -1867,6 +2264,7 @@
       ]
     },
     "straw sandals": {
+      "ES": 18,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1876,6 +2274,7 @@
       ]
     },
     "studded boots": {
+      "EV": 71,
       "tags": [
         "dex_armour",
         "armour",
@@ -1884,6 +2283,7 @@
       ]
     },
     "studded sandals": {
+      "ES": 70,
       "tags": [
         "int_armour",
         "armour",
@@ -1892,6 +2292,9 @@
       ]
     },
     "threaded shoes": {
+      "ES": 18,
+      "EV": 14,
+      "HY": 27,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1901,6 +2304,7 @@
       ]
     },
     "totemic greaves": {
+      "AR": 83,
       "tags": [
         "boots",
         "armour",
@@ -1909,6 +2313,9 @@
       ]
     },
     "treerunner shoes": {
+      "ES": 42,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1917,6 +2324,7 @@
       ]
     },
     "trimmed greaves": {
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "boots",
@@ -1926,6 +2334,7 @@
       ]
     },
     "vaal greaves": {
+      "AR": 100,
       "tags": [
         "boots",
         "armour",
@@ -1934,6 +2343,9 @@
       ]
     },
     "velour shoes": {
+      "ES": 38,
+      "EV": 37,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1942,6 +2354,9 @@
       ]
     },
     "veteran sabatons": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -1950,6 +2365,9 @@
       ]
     },
     "wanderer shoes": {
+      "ES": 46,
+      "EV": 45,
+      "HY": 82,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1958,6 +2376,9 @@
       ]
     },
     "warlock leggings": {
+      "AR": 54,
+      "ES": 56,
+      "HY": 100,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1966,6 +2387,9 @@
       ]
     },
     "wayfarer shoes": {
+      "ES": 34,
+      "EV": 32,
+      "HY": 59,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -1974,6 +2398,9 @@
       ]
     },
     "weaver leggings": {
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "armour",
@@ -1982,6 +2409,7 @@
       ]
     },
     "wrapped sandals": {
+      "ES": 29,
       "tags": [
         "boots",
         "ezomyte_basetype",
@@ -1993,6 +2421,10 @@
   },
   "bows": {
     "adherent bow": {
+      "crit": 76,
+      "dps": 78,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2003,6 +2435,10 @@
       ]
     },
     "artillery bow": {
+      "crit": 76,
+      "dps": 75,
+      "phys": 79,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2013,6 +2449,10 @@
       ]
     },
     "cavalry bow": {
+      "crit": 76,
+      "dps": 93,
+      "phys": 93,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2023,6 +2463,10 @@
       ]
     },
     "composite bow": {
+      "crit": 76,
+      "dps": 35,
+      "phys": 35,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2034,6 +2478,10 @@
       ]
     },
     "crude bow": {
+      "crit": 76,
+      "dps": 10,
+      "phys": 10,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2045,6 +2493,10 @@
       ]
     },
     "cultist bow": {
+      "crit": 76,
+      "dps": 67,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -2056,6 +2508,10 @@
       ]
     },
     "double limb bow": {
+      "crit": 76,
+      "dps": 75,
+      "phys": 75,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2066,6 +2522,10 @@
       ]
     },
     "dualstring bow": {
+      "crit": 76,
+      "dps": 30,
+      "phys": 33,
+      "speed": 88,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2077,6 +2537,10 @@
       ]
     },
     "fanatic bow": {
+      "crit": 76,
+      "dps": 99,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2087,6 +2551,10 @@
       ]
     },
     "gemini bow": {
+      "crit": 76,
+      "dps": 80,
+      "phys": 80,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2097,6 +2565,10 @@
       ]
     },
     "greatbow": {
+      "crit": 100,
+      "dps": 83,
+      "phys": 87,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2107,6 +2579,10 @@
       ]
     },
     "guardian bow": {
+      "crit": 76,
+      "dps": 91,
+      "phys": 95,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2117,6 +2593,10 @@
       ]
     },
     "heavy bow": {
+      "crit": 76,
+      "dps": 85,
+      "phys": 85,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2127,6 +2607,10 @@
       ]
     },
     "ironwood shortbow": {
+      "crit": 76,
+      "dps": 87,
+      "phys": 83,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2137,6 +2621,10 @@
       ]
     },
     "militant bow": {
+      "crit": 76,
+      "dps": 82,
+      "phys": 82,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2147,6 +2635,10 @@
       ]
     },
     "protector bow": {
+      "crit": 76,
+      "dps": 60,
+      "phys": 62,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2157,6 +2649,10 @@
       ]
     },
     "recurve bow": {
+      "crit": 76,
+      "dps": 30,
+      "phys": 32,
+      "speed": 88,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2168,6 +2664,10 @@
       ]
     },
     "rider bow": {
+      "crit": 76,
+      "dps": 69,
+      "phys": 69,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2178,6 +2678,10 @@
       ]
     },
     "shortbow": {
+      "crit": 76,
+      "dps": 15,
+      "phys": 15,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2189,6 +2693,10 @@
       ]
     },
     "snakewood shortbow": {
+      "crit": 76,
+      "dps": 61,
+      "phys": 59,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2199,6 +2707,10 @@
       ]
     },
     "tribal bow": {
+      "crit": 76,
+      "dps": 67,
+      "phys": 67,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2209,6 +2721,10 @@
       ]
     },
     "twin bow": {
+      "crit": 76,
+      "dps": 59,
+      "phys": 59,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2219,6 +2735,10 @@
       ]
     },
     "warden bow": {
+      "crit": 76,
+      "dps": 20,
+      "phys": 21,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2230,6 +2750,10 @@
       ]
     },
     "warmonger bow": {
+      "crit": 76,
+      "dps": 100,
+      "phys": 100,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2240,6 +2764,10 @@
       ]
     },
     "zealot bow": {
+      "crit": 76,
+      "dps": 55,
+      "phys": 55,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -2339,6 +2867,10 @@
   },
   "claws": {
     "arced claw": {
+      "crit": 100,
+      "dps": 56,
+      "phys": 56,
+      "speed": 97,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -2349,6 +2881,10 @@
       ]
     },
     "armoured claw": {
+      "crit": 100,
+      "dps": 82,
+      "phys": 88,
+      "speed": 91,
       "tags": [
         "onehand",
         "default",
@@ -2358,6 +2894,10 @@
       ]
     },
     "crude claw": {
+      "crit": 100,
+      "dps": 13,
+      "phys": 13,
+      "speed": 97,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2368,6 +2908,10 @@
       ]
     },
     "edged claw": {
+      "crit": 100,
+      "dps": 49,
+      "phys": 48,
+      "speed": 100,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2378,6 +2922,10 @@
       ]
     },
     "forked claw": {
+      "crit": 100,
+      "dps": 33,
+      "phys": 35,
+      "speed": 91,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2388,6 +2936,10 @@
       ]
     },
     "hooked claw": {
+      "crit": 100,
+      "dps": 59,
+      "phys": 63,
+      "speed": 91,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -2398,6 +2950,10 @@
       ]
     },
     "pict claw": {
+      "crit": 100,
+      "dps": 20,
+      "phys": 19,
+      "speed": 100,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2408,6 +2964,10 @@
       ]
     },
     "piercing claw": {
+      "crit": 100,
+      "dps": 86,
+      "phys": 89,
+      "speed": 94,
       "tags": [
         "onehand",
         "default",
@@ -2417,6 +2977,10 @@
       ]
     },
     "plated claw": {
+      "crit": 100,
+      "dps": 41,
+      "phys": 43,
+      "speed": 94,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2427,6 +2991,10 @@
       ]
     },
     "razorglass claw": {
+      "crit": 100,
+      "dps": 73,
+      "phys": 75,
+      "speed": 94,
       "tags": [
         "onehand",
         "default",
@@ -2436,6 +3004,10 @@
       ]
     },
     "sharktooth claw": {
+      "crit": 100,
+      "dps": 77,
+      "phys": 75,
+      "speed": 100,
       "tags": [
         "onehand",
         "default",
@@ -2445,6 +3017,10 @@
       ]
     },
     "talon claw": {
+      "crit": 100,
+      "dps": 100,
+      "phys": 100,
+      "speed": 97,
       "tags": [
         "onehand",
         "default",
@@ -2454,6 +3030,10 @@
       ]
     },
     "wolfbone claw": {
+      "crit": 100,
+      "dps": 28,
+      "phys": 29,
+      "speed": 94,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2466,6 +3046,10 @@
   },
   "crossbows": {
     "alloy crossbow": {
+      "crit": 71,
+      "dps": 39,
+      "phys": 37,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2477,6 +3061,10 @@
       ]
     },
     "blackfire crossbow": {
+      "crit": 100,
+      "dps": 60,
+      "phys": 60,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2487,6 +3075,10 @@
       ]
     },
     "bleak crossbow": {
+      "crit": 71,
+      "dps": 82,
+      "phys": 82,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2497,6 +3089,10 @@
       ]
     },
     "bombard crossbow": {
+      "crit": 71,
+      "dps": 43,
+      "phys": 42,
+      "speed": 97,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -2508,6 +3104,10 @@
       ]
     },
     "cannonade crossbow": {
+      "crit": 71,
+      "dps": 70,
+      "phys": 68,
+      "speed": 97,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2518,6 +3118,10 @@
       ]
     },
     "construct crossbow": {
+      "crit": 71,
+      "dps": 54,
+      "phys": 54,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -2529,6 +3133,10 @@
       ]
     },
     "cumbrous crossbow": {
+      "crit": 71,
+      "dps": 57,
+      "phys": 57,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2539,6 +3147,10 @@
       ]
     },
     "dedalian crossbow": {
+      "crit": 100,
+      "dps": 72,
+      "phys": 75,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2549,6 +3161,10 @@
       ]
     },
     "desolate crossbow": {
+      "crit": 71,
+      "dps": 100,
+      "phys": 100,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2559,6 +3175,10 @@
       ]
     },
     "dyad crossbow": {
+      "crit": 71,
+      "dps": 27,
+      "phys": 27,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2570,6 +3190,10 @@
       ]
     },
     "engraved crossbow": {
+      "crit": 71,
+      "dps": 93,
+      "phys": 93,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2580,6 +3204,10 @@
       ]
     },
     "esoteric crossbow": {
+      "crit": 71,
+      "dps": 85,
+      "phys": 85,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2590,6 +3218,10 @@
       ]
     },
     "flexed crossbow": {
+      "crit": 71,
+      "dps": 96,
+      "phys": 96,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2600,6 +3232,10 @@
       ]
     },
     "gemini crossbow": {
+      "crit": 71,
+      "dps": 84,
+      "phys": 84,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2610,6 +3246,10 @@
       ]
     },
     "makeshift crossbow": {
+      "crit": 71,
+      "dps": 11,
+      "phys": 11,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2621,6 +3261,10 @@
       ]
     },
     "painted crossbow": {
+      "crit": 71,
+      "dps": 69,
+      "phys": 69,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2631,6 +3275,10 @@
       ]
     },
     "piercing crossbow": {
+      "crit": 71,
+      "dps": 63,
+      "phys": 61,
+      "speed": 97,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2641,6 +3289,10 @@
       ]
     },
     "robust crossbow": {
+      "crit": 71,
+      "dps": 65,
+      "phys": 67,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2651,6 +3303,10 @@
       ]
     },
     "siege crossbow": {
+      "crit": 71,
+      "dps": 90,
+      "phys": 87,
+      "speed": 97,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2661,6 +3317,10 @@
       ]
     },
     "stout crossbow": {
+      "crit": 71,
+      "dps": 87,
+      "phys": 90,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2671,6 +3331,10 @@
       ]
     },
     "sturdy crossbow": {
+      "crit": 71,
+      "dps": 21,
+      "phys": 22,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2682,6 +3346,10 @@
       ]
     },
     "taut crossbow": {
+      "crit": 71,
+      "dps": 60,
+      "phys": 60,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2692,6 +3360,10 @@
       ]
     },
     "tense crossbow": {
+      "crit": 71,
+      "dps": 13,
+      "phys": 13,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -2703,6 +3375,10 @@
       ]
     },
     "twin crossbow": {
+      "crit": 71,
+      "dps": 63,
+      "phys": 63,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "ranged",
@@ -2713,6 +3389,10 @@
       ]
     },
     "varnished crossbow": {
+      "crit": 71,
+      "dps": 29,
+      "phys": 29,
+      "speed": 94,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -2726,6 +3406,10 @@
   },
   "daggers": {
     "arcane dirk": {
+      "crit": 100,
+      "dps": 89,
+      "phys": 89,
+      "speed": 93,
       "tags": [
         "onehand",
         "one_hand_weapon",
@@ -2735,6 +3419,10 @@
       ]
     },
     "bloodletting dagger": {
+      "crit": 100,
+      "dps": 69,
+      "phys": 72,
+      "speed": 90,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -2745,6 +3433,10 @@
       ]
     },
     "cinquedea": {
+      "crit": 100,
+      "dps": 100,
+      "phys": 100,
+      "speed": 93,
       "tags": [
         "onehand",
         "one_hand_weapon",
@@ -2754,6 +3446,10 @@
       ]
     },
     "crone knife": {
+      "crit": 100,
+      "dps": 22,
+      "phys": 22,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2764,6 +3460,10 @@
       ]
     },
     "engraved knife": {
+      "crit": 90,
+      "dps": 54,
+      "phys": 54,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2773,17 +3473,11 @@
         "default"
       ]
     },
-    "ethereal blade": {
-      "tags": [
-        "onehand",
-        "not_for_sale",
-        "one_hand_weapon",
-        "weapon",
-        "dagger",
-        "default"
-      ]
-    },
     "glass shank": {
+      "crit": 100,
+      "dps": 15,
+      "phys": 15,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2794,6 +3488,10 @@
       ]
     },
     "kris knife": {
+      "crit": 100,
+      "dps": 82,
+      "phys": 77,
+      "speed": 100,
       "tags": [
         "onehand",
         "one_hand_weapon",
@@ -2803,6 +3501,10 @@
       ]
     },
     "mail breaker": {
+      "crit": 100,
+      "dps": 73,
+      "phys": 75,
+      "speed": 90,
       "tags": [
         "onehand",
         "one_hand_weapon",
@@ -2812,6 +3514,10 @@
       ]
     },
     "moon dagger": {
+      "crit": 100,
+      "dps": 44,
+      "phys": 0,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2822,6 +3528,10 @@
       ]
     },
     "obsidian dagger": {
+      "crit": 100,
+      "dps": 62,
+      "phys": 62,
+      "speed": 93,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -2832,6 +3542,10 @@
       ]
     },
     "parrying dagger": {
+      "crit": 100,
+      "dps": 85,
+      "phys": 85,
+      "speed": 93,
       "tags": [
         "onehand",
         "one_hand_weapon",
@@ -2841,6 +3555,10 @@
       ]
     },
     "simple dagger": {
+      "crit": 100,
+      "dps": 32,
+      "phys": 32,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -2851,6 +3569,10 @@
       ]
     },
     "skinning knife": {
+      "crit": 90,
+      "dps": 38,
+      "phys": 36,
+      "speed": 100,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2863,6 +3585,10 @@
   },
   "flails": {
     "abyssal flail": {
+      "crit": 80,
+      "dps": 100,
+      "phys": 100,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2872,6 +3598,10 @@
       ]
     },
     "chain flail": {
+      "crit": 80,
+      "dps": 21,
+      "phys": 21,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2882,6 +3612,10 @@
       ]
     },
     "great flail": {
+      "crit": 80,
+      "dps": 91,
+      "phys": 91,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2891,6 +3625,10 @@
       ]
     },
     "guarded flail": {
+      "crit": 80,
+      "dps": 83,
+      "phys": 86,
+      "speed": 93,
       "tags": [
         "onehand",
         "flail",
@@ -2900,6 +3638,10 @@
       ]
     },
     "holy flail": {
+      "crit": 80,
+      "dps": 26,
+      "phys": 26,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2910,6 +3652,10 @@
       ]
     },
     "icicle flail": {
+      "crit": 80,
+      "dps": 77,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2919,6 +3665,10 @@
       ]
     },
     "iron flail": {
+      "crit": 80,
+      "dps": 36,
+      "phys": 36,
+      "speed": 96,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2929,6 +3679,10 @@
       ]
     },
     "ring flail": {
+      "crit": 80,
+      "dps": 65,
+      "phys": 65,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2939,6 +3693,10 @@
       ]
     },
     "slender flail": {
+      "crit": 64,
+      "dps": 51,
+      "phys": 50,
+      "speed": 100,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -2949,6 +3707,10 @@
       ]
     },
     "splintered flail": {
+      "crit": 80,
+      "dps": 14,
+      "phys": 14,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2959,6 +3721,10 @@
       ]
     },
     "stone flail": {
+      "crit": 80,
+      "dps": 59,
+      "phys": 59,
+      "speed": 96,
       "tags": [
         "onehand",
         "flail",
@@ -2969,6 +3735,10 @@
       ]
     },
     "tearing flail": {
+      "crit": 100,
+      "dps": 78,
+      "phys": 81,
+      "speed": 93,
       "tags": [
         "onehand",
         "flail",
@@ -2978,6 +3748,10 @@
       ]
     },
     "twin flail": {
+      "crit": 80,
+      "dps": 24,
+      "phys": 25,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -3118,6 +3892,7 @@
   },
   "foci": {
     "antler focus": {
+      "ES": 26,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -3127,6 +3902,7 @@
       ]
     },
     "arrayed focus": {
+      "ES": 73,
       "tags": [
         "int_armour",
         "armour",
@@ -3135,6 +3911,7 @@
       ]
     },
     "attuned focus": {
+      "ES": 74,
       "tags": [
         "int_armour",
         "armour",
@@ -3143,6 +3920,7 @@
       ]
     },
     "crystal focus": {
+      "ES": 44,
       "tags": [
         "maraketh_basetype",
         "focus",
@@ -3152,6 +3930,7 @@
       ]
     },
     "cultist focus": {
+      "ES": 77,
       "tags": [
         "int_armour",
         "armour",
@@ -3160,6 +3939,7 @@
       ]
     },
     "druidic focus": {
+      "ES": 82,
       "tags": [
         "int_armour",
         "armour",
@@ -3168,6 +3948,7 @@
       ]
     },
     "elegant focus": {
+      "ES": 69,
       "tags": [
         "int_armour",
         "armour",
@@ -3176,6 +3957,7 @@
       ]
     },
     "engraved focus": {
+      "ES": 33,
       "tags": [
         "maraketh_basetype",
         "focus",
@@ -3185,6 +3967,7 @@
       ]
     },
     "hallowed focus": {
+      "ES": 79,
       "tags": [
         "int_armour",
         "armour",
@@ -3193,6 +3976,7 @@
       ]
     },
     "jade focus": {
+      "ES": 63,
       "tags": [
         "int_armour",
         "armour",
@@ -3201,6 +3985,7 @@
       ]
     },
     "jingling focus": {
+      "ES": 68,
       "tags": [
         "int_armour",
         "armour",
@@ -3209,6 +3994,7 @@
       ]
     },
     "leyline focus": {
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -3217,6 +4003,7 @@
       ]
     },
     "magus focus": {
+      "ES": 82,
       "tags": [
         "int_armour",
         "armour",
@@ -3225,6 +4012,7 @@
       ]
     },
     "paua focus": {
+      "ES": 68,
       "tags": [
         "int_armour",
         "armour",
@@ -3233,6 +4021,7 @@
       ]
     },
     "plumed focus": {
+      "ES": 53,
       "tags": [
         "focus",
         "int_armour",
@@ -3242,6 +4031,7 @@
       ]
     },
     "sacred focus": {
+      "ES": 100,
       "tags": [
         "int_armour",
         "armour",
@@ -3250,6 +4040,7 @@
       ]
     },
     "staghorn focus": {
+      "ES": 66,
       "tags": [
         "int_armour",
         "armour",
@@ -3258,6 +4049,7 @@
       ]
     },
     "tonal focus": {
+      "ES": 39,
       "tags": [
         "maraketh_basetype",
         "focus",
@@ -3267,6 +4059,7 @@
       ]
     },
     "twig focus": {
+      "ES": 19,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -3276,6 +4069,7 @@
       ]
     },
     "voodoo focus": {
+      "ES": 50,
       "tags": [
         "focus",
         "int_armour",
@@ -3285,6 +4079,7 @@
       ]
     },
     "woven focus": {
+      "ES": 23,
       "tags": [
         "focus",
         "ezomyte_basetype",
@@ -3294,6 +4089,7 @@
       ]
     },
     "wreath focus": {
+      "ES": 63,
       "tags": [
         "int_armour",
         "armour",
@@ -3304,6 +4100,7 @@
   },
   "gloves": {
     "adorned gloves": {
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -3312,6 +4109,9 @@
       ]
     },
     "adorned wraps": {
+      "ES": 42,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3320,6 +4120,9 @@
       ]
     },
     "aged cuffs": {
+      "AR": 15,
+      "ES": 18,
+      "HY": 28,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -3329,6 +4132,9 @@
       ]
     },
     "ancient cuffs": {
+      "AR": 50,
+      "ES": 50,
+      "HY": 91,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3337,6 +4143,7 @@
       ]
     },
     "ancient mitts": {
+      "AR": 71,
       "tags": [
         "gloves",
         "armour",
@@ -3345,6 +4152,9 @@
       ]
     },
     "bandage wraps": {
+      "ES": 34,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3353,6 +4163,7 @@
       ]
     },
     "barbed bracers": {
+      "EV": 100,
       "tags": [
         "dex_armour",
         "armour",
@@ -3361,6 +4172,7 @@
       ]
     },
     "baroque gloves": {
+      "ES": 74,
       "tags": [
         "int_armour",
         "armour",
@@ -3369,6 +4181,7 @@
       ]
     },
     "bolstered mitts": {
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3378,6 +4191,7 @@
       ]
     },
     "bound bracers": {
+      "EV": 24,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3387,6 +4201,9 @@
       ]
     },
     "bound cuffs": {
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3395,6 +4212,9 @@
       ]
     },
     "braided cuffs": {
+      "AR": 32,
+      "ES": 34,
+      "HY": 60,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3403,6 +4223,9 @@
       ]
     },
     "buckled wraps": {
+      "ES": 34,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3411,6 +4234,9 @@
       ]
     },
     "burnished gauntlets": {
+      "AR": 37,
+      "EV": 37,
+      "HY": 68,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3419,6 +4245,9 @@
       ]
     },
     "cambric wraps": {
+      "ES": 38,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3427,6 +4256,9 @@
       ]
     },
     "captain gauntlets": {
+      "AR": 36,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3435,6 +4267,9 @@
       ]
     },
     "commander gauntlets": {
+      "AR": 50,
+      "EV": 50,
+      "HY": 92,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3443,6 +4278,9 @@
       ]
     },
     "cultist gauntlets": {
+      "AR": 54,
+      "EV": 54,
+      "HY": 100,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3451,6 +4289,7 @@
       ]
     },
     "detailed mitts": {
+      "AR": 60,
       "tags": [
         "gloves",
         "armour",
@@ -3459,6 +4298,9 @@
       ]
     },
     "diviner cuffs": {
+      "AR": 32,
+      "ES": 34,
+      "HY": 60,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3467,6 +4309,9 @@
       ]
     },
     "doubled gauntlets": {
+      "AR": 25,
+      "EV": 24,
+      "HY": 45,
       "tags": [
         "str_dex_armour",
         "vaal_basetype",
@@ -3476,6 +4321,7 @@
       ]
     },
     "elegant mitts": {
+      "AR": 67,
       "tags": [
         "gloves",
         "armour",
@@ -3484,6 +4330,9 @@
       ]
     },
     "elegant wraps": {
+      "ES": 50,
+      "EV": 50,
+      "HY": 91,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3492,6 +4341,7 @@
       ]
     },
     "embroidered gloves": {
+      "ES": 70,
       "tags": [
         "int_armour",
         "armour",
@@ -3500,6 +4350,7 @@
       ]
     },
     "engraved bracers": {
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -3508,6 +4359,7 @@
       ]
     },
     "feathered mitts": {
+      "AR": 76,
       "tags": [
         "gloves",
         "armour",
@@ -3516,6 +4368,7 @@
       ]
     },
     "fine bracers": {
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -3524,6 +4377,7 @@
       ]
     },
     "firm bracers": {
+      "EV": 19,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -3533,6 +4387,9 @@
       ]
     },
     "furtive wraps": {
+      "ES": 38,
+      "EV": 37,
+      "HY": 68,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3541,6 +4398,9 @@
       ]
     },
     "gauze wraps": {
+      "ES": 12,
+      "EV": 6,
+      "HY": 13,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -3550,6 +4410,9 @@
       ]
     },
     "gleaming cuffs": {
+      "AR": 54,
+      "ES": 56,
+      "HY": 100,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3558,6 +4421,7 @@
       ]
     },
     "gold gloves": {
+      "ES": 78,
       "tags": [
         "int_armour",
         "armour",
@@ -3566,6 +4430,9 @@
       ]
     },
     "goldcast cuffs": {
+      "AR": 25,
+      "ES": 28,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -3575,6 +4442,7 @@
       ]
     },
     "grand bracers": {
+      "EV": 91,
       "tags": [
         "dex_armour",
         "armour",
@@ -3583,6 +4451,10 @@
       ]
     },
     "grand manchettes": {
+      "AR": 30,
+      "ES": 30,
+      "EV": 30,
+      "HY": 100,
       "tags": [
         "str_dex_int_armour",
         "armour",
@@ -3591,6 +4463,7 @@
       ]
     },
     "grand mitts": {
+      "AR": 83,
       "tags": [
         "gloves",
         "armour",
@@ -3599,6 +4472,7 @@
       ]
     },
     "grim gloves": {
+      "ES": 84,
       "tags": [
         "int_armour",
         "armour",
@@ -3607,6 +4481,7 @@
       ]
     },
     "hardened bracers": {
+      "EV": 67,
       "tags": [
         "dex_armour",
         "armour",
@@ -3615,6 +4490,9 @@
       ]
     },
     "heirloom cuffs": {
+      "AR": 36,
+      "ES": 38,
+      "HY": 67,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3623,6 +4501,7 @@
       ]
     },
     "hunting bracers": {
+      "EV": 59,
       "tags": [
         "dex_armour",
         "armour",
@@ -3631,6 +4510,7 @@
       ]
     },
     "intricate gloves": {
+      "ES": 52,
       "tags": [
         "gloves",
         "int_armour",
@@ -3640,6 +4520,9 @@
       ]
     },
     "ironmail gauntlets": {
+      "AR": 32,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3648,6 +4531,7 @@
       ]
     },
     "jewelled gloves": {
+      "ES": 44,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3657,6 +4541,7 @@
       ]
     },
     "knightly mitts": {
+      "AR": 83,
       "tags": [
         "gloves",
         "armour",
@@ -3665,6 +4550,9 @@
       ]
     },
     "layered gauntlets": {
+      "AR": 15,
+      "EV": 13,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -3674,6 +4562,9 @@
       ]
     },
     "linen wraps": {
+      "ES": 18,
+      "EV": 13,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3683,6 +4574,7 @@
       ]
     },
     "moulded mitts": {
+      "AR": 46,
       "tags": [
         "gloves",
         "str_armour",
@@ -3692,6 +4584,7 @@
       ]
     },
     "ominous gloves": {
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -3700,6 +4593,7 @@
       ]
     },
     "opulent gloves": {
+      "ES": 92,
       "tags": [
         "int_armour",
         "armour",
@@ -3708,6 +4602,9 @@
       ]
     },
     "ornate cuffs": {
+      "AR": 41,
+      "ES": 42,
+      "HY": 75,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3716,6 +4613,9 @@
       ]
     },
     "ornate gauntlets": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3724,6 +4624,7 @@
       ]
     },
     "ornate mitts": {
+      "AR": 91,
       "tags": [
         "gloves",
         "armour",
@@ -3732,6 +4633,7 @@
       ]
     },
     "pauascale gloves": {
+      "ES": 64,
       "tags": [
         "int_armour",
         "armour",
@@ -3740,6 +4642,9 @@
       ]
     },
     "plate gauntlets": {
+      "AR": 32,
+      "EV": 33,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3748,6 +4653,7 @@
       ]
     },
     "plated mitts": {
+      "AR": 60,
       "tags": [
         "gloves",
         "armour",
@@ -3756,6 +4662,7 @@
       ]
     },
     "refined bracers": {
+      "EV": 71,
       "tags": [
         "dex_armour",
         "armour",
@@ -3764,6 +4671,9 @@
       ]
     },
     "righteous cuffs": {
+      "AR": 37,
+      "ES": 38,
+      "HY": 68,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3772,6 +4682,9 @@
       ]
     },
     "ringmail gauntlets": {
+      "AR": 8,
+      "EV": 7,
+      "HY": 15,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -3781,6 +4694,7 @@
       ]
     },
     "riveted mitts": {
+      "AR": 21,
       "tags": [
         "gloves",
         "str_armour",
@@ -3790,6 +4704,9 @@
       ]
     },
     "rope cuffs": {
+      "AR": 8,
+      "ES": 12,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -3799,6 +4716,7 @@
       ]
     },
     "sectioned bracers": {
+      "EV": 39,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3808,6 +4726,9 @@
       ]
     },
     "signet cuffs": {
+      "AR": 45,
+      "ES": 46,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "armour",
@@ -3816,6 +4737,7 @@
       ]
     },
     "sombre gloves": {
+      "ES": 30,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -3825,6 +4747,7 @@
       ]
     },
     "spiked bracers": {
+      "EV": 75,
       "tags": [
         "dex_armour",
         "armour",
@@ -3833,6 +4756,7 @@
       ]
     },
     "spined bracers": {
+      "EV": 45,
       "tags": [
         "gloves",
         "dex_armour",
@@ -3842,6 +4766,9 @@
       ]
     },
     "spiral wraps": {
+      "ES": 28,
+      "EV": 24,
+      "HY": 46,
       "tags": [
         "gloves",
         "vaal_basetype",
@@ -3851,6 +4778,7 @@
       ]
     },
     "stalking bracers": {
+      "EV": 83,
       "tags": [
         "dex_armour",
         "armour",
@@ -3859,6 +4787,9 @@
       ]
     },
     "steelmail gauntlets": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3867,6 +4798,7 @@
       ]
     },
     "stitched gloves": {
+      "ES": 34,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3876,6 +4808,7 @@
       ]
     },
     "stocky mitts": {
+      "AR": 10,
       "tags": [
         "gloves",
         "str_armour",
@@ -3885,6 +4818,7 @@
       ]
     },
     "suede bracers": {
+      "EV": 7,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -3894,6 +4828,7 @@
       ]
     },
     "swift bracers": {
+      "EV": 66,
       "tags": [
         "dex_armour",
         "armour",
@@ -3902,6 +4837,7 @@
       ]
     },
     "tempered mitts": {
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "gloves",
@@ -3911,6 +4847,7 @@
       ]
     },
     "titan mitts": {
+      "AR": 68,
       "tags": [
         "gloves",
         "armour",
@@ -3919,6 +4856,7 @@
       ]
     },
     "torn gloves": {
+      "ES": 18,
       "tags": [
         "gloves",
         "ezomyte_basetype",
@@ -3928,6 +4866,9 @@
       ]
     },
     "utility wraps": {
+      "ES": 46,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3936,6 +4877,7 @@
       ]
     },
     "vaal gloves": {
+      "ES": 100,
       "tags": [
         "int_armour",
         "armour",
@@ -3944,6 +4886,7 @@
       ]
     },
     "vaal mitts": {
+      "AR": 100,
       "tags": [
         "gloves",
         "armour",
@@ -3952,6 +4895,9 @@
       ]
     },
     "vaal wraps": {
+      "ES": 56,
+      "EV": 54,
+      "HY": 100,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3960,6 +4906,9 @@
       ]
     },
     "war wraps": {
+      "ES": 46,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "dex_int_armour",
         "armour",
@@ -3968,6 +4917,9 @@
       ]
     },
     "zealot gauntlets": {
+      "AR": 41,
+      "EV": 42,
+      "HY": 76,
       "tags": [
         "str_dex_armour",
         "armour",
@@ -3978,6 +4930,9 @@
   },
   "helmets": {
     "archon crown": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -3986,6 +4941,7 @@
       ]
     },
     "armoured cap": {
+      "EV": 83,
       "tags": [
         "helmet",
         "armour",
@@ -3994,6 +4950,9 @@
       ]
     },
     "avian mask": {
+      "ES": 42,
+      "EV": 41,
+      "HY": 76,
       "tags": [
         "helmet",
         "armour",
@@ -4002,6 +4961,7 @@
       ]
     },
     "avian tiara": {
+      "ES": 66,
       "tags": [
         "helmet",
         "armour",
@@ -4010,6 +4970,9 @@
       ]
     },
     "bandit mask": {
+      "ES": 36,
+      "EV": 34,
+      "HY": 64,
       "tags": [
         "helmet",
         "armour",
@@ -4018,6 +4981,7 @@
       ]
     },
     "beaded circlet": {
+      "ES": 33,
       "tags": [
         "maraketh_basetype",
         "int_armour",
@@ -4027,6 +4991,9 @@
       ]
     },
     "brigand mask": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4035,6 +5002,9 @@
       ]
     },
     "brimmed helm": {
+      "AR": 7,
+      "EV": 6,
+      "HY": 13,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -4044,6 +5014,9 @@
       ]
     },
     "cabalist helm": {
+      "AR": 39,
+      "EV": 39,
+      "HY": 71,
       "tags": [
         "helmet",
         "armour",
@@ -4052,6 +5025,7 @@
       ]
     },
     "chain tiara": {
+      "ES": 43,
       "tags": [
         "maraketh_basetype",
         "int_armour",
@@ -4061,6 +5035,9 @@
       ]
     },
     "champion helm": {
+      "AR": 54,
+      "EV": 54,
+      "HY": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4069,6 +5046,9 @@
       ]
     },
     "closed helm": {
+      "AR": 33,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4077,6 +5057,7 @@
       ]
     },
     "commander greathelm": {
+      "AR": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4085,6 +5066,7 @@
       ]
     },
     "coral circlet": {
+      "ES": 62,
       "tags": [
         "helmet",
         "armour",
@@ -4093,6 +5075,7 @@
       ]
     },
     "corroded greathelm": {
+      "AR": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4101,6 +5084,7 @@
       ]
     },
     "corsair cap": {
+      "EV": 59,
       "tags": [
         "helmet",
         "armour",
@@ -4109,6 +5093,7 @@
       ]
     },
     "covert hood": {
+      "EV": 72,
       "tags": [
         "helmet",
         "armour",
@@ -4117,6 +5102,9 @@
       ]
     },
     "cowled helm": {
+      "AR": 21,
+      "EV": 20,
+      "HY": 37,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -4126,6 +5114,9 @@
       ]
     },
     "cryptic helm": {
+      "AR": 50,
+      "EV": 50,
+      "HY": 91,
       "tags": [
         "helmet",
         "armour",
@@ -4134,6 +5125,9 @@
       ]
     },
     "cultist crown": {
+      "AR": 15,
+      "ES": 18,
+      "HY": 29,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -4143,6 +5137,9 @@
       ]
     },
     "death mask": {
+      "ES": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4151,6 +5148,9 @@
       ]
     },
     "decorated helm": {
+      "AR": 37,
+      "EV": 37,
+      "HY": 68,
       "tags": [
         "helmet",
         "armour",
@@ -4159,6 +5159,7 @@
       ]
     },
     "deerstalker hood": {
+      "EV": 76,
       "tags": [
         "helmet",
         "armour",
@@ -4167,6 +5168,7 @@
       ]
     },
     "desert cap": {
+      "EV": 91,
       "tags": [
         "helmet",
         "armour",
@@ -4175,6 +5177,7 @@
       ]
     },
     "desert circlet": {
+      "ES": 69,
       "tags": [
         "helmet",
         "armour",
@@ -4183,6 +5186,9 @@
       ]
     },
     "divine crown": {
+      "AR": 54,
+      "ES": 54,
+      "HY": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4191,6 +5197,9 @@
       ]
     },
     "domed helm": {
+      "AR": 33,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4199,6 +5208,7 @@
       ]
     },
     "druidic circlet": {
+      "ES": 62,
       "tags": [
         "helmet",
         "armour",
@@ -4207,6 +5217,9 @@
       ]
     },
     "druidic crown": {
+      "AR": 45,
+      "ES": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4215,6 +5228,7 @@
       ]
     },
     "elegant greathelm": {
+      "AR": 71,
       "tags": [
         "helmet",
         "armour",
@@ -4223,6 +5237,7 @@
       ]
     },
     "elite greathelm": {
+      "AR": 46,
       "tags": [
         "str_armour",
         "helmet",
@@ -4232,6 +5247,9 @@
       ]
     },
     "engraved helm": {
+      "AR": 34,
+      "EV": 34,
+      "HY": 63,
       "tags": [
         "helmet",
         "armour",
@@ -4240,6 +5258,9 @@
       ]
     },
     "face mask": {
+      "ES": 14,
+      "EV": 9,
+      "HY": 20,
       "tags": [
         "ezomyte_basetype",
         "helmet",
@@ -4249,6 +5270,9 @@
       ]
     },
     "faridun mask": {
+      "ES": 50,
+      "EV": 50,
+      "HY": 92,
       "tags": [
         "helmet",
         "armour",
@@ -4257,6 +5281,7 @@
       ]
     },
     "feathered tiara": {
+      "ES": 50,
       "tags": [
         "int_armour",
         "helmet",
@@ -4266,6 +5291,7 @@
       ]
     },
     "felt cap": {
+      "EV": 18,
       "tags": [
         "ezomyte_basetype",
         "dex_armour",
@@ -4275,6 +5301,7 @@
       ]
     },
     "fierce greathelm": {
+      "AR": 67,
       "tags": [
         "helmet",
         "armour",
@@ -4283,6 +5310,9 @@
       ]
     },
     "forest crown": {
+      "AR": 34,
+      "ES": 36,
+      "HY": 64,
       "tags": [
         "helmet",
         "armour",
@@ -4291,6 +5321,9 @@
       ]
     },
     "gallant helm": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4299,6 +5332,9 @@
       ]
     },
     "gladiatoral helm": {
+      "AR": 42,
+      "EV": 41,
+      "HY": 76,
       "tags": [
         "helmet",
         "armour",
@@ -4307,6 +5343,7 @@
       ]
     },
     "gold circlet": {
+      "ES": 57,
       "tags": [
         "int_armour",
         "helmet",
@@ -4316,6 +5353,7 @@
       ]
     },
     "goliath greathelm": {
+      "AR": 73,
       "tags": [
         "helmet",
         "armour",
@@ -4324,6 +5362,10 @@
       ]
     },
     "grand visage": {
+      "AR": 30,
+      "ES": 29,
+      "EV": 30,
+      "HY": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4332,6 +5374,9 @@
       ]
     },
     "guarded helm": {
+      "AR": 11,
+      "EV": 10,
+      "HY": 20,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -4341,6 +5386,7 @@
       ]
     },
     "guardian greathelm": {
+      "AR": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4349,6 +5395,9 @@
       ]
     },
     "hallowed crown": {
+      "AR": 39,
+      "ES": 40,
+      "HY": 72,
       "tags": [
         "helmet",
         "armour",
@@ -4357,6 +5406,9 @@
       ]
     },
     "heavy crown": {
+      "AR": 25,
+      "ES": 27,
+      "HY": 47,
       "tags": [
         "str_int_armour",
         "helmet",
@@ -4366,6 +5418,9 @@
       ]
     },
     "hewn mask": {
+      "ES": 11,
+      "EV": 6,
+      "HY": 14,
       "tags": [
         "ezomyte_basetype",
         "helmet",
@@ -4375,6 +5430,7 @@
       ]
     },
     "homeguard greathelm": {
+      "AR": 67,
       "tags": [
         "helmet",
         "armour",
@@ -4383,6 +5439,9 @@
       ]
     },
     "hooded mask": {
+      "ES": 18,
+      "EV": 13,
+      "HY": 27,
       "tags": [
         "maraketh_basetype",
         "helmet",
@@ -4392,6 +5451,9 @@
       ]
     },
     "horned crown": {
+      "AR": 11,
+      "ES": 14,
+      "HY": 22,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -4401,6 +5463,7 @@
       ]
     },
     "hunter hood": {
+      "EV": 45,
       "tags": [
         "dex_armour",
         "helmet",
@@ -4410,6 +5473,9 @@
       ]
     },
     "inquisitor crown": {
+      "AR": 42,
+      "ES": 42,
+      "HY": 77,
       "tags": [
         "helmet",
         "armour",
@@ -4418,6 +5484,9 @@
       ]
     },
     "iron crown": {
+      "AR": 7,
+      "ES": 11,
+      "HY": 16,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -4427,6 +5496,7 @@
       ]
     },
     "jade tiara": {
+      "ES": 68,
       "tags": [
         "helmet",
         "armour",
@@ -4435,6 +5505,7 @@
       ]
     },
     "jungle tiara": {
+      "ES": 77,
       "tags": [
         "helmet",
         "armour",
@@ -4443,6 +5514,7 @@
       ]
     },
     "kamasan tiara": {
+      "ES": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4451,6 +5523,7 @@
       ]
     },
     "lace hood": {
+      "EV": 25,
       "tags": [
         "maraketh_basetype",
         "dex_armour",
@@ -4460,6 +5533,9 @@
       ]
     },
     "lavish crown": {
+      "AR": 37,
+      "ES": 38,
+      "HY": 69,
       "tags": [
         "helmet",
         "armour",
@@ -4468,6 +5544,7 @@
       ]
     },
     "leatherbound hood": {
+      "EV": 66,
       "tags": [
         "helmet",
         "armour",
@@ -4476,6 +5553,7 @@
       ]
     },
     "magus tiara": {
+      "ES": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4484,6 +5562,9 @@
       ]
     },
     "mailed crown": {
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "helmet",
         "armour",
@@ -4492,6 +5573,9 @@
       ]
     },
     "martyr crown": {
+      "AR": 22,
+      "ES": 24,
+      "HY": 42,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -4501,6 +5585,7 @@
       ]
     },
     "masked greathelm": {
+      "AR": 91,
       "tags": [
         "helmet",
         "armour",
@@ -4509,6 +5594,7 @@
       ]
     },
     "mercenary greathelm": {
+      "AR": 63,
       "tags": [
         "helmet",
         "armour",
@@ -4517,6 +5603,7 @@
       ]
     },
     "narrow hood": {
+      "EV": 66,
       "tags": [
         "helmet",
         "armour",
@@ -4525,6 +5612,7 @@
       ]
     },
     "noble circlet": {
+      "ES": 70,
       "tags": [
         "helmet",
         "armour",
@@ -4533,6 +5621,7 @@
       ]
     },
     "noble greathelm": {
+      "AR": 76,
       "tags": [
         "helmet",
         "armour",
@@ -4541,6 +5630,9 @@
       ]
     },
     "oak mask": {
+      "ES": 34,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4549,6 +5641,7 @@
       ]
     },
     "paragon greathelm": {
+      "AR": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4557,6 +5650,9 @@
       ]
     },
     "pariah mask": {
+      "ES": 40,
+      "EV": 39,
+      "HY": 72,
       "tags": [
         "helmet",
         "armour",
@@ -4565,6 +5661,7 @@
       ]
     },
     "rotted hood": {
+      "EV": 59,
       "tags": [
         "helmet",
         "armour",
@@ -4573,6 +5670,7 @@
       ]
     },
     "rusted greathelm": {
+      "AR": 9,
       "tags": [
         "str_armour",
         "helmet",
@@ -4582,6 +5680,9 @@
       ]
     },
     "saintly crown": {
+      "AR": 50,
+      "ES": 50,
+      "HY": 92,
       "tags": [
         "helmet",
         "armour",
@@ -4590,6 +5691,7 @@
       ]
     },
     "sandsworn tiara": {
+      "ES": 73,
       "tags": [
         "helmet",
         "armour",
@@ -4598,6 +5700,7 @@
       ]
     },
     "sentinel greathelm": {
+      "AR": 68,
       "tags": [
         "helmet",
         "armour",
@@ -4606,6 +5709,7 @@
       ]
     },
     "shabby hood": {
+      "EV": 7,
       "tags": [
         "ezomyte_basetype",
         "dex_armour",
@@ -4615,6 +5719,9 @@
       ]
     },
     "shaded mask": {
+      "ES": 38,
+      "EV": 37,
+      "HY": 68,
       "tags": [
         "helmet",
         "armour",
@@ -4623,6 +5730,9 @@
       ]
     },
     "shielded helm": {
+      "AR": 25,
+      "EV": 24,
+      "HY": 46,
       "tags": [
         "str_dex_armour",
         "helmet",
@@ -4632,6 +5742,9 @@
       ]
     },
     "skulking mask": {
+      "ES": 37,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "helmet",
         "armour",
@@ -4640,6 +5753,7 @@
       ]
     },
     "skycrown tiara": {
+      "ES": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4648,6 +5762,9 @@
       ]
     },
     "soaring mask": {
+      "ES": 54,
+      "EV": 54,
+      "HY": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4656,6 +5773,7 @@
       ]
     },
     "soldier greathelm": {
+      "AR": 22,
       "tags": [
         "str_armour",
         "helmet",
@@ -4665,6 +5783,9 @@
       ]
     },
     "soldier helm": {
+      "AR": 36,
+      "EV": 36,
+      "HY": 67,
       "tags": [
         "helmet",
         "armour",
@@ -4673,6 +5794,9 @@
       ]
     },
     "solid mask": {
+      "ES": 34,
+      "EV": 32,
+      "HY": 60,
       "tags": [
         "helmet",
         "armour",
@@ -4681,6 +5805,7 @@
       ]
     },
     "sorcerous tiara": {
+      "ES": 91,
       "tags": [
         "helmet",
         "armour",
@@ -4689,6 +5814,7 @@
       ]
     },
     "spired greathelm": {
+      "AR": 39,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -4698,6 +5824,9 @@
       ]
     },
     "spiritbone crown": {
+      "AR": 33,
+      "ES": 34,
+      "HY": 61,
       "tags": [
         "helmet",
         "armour",
@@ -4706,6 +5835,7 @@
       ]
     },
     "swathed cap": {
+      "EV": 36,
       "tags": [
         "maraketh_basetype",
         "dex_armour",
@@ -4715,6 +5845,7 @@
       ]
     },
     "trapper hood": {
+      "EV": 100,
       "tags": [
         "helmet",
         "armour",
@@ -4723,6 +5854,9 @@
       ]
     },
     "tribal mask": {
+      "ES": 27,
+      "EV": 24,
+      "HY": 46,
       "tags": [
         "vaal_basetype",
         "helmet",
@@ -4732,6 +5866,7 @@
       ]
     },
     "twig circlet": {
+      "ES": 18,
       "tags": [
         "ezomyte_basetype",
         "int_armour",
@@ -4741,6 +5876,7 @@
       ]
     },
     "twilight tiara": {
+      "ES": 76,
       "tags": [
         "helmet",
         "armour",
@@ -4749,6 +5885,9 @@
       ]
     },
     "veiled mask": {
+      "ES": 24,
+      "EV": 21,
+      "HY": 41,
       "tags": [
         "maraketh_basetype",
         "helmet",
@@ -4758,6 +5897,7 @@
       ]
     },
     "velvet cap": {
+      "EV": 68,
       "tags": [
         "helmet",
         "armour",
@@ -4766,6 +5906,7 @@
       ]
     },
     "viper cap": {
+      "EV": 51,
       "tags": [
         "dex_armour",
         "helmet",
@@ -4775,6 +5916,9 @@
       ]
     },
     "visored helm": {
+      "AR": 15,
+      "EV": 13,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -4784,6 +5928,9 @@
       ]
     },
     "warded helm": {
+      "AR": 45,
+      "EV": 45,
+      "HY": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4792,6 +5939,7 @@
       ]
     },
     "warmonger greathelm": {
+      "AR": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4800,6 +5948,7 @@
       ]
     },
     "warrior greathelm": {
+      "AR": 50,
       "tags": [
         "str_armour",
         "helmet",
@@ -4809,6 +5958,7 @@
       ]
     },
     "wicker tiara": {
+      "ES": 27,
       "tags": [
         "ezomyte_basetype",
         "int_armour",
@@ -4818,6 +5968,7 @@
       ]
     },
     "wool cap": {
+      "EV": 63,
       "tags": [
         "helmet",
         "armour",
@@ -4826,6 +5977,7 @@
       ]
     },
     "woven cap": {
+      "EV": 83,
       "tags": [
         "helmet",
         "armour",
@@ -4834,6 +5986,7 @@
       ]
     },
     "wrapped cap": {
+      "EV": 71,
       "tags": [
         "helmet",
         "armour",
@@ -4842,6 +5995,7 @@
       ]
     },
     "wrapped greathelm": {
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -4851,6 +6005,9 @@
       ]
     },
     "zealot crown": {
+      "AR": 36,
+      "ES": 37,
+      "HY": 67,
       "tags": [
         "helmet",
         "armour",
@@ -4936,6 +6093,10 @@
   },
   "one handed axes": {
     "bandit hatchet": {
+      "crit": 76,
+      "dps": 38,
+      "phys": 38,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -4946,6 +6107,10 @@
       ]
     },
     "battle axe": {
+      "crit": 76,
+      "dps": 82,
+      "phys": 82,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -4955,6 +6120,10 @@
       ]
     },
     "bearded axe": {
+      "crit": 76,
+      "dps": 24,
+      "phys": 25,
+      "speed": 93,
       "tags": [
         "axe",
         "onehand",
@@ -4965,6 +6134,10 @@
       ]
     },
     "boarding hatchet": {
+      "crit": 76,
+      "dps": 72,
+      "phys": 69,
+      "speed": 100,
       "tags": [
         "axe",
         "onehand",
@@ -4974,6 +6147,10 @@
       ]
     },
     "carving hatchet": {
+      "crit": 76,
+      "dps": 55,
+      "phys": 55,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -4984,6 +6161,10 @@
       ]
     },
     "crescent axe": {
+      "crit": 100,
+      "dps": 45,
+      "phys": 48,
+      "speed": 90,
       "tags": [
         "axe",
         "onehand",
@@ -4994,6 +6175,10 @@
       ]
     },
     "dread hatchet": {
+      "crit": 76,
+      "dps": 100,
+      "phys": 100,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -5003,6 +6188,10 @@
       ]
     },
     "dull hatchet": {
+      "crit": 76,
+      "dps": 12,
+      "phys": 12,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -5013,6 +6202,10 @@
       ]
     },
     "extended cleaver": {
+      "crit": 76,
+      "dps": 29,
+      "phys": 29,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -5023,6 +6216,10 @@
       ]
     },
     "fury cleaver": {
+      "crit": 76,
+      "dps": 84,
+      "phys": 81,
+      "speed": 100,
       "tags": [
         "axe",
         "onehand",
@@ -5032,6 +6229,10 @@
       ]
     },
     "hook axe": {
+      "crit": 76,
+      "dps": 16,
+      "phys": 16,
+      "speed": 93,
       "tags": [
         "axe",
         "onehand",
@@ -5042,6 +6243,10 @@
       ]
     },
     "profane cleaver": {
+      "crit": 76,
+      "dps": 84,
+      "phys": 84,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -5051,6 +6256,10 @@
       ]
     },
     "sacrificial axe": {
+      "crit": 76,
+      "dps": 54,
+      "phys": 54,
+      "speed": 96,
       "tags": [
         "axe",
         "onehand",
@@ -5063,6 +6272,10 @@
   },
   "one handed maces": {
     "bandit mace": {
+      "crit": 71,
+      "dps": 66,
+      "phys": 78,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5072,6 +6285,10 @@
       ]
     },
     "battle pick": {
+      "crit": 100,
+      "dps": 51,
+      "phys": 60,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5081,6 +6298,10 @@
       ]
     },
     "brigand mace": {
+      "crit": 71,
+      "dps": 41,
+      "phys": 48,
+      "speed": 93,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -5091,6 +6312,10 @@
       ]
     },
     "calescent hammer": {
+      "crit": 71,
+      "dps": 63,
+      "phys": 37,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5100,6 +6325,10 @@
       ]
     },
     "construct hammer": {
+      "crit": 71,
+      "dps": 41,
+      "phys": 51,
+      "speed": 90,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -5110,6 +6339,10 @@
       ]
     },
     "crown mace": {
+      "crit": 71,
+      "dps": 79,
+      "phys": 97,
+      "speed": 90,
       "tags": [
         "onehand",
         "mace",
@@ -5119,6 +6352,10 @@
       ]
     },
     "execratus hammer": {
+      "crit": 71,
+      "dps": 62,
+      "phys": 74,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5128,6 +6365,10 @@
       ]
     },
     "flanged mace": {
+      "crit": 71,
+      "dps": 74,
+      "phys": 82,
+      "speed": 100,
       "tags": [
         "onehand",
         "mace",
@@ -5137,6 +6378,10 @@
       ]
     },
     "flared mace": {
+      "crit": 71,
+      "dps": 55,
+      "phys": 61,
+      "speed": 100,
       "tags": [
         "onehand",
         "mace",
@@ -5146,6 +6391,10 @@
       ]
     },
     "fortified hammer": {
+      "crit": 71,
+      "dps": 80,
+      "phys": 98,
+      "speed": 90,
       "tags": [
         "onehand",
         "mace",
@@ -5155,6 +6404,10 @@
       ]
     },
     "jade club": {
+      "crit": 71,
+      "dps": 50,
+      "phys": 59,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5164,6 +6417,10 @@
       ]
     },
     "lumen mace": {
+      "crit": 71,
+      "dps": 60,
+      "phys": 71,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5173,6 +6430,10 @@
       ]
     },
     "marauding mace": {
+      "crit": 71,
+      "dps": 84,
+      "phys": 100,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5182,6 +6443,10 @@
       ]
     },
     "marching mace": {
+      "crit": 71,
+      "dps": 62,
+      "phys": 77,
+      "speed": 90,
       "tags": [
         "onehand",
         "mace",
@@ -5191,6 +6456,10 @@
       ]
     },
     "molten hammer": {
+      "crit": 71,
+      "dps": 100,
+      "phys": 59,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5200,6 +6469,10 @@
       ]
     },
     "morning star": {
+      "crit": 92,
+      "dps": 51,
+      "phys": 60,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5209,6 +6482,10 @@
       ]
     },
     "plated mace": {
+      "crit": 71,
+      "dps": 33,
+      "phys": 41,
+      "speed": 90,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5219,6 +6496,10 @@
       ]
     },
     "slim mace": {
+      "crit": 71,
+      "dps": 18,
+      "phys": 20,
+      "speed": 100,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5229,6 +6510,10 @@
       ]
     },
     "smithing hammer": {
+      "crit": 71,
+      "dps": 13,
+      "phys": 8,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5239,6 +6524,10 @@
       ]
     },
     "spiked club": {
+      "crit": 71,
+      "dps": 24,
+      "phys": 28,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5249,6 +6538,10 @@
       ]
     },
     "strife pick": {
+      "crit": 100,
+      "dps": 71,
+      "phys": 85,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5258,6 +6551,10 @@
       ]
     },
     "structured hammer": {
+      "crit": 71,
+      "dps": 65,
+      "phys": 80,
+      "speed": 90,
       "tags": [
         "onehand",
         "mace",
@@ -5267,6 +6564,10 @@
       ]
     },
     "torment club": {
+      "crit": 71,
+      "dps": 73,
+      "phys": 86,
+      "speed": 93,
       "tags": [
         "onehand",
         "mace",
@@ -5276,6 +6577,10 @@
       ]
     },
     "warpick": {
+      "crit": 100,
+      "dps": 26,
+      "phys": 31,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5286,6 +6591,10 @@
       ]
     },
     "wooden club": {
+      "crit": 71,
+      "dps": 10,
+      "phys": 11,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5298,6 +6607,10 @@
   },
   "one handed swords": {
     "broadsword": {
+      "crit": 100,
+      "dps": 20,
+      "phys": 19,
+      "speed": 96,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5308,6 +6621,10 @@
       ]
     },
     "charred shortsword": {
+      "crit": 100,
+      "dps": 50,
+      "phys": 49,
+      "speed": 96,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5318,6 +6635,10 @@
       ]
     },
     "commander sword": {
+      "crit": 100,
+      "dps": 86,
+      "phys": 88,
+      "speed": 90,
       "tags": [
         "onehand",
         "weapon",
@@ -5327,6 +6648,10 @@
       ]
     },
     "cutlass": {
+      "crit": 100,
+      "dps": 73,
+      "phys": 75,
+      "speed": 90,
       "tags": [
         "onehand",
         "weapon",
@@ -5336,18 +6661,12 @@
       ]
     },
     "dark blade": {
+      "crit": 100,
+      "dps": 100,
+      "phys": 100,
+      "speed": 93,
       "tags": [
         "onehand",
-        "weapon",
-        "sword",
-        "one_hand_weapon",
-        "default"
-      ]
-    },
-    "energy blade one handed": {
-      "tags": [
-        "onehand",
-        "not_for_sale",
         "weapon",
         "sword",
         "one_hand_weapon",
@@ -5355,6 +6674,10 @@
       ]
     },
     "falchion": {
+      "crit": 100,
+      "dps": 57,
+      "phys": 59,
+      "speed": 90,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -5365,6 +6688,10 @@
       ]
     },
     "golden blade": {
+      "crit": 100,
+      "dps": 13,
+      "phys": 13,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5375,6 +6702,10 @@
       ]
     },
     "messer": {
+      "crit": 100,
+      "dps": 82,
+      "phys": 79,
+      "speed": 96,
       "tags": [
         "onehand",
         "weapon",
@@ -5384,6 +6715,10 @@
       ]
     },
     "runic shortsword": {
+      "crit": 100,
+      "dps": 79,
+      "phys": 75,
+      "speed": 100,
       "tags": [
         "onehand",
         "weapon",
@@ -5393,6 +6728,10 @@
       ]
     },
     "scimitar": {
+      "crit": 100,
+      "dps": 34,
+      "phys": 34,
+      "speed": 93,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5403,6 +6742,10 @@
       ]
     },
     "shortsword": {
+      "crit": 100,
+      "dps": 13,
+      "phys": 13,
+      "speed": 93,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5413,6 +6756,10 @@
       ]
     },
     "sickle sword": {
+      "crit": 100,
+      "dps": 50,
+      "phys": 51,
+      "speed": 90,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -5423,6 +6770,10 @@
       ]
     },
     "treasured blade": {
+      "crit": 100,
+      "dps": 66,
+      "phys": 66,
+      "speed": 93,
       "tags": [
         "onehand",
         "vaal_basetype",
@@ -5433,6 +6784,10 @@
       ]
     },
     "vampiric blade": {
+      "crit": 100,
+      "dps": 27,
+      "phys": 28,
+      "speed": 90,
       "tags": [
         "onehand",
         "ezomyte_basetype",
@@ -5445,6 +6800,10 @@
   },
   "quarterstaves": {
     "aegis quarterstaff": {
+      "crit": 86,
+      "dps": 72,
+      "phys": 89,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5454,6 +6813,10 @@
       ]
     },
     "anima quarterstaff": {
+      "crit": 86,
+      "dps": 58,
+      "phys": 72,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5463,6 +6826,10 @@
       ]
     },
     "arcing quarterstaff": {
+      "crit": 86,
+      "dps": 40,
+      "phys": 0,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5472,6 +6839,10 @@
       ]
     },
     "barbarous quarterstaff": {
+      "crit": 100,
+      "dps": 53,
+      "phys": 66,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5481,6 +6852,10 @@
       ]
     },
     "barrier quarterstaff": {
+      "crit": 86,
+      "dps": 40,
+      "phys": 50,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5491,6 +6866,10 @@
       ]
     },
     "bladed quarterstaff": {
+      "crit": 86,
+      "dps": 64,
+      "phys": 80,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5500,6 +6879,10 @@
       ]
     },
     "bolting quarterstaff": {
+      "crit": 86,
+      "dps": 100,
+      "phys": 0,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5509,6 +6892,10 @@
       ]
     },
     "crackling quarterstaff": {
+      "crit": 86,
+      "dps": 31,
+      "phys": 0,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5519,6 +6906,10 @@
       ]
     },
     "crescent quarterstaff": {
+      "crit": 86,
+      "dps": 28,
+      "phys": 33,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5529,6 +6920,10 @@
       ]
     },
     "gothic quarterstaff": {
+      "crit": 100,
+      "dps": 19,
+      "phys": 24,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5539,6 +6934,10 @@
       ]
     },
     "graceful quarterstaff": {
+      "crit": 86,
+      "dps": 62,
+      "phys": 77,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5548,6 +6947,10 @@
       ]
     },
     "guardian quarterstaff": {
+      "crit": 86,
+      "dps": 60,
+      "phys": 75,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5557,6 +6960,10 @@
       ]
     },
     "hefty quarterstaff": {
+      "crit": 86,
+      "dps": 53,
+      "phys": 68,
+      "speed": 90,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5566,6 +6973,10 @@
       ]
     },
     "long quarterstaff": {
+      "crit": 86,
+      "dps": 12,
+      "phys": 15,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5576,6 +6987,10 @@
       ]
     },
     "lunar quarterstaff": {
+      "crit": 86,
+      "dps": 76,
+      "phys": 88,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5585,6 +7000,10 @@
       ]
     },
     "razor quarterstaff": {
+      "crit": 86,
+      "dps": 80,
+      "phys": 100,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5594,6 +7013,10 @@
       ]
     },
     "reaching quarterstaff": {
+      "crit": 86,
+      "dps": 49,
+      "phys": 61,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5603,6 +7026,10 @@
       ]
     },
     "sinister quarterstaff": {
+      "crit": 100,
+      "dps": 68,
+      "phys": 84,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5612,6 +7039,10 @@
       ]
     },
     "slicing quarterstaff": {
+      "crit": 86,
+      "dps": 41,
+      "phys": 51,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5622,6 +7053,10 @@
       ]
     },
     "smooth quarterstaff": {
+      "crit": 0,
+      "dps": 72,
+      "phys": 84,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5631,6 +7066,10 @@
       ]
     },
     "steelpoint quarterstaff": {
+      "crit": 86,
+      "dps": 36,
+      "phys": 45,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5641,6 +7080,10 @@
       ]
     },
     "striking quarterstaff": {
+      "crit": 86,
+      "dps": 76,
+      "phys": 94,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5650,6 +7093,10 @@
       ]
     },
     "waxing quarterstaff": {
+      "crit": 86,
+      "dps": 61,
+      "phys": 71,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5659,6 +7106,10 @@
       ]
     },
     "wrapped quarterstaff": {
+      "crit": 86,
+      "dps": 8,
+      "phys": 10,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5669,6 +7120,10 @@
       ]
     },
     "wyrm quarterstaff": {
+      "crit": 86,
+      "dps": 70,
+      "phys": 87,
+      "speed": 93,
       "tags": [
         "two_hand_weapon",
         "warstaff",
@@ -5966,6 +7421,7 @@
   },
   "shields": {
     "aegis buckler": {
+      "EV": 83,
       "tags": [
         "buckler",
         "dex_shield",
@@ -5976,6 +7432,7 @@
       ]
     },
     "aged tower shield": {
+      "AR": 60,
       "tags": [
         "str_armour",
         "str_shield",
@@ -5985,6 +7442,7 @@
       ]
     },
     "ancestor tower shield": {
+      "AR": 66,
       "tags": [
         "str_armour",
         "str_shield",
@@ -5994,6 +7452,7 @@
       ]
     },
     "ancient buckler": {
+      "EV": 100,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6004,6 +7463,7 @@
       ]
     },
     "array buckler": {
+      "EV": 71,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6014,6 +7474,9 @@
       ]
     },
     "aureate targe": {
+      "AR": 40,
+      "EV": 51,
+      "HY": 74,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6023,6 +7486,9 @@
       ]
     },
     "avian targe": {
+      "AR": 43,
+      "EV": 54,
+      "HY": 80,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6032,6 +7498,9 @@
       ]
     },
     "baroque targe": {
+      "AR": 50,
+      "EV": 63,
+      "HY": 92,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6041,6 +7510,7 @@
       ]
     },
     "barricade tower shield": {
+      "AR": 27,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -6051,6 +7521,7 @@
       ]
     },
     "blacksteel tower shield": {
+      "AR": 83,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6060,6 +7531,7 @@
       ]
     },
     "bladeguard buckler": {
+      "EV": 78,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6070,6 +7542,9 @@
       ]
     },
     "blazon crest shield": {
+      "AR": 5,
+      "ES": 17,
+      "HY": 11,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -6080,6 +7555,7 @@
       ]
     },
     "braced tower shield": {
+      "AR": 22,
       "tags": [
         "str_armour",
         "ezomyte_basetype",
@@ -6090,6 +7566,7 @@
       ]
     },
     "bulwark tower shield": {
+      "AR": 71,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6099,6 +7576,9 @@
       ]
     },
     "carved targe": {
+      "AR": 34,
+      "EV": 42,
+      "HY": 62,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6108,6 +7588,9 @@
       ]
     },
     "chiseled targe": {
+      "AR": 25,
+      "EV": 30,
+      "HY": 46,
       "tags": [
         "str_dex_armour",
         "vaal_basetype",
@@ -6118,6 +7601,7 @@
       ]
     },
     "coiled buckler": {
+      "EV": 66,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6128,6 +7612,9 @@
       ]
     },
     "crescent targe": {
+      "AR": 21,
+      "EV": 25,
+      "HY": 38,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -6138,6 +7625,7 @@
       ]
     },
     "crucible tower shield": {
+      "AR": 60,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6147,6 +7635,7 @@
       ]
     },
     "cultist tower shield": {
+      "AR": 67,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6156,6 +7645,7 @@
       ]
     },
     "defiant tower shield": {
+      "AR": 75,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6165,6 +7655,9 @@
       ]
     },
     "deified crest shield": {
+      "AR": 46,
+      "ES": 82,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6174,6 +7667,9 @@
       ]
     },
     "dekharan crest shield": {
+      "AR": 39,
+      "ES": 71,
+      "HY": 71,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6183,6 +7679,9 @@
       ]
     },
     "descry crest shield": {
+      "AR": 36,
+      "ES": 68,
+      "HY": 67,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6192,6 +7691,7 @@
       ]
     },
     "edged buckler": {
+      "EV": 52,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6203,6 +7703,7 @@
       ]
     },
     "effigial tower shield": {
+      "AR": 32,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -6213,6 +7714,9 @@
       ]
     },
     "emblem crest shield": {
+      "AR": 14,
+      "ES": 34,
+      "HY": 28,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -6223,6 +7727,9 @@
       ]
     },
     "empyreal crest shield": {
+      "AR": 40,
+      "ES": 74,
+      "HY": 74,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6232,6 +7739,9 @@
       ]
     },
     "engraved crest shield": {
+      "AR": 35,
+      "ES": 65,
+      "HY": 64,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6241,6 +7751,9 @@
       ]
     },
     "feathered targe": {
+      "AR": 28,
+      "EV": 34,
+      "HY": 50,
       "tags": [
         "str_dex_armour",
         "vaal_basetype",
@@ -6251,6 +7764,7 @@
       ]
     },
     "fortress tower shield": {
+      "AR": 91,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6260,6 +7774,9 @@
       ]
     },
     "fur-lined targe": {
+      "AR": 35,
+      "EV": 43,
+      "HY": 63,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6269,6 +7786,9 @@
       ]
     },
     "glowering crest shield": {
+      "AR": 43,
+      "ES": 80,
+      "HY": 80,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6278,6 +7798,7 @@
       ]
     },
     "goldworked tower shield": {
+      "AR": 79,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6287,6 +7808,9 @@
       ]
     },
     "grand targe": {
+      "AR": 46,
+      "EV": 57,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6296,6 +7820,7 @@
       ]
     },
     "gutspike buckler": {
+      "EV": 91,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6306,6 +7831,9 @@
       ]
     },
     "hardwood targe": {
+      "AR": 5,
+      "EV": 5,
+      "HY": 8,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -6316,6 +7844,7 @@
       ]
     },
     "heraldric tower shield": {
+      "AR": 46,
       "tags": [
         "str_armour",
         "vaal_basetype",
@@ -6326,6 +7855,9 @@
       ]
     },
     "intricate crest shield": {
+      "AR": 46,
+      "ES": 82,
+      "HY": 83,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6335,6 +7867,7 @@
       ]
     },
     "iron buckler": {
+      "EV": 24,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -6346,6 +7879,9 @@
       ]
     },
     "ironwood targe": {
+      "AR": 33,
+      "EV": 40,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6355,6 +7891,7 @@
       ]
     },
     "jingling buckler": {
+      "EV": 75,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6365,6 +7902,9 @@
       ]
     },
     "jingling crest shield": {
+      "AR": 22,
+      "ES": 45,
+      "HY": 42,
       "tags": [
         "maraketh_basetype",
         "str_int_armour",
@@ -6375,6 +7915,7 @@
       ]
     },
     "laminate buckler": {
+      "EV": 59,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6385,6 +7926,7 @@
       ]
     },
     "leather buckler": {
+      "EV": 7,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6396,6 +7938,9 @@
       ]
     },
     "mammoth targe": {
+      "AR": 46,
+      "EV": 57,
+      "HY": 83,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6405,6 +7950,9 @@
       ]
     },
     "mercenary targe": {
+      "AR": 36,
+      "EV": 45,
+      "HY": 67,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6414,6 +7962,7 @@
       ]
     },
     "metalworked tower shield": {
+      "AR": 63,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6423,6 +7972,9 @@
       ]
     },
     "mosaic targe": {
+      "AR": 37,
+      "EV": 46,
+      "HY": 68,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6432,6 +7984,7 @@
       ]
     },
     "noble tower shield": {
+      "AR": 76,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6441,6 +7994,7 @@
       ]
     },
     "oak buckler": {
+      "EV": 59,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6451,6 +8005,9 @@
       ]
     },
     "omen crest shield": {
+      "AR": 27,
+      "ES": 54,
+      "HY": 51,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -6461,6 +8018,7 @@
       ]
     },
     "ornate buckler": {
+      "EV": 83,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6471,6 +8029,7 @@
       ]
     },
     "painted buckler": {
+      "EV": 63,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6481,6 +8040,9 @@
       ]
     },
     "painted crest shield": {
+      "AR": 33,
+      "ES": 62,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6490,6 +8052,7 @@
       ]
     },
     "painted tower shield": {
+      "AR": 15,
       "tags": [
         "str_armour",
         "ezomyte_basetype",
@@ -6500,6 +8063,7 @@
       ]
     },
     "pearl buckler": {
+      "EV": 63,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6510,6 +8074,9 @@
       ]
     },
     "pelage targe": {
+      "AR": 9,
+      "EV": 10,
+      "HY": 16,
       "tags": [
         "str_dex_armour",
         "ezomyte_basetype",
@@ -6520,6 +8087,7 @@
       ]
     },
     "phalanx tower shield": {
+      "AR": 68,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6529,6 +8097,7 @@
       ]
     },
     "plated buckler": {
+      "EV": 19,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6540,6 +8109,9 @@
       ]
     },
     "polished targe": {
+      "AR": 39,
+      "EV": 48,
+      "HY": 71,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6549,6 +8121,9 @@
       ]
     },
     "quartered crest shield": {
+      "AR": 42,
+      "ES": 77,
+      "HY": 77,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6558,6 +8133,7 @@
       ]
     },
     "rampart tower shield": {
+      "AR": 41,
       "tags": [
         "maraketh_basetype",
         "str_armour",
@@ -6568,6 +8144,7 @@
       ]
     },
     "ridged buckler": {
+      "EV": 32,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -6579,6 +8156,7 @@
       ]
     },
     "ringed buckler": {
+      "EV": 45,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6590,6 +8168,7 @@
       ]
     },
     "royal tower shield": {
+      "AR": 83,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6599,6 +8178,9 @@
       ]
     },
     "sectarian crest shield": {
+      "AR": 25,
+      "ES": 51,
+      "HY": 48,
       "tags": [
         "str_int_armour",
         "vaal_basetype",
@@ -6609,6 +8191,9 @@
       ]
     },
     "seer crest shield": {
+      "AR": 35,
+      "ES": 65,
+      "HY": 65,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6618,6 +8203,9 @@
       ]
     },
     "sekheman crest shield": {
+      "AR": 50,
+      "ES": 91,
+      "HY": 91,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6627,6 +8215,9 @@
       ]
     },
     "sigil crest shield": {
+      "AR": 9,
+      "ES": 22,
+      "HY": 18,
       "tags": [
         "str_int_armour",
         "ezomyte_basetype",
@@ -6637,6 +8228,9 @@
       ]
     },
     "soaring targe": {
+      "AR": 54,
+      "EV": 68,
+      "HY": 100,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6646,6 +8240,7 @@
       ]
     },
     "spiked buckler": {
+      "EV": 36,
       "tags": [
         "maraketh_basetype",
         "buckler",
@@ -6657,6 +8252,7 @@
       ]
     },
     "spikeward buckler": {
+      "EV": 71,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6667,6 +8263,7 @@
       ]
     },
     "splintered tower shield": {
+      "AR": 9,
       "tags": [
         "str_armour",
         "ezomyte_basetype",
@@ -6677,6 +8274,9 @@
       ]
     },
     "stoic crest shield": {
+      "AR": 37,
+      "ES": 68,
+      "HY": 68,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6686,6 +8286,9 @@
       ]
     },
     "stone targe": {
+      "AR": 42,
+      "EV": 52,
+      "HY": 76,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6695,6 +8298,7 @@
       ]
     },
     "stone tower shield": {
+      "AR": 50,
       "tags": [
         "str_armour",
         "vaal_basetype",
@@ -6705,6 +8309,9 @@
       ]
     },
     "stratified targe": {
+      "AR": 33,
+      "EV": 40,
+      "HY": 60,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
@@ -6714,6 +8321,9 @@
       ]
     },
     "studded targe": {
+      "AR": 14,
+      "EV": 17,
+      "HY": 26,
       "tags": [
         "maraketh_basetype",
         "str_dex_armour",
@@ -6724,6 +8334,9 @@
       ]
     },
     "vaal crest shield": {
+      "AR": 54,
+      "ES": 100,
+      "HY": 100,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6733,6 +8346,7 @@
       ]
     },
     "vaal tower shield": {
+      "AR": 100,
       "tags": [
         "str_armour",
         "str_shield",
@@ -6742,6 +8356,9 @@
       ]
     },
     "wayward crest shield": {
+      "AR": 33,
+      "ES": 62,
+      "HY": 61,
       "tags": [
         "str_int_armour",
         "str_int_shield",
@@ -6751,6 +8368,7 @@
       ]
     },
     "wooden buckler": {
+      "EV": 12,
       "tags": [
         "buckler",
         "dex_shield",
@@ -6764,6 +8382,10 @@
   },
   "spears": {
     "barbed spear": {
+      "crit": 65,
+      "dps": 47,
+      "phys": 44,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6774,6 +8396,10 @@
       ]
     },
     "branched spear": {
+      "crit": 50,
+      "dps": 74,
+      "phys": 69,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6783,6 +8409,10 @@
       ]
     },
     "broad spear": {
+      "crit": 50,
+      "dps": 56,
+      "phys": 56,
+      "speed": 90,
       "tags": [
         "onehand",
         "spear",
@@ -6793,6 +8423,10 @@
       ]
     },
     "coursing spear": {
+      "crit": 50,
+      "dps": 65,
+      "phys": 63,
+      "speed": 93,
       "tags": [
         "onehand",
         "spear",
@@ -6802,6 +8436,10 @@
       ]
     },
     "crossblade spear": {
+      "crit": 50,
+      "dps": 62,
+      "phys": 60,
+      "speed": 93,
       "tags": [
         "onehand",
         "spear",
@@ -6811,6 +8449,10 @@
       ]
     },
     "flying spear": {
+      "crit": 50,
+      "dps": 95,
+      "phys": 89,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6820,6 +8462,10 @@
       ]
     },
     "forked spear": {
+      "crit": 50,
+      "dps": 39,
+      "phys": 37,
+      "speed": 96,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -6830,6 +8476,10 @@
       ]
     },
     "grand spear": {
+      "crit": 50,
+      "dps": 100,
+      "phys": 100,
+      "speed": 90,
       "tags": [
         "onehand",
         "spear",
@@ -6839,6 +8489,10 @@
       ]
     },
     "hardwood spear": {
+      "crit": 50,
+      "dps": 11,
+      "phys": 10,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6849,6 +8503,10 @@
       ]
     },
     "helix spear": {
+      "crit": 50,
+      "dps": 85,
+      "phys": 80,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6858,6 +8516,10 @@
       ]
     },
     "hunting spear": {
+      "crit": 50,
+      "dps": 22,
+      "phys": 21,
+      "speed": 93,
       "tags": [
         "onehand",
         "spear",
@@ -6868,6 +8530,10 @@
       ]
     },
     "ironhead spear": {
+      "crit": 50,
+      "dps": 16,
+      "phys": 15,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6878,6 +8544,10 @@
       ]
     },
     "jagged spear": {
+      "crit": 65,
+      "dps": 76,
+      "phys": 71,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6887,6 +8557,10 @@
       ]
     },
     "massive spear": {
+      "crit": 50,
+      "dps": 82,
+      "phys": 82,
+      "speed": 90,
       "tags": [
         "onehand",
         "spear",
@@ -6896,6 +8570,10 @@
       ]
     },
     "orichalcum spear": {
+      "crit": 50,
+      "dps": 87,
+      "phys": 82,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6905,6 +8583,10 @@
       ]
     },
     "pronged spear": {
+      "crit": 50,
+      "dps": 93,
+      "phys": 87,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6914,6 +8596,10 @@
       ]
     },
     "seaglass spear": {
+      "crit": 100,
+      "dps": 62,
+      "phys": 58,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6923,6 +8609,10 @@
       ]
     },
     "spiked spear": {
+      "crit": 65,
+      "dps": 95,
+      "phys": 89,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6932,6 +8622,10 @@
       ]
     },
     "stalking spear": {
+      "crit": 50,
+      "dps": 99,
+      "phys": 96,
+      "speed": 93,
       "tags": [
         "onehand",
         "spear",
@@ -6941,6 +8635,10 @@
       ]
     },
     "steelhead spear": {
+      "crit": 50,
+      "dps": 62,
+      "phys": 58,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6950,6 +8648,10 @@
       ]
     },
     "striking spear": {
+      "crit": 50,
+      "dps": 92,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6959,6 +8661,10 @@
       ]
     },
     "swift spear": {
+      "crit": 50,
+      "dps": 65,
+      "phys": 61,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6968,6 +8674,10 @@
       ]
     },
     "sword spear": {
+      "crit": 50,
+      "dps": 70,
+      "phys": 65,
+      "speed": 96,
       "tags": [
         "onehand",
         "spear",
@@ -6977,6 +8687,10 @@
       ]
     },
     "war spear": {
+      "crit": 50,
+      "dps": 32,
+      "phys": 30,
+      "speed": 96,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -6987,6 +8701,10 @@
       ]
     },
     "winged spear": {
+      "crit": 50,
+      "dps": 28,
+      "phys": 25,
+      "speed": 100,
       "tags": [
         "maraketh_basetype",
         "onehand",
@@ -7217,6 +8935,10 @@
   },
   "two handed axes": {
     "arched greataxe": {
+      "crit": 76,
+      "dps": 34,
+      "phys": 35,
+      "speed": 92,
       "tags": [
         "axe",
         "maraketh_basetype",
@@ -7227,6 +8949,10 @@
       ]
     },
     "ceremonial halberd": {
+      "crit": 76,
+      "dps": 82,
+      "phys": 82,
+      "speed": 96,
       "tags": [
         "axe",
         "two_hand_weapon",
@@ -7236,6 +8962,10 @@
       ]
     },
     "elegant glaive": {
+      "crit": 76,
+      "dps": 38,
+      "phys": 38,
+      "speed": 96,
       "tags": [
         "axe",
         "maraketh_basetype",
@@ -7246,6 +8976,10 @@
       ]
     },
     "ember greataxe": {
+      "crit": 76,
+      "dps": 99,
+      "phys": 0,
+      "speed": 96,
       "tags": [
         "axe",
         "two_hand_weapon",
@@ -7255,6 +8989,10 @@
       ]
     },
     "executioner greataxe": {
+      "crit": 76,
+      "dps": 23,
+      "phys": 23,
+      "speed": 96,
       "tags": [
         "axe",
         "ezomyte_basetype",
@@ -7265,6 +9003,10 @@
       ]
     },
     "jagged greataxe": {
+      "crit": 76,
+      "dps": 63,
+      "phys": 66,
+      "speed": 92,
       "tags": [
         "axe",
         "vaal_basetype",
@@ -7275,6 +9017,10 @@
       ]
     },
     "light halberd": {
+      "crit": 76,
+      "dps": 17,
+      "phys": 16,
+      "speed": 100,
       "tags": [
         "axe",
         "ezomyte_basetype",
@@ -7285,6 +9031,10 @@
       ]
     },
     "monument greataxe": {
+      "crit": 76,
+      "dps": 89,
+      "phys": 89,
+      "speed": 96,
       "tags": [
         "axe",
         "two_hand_weapon",
@@ -7294,6 +9044,10 @@
       ]
     },
     "reaver glaive": {
+      "crit": 76,
+      "dps": 72,
+      "phys": 72,
+      "speed": 96,
       "tags": [
         "axe",
         "two_hand_weapon",
@@ -7303,6 +9057,10 @@
       ]
     },
     "rending halberd": {
+      "crit": 100,
+      "dps": 55,
+      "phys": 55,
+      "speed": 96,
       "tags": [
         "axe",
         "vaal_basetype",
@@ -7313,6 +9071,10 @@
       ]
     },
     "savage greataxe": {
+      "crit": 76,
+      "dps": 43,
+      "phys": 43,
+      "speed": 96,
       "tags": [
         "axe",
         "maraketh_basetype",
@@ -7323,6 +9085,10 @@
       ]
     },
     "splitting greataxe": {
+      "crit": 76,
+      "dps": 13,
+      "phys": 13,
+      "speed": 96,
       "tags": [
         "axe",
         "ezomyte_basetype",
@@ -7333,6 +9099,10 @@
       ]
     },
     "vile greataxe": {
+      "crit": 76,
+      "dps": 100,
+      "phys": 100,
+      "speed": 96,
       "tags": [
         "axe",
         "two_hand_weapon",
@@ -7344,6 +9114,10 @@
   },
   "two handed maces": {
     "anvil maul": {
+      "crit": 76,
+      "dps": 89,
+      "phys": 93,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7353,6 +9127,10 @@
       ]
     },
     "blacksmith maul": {
+      "crit": 76,
+      "dps": 67,
+      "phys": 70,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7362,6 +9140,10 @@
       ]
     },
     "crumbling maul": {
+      "crit": 76,
+      "dps": 48,
+      "phys": 48,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -7372,6 +9154,10 @@
       ]
     },
     "cultist greathammer": {
+      "crit": 76,
+      "dps": 25,
+      "phys": 26,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7382,6 +9168,10 @@
       ]
     },
     "disintegrating maul": {
+      "crit": 76,
+      "dps": 73,
+      "phys": 73,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7391,6 +9181,10 @@
       ]
     },
     "fanatic greathammer": {
+      "crit": 76,
+      "dps": 71,
+      "phys": 74,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7400,6 +9194,10 @@
       ]
     },
     "felled greatclub": {
+      "crit": 76,
+      "dps": 11,
+      "phys": 11,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7410,6 +9208,10 @@
       ]
     },
     "forge maul": {
+      "crit": 76,
+      "dps": 23,
+      "phys": 24,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7420,6 +9222,10 @@
       ]
     },
     "giant maul": {
+      "crit": 76,
+      "dps": 85,
+      "phys": 85,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7429,6 +9235,10 @@
       ]
     },
     "greatmace": {
+      "crit": 76,
+      "dps": 70,
+      "phys": 70,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7438,6 +9248,10 @@
       ]
     },
     "heavy greathammer": {
+      "crit": 76,
+      "dps": 78,
+      "phys": 78,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7447,6 +9261,10 @@
       ]
     },
     "ironwood greathammer": {
+      "crit": 76,
+      "dps": 91,
+      "phys": 95,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7456,6 +9274,10 @@
       ]
     },
     "leaden greathammer": {
+      "crit": 76,
+      "dps": 48,
+      "phys": 48,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -7466,6 +9288,10 @@
       ]
     },
     "massive greathammer": {
+      "crit": 76,
+      "dps": 100,
+      "phys": 100,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7475,6 +9301,10 @@
       ]
     },
     "oak greathammer": {
+      "crit": 76,
+      "dps": 13,
+      "phys": 14,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7485,6 +9315,10 @@
       ]
     },
     "pointed maul": {
+      "crit": 100,
+      "dps": 60,
+      "phys": 60,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7494,6 +9328,10 @@
       ]
     },
     "precise greathammer": {
+      "crit": 76,
+      "dps": 73,
+      "phys": 73,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7503,6 +9341,10 @@
       ]
     },
     "ruination maul": {
+      "crit": 76,
+      "dps": 89,
+      "phys": 89,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7512,6 +9354,10 @@
       ]
     },
     "sacred maul": {
+      "crit": 76,
+      "dps": 91,
+      "phys": 83,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7521,6 +9367,10 @@
       ]
     },
     "snakewood greathammer": {
+      "crit": 76,
+      "dps": 57,
+      "phys": 60,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7530,6 +9380,10 @@
       ]
     },
     "solemn maul": {
+      "crit": 76,
+      "dps": 72,
+      "phys": 66,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7539,6 +9393,10 @@
       ]
     },
     "studded greatclub": {
+      "crit": 76,
+      "dps": 28,
+      "phys": 28,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7549,6 +9407,10 @@
       ]
     },
     "temple maul": {
+      "crit": 76,
+      "dps": 41,
+      "phys": 38,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7559,6 +9421,10 @@
       ]
     },
     "totemic greatclub": {
+      "crit": 76,
+      "dps": 61,
+      "phys": 61,
+      "speed": 91,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7568,6 +9434,10 @@
       ]
     },
     "zealot greathammer": {
+      "crit": 76,
+      "dps": 49,
+      "phys": 51,
+      "speed": 87,
       "tags": [
         "two_hand_weapon",
         "mace",
@@ -7579,6 +9449,10 @@
   },
   "two handed swords": {
     "ancient greatblade": {
+      "crit": 100,
+      "dps": 79,
+      "phys": 82,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "weapon",
@@ -7588,6 +9462,10 @@
       ]
     },
     "arced longsword": {
+      "crit": 100,
+      "dps": 48,
+      "phys": 46,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7598,6 +9476,10 @@
       ]
     },
     "blessed claymore": {
+      "crit": 100,
+      "dps": 26,
+      "phys": 26,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7608,6 +9490,10 @@
       ]
     },
     "broad greatsword": {
+      "crit": 100,
+      "dps": 33,
+      "phys": 35,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7618,6 +9504,10 @@
       ]
     },
     "corroded longsword": {
+      "crit": 100,
+      "dps": 13,
+      "phys": 13,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7627,17 +9517,11 @@
         "default"
       ]
     },
-    "energy blade two handed": {
-      "tags": [
-        "two_hand_weapon",
-        "not_for_sale",
-        "weapon",
-        "sword",
-        "twohand",
-        "default"
-      ]
-    },
     "flanged greatblade": {
+      "crit": 100,
+      "dps": 82,
+      "phys": 82,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "weapon",
@@ -7647,6 +9531,10 @@
       ]
     },
     "iron greatsword": {
+      "crit": 100,
+      "dps": 19,
+      "phys": 18,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "ezomyte_basetype",
@@ -7657,18 +9545,12 @@
       ]
     },
     "keen greatsword": {
+      "crit": 100,
+      "dps": 72,
+      "phys": 72,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
-        "weapon",
-        "sword",
-        "twohand",
-        "default"
-      ]
-    },
-    "keyblade": {
-      "tags": [
-        "two_hand_weapon",
-        "not_for_sale",
         "weapon",
         "sword",
         "twohand",
@@ -7676,6 +9558,10 @@
       ]
     },
     "obsidian greatsword": {
+      "crit": 100,
+      "dps": 61,
+      "phys": 63,
+      "speed": 92,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -7686,6 +9572,10 @@
       ]
     },
     "regalia longsword": {
+      "crit": 100,
+      "dps": 83,
+      "phys": 80,
+      "speed": 100,
       "tags": [
         "two_hand_weapon",
         "weapon",
@@ -7695,6 +9585,10 @@
       ]
     },
     "rippled greatsword": {
+      "crit": 100,
+      "dps": 41,
+      "phys": 41,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "maraketh_basetype",
@@ -7705,6 +9599,10 @@
       ]
     },
     "stone greatsword": {
+      "crit": 100,
+      "dps": 56,
+      "phys": 56,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "vaal_basetype",
@@ -7715,6 +9613,10 @@
       ]
     },
     "ultra greatsword": {
+      "crit": 100,
+      "dps": 100,
+      "phys": 100,
+      "speed": 96,
       "tags": [
         "two_hand_weapon",
         "weapon",
@@ -7805,12 +9707,6 @@
         "no_cold_spell_mods",
         "no_lightning_spell_mods",
         "no_physical_spell_mods",
-        "default"
-      ]
-    },
-    "random wand": {
-      "tags": [
-        "wand",
         "default"
       ]
     },

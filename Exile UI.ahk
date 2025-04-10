@@ -346,7 +346,7 @@ Init_general()
 	local
 	global vars, settings
 
-	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"], new_version := 15703
+	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"], new_version := 15707
 	If IsNumber(legacy_version) && (legacy_version < 15000) || FileExist("modules\alarm-timer.ahk") ;|| FileExist("modules\delve-helper.ahk")
 	{
 		MsgBox,, Script updated incorrectly, Updating from legacy to v1.50+ requires a clean installation.`nThe script will now exit.
@@ -378,8 +378,26 @@ Init_general()
 			For index, val in ["", 2, 3]
 				FileDelete, % "ini" poe_version "\leveling guide" val ".ini"
 		}
-		IniWrite, % new_version, ini\config.ini, versions, ini
 	}
+
+	If (ini_version < 15707)
+	{
+		For index, poe_version in ["", " 2"]
+		{
+			ini_check := IniBatchRead("ini" poe_version "\item-checker.ini")
+			If ini_check.settings.Count() || ini_check.UI.Count()
+			{
+				If (poe_version = vars.poe_version)
+					ini.features["enable item-info"] := 1
+				IniWrite, 1, % "ini" poe_version "\config.ini", Features, enable item-info
+			}
+		}
+		IniWrite, % new_version, ini\config.ini, versions, ini
+
+		If FileExist("data\global\[leveltracker] tree 2 0_2.json")
+			FileDelete, % "data\global\[leveltracker] tree 2 0_2.json"
+	}
+
 	settings.general.character := ini.settings["active character"]
 	settings.general.build := !Blank(settings.general.character) ? ini.settings["active build"] : ""
 	settings.general.dev := !Blank(check := ini.settings["dev"]) ? check : 0
@@ -396,8 +414,16 @@ Init_general()
 	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
 	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
-	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
+	settings.features.sanctum := !vars.poe_version && !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
+	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
+	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
+	settings.features.iteminfo := !Blank(check := ini.features["enable item-info"]) ? check : 0
+	settings.features.leveltracker := !Blank(check := ini.features["enable leveling guide"]) ? check : 0
+	settings.features.maptracker := !Blank(check := ini.features["enable map tracker"]) ? check : 0
+	settings.features.mapinfo := (settings.general.lang_client != "unknown") && !Blank(check := ini.features["enable map-info panel"]) ? check : 0
+	settings.features.OCR := !vars.poe_version && !Blank(check := ini.features["enable ocr"]) ? check : 0
+	settings.features.stash := !vars.poe_version && !Blank(check := ini.features["enable stash-ninja"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}}

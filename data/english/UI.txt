@@ -185,6 +185,7 @@
 		global_condition		=	"condition:"		;## as in "if x condition is met"
 		global_yes			=	"yes"
 		global_no			=	"no"
+		global_activation		=	"activation:"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -273,7 +274,6 @@
 		cheat_check			=	"screen-check:"
 		cheat_static			=	"static"
 		cheat_dynamic			=	"dynamic"
-		cheat_activation		=	"activation:"
 		cheat_hold			=	"hold"
 		cheat_manage			=	"manage image-files:"
 		cheat_title			=	"window title:"
@@ -805,13 +805,15 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "item-info" section of the settings menu
+		m_iteminfo_enable		=	"enable the item-info feature"
 		m_iteminfo_profiles		=	"profile settings:"
 		m_iteminfo_profiles		=	"profile selection:"
 		m_iteminfo_profiles		=	"reset the profile's:"				;## you can choose between two options: a profile's desired, or undesired mods
 		m_iteminfo_desired		=	"desired"
 		m_iteminfo_undesired		=	"undesired"
 		m_iteminfo_undesired		=	"(un)desired:"
-		m_iteminfo_modrolls		=	"hide roll-ranges on explicit mods"
+		m_iteminfo_modrolls		=	"hide roll-ranges from mod-texts"
+		m_iteminfo_modbars		=	"roll-range scale:"
 		m_iteminfo_shift		=	"shift-clicking activates item-info"
 		m_iteminfo_league		=	"enable league-start mode"
 		m_iteminfo_base			=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg

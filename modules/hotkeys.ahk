@@ -60,6 +60,43 @@
 	Hotkey, If, WinExist("ahk_id "vars.hwnd.horizons.main)
 	Loop, Parse, % "abcdefghijklmnopqrstuvwxyz"
 		Hotkey, % "*" Hotkeys_Convert(A_LoopField), HorizonsTooltip, On
+
+	If vars.client.stream
+		Return
+
+	Hotkey, If, settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
+	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" settings.hotkeys.item_descriptions : "*~ALT", Hotkeys_Alt, On
+}
+
+Hotkeys_Alt()
+{
+	local
+	global vars, settings
+
+	start := A_TickCount
+	While !longpress && !GetKeyState("TAB", "P") && (GetKeyState("ALT", "P") || settings.hotkeys.rebound_alt && GetKeyState(settings.hotkeys.item_descriptions, "P"))
+	{
+		If (A_TickCount >= start + 150)
+			longpress := 1
+		Sleep 10
+	}
+
+	If !(GetKeyState("Ctrl", "P") || GetKeyState("Shift", "P")) && longpress && (vars.general.MultiThreading && vars.pixels.inventory || !vars.general.MultiThreading && Screenchecks_PixelSearch("inventory"))
+	{
+		Clipboard := ""
+		If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
+			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
+		Else SendInput, !^{c}
+		ClipWait, 0.1
+
+		If Clipboard
+			vars.omnikey.item := {}, Omni_ItemInfo(), Iteminfo()
+	}
+	KeyWait, ALT
+	If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
+		KeyWait, % settings.hotkeys.item_descriptions
+
+	LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
 }
 
 Hotkeys_Convert(key)
@@ -209,7 +246,6 @@ Hotkeys_Tab()
 	static stash_toggle := 0
 
 	start := A_TickCount
-
 	If WinExist("ahk_id " vars.hwnd.stash.main) && !WinActive("ahk_id " vars.hwnd.settings.main)
 	{
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
@@ -359,6 +395,7 @@ Hotkeys_Tab()
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
+#If settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
 
 #If vars.hwnd.leveltracker_editor.main && (vars.general.wMouse = vars.hwnd.leveltracker_editor.main)
@@ -539,7 +576,7 @@ SC001::
 WheelUp::
 WheelDown::String_Scroll(A_ThisHotkey)
 
-#If (vars.system.timeout = 0) && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.iteminfo.main) && WinActive("ahk_group poe_ahk_window") ;applying highlighting to item-mods in the item-info tooltip
+#If (vars.system.timeout = 0) && settings.features.iteminfo && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.iteminfo.main) && WinActive("ahk_group poe_ahk_window") ;applying highlighting to item-mods in the item-info tooltip
 
 *LButton::
 *RButton::
@@ -549,12 +586,12 @@ Else If vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.iteminfo.inverted_mod
 	Iteminfo_ModInvert(vars.general.cMouse)
 Return
 
-#If (settings.iteminfo.trigger || settings.mapinfo.trigger) && vars.general.shift_trigger && (vars.general.wMouse = vars.hwnd.poe_client) ;shift-clicking currency onto items and triggering certain features
+#If (settings.features.iteminfo && settings.iteminfo.trigger || settings.features.mapinfo && settings.mapinfo.trigger) && vars.general.shift_trigger && (vars.general.wMouse = vars.hwnd.poe_client) ;shift-clicking currency onto items and triggering certain features
 
 ~+LButton UP::Iteminfo_Trigger(1)
 +RButton::Iteminfo_Marker()
 
-#If (settings.iteminfo.trigger || settings.mapinfo.trigger) && !vars.general.shift_trigger && (vars.general.wMouse = vars.hwnd.poe_client) && Screenchecks_PixelSearch("inventory")
+#If (settings.features.iteminfo && settings.iteminfo.trigger || settings.features.mapinfo && settings.mapinfo.trigger) && !vars.general.shift_trigger && (vars.general.wMouse = vars.hwnd.poe_client) && Screenchecks_PixelSearch("inventory")
 ;shift-right-clicking currency to shift-click items after
 
 ~+RButton UP::Iteminfo_Trigger()
@@ -577,7 +614,7 @@ Return
 ;closing the item-info tooltip and its markers when clicking into the client
 ~LButton::Iteminfo_Close(1)
 
-#If (vars.system.timeout = 0) && vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.iteminfo_comparison, vars.general.wMouse)) ;long-clicking the gear-update buttons on gear-slots in the inventory to update/remove selected gear
+#If (vars.system.timeout = 0) && settings.features.iteminfo && vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.iteminfo_comparison, vars.general.wMouse)) ;long-clicking the gear-update buttons on gear-slots in the inventory to update/remove selected gear
 
 LButton::
 RButton::Iteminfo_GearParse(LLK_HasVal(vars.hwnd.iteminfo_comparison, vars.general.wMouse))

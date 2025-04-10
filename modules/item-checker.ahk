@@ -10,12 +10,14 @@
 
 	settings.iteminfo := {}, ini := IniBatchRead("ini" vars.poe_version "\item-checker.ini")
 	settings.iteminfo.profile := !Blank(check := ini.settings["current profile"]) ? check : 1
-	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 1
+	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 0
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
 	settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
+	settings.iteminfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
+	settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
 
 	settings.iteminfo.rules := {}
 	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
@@ -405,7 +407,7 @@ Iteminfo_Stats()
 			Loop, Parse, % SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), `n, `r ;parse flat and % increases
 			{
 				number := "", text := ""
-				Loop, Parse, % Iteminfo_ModRemoveRange(A_LoopField)
+				Loop, Parse, % Iteminfo_ModRangeRemove(A_LoopField)
 					number .= LLK_IsType(A_LoopField, "number") ? A_LoopField : "", text .= LLK_IsType(A_LoopField, "number") || InStr("()", A_LoopField) ? "" : A_LoopField
 				While (SubStr(text, 1, 1) = " ")
 					text := SubStr(text, 2)
@@ -518,9 +520,9 @@ Iteminfo_Stats()
 Iteminfo_Stats2()
 {
 	local
-	global vars, settings
+	global vars, settings, db
 
-	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}
+	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}, item.stats := {}
 	Loop, Parse, clip, `n, `r ;get the raw defense values and store them
 	{
 		If InStr(A_LoopField, Lang_Trans("items_armour"))
@@ -546,6 +548,10 @@ Iteminfo_Stats2()
 	If (item.type = "attack")
 	{
 		phys_dmg := pdps := ele_count := ele_dmg := ele_dmg1 := ele_dmg2 := ele_dmg3 := edps0 := chaos_dmg := cdps := speed := 0
+		For index, stat in ["phys", "crit", "speed", "dps"]
+			If (check := db.item_bases[item.class][item.itembase][stat])
+				item.stats[stat] := {"relative": check}
+
 		Loop, Parse, clip, `n, `r
 		{
 			If InStr(A_LoopField, Lang_Trans("items_phys_dmg"))
@@ -608,6 +614,12 @@ Iteminfo_Stats2()
 		}
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
+	}
+	Else If (item.type = "defense")
+	{
+		For index, stat in ["AR", "EV", "ES", "HY", "BL"]
+			If (check := db.item_bases[item.class][item.itembase][stat])
+				item.stats[stat] := {"relative": check}
 	}
 
 	If (item.quality >= 25)
@@ -831,7 +843,8 @@ Iteminfo_Mods2()
 	global vars, settings
 
 	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item
-	clip2 := SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), clip2 := SubStr(clip2, InStr(clip2, "--`r`n") + 4), clip2 := Trim(LLK_StringCase(clip2), " `r`n")
+	clip2 := SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), item.ilvl := SubStr(clip2, 1, InStr(clip2, "`r`n") - 1), item.ilvl := SubStr(item.ilvl, InStr(item.ilvl, ":") + 2)
+	clip2 := SubStr(clip2, InStr(clip2, "--`r`n") + 4), clip2 := Trim(LLK_StringCase(clip2), " `r`n")
 	clip2 := StrReplace(clip2, "`r`n", "|")
 
 	Loop, Parse, clip2, |, % " "
@@ -918,25 +931,25 @@ Iteminfo_GUI()
 			Switch item.type
 			{
 				Case "attack": ;tooltip shows how close an item's phys-dmg, crit, and attack-speed are to the best-in-class item
-					stats_present := "phys,crit,speed,"
-					phys_text := item.stats.phys.relative "%"
+					stats_present := "phys,crit,speed," (vars.poe_version ? "dps," : "")
+					phys_text := item.stats.phys.relative "%", phys_text := (phys_text = "%") ? "0%" : phys_text
 					crit_text := item.stats.crit.relative "%"
 					speed_text := item.stats.speed.relative "%"
+					dps_text := item.stats.dps.relative "%"
 				Case "defense": ;tooltip shows how close an item's defense and block values are to the best-in-class item
-					stat_order := "armour,evasion,energy,ward,combined,block"
-					armour_text := item.stats.armour.relative "%"
-					evasion_text := item.stats.evasion.relative "%"
-					energy_text := item.stats.energy.relative "%"
-					ward_text := item.stats.ward.relative "%"
-					combined_text := item.stats.combined.relative "%"
-					block_text := item.stats.block.base_best "/"item.stats.block.class_best ;item.stats.block.relative "%"
+					stat_order := vars.poe_version ? "AR,EV,ES,HY" : "armour,evasion,energy,ward,combined,block"
+					For index, val in StrSplit(stat_order, ",")
+						If (val = "block")
+							%val%_text := item.stats.block.base_best "/" item.stats.block.class_best
+						Else %val%_text := item.stats[val].relative "%", %val%_text := (%val%_text = "%") ? "0%" : %val%_text
+
 					Loop, Parse, stat_order, `,
 					{
 						For key, val in item.stats
 							If (key = A_LoopField)
 								stats_present .= A_LoopField ","
 					}
-					stats_present .= ","
+					stats_present .= vars.poe_version ? "" : ","
 				Default:
 					stats_present := ""
 					If (item.anoint != "") && !InStr(vars.iteminfo.clipboard, "`r`n" Lang_Trans("items_corrupted") "`r`n")
@@ -1100,7 +1113,7 @@ Iteminfo_GUI()
 						%A_LoopField%_text := db.anoints._oils[A_LoopField]
 						, rank := 14 - A_LoopField, rank := (rank >= 6) ? 6 : rank
 						, color := (rank = 0) ? "White" : settings.iteminfo.colors_tier[rank]
-					Else color := (item.stats[A_LoopField].base_best = item.stats[A_LoopField].class_best) ? settings.iteminfo.colors_tier.1 : "404040"
+					Else color := !vars.poe_version && (item.stats[A_LoopField].base_best = item.stats[A_LoopField].class_best) || vars.poe_version && (%A_LoopField%_text = "100%") ? settings.iteminfo.colors_tier.1 : "404040"
 
 					If (%A_LoopField%_difference != "")
 					{
@@ -1125,11 +1138,11 @@ Iteminfo_GUI()
 					Else
 					{
 						If (item.type = "attack")
-							label := A_LoopField
-						Else label := (A_LoopField = "armour") ? "armor" : (A_LoopField = "energy") ? "energy" : A_LoopField
+							label := (A_LoopField = "dps") ? "damage" : A_LoopField
+						Else label := (A_LoopField = "armour" || A_LoopField = "AR") ? "armor" : (A_LoopField = "energy" || A_LoopField = "ES") ? "energy" : (vars.poe_version ? (A_LoopField = "EV" ? "evasion" : "block") : A_LoopField)
 
-						If (A_LoopField = "combined")
-							label := InStr(stats_present, "armour,evasion") ? "armor_evasion" : InStr(stats_present, "armour,energy") ? "armor_energy" : "evasion_energy"
+						If (A_LoopField = "combined" || A_LoopField = "HY")
+							label := InStr(stats_present, vars.poe_version ? "AR,EV" : "armour,evasion") ? "armor_evasion" : InStr(stats_present, vars.poe_version ? "AR,ES" : "armour,energy") ? "armor_energy" : "evasion_energy"
 					}
 
 					If (item.anoint = "")
@@ -1164,7 +1177,7 @@ Iteminfo_GUI()
 				}
 				Else
 				{
-					If (item.type = "defense") ;add the cells for the base-percentile roll
+					If !vars.poe_version && (item.type = "defense") ;add the cells for the base-percentile roll
 					{
 						If !vars.pics.iteminfo.defense
 							vars.pics.iteminfo.defense := LLK_ImageCache("img\GUI\item info\defense.png")
@@ -1181,9 +1194,9 @@ Iteminfo_GUI()
 							vars.pics.iteminfo.ilvl := LLK_ImageCache("img\GUI\item info\ilvl.png")
 						Gui, %GUI_name%: Add, Picture, % "ys Border Center BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo.ilvl
 						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
-						color := (item.ilvl >= item.ilvl_max) ? settings.iteminfo.colors_tier.1 : "404040", color1 := (color != "404040") ? "Black" : "White" ;highlight ilvl bar green if ilvl >= 86
-						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " w"UI.wSegment " Border Center BackgroundTrans c"color1, % (item.ilvl = 100) ? item.ilvl : item.ilvl "/" item.ilvl_max
-						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border range66-"item.ilvl_max " BackgroundBlack c"color, % item.ilvl
+						color := !vars.poe_version && (item.ilvl >= item.ilvl_max) || vars.poe_version && (item.ilvl = 84) ? settings.iteminfo.colors_tier.1 : "404040", color1 := (color != "404040") ? "Black" : "White" ;highlight ilvl bar green if ilvl >= 86
+						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " w"UI.wSegment " Border Center BackgroundTrans c"color1, % (item.ilvl = 100) || vars.poe_version ? item.ilvl : item.ilvl "/" item.ilvl_max
+						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border range65-" (vars.poe_version ? 84 : item.ilvl_max) " BackgroundBlack c"color, % item.ilvl
 					}
 				}
 			}
@@ -1228,10 +1241,10 @@ Iteminfo_GUI()
 		Else color := (highlight = 1) ? mColors.1 : mColors.2
 
 		color1 := (color = "Black") ? "White" : "Black"
-		Gui, %GUI_name%: Add, Text, % "xs Center Hidden Border w"UI.wSegment*(UI.segments - 1.25) " HWNDhwnd c"color1, % Iteminfo_ModRemoveRange(implicit) ;add hidden text label as dummy to get the correct height
+		Gui, %GUI_name%: Add, Text, % "xs Center Hidden Border w"UI.wSegment*(UI.segments - 1.25) " HWNDhwnd c"color1, % Iteminfo_ModRangeRemove(implicit) ;add hidden text label as dummy to get the correct height
 		GuiControlGet, text_, Pos, %hwnd%
 		height := (text_h <= UI.hSegment) ? UI.hSegment : text_h ;if mod-text consists of two lines, use that height, otherwise force standardized height
-		Gui, %GUI_name%: Add, Text, % "xp yp wp h"height " Border Center BackgroundTrans HWNDhwnd c"color1, % Iteminfo_ModRemoveRange(implicit) ;add actual text label on top
+		Gui, %GUI_name%: Add, Text, % "xp yp wp h"height " Border Center BackgroundTrans HWNDhwnd c"color1, % Iteminfo_ModRangeRemove(implicit) ;add actual text label on top
 		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled Section HWNDhwnd BackgroundBlack c"color, 100 ;place progress bar on top of text label (reversed stack-order)
 
 		Gui, %GUI_name%: Add, Text, % "ys hp w"UI.wSegment/4 " Border 0x200 Center BackgroundTrans", % ""
@@ -1390,27 +1403,178 @@ Iteminfo_GUI()
 			divider := 1
 		}
 
+		If vars.poe_version && !unique
+		{
+			tier_override := ""
+			If !IsObject(db.item_mods)
+				DB_Load("item_mods")
+
+			For kClass, oClass in db.item_mods ;check for clear-cut cases first, e.g. charms, flasks, etc.
+				If InStr(item.class, kClass)
+					For kModName, oModName in oClass
+						If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
+						{
+							tier_override := (count := oModName.Count()) + 1 - iTier
+							minimum_rolls := oModName.1.3.Clone()
+							maximum_rolls := oModName[count].3.Clone()
+
+							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+								ilvl := oModName[iTier].2
+							Break 2
+						}
+
+			For kModName, oModName in db.item_mods.universal ;check universal mod-list next
+				If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1))
+					For i, tag in oModName[iTier].4
+					{
+						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
+						{
+							While LLK_HasVal(oModName[max + 1].4, tag)
+								max += 1
+							While oModName[max + 1]
+							{
+								For i, tag0 in oModName[max + 1].4
+									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
+									{
+										max += 1
+										Continue 2
+									}
+								Break
+							}
+
+							While LLK_HasVal(oModName[min - 1].4, tag)
+								min -= 1
+							While oModName[min - 1]
+							{
+								For i, tag0 in oModName[min - 1].4
+									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
+									{
+										min -= 1
+										Continue 2
+									}
+								Break
+							}
+
+							minimum_rolls := oModName[min].3.Clone()
+							maximum_rolls := oModName[max].3.Clone()
+
+							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+								ilvl := oModName[iTier].2
+							If tier_override
+								tier_override := "conflict", ilvl := "??"
+							Else tier_override := max + 1 - iTier
+							Break
+						}
+					}
+
+			If (tier_override != "conflict")
+				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
+					If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1))
+						For i, tag in oModName[iTier].4
+						{
+							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
+							{
+								While LLK_HasVal(oModName[max + 1].4, tag)
+									max += 1
+								While oModName[max + 1]
+								{
+									For i, tag0 in oModName[max + 1].4
+										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
+										{
+											max += 1
+											Continue 2
+										}
+									Break
+								}
+
+								While LLK_HasVal(oModName[min - 1].4, tag)
+									min -= 1
+								While oModName[min - 1]
+								{
+									For i, tag0 in oModName[min - 1].4
+										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
+										{
+											min -= 1
+											Continue 2
+										}
+									Break
+								}
+	
+								minimum_rolls := oModName[min].3.Clone()
+								maximum_rolls := oModName[max].3.Clone()
+
+								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
+									ilvl := oModName[iTier].2
+								If tier_override
+									tier_override := "conflict", ilvl := "??"
+								Else tier_override := max + 1 - iTier
+								Break
+							}
+						}
+
+			tier_override := tier_override ? tier_override : "conflict"
+		}
+
 		highlights := "", color_t := "Black" ;track (un)desired highlighting for every part of hybrid mods
 		Loop, Parse, mod, `n ;parse mod-text line by line
 		{
-			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
+			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.bars_tier || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
 				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
 			rolls_val := Abs(rolls.2 - rolls.1), rolls_max := Abs(rolls.3 - rolls.1), valid_rolls := (!IsNumber(rolls.1 + rolls.2 + rolls.3) || !InStr(text_check, "(")) ? 0 : 1
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
-			mod_text := settings.iteminfo.modrolls ? Iteminfo_ModRemoveRange(text_check) : text_check
+			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
+			
+			If vars.poe_version && !unique && Lang_Match(text_check, vars.lang.mods_damage_flat, 0)
+			{
+				first := last := 0
+				Loop, Parse, text_check
+				{
+					If !first && IsNumber(A_LoopField)
+						first := A_Index
+					If IsNumber(A_LoopField) || (A_LoopField = ")")
+						last := A_Index
+				}
+				replace := SubStr(text_check, 1, last), replace := SubStr(replace, first)
+				mod_text := StrReplace(text_check, replace, (InStr(text_check, "(") ? rolls.2 : SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000))
+				. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+			}
+			Else
+			{
+				mod_text := text_check
+				If vars.poe_version && !unique && !settings.iteminfo.bars_tier
+				{
+					first := last := 0
+					Loop, Parse, text_check
+					{
+						If !first && IsNumber(A_LoopField)
+							first := A_Index
+						If IsNumber(A_LoopField) || (A_LoopField = ")")
+							last := A_Index
+					}
+					replace := SubStr(mod_text, 1, last), replace := SubStr(replace, first)
+					mod_text := StrReplace(mod_text, replace, (InStr(mod_text, "(") ? rolls.2 : (rolls.2 := SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000)))
+					. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+				}
+			}
+			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRangeRemove(mod_text) : mod_text) . (tier_override = "conflict" && !settings.iteminfo.bars_tier ? " (?)" : "")
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
-			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : settings.iteminfo.bars_tier && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := !unique && !settings.iteminfo.bars_tier && (min_roll = max_roll) ? "303060" : color
 			;if dummy text-panel is single-line, increase height slightly to make small cells square
 			Gui, %GUI_name%: Add, Text, % "xp yp wp h"(text_h < UI.hSegment ? UI.hSegment : "p" ) " Section BackgroundTrans HWNDhwnd Border Center" (invert_check && (rolls_val / rolls_max) * 100 = 0 ? " cCCCC00" : ""), % mod_text ;add actual text-panel with the correct size
 			GuiControlGet, text_, Pos, % hwnd ;get position and size of the text-panel
 			height += text_h ;sum up the heights of each line belonging to the same mod, so it can be used for the cells right next to them (highlight, tier, and potentially icon/ilvl)
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range0-100 c"color, % (rolls_val / rolls_max) * 100
-			If InStr(text_check, "(")
+
+			If !settings.iteminfo.bars_tier && !Blank(min_roll) && !Blank(max_roll) && InStr(min_roll . max_roll . rolls.2, ".") && (min_roll < 10 || max_roll < 10 || rolls.2 < 10)
+				min_roll *= 100, max_roll *= 100, rolls.2 *= 100
+			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100)
+			If InStr(text_check, "(") && (settings.iteminfo.bars_tier || unique)
 				vars.hwnd.iteminfo.inverted_mods[Iteminfo_ModHighlight(A_LoopField, "parse")] := hwnd
 
 			If unique ;add roll-% to unique mods
@@ -1436,62 +1600,9 @@ Iteminfo_GUI()
 				x := text_x + text_w, y := text_y
 			}
 		}
+
 		If !unique ;add tier and icon/ilvl-cells for non-uniques
 		{
-			If vars.poe_version
-			{
-				tier_override := ""
-				If !IsObject(db.item_mods)
-					DB_Load("item_mods")
-
-				For kClass, oClass in db.item_mods ;check for clear-cut cases first, e.g. charms, flasks, etc.
-					If InStr(item.class, kClass)
-						For kModName, oModName in oClass
-							If (iTier := LLK_HasVal(oModName, name,,,, 1))
-							{
-								tier_override := oModName.Count() + 1 - iTier
-								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-									ilvl := oModName[iTier].2
-								Break 2
-							}
-
-				For kModName, oModName in db.item_mods.universal ;check universal mod-list next
-					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
-						For i, tag in oModName[iTier].3
-						{
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
-							{
-								While LLK_HasVal(oModName[max + 1].3, tag)
-									max += 1
-								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-									ilvl := oModName[iTier].2
-								If tier_override
-									tier_override := "conflict", ilvl := "??"
-								Else tier_override := max + 1 - iTier
-								Break
-							}
-						}
-
-				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
-					If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
-						For i, tag in oModName[iTier].3
-						{
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
-							{
-								While LLK_HasVal(oModName[max + 1].3, tag)
-									max += 1
-								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-									ilvl := oModName[iTier].2
-								If tier_override
-									tier_override := "conflict", ilvl := "??"
-								Else tier_override := max + 1 - iTier
-								Break
-							}
-						}
-
-				tier_override := tier_override ? tier_override : "conflict"
-			}
-			
 			;determine the right color for the cells
 			If (tier_override = "conflict")
 				color := "Black"
@@ -1839,7 +1950,7 @@ Iteminfo_ModHighlight(string, mode := 0, implicit := 0) ;check if mod is highlig
 		For index, val in vars.lang.mods_eldritch_targets
 			string := (A_Index = 1) ? "" : string, string .= val
 
-	string := Iteminfo_ModRemoveRange(string)
+	string := Iteminfo_ModRangeRemove(string)
 	Loop, Parse, string ;parse string handed to function character by character
 	{
 		If (A_Index = 1)
@@ -2051,7 +2162,7 @@ Iteminfo_ModInvert(cHWND)
 	Iteminfo(1)
 }
 
-Iteminfo_ModRemoveRange(string) ;takes mod-text string and returns it without roll-ranges
+Iteminfo_ModRangeRemove(string) ;takes mod-text string and returns it without roll-ranges
 {
 	local
 
@@ -2127,6 +2238,10 @@ Iteminfo_GearParse(slot) ;parse the info of an equipped item and save it for ite
 		SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
 	Else SendInput, !^{c}
 	ClipWait, 0.1
+	If vars.poe_version && !settings.general.dev
+		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+			SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+		Else SendInput, {ALT up}
 
 	If !Clipboard
 	{
@@ -2550,6 +2665,9 @@ Iteminfo_ModRollCheck(mod) ;parses a mod's text and returns an array with inform
 			Return ["", "", ""]
 		sum_min += min, sum_current += current, sum_max += max ;if the mod as multiple ranges, sum up the values
 	}
+	For index, val in ["sum_min", "sum_current", "sum_max"]
+		While InStr(%val%, ".") && (SubStr(%val%, 0) = "0" && SubStr(%val%, -1, 1) != ".")
+			%val% := SubStr(%val%, 1, -1)
 	Return [sum_min, sum_current, sum_max]
 }
 
@@ -2587,6 +2705,11 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
 		Else SendInput, !^{c}
 		ClipWait, 0.1
+		If vars.poe_version && !settings.general.dev
+			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+			Else SendInput, {ALT up}
+
 		If Clipboard
 		{
 			If settings.mapinfo.trigger && (Omni_Context(1) = "mapinfo")
