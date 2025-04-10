@@ -2043,7 +2043,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 				If tree.nodes[vNode].ascendancyname
 					If tree.nodes[vNode].isascendancystart
 						ascendancy_points.InsertAt(1, vNode)
-					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption ? 1 : 0
+					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption || tree.nodes[vNode].isfreeallocate ? 1 : 0
 			lab := (ascendancy_points.Count() - ascendant_points) // 2
 
 			If ascendancy_points.Count() && !ascendancy_trees[lab].Count()

@@ -393,6 +393,9 @@ Init_general()
 			}
 		}
 		IniWrite, % new_version, ini\config.ini, versions, ini
+
+		If FileExist("data\global\[leveltracker] tree 2 0_2.json")
+			FileDelete, % "data\global\[leveltracker] tree 2 0_2.json"
 	}
 
 	settings.general.character := ini.settings["active character"]
