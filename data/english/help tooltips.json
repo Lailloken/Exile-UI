@@ -237,7 +237,8 @@
     "iteminfo enable": [
       "provides a customizable item tooltip which adds glance value to loot you pick up",
       "hold the omni-key while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
-      "click into the game or press <esc> to close it"
+      "click into the game or press <esc> to close it",
+      "note: requires the <inventory> screen-check to be set up correctly(/underline)"
     ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
@@ -262,12 +263,12 @@
       "+89 to maximum life\nvs.\n+89(80-89) to maximum Life"
     ],
     "iteminfo modbars tier": [
-      "the bars underneath mod-texts will visualize the roll within the current tier, i.e. the divine orb range",
+      "roll-ranges in mod-texts and on bars will represent the roll within the current tier, i.e. the divine orb range",
       "(this is the default setting)"
     ],
     "iteminfo modbars global": [
-      "the bars underneath mod-texts will visualize the roll on a global scale",
-      "this means 0 to 100 on the bar represents the worst to best possible roll that can ever exist on this specific item"
+      "roll-ranges in mod-texts and on bars will represent the roll on a global scale",
+      "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
     ],
     "iteminfo shift-click": [
       "automatically refreshes the tooltip when applying currency to items via shift-click",

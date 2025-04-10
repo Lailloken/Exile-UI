@@ -812,8 +812,8 @@
 		m_iteminfo_desired		=	"desired"
 		m_iteminfo_undesired		=	"undesired"
 		m_iteminfo_undesired		=	"(un)desired:"
-		m_iteminfo_modrolls		=	"hide roll-ranges on explicit mods"
-		m_iteminfo_modbars		=	"roll-ranges on bars:"				;## bars used to visualize data (bar chart)
+		m_iteminfo_modrolls		=	"hide roll-ranges from mod-texts"
+		m_iteminfo_modbars		=	"roll-range scale:"
 		m_iteminfo_shift		=	"shift-clicking activates item-info"
 		m_iteminfo_league		=	"enable league-start mode"
 		m_iteminfo_base			=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg

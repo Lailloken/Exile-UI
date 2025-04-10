@@ -407,7 +407,7 @@ Iteminfo_Stats()
 			Loop, Parse, % SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), `n, `r ;parse flat and % increases
 			{
 				number := "", text := ""
-				Loop, Parse, % Iteminfo_ModRemoveRange(A_LoopField)
+				Loop, Parse, % Iteminfo_ModRangeRemove(A_LoopField)
 					number .= LLK_IsType(A_LoopField, "number") ? A_LoopField : "", text .= LLK_IsType(A_LoopField, "number") || InStr("()", A_LoopField) ? "" : A_LoopField
 				While (SubStr(text, 1, 1) = " ")
 					text := SubStr(text, 2)
@@ -1241,10 +1241,10 @@ Iteminfo_GUI()
 		Else color := (highlight = 1) ? mColors.1 : mColors.2
 
 		color1 := (color = "Black") ? "White" : "Black"
-		Gui, %GUI_name%: Add, Text, % "xs Center Hidden Border w"UI.wSegment*(UI.segments - 1.25) " HWNDhwnd c"color1, % Iteminfo_ModRemoveRange(implicit) ;add hidden text label as dummy to get the correct height
+		Gui, %GUI_name%: Add, Text, % "xs Center Hidden Border w"UI.wSegment*(UI.segments - 1.25) " HWNDhwnd c"color1, % Iteminfo_ModRangeRemove(implicit) ;add hidden text label as dummy to get the correct height
 		GuiControlGet, text_, Pos, %hwnd%
 		height := (text_h <= UI.hSegment) ? UI.hSegment : text_h ;if mod-text consists of two lines, use that height, otherwise force standardized height
-		Gui, %GUI_name%: Add, Text, % "xp yp wp h"height " Border Center BackgroundTrans HWNDhwnd c"color1, % Iteminfo_ModRemoveRange(implicit) ;add actual text label on top
+		Gui, %GUI_name%: Add, Text, % "xp yp wp h"height " Border Center BackgroundTrans HWNDhwnd c"color1, % Iteminfo_ModRangeRemove(implicit) ;add actual text label on top
 		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled Section HWNDhwnd BackgroundBlack c"color, 100 ;place progress bar on top of text label (reversed stack-order)
 
 		Gui, %GUI_name%: Add, Text, % "ys hp w"UI.wSegment/4 " Border 0x200 Center BackgroundTrans", % ""
@@ -1525,7 +1525,41 @@ Iteminfo_GUI()
 			rolls_val := Abs(rolls.2 - rolls.1), rolls_max := Abs(rolls.3 - rolls.1), valid_rolls := (!IsNumber(rolls.1 + rolls.2 + rolls.3) || !InStr(text_check, "(")) ? 0 : 1
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
-			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRemoveRange(text_check) : text_check) . (tier_override = "conflict" && !settings.iteminfo.bars_tier ? " (?)" : "")
+			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
+			
+			If vars.poe_version && !unique && Lang_Match(text_check, vars.lang.mods_damage_flat, 0)
+			{
+				first := last := 0
+				Loop, Parse, text_check
+				{
+					If !first && IsNumber(A_LoopField)
+						first := A_Index
+					If IsNumber(A_LoopField) || (A_LoopField = ")")
+						last := A_Index
+				}
+				replace := SubStr(text_check, 1, last), replace := SubStr(replace, first)
+				mod_text := StrReplace(text_check, replace, (InStr(text_check, "(") ? rolls.2 : SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000))
+				. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+			}
+			Else
+			{
+				mod_text := text_check
+				If vars.poe_version && !unique && !settings.iteminfo.bars_tier
+				{
+					first := last := 0
+					Loop, Parse, text_check
+					{
+						If !first && IsNumber(A_LoopField)
+							first := A_Index
+						If IsNumber(A_LoopField) || (A_LoopField = ")")
+							last := A_Index
+					}
+					replace := SubStr(mod_text, 1, last), replace := SubStr(replace, first)
+					mod_text := StrReplace(mod_text, replace, (InStr(mod_text, "(") ? rolls.2 : SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000))
+					. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+				}
+			}
+			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRangeRemove(mod_text) : mod_text) . (tier_override = "conflict" && !settings.iteminfo.bars_tier ? " (?)" : "")
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
@@ -1535,7 +1569,6 @@ Iteminfo_GUI()
 			GuiControlGet, text_, Pos, % hwnd ;get position and size of the text-panel
 			height += text_h ;sum up the heights of each line belonging to the same mod, so it can be used for the cells right next to them (highlight, tier, and potentially icon/ilvl)
 
-			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
 			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100) 
 			If InStr(text_check, "(") && (settings.iteminfo.bars_tier || unique)
@@ -1914,7 +1947,7 @@ Iteminfo_ModHighlight(string, mode := 0, implicit := 0) ;check if mod is highlig
 		For index, val in vars.lang.mods_eldritch_targets
 			string := (A_Index = 1) ? "" : string, string .= val
 
-	string := Iteminfo_ModRemoveRange(string)
+	string := Iteminfo_ModRangeRemove(string)
 	Loop, Parse, string ;parse string handed to function character by character
 	{
 		If (A_Index = 1)
@@ -2126,7 +2159,7 @@ Iteminfo_ModInvert(cHWND)
 	Iteminfo(1)
 }
 
-Iteminfo_ModRemoveRange(string) ;takes mod-text string and returns it without roll-ranges
+Iteminfo_ModRangeRemove(string) ;takes mod-text string and returns it without roll-ranges
 {
 	local
 
@@ -2629,6 +2662,9 @@ Iteminfo_ModRollCheck(mod) ;parses a mod's text and returns an array with inform
 			Return ["", "", ""]
 		sum_min += min, sum_current += current, sum_max += max ;if the mod as multiple ranges, sum up the values
 	}
+	For index, val in ["sum_min", "sum_current", "sum_max"]
+		While InStr(%val%, ".") && (SubStr(%val%, 0) = "0" && SubStr(%val%, -1, 1) != ".")
+			%val% := SubStr(%val%, 1, -1)
 	Return [sum_min, sum_current, sum_max]
 }
 
