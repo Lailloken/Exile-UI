@@ -10,7 +10,7 @@
 
 	settings.iteminfo := {}, ini := IniBatchRead("ini" vars.poe_version "\item-checker.ini")
 	settings.iteminfo.profile := !Blank(check := ini.settings["current profile"]) ? check : 1
-	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 1
+	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 0
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
 	settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
@@ -1555,7 +1555,7 @@ Iteminfo_GUI()
 							last := A_Index
 					}
 					replace := SubStr(mod_text, 1, last), replace := SubStr(replace, first)
-					mod_text := StrReplace(mod_text, replace, (InStr(mod_text, "(") ? rolls.2 : SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000))
+					mod_text := StrReplace(mod_text, replace, (InStr(mod_text, "(") ? rolls.2 : (rolls.2 := SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000)))
 					. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
 				}
 			}
@@ -1563,14 +1563,17 @@ Iteminfo_GUI()
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
-			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : settings.iteminfo.bars_tier && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := !unique && !settings.iteminfo.bars_tier && (min_roll = max_roll) ? "303060" : color
 			;if dummy text-panel is single-line, increase height slightly to make small cells square
 			Gui, %GUI_name%: Add, Text, % "xp yp wp h"(text_h < UI.hSegment ? UI.hSegment : "p" ) " Section BackgroundTrans HWNDhwnd Border Center" (invert_check && (rolls_val / rolls_max) * 100 = 0 ? " cCCCC00" : ""), % mod_text ;add actual text-panel with the correct size
 			GuiControlGet, text_, Pos, % hwnd ;get position and size of the text-panel
 			height += text_h ;sum up the heights of each line belonging to the same mod, so it can be used for the cells right next to them (highlight, tier, and potentially icon/ilvl)
 
+			If !settings.iteminfo.bars_tier && !Blank(min_roll) && !Blank(max_roll) && InStr(min_roll . max_roll . rolls.2, ".") && (min_roll < 10 || max_roll < 10 || rolls.2 < 10)
+				min_roll *= 100, max_roll *= 100, rolls.2 *= 100
 			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100) 
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100)
 			If InStr(text_check, "(") && (settings.iteminfo.bars_tier || unique)
 				vars.hwnd.iteminfo.inverted_mods[Iteminfo_ModHighlight(A_LoopField, "parse")] := hwnd
 
