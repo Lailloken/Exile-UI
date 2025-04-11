@@ -231,14 +231,27 @@ Init_client()
 	}
 	Else vars.client.stream := 1, vars.client.fullscreen := "true"
 
-	;determine native resolution of the active monitor
-	WinGet, minmax, MinMax, ahk_group poe_window
-	If (minmax = -1)
+	monitor_override := StrSplit(LLK_IniRead("ini\config.ini", "settings", "monitor override"), ",", " ")
+	If (monitor_override.Count() != 2)
+		monitor_override := ""
+	Else
+		For index, val in monitor_override
+			If !IsNumber(val)
+				monitor_override := ""
+
+	If !monitor_override
 	{
-		WinRestore, ahk_group poe_window
-		Sleep, 2000
+		;determine native resolution of the active monitor
+		WinGet, minmax, MinMax, ahk_group poe_window
+		If (minmax = -1)
+		{
+			WinRestore, ahk_group poe_window
+			Sleep, 2000
+		}
+		WinGetPos, x, y, w, h, ahk_group poe_window
 	}
-	WinGetPos, x, y, w, h, ahk_group poe_window
+	Else x := monitor_override.1, y := monitor_override.2, w := 1280, h := 720
+
 	Gui, Screen_Test: New, -DPIScale +LastFound +AlwaysOnTop +ToolWindow -Caption
 	WinSet, Trans, 0
 	Gui, Screen_Test: Show, % "NA x" x + w//2 " y" y + h//2 " Maximize"
@@ -247,6 +260,13 @@ Init_client()
 	;WinGetPos, x, y, w, h, ahk_class Shell_TrayWnd
 	vars.monitor := {"x": xScreenOffset_monitor, "y": yScreenOffSet_monitor, "w": width_native, "h": height_native, "xc": xScreenOffset_monitor + width_native / 2, "yc": yScreenOffSet_monitor + height_native / 2}
 	LLK_Log("measured monitor resolution and position: " width_native "x" height_native ", " xScreenOffset_monitor ", " yScreenOffSet_monitor)
+
+	If monitor_override
+		While (x_client "," y_client != vars.monitor.x "," vars.monitor.y)
+		{
+			WinGetPos, x_client, y_client,,, ahk_group poe_window
+			Sleep 500
+		}
 
 	If !vars.client.stream
 	{
