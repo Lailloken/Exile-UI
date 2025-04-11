@@ -502,7 +502,7 @@ Mapinfo_Parse2(mode)
 
 	item := vars.omnikey.item
 	If mode
-		clip := StrReplace(Clipboard, " (augmented)")
+		clip := StrReplace(StrReplace(Clipboard, " — " Lang_Trans("items_unscalable")), " (augmented)")
 
 	If LLK_PatternMatch(item.rarity, "", [Lang_Trans("items_normal"), Lang_Trans("items_unique")])
 		error := [Lang_Trans("m_general_language", 3) ":`n" LLK_StringCase(Lang_Trans("items_normal") " && " Lang_Trans("items_unique")), 1.5, "Red"]
