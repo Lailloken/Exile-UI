@@ -304,10 +304,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	If vars.hwnd.leveltracker.main
-		leveltracker_check := LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-
-	While vars.leveltracker.toggle && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && leveltracker_check && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.leveltracker && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_ZoneLayouts(), Leveltracker_Hints()
