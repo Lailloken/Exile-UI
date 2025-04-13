@@ -500,8 +500,7 @@ OCR_Highlight(hotkey)
 	If !vars.general.cMouse || Blank(LLK_HasVal(vars.hwnd.ocr_tooltip, vars.general.cMouse))
 		Return
 
-	hotkey0 := Hotkeys_RemoveModifiers(hotkey)
-	hotkey := GetKeyName(hotkey0)
+	hotkey0 := Hotkeys_RemoveModifiers(A_ThisHotkey)
 	hotkey := (hotkey = "space") ? 0 : hotkey
 	cHWND := vars.general.cMouse, check := LLK_HasVal(vars.hwnd.ocr_tooltip, vars.general.cMouse), category := StrReplace(SubStr(check, 1, InStr(check, "_") - 1), ":")
 	mod := (vars.hwnd.ocr_tooltip.type = "altars") ? SubStr(check, InStr(check, "_") + 1) : check, text_cHWND := vars.hwnd.ocr_tooltip[check "_text"]

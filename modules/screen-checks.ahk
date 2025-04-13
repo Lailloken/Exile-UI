@@ -83,7 +83,7 @@ Screenchecks_ImageRecalibrate(mode := "", check := "")
 	}
 	Else If mode && IsObject(vars.snipping_tool.coords_area)
 	{
-		Switch (InStr(mode, "SC0") ? GetKeyName(StrReplace(mode, "*")) : StrReplace(mode, "*"))
+		Switch mode
 		{
 			Case "w":
 				vars.snipping_tool.coords_area[GetKeyState("Shift", "P") ? "h" : "y"] -= 1

@@ -263,14 +263,13 @@ Betrayal_Prioview()
 	vars.betrayal.hPrioview := h, LLK_Overlay(betrayal_prioview, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
-Betrayal_Rank(rank)
+Betrayal_Rank(hotkey)
 {
 	local
 	global vars, settings
 
-	hotkey0 := Hotkeys_RemoveModifiers(rank), hotkey := GetKeyName(hotkey0)
-
-	rank := (hotkey = "Space") ? 0 : hotkey, color := settings.betrayal.colors[rank]
+	hotkey0 := Hotkeys_RemoveModifiers(A_ThisHotkey)
+	rank := (hotkey = "space") ? 0 : hotkey, color := settings.betrayal.colors[rank]
 	If vars.betrayal.divisions.HasKey(StrReplace(LLK_HasVal(vars.hwnd.betrayal_info, vars.general.cMouse), "_"))
 	{
 		division := StrReplace(LLK_HasVal(vars.hwnd.betrayal_info, vars.general.cMouse), "_")

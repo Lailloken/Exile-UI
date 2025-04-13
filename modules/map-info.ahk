@@ -601,15 +601,11 @@ Mapinfo_Rank(hotkey)
 	If !check
 		Return
 
-	If !InStr(hotkey, "RButton")
-		hotkey0 := Hotkeys_RemoveModifiers(hotkey), hotkey := GetKeyName(hotkey0)
-	Else hotkey := 0
-
 	If IsNumber(hotkey)
 		IniWrite, % (settings.mapinfo.IDs[control].rank := hotkey), % "ini" vars.poe_version "\map info.ini", % control, rank
 	Else IniWrite, % (settings.mapinfo.IDs[control].show := !settings.mapinfo.IDs[control].show), % "ini" vars.poe_version "\map info.ini", % control, show
 	If !search
 		Mapinfo_Parse(0, vars.poe_version), Mapinfo_GUI(0)
 	Else Settings_menu("map-info",, 0)
-	KeyWait, % hotkey0
+	KeyWait, % Hotkeys_RemoveModifiers(A_ThisHotkey)
 }
