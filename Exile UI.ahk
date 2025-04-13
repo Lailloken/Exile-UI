@@ -366,7 +366,7 @@ Init_general()
 	local
 	global vars, settings
 
-	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"], new_version := 15707
+	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"], new_version := 15708
 	If IsNumber(legacy_version) && (legacy_version < 15000) || FileExist("modules\alarm-timer.ahk") ;|| FileExist("modules\delve-helper.ahk")
 	{
 		MsgBox,, Script updated incorrectly, Updating from legacy to v1.50+ requires a clean installation.`nThe script will now exit.
@@ -412,10 +412,18 @@ Init_general()
 				IniWrite, 1, % "ini" poe_version "\config.ini", Features, enable item-info
 			}
 		}
-		IniWrite, % new_version, ini\config.ini, versions, ini
 
 		If FileExist("data\global\[leveltracker] tree 2 0_2.json")
 			FileDelete, % "data\global\[leveltracker] tree 2 0_2.json"
+	}
+
+	If (ini_version < 15708)
+	{
+		For index, poe_version in ["", " 2"]
+			If FileExist("ini" poe_version "\leveling tracker.ini")
+				IniWrite, 1, % "ini" poe_version "\leveling tracker.ini", settings, zone-layouts size
+
+		IniWrite, % new_version, ini\config.ini, versions, ini
 	}
 
 	settings.general.character := ini.settings["active character"]
