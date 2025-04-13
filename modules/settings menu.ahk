@@ -1633,16 +1633,26 @@ Settings_leveltracker()
 		vars.hwnd.settings.geartracker := hwnd, vars.hwnd.help_tooltips["settings_leveltracker geartracker"] := hwnd
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked"settings.leveltracker.layouts, % Lang_Trans("m_lvltracker_zones")
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.layouts, % Lang_Trans("m_lvltracker_zones")
 	vars.hwnd.settings.layouts := hwnd, vars.hwnd.help_tooltips["settings_leveltracker layouts"] := hwnd
+	If settings.leveltracker.layouts
+	{
+		Gui, %GUI%: Add, Text, % "ys Center HWNDhwnd x+" settings.general.fWidth * 2, % Lang_Trans("global_opacity")
+		vars.hwnd.help_tooltips["settings_leveltracker layouts opacity"] := hwnd, handle := "|"
+		Loop 5
+		{
+			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.leveltracker.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
+			vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts opacity" handle] := hwnd, handle .= "|"
+		}
+	}
 
-	Gui, %GUI%: Add, Checkbox, % "Section ys gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.hotkeys, % Lang_Trans("m_lvltracker_hotkeys")
+	Gui, %GUI%: Add, Checkbox, % "Section xs gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.hotkeys, % Lang_Trans("m_lvltracker_hotkeys")
 	vars.hwnd.settings.hotkeys_enable := vars.hwnd.help_tooltips["settings_leveltracker hotkeys enable"] := hwnd
 	If settings.leveltracker.hotkeys
 	{
-		width := settings.general.fWidth * 8
+		width := settings.general.fWidth * 6
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Edit, % "xs+" settings.general.fWidth * 1.8 " Section Right cBlack HWNDhwnd1 gSettings_leveltracker2 Limit w" width " h" settings.general.fHeight, % settings.leveltracker.hotkey_1
+		Gui, %GUI%: Add, Edit, % "Section ys Right cBlack HWNDhwnd1 gSettings_leveltracker2 Limit w" width " h" settings.general.fHeight, % settings.leveltracker.hotkey_1
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		Gui, %GUI%: Add, Text, % "ys x+0 Center BackgroundTrans Border w" settings.general.fWidth * 2, % "<"
 		Gui, %GUI%: Add, Text, % "ys x+0 Center BackgroundTrans Border wp", % ">"
@@ -1838,6 +1848,19 @@ Settings_leveltracker2(cHWND := "")
 		IniWrite, % settings.leveltracker.layouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, enable zone-layout overlay
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress()
+		Settings_menu("leveling tracker")
+	}
+	Else If InStr(check, "zonesopac_")
+	{
+		GuiControl, +cWhite, % vars.hwnd.settings["zonesopac_" settings.leveltracker.trans_zones]
+		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" settings.leveltracker.trans_zones]
+		
+		IniWrite, % (settings.leveltracker.trans_zones := control), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone transparency
+		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
+			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
+
+		GuiControl, +cFuchsia, % vars.hwnd.settings["zonesopac_" control]
+		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" control]
 	}
 	Else If (check = "recommend")
 	{
