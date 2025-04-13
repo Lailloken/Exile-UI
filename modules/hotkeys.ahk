@@ -373,7 +373,17 @@ Hotkeys_Tab()
 	}
 	If InStr(active, "leveltracker")
 	{
-		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.leveltracker.overlays := 0
+		If !vars.leveltracker.layouts_lock
+			LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy")
+		Else
+		{
+			Gui, % Gui_Name(vars.hwnd.leveltracker_zones.main) ": +E0x20"
+			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
+			For key, val in vars.hwnd.leveltracker_zones
+				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel"],,, 0)
+					GuiControl, % "+hidden", % val
+		}
+		vars.leveltracker.overlays := 0
 		If (settings.leveltracker.sLayouts != settings.leveltracker.sLayouts0)
 			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), % "ini" vars.poe_version "\leveling tracker.ini", Settings, zone-layouts size
 	}
@@ -519,7 +529,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *WheelUp::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 3)
 *WheelDown::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 4)
 
-#If (vars.system.timeout = 0) && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
+#If (vars.system.timeout = 0) && vars.leveltracker.overlays && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
 
 *LButton::Leveltracker_ZoneLayouts(0, 1, vars.general.cMouse)
 *RButton::Leveltracker_ZoneLayouts(0, 2, vars.general.cMouse)
@@ -559,6 +569,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 
 #If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.leveltracker.overlays ;resizing zone-layout images
 
+SC039::
 MButton::
 WheelUp::
 WheelDown::Leveltracker_ZoneLayoutsSize(A_ThisHotkey)
