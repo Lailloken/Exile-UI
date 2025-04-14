@@ -599,25 +599,7 @@ Mapinfo_Parse2(mode)
 				MsgBox, % "unknown mod:`n" mod_group
 		}
 	}
-	/*
-	For key, val in db.mapinfo.mods
-		If RegExMatch(double_check, "i)(^|\n)" StrReplace(key, "|", ".*"))
-		{
-			map.mods += 1
-			Loop, Parse, key, % "|"
-				map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField], parsed_lines.Delete(A_LoopField), double_check := StrReplace(double_check, "`n" A_LoopField "`n")
-			If InStr(val.ID, "044") || (val.ID = 44)
-				map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
-		}
-	
-	Loop, Parse, double_check, `n, `r
-		If !Blank(A_LoopField)
-		{
-			If mode && settings.general.dev
-				MsgBox, % "unknown mod: " A_LoopField
-			map_mods["unknown mods"] := !map_mods["unknown mods"] ? 1 : map_mods["unknown mods"] + 1
-		}
-	*/
+
 	For map_mod, value in map_mods
 	{
 		If (SubStr(mods[map_mod].text, 0) = ":")
