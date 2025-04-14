@@ -2166,6 +2166,9 @@ Iteminfo_ModRangeRemove(string) ;takes mod-text string and returns it without ro
 {
 	local
 
+	If !InStr(string, "(")
+		Return string
+
 	Loop, % LLK_InStrCount(string, "(")
 	{
 		parse_remove%A_Index% := SubStr(string, InStr(string, "(",,, A_Index), InStr(string, ")",,, A_Index) - InStr(string, "(",,, A_Index) + 1)

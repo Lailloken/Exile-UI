@@ -2904,6 +2904,12 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	If cHWND
 	{
 		check := LLK_HasVal(vars.hwnd.leveltracker_zones, cHWND)
+		If InStr(check, "helppanel")
+		{
+			KeyWait, % Hotkeys_RemoveModifiers(A_ThisHotkey)
+			Return
+		}
+
 		If LLK_PatternMatch(check, "", ["_rotate", "_flip"])
 		{
 			drag_block := 1, control := SubStr(check, InStr(check, " ",, 0) + 1, 1)
@@ -2953,7 +2959,7 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 	If !vars.leveltracker.zone_layouts[vars.log.areaID]
 	{
-		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.leveltracker.zone_layouts.current := vars.log.areaID
+		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.hwnd.leveltracker_zones.main := "", vars.leveltracker.zone_layouts.current := vars.log.areaID
 		Return
 	}
 

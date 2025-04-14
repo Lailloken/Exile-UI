@@ -274,7 +274,7 @@ Omni_Context(mode := 0)
 		If InStr(clip, Lang_Trans("items_mapreward"))
 			Return "context_menu"
 
-		If settings.features.mapinfo
+		If settings.mapinfo.omnikey && settings.features.mapinfo
 			Return "mapinfo"
 	}
 	If settings.features.stash && !GetKeyState("ALT", "P")
@@ -299,7 +299,7 @@ Omni_Context(mode := 0)
 
 	If WinExist("ahk_id " vars.hwnd.geartracker.main)
 		Return "geartracker"
-	If !LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map", "Invitation", "Blueprint:", "Contract:", "Expedition Logbook"]) || LLK_PatternMatch(item.name "`n" item.itembase, "", ["Doryani", "Maple"])
+	If !LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map", "Waystone", "Invitation", "Blueprint:", "Contract:", "Expedition Logbook"]) || LLK_PatternMatch(item.name "`n" item.itembase, "", ["Doryani", "Maple"])
 	|| (item.rarity = Lang_Trans("items_unique"))
 		Return "context_menu"
 }

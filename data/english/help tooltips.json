@@ -552,6 +552,17 @@
       "omni-clicking a map opens the panel, and pressing 1-4 while hovering over mods applies highlight colors",
       "to ignore mods, press space while hovering over them"
     ],
+    "mapinfo omni-key": [
+      "press the omni-key while hovering over maps/waystones to activate the panel",
+      "click into the game or press <esc> to close it",
+      "(this is the default setting)"
+    ],
+    "mapinfo alt-key": [
+      "hold <alt> while hovering over maps/waystones to activate the panel",
+      "the panel will close automatically once you release <alt>",
+      "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
+      "note: this setting might interfere with other 3rd-party tools(/underline)"
+    ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
       "you have to hold <shift> first, right click currency, and then click a map",

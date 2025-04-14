@@ -403,10 +403,20 @@
 
 
 ;#####################################################
-;## mapping tracker
+;## map-info
 ;#####################################################
 
-;## these strings are displayed/required when using the mapping tracker feature
+;## these strings are displayed/required when using the map-info feature
+		mapinfo_mod			=	"mods:"		;## as in map mod
+		mapinfo_rip			=	"rips:"		;## as in "rest in peace", used here as a replacement for revives on waystones
+
+
+
+;#####################################################
+;## map-tracker
+;#####################################################
+
+;## these strings are displayed/required when using the map-tracker feature
 		maptracker_kills		=	"press the omni-key to;start the kill-tracker"
 		maptracker_kills		=	"kill-count updated"
 		maptracker_check		=	"double-check;map content!"

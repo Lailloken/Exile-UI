@@ -64,7 +64,7 @@
 	If vars.client.stream
 		Return
 
-	Hotkey, If, settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
+	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
 	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" settings.hotkeys.item_descriptions : "*~ALT", Hotkeys_Alt, On
 }
 
@@ -90,13 +90,24 @@ Hotkeys_Alt()
 		ClipWait, 0.1
 
 		If Clipboard
-			vars.omnikey.item := {}, Omni_ItemInfo(), Iteminfo()
+		{
+			vars.omnikey.item := {}, Omni_ItemInfo()
+			If !settings.mapinfo.omnikey && InStr(Clipboard, Lang_Trans("items_class") " " Lang_Trans("items_waystone"))
+			{
+				If Mapinfo_Parse(1, vars.poe_version)
+					Mapinfo_GUI()
+			}
+			Else Iteminfo()
+		}
 	}
 	KeyWait, ALT
 	If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
 		KeyWait, % settings.hotkeys.item_descriptions
 
-	LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+	If !settings.iteminfo.omnikey
+		LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+	If !settings.mapinfo.omnikey
+		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 }
 
 Hotkeys_Convert(key)
@@ -374,8 +385,8 @@ Hotkeys_Tab()
 	If InStr(active, "leveltracker")
 	{
 		If !vars.leveltracker.layouts_lock
-			LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy")
-		Else
+			LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.hwnd.leveltracker_zones.main := ""
+		Else If vars.hwnd.leveltracker_zones.main
 		{
 			Gui, % Gui_Name(vars.hwnd.leveltracker_zones.main) ": +E0x20"
 			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
@@ -402,7 +413,7 @@ Hotkeys_Tab()
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
-#If settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
+#If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
 
 #If vars.hwnd.leveltracker_editor.main && (vars.general.wMouse = vars.hwnd.leveltracker_editor.main)

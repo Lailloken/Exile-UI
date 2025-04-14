@@ -30,7 +30,7 @@
 	{
 		If !InStr(A_LoopField, "id=")
 			Continue
-		ID := SubStr(A_LoopField, InStr(A_LoopField, "=") + 1), settings.mapinfo.IDs[ID] := {"rank": !Blank(check := ini[ID].rank) ? check : 0, "show": !Blank(check1 := ini[ID].show) ? check1 : 1}
+		ID := SubStr(A_LoopField, InStr(A_LoopField, "=") + 1), settings.mapinfo.IDs[ID] := {"rank": !Blank(check := ini[ID].rank) ? check : (ID = "000" ? 3 : 0), "show": !Blank(check1 := ini[ID].show) ? check1 : 1}
 	}
 
 	settings.mapinfo.dColor := ["00FF00", "FF8000", "FF0000", "FF00FF"], settings.mapinfo.eColor_default := ["FF8000", "FFFF00", "009900", "00FF00"]
@@ -43,6 +43,7 @@
 	LLK_FontDimensions(settings.mapinfo.fSize, font_height, font_width), settings.mapinfo.fHeight := font_height, settings.mapinfo.fWidth := font_width
 	settings.mapinfo.trigger := !Blank(check := ini.settings["enable shift-clicking"]) ? check : 0
 	settings.mapinfo.tabtoggle := !Blank(check := ini.settings["show panel while holding tab"]) ? check : 0
+	settings.mapinfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "00FF00", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "000000"]
 	Loop 6
@@ -67,7 +68,7 @@ Mapinfo_GUI(mode := 1)
 	If !vars.poe_version
 		summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.quantity . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3)
 		. (!Blank(map.packsize) ? " | " map.packsize . Lang_Trans("maps_stats", 4) : "")
-	Else summary := summary0 := Lang_Trans("maps_waystones") . " " . (Blank(map.waystones) ? "+0%" : map.waystones) ;(map.tier >= 11 ? "-20% ele res (t11+)" : map.tier >= 6 ? "-10% ele res (t6+)" : "no res penalty")
+	Else summary := summary0 := Lang_Trans("maps_waystones") " " (Blank(map.waystones) ? "+0%" : map.waystones), summary1 := Lang_Trans("mapinfo_mod") "  " map.mods " | " Lang_Trans("mapinfo_rip") "  " map.revives
 
 	If StrLen(map.maps . map.scarabs . map.currency)
 	{
@@ -77,7 +78,7 @@ Mapinfo_GUI(mode := 1)
 	}
 
 	dimensions := [], summary_array := StrSplit(summary, "|", A_Space), summary_array0 := StrSplit(summary0, "|", A_Space), summary_array1 := StrSplit(summary1, "|", A_Space)
-	LLK_PanelDimensions(summary_array, settings.mapinfo.fSize, wSummary, hSummary)
+	LLK_PanelDimensions(summary_array, settings.mapinfo.fSize, wSummary, hSummary), LLK_PanelDimensions(summary_array1, settings.mapinfo.fSize, wSummary2, hSummary2,,, 0)
 
 	For index0, category in vars.mapinfo.categories
 	{
@@ -98,8 +99,9 @@ Mapinfo_GUI(mode := 1)
 		}
 	}
 	LLK_PanelDimensions(dimensions, settings.mapinfo.fSize, wPanels, hPanels), added := 0, yControl := hControl := 0, count := {}, wPic := settings.mapinfo.fHeight*2 - 1
+	wSummary0 := (vars.poe_version ? wSummary + settings.mapinfo.fWidth *3 : wSummary * summary_array0.Count())
 	divisor := (wPanels + wPic - 1 > wSummary * summary_array0.Count()) ? 4 : summary_array0.Count()
-	wPanels := wGUI := Max(wPanels + wPic - 1, wSummary * summary_array0.Count()), wSpectrum := wSummary * summary_array0.Count() - 2, wSpectrum1 := wSpectrum // mod_count
+	wPanels := wGUI := Max(wPanels + wPic - 1, wSummary * summary_array0.Count(), wSummary2 * summary_array1.Count()), wSpectrum := wSummary * summary_array0.Count() - 2, wSpectrum1 := wSpectrum // mod_count
 	While Mod(wGui, divisor)
 		wGui += 1, wPanels += 1
 	wPanels := wPanels - wPic + 1
@@ -211,10 +213,13 @@ Mapinfo_GUI(mode := 1)
 		}
 		For index, vSum in summary_array1
 		{
-			style := (index = 1 ? "xs Section y+" (yControl + hControl ? -1 : 0) " x" wGUI//2 - (wSummary * summary_array1.Count())//2 : "ys x+0"), roll := settings.mapinfo.roll_requirements[rolls[index + 4]]
-			color := settings.mapinfo.roll_highlight && !Blank(roll) && (SubStr(vSum, 1, -1) >= roll) ? " c" settings.mapinfo.roll_colors.1 : ""
-			Gui, %GUI_name%: Add, Text, % style " HWNDhwnd BackgroundTrans Border Center w" wSummary . color, % vSum
-			If color
+			style := (index = 1 ? "xs Section y+" (yControl + hControl ? -1 : 0) " x" wGUI//2 - ((!vars.poe_version ? wSummary * summary_array1.Count() : wSummary2 * summary_array1.Count()))//2 : "ys x+0"), roll := settings.mapinfo.roll_requirements[rolls[index + 4]]
+			If !vars.poe_version
+				color := settings.mapinfo.roll_highlight && !Blank(roll) && (SubStr(vSum, 1, -1) >= roll) ? " c" settings.mapinfo.roll_colors.1 : ""
+			Else color := (index = 2) ? " c" settings.mapinfo.color[(map.revives < 4) ? 4 - map.revives : 1] : ""
+
+			Gui, %GUI_name%: Add, Text, % style " HWNDhwnd BackgroundTrans Border Center w" (!vars.poe_version ? wSummary : wSummary2) . color, % StrReplace(vSum, "  ", " ")
+			If color && !vars.poe_version
 				Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack c" settings.mapinfo.roll_colors.2, 100
 		}
 		added := 0, spectrum := [0, 0, 0, 0], spectrum[-1] := [0, 0, 0, 0], spectrum.0 := 0, spectrum[-1].0 := 0
@@ -362,10 +367,14 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 
 			If check && mods.HasKey(check)
 				map_mods[check] := value
-			Else If check && settings.general.dev && !InStr(check, "also apply to rarity")
+			Else If check && !InStr(check, "also apply to rarity")
 			{
-				Clipboard := check
-				MsgBox, % check
+				If mode && settings.general.dev
+				{
+					Clipboard := check
+					MsgBox, % check
+				}
+				map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1
 			}
 		}
 		Else If LLK_PatternMatch(A_LoopField, "", [Lang_Trans("items_elderguardian")]) || Lang_Match(A_LoopField, vars.lang.items_conqueror)
@@ -471,7 +480,9 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 
 	For map_mod, value in map_mods
 	{
-		pushtext := InStr(mods[map_mod].text, ": +") || InStr(mods[map_mod].text, ": -") ? StrReplace(StrReplace(mods[map_mod].text, ": -", ": -" value), ": +", ": +" value,, 1) : InStr(mods[map_mod].text, "%") ? StrReplace(mods[map_mod].text, "%", value "%",, 1) : mods[map_mod].text
+		If (SubStr(mods[map_mod].text, 0) = ":")
+			pushtext := mods[map_mod].text " " value
+		Else pushtext := InStr(mods[map_mod].text, ": +") || InStr(mods[map_mod].text, ": -") ? StrReplace(StrReplace(mods[map_mod].text, ": -", ": -" value), ": +", ": +" value,, 1) : InStr(mods[map_mod].text, "%") ? StrReplace(mods[map_mod].text, "%", value "%",, 1) : mods[map_mod].text
 		pushtext := StrReplace(pushtext, "(n)", "`n")
 		If !settings.mapinfo.IDs[mods[map_mod].id].show
 		{
@@ -502,7 +513,7 @@ Mapinfo_Parse2(mode)
 
 	item := vars.omnikey.item
 	If mode
-		clip := StrReplace(StrReplace(Clipboard, " — " Lang_Trans("items_unscalable")), " (augmented)")
+		clip := StrReplace(StrReplace(StrReplace(Clipboard, "{", "|{"), " — " Lang_Trans("items_unscalable")), " (augmented)")
 
 	If LLK_PatternMatch(item.rarity, "", [Lang_Trans("items_normal"), Lang_Trans("items_unique")])
 		error := [Lang_Trans("m_general_language", 3) ":`n" LLK_StringCase(Lang_Trans("items_normal") " && " Lang_Trans("items_unique")), 1.5, "Red"]
@@ -523,9 +534,6 @@ Mapinfo_Parse2(mode)
 		vars.mapinfo.active_map[category] := []
 	mod_count := 0, map_mods := {}, map := vars.mapinfo.active_map, mods := db.mapinfo.mods, parsed_lines := {}, map.mods := 0
 
-	;If !IsObject(clip)
-	;	clip := StrSplit(clip, "`n", "`r ")
-
 	For key in map
 		Loop 6
 			map[key][5 - A_Index] := []
@@ -538,46 +546,83 @@ Mapinfo_Parse2(mode)
 			Else map.name := A_LoopField
 
 		If !item_level
-			If !InStr(A_LoopField, Lang_Trans("items_ilevel")) && !InStr(A_LoopField, Lang_Trans("items_map_waystonechance"))
+			If !LLK_PatternMatch(A_LoopField, "", [Lang_Trans("items_ilevel"), Lang_Trans("items_map_waystonechance"), Lang_Trans("items_map_revives")])
 				Continue
+			Else If InStr(A_LoopField, Lang_Trans("items_map_revives"))
+				map.revives := SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), map.revives := (check := InStr(map.revives, " (")) ? SubStr(map.revives, 1, check - 1) : map.revives
 			Else If InStr(A_LoopField, Lang_Trans("items_map_waystonechance"))
 				map.waystones := SubStr(A_LoopField, InStr(A_LoopField, "+")), map.waystones := (check := InStr(map.waystones, " (")) ? SubStr(map.waystones, 1, check - 1) : map.waystones
 			Else
 			{
 				item_level := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2)
 				raw_text := SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), raw_text := SubStr(raw_text, InStr(raw_text, "-`r`n") + 3)
-				raw_text := SubStr(raw_text, 1, InStr(raw_text, "`r`n---",,, InStr(raw_text, "(") ? 2 : 1) - 1)
 				Break
 			}
 	}
-
-	Loop, Parse, raw_text, `n, `r
+	
+	If InStr(raw_text, "(enchant)")
 	{
-		If LLK_PatternMatch(A_LoopField, "", ["---", "{"])
-			Continue
-		If !parsed_lines.Count()
-			raw_text := ""
-		Mapinfo_Lineparse(Iteminfo_ModRangeRemove(A_LoopField), text, value)
-		raw_text .= "`n" text "`n", parsed_lines[text] := !parsed_lines[text] ? value : parsed_lines[text] + value
+		Loop, Parse, % SubStr(raw_text, 1, InStr(raw_text, "`r`n---") - 1), `n, % "`r "
+			enchants .= (!enchants ? "" : "`r`n|") "{enchant}`r`n" StrReplace(A_LoopField, " (enchant)")
+		raw_text := enchants "`r`n" SubStr(raw_text, InStr(raw_text, "|"))
 	}
+	Else raw_text := SubStr(raw_text, InStr(raw_text, "|") + 1)
 
+	If (check := InStr(raw_text, "`r`n---"))
+		raw_text := SubStr(raw_text, 1, check - 1)
+
+	Loop, Parse, raw_text, `|, % "`r`n "
+	{
+		mod := SubStr(A_LoopField, InStr(A_LoopField, "`n") + 1), mod_full := A_LoopField
+		If (check := InStr(mod, "`n("))
+			mod := Trim(SubStr(mod, 1, check - 1), "`r ")
+
+		mod_group := match := ""
+		Loop, Parse, mod, `n, % "`r "
+			Mapinfo_Lineparse(Iteminfo_ModRangeRemove(A_LoopField), text, value), parsed_lines[text] := !parsed_lines[text] ? value : parsed_lines[text] + value, mod_group .= (!mod_group ? "" : "`n") text
+
+		For key, val in db.mapinfo.mods
+			If RegExMatch(mod_group, "i)(^|\n)" StrReplace(key, "|", ".*"))
+			{
+				map.mods += InStr(mod_full, "{enchant}") ? 0 : 1, match := 1
+				Loop, Parse, key, % "|"
+					map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField]
+				If InStr(val.ID, "044") || (val.ID = 44)
+					map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
+				Break
+			}
+		
+		If !match
+		{
+			map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1
+			If mode && settings.general.dev
+				MsgBox, % "unknown mod:`n" mod_group
+		}
+	}
+	/*
 	For key, val in db.mapinfo.mods
-		If RegExMatch(raw_text, "i)(^|\n)" StrReplace(key, "|", ".*"))
+		If RegExMatch(double_check, "i)(^|\n)" StrReplace(key, "|", ".*"))
 		{
 			map.mods += 1
 			Loop, Parse, key, % "|"
-				map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField], raw_text := StrReplace(raw_text, A_LoopField)
+				map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField], parsed_lines.Delete(A_LoopField), double_check := StrReplace(double_check, "`n" A_LoopField "`n")
 			If InStr(val.ID, "044") || (val.ID = 44)
 				map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
 		}
-
-	Loop, Parse, raw_text, `n, `r
-		If settings.general.dev && !Blank(A_LoopField) && !InStr(A_LoopField, "can be used in ")
-			MsgBox, % "unknown mod: " A_LoopField
-
+	
+	Loop, Parse, double_check, `n, `r
+		If !Blank(A_LoopField)
+		{
+			If mode && settings.general.dev
+				MsgBox, % "unknown mod: " A_LoopField
+			map_mods["unknown mods"] := !map_mods["unknown mods"] ? 1 : map_mods["unknown mods"] + 1
+		}
+	*/
 	For map_mod, value in map_mods
 	{
-		pushtext := InStr(mods[map_mod].text, ": +") || InStr(mods[map_mod].text, ": -") ? StrReplace(StrReplace(mods[map_mod].text, ": -", ": -" value), ": +", ": +" value,, 1) : InStr(mods[map_mod].text, "%") ? StrReplace(mods[map_mod].text, "%", value "%",, 1) : mods[map_mod].text
+		If (SubStr(mods[map_mod].text, 0) = ":")
+			pushtext := mods[map_mod].text " " value
+		Else pushtext := InStr(mods[map_mod].text, ": +") || InStr(mods[map_mod].text, ": -") ? StrReplace(StrReplace(mods[map_mod].text, ": -", ": -" value), ": +", ": +" value,, 1) : InStr(mods[map_mod].text, "%") ? StrReplace(mods[map_mod].text, "%", value "%",, 1) : mods[map_mod].text
 		pushtext := StrReplace(pushtext, "(n)", "`n")
 		If !settings.mapinfo.IDs[mods[map_mod].id].show
 		{
