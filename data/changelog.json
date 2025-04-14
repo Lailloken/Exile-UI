@@ -1,5 +1,11 @@
 [
   [
+	["1.57.8", 15708],
+	"fixes: map-info burning ground, item-info t1 hybrid highlighting",
+	"act-tracker: layouts usable without guide, layout overlay can be locked, layouts can be rotated/flipped",
+	"map-info: added alt-activation option, now displays mod and revive count"
+  ],
+  [
 	["1.57.7", 15707],
 	"act-tracker: added support for latest pob",
 	"map-tracker: added <ea dawn> date filter",
