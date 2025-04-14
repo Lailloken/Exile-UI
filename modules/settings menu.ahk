@@ -2136,6 +2136,13 @@ Settings_mapinfo()
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_mapinfo2 Checked" settings.mapinfo.omnikey, % "omni-key"
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_mapinfo2 Checked" !settings.mapinfo.omnikey, % "alt"
+	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_mapinfo omni-key"] := hwnd1
+	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_mapinfo alt-key"] := hwnd2
+
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_mapinfo2 HWNDhwnd Checked"settings.mapinfo.trigger, % Lang_Trans("m_mapinfo_shift")
 	vars.hwnd.settings.shiftclick := vars.hwnd.help_tooltips["settings_mapinfo shift-click"] := hwnd
 	ControlGetPos, x, y, w, h,, ahk_id %hwnd%
@@ -2279,6 +2286,10 @@ Settings_mapinfo2(cHWND)
 			IniWrite, % settings.features.mapinfo, % "ini" vars.poe_version "\config.ini", features, enable map-info panel
 			Settings_menu("map-info")
 			LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
+		Case "omni_key":
+			IniWrite, % (settings.mapinfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\map info.ini", settings, omni-key activation
+		Case "alt_key":
+			IniWrite, % (settings.mapinfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\map info.ini", settings, omni-key activation
 		Case "shiftclick":
 			settings.mapinfo.trigger := LLK_ControlGet(cHWND), Settings_ScreenChecksValid()
 			IniWrite, % settings.mapinfo.trigger, % "ini" vars.poe_version "\map info.ini", settings, enable shift-clicking
