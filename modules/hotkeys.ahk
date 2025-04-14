@@ -97,7 +97,8 @@ Hotkeys_Alt()
 				If Mapinfo_Parse(1, vars.poe_version)
 					Mapinfo_GUI()
 			}
-			Else Iteminfo()
+			Else If !settings.iteminfo.omnikey
+				Iteminfo()
 		}
 	}
 	KeyWait, ALT
