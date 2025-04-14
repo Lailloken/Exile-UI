@@ -1614,17 +1614,17 @@ Iteminfo_GUI()
 				If InStr(A_LoopField, " (fractured)")
 				{
 					color := tColors.7 ;fractured mods have a specific color
-					If InStr(highlights, "+",,, vars.poe_version ? 1 : LLK_InStrCount(A_LoopField, "`n")) && ((tier = 1) || item.class = "base jewels") ;if the fractured mod is also desired, add red highlighting to the text and make it bold
+					If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && ((tier = 1) || item.class = "base jewels") ;if the fractured mod is also desired, add red highlighting to the text and make it bold
 					{
 						color_t := "Red"
 						Gui, %GUI_name%: Font, bold
 					}
 				}
-				Else If InStr(highlights, "-",,, vars.poe_version ? 1 : LLK_InStrCount(A_LoopField, "`n")) && settings.iteminfo.override ;if the override-option is enabled and the mod is undesired, apply t6 color
+				Else If InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && settings.iteminfo.override ;if the override-option is enabled and the mod is undesired, apply t6 color
 					color := mColors.2
-				Else If InStr(highlights, "+",,, vars.poe_version ? 1 : LLK_InStrCount(A_LoopField, "`n")) && (item.class = "base jewels") ;if the item is a base/generic jewel and the mod is desired, override cell colors with t1 color
+				Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (item.class = "base jewels") ;if the item is a base/generic jewel and the mod is desired, override cell colors with t1 color
 					color := mColors.1
-				Else If InStr(highlights, "+",,, vars.poe_version ? 1 : LLK_InStrCount(A_LoopField, "`n")) && (tier = 1 || tier = "#") ;if the mod is desired and t1 or untiered, apply white background and red text (Neversink's t1 color-scheme)
+				Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (tier = 1 || tier = "#") ;if the mod is desired and t1 or untiered, apply white background and red text (Neversink's t1 color-scheme)
 					color := "White", color_t := "Red"
 				Else If (item.class = "base jewels") ;for base/generic jewel mods, use shades of gray (lighter shade = lower weight/probability)
 					color := IsNumber(tier) ? 119-tier*2 . 119-tier*2 . 119-tier*2 : "Black", color_t := (tier < 10) ? "Red" : "White"
@@ -1633,7 +1633,7 @@ Iteminfo_GUI()
 
 			label := Iteminfo_ModgroupCheck(name, 1) ? Iteminfo_ModgroupCheck(name, 1) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
 			width := (label || settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??") ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
-			width := (settings.iteminfo.override && InStr(highlights, "-",,, vars.poe_version ? 1 : LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
+			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
 
 			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border 0x200 Center c" (color = "black" ? "White" : color_t), % tier ;add tier-cell
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack c"color, 100
@@ -2165,6 +2165,9 @@ Iteminfo_ModInvert(cHWND)
 Iteminfo_ModRangeRemove(string) ;takes mod-text string and returns it without roll-ranges
 {
 	local
+
+	If !InStr(string, "(")
+		Return string
 
 	Loop, % LLK_InStrCount(string, "(")
 	{

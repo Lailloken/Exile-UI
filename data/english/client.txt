@@ -279,6 +279,7 @@
 		items_ele_dmg			=	"Elemental Damage:"					;## PoE1 only, ele-dmg is displayed differently
 
 		items_map_waystonechance	=	"Waystone Drop Chance:"					;## PoE2 only (whole block)
+		items_map_revives		=	"Revives Available:"
 
 
 		items_maptier			=	"Map Tier:"						;## PoE1 only (whole block)

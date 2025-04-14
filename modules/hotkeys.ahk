@@ -64,7 +64,7 @@
 	If vars.client.stream
 		Return
 
-	Hotkey, If, settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
+	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
 	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" settings.hotkeys.item_descriptions : "*~ALT", Hotkeys_Alt, On
 }
 
@@ -90,13 +90,25 @@ Hotkeys_Alt()
 		ClipWait, 0.1
 
 		If Clipboard
-			vars.omnikey.item := {}, Omni_ItemInfo(), Iteminfo()
+		{
+			vars.omnikey.item := {}, Omni_ItemInfo()
+			If !settings.mapinfo.omnikey && InStr(Clipboard, Lang_Trans("items_class") " " Lang_Trans("items_waystone"))
+			{
+				If Mapinfo_Parse(1, vars.poe_version)
+					Mapinfo_GUI()
+			}
+			Else If !settings.iteminfo.omnikey
+				Iteminfo()
+		}
 	}
 	KeyWait, ALT
 	If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
 		KeyWait, % settings.hotkeys.item_descriptions
 
-	LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+	If !settings.iteminfo.omnikey
+		LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+	If !settings.mapinfo.omnikey
+		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 }
 
 Hotkeys_Convert(key)
@@ -304,10 +316,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	If vars.hwnd.leveltracker.main
-		leveltracker_check := LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-
-	While vars.leveltracker.toggle && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && leveltracker_check && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.leveltracker && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_ZoneLayouts(), Leveltracker_Hints()
@@ -376,7 +385,17 @@ Hotkeys_Tab()
 	}
 	If InStr(active, "leveltracker")
 	{
-		LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.leveltracker.overlays := 0
+		If !vars.leveltracker.layouts_lock
+			LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.hwnd.leveltracker_zones.main := ""
+		Else If vars.hwnd.leveltracker_zones.main
+		{
+			Gui, % Gui_Name(vars.hwnd.leveltracker_zones.main) ": +E0x20"
+			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
+			For key, val in vars.hwnd.leveltracker_zones
+				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel"],,, 0)
+					GuiControl, % "+hidden", % val
+		}
+		vars.leveltracker.overlays := 0
 		If (settings.leveltracker.sLayouts != settings.leveltracker.sLayouts0)
 			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), % "ini" vars.poe_version "\leveling tracker.ini", Settings, zone-layouts size
 	}
@@ -395,7 +414,7 @@ Hotkeys_Tab()
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
-#If settings.features.iteminfo && !settings.iteminfo.omnikey && WinActive("ahk_id " vars.hwnd.poe_client)
+#If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
 
 #If vars.hwnd.leveltracker_editor.main && (vars.general.wMouse = vars.hwnd.leveltracker_editor.main)
@@ -442,15 +461,15 @@ WheelDown::Stash_PricePicker("-")
 MButton::Stash_PricePicker("reset")
 
 #If vars.hwnd.stash.main && WinActive("ahk_id " vars.hwnd.poe_client) && WinExist("ahk_id " vars.hwnd.stash.main)
-*SC002::
-*SC003::
-*SC004::
-*SC005::
-*SC006::
-SC039::
-SC038::
-~+LButton::
-~RButton::Stash_Hotkeys()
+*SC002::Stash_Hotkeys(1)
+*SC003::Stash_Hotkeys(2)
+*SC004::Stash_Hotkeys(3)
+*SC005::Stash_Hotkeys(4)
+*SC006::Stash_Hotkeys(5)
+SC039::Stash_Hotkeys("Space")
+SC038::Stash_Hotkeys("LAlt")
+~+LButton::Stash_Hotkeys("LButton")
+~RButton::Stash_Hotkeys("RButton")
 
 #If WinActive("ahk_id " vars.hwnd.poe_client) && vars.stash.enter
 ~*SC01C::vars.stash.enter := 0, Stash_PricePicker("destroy")
@@ -466,21 +485,21 @@ SC038::
 
 #If vars.hwnd.ocr_tooltip.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.ocr_tooltip.main) ;hovering over the ocr tooltip
 *LButton::OCR_Close()
-*SC039::
-*SC002::
-*SC003::
-*SC004::
-*SC005::
-*SC006::OCR_Highlight(A_ThisHotkey)
+*SC039::OCR_Highlight("space")
+*SC002::OCR_Highlight(1)
+*SC003::OCR_Highlight(2)
+*SC004::OCR_Highlight(3)
+*SC005::OCR_Highlight(4)
+*SC006::OCR_Highlight(5)
 
 #If vars.snipping_tool.GUI && WinActive("ahk_id " vars.hwnd.snipping_tool.main)
-*SC011::
-*SC01E::
-*SC01F::
-*SC020::
-SC039::
-LButton::
-RButton::Screenchecks_ImageRecalibrate(A_ThisHotkey)
+*SC011::Screenchecks_ImageRecalibrate("w")
+*SC01E::Screenchecks_ImageRecalibrate("a")
+*SC01F::Screenchecks_ImageRecalibrate("s")
+*SC020::Screenchecks_ImageRecalibrate("d")
+SC039::Screenchecks_ImageRecalibrate("space")
+LButton::Screenchecks_ImageRecalibrate("LButton")
+RButton::Screenchecks_ImageRecalibrate("RButton")
 
 #If vars.hwnd.ocr_tooltip.main && WinExist("ahk_id " vars.hwnd.ocr_tooltip.main)
 ~SC02A::
@@ -522,7 +541,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *WheelUp::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 3)
 *WheelDown::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 4)
 
-#If (vars.system.timeout = 0) && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
+#If (vars.system.timeout = 0) && vars.leveltracker.overlays && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
 
 *LButton::Leveltracker_ZoneLayouts(0, 1, vars.general.cMouse)
 *RButton::Leveltracker_ZoneLayouts(0, 2, vars.general.cMouse)
@@ -548,12 +567,12 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 
 #If (vars.system.timeout = 0) && ((vars.general.wMouse = vars.hwnd.mapinfo.main) && !Blank(LLK_HasVal(vars.hwnd.mapinfo, vars.general.cMouse)) || (vars.general.wMouse = vars.hwnd.settings.main) && InStr(LLK_HasVal(vars.hwnd.settings, vars.general.cMouse), "mapmod_")) ;ranking map-mods
 
-*SC002::
-*SC003::
-*SC004::
-*SC005::
-*SC039::
-*RButton::Mapinfo_Rank(A_ThisHotkey)
+*SC002::Mapinfo_Rank(1)
+*SC003::Mapinfo_Rank(2)
+*SC004::Mapinfo_Rank(3)
+*SC005::Mapinfo_Rank(4)
+*SC039::Mapinfo_Rank("Space")
+*RButton::Mapinfo_Rank(0)
 
 #If (vars.system.timeout = 0) && settings.maptracker.loot && (vars.general.xMouse > vars.monitor.x + vars.monitor.w/2) ;ctrl-clicking loot into stash and logging it
 
@@ -562,6 +581,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 
 #If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.leveltracker.overlays ;resizing zone-layout images
 
+SC039::
 MButton::
 WheelUp::
 WheelDown::Leveltracker_ZoneLayoutsSize(A_ThisHotkey)
@@ -649,18 +669,18 @@ Return
 
 #If vars.general.wMouse && vars.hwnd.cheatsheet.main && (vars.general.wMouse = vars.hwnd.cheatsheet.main) && (vars.cheatsheets.active.type = "advanced") ;ranking things in advanced cheatsheets
 
-*SC002::
-*SC003::
-*SC004::
-*SC005::
-SC039::Cheatsheet_Rank()
+*SC002::Cheatsheet_Rank(1)
+*SC003::Cheatsheet_Rank(2)
+*SC004::Cheatsheet_Rank(3)
+*SC005::Cheatsheet_Rank(4)
+SC039::Cheatsheet_Rank("space")
 
 #If vars.general.wMouse && vars.hwnd.betrayal_info.main && (vars.general.wMouse = vars.hwnd.betrayal_info.main) ;ranking betrayal rewards
 
-SC002::
-SC003::
-SC004::
-SC039::Betrayal_Rank(A_ThisHotkey)
+SC002::Betrayal_Rank(1)
+SC003::Betrayal_Rank(2)
+SC004::Betrayal_Rank(3)
+SC039::Betrayal_Rank("Space")
 
 #If (vars.cheatsheets.active.type = "image") && vars.hwnd.cheatsheet.main && !vars.cheatsheets.tab && WinExist("ahk_id " vars.hwnd.cheatsheet.main) ;image-cheatsheet hotkeys
 
@@ -668,21 +688,21 @@ Up::
 Down::
 Left::
 Right::
-SC03B::
-SC03C::
-SC03D::
+SC03B::Cheatsheet_Image("", "F1")
+SC03C::Cheatsheet_Image("", "F2")
+SC03D::Cheatsheet_Image("", "F3")
 RButton::
-SC039::
-SC002::
-SC003::
-SC004::
-SC005::
-SC006::
-SC007::
-SC008::
-SC009::
-SC00A::
-SC00B::
+SC039::Cheatsheet_Image("", "space")
+SC002::Cheatsheet_Image("", 1)
+SC003::Cheatsheet_Image("", 2)
+SC004::Cheatsheet_Image("", 3)
+SC005::Cheatsheet_Image("", 4)
+SC006::Cheatsheet_Image("", 5)
+SC007::Cheatsheet_Image("", 6)
+SC008::Cheatsheet_Image("", 7)
+SC009::Cheatsheet_Image("", 8)
+SC00A::Cheatsheet_Image("", 9)
+SC00B::Cheatsheet_Image("", 0)
 SC01E::
 SC030::
 SC02E::

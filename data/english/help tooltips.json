@@ -446,10 +446,11 @@
       "long-click to check available pob data, long-right-click to delete pob data"
     ],
     "leveltracker layouts": [
-      "hold <tab> to overlay images with possible zone-layouts (guide-panel shows # zl)",
-      "while active, hold <middle-mouse> to view an info-panel with explanations",
-      "click the overlay to toggle layout orientation, drag to move it, right-click to reset position, or scroll to resize it",
+      "hold <tab> to activate an overlay with zone-layouts (guide-panel shows # zl):\nit will hide once you release <tab>",
       "note: these are rough guides and never 100% correct, especially after big game updates(/underline)"
+    ],
+    "leveltracker layouts opacity": [
+      "the opacity of the zone-layouts overlay in locked mode"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
@@ -550,6 +551,17 @@
       "provides a compact and customizable info-panel for map mods",
       "omni-clicking a map opens the panel, and pressing 1-4 while hovering over mods applies highlight colors",
       "to ignore mods, press space while hovering over them"
+    ],
+    "mapinfo omni-key": [
+      "press the omni-key while hovering over maps/waystones to activate the panel",
+      "click into the game or press <esc> to close it",
+      "(this is the default setting)"
+    ],
+    "mapinfo alt-key": [
+      "hold <alt> while hovering over maps/waystones to activate the panel",
+      "the panel will close automatically once you release <alt>",
+      "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
+      "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
@@ -982,6 +994,13 @@
       "hold <w> to show an overview of the whole tree",
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
       "press <space> to move the tree's starting point (white circle) to the cursor's position"
+    ]
+  },
+  "leveltrackerzones": {
+    "help panel": [
+      "general:\n- scroll to zoom, hold m-mouse for info\n- press space to (un)lock the overlay",
+      "zone-layout images:\n- click to toggle vertical/horizontal\n- drag to move, r-click to reset",
+      "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ]
   },
   "lootfilter": {

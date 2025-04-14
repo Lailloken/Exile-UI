@@ -458,7 +458,6 @@
     },
     [
       "find and kill the_queen_of_filth for (quest:temple_door_idol)",
-      "(hint)____ area is a large spiral, move (counter-)clockwise to reach the end",
       "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
     ],
     {
@@ -896,7 +895,6 @@
     ],
     [
       "find and kill the_queen_of_filth for (quest:temple_door_idol)",
-      "(hint)____ area is a large spiral, move (counter-)clockwise to reach the end",
       "(img:portal) to areaidc_g3_town (img:town) ;; ziggurat encampment"
     ],
     [

@@ -35,6 +35,11 @@ area
 ;## %-signs will be replaced by the actual %-roll of the map-mod, e.g. "ele reflect: %" -> "ele reflect: 15%"
 ;## try to trim down the text-strings as much as possible in order to keep the map-info panel compact
 
+[unknown mod]			;## do not translate this line
+type	=	area
+text	=	unknown mods:
+ID	=	000
+
 [# increased Quantity of Items found in this Area]
 type	=	area
 text	=	quant: +%
@@ -232,7 +237,7 @@ ID	=	039
 
 [Monsters Break Armour equal to # of Physical Damage dealt]
 type	=	monsters
-text	=	dmg breaks armor: %
+text	=	armor break: %
 ID	=	040
 
 [Monsters have # increased Accuracy Rating]
@@ -280,7 +285,7 @@ type	=	player
 text	=	ele weakness
 ID	=	049
 
-[Area has patches of Burning Ground]
+[Area has patches of Ignited Ground]
 type	=	area
 text	=	burning ground
 ID	=	050

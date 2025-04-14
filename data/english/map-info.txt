@@ -84,6 +84,11 @@ volcanic island
 
 ;## the text-strings between ID 200 and 300 make heavy use of abbreviations because the original mod-text is very long
 
+[unknown mod]			;## do not translate this line
+type	=	area
+text	=	unknown mods:
+ID	=	000
+
 [monsters reflect # of elemental damage]
 type	=	monsters
 text	=	ele reflect: %

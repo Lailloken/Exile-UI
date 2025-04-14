@@ -1334,13 +1334,13 @@ Cheatsheet_MenuTag(cHWND, index)
 	Else FileMove, % "cheat-sheets" vars.poe_version "\"name "\["index "]*", % "cheat-sheets" vars.poe_version "\"name "\["index "].*", 1
 }
 
-Cheatsheet_Rank()
+Cheatsheet_Rank(hotkey)
 {
 	local
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.cheatsheet, vars.general.cMouse), name := vars.cheatsheets.active.name, control := StrReplace(check, "panel"), entry := vars.cheatsheets.entry
-	hotkey0 := Hotkeys_RemoveModifiers(A_ThisHotkey), hotkey := GetKeyName(hotkey0)
+	hotkey0 := Hotkeys_RemoveModifiers(A_ThisHotkey)
 	rank := (hotkey = "space") ? 0 : hotkey
 
 	If InStr(check, "panel")

@@ -366,9 +366,6 @@
 		lvltracker_recommended		=	"farm level:"					;## PoE1 only, used to filter out lvl-recommendations in the guide
 
 
-		lvltracker_format_enter		=	"enter"						;## PoE2 only (whole block), use this and the next two in combination with "areaidXYZ" to place a page divider
-		lvltracker_format_waypoint	=	"(img:waypoint) to"				;## these 2 lines stand for "portal/waypoint-travel to XYZ": don't change the part in parentheses, it will be replaced by icons
-		lvltracker_format_portal	=	"(img:portal) to"
 		lvltracker_format_kill		=	"kill"						;## the string that follows this word will automatically be highlighted as a unique boss
 		lvltracker_format_act		=	"a#c"						;## abbreviation, e.g. "act 1 cruel": used when the guide leads to a location in a different act (e.g. "enter a1c | clearfell encampment")
 		lvltracker_format_epilogue	=	"epilogue"
@@ -406,10 +403,20 @@
 
 
 ;#####################################################
-;## mapping tracker
+;## map-info
 ;#####################################################
 
-;## these strings are displayed/required when using the mapping tracker feature
+;## these strings are displayed/required when using the map-info feature
+		mapinfo_mod			=	"mods:"		;## as in map mod
+		mapinfo_rip			=	"rips:"		;## as in "rest in peace", used here as a replacement for revives on waystones
+
+
+
+;#####################################################
+;## map-tracker
+;#####################################################
+
+;## these strings are displayed/required when using the map-tracker feature
 		maptracker_kills		=	"press the omni-key to;start the kill-tracker"
 		maptracker_kills		=	"kill-count updated"
 		maptracker_check		=	"double-check;map content!"

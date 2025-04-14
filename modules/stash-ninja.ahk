@@ -313,9 +313,6 @@ Stash_Hotkeys(mode := "")
 	If vars.stash.wait || in_progress
 		Return
 	in_progress := 1, tab := vars.stash.active, hotkey0 := Hotkeys_RemoveModifiers(A_ThisHotkey)
-	If (SubStr(hotkey0, 1, 2) = "SC")
-		hotkey := GetKeyName(hotkey0)
-	Else hotkey := hotkey0
 
 	If (mode = "regex")
 	{
@@ -325,6 +322,7 @@ Stash_Hotkeys(mode := "")
 		in_progress := 0
 		Return
 	}
+	Else hotkey := mode
 
 	If IsNumber(hotkey)
 	{
