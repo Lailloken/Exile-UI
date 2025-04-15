@@ -1283,7 +1283,7 @@ Maptracker_LogsTooltip(ini_section, ini_key, cHWND)
 		pDate := SubStr(ini_section, 1, InStr(ini_section, " ") - 1), pTime := SubStr(ini_section, InStr(ini_section, " ") + 1), pCheck := LLK_HasVal(vars.maptracker.entries_copy[pDate], pTime,,,, 1)
 		text := StrReplace(vars.maptracker.entries_copy[pDate][pCheck][ini_key], InStr("notes, character", ini_key) ? "(n)" : "; ", "`n")
 		If (ini_key = "mapinfo")
-			text := StrReplace(StrReplace(text, "`n- ", "¢"), "`n", "`n   "), text := StrReplace(text, "p | ", "p`n")
+			text := StrReplace(StrReplace(text, "`n- ", "¢"), "`n", "`n   "), text := StrReplace(text, "p | ", "p`n"), text := (SubStr(text, 1, 1) = "-") ? SubStr(text, 2) : text
 		Else If (ini_key = "notes")
 			text := StrReplace(text, "§", "¢")
 	}
