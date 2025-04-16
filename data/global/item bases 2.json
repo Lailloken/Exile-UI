@@ -6091,7 +6091,7 @@
       ]
     }
   },
-  "one handed axes": {
+  "one hand axes": {
     "bandit hatchet": {
       "crit": 76,
       "dps": 38,
@@ -6270,7 +6270,7 @@
       ]
     }
   },
-  "one handed maces": {
+  "one hand maces": {
     "bandit mace": {
       "crit": 71,
       "dps": 66,
@@ -6605,7 +6605,7 @@
       ]
     }
   },
-  "one handed swords": {
+  "one hand swords": {
     "broadsword": {
       "crit": 100,
       "dps": 20,
@@ -8933,7 +8933,7 @@
       ]
     }
   },
-  "two handed axes": {
+  "two hand axes": {
     "arched greataxe": {
       "crit": 76,
       "dps": 34,
@@ -9112,7 +9112,7 @@
       ]
     }
   },
-  "two handed maces": {
+  "two hand maces": {
     "anvil maul": {
       "crit": 76,
       "dps": 89,
@@ -9447,7 +9447,7 @@
       ]
     }
   },
-  "two handed swords": {
+  "two hand swords": {
     "ancient greatblade": {
       "crit": 100,
       "dps": 79,
