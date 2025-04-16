@@ -3,7 +3,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ## Download & Setup
-| [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Lailloken-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_download.png)](https://github.com/Lailloken/Exile-UI/archive/refs/tags/v1.57.8.zip) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_releases.png)](https://github.com/Lailloken/Lailloken-UI/releases) |
+| [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Lailloken-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_download.png)](https://github.com/Lailloken/Exile-UI/archive/refs/heads/main.zip) | [![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/_releases.png)](https://github.com/Lailloken/Lailloken-UI/releases) |
 |---|---|---|---|
 
 ## Contributions
@@ -63,7 +63,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### [Item-info](https://github.com/Lailloken/Lailloken-UI/wiki/Item-info): compact & customizable tooltip to determine loot quality at a glance  
-**`Path of Exile 2 compatible (but limited by the game's clipboard-copy)`**  
+**`Path of Exile 2 compatible`**  
 | example: rare | example: unique| example: anointed |
 |---|---|---|
 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_001.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_002.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_003.png) |
