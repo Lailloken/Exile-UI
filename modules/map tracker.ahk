@@ -1817,7 +1817,13 @@ Maptracker_Timer()
 		vars.maptracker.last_kills := ""
 
 	If !Maptracker_Check(2) || !settings.maptracker.sidecontent && Maptracker_Check(1) || vars.maptracker.pause ;when outside a map, don't advance the timer (or track character-movement between maps/HO)
+	{
+		vars.maptracker.map.died := 0
 		Return
+	}
+
+	If vars.poe_version && vars.maptracker.map.died && (vars.maptracker.map.seed != vars.log.areaseed)
+		vars.maptracker.map.seed := vars.log.areaseed, vars.maptracker.map.died := 0
 
 	If !IsObject(vars.maptracker.map) ;entering the very first map
 		Maptracker_Save(1), new := 1 ;flag to specify that this is a new map

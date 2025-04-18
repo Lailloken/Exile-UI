@@ -463,7 +463,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		}
 
 		If settings.features.maptracker && (vars.log.areaID = vars.maptracker.map.id) && (Lang_Match(loopfield, vars.lang.log_slain) || Lang_Match(loopfield, vars.lang.log_suicide))
-			vars.maptracker.map.deaths += 1
+			vars.maptracker.map.deaths += 1, vars.maptracker.map.died := 1
 
 		If settings.features.maptracker && settings.maptracker.kills && vars.maptracker.refresh_kills && Lang_Match(loopfield, vars.lang.log_killed)
 		{
