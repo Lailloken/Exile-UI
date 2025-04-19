@@ -584,17 +584,18 @@ Mapinfo_Parse2(mode)
 		For key, val in db.mapinfo.mods
 			If RegExMatch(mod_group, "i)(^|\n)" StrReplace(key, "|", ".*"))
 			{
-				map.mods += InStr(mod_full, "{enchant}") ? 0 : 1, match := 1
+				map.mods += InStr(mod_full, "{enchant}") || match ? 0 : 1, match := 1
 				Loop, Parse, key, % "|"
-					map_mods[key] .= (!map_mods[key] ? "" : "/") . parsed_lines[A_LoopField]
+					If InStr(key, "|")
+						map_mods[key] .= (A_Index = 1 ? "" : "/") . parsed_lines[A_LoopField]
+					Else map_mods[key] := parsed_lines[A_LoopField]
 				If InStr(val.ID, "044") || (val.ID = 44)
 					map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
-				Break
 			}
 		
 		If !match
 		{
-			map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1
+			map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1, map.mods += 1
 			If mode && settings.general.dev
 				MsgBox, % "unknown mod:`n" mod_group
 		}

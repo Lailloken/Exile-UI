@@ -122,47 +122,47 @@ ID	=	016
 
 [Area contains # additional packs of Undead]
 type	=	monsters
-text	=	extra undead packs
+text	=	undead packs
 ID	=	017
 
 [Area contains # additional packs of Beasts]
 type	=	monsters
-text	=	extra beast packs
+text	=	beast packs
 ID	=	018
 
 [Area contains # additional packs of Ezomyte Monsters]
 type	=	monsters
-text	=	extra ezomyte packs
+text	=	ezomyte packs
 ID	=	019
 
 [Area contains # additional packs of Faridun Monsters]
 type	=	monsters
-text	=	extra faridun packs
+text	=	faridun packs
 ID	=	020
 
 [Area contains # additional packs of Vaal Monsters]
 type	=	monsters
-text	=	extra vaal packs
+text	=	vaal packs
 ID	=	021
 
 [Area contains # additional packs of Iron Guards]
 type	=	monsters
-text	=	extra iron guard packs
+text	=	iron guard packs
 ID	=	022
 
 [Area contains # additional packs of Plagued Monsters]
 type	=	monsters
-text	=	extra plagued packs
+text	=	plagued packs
 ID	=	023
 
 [Area contains # additional packs of Transcended Monsters]
 type	=	monsters
-text	=	extra transcended packs
+text	=	transcended packs
 ID	=	024
 
 [Area contains # additional packs of Bramble Monsters]
 type	=	monsters
-text	=	extra bramble packs
+text	=	bramble packs
 ID	=	025
 
 [Monsters deal # of Damage as Extra Fire]
