@@ -1822,6 +1822,9 @@ Maptracker_Timer()
 		Return
 	}
 
+	If (A_TimeIdle >= 10000) ;pause tracking when AFK for longer than 10 seconds
+		Return
+
 	If vars.poe_version && vars.maptracker.map.died && (vars.maptracker.map.seed != vars.log.areaseed)
 		vars.maptracker.map.seed := vars.log.areaseed, vars.maptracker.map.died := 0
 
