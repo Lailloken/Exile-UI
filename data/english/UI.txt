@@ -190,6 +190,7 @@
 		global_activation		=	"activation:"
 		global_maps			=	"maps"
 		global_league			=	"league"
+		global_copy			=	"copy"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"

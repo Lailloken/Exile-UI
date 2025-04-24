@@ -3498,21 +3498,31 @@ Settings_searchstrings()
 			Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
 			Gui, %GUI%: Font, norm
 		}
-		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
+		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
+
 		color := !var.enable ? "Gray" : !FileExist("img\Recognition ("vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " string ".bmp") ? "Red" : "White", style := !var.enable ? "" : " gSettings_searchstrings2"
 		Gui, %GUI%: Add, Text, % "Section xs Border HWNDhwnd c"color style, % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cal_"string] := vars.hwnd.help_tooltips["settings_searchstrings calibrate"handle] := hwnd
+
 		color := !var.enable ? "Gray" : !var.x1 ? "Red" : "White"
 		Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd x+"settings.general.fWidth/4 " c"color style, % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["test_"string] := vars.hwnd.help_tooltips["settings_searchstrings test"handle] := hwnd
+
 		Gui, %GUI%: Add, Text, % "ys Border cWhite gSettings_searchstrings2 HWNDhwnd x+"settings.general.fWidth/4, % " " Lang_Trans("global_edit") " "
 		vars.hwnd.settings["edit_"string] := vars.hwnd.help_tooltips["settings_searchstrings edit"handle] := hwnd
-		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd0 x+"settings.general.fWidth/4 " c"(string = "beast crafting" ? "Gray" : "White") (string = "beast crafting" ? "" : " gSettings_searchstrings2"), % " " Lang_Trans("global_delete", 2) " "
+
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd0 x+"settings.general.fWidth/4 " c"(string = "beast crafting" ? "Gray" : "White") (string = "beast crafting" ? "" : " gSettings_searchstrings2")
+			, % " " Lang_Trans("global_delete", 2) " "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack Disabled cRed range0-500 HWNDhwnd", 0
 		vars.hwnd.settings["del_"string] := hwnd0, vars.hwnd.settings["delbar_"string] := vars.hwnd.help_tooltips["settings_searchstrings delete"handle] := hwnd
+
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_searchstrings2 HWNDhwnd x+"settings.general.fWidth/4, % " " Lang_Trans("global_copy") " "
+		vars.hwnd.settings["copy_" string] := vars.hwnd.help_tooltips["settings_searchstrings copy" handle] := hwnd
+
 		color := !var.enable ? "Gray" : "White"
-		Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " c"color " gSettings_searchstrings2 HWNDhwnd Checked"vars.searchstrings.list[string].enable, % (vars.lang["m_search_" string] || vars.lang2["m_search_" string]) ? Lang_Trans("m_search_" string) : string
-		vars.hwnd.settings["enable_"string] := vars.hwnd.help_tooltips["settings_searchstrings enable"(string = "hideout lilly" ? "-lilly" : (string = "beast crafting" ? "-beastcrafting" : "")) handle] := hwnd, handle .= "|"
+		Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " c"color " gSettings_searchstrings2 HWNDhwnd Checked"vars.searchstrings.list[string].enable
+			, % (vars.lang["m_search_" string] || vars.lang2["m_search_" string]) ? Lang_Trans("m_search_" string) : string
+		vars.hwnd.settings["enable_"string] := vars.hwnd.help_tooltips["settings_searchstrings enable" (string = "hideout lilly" ? "-lilly" : (string = "beast crafting" ? "-beastcrafting" : "")) handle] := hwnd, handle .= "|"
 	}
 
 	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd0 y+"vars.settings.spacing, % Lang_Trans("m_search_add")
@@ -3523,7 +3533,7 @@ Settings_searchstrings()
 	If !vars.searchstrings.list.Count()
 	{
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69
+		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69
 	}
 	vars.hwnd.settings.name := vars.hwnd.help_tooltips["settings_searchstrings add|"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
@@ -3574,8 +3584,9 @@ Settings_searchstrings2(cHWND)
 		IniWrite, % LLK_ControlGet(cHWND), % "ini" vars.poe_version "\search-strings.ini", searches, % control
 		Settings_menu("search-strings")
 	}
-	Else If (check = "add")
+	Else If (check = "add") || InStr(check, "copy_")
 	{
+		KeyWait, LButton
 		name := LLK_ControlGet(vars.hwnd.settings.name)
 		WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.settings.name
 		While (SubStr(name, 1, 1) = " ")
@@ -3596,8 +3607,19 @@ Settings_searchstrings2(cHWND)
 			LLK_ToolTip(error.1, error.2, x, y + h,, "red")
 			Return
 		}
+
+		If InStr(check, "copy_")
+		{
+			read := LLK_IniRead("ini" vars.poe_version "\search-strings.ini", control)
+			write := "last coordinates="
+			Loop, parse, read, `n, % " `r"
+				If !InStr(A_LoopField, "last coordinates")
+					write .= "`n" A_LoopField
+			IniWrite, % write, % "ini" vars.poe_version "\search-strings.ini", % name
+		}
+		Else IniWrite, % "", % "ini" vars.poe_version "\search-strings.ini", % name, last coordinates
+
 		IniWrite, 1, % "ini" vars.poe_version "\search-strings.ini", searches, % name
-		IniWrite, % "", % "ini" vars.poe_version "\search-strings.ini", % name, last coordinates
 		Settings_menu("search-strings")
 	}
 	Else LLK_ToolTip("no action")

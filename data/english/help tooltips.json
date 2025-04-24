@@ -715,6 +715,11 @@
       "this detection requires manual image calibration for each use-case",
       "some use-cases (e.g. bestiary index) don't automatically hide the league-info panel in the top-right corner, so you have to open the inventory before pressing the omni-key"
     ],
+    "searchstrings about 2": [
+      "search-strings are grouped into use-cases, e.g. gem cutting, stash, vendor",
+      "when pressing the omni-key, the script detects the right use-case and displays a list with entries to choose from",
+      "this detection requires manual image calibration for each use-case"
+    ],
     "searchstrings calibrate": [
       "opens the clipping tool: use it to clip a ui element that is unique to the search"
     ],
@@ -728,6 +733,9 @@
     ],
     "searchstrings delete": [
       "long-click to delete this use-case and its strings"
+    ],
+    "searchstrings copy": [
+      "enter a name below, then click this button to create a copy of this use-case with a new name"
     ],
     "searchstrings enable": [
       "enable/disable the specific use-case"
