@@ -1,12 +1,21 @@
 [
   [
+	["1.58.0", 15800],
+	"april 24, 2025",
+	"item-info: fixed maces and bucklers, improved affix detection",
+	"map-tracker: fixed rare issue when reviving during boss-fights, added afk detection",
+	"added new feature <statlas> to check layouts, bosses, and stats right from the atlas"
+  ],
+  [
 	["1.57.8", 15708],
+	"april 14, 2025",
 	"fixes: map-info burning ground, item-info t1 hybrid highlighting",
 	"act-tracker: layouts usable without guide, layout overlay can be locked, layouts can be rotated/flipped",
 	"map-info: added alt-activation option, now displays mod and revive count"
   ],
   [
 	["1.57.7", 15707],
+	"april 10, 2025",
 	"act-tracker: added support for latest pob",
 	"map-tracker: added <ea dawn> date filter",
 	"item-info: improved affix detection, enabled base-stat info",
@@ -14,6 +23,7 @@
   ],
   [
 	["1.57.6", 15706],
+	"april 8, 2025",
 	"hotfix 1: in-game tooltip being stuck on screen",
 	"fixes: item-info ele dps, map-tracker unique maps",
 	"item-info: added support for new/renamed item-bases and uniques",
@@ -22,6 +32,7 @@
   ],
   [
 	["1.57.5", 15705, 1],
+	"april 4, 2025",
 	"reminder: requires manual install if you don't have 1.57.3+, check full release notes(/highlight)",
 	"fixes: item-info ele dps, poedb links",
 	"act-tracker: added poe2 zone layouts, improved pob gem overlay",
@@ -29,6 +40,7 @@
   ],
   [
 	["1.57.4", 15704, 1],
+	"march 26, 2025",
 	"requires manual install if you don't have 1.57.3, check full release notes(/highlight)",
 	"tool and project rebranded to exile ui(/highlight)",
 	"fix: stash-ninja bulk-selling interfered with ctrl-right-clicking",
