@@ -102,6 +102,7 @@ Statlas_GUI(mode := "")
 
 	If InStr(mode, "zoom_")
 		If InStr(mode, "minus") && (Round(settings.statlas.zoom, 2) = 0.20) || InStr(mode, "plus") && (Round(settings.statlas.zoom, 2) = 0.50)
+		|| (LLK_IsBetween(vars.general.xMouse, vars.statlas.coords.1, vars.statlas.coords.3) && LLK_IsBetween(vars.general.yMouse, vars.statlas.coords.2, vars.statlas.coords.4))
 		{
 			wait := 0
 			Return

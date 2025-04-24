@@ -427,7 +427,7 @@ LLK_ImageCache(file, resize := "")
 
 	pBitmap := Gdip_CreateBitmapFromFile(file)
 	If IsNumber(resize)
-		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, resize, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_resized
+		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, resize, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_resized
 	pHBM := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0), Gdip_DisposeImage(pBitmap)
 	Return pHBM
 }

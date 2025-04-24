@@ -440,7 +440,7 @@ Hotkeys_Tab()
 WheelUp::Statlas_GUI("tier_plus")
 WheelDown::Statlas_GUI("tier_minus")
 
-#If vars.hwnd.statlas.main && WinExist("ahk_id " vars.hwnd.statlas.main) && !(LLK_IsBetween(vars.general.xMouse, vars.statlas.coords.1, vars.statlas.coords.3) && LLK_IsBetween(vars.general.yMouse, vars.statlas.coords.2, vars.statlas.coords.4))
+#If vars.hwnd.statlas.main
 WheelUp::Statlas_GUI("zoom_plus")
 WheelDown::Statlas_GUI("zoom_minus")
 
