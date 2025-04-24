@@ -411,7 +411,7 @@ Hotkeys_Tab()
 			Gui, % Gui_Name(vars.hwnd.leveltracker_zones.main) ": +E0x20"
 			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
 			For key, val in vars.hwnd.leveltracker_zones
-				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel"],,, 0)
+				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment"],,, 0)
 					GuiControl, % "+hidden", % val
 		}
 		vars.leveltracker.overlays := 0
@@ -426,7 +426,7 @@ Hotkeys_Tab()
 		LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
 	If vars.hwnd.alarm.alarm_set && WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
 		WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set
-	Else If active
+	Else If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
 }
 

@@ -2912,7 +2912,16 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 			Return
 		}
 
-		If LLK_PatternMatch(check, "", ["_rotate", "_flip"])
+		If (check = "alignment")
+		{
+			If (drag = 1)
+				IniWrite, % (settings.leveltracker.aLayouts := (settings.leveltracker.aLayouts = "vertical") ? "horizontal" : "vertical"), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts arrangement
+			x := (settings.leveltracker.aLayouts = "vertical") ? vars.client.x - vars.monitor.x : "", y := (settings.leveltracker.aLayouts = "vertical") ? "" : vars.client.y - vars.monitor.y
+			drag_block := 1
+			KeyWait, LButton
+			KeyWait, RButton
+		}
+		Else If LLK_PatternMatch(check, "", ["_rotate", "_flip"])
 		{
 			drag_block := 1, control := SubStr(check, InStr(check, " ",, 0) + 1, 1)
 			If !IsObject(vars.leveltracker.zone_layouts[vars.log.areaID][control])
@@ -2942,20 +2951,12 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	If longpress
 		vars.general.drag := 0
 
-	If cHWND && !drag_block && !longpress && (drag = 1)
-	{
-		settings.leveltracker.aLayouts := (settings.leveltracker.aLayouts = "vertical") ? "horizontal" : "vertical"
-		IniWrite, % settings.leveltracker.aLayouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts arrangement
-	}
-	Else If cHWND && !longpress && (drag = 2)
-		x := (settings.leveltracker.aLayouts = "vertical") ? vars.client.x - vars.monitor.x : "", y := (settings.leveltracker.aLayouts = "vertical") ? "" : vars.client.y - vars.monitor.y
-
 	If !Blank(x) || !Blank(y)
 	{
 		settings.leveltracker.xLayouts := x, settings.leveltracker.yLayouts := y
 		IniWrite, % settings.leveltracker.xLayouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts x
 		IniWrite, % settings.leveltracker.yLayouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts y
-		If (drag = 1)
+		If longpress
 			Return
 	}
 
@@ -2979,6 +2980,12 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	Gui, %GUI_name%: Add, Pic, % "Section Border BackgroundTrans HWNDhwnd h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden"), % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Progress, % "Disabled HWNDhwnd1 xp yp wp hp BackgroundBlack" (vars.leveltracker.overlays ? "" : " Hidden"), 0
 	vars.hwnd.leveltracker_zones.helppanel := hwnd, vars.hwnd.leveltracker_zones.helppanel_bar := vars.hwnd.help_tooltips["leveltrackerzones_help panel"] := hwnd1
+
+	If !vars.pics.zone_layouts.vertical
+		vars.pics.zone_layouts.vertical := LLK_ImageCache("img\GUI\vertical_alignment.png"), vars.pics.zone_layouts.horizontal := LLK_ImageCache("img\GUI\horizontal_alignment.png")
+	Gui, %GUI_name%: Add, Pic, % (settings.leveltracker.aLayouts = "vertical" ? "ys" : "xs") " Border HWNDhwnd gLeveltracker_ZoneLayouts h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden")
+		, % "HBitmap:*" vars.pics.zone_layouts[(settings.leveltracker.aLayouts = "vertical" ? "horizontal" : "vertical")]
+	vars.hwnd.leveltracker_zones.alignment := vars.hwnd.help_tooltips["leveltrackerzones_alignment"] := hwnd
 
 	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 	{
@@ -3015,13 +3022,13 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 		If vars.leveltracker.overlays
 		{
-			If !vars.pics.global.rotate
-				vars.pics.global.rotate := LLK_ImageCache("img\GUI\rotate.png")
-			If !vars.pics.global.flip
-				vars.pics.global.flip := LLK_ImageCache("img\GUI\flip.png")
-			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.rotate
+			If !vars.pics.zone_layouts.rotate
+				vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
+			If !vars.pics.zone_layouts.flip
+				vars.pics.zone_layouts.flip := LLK_ImageCache("img\GUI\flip.png")
+			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.rotate
 			vars.hwnd.leveltracker_zones[vars.log.areaID " " A_Index "_rotate"] := hwnd
-			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.flip
+			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.flip
 			vars.hwnd.leveltracker_zones[vars.log.areaID " " A_Index "_flip"] := hwnd
 		}
 	}
