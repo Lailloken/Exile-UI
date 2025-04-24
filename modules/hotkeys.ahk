@@ -280,6 +280,25 @@ Hotkeys_Tab()
 		Return
 	}
 
+	If settings.features.statlas && LLK_StringCompare(vars.log.areaID, ["hideout"]) && Screenchecks_ImageSearch("atlas")
+		While GetKeyState(vars.hotkeys.tab, "P")
+			If (A_TickCount >= start + 200)
+			{
+				If !WinExist("statlas debug") && Statlas()
+					Statlas_GUI()
+				Else If !WinExist("statlas debug")
+					LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
+
+				KeyWait, % vars.hotkeys.tab
+				Gui, statlas_comms: Destroy
+				LLK_Overlay(vars.hwnd.statlas.main, "destroy"), vars.hwnd.statlas.main := ""
+				If (settings.statlas.tier0 != settings.statlas.tier)
+					IniWrite, % (settings.statlas.tier0 := settings.statlas.tier), % "ini" vars.poe_version "\statlas.ini", settings, filter tier
+				If (settings.statlas.zoom0 != settings.statlas.zoom)
+					IniWrite, % (settings.statlas.zoom0 := settings.statlas.zoom), % "ini" vars.poe_version "\statlas.ini", settings, zoom
+				Return
+			}
+
 	While settings.qol.notepad && vars.hwnd.notepad_widgets.Count() && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
@@ -416,6 +435,14 @@ Hotkeys_Tab()
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
 #If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
+
+#If vars.hwnd.statlas.main && (vars.general.cMouse = vars.hwnd.statlas.tier)
+WheelUp::Statlas_GUI("tier_plus")
+WheelDown::Statlas_GUI("tier_minus")
+
+#If vars.hwnd.statlas.main && WinExist("ahk_id " vars.hwnd.statlas.main) && !(LLK_IsBetween(vars.general.xMouse, vars.statlas.coords.1, vars.statlas.coords.3) && LLK_IsBetween(vars.general.yMouse, vars.statlas.coords.2, vars.statlas.coords.4))
+WheelUp::Statlas_GUI("zoom_plus")
+WheelDown::Statlas_GUI("zoom_minus")
 
 #If vars.hwnd.leveltracker_editor.main && (vars.general.wMouse = vars.hwnd.leveltracker_editor.main)
 WheelUp::

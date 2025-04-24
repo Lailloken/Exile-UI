@@ -1163,6 +1163,11 @@ Maptracker_LogsLoad()
 			val := (key = "tier" && SubStr(val, 1, 1) = "0") ? SubStr(val, 2) : val
 			If (key = "mapinfo") && (SubStr(val, 2, 1) = "m")
 				val := StrReplace(val, "m", "x",, 1)
+			If (key = "map")
+				val := StrReplace(val, "savanna", "savannah"), val := StrReplace(val, "gothic city", "grimhaven")
+			If (key = "map") && InStr(val, " citadel") && !InStr(val, "the ")
+				For k, v in {"copper citadel": "the copper citadel", "iron citadel": "the iron citadel", "stone citadel": "the stone citadel"}
+					val := StrReplace(val, k, v)
 			Loop, Parse, val, `;, %A_Space% ;parse side-content info
 			{
 				If !A_LoopField || (key != "content")

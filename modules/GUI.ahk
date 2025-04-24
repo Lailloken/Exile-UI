@@ -131,9 +131,9 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "leveltrackerzones": "leveltracker_zones", "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0}
+	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "leveltrackerzones": "leveltracker_zones", "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0}
 	If (check != "settings")
-		WinGetPos, xWin, yWin, wWin,, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
 	If (check = "lab" && InStr(control, "square"))
 		vars.help.lab[control] := [vars.lab.compass.rooms[StrReplace(control, "square")].name], vars.help.lab[control].1 .= (vars.help.lab[control].1 = vars.lab.room.2) ? " (" Lang_Trans("lab_movemarker") ")" : ""
 	If (check = "lootfilter" && InStr(control, "tooltip"))
@@ -186,9 +186,12 @@ Gui_HelpToolTip(HWND_key)
 
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000
 	WinGetPos,,, width, height, ahk_id %tooltip%
-	xPos := (check = "settings") ? vars.settings.x + vars.settings.wSelection - 1 : xWin + (check = "leveltrackereditor" ? (wWin - 2)//8 : 0), yPos := InStr(control, "update changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
+	xPos := (check = "settings") ? vars.settings.x + vars.settings.wSelection - 1 : xWin + (check = "leveltrackereditor" ? (wWin - 2)//8 : 0)
+	yPos := InStr(control, "update changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
 	If (check = "lootfilter")
 		yPos := vars.lootfilter.yPos - height, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos
+	Else If (check = "statlas")
+		yPos := yWin + hWin
 	Gui, %GUI_name%: Show, % "NA x"xPos " y"(InStr("notepad, lab, leveltracker, snip, searchstrings, maptracker", check) ? yWin - (InStr("maptracker", check) ? height - 1 : 0) : yPos)
 	LLK_Overlay(tooltip, (width < 10) ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
@@ -417,12 +420,15 @@ LLK_FontSizeGet(height, ByRef font_width) ;returns a font-size that approximates
 	}
 }
 
-LLK_ImageCache(file)
+LLK_ImageCache(file, resize := "")
 {
 	local
 	global vars, settings
 
-	pBitmap := Gdip_CreateBitmapFromFile(file), pHBM := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0), Gdip_DisposeImage(pBitmap)
+	pBitmap := Gdip_CreateBitmapFromFile(file)
+	If IsNumber(resize)
+		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, resize, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_resized
+	pHBM := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0), Gdip_DisposeImage(pBitmap)
 	Return pHBM
 }
 

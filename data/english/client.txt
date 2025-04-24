@@ -136,6 +136,8 @@
 		maps_stone_citadel		=	"stone citadel"
 		maps_iron_citadel		=	"iron citadel"
 
+		maps_biome			=	"biome:"			;## each map on the atlas belongs to a biome
+
 
 ;## these strings are shown in the map-info panel
 		maps_stats_full			=	"mods#quantity#rarity#pack size#maps#scarabs#currency"		;## PoE1 only, map rolls/multipliers

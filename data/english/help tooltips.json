@@ -808,6 +808,19 @@
       "leaving min/max price blank will treat them as unlimited, leaving the unit blank will disable the profile entirely",
       "while the overlay is on screen, press number-keys 1 to 5 to switch between profiles"
     ],
+    "statlas enable": [
+      "atlas feature that displays various information about maps on the atlas",
+      "hold <tab> while hovering over maps on the atlas to activate the overlay",
+      "scroll to adjust the image size",
+      "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section of the settings menu"
+    ],
+    "statlas maptracker": [
+      "the overlay will show stats collected via the map-tracker feature"
+    ],
+    "statlas notable": [
+      "the atlas notable <local knowledge> provides loot-drop bonuses for different biomes",
+      "if enabled, the overlay will show the bonuses for the map you're hovering over"
+    ],
     "update check": [
       "checks for updates on script launch and in the background while running",
       "if there is an update available, the main toolbar will turn green"
@@ -1206,6 +1219,12 @@
     ]
   },
   "screenchecks": {
+    "atlas": [
+      "(/bold)(/underline)instructions:",
+      "-> open the atlas",
+      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
+      "-> follow the instructions in <test>"
+    ],
     "gamescreen": [
       "(/bold)(/underline)explanation:",
       "-> this check is used to determine whether you are controlling your character or accessing a menu",
@@ -1240,6 +1259,11 @@
       "-> open the stash",
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
+    ]
+  },
+  "statlas": {
+    "tier": [
+      "scroll the mouse-wheel to adjust this filter"
     ]
   },
   "recombination": {

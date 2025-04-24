@@ -43,6 +43,8 @@ DB_Load(database)
 					db.leveltracker.areaIDs[oArea.id] := oArea.map_name ? {"name": oArea.name, "mapname": oArea.map_name, "craft": oArea.crafting_recipe} : {"name": oArea.name, "craft": oArea.crafting_recipe}
 				Else db.leveltracker.areaIDs[oArea.id] := oArea.map_name ? {"name": oArea.name, "mapname": oArea.map_name} : {"name": oArea.name}
 	}
+	Else If (database = "maps")
+		db.maps := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\maps" vars.poe_version ".json") ? settings.general.lang_client : "english") "\maps" vars.poe_version ".json",, "65001"))
 	Else If (database = "item_mods")
 		db.item_mods := Json.Load(LLK_FileRead("data\global\item mods" vars.poe_version ".json"))
 	Else If (database = "item_bases")
@@ -385,6 +387,13 @@ LLK_Log(message)
 
 	FormatTime, logstamp, A_Now, yyyy-MM-dd`, HH:mm:ss
 	FileAppend, % (InStr(message, "---") ? "`r`n" : "") "[" logstamp "] " message "`r`n", data\log.txt
+}
+
+LLK_MaxIndex(array)
+{
+	local
+
+	Return array[array.MaxIndex()]
 }
 
 LLK_PatternMatch(text, string, object, swap := 0, value := 1, case := 1) ;swap param switches the order around, val param determines if values or keys of the object are used

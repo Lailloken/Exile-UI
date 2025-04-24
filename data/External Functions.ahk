@@ -10266,8 +10266,11 @@ WaitForAsync(Object, ByRef ObjectResult)
 		{
 			if (status != 1)
 			{
-				MsgBox, AsyncInfo status error. The script will restart.
-            Reload
+				If !InStr(A_ScriptName, "_ocr thread")
+            {
+               MsgBox, AsyncInfo status error. The script will restart.
+               Reload
+            }
 				ExitApp
 			}
 			ObjRelease(AsyncInfo)
