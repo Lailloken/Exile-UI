@@ -15,6 +15,7 @@
 SetWorkingDir %A_ScriptDir%
 DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
 OnMessage(0x0204, "RightClick")
+OnMessage(0x004A, "StringReceive")
 StringCaseSense, Locale
 SetKeyDelay, 100
 CoordMode, Mouse, Screen
@@ -72,6 +73,7 @@ Init_qol(), LLK_Log("initialized minor qol settings")
 Init_recombination(), LLK_Log("initialized recombination settings")
 Init_sanctum(), LLK_Log("initialized sanctum planner settings")
 Init_stash(), LLK_Log("initialized stash-ninja settings")
+Init_statlas(), LLK_Log("initialized statlas settings")
 Init_hotkeys(), LLK_Log("initialized hotkey settings")
 Resolution_check()
 
@@ -130,6 +132,7 @@ Return
 #Include modules\seed-explorer.ahk
 #Include modules\settings menu.ahk
 #Include modules\stash-ninja.ahk
+#Include modules\statlas.ahk
 
 Exit()
 {
@@ -452,9 +455,10 @@ Init_general()
 	settings.features.mapinfo := (settings.general.lang_client != "unknown") && !Blank(check := ini.features["enable map-info panel"]) ? check : 0
 	settings.features.OCR := !vars.poe_version && !Blank(check := ini.features["enable ocr"]) ? check : 0
 	settings.features.stash := !vars.poe_version && !Blank(check := ini.features["enable stash-ninja"]) ? check : 0
+	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}}
 }
 
 Init_vars()
@@ -984,4 +988,15 @@ Startup()
 	Else vars.log.file_location := 0, LLK_Log("couldn't find game's log-file")
 
 	Gui_ClientFiller()
+}
+
+StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com/docs/v1/lib/OnMessage.htm
+{
+	local
+	global vars, settings
+
+	StringAddress := NumGet(string + 2*A_PtrSize), string := StrGet(StringAddress)
+	If InStr(string, "OCR ")
+		vars.statlas.text := LLK_StringCase(string)
+	Return true
 }

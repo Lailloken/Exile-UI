@@ -2779,6 +2779,247 @@
       ]
     }
   },
+  "bucklers": {
+    "aegis buckler": {
+      "EV": 83,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ancient buckler": {
+      "EV": 100,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "array buckler": {
+      "EV": 71,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "bladeguard buckler": {
+      "EV": 78,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "coiled buckler": {
+      "EV": 66,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "edged buckler": {
+      "EV": 52,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "gutspike buckler": {
+      "EV": 91,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "iron buckler": {
+      "EV": 24,
+      "tags": [
+        "maraketh_basetype",
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "jingling buckler": {
+      "EV": 75,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "laminate buckler": {
+      "EV": 59,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "leather buckler": {
+      "EV": 7,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "oak buckler": {
+      "EV": 59,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ornate buckler": {
+      "EV": 83,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "painted buckler": {
+      "EV": 63,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "pearl buckler": {
+      "EV": 63,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "plated buckler": {
+      "EV": 19,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ridged buckler": {
+      "EV": 32,
+      "tags": [
+        "maraketh_basetype",
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "ringed buckler": {
+      "EV": 45,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "vaal_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "spiked buckler": {
+      "EV": 36,
+      "tags": [
+        "maraketh_basetype",
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "spikeward buckler": {
+      "EV": 71,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "armour",
+        "default",
+        "shield"
+      ]
+    },
+    "wooden buckler": {
+      "EV": 12,
+      "tags": [
+        "buckler",
+        "dex_shield",
+        "dex_armour",
+        "ezomyte_basetype",
+        "armour",
+        "default",
+        "shield"
+      ]
+    }
+  },
   "charms": {
     "amethyst charm": {
       "tags": [
@@ -6091,7 +6332,7 @@
       ]
     }
   },
-  "one handed axes": {
+  "one hand axes": {
     "bandit hatchet": {
       "crit": 76,
       "dps": 38,
@@ -6270,7 +6511,7 @@
       ]
     }
   },
-  "one handed maces": {
+  "one hand maces": {
     "bandit mace": {
       "crit": 71,
       "dps": 66,
@@ -6605,7 +6846,7 @@
       ]
     }
   },
-  "one handed swords": {
+  "one hand swords": {
     "broadsword": {
       "crit": 100,
       "dps": 20,
@@ -7420,17 +7661,6 @@
     }
   },
   "shields": {
-    "aegis buckler": {
-      "EV": 83,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "aged tower shield": {
       "AR": 60,
       "tags": [
@@ -7451,31 +7681,9 @@
         "shield"
       ]
     },
-    "ancient buckler": {
-      "EV": 100,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "array buckler": {
-      "EV": 71,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "aureate targe": {
       "AR": 40,
-      "EV": 51,
+      "EV": 74,
       "HY": 74,
       "tags": [
         "str_dex_armour",
@@ -7487,7 +7695,7 @@
     },
     "avian targe": {
       "AR": 43,
-      "EV": 54,
+      "EV": 80,
       "HY": 80,
       "tags": [
         "str_dex_armour",
@@ -7499,7 +7707,7 @@
     },
     "baroque targe": {
       "AR": 50,
-      "EV": 63,
+      "EV": 92,
       "HY": 92,
       "tags": [
         "str_dex_armour",
@@ -7525,17 +7733,6 @@
       "tags": [
         "str_armour",
         "str_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "bladeguard buckler": {
-      "EV": 78,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
         "armour",
         "default",
         "shield"
@@ -7577,7 +7774,7 @@
     },
     "carved targe": {
       "AR": 34,
-      "EV": 42,
+      "EV": 62,
       "HY": 62,
       "tags": [
         "str_dex_armour",
@@ -7589,7 +7786,7 @@
     },
     "chiseled targe": {
       "AR": 25,
-      "EV": 30,
+      "EV": 45,
       "HY": 46,
       "tags": [
         "str_dex_armour",
@@ -7600,20 +7797,9 @@
         "shield"
       ]
     },
-    "coiled buckler": {
-      "EV": 66,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "crescent targe": {
       "AR": 21,
-      "EV": 25,
+      "EV": 37,
       "HY": 38,
       "tags": [
         "maraketh_basetype",
@@ -7690,18 +7876,6 @@
         "shield"
       ]
     },
-    "edged buckler": {
-      "EV": 52,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "vaal_basetype",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "effigial tower shield": {
       "AR": 32,
       "tags": [
@@ -7752,7 +7926,7 @@
     },
     "feathered targe": {
       "AR": 28,
-      "EV": 34,
+      "EV": 50,
       "HY": 50,
       "tags": [
         "str_dex_armour",
@@ -7775,7 +7949,7 @@
     },
     "fur-lined targe": {
       "AR": 35,
-      "EV": 43,
+      "EV": 63,
       "HY": 63,
       "tags": [
         "str_dex_armour",
@@ -7809,7 +7983,7 @@
     },
     "grand targe": {
       "AR": 46,
-      "EV": 57,
+      "EV": 83,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -7819,20 +7993,9 @@
         "shield"
       ]
     },
-    "gutspike buckler": {
-      "EV": 91,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "hardwood targe": {
       "AR": 5,
-      "EV": 5,
+      "EV": 7,
       "HY": 8,
       "tags": [
         "str_dex_armour",
@@ -7866,36 +8029,13 @@
         "shield"
       ]
     },
-    "iron buckler": {
-      "EV": 24,
-      "tags": [
-        "maraketh_basetype",
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "ironwood targe": {
       "AR": 33,
-      "EV": 40,
+      "EV": 59,
       "HY": 60,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "jingling buckler": {
-      "EV": 75,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
         "armour",
         "default",
         "shield"
@@ -7914,32 +8054,9 @@
         "shield"
       ]
     },
-    "laminate buckler": {
-      "EV": 59,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "leather buckler": {
-      "EV": 7,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "ezomyte_basetype",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "mammoth targe": {
       "AR": 46,
-      "EV": 57,
+      "EV": 83,
       "HY": 83,
       "tags": [
         "str_dex_armour",
@@ -7951,7 +8068,7 @@
     },
     "mercenary targe": {
       "AR": 36,
-      "EV": 45,
+      "EV": 67,
       "HY": 67,
       "tags": [
         "str_dex_armour",
@@ -7973,7 +8090,7 @@
     },
     "mosaic targe": {
       "AR": 37,
-      "EV": 46,
+      "EV": 68,
       "HY": 68,
       "tags": [
         "str_dex_armour",
@@ -7993,17 +8110,6 @@
         "shield"
       ]
     },
-    "oak buckler": {
-      "EV": 59,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "omen crest shield": {
       "AR": 27,
       "ES": 54,
@@ -8012,28 +8118,6 @@
         "str_int_armour",
         "vaal_basetype",
         "str_int_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "ornate buckler": {
-      "EV": 83,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "painted buckler": {
-      "EV": 63,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
         "armour",
         "default",
         "shield"
@@ -8062,20 +8146,9 @@
         "shield"
       ]
     },
-    "pearl buckler": {
-      "EV": 63,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "pelage targe": {
       "AR": 9,
-      "EV": 10,
+      "EV": 15,
       "HY": 16,
       "tags": [
         "str_dex_armour",
@@ -8096,21 +8169,9 @@
         "shield"
       ]
     },
-    "plated buckler": {
-      "EV": 19,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "ezomyte_basetype",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
     "polished targe": {
       "AR": 39,
-      "EV": 48,
+      "EV": 71,
       "HY": 71,
       "tags": [
         "str_dex_armour",
@@ -8138,30 +8199,6 @@
         "maraketh_basetype",
         "str_armour",
         "str_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "ridged buckler": {
-      "EV": 32,
-      "tags": [
-        "maraketh_basetype",
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "ringed buckler": {
-      "EV": 45,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "vaal_basetype",
         "armour",
         "default",
         "shield"
@@ -8229,34 +8266,11 @@
     },
     "soaring targe": {
       "AR": 54,
-      "EV": 68,
+      "EV": 100,
       "HY": 100,
       "tags": [
         "str_dex_armour",
         "str_dex_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "spiked buckler": {
-      "EV": 36,
-      "tags": [
-        "maraketh_basetype",
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "spikeward buckler": {
-      "EV": 71,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
         "armour",
         "default",
         "shield"
@@ -8287,7 +8301,7 @@
     },
     "stone targe": {
       "AR": 42,
-      "EV": 52,
+      "EV": 76,
       "HY": 76,
       "tags": [
         "str_dex_armour",
@@ -8310,7 +8324,7 @@
     },
     "stratified targe": {
       "AR": 33,
-      "EV": 40,
+      "EV": 59,
       "HY": 60,
       "tags": [
         "str_dex_armour",
@@ -8322,7 +8336,7 @@
     },
     "studded targe": {
       "AR": 14,
-      "EV": 17,
+      "EV": 25,
       "HY": 26,
       "tags": [
         "maraketh_basetype",
@@ -8362,18 +8376,6 @@
       "tags": [
         "str_int_armour",
         "str_int_shield",
-        "armour",
-        "default",
-        "shield"
-      ]
-    },
-    "wooden buckler": {
-      "EV": 12,
-      "tags": [
-        "buckler",
-        "dex_shield",
-        "dex_armour",
-        "ezomyte_basetype",
         "armour",
         "default",
         "shield"
@@ -8933,7 +8935,7 @@
       ]
     }
   },
-  "two handed axes": {
+  "two hand axes": {
     "arched greataxe": {
       "crit": 76,
       "dps": 34,
@@ -9112,7 +9114,7 @@
       ]
     }
   },
-  "two handed maces": {
+  "two hand maces": {
     "anvil maul": {
       "crit": 76,
       "dps": 89,
@@ -9447,7 +9449,7 @@
       ]
     }
   },
-  "two handed swords": {
+  "two hand swords": {
     "ancient greatblade": {
       "crit": 100,
       "dps": 79,

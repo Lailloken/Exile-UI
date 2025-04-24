@@ -2643,7 +2643,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	{
 		If !vars.poe_version
 			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val))
 	}
@@ -2688,8 +2688,8 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width, vars.hwnd.settings["background_general"] := hwnd1
 	vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo"}
-	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1}
+	feature_check := {"betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas"}
+	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode
 		For key, val in vars.settings.sections
@@ -2815,6 +2815,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_searchstrings()
 		Case "stash-ninja":
 			Settings_stash()
+		Case "statlas":
+			Settings_statlas()
 		Case "updater":
 			Settings_updater()
 	}
@@ -3335,7 +3337,8 @@ Settings_screenchecks()
 	count := 0
 	For key in vars.imagesearch.list
 	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot)) || (key = "betrayal") && (settings.features[key] = 0)
+		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
+		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
 			Continue
 		count += 1
 	}
@@ -3350,7 +3353,8 @@ Settings_screenchecks()
 
 	For key in vars.imagesearch.list
 	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot)) || (key = "betrayal") && (settings.features[key] = 0)
+		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
+		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
 			Continue
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-info"handle] := hwnd
@@ -3463,7 +3467,8 @@ Settings_ScreenChecksValid()
 
 	For key, val in vars.imagesearch.list
 	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (vars.poe_version || !settings.features.maptracker || !settings.maptracker.loot)) || (key = "betrayal") && (vars.poe_version || settings.features[key] = 0)
+		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (vars.poe_version || !settings.features.maptracker || !settings.maptracker.loot))
+		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
 			Continue
 		valid *= FileExist("img\Recognition ("vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") && !Blank(vars.imagesearch[key].x1) ? 1 : 0
 	}
@@ -3493,21 +3498,31 @@ Settings_searchstrings()
 			Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
 			Gui, %GUI%: Font, norm
 		}
-		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
+		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
+
 		color := !var.enable ? "Gray" : !FileExist("img\Recognition ("vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " string ".bmp") ? "Red" : "White", style := !var.enable ? "" : " gSettings_searchstrings2"
 		Gui, %GUI%: Add, Text, % "Section xs Border HWNDhwnd c"color style, % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cal_"string] := vars.hwnd.help_tooltips["settings_searchstrings calibrate"handle] := hwnd
+
 		color := !var.enable ? "Gray" : !var.x1 ? "Red" : "White"
 		Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd x+"settings.general.fWidth/4 " c"color style, % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["test_"string] := vars.hwnd.help_tooltips["settings_searchstrings test"handle] := hwnd
+
 		Gui, %GUI%: Add, Text, % "ys Border cWhite gSettings_searchstrings2 HWNDhwnd x+"settings.general.fWidth/4, % " " Lang_Trans("global_edit") " "
 		vars.hwnd.settings["edit_"string] := vars.hwnd.help_tooltips["settings_searchstrings edit"handle] := hwnd
-		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd0 x+"settings.general.fWidth/4 " c"(string = "beast crafting" ? "Gray" : "White") (string = "beast crafting" ? "" : " gSettings_searchstrings2"), % " " Lang_Trans("global_delete", 2) " "
+
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd0 x+"settings.general.fWidth/4 " c"(string = "beast crafting" ? "Gray" : "White") (string = "beast crafting" ? "" : " gSettings_searchstrings2")
+			, % " " Lang_Trans("global_delete", 2) " "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack Disabled cRed range0-500 HWNDhwnd", 0
 		vars.hwnd.settings["del_"string] := hwnd0, vars.hwnd.settings["delbar_"string] := vars.hwnd.help_tooltips["settings_searchstrings delete"handle] := hwnd
+
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_searchstrings2 HWNDhwnd x+"settings.general.fWidth/4, % " " Lang_Trans("global_copy") " "
+		vars.hwnd.settings["copy_" string] := vars.hwnd.help_tooltips["settings_searchstrings copy" handle] := hwnd
+
 		color := !var.enable ? "Gray" : "White"
-		Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " c"color " gSettings_searchstrings2 HWNDhwnd Checked"vars.searchstrings.list[string].enable, % (vars.lang["m_search_" string] || vars.lang2["m_search_" string]) ? Lang_Trans("m_search_" string) : string
-		vars.hwnd.settings["enable_"string] := vars.hwnd.help_tooltips["settings_searchstrings enable"(string = "hideout lilly" ? "-lilly" : (string = "beast crafting" ? "-beastcrafting" : "")) handle] := hwnd, handle .= "|"
+		Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " c"color " gSettings_searchstrings2 HWNDhwnd Checked"vars.searchstrings.list[string].enable
+			, % (vars.lang["m_search_" string] || vars.lang2["m_search_" string]) ? Lang_Trans("m_search_" string) : string
+		vars.hwnd.settings["enable_"string] := vars.hwnd.help_tooltips["settings_searchstrings enable" (string = "hideout lilly" ? "-lilly" : (string = "beast crafting" ? "-beastcrafting" : "")) handle] := hwnd, handle .= "|"
 	}
 
 	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd0 y+"vars.settings.spacing, % Lang_Trans("m_search_add")
@@ -3518,7 +3533,7 @@ Settings_searchstrings()
 	If !vars.searchstrings.list.Count()
 	{
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69
+		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69
 	}
 	vars.hwnd.settings.name := vars.hwnd.help_tooltips["settings_searchstrings add|"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
@@ -3569,8 +3584,9 @@ Settings_searchstrings2(cHWND)
 		IniWrite, % LLK_ControlGet(cHWND), % "ini" vars.poe_version "\search-strings.ini", searches, % control
 		Settings_menu("search-strings")
 	}
-	Else If (check = "add")
+	Else If (check = "add") || InStr(check, "copy_")
 	{
+		KeyWait, LButton
 		name := LLK_ControlGet(vars.hwnd.settings.name)
 		WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.settings.name
 		While (SubStr(name, 1, 1) = " ")
@@ -3591,8 +3607,19 @@ Settings_searchstrings2(cHWND)
 			LLK_ToolTip(error.1, error.2, x, y + h,, "red")
 			Return
 		}
+
+		If InStr(check, "copy_")
+		{
+			read := LLK_IniRead("ini" vars.poe_version "\search-strings.ini", control)
+			write := "last coordinates="
+			Loop, parse, read, `n, % " `r"
+				If !InStr(A_LoopField, "last coordinates")
+					write .= "`n" A_LoopField
+			IniWrite, % write, % "ini" vars.poe_version "\search-strings.ini", % name
+		}
+		Else IniWrite, % "", % "ini" vars.poe_version "\search-strings.ini", % name, last coordinates
+
 		IniWrite, 1, % "ini" vars.poe_version "\search-strings.ini", searches, % name
-		IniWrite, % "", % "ini" vars.poe_version "\search-strings.ini", % name, last coordinates
 		Settings_menu("search-strings")
 	}
 	Else LLK_ToolTip("no action")
@@ -3913,6 +3940,73 @@ Settings_stash2(cHWND)
 	in_progress := 0
 }
 
+Settings_statlas()
+{
+	local
+	global vars, settings
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Statlas">wiki page</a>
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_statlas2 y+" vars.settings.spacing " Checked" settings.features.statlas, % Lang_Trans("m_statlas_enable")
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_statlas enable"] := hwnd
+
+	If !settings.features.statlas
+		Return
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_statlas2 Checked" settings.statlas.maptracker, % Lang_Trans("m_statlas_maptracker")
+	vars.hwnd.settings.maptracker := vars.hwnd.help_tooltips["settings_statlas maptracker"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_statlas2 Checked" settings.statlas.notable, % Lang_Trans("m_statlas_localknowledge")
+	vars.hwnd.settings.notable := vars.hwnd.help_tooltips["settings_statlas notable"] := hwnd
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("global_font")
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_statlas2 HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_statlas2 HWNDhwnd w"settings.general.fWidth*3, % settings.statlas.fSize
+	vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_statlas2 HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+}
+
+Settings_statlas2(cHWND)
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If (check = "enable")
+	{
+		IniWrite, % (settings.features.statlas := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable statlas
+		Settings_menu("statlas")
+	}
+	Else If (check = "maptracker")
+		IniWrite, % (settings.statlas.maptracker := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\statlas.ini", settings, include map-tracker data
+	Else If (check = "notable")
+		IniWrite, % (settings.statlas.notable := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\statlas.ini", settings, show atlas-notable effect
+	Else If InStr(check, "font_")
+	{
+		While GetKeyState("LButton", "P")
+		{
+			If (control = "reset")
+				settings.statlas.fSize := settings.general.fSize
+			Else settings.statlas.fSize += (control = "minus") ? -1 : 1, settings.statlas.fSize := (settings.statlas.fSize < 6) ? 6 : settings.statlas.fSize
+			GuiControl, text, % vars.hwnd.settings.font_reset, % settings.statlas.fSize
+			Sleep 150
+		}
+		IniWrite, % settings.statlas.fSize, % "ini" vars.poe_version "\statlas.ini", settings, font-size
+		LLK_FontDimensions(settings.statlas.fSize, height, width), settings.statlas.fWidth := width, settings.statlas.fHeight := height
+	}
+	Else LLK_ToolTip("no action")
+}
+
 Settings_unsupported()
 {
 	local
@@ -3978,7 +4072,7 @@ Settings_updater()
 		For index, val in vars.updater.changelog
 		{
 			major := SubStr(val.1.1, 1, 5)
-			If (val.1.2 < 15400)
+			If (val.1.2 < 15600)
 				Continue
 			If !added[major]
 				Gui, %GUI%: Add, Text, % "Section xs", % major

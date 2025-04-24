@@ -239,6 +239,7 @@ Log_Get(log_text, data)
 				hideout := LLK_StringCase(StrReplace(StrReplace(log_text, "_claimable"), "maphideout"))
 				Return LLK_StringCase(Lang_Trans("maps_" hideout "_hideout") ? Lang_Trans("maps_" hideout "_hideout") : hideout " " Lang_Trans("maps_hideout"))
 			}
+
 			%data% := StrReplace(SubStr(log_text, 4), "_noboss"), %data% := StrReplace(%data%, "SwampTower", "SinkingSpire")
 			If InStr(%data%, "uberboss_")
 				%data% := (settings.maptracker.rename ? Lang_Trans("maps_boss") ":" : "") . StrReplace(%data%, "uberboss_") . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
@@ -251,26 +252,24 @@ Log_Get(log_text, data)
 					%data% := Lang_Trans("items_unique") ": " SubStr(%data%, 7)
 			}
 			Else If LLK_PatternMatch(log_text, "", ["losttowers", "swamptower", "mesa", "bluff", "alpineridge"],,, 0)
-				%data% .= !InStr(log_text, "losttowers") ? " (" Lang_Trans("maps_tower") ")" : ""
+			{
+				%data% := Lang_Trans("maps_" %data%)
+				%data% .= !InStr(log_text, "losttowers") ? " (" Lang_Trans("maps_tower") . (!InStr(log_text, "_noboss") ? ", " Lang_Trans("maps_boss") : "") ")" : (!InStr(log_text, "_noboss") ? " (" Lang_Trans("maps_boss") ")" : "")
+			}
+			Else If (%data% = "voidreliquary")
+				%data% := Lang_Trans("maps_" %data%)
 			Else %data% .= (!InStr(log_text, "_noboss") && !InStr(log_text, "unique") ? " (" Lang_Trans("maps_boss") ")" : "")
 
 			Loop, Parse, % %data%
 				%data% := (A_Index = 1) ? "" : %data%, %data% .= (A_Index != 1 && (SubStr(%data%, 0) != " ") && RegExMatch(A_LoopField, "[A-Z]") ? " " : "") . A_LoopField
 
-			If InStr(%data%, "(" Lang_Trans("maps_tower") ")") || InStr(%data%, "lost towers")
-			{
-				check_localization := StrReplace(%data%, " (" Lang_Trans("maps_tower") ")")
-				If Lang_Trans("maps_" StrReplace(check_localization, " ", "_"))
-					%data% := Lang_Trans("maps_" StrReplace(check_localization, " ", "_")) . (!InStr(check_localization, "lost towers") ? " (" Lang_Trans("maps_tower") ")" : "")
-			}
-			Else If InStr(%data%, "citadel")
+			If InStr(%data%, "citadel")
 				For index, val in ["stone", "iron", "copper"]
 					If InStr(%data%, val) && Lang_Trans("maps_" val "_citadel")
 					{
 						%data% := StrReplace(%data%, val " citadel", Lang_Trans("maps_" val "_citadel"))
 						Break
 					}
-
 		}
 	Return LLK_StringCase(%data%)
 }
@@ -467,7 +466,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		}
 
 		If settings.features.maptracker && (vars.log.areaID = vars.maptracker.map.id) && (Lang_Match(loopfield, vars.lang.log_slain) || Lang_Match(loopfield, vars.lang.log_suicide))
-			vars.maptracker.map.deaths += 1
+			vars.maptracker.map.deaths += 1, vars.maptracker.map.died := 1
 
 		If settings.features.maptracker && settings.maptracker.kills && vars.maptracker.refresh_kills && Lang_Match(loopfield, vars.lang.log_killed)
 		{

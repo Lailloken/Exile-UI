@@ -1585,7 +1585,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 {
 	local
 	global vars, settings, db
-	static toggle := 0, last_gem, stat_colors := ["d81c1c", "00bf40", "0077FF"], last_xPos, last_yPos, last_hover := {}, orientation
+	static toggle := 0, last_gem, stat_colors := ["d81c1c", "00bf40", "0077FF", "White"], last_xPos, last_yPos, last_hover := {}, orientation
 
 	If InStr(A_Gui, "leveltracker_gemlinks")
 	{
@@ -1599,6 +1599,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		If longclick
 			last_xPos := xPos, last_yPos := yPos
 		vars.general.drag := 0
+		KeyWait, LButton
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 		If !longclick
 		{
@@ -1711,17 +1712,18 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 			For iGem, vGem in pob.gems[hover].groups[val].gems
 				For gem_type, oGems in db.leveltracker.gems
 					If oGems[StrReplace(vGem, " |–")] && !LLK_HasVal(dimensions, vGem, 1)
-						dimensions.Push(vGem " (" oGems[StrReplace(vGem, " |–")] ")")
+						dimensions.Push(vGem " (" oGems[StrReplace(vGem, " |–")].1 ")")
 			LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wLinks, hLinks)
 		}
 
 		For link, gem in (vars.poe_version ? dimensions : pob.gems[hover].groups[val].gems)
 		{
 			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
+			gem_lookup := InStr(gem_lookup, "(") ? SubStr(gem_lookup, 1, InStr(gem_lookup, "(") - 2) : gem_lookup
 			style := (index = 1 && link = 1) ? (orientation = "left" || check.Count() = 1 ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-1")
-			Gui, %GUI_name%: Add, Text, % style " Section BackgroundTrans HWNDhwnd w" wLinks " h" hLinks - 2 . (!vars.poe_version ? " c" stat_colors[db.leveltracker.gems[gem_lookup].attribute] : "")
-			. (settings.leveltracker.gemlinksToggle ? " gLeveltracker_PobGemLinks" : ""), % " " gem
+			color := vars.poe_version ? stat_colors[db.leveltracker.gems[LLK_HasKey(db.leveltracker.gems, gem_lookup,,,, 1)][gem_lookup].2] : stat_colors[db.leveltracker.gems[gem_lookup].attribute]
 
+			Gui, %GUI_name%: Add, Text, % style " Section BackgroundTrans HWNDhwnd w" wLinks " h" hLinks - 2 " c" color . (settings.leveltracker.gemlinksToggle ? " gLeveltracker_PobGemLinks" : ""), % " " gem
 			gem := InStr(gem, "(") ? SubStr(gem, 1, InStr(gem, "(") - 2) : gem, gem := StrReplace(gem, " |–")
 			Gui, %GUI_name%: Add, Progress, % "xp+1 yp wp-2 hp Disabled Background" (InStr(gem_name, gem) || type && db.leveltracker.gems[type][gem] ? "303030" : "Black"), 0
 			ControlGetPos, xLast, yLast, wLast, hLast,, ahk_id %hwnd%

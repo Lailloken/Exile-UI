@@ -1163,6 +1163,11 @@ Maptracker_LogsLoad()
 			val := (key = "tier" && SubStr(val, 1, 1) = "0") ? SubStr(val, 2) : val
 			If (key = "mapinfo") && (SubStr(val, 2, 1) = "m")
 				val := StrReplace(val, "m", "x",, 1)
+			If (key = "map")
+				val := StrReplace(val, "savanna", "savannah"), val := StrReplace(val, "gothic city", "grimhaven")
+			If (key = "map") && InStr(val, " citadel") && !InStr(val, "the ")
+				For k, v in {"copper citadel": "the copper citadel", "iron citadel": "the iron citadel", "stone citadel": "the stone citadel"}
+					val := StrReplace(val, k, v)
 			Loop, Parse, val, `;, %A_Space% ;parse side-content info
 			{
 				If !A_LoopField || (key != "content")
@@ -1283,7 +1288,7 @@ Maptracker_LogsTooltip(ini_section, ini_key, cHWND)
 		pDate := SubStr(ini_section, 1, InStr(ini_section, " ") - 1), pTime := SubStr(ini_section, InStr(ini_section, " ") + 1), pCheck := LLK_HasVal(vars.maptracker.entries_copy[pDate], pTime,,,, 1)
 		text := StrReplace(vars.maptracker.entries_copy[pDate][pCheck][ini_key], InStr("notes, character", ini_key) ? "(n)" : "; ", "`n")
 		If (ini_key = "mapinfo")
-			text := StrReplace(StrReplace(text, "`n- ", "¢"), "`n", "`n   "), text := StrReplace(text, "p | ", "p`n")
+			text := StrReplace(StrReplace(text, "`n- ", "¢"), "`n", "`n   "), text := StrReplace(text, "p | ", "p`n"), text := (SubStr(text, 1, 1) = "-") ? SubStr(text, 2) : text
 		Else If (ini_key = "notes")
 			text := StrReplace(text, "§", "¢")
 	}
@@ -1817,7 +1822,16 @@ Maptracker_Timer()
 		vars.maptracker.last_kills := ""
 
 	If !Maptracker_Check(2) || !settings.maptracker.sidecontent && Maptracker_Check(1) || vars.maptracker.pause ;when outside a map, don't advance the timer (or track character-movement between maps/HO)
+	{
+		vars.maptracker.map.died := 0
 		Return
+	}
+
+	If (A_TimeIdle >= 10000) ;pause tracking when AFK for longer than 10 seconds
+		Return
+
+	If vars.poe_version && vars.maptracker.map.died && (vars.maptracker.map.seed != vars.log.areaseed)
+		vars.maptracker.map.seed := vars.log.areaseed, vars.maptracker.map.died := 0
 
 	If !IsObject(vars.maptracker.map) ;entering the very first map
 		Maptracker_Save(1), new := 1 ;flag to specify that this is a new map

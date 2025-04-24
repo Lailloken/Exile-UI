@@ -59,7 +59,7 @@
 		ms_cheat-sheets			=	"cheat-sheets"
 		ms_clone-frames			=	"clone-frames"
 		ms_donations			=	"donations"
-		ms_filterspoon			=	"filterspoon"
+		ms_filterspoon			=	"filterspoon"		;## sarcastically derived from FilterBlade
 		ms_hotkeys			=	"hotkeys"
 		ms_item-info			=	"item-info"
 		ms_leveling tracker		=	"act-tracker"
@@ -70,6 +70,7 @@
 		ms_screen-checks		=	"screen-checks"
 		ms_search-strings		=	"search-strings"
 		ms_stash-ninja			=	"stash-ninja"
+		ms_statlas			=	"statlas"		;## blend of "stats" and "atlas"
 		ms_stream-clients		=	"stream-clients"
 		ms_tldr-tooltips		=	"tldr-tooltips"
 		ms_updater			=	"updater"
@@ -134,6 +135,7 @@
 		global_inventory		=	"inventory"
 		global_skilltree		=	"skilltree"
 		global_ascendancy		=	"ascendancy-tree"
+		global_atlas			=	"atlas"
 		global_stash			=	"stash"
 		global_nothing			=	"there's;nothing to display"
 		global_imageinvalid		=	"couldn't find image-data;in clipboard"
@@ -186,6 +188,9 @@
 		global_yes			=	"yes"
 		global_no			=	"no"
 		global_activation		=	"activation:"
+		global_maps			=	"maps"
+		global_league			=	"league"
+		global_copy			=	"copy"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -645,6 +650,17 @@
 
 
 ;#####################################################
+;## statlas
+;#####################################################
+
+;## these strings are displayed/required when using the statlas feature
+		statlas_legacy			=	"legacy"
+		statlas_kills			=	"kpm"				;## stands for kills per minute
+		statlas_filters			=	"filters"
+
+
+
+;#####################################################
 ;## minor QoL features
 ;#####################################################
 
@@ -993,6 +1009,17 @@
 		m_stash_margins			=	"margins (%):"
 		m_stash_active			=	"active tab:"
 		m_stash_bookmarking		=	"enable bookmarking"
+
+
+
+;#####################################################
+;## settings menu: statlas
+;#####################################################
+
+;## these strings are displayed/required in the "statlas" section of the settings menu
+		m_statlas_enable		=	"enable the statlas feature"
+		m_statlas_maptracker		=	"show map-tracker data"
+		m_statlas_localknowledge	=	"show <local knowledge> notable effect"
 
 
 

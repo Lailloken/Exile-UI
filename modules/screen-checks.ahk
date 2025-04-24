@@ -41,9 +41,10 @@
 	}
 	Else
 	{
-		vars.imagesearch.search := ["skilltree"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
-		vars.imagesearch.list := {"skilltree": 1} ;this object is parsed when listing image-checks in the settings menu
-		vars.imagesearch.checks := {"skilltree": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}}
+		vars.imagesearch.search := ["skilltree", "atlas"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
+		vars.imagesearch.list := {"atlas": 1, "skilltree": 1} ;this object is parsed when listing image-checks in the settings menu
+		vars.imagesearch.checks := {"skilltree": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
+								, "atlas": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}}
 	}
 	vars.imagesearch.variation := 15
 
@@ -170,9 +171,10 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 	For key, val in vars.imagesearch.search
 		vars.imagesearch[val].check := 0 ;reset results for all checks
 	check := 0
+
 	For index, val in ["betrayal", "leveltracker", "maptracker"]
 		check += (val = "maptracker") ? settings.features.maptracker * settings.maptracker.loot : settings.features[val]
-	If !check
+	If !name && !check
 		Return
 
 	pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1) ;take screenshot from client
@@ -237,12 +239,11 @@ Screenchecks_Info(name) ;holding the <info> button to view instructions
 	Gui, screencheck_info: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 	vars.hwnd.screencheck_info := {"main": screencheck_info}
 
-	If FileExist("img\GUI\screen-checks\"name ".jpg")
+	If FileExist("img\GUI\screen-checks\"name . vars.poe_version ".jpg")
 	{
 		pBitmap0 := Gdip_CreateBitmapFromFile("img\GUI\screen-checks\" name . vars.poe_version ".jpg"), pBitmap := Gdip_ResizeBitmap(pBitmap0, vars.settings.w - settings.general.fWidth - 1, 10000, 1, 7, 1), Gdip_DisposeImage(pBitmap0)
 		hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), Gdip_DisposeImage(pBitmap)
-		Gui, screencheck_info: Add, Pic, % "Section w"vars.settings.w - settings.general.fWidth - 1 " h-1", HBitmap:*%hBitmap%
-		DeleteObject(hBitmap)
+		Gui, screencheck_info: Add, Pic, % "Section w"vars.settings.w - settings.general.fWidth - 1 " h-1", HBitmap:%hBitmap%
 	}
 
 	For index, text in vars.help.screenchecks[name]

@@ -1,4 +1,5 @@
-﻿#NoEnv
+﻿#NoTrayIcon
+#NoEnv
 #SingleInstance Force
 #Requires AutoHotkey >=1.1.36 <2
 #MaxThreads 255
@@ -22,7 +23,6 @@ CoordMode, ToolTip, Screen
 SendMode, Input
 SetTitleMatchMode, 2
 SetBatchLines, -1
-Menu, Tray, NoIcon
 OnMessage(0x004A, "StringReceive")
 OnMessage(0x8000, "Exit")
 OnMessage(0x8001, "Cloneframes_Thread2")

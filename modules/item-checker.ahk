@@ -1403,6 +1403,10 @@ Iteminfo_GUI()
 			divider := 1
 		}
 
+		check_rolls := []
+		Loop, Parse, mod, `n
+			check_rolls.Push(Iteminfo_ModRollCheck(A_LoopField, 1))
+
 		If vars.poe_version && !unique
 		{
 			tier_override := ""
@@ -1412,8 +1416,17 @@ Iteminfo_GUI()
 			For kClass, oClass in db.item_mods ;check for clear-cut cases first, e.g. charms, flasks, etc.
 				If InStr(item.class, kClass)
 					For kModName, oModName in oClass
-						If (iTier := max := LLK_HasVal(oModName, name,,,, 1))
+						If (iTier := max := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
 						{
+							For i, roll in oModName[iTier].3
+							{
+								If (roll.Count() = 1)
+									modMinRoll := modMaxRoll := roll.1
+								Else modMinRoll := roll.1, modMaxRoll := roll.2
+
+								If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
+									Continue 2
+							}
 							tier_override := (count := oModName.Count()) + 1 - iTier
 							minimum_rolls := oModName.1.3.Clone()
 							maximum_rolls := oModName[count].3.Clone()
@@ -1424,9 +1437,18 @@ Iteminfo_GUI()
 						}
 
 			For kModName, oModName in db.item_mods.universal ;check universal mod-list next
-				If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1))
-					For i, tag in oModName[iTier].4
+				If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
+				{
+					For i, roll in oModName[iTier].3
 					{
+						If (roll.Count() = 1)
+							modMinRoll := modMaxRoll := roll.1
+						Else modMinRoll := roll.1, modMaxRoll := roll.2
+
+						If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
+							Continue 2
+					}
+					For i, tag in oModName[iTier].4
 						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 						{
 							While LLK_HasVal(oModName[max + 1].4, tag)
@@ -1465,13 +1487,22 @@ Iteminfo_GUI()
 							Else tier_override := max + 1 - iTier
 							Break
 						}
-					}
+				}
 
 			If (tier_override != "conflict")
 				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
-					If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1))
-						For i, tag in oModName[iTier].4
+					If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
+					{
+						For i, roll in oModName[iTier].3
 						{
+							If (roll.Count() = 1)
+								modMinRoll := modMaxRoll := roll.1
+							Else modMinRoll := roll.1, modMaxRoll := roll.2
+
+							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
+								Continue 2
+						}
+						For i, tag in oModName[iTier].4
 							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 							{
 								While LLK_HasVal(oModName[max + 1].4, tag)
@@ -1510,7 +1541,7 @@ Iteminfo_GUI()
 								Else tier_override := max + 1 - iTier
 								Break
 							}
-						}
+					}
 
 			tier_override := tier_override ? tier_override : "conflict"
 		}
@@ -1631,7 +1662,7 @@ Iteminfo_GUI()
 				Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 			}
 
-			label := Iteminfo_ModgroupCheck(name, 1) ? Iteminfo_ModgroupCheck(name, 1) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
+			label := Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) ? Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
 			width := (label || settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??") ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
 
@@ -2630,14 +2661,14 @@ Iteminfo_ModCheck(string, item_type := "") ;checks a mod's text to determine if 
 	}
 }
 
-Iteminfo_ModRollCheck(mod) ;parses a mod's text and returns an array with information on how well it's rolled
+Iteminfo_ModRollCheck(mod, alt_mode := 0) ;parses a mod's text and returns an array with information on how well it's rolled
 {
 	local
 
 	mod := StrReplace(StrReplace(mod, " (crafted)"), " (fractured)")
 	rolls := [], sum_min := 0, sum_current := 0, sum_max := 0
 
-	If !InStr(mod, "(")
+	If !InStr(mod, "(") && !alt_mode
 		Return [0, 1, 1]
 
 	Loop, Parse, % StrReplace(mod, "non-") " " ;parse the mod-text character by character (the added space is a workaround for languages with different format, e.g. Japanese: Accuracy +X, where parsing would end prematurely due to EoL)

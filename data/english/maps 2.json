@@ -1,0 +1,233 @@
+{
+  "biomes": {
+    "desert": "+40% trial keys",
+    "forest": "+40% jewels",
+    "grass": "+40% socket currency",
+    "mountain": "+40% gold",
+    "swamp": "+40% basic currency",
+    "water": "+40% basic currency"
+  },
+  "maps": {
+    "abyss": {
+    "name": "abyss",
+    "boss": "tor gul"
+    },
+    "alpineridge": {
+      "name": "alpine ridge",
+      "boss": "beira + ignagduk"
+    },
+    "augury": {
+      "name": "augury",
+      "boss": "uxmal"
+    },
+    "azmerianranges": {
+      "name": "azmerian ranges",
+      "boss": "king in the mists + brambleghast"
+    },
+    "backwash": {
+      "name": "backwash",
+      "boss": "queen of filth"
+    },
+    "bloodwood": {
+      "name": "bloodwood",
+      "boss": "devourer"
+    },
+    "bloomingfield": {
+      "name": "blooming field",
+      "boss": "crowbell"
+    },
+    "bluff": {
+      "name": "bluff",
+      "boss": "uxmal"
+    },
+    "burialbog": {
+      "name": "burial bog",
+      "boss": "rootdredge"
+    },
+    "castaway": {
+      "name": "castaway",
+      "boss": "torrek"
+    },
+    "cenotes": {
+      "name": "cenotes"
+    },
+    "channel": {
+      "name": "channel",
+      "boss": "hask"
+    },
+    "creek": {
+      "name": "creek",
+      "boss": "bloated miller"
+    },
+    "crimsonshores": {
+      "name": "crimson shores",
+      "boss": "rattlecage"
+    },
+    "crypt": {
+      "name": "crypt",
+      "boss": "candlemass"
+    },
+    "decay": {
+      "name": "decay",
+      "boss": "rotten druid"
+    },
+    "deserted": {
+      "name": "deserted",
+      "boss": "lord of the pit"
+    },
+    "forge": {
+      "name": "forge",
+      "boss": "zalmarath"
+    },
+    "fortress": {
+      "name": "fortress",
+      "boss": "balbala"
+    },
+    "frozenfalls": {
+      "name": "frozen falls",
+      "boss": "beira"
+    },
+    "grimhaven": {
+      "name": "grimhaven",
+      "boss": "asinia"
+    },
+    "headland": {
+      "name": "headland",
+      "boss": "hask"
+    },
+    "hiddengrotto": {
+      "name": "hidden grotto",
+      "boss": "tor gul"
+    },
+    "hive": {
+      "name": "hive"
+    },
+    "loftysummit": {
+      "name": "lofty summit",
+      "boss": "blackjaw"
+    },
+    "losttowers": {
+      "name": "lost towers",
+      "boss": "chetza"
+    },
+    "mesa": {
+      "name": "mesa",
+      "boss": "karash"
+    },
+    "mineshaft": {
+      "name": "mineshaft",
+      "boss": "rudja"
+    },
+    "mire": {
+      "name": "mire",
+      "boss": "beira"
+    },
+    "necropolis": {
+      "name": "necropolis",
+      "boss": "draven"
+    },
+    "oasis": {
+      "name": "oasis",
+      "boss": "jamanra"
+    },
+    "penitentiary": {
+      "name": "penitentiary",
+      "boss": "executioner"
+    },
+    "ravine": {
+      "name": "ravine",
+      "boss": "zicoatl"
+    },
+    "riverside": {
+      "name": "riverside",
+      "boss": "silverfist"
+    },
+    "rustbowl": {
+      "name": "rustbowl",
+      "boss": "rust king"
+    },
+    "sandspit": {
+      "name": "sandspit"
+    },
+    "savanna": {
+      "name": "savannah",
+      "boss": "hyena"
+    },
+    "seepage": {
+      "name": "seepage",
+      "boss": "rotten druid"
+    },
+    "slick": {
+      "name": "slick"
+    },
+    "spiderwoods": {
+      "name": "spider woods",
+      "boss": "brambleghast"
+    },
+    "steamingsprings": {
+      "name": "steaming springs",
+      "boss": "kabala"
+    },
+    "steppe": {
+      "name": "steppe"
+    },
+    "sulphuriccaverns": {
+      "name": "sulphuric caverns",
+      "boss": "lord of the pit + bone colossus"
+    },
+    "sump": {
+      "name": "sump",
+      "boss": "ignagduk"
+    },
+    "suntemple": {
+      "name": "sun temple",
+      "boss": "ketzuli"
+    },
+    "swamptower": {
+      "name": "sinking spire",
+      "boss": "blackjaw2"
+    },
+    "coppercitadel": {
+      "name": "the copper citadel",
+      "boss": "jamanra2"
+    },
+    "ironcitadel": {
+      "name": "the iron citadel",
+      "boss": "geonor"
+    },
+    "stonecitadel": {
+      "name": "the stone citadel",
+      "boss": "doryani"
+    },
+    "lake": {
+      "name": "the fractured lake"
+    },
+    "trenches": {
+      "name": "trenches"
+    },
+    "vaalcity": {
+      "name": "vaal city",
+      "boss": "viper"
+    },
+    "vaalfactory": {
+      "name": "vaal factory",
+      "boss": "zicoatl"
+    },
+    "vaalfoundry": {
+      "name": "vaal foundry",
+      "boss": "mektul"
+    },
+    "wetlands": {
+      "name": "wetlands",
+      "boss": "devourer"
+    },
+    "willow": {
+      "name": "willow",
+      "boss": "lachlann"
+    },
+    "woodland": {
+      "name": "woodland",
+      "boss": "bloated miller"
+    }
+  }
+}

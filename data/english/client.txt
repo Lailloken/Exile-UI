@@ -124,14 +124,19 @@
 		maps_paradise			=	"untainted paradise"
 		maps_megalith			=	"the phaaryl megalith"
 		maps_lake			=	"the fractured lake"
-		maps_lost_towers		=	"lost towers"			;## the five tower-maps
-		maps_alpine_ridge		=	"alpine ridge"
+
+		maps_voidreliquary		=	"the reliquary vault"		;## accessible via reliquary keys
+
+		maps_losttowers			=	"lost towers"			;## the five tower-maps
+		maps_alpineridge		=	"alpine ridge"
 		maps_bluff			=	"bluff"
-		maps_sinking_spire		=	"sinking spire"
+		maps_sinkingspire		=	"sinking spire"
 		maps_mesa			=	"mesa"
 		maps_copper_citadel		=	"copper citadel"		;## the tree citadel-maps
 		maps_stone_citadel		=	"stone citadel"
 		maps_iron_citadel		=	"iron citadel"
+
+		maps_biome			=	"biome:"			;## each map on the atlas belongs to a biome
 
 
 ;## these strings are shown in the map-info panel
