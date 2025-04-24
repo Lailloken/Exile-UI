@@ -169,10 +169,9 @@ Omnikey2()
 			Return
 		}
 
-		If settings.features.leveltracker && vars.imagesearch.skilltree.check
+		If settings.features.leveltracker && settings.leveltracker.pobmanual && vars.imagesearch.skilltree.check
 		{
-			If settings.leveltracker.pobmanual
-				Leveltracker_Skilltree()
+			Leveltracker_Skilltree()
 			Omni_Release()
 			Return
 		}
