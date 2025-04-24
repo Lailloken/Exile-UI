@@ -114,6 +114,13 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_003.png) |
 <br>
 
+### [Statlas](https://github.com/Lailloken/Exile-UI/wiki/Statlas): quick-access atlas overlay for map layouts, bosses, and statistics
+**`Path of Exile 2 ONLY`**
+| |
+|---|
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/statlas_001.png) |
+<br>
+
 ### [Search-strings](https://github.com/Lailloken/Lailloken-UI/wiki/Search-strings): customizable, single-hotkey menu for every individual in-game search  
 **`Path of Exile 2 compatible`**  
 | built-in: beast-crafting | example: Gwennen | example: vendor |
