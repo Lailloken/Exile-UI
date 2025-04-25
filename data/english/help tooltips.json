@@ -406,7 +406,13 @@
     ],
     "leveltracker guide info": [
       "there are up to three individual guide slots you can use and switch between",
-      "each slot has its own data for: guide & progress, gear, skill-tree, timer"
+      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
+      "credits: default guide originally derived from exile-leveling by heartofphos"
+    ],
+    "leveltracker guide info 2": [
+      "there are up to three individual guide slots you can use and switch between",
+      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
+      "credits: default guide originally derived from u/xebtria's walkthrough"
     ],
     "leveltracker guide format": [
       "long-click to view an explanation of the guide format"
@@ -451,6 +457,10 @@
     ],
     "leveltracker layouts opacity": [
       "the opacity of the zone-layouts overlay in locked mode"
+    ],
+    "leveltracker layouts locked zoom": [
+      "if enabled, layout images will have a different zoom while the overlay is locked",
+      "this means you can have separate zoom-levels while (not) holding TAB"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
@@ -1025,6 +1035,9 @@
     ],
     "alignment": [
       "- click: change alignment\n- r-click: reset to default position"
+    ],
+    "reset": [
+      "click to reset rotation, flipping, and picks"
     ]
   },
   "lootfilter": {

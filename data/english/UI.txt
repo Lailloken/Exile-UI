@@ -876,6 +876,7 @@
 		m_lvltracker_fade		=	"fade in on mouse-hover"
 		m_lvltracker_gear		=	"gear tracker"
 		m_lvltracker_zones		=	"zone-layouts"
+		m_lvltracker_zones		=	"fixed zoom when locked:"
 		m_lvltracker_recommend		=	"lvl recommendations"
 		m_lvltracker_hotkeys		=	"enable page-hotkeys"
 		m_lvltracker_poboverlays	=	"pob overlay settings:"

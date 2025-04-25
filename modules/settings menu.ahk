@@ -1633,19 +1633,6 @@ Settings_leveltracker()
 		vars.hwnd.settings.geartracker := hwnd, vars.hwnd.help_tooltips["settings_leveltracker geartracker"] := hwnd
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.layouts, % Lang_Trans("m_lvltracker_zones")
-	vars.hwnd.settings.layouts := hwnd, vars.hwnd.help_tooltips["settings_leveltracker layouts"] := hwnd
-	If settings.leveltracker.layouts
-	{
-		Gui, %GUI%: Add, Text, % "ys Center HWNDhwnd x+" settings.general.fWidth * 2, % Lang_Trans("global_opacity")
-		vars.hwnd.help_tooltips["settings_leveltracker layouts opacity"] := hwnd, handle := "|"
-		Loop 5
-		{
-			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.leveltracker.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
-			vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts opacity" handle] := hwnd, handle .= "|"
-		}
-	}
-
 	Gui, %GUI%: Add, Checkbox, % "Section xs gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.hotkeys, % Lang_Trans("m_lvltracker_hotkeys")
 	vars.hwnd.settings.hotkeys_enable := vars.hwnd.help_tooltips["settings_leveltracker hotkeys enable"] := hwnd
 	If settings.leveltracker.hotkeys
@@ -1662,12 +1649,34 @@ Settings_leveltracker()
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
 
+	Gui, %GUI%: Add, Checkbox, % "Section xs x" x_anchor " gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.layouts, % Lang_Trans("m_lvltracker_zones") " "
+	vars.hwnd.settings.layouts := hwnd, vars.hwnd.help_tooltips["settings_leveltracker layouts"] := hwnd
+	If settings.leveltracker.layouts
+	{
+		Gui, %GUI%: Add, Text, % "ys Center HWNDhwnd x+0", % "|  " Lang_Trans("global_opacity")
+		vars.hwnd.help_tooltips["settings_leveltracker layouts opacity"] := hwnd, handle := "|"
+		Loop 5
+		{
+			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.leveltracker.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
+			vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts opacity" handle] := hwnd, handle .= "|"
+		}
+
+		Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_leveltracker2 Checked" (settings.leveltracker.sLayouts1 > 0), % Lang_Trans("m_lvltracker_zones", 2)
+		vars.hwnd.settings.locked_zoom := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom"] := hwnd, handle := "|"
+		Loop 5
+		{
+			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2
+				. (Round(settings.leveltracker.sLayouts1, 2) = 0.3 + 0.1 * (A_Index - 1) ? " cFuchsia" : ""), % A_Index
+			vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom" handle] := hwnd, handle .= "|"
+		}
+	}
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs y+"vars.settings.spacing " Section x" x_anchor, % Lang_Trans("m_lvltracker_guide")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	vars.hwnd.help_tooltips["settings_leveltracker guide info"] := hwnd
+	vars.hwnd.help_tooltips["settings_leveltracker guide info" vars.poe_version] := hwnd
 
 	handle := "", files := [], bandits := ["none", "alira", "kraityn", "oak"]
 	LLK_PanelDimensions([Lang_Trans("global_import")], settings.general.fSize, wImport, hImport)
@@ -1725,16 +1734,14 @@ Settings_leveltracker()
 		{
 			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center 0x200 hp Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load", % " " Lang_Trans("lvltracker_editor_load") " "
 			vars.hwnd.settings["loaddefault_" val] := vars.hwnd.help_tooltips["settings_leveltracker default" handle] := hwnd_load
-			Break
+			If !FileExist("ini" vars.poe_version "\leveling guide" index + 1 ".ini")
+				Break
 		}
 		handle .= "|"
 	}
 
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " Center BackgroundTrans", % Lang_Trans("global_credits") ":"
-	Gui, %GUI%: Add, Text, % "ys hp cYellow x+" settings.general.fWidth/2, % "default guide originally derived`nfrom " (vars.poe_version ? "u/xebtria's guide" : "exile-leveling by heartofphos")
-
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_lvltracker_poboverlays")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y+"vars.settings.spacing, % Lang_Trans("m_lvltracker_poboverlays")
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Picture, % "ys BackgroundTrans hp HWNDhwnd0 w-1", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_leveltracker skilltree-info"] := hwnd0
@@ -1850,6 +1857,17 @@ Settings_leveltracker2(cHWND := "")
 			Leveltracker_Progress()
 		Settings_menu("leveling tracker")
 	}
+	Else If (check = "locked_zoom")
+	{
+		IniWrite, % (settings.leveltracker.sLayouts1 := LLK_ControlGet(cHWND) * 0.3), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
+		Loop 5
+		{
+			GuiControl, % "+c" (settings.leveltracker.sLayouts1 && A_Index = 1 ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
+			GuiControl, % "movedraw", % vars.hwnd.settings["zoneszoom_" A_Index]
+		}
+		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
+			Leveltracker_ZoneLayouts(2)
+	}
 	Else If InStr(check, "zonesopac_")
 	{
 		GuiControl, +cWhite, % vars.hwnd.settings["zonesopac_" settings.leveltracker.trans_zones]
@@ -1861,6 +1879,18 @@ Settings_leveltracker2(cHWND := "")
 
 		GuiControl, +cFuchsia, % vars.hwnd.settings["zonesopac_" control]
 		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" control]
+	}
+	Else If InStr(check, "zoneszoom_")
+	{
+		Loop 5
+		{
+			GuiControl, % "+c" (control = A_Index ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
+			GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_" A_Index]
+		}
+		
+		IniWrite, % (settings.leveltracker.sLayouts1 := 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
+		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
+			Leveltracker_ZoneLayouts(2)
 	}
 	Else If (check = "recommend")
 	{
