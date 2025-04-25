@@ -106,7 +106,7 @@
 	settings.leveltracker.xLayouts := !Blank(check := ini.settings["zone-layouts x"]) ? check : ""
 	settings.leveltracker.yLayouts := !Blank(check := ini.settings["zone-layouts y"]) ? check : ""
 	settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts := !Blank(check := ini.settings["zone-layouts size"]) ? check : (vars.poe_version ? 0.7 : 1)
-	settings.leveltracker.sLayouts1 := (!Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0) * (vars.poe_version ? 1 : 2)
+	settings.leveltracker.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.leveltracker.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.leveltracker.gemlinksToggle := !Blank(check := ini.settings["toggle gem-links"]) ? check : 0
 	settings.leveltracker.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 5
@@ -2915,7 +2915,7 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 		{
 			If (drag = 1)
 				IniWrite, % (settings.leveltracker.aLayouts := (settings.leveltracker.aLayouts = "vertical") ? "horizontal" : "vertical"), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts arrangement
-			x := (settings.leveltracker.aLayouts = "vertical") ? vars.client.x - vars.monitor.x : "", y := (settings.leveltracker.aLayouts = "vertical") ? "" : vars.client.y - vars.monitor.y
+			x := (settings.leveltracker.aLayouts = "vertical") ? 0 : "", y := (settings.leveltracker.aLayouts = "vertical") ? "" : 0
 			drag_block := 1
 			KeyWait, LButton
 			KeyWait, RButton
@@ -2975,13 +2975,11 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	toggle := !toggle, GUI_name := "leveltracker_zones" toggle
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_zones"
 	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize - 2 " cWhite", % vars.system.font
-	Gui, %GUI_name%: Color, % vars.poe_version ? "Green" : "Black"
+	Gui, %GUI_name%: Color, % "Green"
 	If (mode = 2)
 		WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50)
-	Else
-	{
-		WinSet, TransColor, % vars.poe_version ? "Green 255" : "Black"
-	}
+	Else WinSet, TransColor, % "Green 255"
+
 	Gui, %GUI_name%: Margin, % Floor(vars.monitor.h/200), % Floor(vars.monitor.h/200)
 	hwnd_old := vars.hwnd.leveltracker_zones.main, vars.hwnd.leveltracker_zones := {"main": leveltracker_zones}
 
@@ -3056,8 +3054,8 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	}
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id "vars.hwnd.leveltracker_zones.main
-	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.monitor.x + vars.monitor.w//2 - w/2 : vars.client.x - vars.monitor.x) : settings.leveltracker.xLayouts
-	yPos := Blank(settings.leveltracker.yLayouts) ? (settings.leveltracker.aLayouts = "vertical" ? vars.monitor.y + vars.monitor.h//2 - h/2 : vars.client.y - vars.monitor.y) : settings.leveltracker.yLayouts
+	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.monitor.x + vars.monitor.w//2 - w/2 : 0) : settings.leveltracker.xLayouts
+	yPos := Blank(settings.leveltracker.yLayouts) ? (settings.leveltracker.aLayouts = "vertical" ? vars.monitor.y + vars.monitor.h//2 - h/2 : 0) : settings.leveltracker.yLayouts
 	xPos := (xPos >= vars.monitor.w / 2) ? xPos - w + 1 : xPos, yPos := (yPos >= vars.monitor.h / 2) ? yPos - h + 1 : yPos
 	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + xPos " y" vars.monitor.y + yPos
 	LLK_Overlay(leveltracker_zones, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")

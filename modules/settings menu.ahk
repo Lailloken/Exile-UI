@@ -1666,7 +1666,7 @@ Settings_leveltracker()
 		Loop 5
 		{
 			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2
-				. (Round(settings.leveltracker.sLayouts1, 2) = 0.3 + 0.1 * (A_Index - 1) ? " cFuchsia" : ""), % A_Index
+				. (Round(settings.leveltracker.sLayouts1, 2) = (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1) ? " cFuchsia" : ""), % A_Index
 			vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom" handle] := hwnd, handle .= "|"
 		}
 	}
@@ -1859,7 +1859,7 @@ Settings_leveltracker2(cHWND := "")
 	}
 	Else If (check = "locked_zoom")
 	{
-		IniWrite, % (settings.leveltracker.sLayouts1 := LLK_ControlGet(cHWND) * 0.3), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
+		IniWrite, % (settings.leveltracker.sLayouts1 := LLK_ControlGet(cHWND) * 0.3 * (vars.poe_version ? 1 : 2)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
 		Loop 5
 		{
 			GuiControl, % "+c" (settings.leveltracker.sLayouts1 && A_Index = 1 ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
@@ -1888,7 +1888,7 @@ Settings_leveltracker2(cHWND := "")
 			GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_" A_Index]
 		}
 		
-		IniWrite, % (settings.leveltracker.sLayouts1 := 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
+		IniWrite, % (settings.leveltracker.sLayouts1 := (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
 		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
 			Leveltracker_ZoneLayouts(2)
 	}
