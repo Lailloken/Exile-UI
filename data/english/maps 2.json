@@ -205,6 +205,9 @@
     "trenches": {
       "name": "trenches"
     },
+    "paradise": {
+      "name": "untainted paradise"
+    },
     "vaalcity": {
       "name": "vaal city",
       "boss": "viper"
@@ -228,6 +231,13 @@
     "woodland": {
       "name": "woodland",
       "boss": "bloated miller"
+    },
+    "megalith": {
+      "name": "the phaaryl megalith",
+      "boss": "megalith bosses"
+    },
+    "wildwood": {
+      "name": "the viridian wildwood"
     }
   }
 }
