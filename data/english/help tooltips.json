@@ -1028,16 +1028,19 @@
     ]
   },
   "leveltrackerzones": {
+    "alignment": [
+      "toggles alignment of images between horizontal and vertical"
+    ],
+    "drag": [
+      "- drag to move the overlay\n- right-click to reset to default position of current alignment"
+    ],
     "help panel": [
       "general:\n- scroll to zoom, hold m-mouse for info\n- press space to (un)lock the overlay",
-      "zone-layout images:\n- drag to move",
-      "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
-    ],
-    "alignment": [
-      "- click: change alignment\n- r-click: reset to default position"
+      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to exclude",
+      "flip/rotate buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ],
     "reset": [
-      "click to reset rotation, flipping, and picks"
+      "click to revert rotation, flipping, and sub-layout picks/exclusions for this zone"
     ]
   },
   "lootfilter": {
