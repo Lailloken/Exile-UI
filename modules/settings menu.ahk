@@ -1666,7 +1666,7 @@ Settings_leveltracker()
 		Loop 5
 		{
 			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2
-				. (Round(settings.leveltracker.sLayouts1, 2) = (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1) ? " cFuchsia" : ""), % A_Index
+				. (Round(settings.leveltracker.sLayouts1, 1) = Round((vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1), 1) ? " cFuchsia" : ""), % A_Index
 			vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom" handle] := hwnd, handle .= "|"
 		}
 	}

@@ -17,9 +17,9 @@
 		Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\*"
 			If (check := InStr(A_LoopFileName, " "))
 				If vars.poe_version
-					vars.leveltracker.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := []
-					, vars.leveltracker.zone_layouts["c_" SubStr(A_LoopFileName, 1, check - 1)] := []
-				Else vars.leveltracker.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := []
+					vars.leveltracker.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
+					, vars.leveltracker.zone_layouts["c_" SubStr(A_LoopFileName, 1, check - 1)] := {}
+				Else vars.leveltracker.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
 	}
 
 	settings.leveltracker := {}, ini := IniBatchRead("ini" vars.poe_version "\leveling tracker.ini")
@@ -2429,7 +2429,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 
 	If settings.leveltracker.layouts
 		Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
-			check += 1
+			check += RegExMatch(A_LoopFileName, "i)\s\d\..{3}$") ? 1 : 0
 
 	Gui, %GUI_name_controls2%: New, % "-DPIScale +E0x20 +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_controls2 +Owner" GUI_name_controls1
 	Gui, %GUI_name_controls2%: Color, Black
@@ -2893,7 +2893,7 @@ Leveltracker_Toggle(mode)
 	LLK_Overlay(vars.hwnd.leveltracker.main, mode), LLK_Overlay(vars.hwnd.leveltracker.background, mode), LLK_Overlay(vars.hwnd.leveltracker.controls2, mode), LLK_Overlay(vars.hwnd.leveltracker.controls1, mode)
 }
 
-Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
+Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 {
 	local
 	global vars, settings
@@ -2904,7 +2904,7 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 	If cHWND
 	{
-		check := LLK_HasVal(vars.hwnd.leveltracker_zones, cHWND)
+		check := LLK_HasVal(vars.hwnd.leveltracker_zones, cHWND), pic := SubStr(check, InStr(check, " ") + 1), control := SubStr(check, InStr(check, "_") + 1)
 		If InStr(check, "helppanel")
 		{
 			KeyWait, % Hotkeys_RemoveModifiers(A_ThisHotkey)
@@ -2913,56 +2913,93 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 
 		If (check = "alignment")
 		{
-			If (drag = 1)
-				IniWrite, % (settings.leveltracker.aLayouts := (settings.leveltracker.aLayouts = "vertical") ? "horizontal" : "vertical"), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts arrangement
+			If (click = 2)
+				Return
+			IniWrite, % (settings.leveltracker.aLayouts := (settings.leveltracker.aLayouts = "vertical") ? "horizontal" : "vertical"), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts arrangement
 			x := (settings.leveltracker.aLayouts = "vertical") ? 0 : "", y := (settings.leveltracker.aLayouts = "vertical") ? "" : 0
-			drag_block := 1
 			KeyWait, LButton
 			KeyWait, RButton
 		}
 		Else If (check = "reset_bar")
 		{
 			KeyWait, LButton
-			vars.leveltracker.zone_layouts[vars.log.areaID] := []
+			vars.leveltracker.zone_layouts[vars.log.areaID] := {}
+		}
+		Else If (check = "drag")
+		{
+			If (click = 1)
+			{
+				start := A_TickCount
+				WinGetPos,,, width, height, % "ahk_id "vars.hwnd.leveltracker_zones.main
+				While GetKeyState("LButton", "P")
+					If (A_TickCount >= start + 200)
+					{
+						longpress := 1
+						LLK_Drag(width, height, x, y,, "leveltracker_zones" toggle, 1)
+						Sleep 1
+					}
+				If longpress
+					vars.general.drag := 0
+			}
+			Else x := (settings.leveltracker.aLayouts = "horizontal") ? "" : 0, y := (settings.leveltracker.aLayouts = "horizontal") ? 0 : ""
 		}
 		Else If LLK_PatternMatch(check, "", ["_rotate", "_flip"])
 		{
-			drag_block := 1, control := SubStr(check, InStr(check, " ",, 0) + 1, 1)
+			control := SubStr(check, InStr(check, " ",, 0) + 1), control := SubStr(control, 1, InStr(control, "_",, 0) - 1)
 			If !IsObject(vars.leveltracker.zone_layouts[vars.log.areaID][control])
-				vars.leveltracker.zone_layouts[vars.log.areaID][control] := []
+				vars.leveltracker.zone_layouts[vars.log.areaID][control] := [0]
 
+			max_index := vars.leveltracker.zone_layouts[vars.log.areaID][control].MaxIndex()
 			If InStr(check, "_rotate")
-				vars.leveltracker.zone_layouts[vars.log.areaID][control].1 := vars.leveltracker.zone_layouts[vars.log.areaID][control].1 ? vars.leveltracker.zone_layouts[vars.log.areaID][control].1 : 0
-				, vars.leveltracker.zone_layouts[vars.log.areaID][control].1 += 90 * (InStr(A_ThisHotkey, "LButton") ? 1 : -1), vars.leveltracker.zone_layouts[vars.log.areaID][control].1 *= (Abs(vars.leveltracker.zone_layouts[vars.log.areaID][control].1) >= 360) ? 0 : 1
+			{
+				angle := 90 * (InStr(A_ThisHotkey, "LButton") ? 1 : -1)
+				If IsNumber(LLK_MaxIndex(vars.leveltracker.zone_layouts[vars.log.areaID][control]))
+				{
+					vars.leveltracker.zone_layouts[vars.log.areaID][control][max_index] += angle
+					vars.leveltracker.zone_layouts[vars.log.areaID][control][max_index] *= (Abs(vars.leveltracker.zone_layouts[vars.log.areaID][control][max_index]) >= 360) ? 0 : 1
+				}
+				Else vars.leveltracker.zone_layouts[vars.log.areaID][control].Push(angle)
+			}
 			Else
-				If InStr(A_ThisHotkey, "LButton")
-					vars.leveltracker.zone_layouts[vars.log.areaID][control].2 := InStr(vars.leveltracker.zone_layouts[vars.log.areaID][control].2, "h") ? StrReplace(vars.leveltracker.zone_layouts[vars.log.areaID][control].2, "h") : vars.leveltracker.zone_layouts[vars.log.areaID][control].2 "h"
-				Else
-					vars.leveltracker.zone_layouts[vars.log.areaID][control].2 := InStr(vars.leveltracker.zone_layouts[vars.log.areaID][control].2, "v") ? StrReplace(vars.leveltracker.zone_layouts[vars.log.areaID][control].2, "v") : vars.leveltracker.zone_layouts[vars.log.areaID][control].2 "v"
+			{
+				flip := InStr(A_ThisHotkey, "LButton") ? "h" : "v"
+				If !IsNumber(vars.leveltracker.zone_layouts[vars.log.areaID][control][max_index]) && (flip = vars.leveltracker.zone_layouts[vars.log.areaID][control][max_index])
+					vars.leveltracker.zone_layouts[vars.log.areaID][control].Pop()
+				Else vars.leveltracker.zone_layouts[vars.log.areaID][control].Push(flip)
+			}
 		}
-	}
-
-	start := A_TickCount
-	If (drag = 1)
-		WinGetPos,,, width, height, % "ahk_id "vars.hwnd.leveltracker_zones.main
-	While !drag_block && cHWND && (drag = 1) && GetKeyState("LButton", "P")
-		If (A_TickCount >= start + 200)
+		Else If (click = 1) && !InStr(check, " x") && !vars.leveltracker.zone_layouts[vars.log.areaID].subzone && FileExist("img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, "c_") " " pic "_*")
 		{
-			longpress := 1
-			LLK_Drag(width, height, x, y,, "leveltracker_zones" toggle, (settings.leveltracker.aLayouts = "horizontal") ? 1 : 0)
-			Sleep 1
+			vars.leveltracker.zone_layouts[vars.log.areaID] := {"subzone": pic, (pic): vars.leveltracker.zone_layouts[vars.log.areaID][pic].Clone()}
+			Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " " pic "_*"
+			{
+				file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
+				vars.leveltracker.zone_layouts[vars.log.areaID][file] := vars.leveltracker.zone_layouts[vars.log.areaID][pic].Clone()
+			}
 		}
-	If longpress
-		vars.general.drag := 0
+		Else If InStr(check, "imagereset_")
+		{
+			KeyWait, LButton
+			KeyWait, RButton
+			vars.leveltracker.zone_layouts[vars.log.areaID].Delete(control)
+		}
+		Else If InStr(check, vars.log.areaID " ") && (click = 2) && !RegExMatch(check, "i)(\sy)")
+		{
+			KeyWait, RButton
+			If !IsObject(vars.leveltracker.zone_layouts[vars.log.areaID])
+				vars.leveltracker.zone_layouts[vars.log.areaID] := {}
+			control := SubStr(check, InStr(check, " ") + 1), vars.leveltracker.zone_layouts[vars.log.areaID].exclude .= (vars.leveltracker.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" control
+		}
+		Else Return
+	}
 
 	If !Blank(x) || !Blank(y)
 	{
-		settings.leveltracker.xLayouts := x, settings.leveltracker.yLayouts := y
-		IniWrite, % settings.leveltracker.xLayouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts x
-		IniWrite, % settings.leveltracker.yLayouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts y
-		If longpress
-			Return
+		IniWrite, % (settings.leveltracker.xLayouts := x), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts x
+		IniWrite, % (settings.leveltracker.yLayouts := y), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts y
 	}
+	If (click = 1) && (check = "drag")
+		Return
 
 	If !vars.leveltracker.zone_layouts[vars.log.areaID]
 	{
@@ -2973,19 +3010,25 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 	If (vars.leveltracker.zone_layouts.current != vars.log.areaID)
 		vars.leveltracker.zone_layouts.current := vars.log.areaID
 	toggle := !toggle, GUI_name := "leveltracker_zones" toggle
-	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_zones"
+	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_zones" (mode = 2 ? " +E0x20" : "")
 	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize - 2 " cWhite", % vars.system.font
 	Gui, %GUI_name%: Color, % "Green"
 	If (mode = 2)
 		WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50)
 	Else WinSet, TransColor, % "Green 255"
 
-	Gui, %GUI_name%: Margin, % Floor(vars.monitor.h/200), % Floor(vars.monitor.h/200)
+	Gui, %GUI_name%: Margin, % (margin := Floor(vars.monitor.h/200)), % margin
 	hwnd_old := vars.hwnd.leveltracker_zones.main, vars.hwnd.leveltracker_zones := {"main": leveltracker_zones}
 
 	Gui, %GUI_name%: Add, Pic, % "Section Border BackgroundTrans HWNDhwnd h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden"), % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Progress, % "Disabled HWNDhwnd1 xp yp wp hp BackgroundBlack" (vars.leveltracker.overlays ? "" : " Hidden"), 0
 	vars.hwnd.leveltracker_zones.helppanel := hwnd, vars.hwnd.leveltracker_zones.helppanel_bar := vars.hwnd.help_tooltips["leveltrackerzones_help panel"] := hwnd1
+
+	If !vars.pics.zone_layouts.drag
+		vars.pics.zone_layouts.drag := LLK_ImageCache("img\GUI\drag.png")
+	Gui, %GUI_name%: Add, Pic, % (settings.leveltracker.aLayouts = "vertical" ? "ys" : "xs") " Border HWNDhwnd gLeveltracker_ZoneLayouts h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden")
+		, % "HBitmap:*" vars.pics.zone_layouts.drag
+	vars.hwnd.leveltracker_zones.drag := vars.hwnd.help_tooltips["leveltrackerzones_drag"] := hwnd
 
 	If !vars.pics.zone_layouts.vertical
 		vars.pics.zone_layouts.vertical := LLK_ImageCache("img\GUI\vertical_alignment.png"), vars.pics.zone_layouts.horizontal := LLK_ImageCache("img\GUI\horizontal_alignment.png")
@@ -2993,55 +3036,102 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 		, % "HBitmap:*" vars.pics.zone_layouts[(settings.leveltracker.aLayouts = "vertical" ? "horizontal" : "vertical")]
 	vars.hwnd.leveltracker_zones.alignment := vars.hwnd.help_tooltips["leveltrackerzones_alignment"] := hwnd
 
-	Gui, %GUI_name%: Add, Pic, % (settings.leveltracker.aLayouts = "vertical" ? "ys" : "xs") " Border HWNDhwnd BackgroundTrans gLeveltracker_ZoneLayouts h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden")
-		, % "HBitmap:*" vars.pics.global.reload
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundBlack" (vars.leveltracker.overlays ? "" : " Hidden"), 0
-	vars.hwnd.leveltracker_zones.reset := hwnd, vars.hwnd.leveltracker_zones.reset_bar := vars.hwnd.help_tooltips["leveltrackerzones_reset"] := hwnd1
+	For key, val in vars.leveltracker.zone_layouts[vars.log.areaID]
+		If IsObject(val) && (val.1 || val.Count() > 1) || !IsObject(val) && !Blank(val)
+			reset_check := 1
 
-	Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
+	If reset_check
 	{
-		If (settings.leveltracker.aLayouts = "vertical")
-			style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section" : " Section xs"
-		Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section" : " Section ys"
+		Gui, %GUI_name%: Add, Pic, % (settings.leveltracker.aLayouts = "vertical" ? "ys" : "xs") " Border HWNDhwnd BackgroundTrans gLeveltracker_ZoneLayouts h" settings.general.fHeight " w-1" (vars.leveltracker.overlays ? "" : " Hidden"), % "HBitmap:*" vars.pics.global.revert
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundBlack" (vars.leveltracker.overlays ? "" : " Hidden"), 0
+		vars.hwnd.leveltracker_zones.reset := hwnd, vars.hwnd.leveltracker_zones.reset_bar := vars.hwnd.help_tooltips["leveltrackerzones_reset"] := hwnd1
+	}
 
-		pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), Gdip_GetImageDimension(pBitmap, width, height)
-		If (angle := vars.leveltracker.zone_layouts[vars.log.areaID][A_Index].1)
+	subzone := vars.leveltracker.zone_layouts[vars.log.areaID].subzone, pic_count := pic_count0 := 0
+	For outer in [1, 2]
+	{
+		count := 0, pic_count := (settings.leveltracker.aLayouts = "vertical") && vars.leveltracker.overlays ? Min(4, pic_count) : pic_count
+		exclude := vars.leveltracker.zone_layouts[vars.log.areaID].exclude
+		Loop, Files, % "img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		{
-			If InStr("90,270", Abs(angle)) && (settings.leveltracker.aLayouts = "horizontal") && (width != height)
-			{
-				pBitmap_corrected := Gdip_ResizeBitmap(pBitmap, height, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
-				pBitmap := pBitmap_corrected
-			}
-			pBitmap_rotated := Gdip_RotateBitmapAtCenter(pBitmap, vars.leveltracker.zone_layouts[vars.log.areaID][A_Index].1), Gdip_DisposeBitmap(pBitmap)
-			pBitmap := pBitmap_rotated
-			If InStr("90,270", Abs(angle)) && (settings.leveltracker.aLayouts = "vertical") && (width != height)
-			{
-				pBitmap_corrected := Gdip_ResizeBitmap(pBitmap, width, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
-				pBitmap := pBitmap_corrected
-			}
-			Gdip_GetImageDimension(pBitmap, width, height)
-		}
-		Loop, Parse, % vars.leveltracker.zone_layouts[vars.log.areaID][A_Index].2
-			Gdip_ImageRotateFlip(pBitmap, (A_LoopField = "h" ? 4 : 6))
+			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
+			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude) || !pic_count0 && InStr(A_LoopFileName, " x")
+			|| (count = 2) && !InStr(A_LoopFileName, " x")
+				Continue
+			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
+			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0
+	
+			If (outer = 1)
+				Continue
+			If (settings.leveltracker.aLayouts = "vertical")
+				style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section" : " Section xs"
+			Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section" : " Section ys"
 
-		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, width * settings.leveltracker[vars.leveltracker.overlays && (mode != 2) || !settings.leveltracker.sLayouts1 ? "sLayouts" : "sLayouts1"], 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
-		hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
-		Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" style, % "HBitmap:" hbmBitmap
-		vars.hwnd.leveltracker_zones[vars.log.areaID " " A_Index] := hwnd
-		If (A_Index = 1)
-			ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
+			pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), Gdip_GetImageDimension(pBitmap, width, height)
+			For index, operation in vars.leveltracker.zone_layouts[vars.log.areaID][file]
+				If IsNumber(operation)
+				{
+					If (operation = 0)
+						Continue
+					If InStr("90,270", Abs(operation)) && (settings.leveltracker.aLayouts = "horizontal") && (width != height)
+					{
+						pBitmap_corrected := Gdip_ResizeBitmap(pBitmap, height, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
+						pBitmap := pBitmap_corrected
+					}
+					operation := (operation < 0) ? 360 + operation : operation
+					Gdip_ImageRotateFlip(pBitmap, operation//90)
 
-		If vars.leveltracker.overlays && (mode != 2)
-		{
-			If !vars.pics.zone_layouts.rotate
-				vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
-			If !vars.pics.zone_layouts.flip
-				vars.pics.zone_layouts.flip := LLK_ImageCache("img\GUI\flip.png")
-			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.rotate
-			vars.hwnd.leveltracker_zones[vars.log.areaID " " A_Index "_rotate"] := hwnd
-			Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.flip
-			vars.hwnd.leveltracker_zones[vars.log.areaID " " A_Index "_flip"] := hwnd
+					If InStr("90,270", Abs(operation)) && (settings.leveltracker.aLayouts = "vertical") && (width != height)
+					{
+						pBitmap_corrected := Gdip_ResizeBitmap(pBitmap, width, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
+						pBitmap := pBitmap_corrected
+					}
+					Gdip_GetImageDimension(pBitmap, width, height)
+				}
+				Else Gdip_ImageRotateFlip(pBitmap, (operation = "h" ? 4 : 6))
+	
+			new_width := width * settings.leveltracker[vars.leveltracker.overlays && (mode != 2) || !settings.leveltracker.sLayouts1 ? "sLayouts" : "sLayouts1"]
+			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.leveltracker.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
+			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
+			Gdip_DisposeBitmap(pBitmap)
+			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
+			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" (mode != 2 && settings.leveltracker.aLayouts = "vertical" && count = 5 ? " Section ys y" yFirst : style), % "HBitmap:" hbmBitmap
+			vars.hwnd.leveltracker_zones[vars.log.areaID " " file] := hwnd
+			If (count = 1)
+				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
+	
+			If vars.poe_version && vars.leveltracker.overlays && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11)") ;!InStr(A_LoopFileName, " x")
+			{
+				If !vars.pics.zone_layouts.rotate
+					vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
+				If !vars.pics.zone_layouts.flip
+					vars.pics.zone_layouts.flip := LLK_ImageCache("img\GUI\flip.png")
+				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.flip
+				vars.hwnd.leveltracker_zones[vars.log.areaID " " file "_flip"] := hwnd
+				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (settings.leveltracker.aLayouts = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1"
+					, % "HBitmap:*" vars.pics.zone_layouts.rotate
+				vars.hwnd.leveltracker_zones[vars.log.areaID " " file "_rotate"] := hwnd
+				If (vars.leveltracker.zone_layouts[vars.log.areaID][file].Count() > 1) || vars.leveltracker.zone_layouts[vars.log.areaID][file].1
+				{
+					Gui, %GUI_name%: Add, Pic, % "Border BackgroundTrans " (settings.leveltracker.aLayouts = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.revert
+					Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd BackgroundBlack", 0
+					vars.hwnd.leveltracker_zones["imagereset_" file] := hwnd
+				}
+			}
 		}
+		If !pic_count0 && !FileExist("img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " y*")
+			vars.leveltracker.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1
+	}
+	
+	reset_check := 0
+	For key, val in vars.leveltracker.zone_layouts[vars.log.areaID]
+		If IsObject(val) || !Blank(val)
+			reset_check := 1
+
+	If vars.leveltracker.overlays && !reset_check
+	{
+		GuiControl, +Hidden, % vars.hwnd.leveltracker_zones.reset
+		GuiControl, +Hidden, % vars.hwnd.leveltracker_zones.reset_bar
 	}
 
 	If (mode = 1)
@@ -3050,13 +3140,15 @@ Leveltracker_ZoneLayouts(mode := 0, drag := 0, cHWND := "")
 		Gdip_GetImageDimension(pBitmap, wInfo, hInfo)
 		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, wInfo * settings.leveltracker.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
 		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
-		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs x" xFirst : "ys y" yFirst), % "HBitmap:" hbmBitmap2
+		Gui, %GUI_name%: Add, Picture, % "Border " (settings.leveltracker.aLayouts = "horizontal" ? "xs x" xFirst " y+" margin*2 : "ys y" yFirst " x+" margin*2)
+			, % "HBitmap:" hbmBitmap2
 	}
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id "vars.hwnd.leveltracker_zones.main
-	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.monitor.x + vars.monitor.w//2 - w/2 : 0) : settings.leveltracker.xLayouts
-	yPos := Blank(settings.leveltracker.yLayouts) ? (settings.leveltracker.aLayouts = "vertical" ? vars.monitor.y + vars.monitor.h//2 - h/2 : 0) : settings.leveltracker.yLayouts
+	xPos := Blank(settings.leveltracker.xLayouts) ? (settings.leveltracker.aLayouts = "horizontal" ? vars.client.xc - w/2 : 0) : settings.leveltracker.xLayouts
+	yPos := Blank(settings.leveltracker.yLayouts) ? (settings.leveltracker.aLayouts = "vertical" ? vars.client.yc - h/2 : 0) : settings.leveltracker.yLayouts
 	xPos := (xPos >= vars.monitor.w / 2) ? xPos - w + 1 : xPos, yPos := (yPos >= vars.monitor.h / 2) ? yPos - h + 1 : yPos
+	Gui_CheckBounds(xPos, yPos, w, h)
 	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + xPos " y" vars.monitor.y + yPos
 	LLK_Overlay(leveltracker_zones, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
