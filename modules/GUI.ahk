@@ -140,7 +140,7 @@ Gui_HelpToolTip(HWND_key)
 		database := vars.lootfilter.filter, lootfilter := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
 
-	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : (check = "leveltrackereditor") ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" || check = "leveltrackerzones" && settings.leveltracker.aLayouts = "horizontal" ? 0.5 : (check = "leveltrackereditor") ? 0.75 : 1)
 	If !tooltip_width
 		Return
 
@@ -368,8 +368,10 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 			yTarget := vars.monitor.h - height, yPos := yTarget
 	}
 	
-	If snap && LLK_IsBetween(xTarget + width/2, vars.monitor.x + vars.client.xc * 0.9, vars.monitor.x + vars.client.xc * 1.1)
+	If snap && LLK_IsBetween(xMouse, vars.monitor.x + vars.client.xc * 0.9, vars.monitor.x + vars.client.xc * 1.1)
 		xPos := "", xTarget := vars.client.xc - width/2 + 1
+	Else If snap && LLK_IsBetween(yMouse, vars.monitor.y + vars.client.yc * 0.9, vars.monitor.y + vars.client.yc * 1.1)
+		yPos := "", yTarget := vars.client.yc - height/2 + 1
 
 	Gui, %gui_name%: Show, % (vars.client.stream ? "" : "NA ") "x" vars.monitor.x + xTarget " y" vars.monitor.y + yTarget
 }

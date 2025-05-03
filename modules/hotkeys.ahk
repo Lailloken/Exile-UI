@@ -411,11 +411,10 @@ Hotkeys_Tab()
 
 		If vars.hwnd.leveltracker_zones.main
 		{
-			Gui, % Gui_Name(vars.hwnd.leveltracker_zones.main) ": +E0x20"
 			If !settings.leveltracker.sLayouts1
 				WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
 			For key, val in vars.hwnd.leveltracker_zones
-				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment", "reset"],,, 0)
+				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment", "reset", "drag"],,, 0)
 					GuiControl, % "+hidden", % val
 		}
 		vars.leveltracker.overlays := 0
