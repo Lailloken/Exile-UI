@@ -1012,6 +1012,9 @@ Leveltracker_Hints()
 	local
 	global vars, settings, db
 
+	If settings.leveltracker.layouts
+		Return
+
 	For key in vars.leveltracker.hints
 		If LLK_HasVal(vars.leveltracker.guide.group1, key, 1)
 		{
@@ -1557,9 +1560,11 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 						color := SubStr(part, InStr(part, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), text := StrReplace(text, "(color:"color ")")
 					If InStr(step, "(hint)")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
-					For key in vars.leveltracker.hints
-						If InStr(StrReplace(part, "_", " "), key)
-							color := "Aqua"
+
+					If !settings.leveltracker.layouts
+						For key in vars.leveltracker.hints
+							If InStr(StrReplace(part, "_", " "), key)
+								color := "Aqua"
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
 						text := SubStr(text, 1, -1)
 					Gui, %name_main%: Add, Text, % style " c"color, % (index = text_parts.MaxIndex()) || spacing_check || InStr(text_parts[index + 1], "(img:") ? text : text " "
