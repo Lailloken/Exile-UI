@@ -2988,7 +2988,7 @@ Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			KeyWait, RButton
 			vars.leveltracker.zone_layouts[vars.log.areaID].Delete(control)
 		}
-		Else If InStr(check, vars.log.areaID " ") && (click = 2) && !RegExMatch(check, "i)(\sy)")
+		Else If InStr(check, vars.log.areaID " ") && (click = 2)
 		{
 			KeyWait, RButton
 			If !IsObject(vars.leveltracker.zone_layouts[vars.log.areaID])
@@ -3053,7 +3053,7 @@ Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		vars.hwnd.leveltracker_zones.reset := hwnd, vars.hwnd.leveltracker_zones.reset_bar := vars.hwnd.help_tooltips["leveltrackerzones_reset"] := hwnd1
 	}
 
-	subzone := vars.leveltracker.zone_layouts[vars.log.areaID].subzone, pic_count := pic_count0 := 0
+	subzone := vars.leveltracker.zone_layouts[vars.log.areaID].subzone, pic_count := ypic_count := pic_count0 := 0
 	For outer in [1, 2]
 	{
 		count := 0, pic_count := (alignment = "vertical") && vars.leveltracker.overlays ? Min(4, pic_count) : pic_count
@@ -3065,7 +3065,7 @@ Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			|| vars.poe_version && (count = 2) && !InStr(A_LoopFileName, " x")
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
-			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0
+			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0, ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
 	
 			If (outer = 1)
 				Continue
@@ -3106,7 +3106,7 @@ Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 	
-			If vars.poe_version && vars.leveltracker.overlays && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11)") ;!InStr(A_LoopFileName, " x")
+			If vars.poe_version && vars.leveltracker.overlays && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11|g1_4)") ;!InStr(A_LoopFileName, " x")
 			{
 				If !vars.pics.zone_layouts.rotate
 					vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
@@ -3125,8 +3125,17 @@ Leveltracker_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				}
 			}
 		}
-		If !pic_count0 && !FileExist("img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " y*")
-			vars.leveltracker.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1
+		If !pic_count0
+			If !FileExist("img\GUI\leveling tracker\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " y*")
+				vars.leveltracker.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1
+			Else If !ypic_count
+				Loop, Parse, exclude, |
+				{
+					If (A_Index = 1)
+						vars.leveltracker.zone_layouts[vars.log.areaID].exclude := ""
+					If !InStr(A_LoopField, "y")
+						vars.leveltracker.zone_layouts[vars.log.areaID].exclude .= (!vars.leveltracker.zone_layouts[vars.log.areaID].exclude ? "" : "|") A_LoopField
+				}
 	}
 	
 	reset_check := 0
