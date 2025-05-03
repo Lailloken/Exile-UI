@@ -1036,11 +1036,11 @@
     ],
     "help panel": [
       "general:\n- scroll to zoom, hold m-mouse for info\n- press space to (un)lock the overlay",
-      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to exclude",
+      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to discard",
       "flip/rotate buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ],
     "reset": [
-      "click to revert rotation, flipping, and sub-layout picks/exclusions for this zone"
+      "click to reset image modifications/picks for this zone"
     ]
   },
   "lootfilter": {
