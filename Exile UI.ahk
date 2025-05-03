@@ -458,7 +458,7 @@ Init_general()
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -561,6 +561,10 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 	For index, val in ["the_wall_with_notes", "a_large_spiral"]
 		If FileExist("img\GUI\leveling tracker\hints 2\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints 2\" val ".jpg"
+
+	For index, val in ["g3_11 3"]
+		If FileExist("img\GUI\leveling tracker\zones 2\" val ".jpg")
+			FileDelete, % "img\GUI\leveling tracker\zones 2\" val ".jpg"
 
 	For index, val in ["necropolis.ahk"]
 		If FileExist("modules\" val)
