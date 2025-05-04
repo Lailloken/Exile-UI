@@ -193,7 +193,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		{
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude) || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| vars.poe_version && (count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") || settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt) "_1"]
+			|| vars.poe_version && (count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[vars.log.areaID " y_1"]
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
 			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0, ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
