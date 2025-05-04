@@ -1040,7 +1040,7 @@
     ],
     "help panel": [
       "general:\n- scroll to zoom, hold m-mouse for info\n- press space to (un)lock the overlay",
-      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to discard",
+      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to discard/hide images",
       "flip/rotate buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ],
     "reset": [
