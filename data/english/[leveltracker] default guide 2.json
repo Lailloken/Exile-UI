@@ -33,9 +33,9 @@
     },
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidg1_6 for (img:waypoint) ;; the grim tangle",
-      "(hint)____ zone is diamond-shaped, exit is often opposite the entrance.",
-      "(hint)____ find closest (img:checkpoint) or (img:waypoint) for orientation in the diamond.",
-      "find and enter (img:checkpoint) areaidg1_5 ;; the red vale"
+      "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
+      "find and enter (img:checkpoint) areaidg1_5 ;; the red vale",
+      "(hint)____ exit is usually near brambleghast"
     ],
     [
       "find and clear (quest:3_obelisks) for (quest:3_runes_of_power)",
@@ -563,9 +563,9 @@
     },
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidc_g1_6 for (img:waypoint) ;; the grim tangle",
-      "(hint)____ zone is diamond-shaped, exit is often opposite the entrance.",
-      "(hint)____ find closest (img:checkpoint) or (img:waypoint) for orientation in the diamond.",
-      "find and enter (img:checkpoint) areaidc_g1_5 ;; the red vale"
+      "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
+      "find and enter (img:checkpoint) areaidc_g1_5 ;; the red vale",
+      "(hint)____ exit is usually near brambleghast"
     ],
     [
       "find and clear (quest:3_obelisks) for (quest:3_runes_of_power)",
