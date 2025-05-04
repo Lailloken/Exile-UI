@@ -247,9 +247,9 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				vars.hwnd.actdecoder[vars.log.areaID " " file "_rotate"] := hwnd
 				If (vars.actdecoder.zone_layouts[vars.log.areaID][file].Count() > 1) || vars.actdecoder.zone_layouts[vars.log.areaID][file].1
 				{
-					Gui, %GUI_name%: Add, Pic, % "Border BackgroundTrans " (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.revert
+					Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd0 BackgroundTrans " (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.revert
 					Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd BackgroundBlack", 0
-					vars.hwnd.actdecoder["imagereset_" file] := hwnd
+					vars.hwnd.actdecoder["imagereset_" file] := hwnd, vars.hwnd.actdecoder["imageresetpic_" file] := hwnd0
 				}
 			}
 		}
