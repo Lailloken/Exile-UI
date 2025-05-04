@@ -1,4 +1,90 @@
-﻿Settings_betrayal()
+﻿Settings_actdecoder()
+{
+	local
+	global vars, settings
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Act‐Decoder">wiki page</a>
+
+	Gui, %GUI%: Add, Checkbox, % "xs y+" vars.settings.spacing " Section gSettings_actdecoder2 HWNDhwnd Checked" settings.features.actdecoder, % Lang_Trans("m_actdecoder_enable")
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_actdecoder enable"] := hwnd
+
+	If !settings.features.actdecoder
+		Return
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
+	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd, handle := "|"
+	Loop 5
+	{
+		Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_actdecoder2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.actdecoder.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
+		vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_actdecoder layouts opacity" handle] := hwnd, handle .= "|"
+	}
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.sLayouts1 > 0), % Lang_Trans("m_actdecoder_zoom")
+	vars.hwnd.settings.locked_zoom := vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom"] := hwnd, handle := "|"
+	Loop 5
+	{
+		Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_actdecoder2 Border HWNDhwnd w" settings.general.fWidth * 2
+			. (Round(settings.actdecoder.sLayouts1, 1) = Round((vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1), 1) ? " cFuchsia" : ""), % A_Index
+		vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom" handle] := hwnd, handle .= "|"
+	}
+}
+
+Settings_actdecoder2(cHWND := "")
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If (check = "enable")
+	{
+		IniWrite, % (settings.features.actdecoder := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
+		Settings_menu("actdecoder")
+	}
+	Else If (check = "locked_zoom")
+	{
+		IniWrite, % (settings.actdecoder.sLayouts1 := LLK_ControlGet(cHWND) * 0.3 * (vars.poe_version ? 1 : 2)), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
+		Loop 5
+		{
+			GuiControl, % "+c" (settings.actdecoder.sLayouts1 && A_Index = 1 ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
+			GuiControl, % "movedraw", % vars.hwnd.settings["zoneszoom_" A_Index]
+		}
+		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
+			Actdecoder_ZoneLayouts(2)
+	}
+	Else If InStr(check, "zonesopac_")
+	{
+		GuiControl, +cWhite, % vars.hwnd.settings["zonesopac_" settings.actdecoder.trans_zones]
+		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" settings.actdecoder.trans_zones]
+		
+		IniWrite, % (settings.actdecoder.trans_zones := control), % "ini" vars.poe_version "\act-decoder.ini", settings, zone transparency
+		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
+			WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 50), % "ahk_id " vars.hwnd.actdecoder.main
+
+		GuiControl, +cFuchsia, % vars.hwnd.settings["zonesopac_" control]
+		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" control]
+	}
+	Else If InStr(check, "zoneszoom_")
+	{
+		If !settings.actdecoder.sLayouts1
+			Return
+		Loop 5
+		{
+			GuiControl, % "+c" (control = A_Index ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
+			GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_" A_Index]
+		}
+		
+		IniWrite, % (settings.actdecoder.sLayouts1 := (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
+		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
+			Actdecoder_ZoneLayouts(2)
+	}
+}
+
+Settings_betrayal()
 {
 	local
 	global vars, settings
@@ -1649,28 +1735,6 @@ Settings_leveltracker()
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "Section xs x" x_anchor " gSettings_leveltracker2 HWNDhwnd Checked" settings.leveltracker.layouts, % Lang_Trans("m_lvltracker_zones") " "
-	vars.hwnd.settings.layouts := hwnd, vars.hwnd.help_tooltips["settings_leveltracker layouts"] := hwnd
-	If settings.leveltracker.layouts
-	{
-		Gui, %GUI%: Add, Text, % "ys Center HWNDhwnd x+0", % "|  " Lang_Trans("global_opacity")
-		vars.hwnd.help_tooltips["settings_leveltracker layouts opacity"] := hwnd, handle := "|"
-		Loop 5
-		{
-			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.leveltracker.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
-			vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts opacity" handle] := hwnd, handle .= "|"
-		}
-
-		Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_leveltracker2 Checked" (settings.leveltracker.sLayouts1 > 0), % Lang_Trans("m_lvltracker_zones", 2)
-		vars.hwnd.settings.locked_zoom := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom"] := hwnd, handle := "|"
-		Loop 5
-		{
-			Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_leveltracker2 Border HWNDhwnd w" settings.general.fWidth * 2
-				. (Round(settings.leveltracker.sLayouts1, 1) = Round((vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1), 1) ? " cFuchsia" : ""), % A_Index
-			vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_leveltracker layouts locked zoom" handle] := hwnd, handle .= "|"
-		}
-	}
-
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs y+"vars.settings.spacing " Section x" x_anchor, % Lang_Trans("m_lvltracker_guide")
 	Gui, %GUI%: Font, norm
@@ -1848,49 +1912,6 @@ Settings_leveltracker2(cHWND := "")
 		IniWrite, % settings.leveltracker.geartracker, % "ini" vars.poe_version "\leveling tracker.ini", settings, enable geartracker
 		If settings.leveltracker.geartracker
 			Geartracker_GUI("refresh")
-	}
-	Else If (check = "layouts")
-	{
-		settings.leveltracker.layouts := LLK_ControlGet(cHWND)
-		IniWrite, % settings.leveltracker.layouts, % "ini" vars.poe_version "\leveling tracker.ini", settings, enable zone-layout overlay
-		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-			Leveltracker_Progress()
-		Settings_menu("leveling tracker")
-	}
-	Else If (check = "locked_zoom")
-	{
-		IniWrite, % (settings.leveltracker.sLayouts1 := LLK_ControlGet(cHWND) * 0.3 * (vars.poe_version ? 1 : 2)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
-		Loop 5
-		{
-			GuiControl, % "+c" (settings.leveltracker.sLayouts1 && A_Index = 1 ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
-			GuiControl, % "movedraw", % vars.hwnd.settings["zoneszoom_" A_Index]
-		}
-		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
-			Leveltracker_ZoneLayouts(2)
-	}
-	Else If InStr(check, "zonesopac_")
-	{
-		GuiControl, +cWhite, % vars.hwnd.settings["zonesopac_" settings.leveltracker.trans_zones]
-		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" settings.leveltracker.trans_zones]
-		
-		IniWrite, % (settings.leveltracker.trans_zones := control), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone transparency
-		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
-			WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
-
-		GuiControl, +cFuchsia, % vars.hwnd.settings["zonesopac_" control]
-		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" control]
-	}
-	Else If InStr(check, "zoneszoom_")
-	{
-		Loop 5
-		{
-			GuiControl, % "+c" (control = A_Index ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
-			GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_" A_Index]
-		}
-		
-		IniWrite, % (settings.leveltracker.sLayouts1 := (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\leveling tracker.ini", settings, zone-layouts locked size
-		If WinExist("ahk_id " vars.hwnd.leveltracker_zones.main)
-			Leveltracker_ZoneLayouts(2)
 	}
 	Else If (check = "recommend")
 	{
@@ -2672,8 +2693,8 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "statlas"], "sections2": []}
+			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val))
 	}
@@ -2718,13 +2739,13 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width, vars.hwnd.settings["background_general"] := hwnd1
 	vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas"}
+	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas"}
 	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode
 		For key, val in vars.settings.sections
 		{
-			If (val = "general") || (val = "screen-checks") && !IsNumber(vars.pixelsearch.gamescreen.x1) || !vars.log.file_location && (val = "mapping tracker")
+			If (val = "general") || (val = "screen-checks") && !IsNumber(vars.pixelsearch.gamescreen.x1) || !vars.log.file_location && InStr("mapping tracker, actdecoder", val)
 			|| WinExist("ahk_exe GeForceNOW.exe") && InStr("item-info, map-info, filterspoon", val)
 				Continue
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
@@ -2810,6 +2831,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 	{
 		Case "general":
 			Settings_general()
+		Case "actdecoder":
+			Settings_actdecoder()
 		Case "betrayal-info":
 			Settings_betrayal()
 		Case "cheat-sheets":

@@ -335,10 +335,17 @@ Hotkeys_Tab()
 			Break
 		}
 
+	While settings.features.actdecoder && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
+		If (A_TickCount >= start + 200)
+		{
+			active .= " actdecoder", vars.actdecoder.tab := 1, Actdecoder_ZoneLayouts()
+			Break
+		}
+
 	While settings.features.leveltracker && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
-			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_ZoneLayouts(), Leveltracker_Hints()
+			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_Hints()
 			Break
 		}
 	map := vars.mapinfo.active_map
@@ -402,26 +409,28 @@ Hotkeys_Tab()
 			WinSet, Transparent, % (key = "notepad_reminder_feature") ? 250 : 50 * settings.notepad.trans, % "ahk_id "val
 		}
 	}
-	If InStr(active, "leveltracker")
+	If InStr(active, "actdecoder")
 	{
-		If !vars.leveltracker.layouts_lock
-			LLK_Overlay(vars.hwnd.leveltracker_zones.main, "destroy"), vars.hwnd.leveltracker_zones.main := ""
-		Else If settings.leveltracker.sLayouts1
-			Leveltracker_ZoneLayouts(2)
+		If !vars.actdecoder.layouts_lock
+			LLK_Overlay(vars.hwnd.actdecoder.main, "destroy"), vars.hwnd.actdecoder.main := ""
+		Else If settings.actdecoder.sLayouts1
+			Actdecoder_ZoneLayouts(2)
 
-		If vars.hwnd.leveltracker_zones.main
+		If vars.hwnd.actdecoder.main
 		{
-			If !settings.leveltracker.sLayouts1
-				WinSet, TransColor, % "Green " (settings.leveltracker.trans_zones * 50), % "ahk_id " vars.hwnd.leveltracker_zones.main
-			For key, val in vars.hwnd.leveltracker_zones
+			If !settings.actdecoder.sLayouts1
+				WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 50), % "ahk_id " vars.hwnd.actdecoder.main
+			For key, val in vars.hwnd.actdecoder
 				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment", "reset", "drag"],,, 0)
 					GuiControl, % "+hidden", % val
 		}
-		vars.leveltracker.overlays := 0
-	
-		If (settings.leveltracker.sLayouts != settings.leveltracker.sLayouts0)
-			IniWrite, % (settings.leveltracker.sLayouts0 := settings.leveltracker.sLayouts), % "ini" vars.poe_version "\leveling tracker.ini", Settings, zone-layouts size
+
+		vars.actdecoder.tab := 0
+		If (settings.actdecoder.sLayouts != settings.actdecoder.sLayouts0)
+			IniWrite, % (settings.actdecoder.sLayouts0 := settings.actdecoder.sLayouts), % "ini" vars.poe_version "\act-decoder.ini", Settings, zone-layouts size
 	}
+	If InStr(active, "leveltracker")
+		vars.leveltracker.overlays := 0
 	If InStr(active, "mapinfo")
 		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), vars.mapinfo.toggle := 0
 	If InStr(active, "maptracker")
@@ -572,10 +581,10 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *WheelUp::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 3)
 *WheelDown::Notepad_Widget(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse), 4)
 
-#If (vars.system.timeout = 0) && vars.leveltracker.overlays && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
+#If (vars.system.timeout = 0) && vars.actdecoder.tab && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.actdecoder, vars.general.cMouse)) ;hovering the act-decoder overlay and clicking elements
 
-*LButton::Leveltracker_ZoneLayouts(0, 1, vars.general.cMouse)
-*RButton::Leveltracker_ZoneLayouts(0, 2, vars.general.cMouse)
+*LButton::Actdecoder_ZoneLayouts(0, 1, vars.general.cMouse)
+*RButton::Actdecoder_ZoneLayouts(0, 2, vars.general.cMouse)
 
 #If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.maptracker.main) && !Blank(LLK_HasVal(vars.hwnd.maptracker, vars.general.cMouse)) ;hovering the maptracker-panel and clicking valid elements
 
@@ -610,12 +619,12 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 ~*^LButton::Maptracker_Loot()
 ^RButton::Maptracker_Loot("back")
 
-#If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.leveltracker.overlays ;resizing zone-layout images
+#If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.actdecoder.tab ;resizing the act-decoder overlay
 
 SC039::
 MButton::
 WheelUp::
-WheelDown::Leveltracker_ZoneLayoutsSize(A_ThisHotkey)
+WheelDown::Actdecoder_ZoneLayoutsSize(A_ThisHotkey)
 
 #If settings.leveltracker.pobmanual && settings.leveltracker.pob && WinActive("ahk_exe Path of Building.exe") && !WinExist("ahk_id " vars.hwnd.leveltracker_screencap.main) ;opening the screen-cap menu via m-clicking in PoB
 

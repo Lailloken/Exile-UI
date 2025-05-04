@@ -40,6 +40,7 @@ settings.iteminfo.compare := LLK_IniRead("ini" vars.poe_version "\item-checker.i
 Return
 
 #Include modules\_functions.ahk
+#Include modules\act-decoder.ahk
 #Include modules\betrayal-info.ahk
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk
@@ -205,14 +206,14 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 #If vars.hwnd.notepad.main && (vars.general.cMouse = vars.hwnd.notepad.note) && WinActive("ahk_id " vars.hwnd.notepad.main)
 #If (vars.system.timeout = 0) && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.LLK_panel.main)
 #If (vars.system.timeout = 0) && vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse)) ;hovering a notepad-widget and dragging or deleting it
-#If (vars.system.timeout = 0) && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.leveltracker_zones, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
+#If (vars.system.timeout = 0) && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.actdecoder, vars.general.cMouse)) ;hovering the leveling-guide layouts and dragging them
 #If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.maptracker.main) && !Blank(LLK_HasVal(vars.hwnd.maptracker, vars.general.cMouse)) ;hovering the maptracker-panel and clicking valid elements
 #If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.maptracker.main) ;prevent clicking the maptracker-panel (and losing focus of the game-client) if not hovering valid elements
 #If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.leveltracker.controls1) && !Blank(LLK_HasVal(vars.hwnd.leveltracker, vars.general.cMouse)) ;hovering the leveltracker-controls and clicking
 #If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.alarm.main) && !Blank(LLK_HasVal(vars.hwnd.alarm, vars.general.cMouse)) ;hovering the alarm-timer and clicking
 #If (vars.system.timeout = 0) && ((vars.general.wMouse = vars.hwnd.mapinfo.main) && !Blank(LLK_HasVal(vars.hwnd.mapinfo, vars.general.cMouse)) || (vars.general.wMouse = vars.hwnd.settings.main) && InStr(LLK_HasVal(vars.hwnd.settings, vars.general.cMouse), "mapmod_")) ;ranking map-mods
 #If (vars.system.timeout = 0) && settings.maptracker.loot && (vars.general.xMouse > vars.monitor.x + vars.monitor.w/2) ;ctrl-clicking loot into stash and logging it
-#If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.leveltracker.overlays ;resizing zone-layout images
+#If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.actdecoder.tab ;resizing zone-layout images
 #If settings.leveltracker.pobmanual && settings.leveltracker.pob && WinActive("ahk_exe Path of Building.exe") && !WinExist("ahk_id " vars.hwnd.leveltracker_screencap.main) ;opening the screen-cap menu via m-clicking in PoB
 #If (vars.tooltip_mouse.name = "searchstring") ;scrolling through sub-strings in search-strings
 #If (vars.system.timeout = 0) && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.iteminfo.main) && WinActive("ahk_group poe_ahk_window") ;applying highlighting to item-mods in the item-info tooltip

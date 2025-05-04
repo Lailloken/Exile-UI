@@ -131,7 +131,7 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "leveltrackerzones": "leveltracker_zones", "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0}
+	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0}
 	If (check != "settings")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
 	If (check = "lab" && InStr(control, "square"))
@@ -140,7 +140,8 @@ Gui_HelpToolTip(HWND_key)
 		database := vars.lootfilter.filter, lootfilter := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
 
-	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" || check = "leveltrackerzones" && settings.leveltracker.aLayouts = "horizontal" ? 0.5 : (check = "leveltrackereditor") ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : (check = "leveltrackereditor") ? 0.75 : 1)
+	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : tooltip_width
 	If !tooltip_width
 		Return
 

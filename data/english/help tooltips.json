@@ -96,6 +96,18 @@
       "when these issues are detected, an error message will appear and ask you to run this test",
       "if the test results show errors, move the script-folder to a different location or restart the script as admin, then re-run the test"
     ],
+    "actdecoder enable": [
+      "provides an interactive zone-layout overlay for campaign areas",
+      "hold <tab> while in a supported campaign area to activate the overlay",
+      "note: accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/underline)"
+    ],
+    "actdecoder layouts opacity": [
+      "the opacity of the zone-layouts overlay in locked mode"
+    ],
+    "actdecoder layouts locked zoom": [
+      "if enabled, layout images will have a different zoom while the overlay is locked",
+      "this means you can have separate zoom-levels while (not) holding TAB"
+    ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
       "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu",
@@ -450,17 +462,6 @@
     ],
     "leveltracker pob preview": [
       "long-click to check available pob data, long-right-click to delete pob data"
-    ],
-    "leveltracker layouts": [
-      "hold <tab> to activate an overlay with zone-layouts (guide-panel shows # zl):\nit will hide once you release <tab>",
-      "note: these are rough guides and never 100% correct, especially after big game updates(/underline)"
-    ],
-    "leveltracker layouts opacity": [
-      "the opacity of the zone-layouts overlay in locked mode"
-    ],
-    "leveltracker layouts locked zoom": [
-      "if enabled, layout images will have a different zoom while the overlay is locked",
-      "this means you can have separate zoom-levels while (not) holding TAB"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
@@ -1027,7 +1028,7 @@
       "press <space> to move the tree's starting point (white circle) to the cursor's position"
     ]
   },
-  "leveltrackerzones": {
+  "actdecoder": {
     "alignment": [
       "toggles alignment of images between horizontal and vertical"
     ],
