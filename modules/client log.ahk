@@ -322,7 +322,7 @@ Log_Loop(mode := 0)
 		If settings.features.leveltracker && !LLK_HasVal(vars.leveltracker.guide.group1, "an_end_to_hunger", 1) && !LLK_PatternMatch(vars.log.areaID, "", ["labyrinth_", "g3_10", "g2_13", "sanctum_"],,, 0) && (!Blank(areaID) && (areaID != vars.leveltracker.guide.target_area) || IsNumber(level) && (level0 != level)) && LLK_Overlay(vars.hwnd.leveltracker.main, "check") ;player has leveled up or moved to a different location: update overlay for exp-gain, and act clarifications
 			Leveltracker_Progress()
 
-		If settings.features.actdecoder && vars.actdecoder.layouts_lock && !vars.actdecoder.tab && !Blank(areaID) && (areaID != vars.actdecoder.current_zone)
+		If settings.features.actdecoder && vars.actdecoder.layouts_lock && !Blank(areaID) && (areaID != vars.actdecoder.current_zone)
 			Actdecoder_ZoneLayouts(2)
 
 		If !vars.poe_version && settings.qol.alarm && (areaID = "1_1_1") && IsNumber(StrReplace((check := LLK_HasVal(vars.alarm.timers, "oni", 1)), "|")) ;for oni-goroshi farming: re-entering Twilight Strand resets timer to 0:00

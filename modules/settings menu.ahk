@@ -16,22 +16,24 @@
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
-	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd, handle := "|"
-	Loop 5
-	{
-		Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? "" : " x+" settings.general.fWidth / 4) " Center gSettings_actdecoder2 Border HWNDhwnd w" settings.general.fWidth * 2 (settings.actdecoder.trans_zones = A_Index ? " cFuchsia" : ""), % A_Index
-		vars.hwnd.settings["zonesopac_" A_Index] := vars.hwnd.help_tooltips["settings_actdecoder layouts opacity" handle] := hwnd, handle .= "|"
-	}
+	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
+	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
 
-	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.sLayouts1 > 0), % Lang_Trans("m_actdecoder_zoom")
-	vars.hwnd.settings.locked_zoom := vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom"] := hwnd, handle := "|"
-	Loop 5
-	{
-		Gui, %GUI%: Add, Text, % "ys" (A_Index = 1 ? " x+0" : " x+" settings.general.fWidth / 4) " Center gSettings_actdecoder2 Border HWNDhwnd w" settings.general.fWidth * 2
-			. (Round(settings.actdecoder.sLayouts1, 1) = Round((vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (A_Index - 1), 1) ? " cFuchsia" : ""), % A_Index
-		vars.hwnd.settings["zoneszoom_" A_Index] := vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom" handle] := hwnd, handle .= "|"
-	}
+	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
+	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd
+
+	Gui, %GUI%: Add, Text, % "ys x" x_anchor + wPanels " gSettings_actdecoder2 Center Border HWNDhwnd w" settings.general.fWidth * 2, % "–"
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd1 w" settings.general.fWidth * 3, % settings.actdecoder.trans_zones
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd2 gSettings_actdecoder2 w" settings.general.fWidth * 2, % "+"
+	vars.hwnd.settings["zonesopac_minus"] := hwnd, vars.hwnd.settings["zonesopac_text"] := hwnd1, vars.hwnd.settings["zonesopac_plus"] := hwnd2
+
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd", % Lang_Trans("m_actdecoder_zoom")
+	vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x" x_anchor + wPanels " gSettings_actdecoder2 Center Border HWNDhwnd w" settings.general.fWidth * 2, % "–"
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd1 w" settings.general.fWidth * 3, % settings.actdecoder.sLayouts1
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd2 gSettings_actdecoder2 w" settings.general.fWidth * 2, % "+"
+	vars.hwnd.settings["zoneszoom_minus"] := hwnd, vars.hwnd.settings["zoneszoom_text"] := hwnd1, vars.hwnd.settings["zoneszoom_plus"] := hwnd2
 }
 
 Settings_actdecoder2(cHWND := "")
@@ -40,48 +42,45 @@ Settings_actdecoder2(cHWND := "")
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	KeyWait, LButton
 	If (check = "enable")
 	{
 		IniWrite, % (settings.features.actdecoder := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
+		If !settings.features.actdecoder
+			vars.actdecoder.layouts_lock := 0, LLK_Overlay(vars.hwnd.actdecoder.main, "destroy"), vars.hwnd.actdecoder.main := ""
 		Settings_menu("actdecoder")
 	}
-	Else If (check = "locked_zoom")
+	Else If (check = "generic")
 	{
-		IniWrite, % (settings.actdecoder.sLayouts1 := LLK_ControlGet(cHWND) * 0.3 * (vars.poe_version ? 1 : 2)), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
-		Loop 5
-		{
-			GuiControl, % "+c" (settings.actdecoder.sLayouts1 && A_Index = 1 ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
-			GuiControl, % "movedraw", % vars.hwnd.settings["zoneszoom_" A_Index]
-		}
-		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
+		IniWrite, % (settings.actdecoder.generic := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\act-decoder.ini", settings, show generic layouts
+		If !vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			Actdecoder_ZoneLayouts(2)
 	}
 	Else If InStr(check, "zonesopac_")
 	{
-		GuiControl, +cWhite, % vars.hwnd.settings["zonesopac_" settings.actdecoder.trans_zones]
-		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" settings.actdecoder.trans_zones]
+		If (settings.actdecoder.trans_zones = 1) && (control = "minus") || (settings.actdecoder.trans_zones = 10) && (control = "plus")
+			Return
 		
-		IniWrite, % (settings.actdecoder.trans_zones := control), % "ini" vars.poe_version "\act-decoder.ini", settings, zone transparency
+		IniWrite, % (settings.actdecoder.trans_zones += (control = "plus") ? 1 : -1), % "ini" vars.poe_version "\act-decoder.ini", settings, zone transparency
 		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
-			WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 50), % "ahk_id " vars.hwnd.actdecoder.main
+			WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25), % "ahk_id " vars.hwnd.actdecoder.main
 
-		GuiControl, +cFuchsia, % vars.hwnd.settings["zonesopac_" control]
-		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_" control]
+		GuiControl, Text, % vars.hwnd.settings["zonesopac_text"], % settings.actdecoder.trans_zones
+		GuiControl, movedraw, % vars.hwnd.settings["zonesopac_text"]
 	}
 	Else If InStr(check, "zoneszoom_")
 	{
-		If !settings.actdecoder.sLayouts1
+		If (settings.actdecoder.sLayouts1 = 0) && (control = "minus") || (settings.actdecoder.sLayouts1 = 5) && (control = "plus")
 			Return
-		Loop 5
-		{
-			GuiControl, % "+c" (control = A_Index ? "Fuchsia" : "White"), % vars.hwnd.settings["zoneszoom_" A_Index]
-			GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_" A_Index]
-		}
 		
-		IniWrite, % (settings.actdecoder.sLayouts1 := (vars.poe_version ? 1 : 2) * 0.3 + 0.1 * (control - 1)), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
+		IniWrite, % (settings.actdecoder.sLayouts1 += (control = "plus") ? 1 : -1), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
 		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			Actdecoder_ZoneLayouts(2)
+
+		GuiControl, Text, % vars.hwnd.settings["zoneszoom_text"], % settings.actdecoder.sLayouts1
+		GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_text"]
 	}
+	Else LLK_ToolTip("no action")
 }
 
 Settings_betrayal()

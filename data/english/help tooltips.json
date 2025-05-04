@@ -101,12 +101,15 @@
       "hold <tab> while in a supported campaign area to activate the overlay",
       "note: accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/underline)"
     ],
+    "actdecoder generic": [
+      "disables sub-layout selections and only shows very basic layouts"
+    ],
     "actdecoder layouts opacity": [
-      "the opacity of the zone-layouts overlay in locked mode"
+      "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
     ],
     "actdecoder layouts locked zoom": [
-      "if enabled, layout images will have a different zoom while the overlay is locked",
-      "this means you can have separate zoom-levels while (not) holding TAB"
+      "custom zoom setting for when the overlay is locked (0 = disabled)",
+      "this means you can have separate settings while (not) holding TAB"
     ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",

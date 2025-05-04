@@ -8,14 +8,16 @@
 
 	If !IsObject(vars.actdecoder)
 		vars.actdecoder := {}
-	vars.actdecoder.zone_layouts := {}
+	vars.actdecoder.zone_layouts := {}, vars.actdecoder.files := {}
 
 	Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
 		If (check := InStr(A_LoopFileName, " "))
+		{
+			vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt)] := 1
+			vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
 			If vars.poe_version
-				vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
-				, vars.actdecoder.zone_layouts["c_" SubStr(A_LoopFileName, 1, check - 1)] := {}
-			Else vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
+				vars.actdecoder.zone_layouts["c_" SubStr(A_LoopFileName, 1, check - 1)] := {}
+		}
 
 	settings.actdecoder := {}, ini := IniBatchRead("ini" vars.poe_version "\act-decoder.ini")
 	settings.actdecoder.xLayouts := !Blank(check := ini.settings["zone-layouts x"]) ? check : ""
@@ -23,7 +25,8 @@
 	settings.actdecoder.sLayouts0 := settings.actdecoder.sLayouts := !Blank(check := ini.settings["zone-layouts size"]) ? check : (vars.poe_version ? 0.7 : 1)
 	settings.actdecoder.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
-	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 5
+	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
+	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
 }
 
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
@@ -148,7 +151,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
 	Gui, %GUI_name%: Color, % "Green"
 	If (mode = 2)
-		WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 50)
+		WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25)
 	Else WinSet, TransColor, % "Green 255"
 
 	Gui, %GUI_name%: Margin, % (margin := Floor(vars.monitor.h/200)), % margin
@@ -190,7 +193,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		{
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude) || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| vars.poe_version && (count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			|| vars.poe_version && (count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") || settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt) "_1"]
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
 			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0, ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
@@ -224,7 +227,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				}
 				Else Gdip_ImageRotateFlip(pBitmap, (operation = "h" ? 4 : 6))
 	
-			new_width := width * settings.actdecoder[vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1 ? "sLayouts" : "sLayouts1"]
+			new_width := (vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1) ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1)
 			new_width := (vars.poe_version || alignment = "horizontal") && (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
 			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
 			Gdip_DisposeBitmap(pBitmap)
@@ -255,7 +258,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		}
 		If !pic_count0
 			If !FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " y*")
-				vars.actdecoder.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1
+				vars.actdecoder.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1, pic_count := 3
 			Else If !ypic_count
 				Loop, Parse, exclude, |
 				{

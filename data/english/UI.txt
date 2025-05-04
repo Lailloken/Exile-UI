@@ -750,7 +750,8 @@
 ;## these strings are displayed/required in the "act-decoder" section of the settings menu
 		m_actdecoder_enable		=	"enable the act-decoder overlay"
 		m_actdecoder_opacity		=	"opacity when locked:"
-		m_actdecoder_zoom		=	"separate zoom when locked:"
+		m_actdecoder_zoom		=	"zoom when locked:"
+		m_actdecoder_simple		=	"only show generic layouts"
 
 
 

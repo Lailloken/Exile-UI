@@ -419,7 +419,10 @@ Hotkeys_Tab()
 		If vars.hwnd.actdecoder.main
 		{
 			If !settings.actdecoder.sLayouts1
-				WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 50), % "ahk_id " vars.hwnd.actdecoder.main
+			{
+				WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25), % "ahk_id " vars.hwnd.actdecoder.main
+				Gui, % Gui_Name(vars.hwnd.actdecoder.main) ": +E0x20"
+			}
 			For key, val in vars.hwnd.actdecoder
 				If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment", "reset", "drag"],,, 0)
 					GuiControl, % "+hidden", % val
