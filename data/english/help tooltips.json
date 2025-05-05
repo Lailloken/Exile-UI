@@ -96,6 +96,21 @@
       "when these issues are detected, an error message will appear and ask you to run this test",
       "if the test results show errors, move the script-folder to a different location or restart the script as admin, then re-run the test"
     ],
+    "actdecoder enable": [
+      "provides an interactive zone-layout overlay for campaign areas",
+      "hold <tab> while in a supported campaign area to activate the overlay",
+      "note: accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/underline)"
+    ],
+    "actdecoder generic": [
+      "disables sub-layout selections and only shows very basic layouts"
+    ],
+    "actdecoder layouts opacity": [
+      "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
+    ],
+    "actdecoder layouts locked zoom": [
+      "custom zoom setting for when the overlay is locked (0 = disabled)",
+      "this means you can have separate settings while (not) holding TAB"
+    ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
       "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu",
@@ -406,7 +421,13 @@
     ],
     "leveltracker guide info": [
       "there are up to three individual guide slots you can use and switch between",
-      "each slot has its own data for: guide & progress, gear, skill-tree, timer"
+      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
+      "credits: default guide originally derived from exile-leveling by heartofphos"
+    ],
+    "leveltracker guide info 2": [
+      "there are up to three individual guide slots you can use and switch between",
+      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
+      "credits: default guide originally derived from u/xebtria's walkthrough"
     ],
     "leveltracker guide format": [
       "long-click to view an explanation of the guide format"
@@ -444,13 +465,6 @@
     ],
     "leveltracker pob preview": [
       "long-click to check available pob data, long-right-click to delete pob data"
-    ],
-    "leveltracker layouts": [
-      "hold <tab> to activate an overlay with zone-layouts (guide-panel shows # zl):\nit will hide once you release <tab>",
-      "note: these are rough guides and never 100% correct, especially after big game updates(/underline)"
-    ],
-    "leveltracker layouts opacity": [
-      "the opacity of the zone-layouts overlay in locked mode"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
@@ -1017,11 +1031,20 @@
       "press <space> to move the tree's starting point (white circle) to the cursor's position"
     ]
   },
-  "leveltrackerzones": {
+  "actdecoder": {
+    "alignment": [
+      "toggles alignment of images between horizontal and vertical"
+    ],
+    "drag": [
+      "- drag to move the overlay\n- right-click to reset to default position of current alignment"
+    ],
     "help panel": [
       "general:\n- scroll to zoom, hold m-mouse for info\n- press space to (un)lock the overlay",
-      "zone-layout images:\n- click to toggle vertical/horizontal\n- drag to move, r-click to reset",
-      "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
+      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to discard/hide images",
+      "flip/rotate buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
+    ],
+    "reset": [
+      "click to reset image modifications/picks for this zone"
     ]
   },
   "lootfilter": {

@@ -9,8 +9,8 @@
   },
   "maps": {
     "abyss": {
-    "name": "abyss",
-    "boss": "tor gul"
+      "name": "abyss",
+      "boss": "tor gul"
     },
     "alpineridge": {
       "name": "alpine ridge",
@@ -54,6 +54,10 @@
     "channel": {
       "name": "channel",
       "boss": "hask"
+    },
+    "coppercitadel": {
+      "name": "the copper citadel",
+      "boss": "jamanra2"
     },
     "creek": {
       "name": "creek",
@@ -102,6 +106,13 @@
     "hive": {
       "name": "hive"
     },
+    "ironcitadel": {
+      "name": "the iron citadel",
+      "boss": "geonor"
+    },
+    "lake": {
+      "name": "the fractured lake"
+    },
     "loftysummit": {
       "name": "lofty summit",
       "boss": "blackjaw"
@@ -109,6 +120,10 @@
     "losttowers": {
       "name": "lost towers",
       "boss": "chetza"
+    },
+    "megalith": {
+      "name": "the phaaryl megalith",
+      "boss": "megalith bosses"
     },
     "mesa": {
       "name": "mesa",
@@ -129,6 +144,9 @@
     "oasis": {
       "name": "oasis",
       "boss": "jamanra"
+    },
+    "paradise": {
+      "name": "untainted paradise"
     },
     "penitentiary": {
       "name": "penitentiary",
@@ -157,6 +175,10 @@
       "name": "seepage",
       "boss": "rotten druid"
     },
+    "selenite": {
+      "name": "the silent cave",
+      "boss": "ketzuli"
+    },
     "slick": {
       "name": "slick"
     },
@@ -170,6 +192,10 @@
     },
     "steppe": {
       "name": "steppe"
+    },
+    "stonecitadel": {
+      "name": "the stone citadel",
+      "boss": "doryani"
     },
     "sulphuriccaverns": {
       "name": "sulphuric caverns",
@@ -186,21 +212,6 @@
     "swamptower": {
       "name": "sinking spire",
       "boss": "blackjaw2"
-    },
-    "coppercitadel": {
-      "name": "the copper citadel",
-      "boss": "jamanra2"
-    },
-    "ironcitadel": {
-      "name": "the iron citadel",
-      "boss": "geonor"
-    },
-    "stonecitadel": {
-      "name": "the stone citadel",
-      "boss": "doryani"
-    },
-    "lake": {
-      "name": "the fractured lake"
     },
     "trenches": {
       "name": "trenches"
@@ -220,6 +231,9 @@
     "wetlands": {
       "name": "wetlands",
       "boss": "devourer"
+    },
+    "wildwood": {
+      "name": "the viridian wildwood"
     },
     "willow": {
       "name": "willow",

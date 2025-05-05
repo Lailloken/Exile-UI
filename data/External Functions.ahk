@@ -3413,7 +3413,7 @@ Gdip_RotateBitmapAtCenter(pBitmap, Angle, pBrush:=0, InterpolationMode:=7, Pixel
        }
 
        obm := SelectObject(hDC, hbm)
-       G := Gdip_GraphicsFromHDC(hDC, InterpolationMode, 4)
+       G := Gdip_GraphicsFromHDC(hDC,, InterpolationMode, 4)
        indexedMode := 1
     } Else
     {

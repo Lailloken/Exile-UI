@@ -68,6 +68,7 @@ Init_mapinfo(), LLK_Log("initialized map-info settings")
 Init_OCR(), LLK_Log("initialized ocr settings")
 Init_searchstrings(), LLK_Log("initialized search-strings settings")
 Init_leveltracker(), LLK_Log("initialized act-tracker settings")
+Init_actdecoder(), LLK_Log("initialized act-decoder settings")
 Init_maptracker(), LLK_Log("initialized map-tracker settings")
 Init_qol(), LLK_Log("initialized minor qol settings")
 Init_recombination(), LLK_Log("initialized recombination settings")
@@ -109,6 +110,7 @@ LLK_Log("+++ tool is running +++")
 Return
 
 #Include modules\_functions.ahk
+#Include modules\act-decoder.ahk
 #Include modules\betrayal-info.ahk
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk
@@ -425,7 +427,6 @@ Init_general()
 		For index, poe_version in ["", " 2"]
 			If FileExist("ini" poe_version "\leveling tracker.ini")
 				IniWrite, 1, % "ini" poe_version "\leveling tracker.ini", settings, zone-layouts size
-
 		IniWrite, % new_version, ini\config.ini, versions, ini
 	}
 
@@ -451,6 +452,7 @@ Init_general()
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
 	settings.features.iteminfo := !Blank(check := ini.features["enable item-info"]) ? check : 0
 	settings.features.leveltracker := !Blank(check := ini.features["enable leveling guide"]) ? check : 0
+	settings.features.actdecoder := !Blank(check := ini.features["enable act-decoder"]) ? check : 0
 	settings.features.maptracker := !Blank(check := ini.features["enable map tracker"]) ? check : 0
 	settings.features.mapinfo := (settings.general.lang_client != "unknown") && !Blank(check := ini.features["enable map-info panel"]) ? check : 0
 	settings.features.OCR := !vars.poe_version && !Blank(check := ini.features["enable ocr"]) ? check : 0
@@ -458,7 +460,7 @@ Init_general()
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -553,6 +555,12 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 
 	If FileExist("lailloken ui.ahk")
 		FileDelete, lailloken ui.ahk
+
+	If FileExist("img\GUI\leveling tracker\zones\") || FileExist("img\GUI\leveling tracker\zones 2\")
+	{
+		FileRemoveDir, % "img\GUI\leveling tracker\zones\", 1
+		FileRemoveDir, % "img\GUI\leveling tracker\zones 2\", 1
+	}
 
 	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken"]
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")

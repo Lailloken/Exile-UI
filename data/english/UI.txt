@@ -55,6 +55,7 @@
 ;## these don't necessarily have to be translated, it's up to the translator(s)
 ;## the feature-names are used here and there, so make sure to be consistent across each mention
 		ms_general			=	"general"
+		ms_actdecoder			=	"act-decoder"
 		ms_betrayal-info		=	"betrayal-info"
 		ms_cheat-sheets			=	"cheat-sheets"
 		ms_clone-frames			=	"clone-frames"
@@ -743,6 +744,18 @@
 
 
 ;#####################################################
+;## settings menu: act-decoder
+;#####################################################
+
+;## these strings are displayed/required in the "act-decoder" section of the settings menu
+		m_actdecoder_enable		=	"enable the act-decoder overlay"
+		m_actdecoder_opacity		=	"opacity when locked:"
+		m_actdecoder_zoom		=	"zoom when locked:"
+		m_actdecoder_simple		=	"only show generic layouts"
+
+
+
+;#####################################################
 ;## settings menu: betrayal-info
 ;#####################################################
 
@@ -875,7 +888,6 @@
 		m_lvltracker_fade		=	"fade out after x seconds:"
 		m_lvltracker_fade		=	"fade in on mouse-hover"
 		m_lvltracker_gear		=	"gear tracker"
-		m_lvltracker_zones		=	"zone-layouts"
 		m_lvltracker_recommend		=	"lvl recommendations"
 		m_lvltracker_hotkeys		=	"enable page-hotkeys"
 		m_lvltracker_poboverlays	=	"pob overlay settings:"
