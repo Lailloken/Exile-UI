@@ -1,8 +1,9 @@
 [
   [
-	["1.58.1", 15801],
+	["1.58.1", 15801, 1],
 	"may 5, 2025",
 	"act-tracker: zone-layouts moved to new <act-decoder> feature, guide hints disabled while using zone layouts",
+	"act-tracker: if you added custom layouts in the past, save them because this update will delete the whole folder(/highlight)",
 	"act-decoder: initial public test, more advanced layout overlay, currently supports clearfell, red vale, apex of filth",
 	"act-decoder: still has the previous layout images from lolcohol's guide for the rest of the campaign",
 	"statlas: updated some boss images, layout images are now monochrome for better visibility, added support for various maps"
