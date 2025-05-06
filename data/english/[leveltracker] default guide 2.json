@@ -8,34 +8,16 @@
       "renly: <reaching_clearfell>",
       "enter areaidg1_2 ;; clearfell"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "follow the voice, kill beira_of_the_rotten_pack",
-        "optional: kill devourer for (img:skill) in (img:checkpoint) areaidg1_3 ;; mud burrow",
-        "(hint)____ then (img:portal) to town, renly: <treacherous_ground> for (img:support)",
-        "find and enter (img:checkpoint) areaidg1_4 ;; the grelwood"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill beira_of_the_rotten_pack",
-        "(hint)____ follow the voice, usually (img:0) or (img:1) of the (img:waypoint)",
-        "find and enter (img:checkpoint) areaidg1_4 ;; the grelwood"
-      ]
-    },
+    [
+      "kill beira_of_the_rotten_pack",
+      "optional: (img:skill) in camp chest | (img:skill) for arena:devourer in (img:checkpoint) areaidg1_3 ;; mud burrow",
+      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support)",
+      "find and enter (img:checkpoint) areaidg1_4 ;; the grelwood"
+    ],
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidg1_6 for (img:waypoint) ;; the grim tangle",
       "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
-      "find and enter (img:checkpoint) areaidg1_5 ;; the red vale",
-      "(hint)____ exit is usually near brambleghast"
+      "enter (img:checkpoint) areaidg1_5 (usually near arena:brambleghast) ;; the red vale"
     ],
     [
       "find and clear (quest:3_obelisks) for (quest:3_runes_of_power)",
@@ -53,25 +35,10 @@
       "talk to (img:quest_2) una",
       "(img:waypoint) to areaidg1_6 ;; the grim tangle"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "optional: kill the_rotten_druid for (img:support)",
-        "find and enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
-      ]
-    },
+    [
+      "optional: kill the_rotten_druid for (img:support)",
+      "find and enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
+    ],
     [
       "kill 2_bosses in areaidg1_8 & areaidg1_9 ;; mausoleum of the praetor & tomb of the consort",
       "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidg1_7 ;; cemetery of the eternals",
@@ -89,27 +56,11 @@
     [
       "(img:waypoint) to areaidg1_13_1 ;; ogham farmlands"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-        "optional: find and clear the crop circle for (img:skill)",
-        "follow the road, enter (img:checkpoint) areaidg1_13_2 ;; ogham village"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-        "follow the road, enter (img:checkpoint) areaidg1_13_2 ;; ogham village"
-      ]
-    },
+    [
+      "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
+      "optional: find and clear the crop circle for (img:skill)",
+      "follow the road, enter (img:checkpoint) areaidg1_13_2 ;; ogham village"
+    ],
     [
       "(img:waypoint) to areaidg1_town (img:town) ;; clearfell encampment"
     ],
@@ -123,9 +74,9 @@
         "yes"
       ],
       "lines": [
-        "find (quest:smithing_tools) near a (img:checkpoint)",
-        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts",
-        "(hint)____ usually (img:7) in the zone"
+        "find (quest:smithing_tools) in a house with a (img:checkpoint) in front",
+        "(hint)____ the chest contains a blank rune and (img:artificer)",
+        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts"
       ]
     },
     {
@@ -134,53 +85,20 @@
         "no"
       ],
       "lines": [
-        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts",
-        "(hint)____ usually (img:7) in the zone"        
+        "optional: blank rune and (img:artificer) in a house with (img:checkpoint) in front",
+        "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts"
       ]
     },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidg1_15 ;; ogham manor",
-        "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
-        "(hint)____ optional: (img:support) from hanged corpse, (img:7) part of loop"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidg1_15 ;; ogham manor",
-        "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find and kill candlemass on the 1st floor",
-        "(hint)____ go (img:2) to the hole, check the surroundings for the arena's (img:checkpoint)",
-        "kill count_geonor, enter areaidg1_town (img:town) ;; clearfell encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill candlemass on the 1st floor",
-        "(hint)____ go (img:2) to the hole, check the surroundings for the arena's (img:checkpoint)",
-        "kill count_geonor, (img:portal) to areaidg1_town (img:town) ;; clearfell encampment"
-      ]
-    },
+    [
+      "find and enter (img:checkpoint) areaidg1_15 ;; ogham manor",
+      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
+      "(hint)____ optional: (img:support) from hanged corpse near the loop's apex"
+    ],
+    [
+      "find and kill candlemass on the 1st floor",
+      "(hint)____ find the hole, check the surroundings for the arena's (img:checkpoint)",
+      "kill count_geonor, enter areaidg1_town (img:town) ;; clearfell encampment"
+    ],
     {
       "condition": [
         "league-start",
@@ -213,6 +131,7 @@
       "use the desert map, enter areaidg2_10_1 ;; mawdun quarry"
     ],
     [
+      "optional: (img:artificer) in faridun cache (has mini-map icon)",
       "follow the (img:checkpoint) (img:checkpoint), enter (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
@@ -258,7 +177,7 @@
       "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic), kill kabala",
       "(hint)____ arena:kabala has a (img:checkpoint), often near the center",
       "find and enter (img:checkpoint) areaidg2_4_2 ;; the lost city",
-      "(hint)____ usually (img:3) in the zone, after crossing a big bridge"
+      "(hint)____ usually after crossing a big bridge"
     ],
     [
       "find and enter (img:checkpoint) areaidg2_4_3 ;; buried shrines"
@@ -300,6 +219,7 @@
       "use the desert map, enter areaidg2_8 ;; deshar"
     ],
     [
+      "optional: (img:artificer) from a skeleton in a side area (has mini-map icon)",
       "find (quest:fallen_dekhara) next to a tower, take (quest:final_letter)",
       "find and enter (img:checkpoint) areaidg2_9_1 ;; path of mourning"
     ],
@@ -330,26 +250,11 @@
     ]
   ],
   [
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "optional: clear orok camp for lesser jeweller's orb",
-        "(hint)____ usually in the jungle area at the end, has a (img:checkpoint)",
-        "find and enter (img:checkpoint) areaidg3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidg3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
+    [
+      "optional: clear orok camp for lesser jeweller's orb",
+      "(hint)____ usually in the jungle area at the end, has a (img:checkpoint)",
+      "find and enter (img:checkpoint) areaidg3_town (img:town) ;; ziggurat encampment"
+    ],
     [
       "enter areaidg3_3 ;; jungle ruins"
     ],
@@ -374,28 +279,12 @@
       "(hint)____ the reward is permanent and cannot be changed",
       "(img:waypoint) to areaidg3_7 ;; the azak bog"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "optional: flameskin ritual (25% fire res and rarity)",
-        "(hint)____ temporary buff, look for (img:quest_2) icons near the center of the zone",
-        "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
-        "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
-        "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
+    [
+      "optional: flameskin ritual (25% fire res and rarity)",
+      "(hint)____ temporary buff, look for (img:quest_2) icons near the center of the zone",
+      "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
+      "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
+    ],
     [
       "servi: <tribal_vengeance>",
       "(img:waypoint) to areaidg3_5 ;; chimeral wetlands"
@@ -443,6 +332,7 @@
       ],
       "lines": [
         "(img:in-out) areaidg3_9 for (img:waypoint) ;; the molten vault",
+        "(hint)____ quest rewards: reforging bench + (img:artificer)",
         "find and enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
@@ -452,8 +342,9 @@
         "no"
       ],
       "lines": [
-        "find and enter (img:checkpoint) areaidg3_11 ;; apex of filth",
-        "(hint)____ you can skip (img:arena) areaidg3_9 if you find it ;; the molten vault"
+        "optional: find and clear areaidg3_9",
+        "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
+        "find and enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
     [
@@ -508,10 +399,9 @@
       "follow the path and stairs, enter areaidg3_14 ;; utzaal"
     ],
     [
-      "kill viper_napuatzi, soft-farm for (quest:sacrificial_heart)",
-      "(hint)____ she's usually (img:2), (quest:heart) can also be found later on",
-      "find and enter (img:checkpoint) areaidg3_16 ;; aggorat",
-      "(hint)____ usually (img:2) or (img:1) in the remaining zone"
+      "soft-farm for (quest:sacrificial_heart), kill viper_napuatzi",
+      "(hint)____ (quest:heart) can also drop later, tiled road often leads to arena",
+      "find and enter (img:checkpoint) areaidg3_16 ;; aggorat"
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
@@ -538,34 +428,16 @@
       "renly: <reaching_clearfell>",
       "enter areaidc_g1_2 ;; clearfell"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "follow the voice, kill beira_of_the_rotten_pack",
-        "optional: kill devourer for (img:skill) in (img:checkpoint) areaidc_g1_3 ;; mud burrow",
-        "(hint)____ then (img:portal) to town, renly: <treacherous_ground> for (img:support)",
-        "find and enter (img:checkpoint) areaidc_g1_4 ;; the grelwood"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill beira_of_the_rotten_pack",
-        "(hint)____ follow the voice, usually (img:0) or (img:1) of the (img:waypoint)",
-        "find and enter (img:checkpoint) areaidc_g1_4 ;; the grelwood"
-      ]
-    },
+    [
+      "kill beira_of_the_rotten_pack",
+      "optional: (img:skill) in camp chest | (img:skill) for arena:devourer in (img:checkpoint) areaidc_g1_3 ;; mud burrow",
+      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support) + (img:artificer)",
+      "find and enter (img:checkpoint) areaidc_g1_4 ;; the grelwood"
+    ],
     [
       "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidc_g1_6 for (img:waypoint) ;; the grim tangle",
       "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
-      "find and enter (img:checkpoint) areaidc_g1_5 ;; the red vale",
-      "(hint)____ exit is usually near brambleghast"
+      "enter (img:checkpoint) areaidc_g1_5 (usually near arena:brambleghast) ;; the red vale"
     ],
     [
       "find and clear (quest:3_obelisks) for (quest:3_runes_of_power)",
@@ -583,25 +455,10 @@
       "talk to (img:quest_2) una",
       "(img:waypoint) to areaidc_g1_6 ;; the grim tangle"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "optional: kill the_rotten_druid for (img:support)",
-        "find and enter (img:checkpoint) areaidc_g1_7 ;; cemetery of the eternals"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidc_g1_7 ;; cemetery of the eternals"
-      ]
-    },
+    [
+      "optional: kill the_rotten_druid for (img:support)",
+      "find and enter (img:checkpoint) areaidc_g1_7 ;; cemetery of the eternals"
+    ],
     [
       "kill 2_bosses in areaidc_g1_8 & areaidc_g1_9 ;; mausoleum of the praetor & tomb of the consort",
       "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidc_g1_7 ;; cemetery of the eternals",
@@ -611,27 +468,11 @@
       "follow the zone's edge, kill the_crowbell",
       "follow the zone's edge, enter (img:checkpoint) areaidc_g1_13_1 ;; ogham farmlands"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-        "optional: find and clear the crop circle for (img:skill)",
-        "follow the road, enter (img:checkpoint) areaidc_g1_13_2 ;; ogham village"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-        "follow the road, enter (img:checkpoint) areaidc_g1_13_2 ;; ogham village"
-      ]
-    },
+    [
+      "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
+      "optional: find and clear the crop circle for (img:skill)",
+      "follow the road, enter (img:checkpoint) areaidc_g1_13_2 ;; ogham village"
+    ],
     [
       "(img:waypoint) to areaidc_g1_town (img:town) ;; clearfell encampment"
     ],
@@ -640,55 +481,22 @@
       "(img:waypoint) to areaidc_g1_13_2 ;; ogham village"
     ],
     [
-      "find and kill the_executioner, enter areaidc_g1_14 ;; the manor ramparts",
-      "(hint)____ usually (img:7) in the zone"
+      "optional: blank rune and (img:artificer) in a house with (img:checkpoint) in front",
+      "find and kill the_executioner, enter areaidc_g1_14 ;; the manor ramparts"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidc_g1_15 ;; ogham manor",
-        "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
-        "(hint)____ optional: (img:support) from hanged corpse, (img:7) part of loop"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and enter (img:checkpoint) areaidc_g1_15 ;; ogham manor",
-        "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find and kill candlemass on the 1st floor",
-        "(hint)____ go (img:2) to the hole, check the surroundings for the arena's (img:checkpoint)",
-        "kill count_geonor, enter areaidc_g1_town (img:town) ;; clearfell encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill candlemass on the 1st floor",
-        "(hint)____ go (img:2) to the hole, check the surroundings for the arena's (img:checkpoint)",
-        "kill count_geonor, (img:portal) to areaidc_g1_town (img:town) ;; clearfell encampment"
-      ]
-    },
     [
-        "leitis: <the_trail_of_corruption>",
-        "talk to (img:quest_2) the hooded one to enter areaidc_g2_1 ;; vastiri outskirts"
+      "find and enter (img:checkpoint) areaidc_g1_15 ;; ogham manor",
+      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
+      "(hint)____ optional: (img:support) from hanged corpse near the loop's apex"
+    ],
+    [
+      "find and kill candlemass on the 1st floor",
+      "(hint)____ find the hole, check the surroundings for the arena's (img:checkpoint)",
+      "kill count_geonor, enter areaidc_g1_town (img:town) ;; clearfell encampment"
+    ],
+    [
+      "leitis: <the_trail_of_corruption>",
+      "talk to (img:quest_2) the hooded one to enter areaidc_g2_1 ;; vastiri outskirts"
     ]
   ],
   [
@@ -701,6 +509,7 @@
       "use the desert map, enter areaidc_g2_10_1 ;; mawdun quarry"
     ],
     [
+      "optional: (img:artificer) in faridun cache (has mini-map icon)",
       "follow the (img:checkpoint) (img:checkpoint), enter (img:checkpoint) areaidc_g2_10_2 ;; mawdun mine"
     ],
     [
@@ -736,7 +545,7 @@
       "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic), kill kabala",
       "(hint)____ arena:kabala has a (img:checkpoint), often near the center of the zone",
       "find and enter (img:checkpoint) areaidc_g2_4_2 ;; the lost city",
-      "(hint)____ usually (img:3) in the zone, after crossing a big bridge"
+      "(hint)____ usually after crossing a big bridge"
     ],
     [
       "find and enter (img:checkpoint) areaidc_g2_4_3 ;; buried shrines"
@@ -778,6 +587,7 @@
       "use the desert map, enter areaidc_g2_8 ;; deshar"
     ],
     [
+      "optional: (img:artificer) from a skeleton in a side area (has mini-map icon)",
       "find (quest:fallen_dekhara) next to a tower, take (quest:final_letter)",
       "find and enter (img:checkpoint) areaidc_g2_9_1 ;; path of mourning"
     ],
@@ -809,6 +619,8 @@
   ],
   [
     [
+      "optional: clear orok camp for lesser jeweller's orb",
+      "(hint)____ usually in the jungle area at the end, has a (img:checkpoint)",
       "find and enter (img:checkpoint) areaidc_g3_town (img:town) ;; ziggurat encampment"
     ],
     [
@@ -835,28 +647,12 @@
       "(hint)____ the reward is permanent and cannot be changed",
       "(img:waypoint) to areaidc_g3_7 ;; the azak bog"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "optional: flameskin ritual (25% fire res and rarity)",
-        "(hint)____ temporary buff, look for (img:quest_2) icons near the center of the zone",
-        "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
-        "(img:portal) to areaidc_g3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
-        "(img:portal) to areaidc_g3_town (img:town) ;; ziggurat encampment"
-      ]
-    },
+    [
+      "optional: flameskin ritual (25% fire res and rarity)",
+      "(hint)____ temporary buff, look for (img:quest_2) icons near the center of the zone",
+      "find and kill ignagduk,_the_bog_witch for (quest:2_quest_items)",
+      "(img:portal) to areaidc_g3_town (img:town) ;; ziggurat encampment"
+    ],
     [
       "servi: <tribal_vengeance>",
       "(img:waypoint) to areaidc_g3_5 ;; chimeral wetlands"
@@ -890,8 +686,9 @@
       "enter areaidc_g3_8 ;; the drowned city"
     ],
     [
-      "find and enter (img:checkpoint) areaidc_g3_11 ;; apex of filth",
-      "(hint)____ you can skip (img:arena) areaidc_g3_9 if you find it ;; the molten vault"
+      "optional: find and clear areaidc_g3_9 ;; the molten vault",
+      "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
+      "find and enter (img:checkpoint) areaidc_g3_11 ;; apex of filth"
     ],
     [
       "find and kill the_queen_of_filth for (quest:temple_door_idol)",
@@ -910,10 +707,9 @@
       "follow the path and stairs, enter areaidc_g3_14 ;; utzaal"
     ],
     [
-      "kill viper_napuatzi, soft-farm for (quest:sacrificial_heart)",
-      "(hint)____ she's usually (img:2), (quest:heart) can also be found later on",
-      "find and enter (img:checkpoint) areaidc_g3_16 ;; aggorat",
-      "(hint)____ usually (img:2) or (img:1) in the remaining zone"
+      "soft-farm for (quest:sacrificial_heart), kill viper_napuatzi",
+      "(hint)____ (quest:heart) can also drop later, tiled road often leads to arena",
+      "find and enter (img:checkpoint) areaidc_g3_16 ;; aggorat"
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
