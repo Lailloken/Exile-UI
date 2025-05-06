@@ -10,13 +10,14 @@
     ],
     [
       "kill beira_of_the_rotten_pack",
-      "optional: (img:skill) in camp chest | (img:skill) for arena:devourer in (img:checkpoint) areaidg1_3 ;; mud burrow",
-      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support)",
+      "optional: (img:skill) camp chest _|_ (img:skill) arena:devourer in (img:checkpoint) areaidg1_3 ;; mud burrow",
+      "(hint)____ after arena:devourer: (img:portal), renly: <treacherous_ground> for (img:support)",
       "find and enter (img:checkpoint) areaidg1_4 ;; the grelwood"
     ],
     [
-      "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidg1_6 for (img:waypoint) ;; the grim tangle",
+      "(color:FF00FF)2_tasks: find (img:waypoint) _|_ (img:in-out) areaidg1_6 for (img:waypoint) ;; the grim tangle",
       "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
+      "optional: (img:skill) arena:brambleghast _|_ flasks + (img:skill) (color:ffff00)areagne",
       "enter (img:checkpoint) areaidg1_5 (usually near arena:brambleghast) ;; the red vale"
     ],
     [
@@ -36,21 +37,23 @@
       "(img:waypoint) to areaidg1_6 ;; the grim tangle"
     ],
     [
-      "optional: kill the_rotten_druid for (img:support)",
+      "optional: (img:support) arena:the_rotten_druid",
       "find and enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
     ],
     [
+      "optional: (img:ring) in sarcophagus (mini-map) near a (img:checkpoint)",
       "kill 2_bosses in areaidg1_8 & areaidg1_9 ;; mausoleum of the praetor & tomb of the consort",
       "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidg1_7 ;; cemetery of the eternals",
       "talk to and kill lachlann for (quest:ring), enter areaidg1_11 ;; hunting grounds"
     ],
     [
       "follow the zone's edge for (color:FF00FF)2_tasks:",
-      "(hint)____ kill the_crowbell, (img:in-out) areaidg1_13_1 for (img:waypoint) ;; ogham farmlands",
+      "(hint)____ kill the_crowbell _|_ (img:in-out) areaidg1_13_1 for (img:waypoint) ;; ogham farmlands",
       "follow the zone's edge, enter (img:checkpoint) areaidg1_12 ;; freythorn"
     ],
     [
       "complete 4 rituals, kill the_king_in_the_mists",
+      "(hint)____ final ritual releases swirls that point to missing ones",
       "(img:portal) to areaidg1_town (img:town) ;; clearfell encampment"
     ],
     [
@@ -58,7 +61,7 @@
     ],
     [
       "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-      "optional: find and clear the crop circle for (img:skill)",
+      "optional: (img:skill) find and clear the crop circle",
       "follow the road, enter (img:checkpoint) areaidg1_13_2 ;; ogham village"
     ],
     [
@@ -75,7 +78,7 @@
       ],
       "lines": [
         "find (quest:smithing_tools) in a house with a (img:checkpoint) in front",
-        "(hint)____ the chest contains a blank rune and (img:artificer)",
+        "(hint)____ the chest contains a blank rune + (img:artificer)",
         "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts"
       ]
     },
@@ -85,14 +88,14 @@
         "no"
       ],
       "lines": [
-        "optional: blank rune and (img:artificer) in a house with (img:checkpoint) in front",
+        "optional: blank rune + (img:artificer) in a house with a (img:checkpoint) in front",
         "find and kill the_executioner, enter areaidg1_14 ;; the manor ramparts"
       ]
     },
     [
+      "optional: (img:support) hanged corpse along the outer wall",
       "find and enter (img:checkpoint) areaidg1_15 ;; ogham manor",
-      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
-      "(hint)____ optional: (img:support) from hanged corpse near the loop's apex"
+      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around"
     ],
     [
       "find and kill candlemass on the 1st floor",
@@ -131,7 +134,7 @@
       "use the desert map, enter areaidg2_10_1 ;; mawdun quarry"
     ],
     [
-      "optional: (img:artificer) in faridun cache (has mini-map icon)",
+      "optional: (img:artificer) in faridun cache (mini-map)",
       "follow the (img:checkpoint) (img:checkpoint), enter (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
@@ -154,7 +157,7 @@
     [
       "kill balbala for (quest:djinn_barya)",
       "(hint)____ find and follow the wall with paper talismans",
-      "enter (img:checkpoint) areaidg2_3 ;; the halani gates"
+      "find and enter (img:checkpoint) areaidg2_3 ;; the halani gates"
     ],
     [
       "follow the canyon's edge, kill jamanra",
@@ -174,15 +177,16 @@
       "use the desert map, enter areaidg2_4_1 ;; keth"
     ],
     [
-      "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic), kill kabala",
+      "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic) _|_ kill kabala",
       "(hint)____ arena:kabala has a (img:checkpoint), often near the center",
-      "find and enter (img:checkpoint) areaidg2_4_2 ;; the lost city",
-      "(hint)____ usually after crossing a big bridge"
+      "find and enter (img:checkpoint) areaidg2_4_2 ;; the lost city"
     ],
     [
+      "optional: (img:spirit) in sarcophagus _|_ jewel from scarab",
       "find and enter (img:checkpoint) areaidg2_4_3 ;; buried shrines"
     ],
     [
+      "optional: res (img:ring) from elemental offering (mini-map) near a (img:checkpoint)",
       "enter (img:arena) arena:the_heart_of_keth, kill azarian,_the_forsaken_son",
       "talk to (img:quest_2) the goddess, take (quest:cinders), ignite her, take (quest:essence)",
       "(img:portal) to areaidg2_town (img:town) ;; the ardura caravan"
@@ -192,10 +196,11 @@
       "use the desert map, enter areaidg2_5_1 ;; mastodon badlands"
     ],
     [
+      "optional: (img:support) from effigy",
       "find and enter (img:checkpoint) areaidg2_5_2 ;; the bone pits"
     ],
     [
-      "(color:FF00FF)2_tasks: slay hyena mobs for (quest:clan_relic), kill ekbab for (quest:tusks)",
+      "(color:FF00FF)2_tasks: slay hyena mobs for (quest:clan_relic) _|_ kill ekbab for (quest:tusks)",
       "(img:portal) to areaidg2_town (img:town) ;; the ardura caravan"
     ],
     [
@@ -203,10 +208,9 @@
       "use the desert map, enter areaidg2_6 ;; valley of the titans"
     ],
     [
-      "(color:FF00FF)2_tasks: activate (quest:3_ancient_seals), find statue to insert (quest:relics)",
+      "(color:FF00FF)2_tasks: activate (quest:3_ancient_seals) _|_ find statue to insert (quest:relics)",
       "(hint)____ statue usually found by following a long, narrow path",
-      "find and enter areaidg2_7 ;; the titan grotto",
-      "(hint)____ there's a (img:checkpoint) next to a giant earth-spike that leads into the area"
+      "find and enter (img:checkpoint) areaidg2_7 (arm on mini-map) ;; the titan grotto"
     ],
     [
       "find and kill zalmarath for (quest:the_flame_ruby)",
@@ -219,7 +223,7 @@
       "use the desert map, enter areaidg2_8 ;; deshar"
     ],
     [
-      "optional: (img:artificer) from a skeleton in a side area (has mini-map icon)",
+      "optional: (img:artificer) from a skeleton in a side area (mini-map)",
       "find (quest:fallen_dekhara) next to a tower, take (quest:final_letter)",
       "find and enter (img:checkpoint) areaidg2_9_1 ;; path of mourning"
     ],
@@ -227,7 +231,7 @@
       "find and enter (img:checkpoint) areaidg2_9_2 ;; the spires of deshar"
     ],
     [
-      "(color:FF00FF)2_tasks: activate the shrine of the sisters, kill tor_gul",
+      "(color:FF00FF)2_tasks: activate the shrine of the sisters _|_ kill tor_gul",
       "(hint)____ shrine has a (img:checkpoint) nearby",
       "(img:portal) to areaidg2_town (img:town) ;; the ardura caravan"
     ],
@@ -251,20 +255,22 @@
   ],
   [
     [
-      "optional: clear orok camp for lesser jeweller's orb",
-      "(hint)____ usually in the jungle area at the end, has a (img:checkpoint)",
+      "optional: (img:skill) arena:rootdredge _|_ (img:ring) from hanging tree",
+      "optional: lesser jeweller's for clearing orok camp",
+      "(hint)____ usually near the exit, has a (img:checkpoint)",
       "find and enter (img:checkpoint) areaidg3_town (img:town) ;; ziggurat encampment"
     ],
     [
       "enter areaidg3_3 ;; jungle ruins"
     ],
     [
-      "(color:FF00FF)2_tasks: kill silverfist, find (img:waypoint) near (img:arena) areaidg3_4 ;; the venom crypts",
+      "optional: (color:ffff00)rawhide/linen_belt for finding jungle grave",
+      "(color:FF00FF)2_tasks: kill silverfist _|_ find (img:waypoint) near (img:arena) areaidg3_4 ;; the venom crypts",
       "enter (img:checkpoint) areaidg3_2_1 ;; infested barrens"
     ],
     [
       "move along the zone's edge for (color:FF00FF)3_tasks:",
-      "(hint)____ find (img:waypoint), (img:in-out) areaidg3_5 for (img:waypoint), (img:in-out) areaidg3_7 for (img:waypoint) ;; chimeral wetlands & the azak bog",
+      "(hint)____ find (img:waypoint) _|_ (img:in-out) areaidg3_5 for (img:waypoint) _|_ (img:in-out) areaidg3_7 for (img:waypoint) ;; chimeral wetlands & the azak bog",
       "use the 3rd (img:waypoint) to travel to areaidg3_3 ;; jungle ruins"
     ],
     [
@@ -304,7 +310,7 @@
     ],
     [
       "find (quest:small_soul_core), activate the stone altar",
-      "(color:FF00FF)3_tasks: follow red trace, find (quest:2_small_soul_cores), kill blackjaw",
+      "(color:FF00FF)3_tasks: follow red trace _|_ find (quest:2_small_soul_cores) _|_ kill blackjaw",
       "(hint)____ (quest:cores) are random, arena:blackjaw is in an altar-locked room with stairs",
       "follow the red trace to the exit, (quest:unlock) areaidg3_6_2 ;; jiquani's sanctum"
     ],
@@ -343,11 +349,12 @@
       ],
       "lines": [
         "optional: find and clear areaidg3_9",
-        "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
+        "(hint)____ then (img:portal), oswald: <treasures_of_utzaal> for (img:artificer)",
         "find and enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
     [
+      "optional: bring (quest:3_mushrooms) to cauldron keeper for flasks",
       "find and kill the_queen_of_filth for (quest:temple_door_idol)",
       "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
     ],
@@ -430,13 +437,14 @@
     ],
     [
       "kill beira_of_the_rotten_pack",
-      "optional: (img:skill) in camp chest | (img:skill) for arena:devourer in (img:checkpoint) areaidc_g1_3 ;; mud burrow",
-      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support) + (img:artificer)",
+      "optional: (img:skill) camp chest _|_ (img:skill) arena:devourer in (img:checkpoint) areaidc_g1_3 ;; mud burrow",
+      "(hint)____ after arena:devourer: (img:portal), renly: <treacherous_ground> for (img:support) + (img:artificer)",
       "find and enter (img:checkpoint) areaidc_g1_4 ;; the grelwood"
     ],
     [
-      "(color:FF00FF)2_tasks: find (img:waypoint), (img:in-out) areaidc_g1_6 for (img:waypoint) ;; the grim tangle",
+      "(color:FF00FF)2_tasks: find (img:waypoint) _|_ (img:in-out) areaidc_g1_6 for (img:waypoint) ;; the grim tangle",
       "(hint)____ zone is diamond-shaped, find a (img:checkpoint) or (img:waypoint) for orientation",
+      "optional: (img:skill) arena:brambleghast _|_ flasks + (img:skill) (color:ffff00)areagne",
       "enter (img:checkpoint) areaidc_g1_5 (usually near arena:brambleghast) ;; the red vale"
     ],
     [
@@ -456,10 +464,11 @@
       "(img:waypoint) to areaidc_g1_6 ;; the grim tangle"
     ],
     [
-      "optional: kill the_rotten_druid for (img:support)",
+      "optional: (img:support) arena:the_rotten_druid",
       "find and enter (img:checkpoint) areaidc_g1_7 ;; cemetery of the eternals"
     ],
     [
+      "optional: (img:ring) in sarcophagus (mini-map) near a (img:checkpoint)",
       "kill 2_bosses in areaidc_g1_8 & areaidc_g1_9 ;; mausoleum of the praetor & tomb of the consort",
       "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidc_g1_7 ;; cemetery of the eternals",
       "talk to and kill lachlann for (quest:ring), enter areaidc_g1_11 ;; hunting grounds"
@@ -470,7 +479,7 @@
     ],
     [
       "follow the road straight to a (img:checkpoint), take (quest:una's_lute)",
-      "optional: find and clear the crop circle for (img:skill)",
+      "optional: (img:skill) find and clear the crop circle",
       "follow the road, enter (img:checkpoint) areaidc_g1_13_2 ;; ogham village"
     ],
     [
@@ -481,13 +490,13 @@
       "(img:waypoint) to areaidc_g1_13_2 ;; ogham village"
     ],
     [
-      "optional: blank rune and (img:artificer) in a house with (img:checkpoint) in front",
+      "optional: blank rune + (img:artificer) in a house with a (img:checkpoint) in front",
       "find and kill the_executioner, enter areaidc_g1_14 ;; the manor ramparts"
     ],
     [
+      "optional: (img:support) hanged corpse along the outer wall",
       "find and enter (img:checkpoint) areaidc_g1_15 ;; ogham manor",
-      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around",
-      "(hint)____ optional: (img:support) from hanged corpse near the loop's apex"
+      "(hint)____ usually (img:0) of the (img:waypoint), but you have to loop around"
     ],
     [
       "find and kill candlemass on the 1st floor",
@@ -509,7 +518,7 @@
       "use the desert map, enter areaidc_g2_10_1 ;; mawdun quarry"
     ],
     [
-      "optional: (img:artificer) in faridun cache (has mini-map icon)",
+      "optional: (img:artificer) in faridun cache (mini-map)",
       "follow the (img:checkpoint) (img:checkpoint), enter (img:checkpoint) areaidc_g2_10_2 ;; mawdun mine"
     ],
     [
@@ -542,15 +551,16 @@
       "use the desert map, enter areaidc_g2_4_1 ;; keth"
     ],
     [
-      "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic), kill kabala",
+      "(color:FF00FF)2_tasks: slay snake mobs for (quest:clan_relic) _|_ kill kabala",
       "(hint)____ arena:kabala has a (img:checkpoint), often near the center of the zone",
-      "find and enter (img:checkpoint) areaidc_g2_4_2 ;; the lost city",
-      "(hint)____ usually after crossing a big bridge"
+      "find and enter (img:checkpoint) areaidc_g2_4_2 ;; the lost city"
     ],
     [
+      "optional: (img:spirit) in sarcophagus _|_ jewel from scarab",
       "find and enter (img:checkpoint) areaidc_g2_4_3 ;; buried shrines"
     ],
     [
+      "optional: res (img:ring) from elemental offering (mini-map) near a (img:checkpoint)",
       "enter (img:arena) arena:the_heart_of_keth, kill azarian,_the_forsaken_son",
       "talk to (img:quest_2) the goddess, take (quest:cinders), ignite her, take (quest:essence)",
       "(img:portal) to areaidc_g2_town (img:town) ;; the ardura caravan"
@@ -560,10 +570,11 @@
       "use the desert map, enter areaidc_g2_5_1 ;; mastodon badlands"
     ],
     [
+      "optional: (img:support) from effigy",
       "find and enter (img:checkpoint) areaidc_g2_5_2 ;; the bone pits"
     ],
     [
-      "(color:FF00FF)2_tasks: slay hyena mobs for (quest:clan_relic), kill ekbab for (quest:tusks)",
+      "(color:FF00FF)2_tasks: slay hyena mobs for (quest:clan_relic) _|_ kill ekbab for (quest:tusks)",
       "(img:portal) to areaidc_g2_town (img:town) ;; the ardura caravan"
     ],
     [
@@ -571,10 +582,9 @@
       "use the desert map, enter areaidc_g2_6 ;; valley of the titans"
     ],
     [
-      "(color:FF00FF)2_tasks: activate (quest:3_ancient_seals), find statue to insert (quest:relics)",
+      "(color:FF00FF)2_tasks: activate (quest:3_ancient_seals) _|_ find statue to insert (quest:relics)",
       "(hint)____ statue usually found by following a long, narrow path",
-      "find and enter areaidc_g2_7 ;; the titan grotto",
-      "(hint)____ there's a (img:checkpoint) next to a giant earth-spike that leads into the area"
+      "find and enter (img:checkpoint) areaidc_g2_7 (arm on mini-map) ;; the titan grotto"
     ],
     [
       "find and kill zalmarath for (quest:the_flame_ruby)",
@@ -587,7 +597,7 @@
       "use the desert map, enter areaidc_g2_8 ;; deshar"
     ],
     [
-      "optional: (img:artificer) from a skeleton in a side area (has mini-map icon)",
+      "optional: (img:artificer) from a skeleton in a side area (mini-map)",
       "find (quest:fallen_dekhara) next to a tower, take (quest:final_letter)",
       "find and enter (img:checkpoint) areaidc_g2_9_1 ;; path of mourning"
     ],
@@ -595,7 +605,7 @@
       "find and enter (img:checkpoint) areaidc_g2_9_2 ;; the spires of deshar"
     ],
     [
-      "(color:FF00FF)2_tasks: activate the shrine of the sisters, kill tor_gul",
+      "(color:FF00FF)2_tasks: activate the shrine of the sisters _|_ kill tor_gul",
       "(hint)____ shrine has a (img:checkpoint) nearby",
       "(img:portal) to areaidc_g2_town (img:town) ;; the ardura caravan"
     ],
@@ -619,21 +629,23 @@
   ],
   [
     [
-      "optional: clear orok camp for lesser jeweller's orb",
-      "(hint)____ usually in the jungle area at the end, has a (img:checkpoint)",
+      "optional: (img:skill) arena:rootdredge _|_ (img:ring) from hanging tree",
+      "optional: lesser jeweller's for clearing orok camp",
+      "(hint)____ usually near the exit, has a (img:checkpoint)",
       "find and enter (img:checkpoint) areaidc_g3_town (img:town) ;; ziggurat encampment"
     ],
     [
       "enter areaidc_g3_3 ;; jungle ruins"
     ],
     [
-      "(color:FF00FF)2_tasks: kill mighty_silverfist, find (img:waypoint) near (img:arena) areaidc_g3_4 ;; the venom crypts",
+      "optional: (color:ffff00)rawhide/linen_belt for finding jungle grave",
+      "(color:FF00FF)2_tasks: kill mighty_silverfist _|_ find (img:waypoint) near (img:arena) areaidc_g3_4 ;; the venom crypts",
       "enter (img:checkpoint) areaidc_g3_2_1 ;; infested barrens"
     ],
     [
       "move along the zone's edge for (color:FF00FF)3_tasks:",
-      "(hint)____ find (img:waypoint), (img:in-out) areaidc_g3_5 for (img:waypoint), (img:in-out) areaidc_g3_7 for (img:waypoint) ;; chimeral wetlands & the azak bog",
-      "use the 3rd (img:waypoint) to travel to areaidc_g3_3 ;; the azak bog ;; jungle ruins"
+      "(hint)____ find (img:waypoint) _|_ (img:in-out) areaidc_g3_5 for (img:waypoint) _|_ (img:in-out) areaidc_g3_7 for (img:waypoint) ;; chimeral wetlands & the azak bog",
+      "use the 3rd (img:waypoint) to travel to areaidc_g3_3 ;; jungle ruins"
     ],
     [
       "enter areaidc_g3_4 ;; the venom crypts"
@@ -659,12 +671,12 @@
     ],
     [
       "follow the (img:2) edge, kill the_chimera, enter (img:checkpoint) areaidc_g3_6_1 ;; jiquani's machinarium",
-      "(hint)____ if you find (img:arena) areaidc_g3_10_airlock instead, skip it and (img:checkpoint) -travel ;; the temple of chaos",
-      "(hint)____ back to the start of the zone to follow the opposite edge"
+      "(hint)____ if you find (img:arena) areaidc_g3_10_airlock instead, skip it and (img:checkpoint) -travel back to ;; the temple of chaos",
+      "(hint)____ the start of the zone to follow the opposite edge"
     ],
     [
       "find (quest:small_soul_core), activate the stone altar",
-      "(color:FF00FF)3_tasks: follow red trace, find (quest:2_small_soul_cores), kill blackjaw",
+      "(color:FF00FF)3_tasks: follow red trace _|_ find (quest:2_small_soul_cores) _|_ kill blackjaw",
       "(hint)____ (quest:cores) are random, arena:blackjaw is in an altar-locked room with stairs",
       "follow the red trace to the exit, (quest:unlock) areaidc_g3_6_2 ;; jiquani's sanctum"
     ],
@@ -687,10 +699,11 @@
     ],
     [
       "optional: find and clear areaidc_g3_9 ;; the molten vault",
-      "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
+      "(hint)____ then (img:portal), oswald: <treasures_of_utzaal> for (img:artificer)",
       "find and enter (img:checkpoint) areaidc_g3_11 ;; apex of filth"
     ],
     [
+      "optional: bring (quest:3_mushrooms) to cauldron keeper for flasks",
       "find and kill the_queen_of_filth for (quest:temple_door_idol)",
       "(img:portal) to areaidc_g3_town (img:town) ;; ziggurat encampment"
     ],
