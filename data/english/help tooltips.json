@@ -446,7 +446,9 @@
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction"
+      "(hint)____ walk around obstacles and find another way into that direction",
+      "(hint)____",
+      "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not",
@@ -456,6 +458,9 @@
     "leveltracker leaguestart 2": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+    ],
+    "leveltracker optionals": [
+      "choose whether optional loot/quests should be shown or not"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"

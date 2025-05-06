@@ -55,6 +55,7 @@
 		settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
 		settings.leveltracker["guide" profile].info.leaguestart .= Blank(settings.leveltracker["guide" profile].info.leaguestart) ? 1 : ""
 		settings.leveltracker["guide" profile].info.bandit .= Blank(settings.leveltracker["guide" profile].info.bandit) ? "none" : ""
+		settings.leveltracker["guide" profile].info.optionals .= Blank(settings.leveltracker["guide" profile].info.optionals) ? 1 : ""
 
 		If (profile = settings.leveltracker.profile)
 		{
@@ -545,7 +546,7 @@ Leveltracker_GuideEditor(cHWND)
 
 	If !icons
 		If vars.poe_version
-			icons := ["checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out", "skill", "spirit", "support", 0, 1, 2, 3, 4, 5, 6, 7]
+			icons := ["checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out", "skill", "spirit", "support", "artificer", "ring", 0, 1, 2, 3, 4, 5, 6, 7]
 		Else icons := ["waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out", 0, 1, 2, 3, 4, 5, 6, 7]
 
 	If !vars.leveltracker_editor.act
@@ -713,7 +714,6 @@ Leveltracker_GuideEditor(cHWND)
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.save
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.discard
 			GuiControl, % (!modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.export
-			Return
 		}
 		Else If InStr(check, "conditiontype_")
 		{
@@ -800,9 +800,28 @@ Leveltracker_GuideEditor(cHWND)
 			LLK_ToolTip("guide data copied`nto clipboard", 2,,,, "Lime")
 			Return
 		}
-		Else
+		Else If (check != "search")
 		{
 			LLK_ToolTip("no action")
+			Return
+		}
+
+		If (check = "search") || InStr(check, "textfield_") || check_cHWND
+		{
+			If (check = "search")
+				search := vars.leveltracker_editor.search := LLK_ControlGet(cHWND)
+
+			For index, val in vars.leveltracker_editor.guide[act]
+			{
+				match := 0
+				If vars.leveltracker_editor.search && (StrLen(vars.leveltracker_editor.search) > 3)
+					For iLine, vLine in (val.lines ? val.lines : val)
+						If (match := RegExMatch(vLine, "i)" StrReplace(vars.leveltracker_editor.search, " ", ".")))
+							Break
+
+				GuiControl, % "+c" (match ? "Lime" : "White"), % vars.hwnd.leveltracker_editor["page_" index]
+				GuiControl, % "movedraw", % vars.hwnd.leveltracker_editor["page_" index]
+			}
 			Return
 		}
 	}
@@ -885,7 +904,7 @@ Leveltracker_GuideEditor(cHWND)
 	{
 		If (icon != "help") && !vars.pics.leveltracker[icon]
 			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png")
-		Gui, %GUI_name%: Add, Pic, % (index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
+		Gui, %GUI_name%: Add, Pic, % (InStr("1,10", index) || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
 		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
 	}
 
@@ -904,13 +923,27 @@ Leveltracker_GuideEditor(cHWND)
 
 	Loop, % Max(vars.leveltracker_editor.guide[act].Count(), 1)
 	{
+		If (search := vars.leveltracker_editor.search)
+		{
+			match := 0, val := vars.leveltracker_editor.guide[act][A_Index]
+			For iLine, vLine in (val.lines ? val.lines : val)
+				If (match := RegExMatch(vLine, "i)" StrReplace(search, " ", ".")))
+					Break
+			color := match ? "Lime" : "White"
+		}
+		Else color := "White"
 		Gui, %GUI_name%: Add, Text, % (xPage + wPage >= wEdit - wPage ? "xs Section" : "ys") . (A_Index = 1 ? " Section x+" margin : "") " Border HWNDhwnd BackgroundTrans gLeveltracker_GuideEditor Center"
-		. " w" settings.leveltracker.fWidth_editor*2.5 . (!vars.poe_version && vars.leveltracker_editor.guide[act][A_Index].condition.1 = "bandit" ? " cYellow" : ""), % A_Index
+		. " w" settings.leveltracker.fWidth_editor*2.5 . (!vars.poe_version && vars.leveltracker_editor.guide[act][A_Index].condition.1 = "bandit" ? " cYellow" : " c" color), % A_Index
 		If (A_Index = page[act] || LLK_IsBetween(A_Index, page[act] - 1, page[act] + 1))
 			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" (A_Index = page[act] ? "202060" : LLK_IsBetween(A_Index, page[act] - 1, page[act] + 1) ? "505090" : "Black"), 100
 		vars.hwnd.leveltracker_editor["page_" A_Index] := hwnd
 		ControlGetPos, xPage, yPage, wPage, hPage,, ahk_id %hwnd%
 	}
+
+	Gui, %GUI_name%: Add, Text, % "Section xs x" margin, % Lang_Trans("global_search")
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor - 4
+	Gui, %GUI_name%: Add, Edit, % "ys x+" settings.leveltracker.fWidth_editor/4 " hp HWNDhwnd cBlack gLeveltracker_GuideEditor w" settings.leveltracker.fWidth_editor * 12, % vars.leveltracker_editor.search
+	vars.hwnd.leveltracker_editor.search := hwnd
 
 	types := ["none", "league-start", "bandit"], options := ["none", ["yes", "no"]], handle := ""
 	LLK_PanelDimensions([Lang_Trans("lvltracker_editor_add")], settings.leveltracker.fSize_editor, wAdd, hAdd), LLK_PanelDimensions([Lang_Trans("global_preview")], settings.leveltracker.fSize_editor, wPreview, hPreview)
@@ -997,7 +1030,7 @@ Leveltracker_Hints()
 	local
 	global vars, settings, db
 
-	If settings.features.actdecoder
+	If settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"])
 		Return
 
 	For key in vars.leveltracker.hints
@@ -1453,7 +1486,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	static dimensions
 
 	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info"].Clone()}) : vars.leveltracker.guide
-	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems
+	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
 	If (dimensions.1 != settings.leveltracker.fSize)
 		LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : Leveltracker_Experience()], settings.leveltracker.fSize, wExp, hExp), dimensions := [settings.leveltracker.fSize, wExp]
 	wButtons := Round(settings.leveltracker.fWidth*2)
@@ -1483,6 +1516,13 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If !vars.poe_version && LLK_PatternMatch(step, "", [Lang_Trans("lvltracker_recommended"), Lang_Trans("lvltracker_recommended", 2)]) && !settings.leveltracker.recommend
 				Continue
 
+			trace_optional := 0
+			While InStr(guide.group1[index_raw - trace_optional], "(hint)__")
+				trace_optional += 1
+
+			If !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+				Continue
+
 			step := StrReplace(step, ", <breaking_some_eggs2>")
 			style := "Section xs", line := step, step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := []
 			If (check := InStr(step, " `;"))
@@ -1496,7 +1536,9 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			{
 				If !A_LoopField || (A_Index = 1 && A_LoopField = ",")
 					Continue
-				text_parts.Push(A_LoopField) ;push parts into an array so the next and previous parts can be checked/predicted
+				If (SubStr(A_LoopField, 1, 1) != "(") && (SubStr(A_LoopField, 0) = ")")
+					text_parts.Push(SubStr(A_LoopField, 1, -1)), text_parts.Push(SubStr(A_LoopField, 0))
+				Else text_parts.Push(A_LoopField) ;push parts into an array so the next and previous parts can be checked/predicted
 			}
 
 			If (InStr(line, "buy gem:") || InStr(line, "buy item:")) && !guide.gemList.Count() && !guide.itemList.Count()
@@ -1521,7 +1563,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 
 			For index, part in text_parts
 			{
-				spacing_check := !Blank(SubStr(text_parts[index + 1], 1, 1)) && InStr(",.:", SubStr(text_parts[index + 1], 1, 1)) ? 1 : 0
+				spacing_check := !Blank(SubStr(text_parts[index + 1], 1, 1)) && InStr(",.:)", SubStr(text_parts[index + 1], 1, 1)) ? 1 : 0
 				If InStr(part, "(img:")
 				{
 					img := SubStr(part, InStr(part, "(img:") + 5), img := SubStr(img, 1, InStr(img, ")") - 1), img := StrReplace(img, " ", "_")
@@ -1546,7 +1588,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					If InStr(step, "(hint)")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If !settings.features.actdecoder
+					If !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
 						For key in vars.leveltracker.hints
 							If InStr(StrReplace(part, "_", " "), key)
 								color := "Aqua"

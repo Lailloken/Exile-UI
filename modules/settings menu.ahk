@@ -1792,6 +1792,12 @@ Settings_leveltracker()
 				vars.hwnd.settings["bandit_" val] := vars.hwnd.help_tooltips["settings_leveltracker bandit" handle] := hwnd
 				Gui, %GUI%: Font, % "s" settings.general.fSize
 			}
+			Else
+			{
+				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" val].info.optionals ? "Lime" : "Gray")
+				, % " " Lang_Trans("m_lvltracker_optionals") " "
+				vars.hwnd.settings["optionals_" val] := vars.hwnd.help_tooltips["settings_leveltracker optionals" handle] := hwnd
+			}
 		}
 		Else
 		{
@@ -2084,6 +2090,14 @@ Settings_leveltracker2(cHWND := "")
 			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 				Leveltracker_Progress(1)
 		}
+		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+	}
+	Else If InStr(check, "optionals_")
+	{
+		IniWrite, % (input := settings.leveltracker["guide" control].info.optionals := !settings.leveltracker["guide" control].info.optionals), % "ini" vars.poe_version "\leveling guide" control ".ini", Info, optionals
+		If (control = settings.leveltracker.profile) && LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
