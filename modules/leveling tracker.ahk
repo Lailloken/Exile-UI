@@ -466,7 +466,7 @@ Leveltracker(cHWND := "", hotkey := "")
 
 	If !vars.hwnd.leveltracker.main
 	{
-		If !IsObject(vars.leveltracker.guide.import)
+		If !vars.leveltracker.guide.import.Count()
 			Leveltracker_Load()
 		If !vars.leveltracker.guide.import.Count()
 		{
