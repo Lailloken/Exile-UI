@@ -1,5 +1,12 @@
 [
   [
+	["1.58.2", 15802],
+	"may 8, 2025",
+	"act-tracker: rewrote many sections in poe2 guide, added toggle for optional loot/quests",
+	"item-info: added <quality and iron rune scaling> to more easily compare looted/crafted items to equipped ones",
+	"map-info: added support for updated chest map-mods"
+  ],
+  [
 	["1.58.1", 15801, 1],
 	"may 5, 2025",
 	"act-tracker: zone-layouts moved to new <act-decoder> feature, guide hints disabled while using zone layouts",

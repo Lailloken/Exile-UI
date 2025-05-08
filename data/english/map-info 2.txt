@@ -90,9 +90,19 @@ type	=	area
 text	=	magic chests: +%
 ID	=	010
 
+[area contains # additional magic chests]
+type	=	area
+text	=	magic chests: +
+ID	=	010
+
 [# increased amount of Rare Chests]
 type	=	area
 text	=	rare chests: +%
+ID	=	011
+
+[area contains # additional rare chests]
+type	=	area
+text	=	rare chests: +
 ID	=	011
 
 [# increased Magic Pack Size]

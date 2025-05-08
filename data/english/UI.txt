@@ -311,6 +311,7 @@
 		iteminfo_unsupported		=	"item not supported"
 		iteminfo_dps			=	"dps"				;## damage per second
 		iteminfo_base			=	"base"				;## as in item-base / crafting-base
+		iteminfo_qual_scaling		=	"scaling"
 		iteminfo_ruleblock		=	"blocked by global rule"
 		iteminfo_clearfirst		=	"clear class-specific;highlighting first"
 		iteminfo_drop_tier		=	"drop"				;## refers to dropped items, e.g. "boss drop", "uber drop", "T0 drop"
@@ -375,6 +376,7 @@
 		lvltracker_format_kill		=	"kill"						;## the string that follows this word will automatically be highlighted as a unique boss
 		lvltracker_format_act		=	"a#c"						;## abbreviation, e.g. "act 1 cruel": used when the guide leads to a location in a different act (e.g. "enter a1c | clearfell encampment")
 		lvltracker_format_epilogue	=	"epilogue"
+		lvltracker_format_optional	=	"optional:"					;## in guides, lines with optional tasks/steps should start with this string because there is a setting to hide these lines
 
 
 		lvltracker_editor		=	"guide editor"					;## PoE2 only (whole block)
@@ -865,6 +867,7 @@
 		m_iteminfo_rules		=	"resists"
 		m_iteminfo_rules		=	"life/mana gain on hit/kill"
 		m_iteminfo_rules		=	"crit"
+		m_iteminfo_quality		=	"show quality & iron rune scaling"
 
 
 
@@ -896,10 +899,10 @@
 		m_lvltracker_pob		=	"pob: middle-click opens screen-cap menu"
 		m_lvltracker_screencap		=	"screen-cap menu"
 		m_lvltracker_guide		=	"guides:"
-		m_lvltracker_reset		=	"reset"
 		m_lvltracker_incompatible	=	"incompatible guide-data,;update required"
 		m_lvltracker_treeclear		=	"delete data"
 		m_lvltracker_leaguestart	=	"league-start"
+		m_lvltracker_optionals		=	"optionals"		;## refers to optional loot, quests, etc.
 		m_lvltracker_bandit		=	"bandit"
 		m_lvltracker_bandits		=	"alira"
 		m_lvltracker_bandits		=	"kraityn"

@@ -1376,6 +1376,9 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" !settings.iteminfo.bars_tier, % Lang_Trans("global_global")
 		vars.hwnd.settings.bars_tier := vars.hwnd.help_tooltips["settings_iteminfo modbars tier"] := hwnd
 		vars.hwnd.settings.bars_tier2 := vars.hwnd.help_tooltips["settings_iteminfo modbars global"] := hwnd1
+
+		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked" settings.iteminfo.qual_scaling, % Lang_Trans("m_iteminfo_quality")
+		vars.hwnd.settings.qual_scaling := hwnd, vars.hwnd.help_tooltips["settings_iteminfo quality scaling"] := hwnd
 	}
 
 	If !vars.poe_version
@@ -1546,10 +1549,9 @@ Settings_iteminfo2(cHWND)
 		IniWrite, % settings.iteminfo.trigger, % "ini" vars.poe_version "\item-checker.ini", settings, enable wisdom-scroll trigger
 	}
 	Else If (check = "modrolls")
-	{
-		settings.iteminfo.modrolls := LLK_ControlGet(cHWND)
-		IniWrite, % settings.iteminfo.modrolls, % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
-	}
+		IniWrite, % (settings.iteminfo.modrolls := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
+	Else If (check = "qual_scaling")
+		IniWrite, % (settings.iteminfo.qual_scaling := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, quality scaling
 	Else If InStr(check, "bars_tier")
 		IniWrite, % (settings.iteminfo.bars_tier := LLK_ControlGet(vars.hwnd.settings.bars_tier)), % "ini" vars.poe_version "\item-checker.ini", settings, tier bars
 	Else If (check = "compare")
@@ -1663,6 +1665,7 @@ Settings_leveltracker()
 {
 	local
 	global vars, settings, db
+	static fSize, wImport, wEdit, wLeague, wReset, wPob, wOptionals
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Act‐Tracker">wiki page</a>
@@ -1741,70 +1744,101 @@ Settings_leveltracker()
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_leveltracker guide info" vars.poe_version] := hwnd
 
-	handle := "", files := [], bandits := ["none", "alira", "kraityn", "oak"]
-	LLK_PanelDimensions([Lang_Trans("global_import")], settings.general.fSize, wImport, hImport)
-	LLK_PanelDimensions([Lang_Trans("global_edit")], settings.general.fSize, wEdit, hEdit)
-	LLK_PanelDimensions([Lang_Trans("m_lvltracker_leaguestart")], settings.general.fSize, wLeague, hLeague)
-	If (wLeague > wEdit + wImport + settings.general.fWidth/4)
-		wEdit := wLeague - wImport - settings.general.fWidth/4
-	Else wLeague := wEdit + wImport + settings.general.fWidth/4
+	handle := "", bandits := ["none", "alira", "kraityn", "oak"], profile := settings.leveltracker.profile, files := 0
+	If (fSize != settings.general.fSize)
+	{
+		LLK_PanelDimensions([Lang_Trans("global_import")], settings.general.fSize, wImport, hImport)
+		LLK_PanelDimensions([Lang_Trans("global_edit")], settings.general.fSize, wEdit, hEdit)
+		LLK_PanelDimensions([Lang_Trans("m_lvltracker_leaguestart")], settings.general.fSize, wLeague, hLeague)
+		If (wLeague > wEdit + wImport + settings.general.fWidth/4)
+			wEdit := wLeague - wImport - settings.general.fWidth/4
+		Else wLeague := wEdit + wImport + settings.general.fWidth/4
+
+		LLK_PanelDimensions([Lang_Trans("global_reset")], settings.general.fSize, wReset, hReset)
+		LLK_PanelDimensions(["pob"], settings.general.fSize, wPob, hPob)
+		LLK_PanelDimensions([Lang_Trans("m_lvltracker_optionals")], settings.general.fSize, wOptionals, hOptionals)
+		If (wOptionals > wReset + wPob + settings.general.fWidth/4)
+			wPob := wOptionals - wReset - settings.general.fWidth/4
+		Else wOptionals := wReset + wPob + settings.general.fWidth/4
+		fSize := settings.general.fSize
+	}
+
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Checkbox, % "Section xs Hidden HWNDhwnd h" settings.general.fHeight, bla
+	ControlGetPos,,,, hEdit,, ahk_id %hwnd%
+	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	For index, val in ["", 2, 3]
 	{
-		file := !FileExist("ini" vars.poe_version "\leveling guide" val ".ini") ? " cGray" : ""
-		files.Push(file)
-		Gui, %GUI%: Add, Text, % "xs x" x_anchor " Section Border Center 0x200 h" settings.general.fWidth/4 + 2*settings.general.fHeight . (!file ? " gSettings_leveltracker2" : " cGray") " HWNDhwnd0 w" settings.general.fWidth * 2 . (settings.leveltracker.profile = val ? " cFuchsia" : ""), % index
+		file_missing := !FileExist("ini" vars.poe_version "\leveling guide" val ".ini") ? 1 : 0
+		files += file_missing ? 0 : 1
+		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xp yp" : "xs y+" settings.general.fWidth/4) " Border BackgroundTrans Center 0x200 gSettings_leveltracker2 h" hEdit " HWNDhwnd w" settings.general.fWidth * 2 . (profile = val ? " cFuchsia" : ""), % index
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack Vertical cRed Range0-500 HWNDhwnd1", 0
+		vars.hwnd.settings["profile" val] := hwnd, vars.hwnd.settings["profile" val "_bar"] := hwnd1, vars.hwnd.help_tooltips["settings_leveltracker profile select" handle] := hwnd1
+		If (index = 1)
+			ControlGetPos, xFirst, yFirst,, hFirst,, ahk_id %hwnd%
+		Else ControlGetPos, xLabel, yLabel,, hLabel,, ahk_id %hwnd%
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+		Gui, %GUI%: Add, Edit, % "yp x+" settings.general.fWidth/4 " cBlack HWNDhwnd Limit r1 gSettings_leveltracker2 w" settings.general.fWidth*13 (file_missing ? " Hidden" : ""), % settings.leveltracker["guide" val].info.name
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.settings["name" val] := vars.hwnd.help_tooltips["settings_leveltracker profile name" handle] := hwnd
+		handle .= "|"
 
-		If !file
+		If (index < 3)
+			Continue
+
+		If files
+			Gui, %GUI%: Add, Progress, % "ys x+" settings.general.fWidth/2 " Disabled BackgroundWhite w" settings.general.fWidth/4 " h" yLabel + hLabel - yFirst, 0
+
+		If FileExist("ini" vars.poe_version "\leveling guide" settings.leveltracker.profile ".ini")
 		{
-			Gui, %GUI%: Add, Text, % "ys Section x+"settings.general.fWidth/4 " Center Border gSettings_leveltracker2 HWNDhwnd1 w" wImport, % Lang_Trans("global_import")
-			vars.hwnd.settings["profile" val] := vars.hwnd.help_tooltips["settings_leveltracker profile select" handle] := hwnd0
-			vars.hwnd.settings["import" val] := vars.hwnd.help_tooltips["settings_leveltracker import" handle] := hwnd1
-			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_edit w" wEdit, % Lang_Trans("global_edit")
-			vars.hwnd.settings["editprofile" val] := vars.hwnd.help_tooltips["settings_leveltracker editor" handle] := hwnd_edit
-			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd2", % " " Lang_Trans("m_lvltracker_reset") " "
-			Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack cRed HWNDhwnd3 Vertical Range0-500", 0
-			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-			Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/4 " cBlack HWNDhwnd4 Limit r1 w" settings.general.fWidth*12 . (!file ? " gSettings_leveltracker2" : " Disabled")
-			, % settings.leveltracker["guide" val].info.name
-			Gui, %GUI%: Font, % "s" settings.general.fSize
-			vars.hwnd.settings["reset" val] := hwnd2, vars.hwnd.settings["resetbar" val] := vars.hwnd.help_tooltips["settings_leveltracker reset" handle] := hwnd3
-			vars.hwnd.settings["name" val] := vars.hwnd.help_tooltips["settings_leveltracker profile name" handle] := hwnd4
+			Gui, %GUI%: Add, Text, % "ys Section x+"settings.general.fWidth/2 " Center Border gSettings_leveltracker2 HWNDhwnd w" wImport, % Lang_Trans("global_import")
+			vars.hwnd.settings["import"] := vars.hwnd.help_tooltips["settings_leveltracker import"] := hwnd
 
-			If vars.leveltracker["pob" val].Count()
+			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wEdit, % Lang_Trans("global_edit")
+			vars.hwnd.settings["editprofile"] := vars.hwnd.help_tooltips["settings_leveltracker editor"] := hwnd
+
+			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wReset, % Lang_Trans("global_reset")
+			Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack cRed HWNDhwnd1 Vertical Range0-500", 0
+			vars.hwnd.settings["reset"] := hwnd, vars.hwnd.settings["resetbar"] := vars.hwnd.help_tooltips["settings_leveltracker reset"] := hwnd1
+
+			If vars.leveltracker["pob" profile].Count()
 			{
-				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Center BackgroundTrans cLime Border gSettings_leveltracker2 HWNDhwnd5", % " pob "
-				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack Vertical cRed HWNDhwnd7 range0-500", 0
-				vars.hwnd.settings["pobpreview" val] := hwnd5, vars.hwnd.help_tooltips["settings_leveltracker pob preview" handle] := hwnd7
-				vars.hwnd.settings["pobpreview" val "_bar"] := hwnd7
+				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Center BackgroundTrans cLime Border gSettings_leveltracker2 HWNDhwnd w" wPob, % "pob"
+				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack Vertical cRed HWNDhwnd1 range0-500", 0
+				vars.hwnd.settings["pobpreview"] := hwnd
+				vars.hwnd.settings["pobpreview_bar"] := vars.hwnd.help_tooltips["settings_leveltracker pob preview"] := hwnd1
 			}
 
-			Gui, %GUI%: Add, Text, % "Section xs y+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" val].info.leaguestart ? "Lime" : "Gray") " w" wLeague
+			Gui, %GUI%: Add, Text, % "Section xs y+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.leaguestart ? "Lime" : "Gray") " w" wLeague
 			, % Lang_Trans("m_lvltracker_leaguestart")
-			vars.hwnd.settings["leaguestart_" val] := vars.hwnd.help_tooltips["settings_leveltracker leaguestart" vars.poe_version handle] := hwnd
+			vars.hwnd.settings["leaguestart"] := vars.hwnd.help_tooltips["settings_leveltracker leaguestart" vars.poe_version] := hwnd
 
 			If !vars.poe_version
 			{
-				Gui, %Gui%: Add, Text, % "ys hp", % Lang_Trans("m_lvltracker_bandit") ": "
+				Gui, %Gui%: Add, Text, % "xs hp y+" settings.general.fWidth/4, % Lang_Trans("m_lvltracker_bandit") ": "
 				Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-				Gui, %GUI%: Add, DDL, % "ys x+0 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" val].info.bandit) " w" settings.general.fWidth * 8
+				Gui, %GUI%: Add, DDL, % "yp x+0 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
 				, % Lang_Trans("global_none") "|" Lang_Trans("m_lvltracker_bandits") "|" Lang_Trans("m_lvltracker_bandits", 2) "|" Lang_Trans("m_lvltracker_bandits", 3)
-				vars.hwnd.settings["bandit_" val] := vars.hwnd.help_tooltips["settings_leveltracker bandit" handle] := hwnd
+				vars.hwnd.settings["bandit"] := vars.hwnd.help_tooltips["settings_leveltracker bandit"] := hwnd
 				Gui, %GUI%: Font, % "s" settings.general.fSize
+			}
+			Else
+			{
+				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals
+				, % Lang_Trans("m_lvltracker_optionals")
+				vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals"] := hwnd
 			}
 		}
 		Else
 		{
-			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center 0x200 hp Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load", % " " Lang_Trans("lvltracker_editor_load") " "
-			vars.hwnd.settings["loaddefault_" val] := vars.hwnd.help_tooltips["settings_leveltracker default" handle] := hwnd_load
-			If !FileExist("ini" vars.poe_version "\leveling guide" index + 1 ".ini")
-				Break
+			Gui, %GUI%: Add, Text, % (files ? "ys x+"settings.general.fWidth/2 : "ys x" x_anchor + settings.general.fWidth*2.25) " Center 0x200 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load h" hEdit * 2 + settings.general.fWidth/4, % " " Lang_Trans("lvltracker_editor_load") " "
+			vars.hwnd.settings["loaddefault"] := vars.hwnd.help_tooltips["settings_leveltracker default"] := hwnd_load
 		}
-		handle .= "|"
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y+"vars.settings.spacing, % Lang_Trans("m_lvltracker_poboverlays")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLabel + hLabel + vars.settings.spacing, % Lang_Trans("m_lvltracker_poboverlays")
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Picture, % "ys BackgroundTrans hp HWNDhwnd0 w-1", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_leveltracker skilltree-info"] := hwnd0
@@ -2003,44 +2037,60 @@ Settings_leveltracker2(cHWND := "")
 		Run, % "explore img\GUI\skill-tree" settings.leveltracker.profile "\"
 	}
 	Else If InStr(check, "editprofile")
-	{
-		profile := IsNumber(SubStr(check, 0)) ? SubStr(check, 0) : ""
-		Leveltracker_GuideEditor("profile#" profile), LLK_Overlay(vars.hwnd.settings.main, "hide")
-	}
+		Leveltracker_GuideEditor("profile#" settings.leveltracker.profile), LLK_Overlay(vars.hwnd.settings.main, "hide")
 	Else If InStr(check, "profile")
 	{
+		target_profile := IsNumber(SubStr(check, 0)) ? SubStr(check, 0) : ""
+		If FileExist("ini" vars.poe_version "\leveling guide" target_profile ".ini") && LLK_Progress(vars.hwnd.settings["profile" target_profile "_bar"], "RButton")
+		{
+			FileDelete, % "ini" vars.poe_version "\leveling guide" target_profile ".ini"
+			Init_leveltracker()
+			If (settings.leveltracker.profile = target_profile)
+			{
+				Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
+				Leveltracker_Load(settings.leveltracker.profile)
+			}
+			Settings_menu("leveling tracker")
+			Return
+		}
+		Else If (vars.system.click = 2)
+			Return
+		KeyWait, LButton
+		KeyWait, RButton
+		If (settings.leveltracker.profile = target_profile)
+			Return
 		GuiControl, +cWhite, % vars.hwnd.settings["profile" settings.leveltracker.profile]
 		GuiControl, movedraw, % vars.hwnd.settings["profile" settings.leveltracker.profile]
 		timer := vars.leveltracker.timer
 		If IsNumber(timer.current_split) && (timer.current_split != timer.current_split0)
 			IniWrite, % (timer.current_split0 := timer.current_split), % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, time
-		settings.leveltracker.profile := IsNumber(SubStr(check, 0)) ? SubStr(check, 0) : "", vars.leveltracker.timer.pause := -1
+		settings.leveltracker.profile := target_profile, vars.leveltracker.timer.pause := -1
 		IniWrite, % settings.leveltracker.profile, % "ini" vars.poe_version "\leveling tracker.ini", Settings, profile
 		GuiControl, +cFuchsia, % vars.hwnd.settings["profile" settings.leveltracker.profile]
 		GuiControl, movedraw, % vars.hwnd.settings["profile" settings.leveltracker.profile]
 		If vars.leveltracker.skilltree_schematics.GUI
 			Leveltracker_PobSkilltree("close")
 		Init_leveltracker(), Leveltracker_Load()
-		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check") && vars.leveltracker.guide.import.Count()
 			Leveltracker_Progress(1)
+		Else Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
+		Settings_menu("leveling tracker")
 	}
 	Else If InStr(check, "import")
 	{
 		KeyWait, LButton
-		profile := SubStr(check, 0)
+		profile := settings.leveltracker.profile
 		If vars.leveltracker.skilltree_schematics.GUI
 			Leveltracker_PobSkilltree("close")
 		If Leveltracker_Import(IsNumber(profile) ? profile : "")
 			LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
 	}
-	Else If InStr(check, "loaddefault_")
-	{
-		Leveltracker_GuideEditor("default#" control)
-	}
+	Else If InStr(check, "loaddefault")
+		Leveltracker_GuideEditor("default#" settings.leveltracker.profile)
 	Else If InStr(check, "reset") && !InStr(check, "font")
 	{
-		If LLK_Progress(vars.hwnd.settings["resetbar" (IsNumber(SubStr(check, 0)) ? SubStr(check, 0) : "")], "LButton")
-			Leveltracker_ProgressReset(IsNumber(SubStr(check, 0)) ? SubStr(check, 0) : "")
+		If LLK_Progress(vars.hwnd.settings.resetbar, "LButton")
+			Leveltracker_ProgressReset(settings.leveltracker.profile)
 		Else Return
 	}
 	Else If InStr(check, "name")
@@ -2051,19 +2101,16 @@ Settings_leveltracker2(cHWND := "")
 	}
 	Else If InStr(check, "pobpreview")
 	{
-		profile := IsNumber(pCheck := SubStr(check, 0)) ? pCheck : "", info := vars.leveltracker["pob" profile]
+		profile := settings.leveltracker.profile, info := vars.leveltracker["pob" profile]
 		If LLK_Progress(vars.hwnd.settings[check "_bar"], "RButton")
 		{
 			If vars.leveltracker.skilltree_schematics.GUI
 				Leveltracker_PobSkilltree("close")
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB
 			Init_leveltracker()
-			If (profile = settings.leveltracker.profile)
-			{
-				Leveltracker_Load()
-				If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-					Leveltracker_Progress(1)
-			}
+			Leveltracker_Load()
+			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+				Leveltracker_Progress(1)
 			Settings_menu("leveling tracker")
 			Return
 		}
@@ -2074,30 +2121,34 @@ Settings_leveltracker2(cHWND := "")
 		KeyWait, LButton
 		vars.tooltip[vars.hwnd["tooltippobtooltip"]] := A_TickCount
 	}
-	Else If InStr(check, "leaguestart_")
+	Else If InStr(check, "leaguestart")
 	{
-		IniWrite, % (input := settings.leveltracker["guide" control].info.leaguestart := !settings.leveltracker["guide" control].info.leaguestart), % "ini" vars.poe_version "\leveling guide" control ".ini", Info, leaguestart
-		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" control ".ini", Progress, pages
-		If (control = settings.leveltracker.profile)
-		{
-			Leveltracker_Load()
-			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-				Leveltracker_Progress(1)
-		}
+		profile := settings.leveltracker.profile
+		IniWrite, % (input := settings.leveltracker["guide" profile].info.leaguestart := !settings.leveltracker["guide" profile].info.leaguestart), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, leaguestart
+		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+		Leveltracker_Load()
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
-	Else If InStr(check, "bandit_")
+	Else If InStr(check, "optionals")
 	{
-		bandits := ["none", "alira", "kraityn", "oak"]
-		IniWrite, % (settings.leveltracker["guide" control].info.bandit := bandits[LLK_ControlGet(cHWND)]), % "ini" vars.poe_version "\leveling guide" control ".ini", Info, bandit
-		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" control ".ini", Progress, pages
-		If (control = settings.leveltracker.profile)
-		{
-			Leveltracker_Load()
-			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-				Leveltracker_Progress(1)
-		}
+		profile := settings.leveltracker.profile
+		IniWrite, % (input := settings.leveltracker["guide" profile].info.optionals := !settings.leveltracker["guide" profile].info.optionals), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, optionals
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
+		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+	}
+	Else If InStr(check, "bandit")
+	{
+		bandits := ["none", "alira", "kraityn", "oak"], profile := settings.leveltracker.profile
+		IniWrite, % (settings.leveltracker["guide" profile].info.bandit := bandits[LLK_ControlGet(cHWND)]), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, bandit
+		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+		Leveltracker_Load()
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
 	}
 	Else If InStr(check, "font_")
 	{

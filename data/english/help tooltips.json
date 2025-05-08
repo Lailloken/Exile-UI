@@ -285,6 +285,9 @@
       "roll-ranges in mod-texts and on bars will represent the roll on a global scale",
       "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
     ],
+    "iteminfo quality scaling": [
+      "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes"
+    ],
     "iteminfo shift-click": [
       "automatically refreshes the tooltip when applying currency to items via shift-click",
       "you have to hold <shift> first, right click currency, and then click items",
@@ -407,7 +410,8 @@
       "if you want to edit the images yourself, you can move them to this folder manually"
     ],
     "leveltracker profile select": [
-      "click to activate this guide slot"
+      "click to activate this guide slot",
+      "hold right-click to delete the guide in this slot"
     ],
     "leveltracker import": [
       "imports pob data or custom guides from clipboard into this guide slot",
@@ -417,7 +421,7 @@
       "click to load the default guide and enable this slot"
     ],
     "leveltracker editor": [
-      "opens the guide editor to load the default guide, edit the current one, or write a new one"
+      "open the editor to edit the guide in this slot"
     ],
     "leveltracker guide info": [
       "there are up to three individual guide slots you can use and switch between",
@@ -446,16 +450,26 @@
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction"
+      "(hint)____ walk around obstacles and find another way into that direction",
+      "(hint)____",
+      "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not",
       "if a pob import with gems is present and league-start is disabled, some gem quests may be replaced with hideout lilly instead",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
+    "leveltracker bandit": [
+      "choose which bandit you want to help in act 2",
+      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+    ],
     "leveltracker leaguestart 2": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+    ],
+    "leveltracker optionals": [
+      "choose whether optional loot/quests should be shown or not",
+      "examples:\n- boss quests (e.g. devourer, mektul)\n- artificer's orbs & gems\n- jewelry & flasks"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
