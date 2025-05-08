@@ -1842,7 +1842,7 @@ Iteminfo_GUI()
 	{
 		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
 		sockets := RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1
-		Gui, %GUI_name%: Add, Text, % "Section xs Border w" (UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count()) * UI.wSegment " h" UI.hSegment
+		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" (UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count()) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
 		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2"]
 		{
 			If (outer > sockets + 1)

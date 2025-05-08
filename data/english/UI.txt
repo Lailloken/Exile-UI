@@ -311,7 +311,7 @@
 		iteminfo_unsupported		=	"item not supported"
 		iteminfo_dps			=	"dps"				;## damage per second
 		iteminfo_base			=	"base"				;## as in item-base / crafting-base
-		iteminfo_raw			=	"raw defense"			;## refers to AR/EVA/ES without quality and runes
+		iteminfo_qual_scaling		=	"scaling"
 		iteminfo_ruleblock		=	"blocked by global rule"
 		iteminfo_clearfirst		=	"clear class-specific;highlighting first"
 		iteminfo_drop_tier		=	"drop"				;## refers to dropped items, e.g. "boss drop", "uber drop", "T0 drop"
