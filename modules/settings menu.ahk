@@ -1376,6 +1376,9 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" !settings.iteminfo.bars_tier, % Lang_Trans("global_global")
 		vars.hwnd.settings.bars_tier := vars.hwnd.help_tooltips["settings_iteminfo modbars tier"] := hwnd
 		vars.hwnd.settings.bars_tier2 := vars.hwnd.help_tooltips["settings_iteminfo modbars global"] := hwnd1
+
+		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked" settings.iteminfo.qual_scaling, % Lang_Trans("m_iteminfo_quality")
+		vars.hwnd.settings.qual_scaling := hwnd, vars.hwnd.help_tooltips["settings_iteminfo quality scaling"] := hwnd
 	}
 
 	If !vars.poe_version
@@ -1546,10 +1549,9 @@ Settings_iteminfo2(cHWND)
 		IniWrite, % settings.iteminfo.trigger, % "ini" vars.poe_version "\item-checker.ini", settings, enable wisdom-scroll trigger
 	}
 	Else If (check = "modrolls")
-	{
-		settings.iteminfo.modrolls := LLK_ControlGet(cHWND)
-		IniWrite, % settings.iteminfo.modrolls, % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
-	}
+		IniWrite, % (settings.iteminfo.modrolls := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
+	Else If (check = "qual_scaling")
+		IniWrite, % (settings.iteminfo.qual_scaling := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, quality scaling
 	Else If InStr(check, "bars_tier")
 		IniWrite, % (settings.iteminfo.bars_tier := LLK_ControlGet(vars.hwnd.settings.bars_tier)), % "ini" vars.poe_version "\item-checker.ini", settings, tier bars
 	Else If (check = "compare")

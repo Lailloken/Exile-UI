@@ -18,6 +18,7 @@
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
 	settings.iteminfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
 	settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
+	settings.iteminfo.qual_scaling := !Blank(check := ini.settings["quality scaling"]) ? check : 0
 
 	settings.iteminfo.rules := {}
 	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
@@ -522,24 +523,26 @@ Iteminfo_Stats2()
 	local
 	global vars, settings, db
 
-	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}, item.stats := {}
-	Loop, Parse, clip, `n, `r ;get the raw defense values and store them
+	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}, item.stats := {}, item.quality := 0
+	Loop, Parse, clip, `n, `r ;get certain values and store them
 	{
-		If InStr(A_LoopField, Lang_Trans("items_armour"))
-			defenses.armor := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
-		If InStr(A_LoopField, Lang_Trans("items_evasion"))
+		If InStr(A_LoopField, Lang_Trans("items_quality"))
+			item.quality := SubStr(A_LoopField, InStr(A_LoopField, ":") + 3), item.quality := StrReplace(StrReplace(item.quality, "%"), " (augmented)")
+		Else If InStr(A_LoopField, Lang_Trans("items_armour"))
+			defenses.armour := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
+		Else If InStr(A_LoopField, Lang_Trans("items_evasion"))
 			defenses.evasion := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
-		If InStr(A_LoopField, Lang_Trans("items_energy"))
+		Else If InStr(A_LoopField, Lang_Trans("items_energy"))
 			defenses.energy := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
-		If InStr(A_LoopField, Lang_Trans("items_ward"))
+		Else If InStr(A_LoopField, Lang_Trans("items_ward"))
 			defenses.ward := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
-		If InStr(A_LoopField, Lang_Trans("items_requirements"))
-			break
+		Else If InStr(A_LoopField, Lang_Trans("items_requirements"))
+			Break
 	}
 
 	If InStr(clip, Lang_Trans("items_aps"))
 		item.type := "attack"
-	Else If defenses.armor || defenses.evasion || defenses.energy || defenses.ward
+	Else If defenses.armour || defenses.evasion || defenses.energy || defenses.ward
 		item.type := "defense"
 	Else If InStr("rings,belts,amulets,", item.class) || InStr(item.class, "jewels")
 		item.type := "jewelry"
@@ -547,13 +550,22 @@ Iteminfo_Stats2()
 
 	If (item.type = "attack")
 	{
-		phys_dmg := pdps := ele_count := ele_dmg := ele_dmg1 := ele_dmg2 := ele_dmg3 := edps0 := chaos_dmg := cdps := speed := 0
+		phys_dmg := pdps := ele_count := ele_dmg := ele_dmg1 := ele_dmg2 := ele_dmg3 := edps0 := chaos_dmg := cdps := speed := 0, phys_inc := phys_rune_inc := 0
 		For index, stat in ["phys", "crit", "speed", "dps"]
 			If (check := db.item_bases[item.class][item.itembase][stat])
 				item.stats[stat] := {"relative": check}
 
 		Loop, Parse, clip, `n, `r
 		{
+			If breakpoint
+			{
+				If InStr(A_LoopField, Lang_Trans("mods_phys_%"))
+					If InStr(A_LoopField, " (rune)")
+						phys_rune_inc += SubStr(A_LoopField, 1, InStr(A_LoopField, "%") - 1)
+					Else phys_inc += SubStr(A_LoopField, 1, InStr(A_LoopField, "%") - 1)
+				Continue
+			}
+			
 			If InStr(A_LoopField, Lang_Trans("items_phys_dmg"))
 				phys_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
 			Else If InStr(A_LoopField, Lang_Trans("items_chaos_dmg"))
@@ -572,18 +584,18 @@ Iteminfo_Stats2()
 					ele_count += 1, ele_dmg%ele_count% := dmg
 				}
 			}
-
-			If InStr(A_LoopField, Lang_Trans("items_aps"))
+			Else If InStr(A_LoopField, Lang_Trans("items_aps"))
 			{
 				speed := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
-				break
+				breakpoint := A_Index
 			}
+
 		}
 		If phys_dmg
 		{
 			Loop, Parse, phys_dmg, % "-"
 				phys%A_Index% := A_LoopField
-			pdps := Format("{:0.2f}", ((phys1+phys2)/2)*speed)
+			pdps := Format("{:0.2f}", ((phys1 + phys2)/2) * speed)
 		}
 		If ele_dmg
 		{
@@ -612,6 +624,17 @@ Iteminfo_Stats2()
 				chaos_dmg%A_Index% := A_LoopField
 			cdps := Format("{:0.2f}", ((chaos_dmg1+chaos_dmg2)/2)*speed)
 		}
+
+		Loop 2
+			phys%A_Index% := Round((phys%A_Index% / ((100 + phys_inc + phys_rune_inc)/100)) / ((100 + item.quality)/100))
+
+		If 1
+			If RegExMatch(item.class, "i)quarterstav|two.hand|bow")
+				item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
+					, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)
+					, Round((phys1 * (150 + phys_inc)/100 + phys2 * (150 + phys_inc)/100)/2 * 1.2 * speed)]}
+			Else item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
+					, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)]}
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
 	}
@@ -620,6 +643,62 @@ Iteminfo_Stats2()
 		For index, stat in ["AR", "EV", "ES", "HY", "BL"]
 			If (check := db.item_bases[item.class][item.itembase][stat])
 				item.stats[stat] := {"relative": check}
+
+		defs := []
+		For index, val in ["armour", "evasion", "energy", "ward"]
+			If defenses[val]
+				defs.Push(val), %val%_flat := %val%_inc := 0, %val%_rune_flat := %val%_rune_inc := 0, hybrid .= (!hybrid ? "" : "_") val
+
+		Loop, Parse, % SubStr(clip, InStr(clip, Lang_Trans("items_ilevel"))), `n, `r ;parse flat and % increases
+		{
+			number := "", text := "", line := A_LoopField
+			Loop, Parse, % Iteminfo_ModRangeRemove(A_LoopField)
+				number .= LLK_IsType(A_LoopField, "number") ? A_LoopField : "", text .= LLK_IsType(A_LoopField, "number") || InStr("()", A_LoopField) ? "" : A_LoopField
+			While (SubStr(text, 1, 1) = " ")
+				text := SubStr(text, 2)
+			While (SubStr(text, 0) = " ")
+				text := SubStr(text, 1, -1)
+
+			For key, val in vars.lang
+			{
+				For index, def in defs
+				{
+					If !InStr(key, "mods_" def) && !InStr(key, "mods_" hybrid) && (key != "mods_armour_evasion_energy_%")
+						Continue
+					string := ""
+					For index, val1 in val
+						string .= val1
+					If (string = text)
+					{
+						If InStr(line, " (rune)")
+						{
+							If InStr(key, "_flat")
+								%def%_rune_flat += number
+							Else If InStr(key, "_%")
+								%def%_rune_inc += number
+						}
+						Else
+							If InStr(key, "_flat")
+								%def%_flat += number
+							Else If InStr(key, "_%")
+								%def%_inc += number
+					}
+				}
+			}
+		}
+
+		For index, def in defs
+		{
+			If item.quality
+				defenses[def] := Round(defenses[def] / (1 + item.quality/100))
+			defenses[def] := defenses[def] / (1 + (%def%_inc + %def%_rune_inc)/100)
+		}
+
+		item.defenses := {}
+		For index, def in defs
+			If RegExMatch(item.class, "i)body.armour")
+				item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2), Round(defenses[def] * (%def%_inc + 125)/100 * 1.2), Round(defenses[def] * (%def%_inc + 150)/100 * 1.2)]
+			Else item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2), Round(defenses[def] * (%def%_inc + 125)/100 * 1.2)]
 	}
 
 	If (item.quality >= 25)
@@ -923,7 +1002,8 @@ Iteminfo_GUI()
 	;///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	;////////////////////////////////////////// base-info / league-start area
 
-	losses := vars.iteminfo.compare.losses, compare := vars.iteminfo.compare ;short-cut variables
+	losses := vars.iteminfo.compare.losses, compare := vars.iteminfo.compare
+	qual_scaling := vars.poe_version && (settings.iteminfo.qual_scaling && !unique && InStr("attack,defense", item.type) && (item.defenses.Count() || item.damage.Count())) ? 1 : 0
 	If (settings.iteminfo.itembase && ((item.rarity != Lang_Trans("items_unique") || item.anoint) || (item.type = "defense" && IsNumber(item.base_percent)))) || settings.iteminfo.compare
 	{
 		If !settings.iteminfo.compare ;if league-start mode is disabled, add base-item info
@@ -1100,7 +1180,7 @@ Iteminfo_GUI()
 						Else parse := Lang_Trans("iteminfo_base") " " ;filler-text for base-item info
 						Gui, %GUI_name%: Add, Text, % style " Border Right BackgroundTrans w"filler_width " h"UI.hSegment, % parse
 						filler := 1
-						continue
+						Continue
 					}
 
 					If (item.anoint != "")
@@ -1150,7 +1230,7 @@ Iteminfo_GUI()
 						If !vars.pics.iteminfo[label]
 							vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png")
 						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo[label]
-						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
+						;Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
 					}
 
 					color1 := (color = "White") ? "Red" : InStr("Black, 404040", color) ? "White" : "Black"
@@ -1757,6 +1837,36 @@ Iteminfo_GUI()
 			Gui, %GUI_name%: Add, Text, % "ys Border Center BackgroundTrans w" UI.wSegment " c" (color = "White" && roll_stats.Count() ? "Red" : "Black"), % roll_stats_average
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack HWNDhwnd_roll_percent_total_back c" (!roll_stats.Count() ? tColors[0] : color), 100
 		}
+	}
+	Else If qual_scaling
+	{
+		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
+		sockets := RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1
+		Gui, %GUI_name%: Add, Text, % "Section xs Border w" (UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count()) * UI.wSegment " h" UI.hSegment
+		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2"]
+		{
+			If (outer > sockets + 1)
+				Continue
+			If !vars.pics.iteminfo[currency]
+				vars.pics.iteminfo[currency] := LLK_ImageCache("img\GUI\item info\" currency ".png")
+
+			Gui, %GUI_name%: Add, Picture, % "ys hp-2 w-1 Border", % "HBitmap:*" vars.pics.iteminfo[currency]
+
+			If (item.type = "defense")
+			{
+				For index, def in ["armour", "evasion", "energy"]
+					If item.defenses[def]
+					{
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.defenses[def][outer]
+						Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" colors[def], 100
+					}
+			}
+			Else
+				For index, dmg in ["phys"]
+					If item.damage[dmg]
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.damage[dmg][outer]
+		}
+
 	}
 
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000" ;show the GUI outside the monitor's area to get dimensions
