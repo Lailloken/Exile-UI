@@ -1771,9 +1771,9 @@ Settings_leveltracker()
 	For index, val in ["", 2, 3]
 	{
 		file_missing := !FileExist("ini" vars.poe_version "\leveling guide" val ".ini") ? 1 : 0
-		files += file_missing
+		files += file_missing ? 0 : 1
 		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xp yp" : "xs y+" settings.general.fWidth/4) " Border BackgroundTrans Center 0x200 gSettings_leveltracker2 h" hEdit " HWNDhwnd w" settings.general.fWidth * 2 . (profile = val ? " cFuchsia" : ""), % index
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Range0-500 HWNDhwnd1", 0
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack Vertical cRed Range0-500 HWNDhwnd1", 0
 		vars.hwnd.settings["profile" val] := hwnd, vars.hwnd.settings["profile" val "_bar"] := hwnd1, vars.hwnd.help_tooltips["settings_leveltracker profile select" handle] := hwnd1
 		If (index = 1)
 			ControlGetPos, xFirst, yFirst,, hFirst,, ahk_id %hwnd%

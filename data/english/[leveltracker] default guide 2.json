@@ -11,7 +11,7 @@
     [
       "kill beira_of_the_rotten_pack",
       "optional: (img:skill) camp chest _|_ (img:skill) arena:devourer in (img:checkpoint) areaidg1_3 ;; mud burrow",
-      "(hint)____ after arena:devourer: (img:portal), renly: <treacherous_ground> for (img:support)",
+      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support)",
       "find and enter (img:checkpoint) areaidg1_4 ;; the grelwood"
     ],
     [
@@ -349,7 +349,7 @@
       ],
       "lines": [
         "optional: find and clear areaidg3_9",
-        "(hint)____ then (img:portal), oswald: <treasures_of_utzaal> for (img:artificer)",
+        "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
         "find and enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
@@ -438,7 +438,7 @@
     [
       "kill beira_of_the_rotten_pack",
       "optional: (img:skill) camp chest _|_ (img:skill) arena:devourer in (img:checkpoint) areaidc_g1_3 ;; mud burrow",
-      "(hint)____ after arena:devourer: (img:portal), renly: <treacherous_ground> for (img:support) + (img:artificer)",
+      "(hint)____ after arena:devourer: (img:portal) to town, renly: <treacherous_ground> for (img:support) + (img:artificer)",
       "find and enter (img:checkpoint) areaidc_g1_4 ;; the grelwood"
     ],
     [
@@ -699,7 +699,7 @@
     ],
     [
       "optional: find and clear areaidc_g3_9 ;; the molten vault",
-      "(hint)____ then (img:portal), oswald: <treasures_of_utzaal> for (img:artificer)",
+      "(hint)____ then (img:portal) to town, oswald: <treasures_of_utzaal> for (img:artificer)",
       "find and enter (img:checkpoint) areaidc_g3_11 ;; apex of filth"
     ],
     [
