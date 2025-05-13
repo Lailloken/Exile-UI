@@ -628,13 +628,13 @@ Iteminfo_Stats2()
 		Loop 2
 			phys%A_Index% := Round((phys%A_Index% / ((100 + phys_inc + phys_rune_inc)/100)) / ((100 + item.quality)/100))
 
-		If 1
-			If RegExMatch(item.class, "i)quarterstav|two.hand|bow")
-				item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
-					, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)
-					, Round((phys1 * (150 + phys_inc)/100 + phys2 * (150 + phys_inc)/100)/2 * 1.2 * speed)]}
-			Else item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
-					, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)]}
+		If RegExMatch(item.class, "i)quarterstav|two.hand|bow")
+			item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
+				, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)
+				, Round((phys1 * (150 + phys_inc)/100 + phys2 * (150 + phys_inc)/100)/2 * 1.2 * speed)]}
+		Else item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
+				, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)]}
+
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
 	}
