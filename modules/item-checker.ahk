@@ -1803,8 +1803,8 @@ Iteminfo_GUI()
 		If !IsObject(db.item_drops)
 			DB_Load("item_drops")
 		
-		If roll_stats.Count()
-			Gui, %GUI_name%: Add, Progress, % "xs w" UI.wSegment*UI.segments " Disabled h" UI.hDivider " BackgroundWhite",
+		;If roll_stats.Count()
+		;	Gui, %GUI_name%: Add, Progress, % "xs w" UI.wSegment*UI.segments " Disabled h" UI.hDivider " BackgroundWhite",
 		If db.item_drops[item.name]
 			drop_tier := (StrLen(db.item_drops[item.name]) > 2) ? Lang_Trans("iteminfo_drop_" db.item_drops[item.name]) : db.item_drops[item.name]
 		Else drop_tier := Lang_Trans("iteminfo_drop_unknown")
@@ -1813,14 +1813,13 @@ Iteminfo_GUI()
 		While (wDrop >= UI.wSegment * segments)
 			segments += 0.25
 		wDrop := UI.wSegment * segments, sFiller -= segments, roll_stats_val := roll_stats_max := 0
-
 		For index, roll in roll_stats
 			roll_stats_val += roll.1, roll_stats_max += roll.2
 		roll_stats_average := Format("{:0.0f}", (roll_stats_val / roll_stats_max) * 100)
 		Gui, %GUI_name%: Show, NA x10000 y10000
 		WinGetPos,,, w, h, % "ahk_id " vars.hwnd.iteminfo.main
 		Gui, %GUI_name%: Hide
-		If (w >= 50)
+		If (w >= 50) || qual_scaling
 			Gui, %GUI_name%: Add, Text, % "xs Section Border Right BackgroundTrans cWhite w" UI.wSegment * sFiller, % ""
 		color := InStr(drop_tier, "0") ? "White" : (StrLen(drop_tier) = 2) ? tColors[SubStr(drop_tier, 2, 1)] : tColors[0]
 		If !Blank(drop_tier)
@@ -1838,7 +1837,8 @@ Iteminfo_GUI()
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack HWNDhwnd_roll_percent_total_back c" (!roll_stats.Count() ? tColors[0] : color), 100
 		}
 	}
-	Else If qual_scaling
+
+	If qual_scaling && !InStr(item.name, "morior")
 	{
 		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
 		sockets := RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1
