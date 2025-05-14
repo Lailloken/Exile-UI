@@ -26,7 +26,7 @@
 	settings.actdecoder.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
-	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
+	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) && vars.poe_version ? check : 0
 }
 
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
