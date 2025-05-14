@@ -176,7 +176,8 @@
       "boss": "rotten druid"
     },
     "selenite": {
-      "name": "the silent cave"
+      "name": "the silent cave",
+      "boss": "random boss"
     },
     "slick": {
       "name": "slick"

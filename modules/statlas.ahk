@@ -142,7 +142,7 @@ Statlas_GUI(mode := "")
 		Gui, %GUI_name%: Add, Pic, % "ys Border", % "HBitmap:*" vars.pics.statlas[boss]
 	Else
 	{
-		Gui, %GUI_name%: Add, Text, % "ys Border BackgroundTrans wp hp"
+		Gui, %GUI_name%: Add, Text, % "ys  wp hp Center 0x200 Border BackgroundTrans", % boss
 		Gui, %GUI_name%: Add, Progress, % "Disabled BackgroundBlack xp yp wp hp", 0
 	}
 
