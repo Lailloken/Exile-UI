@@ -412,7 +412,7 @@
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
-      "find the (quest:dagger) and table, then place the heart and stab it",
+      "find the (quest:dagger) and table, then place the (quest:heart) and stab it",
       "(hint)____ usually directly (img:0) of the plaza, but you have to go around (img:6)",
       "find and enter (img:checkpoint) areaidg3_17 ;; the black chambers",
       "(hint)____ usually (img:7) of the table"
@@ -726,7 +726,7 @@
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
-      "find the (quest:dagger) and table, then place the heart and stab it",
+      "find the (quest:dagger) and table, then place the (quest:heart) and stab it",
       "(hint)____ usually directly (img:0) of the plaza, but you have to go around (img:6)",
       "find and enter (img:checkpoint) areaidc_g3_17 ;; the black chambers",
       "(hint)____ usually (img:7) of the table"

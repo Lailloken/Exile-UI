@@ -286,7 +286,8 @@
       "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
     ],
     "iteminfo quality scaling": [
-      "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes"
+      "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes",
+      "this can be used to preview a crafted/looted item's theoretical max values in order to compare it to current gear"
     ],
     "iteminfo shift-click": [
       "automatically refreshes the tooltip when applying currency to items via shift-click",
