@@ -17,7 +17,8 @@
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
 	settings.iteminfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
-	settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
+	;settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
+	settings.iteminfo.roll_range := !Blank(check := ini.settings["roll range"]) ? check : ((check1 := ini.settings["tier bars"]) ? check1 : 2)
 	settings.iteminfo.qual_scaling := !Blank(check := ini.settings["quality scaling"]) ? check : 0
 
 	settings.iteminfo.rules := {}
@@ -1507,9 +1508,26 @@ Iteminfo_GUI()
 								If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
 									Continue 2
 							}
+
 							tier_override := (count := oModName.Count()) + 1 - iTier
-							minimum_rolls := oModName.1.3.Clone()
-							maximum_rolls := oModName[count].3.Clone()
+							If (settings.iteminfo.roll_range != 3)
+							{
+								minimum_rolls := oModName.1.3.Clone()
+								maximum_rolls := oModName[count].3.Clone()
+							}
+							Else
+							{
+								max_tier := 0
+								Loop, % oModName.Count() + 1
+									If IsNumber(oModName[oModName.Count() + 1 - A_Index].2) && (item.ilvl >= oModName[oModName.Count() + 1 - A_Index].2)
+									{
+										max_tier := A_Index
+										Break
+									}
+								minimum_rolls := oModName.1.3.Clone()
+								maximum_rolls := oModName[oModName.Count() + 1 - max_tier].3.Clone()
+								;tier_override .= (max_tier && tier_override != 1 ? "/" max_tier : "")
+							}
 
 							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 								ilvl := oModName[iTier].2
@@ -1528,17 +1546,19 @@ Iteminfo_GUI()
 						If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
 							Continue 2
 					}
+
+					max_tier := max
 					For i, tag in oModName[iTier].4
 						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 						{
 							While LLK_HasVal(oModName[max + 1].4, tag)
-								max += 1
+								max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 							While oModName[max + 1]
 							{
 								For i, tag0 in oModName[max + 1].4
 									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
 									{
-										max += 1
+										max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 										Continue 2
 									}
 								Break
@@ -1558,13 +1578,18 @@ Iteminfo_GUI()
 							}
 
 							minimum_rolls := oModName[min].3.Clone()
-							maximum_rolls := oModName[max].3.Clone()
+							maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier) ? max_tier : max].3.Clone()
 
 							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 								ilvl := oModName[iTier].2
 							If tier_override
 								tier_override := "conflict", ilvl := "??"
-							Else tier_override := max + 1 - iTier
+							Else 
+							{
+								tier_override := max + 1 - iTier 
+								;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
+								;	tier_override .= "/" max + 1 - max_tier
+							}
 							Break
 						}
 				}
@@ -1582,17 +1607,19 @@ Iteminfo_GUI()
 							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
 								Continue 2
 						}
+
+						max_tier := max
 						For i, tag in oModName[iTier].4
 							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 							{
 								While LLK_HasVal(oModName[max + 1].4, tag)
-									max += 1
+									max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 								While oModName[max + 1]
 								{
 									For i, tag0 in oModName[max + 1].4
 										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
 										{
-											max += 1
+											max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 											Continue 2
 										}
 									Break
@@ -1612,13 +1639,18 @@ Iteminfo_GUI()
 								}
 	
 								minimum_rolls := oModName[min].3.Clone()
-								maximum_rolls := oModName[max].3.Clone()
+								maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier) ? max_tier : max].3.Clone()
 
 								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 									ilvl := oModName[iTier].2
 								If tier_override
 									tier_override := "conflict", ilvl := "??"
-								Else tier_override := max + 1 - iTier
+								Else 
+								{
+									tier_override := max + 1 - iTier 
+									;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
+									;	tier_override .= "/" max + 1 - max_tier
+								}
 								Break
 							}
 					}
@@ -1629,7 +1661,7 @@ Iteminfo_GUI()
 		highlights := "", color_t := "Black" ;track (un)desired highlighting for every part of hybrid mods
 		Loop, Parse, mod, `n ;parse mod-text line by line
 		{
-			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.bars_tier || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
+			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.roll_range = 1 || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
 				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
@@ -1650,12 +1682,12 @@ Iteminfo_GUI()
 				}
 				replace := SubStr(text_check, 1, last), replace := SubStr(replace, first)
 				mod_text := StrReplace(text_check, replace, (InStr(text_check, "(") ? rolls.2 : SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000))
-				. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+				. (settings.iteminfo.roll_range = 1 ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
 			}
 			Else
 			{
 				mod_text := text_check
-				If vars.poe_version && !unique && !settings.iteminfo.bars_tier
+				If vars.poe_version && !unique && !(settings.iteminfo.roll_range = 1)
 				{
 					first := last := 0
 					Loop, Parse, text_check
@@ -1667,25 +1699,25 @@ Iteminfo_GUI()
 					}
 					replace := SubStr(mod_text, 1, last), replace := SubStr(replace, first)
 					mod_text := StrReplace(mod_text, replace, (InStr(mod_text, "(") ? rolls.2 : (rolls.2 := SubStr(replace, 1, (check := InStr(replace, "(")) ? check - 1 : 10000)))
-					. (settings.iteminfo.bars_tier ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
+					. (settings.iteminfo.roll_range = 1 ? "(" rolls.1 "-" rolls.3 ")" : "(" min_roll "-" max_roll ")"))
 				}
 			}
-			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRangeRemove(mod_text) : mod_text) . (tier_override = "conflict" && !settings.iteminfo.bars_tier ? " (?)" : "")
+			mod_text := (settings.iteminfo.modrolls ? Iteminfo_ModRangeRemove(mod_text) : mod_text) . (tier_override = "conflict" && !(settings.iteminfo.roll_range = 1) ? " (?)" : "")
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
-			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : settings.iteminfo.bars_tier && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
-			color := !unique && !settings.iteminfo.bars_tier && (min_roll = max_roll) ? "303060" : color
+			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : (settings.iteminfo.roll_range = 1) && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := !unique && !(settings.iteminfo.roll_range = 1) && (min_roll = max_roll) ? "303060" : color
 			;if dummy text-panel is single-line, increase height slightly to make small cells square
 			Gui, %GUI_name%: Add, Text, % "xp yp wp h"(text_h < UI.hSegment ? UI.hSegment : "p" ) " Section BackgroundTrans HWNDhwnd Border Center" (invert_check && (rolls_val / rolls_max) * 100 = 0 ? " cCCCC00" : ""), % mod_text ;add actual text-panel with the correct size
 			GuiControlGet, text_, Pos, % hwnd ;get position and size of the text-panel
 			height += text_h ;sum up the heights of each line belonging to the same mod, so it can be used for the cells right next to them (highlight, tier, and potentially icon/ilvl)
 
-			If !settings.iteminfo.bars_tier && !Blank(min_roll) && !Blank(max_roll) && InStr(min_roll . max_roll . rolls.2, ".") && (min_roll < 10 || max_roll < 10 || rolls.2 < 10)
+			If !(settings.iteminfo.roll_range = 1) && !Blank(min_roll) && !Blank(max_roll) && InStr(min_roll . max_roll . rolls.2, ".") && (min_roll < 10 || max_roll < 10 || rolls.2 < 10)
 				min_roll *= 100, max_roll *= 100, rolls.2 *= 100
-			range := vars.poe_version && !settings.iteminfo.bars_tier && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !settings.iteminfo.bars_tier && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100)
-			If InStr(text_check, "(") && (settings.iteminfo.bars_tier || unique)
+			range := vars.poe_version && !(settings.iteminfo.roll_range = 1) && (tier_override != "conflict") && !unique && (min_roll != max_roll) ? min_roll "-" max_roll : "0-100"
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Section HWNDhwnd Border Disabled BackgroundBlack range" range " c"color, % (vars.poe_version && !(settings.iteminfo.roll_range = 1) && !unique && (min_roll != max_roll) ? (tier_override != "conflict" ? rolls.2 : 0) : (rolls_val / rolls_max) * 100)
+			If InStr(text_check, "(") && (settings.iteminfo.roll_range = 1 || unique)
 				vars.hwnd.iteminfo.inverted_mods[Iteminfo_ModHighlight(A_LoopField, "parse")] := hwnd
 
 			If unique ;add roll-% to unique mods

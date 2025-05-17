@@ -268,8 +268,7 @@
       "(this is the default setting)"
     ],
     "iteminfo alt-key": [
-      "hold <alt> while hovering over items to activate the tooltip",
-      "the tooltip will close automatically once you release <alt>",
+      "hold <alt> while hovering over items to activate the tooltip: the tooltip will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
       "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
@@ -279,18 +278,23 @@
     ],
     "iteminfo modbars tier": [
       "roll-ranges in mod-texts and on bars will represent the roll within the current tier, i.e. the divine orb range",
+      "example, t2 movement speed:\n30% inc. movement speed",
       "(this is the default setting)"
     ],
     "iteminfo modbars global": [
-      "roll-ranges in mod-texts and on bars will represent the roll on a global scale",
-      "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
+      "roll-ranges in mod-texts and on bars will represent the roll on a global scale, i.e. from worst to best possible roll",
+      "example, t2 movement speed:\n30%(10-35) inc. movement speed"
+    ],
+    "iteminfo modbars ilevel": [
+      "roll-ranges in mod-texts and on bars will represent the roll on an ilvl scale, i.e. from worst to best possible roll within the given ilvl",
+      "example, t2 movement speed on ilvl 74 boots:\n30%(10-30) inc. movement speed"
     ],
     "iteminfo quality scaling": [
       "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes",
-      "this can be used to preview a crafted/looted item's theoretical max values in order to compare it to current gear"
+      "this can be used to preview a crafted/looted item's theoretical max values"
     ],
     "iteminfo shift-click": [
-      "automatically refreshes the tooltip when applying currency to items via shift-click",
+      "automatically refreshes/activates the tooltip when applying currency to items via shift-click",
       "you have to hold <shift> first, right click currency, and then click items",
       "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu"
     ],
@@ -587,8 +591,7 @@
       "(this is the default setting)"
     ],
     "mapinfo alt-key": [
-      "hold <alt> while hovering over maps/waystones to activate the panel",
-      "the panel will close automatically once you release <alt>",
+      "hold <alt> while hovering over maps/waystones to activate the panel: the panel will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
       "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
