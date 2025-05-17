@@ -524,7 +524,7 @@ Omni_ItemInfo()
 			{
 				Loop, Parse, A_LoopField, `,, % "`n`r "
 					If !InStr(A_LoopField, "Level")
-						item.attributes .= "_" LLK_StringCase(SubStr(A_LoopField, InStr(A_LoopField, " ") + 1, 3))
+						item.attributes .= "_" LLK_StringCase(SubStr(StrReplace(A_LoopField, "(augmented) "), InStr(A_LoopField, " ") + 1, 3))
 				Break
 			}
 	}
