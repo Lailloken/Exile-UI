@@ -1380,8 +1380,18 @@ Settings_iteminfo()
 		vars.hwnd.settings.roll_range3 := vars.hwnd.help_tooltips["settings_iteminfo modbars ilevel"] := hwnd2
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("m_iteminfo_modrolls")
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("global_hide")
 	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
+
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_iteminfo_affixinfo")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd Checked" (settings.iteminfo.affixinfo = 1 ? 1 : 0), % Lang_Trans("global_icon")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd1 Checked" (settings.iteminfo.affixinfo = 2 ? 1 : 0), % Lang_Trans("global_ilvl")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd2 Checked" (settings.iteminfo.affixinfo = 3 ? 1 : 0), % Lang_Trans("m_iteminfo_maxtier")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd3 Checked" (settings.iteminfo.affixinfo = 4 ? 1 : 0), % Lang_Trans("global_off")
+	vars.hwnd.settings["affixinfo_1"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info icon"] := hwnd
+	vars.hwnd.settings["affixinfo_2"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info ilvl"] := hwnd1
+	vars.hwnd.settings["affixinfo_3"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info max tier"] := hwnd2
+	vars.hwnd.settings["affixinfo_4"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info off"] := hwnd3
 
 	If vars.poe_version
 	{
@@ -1398,9 +1408,6 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.itembase, % Lang_Trans("m_iteminfo_base")
 		vars.hwnd.settings.itembase := hwnd, vars.hwnd.help_tooltips["settings_iteminfo base-info" vars.poe_version] := hwnd
 	}
-
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.ilvl (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_ilvl")
-	vars.hwnd.settings.ilvl := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo enable item-level" : "lang unavailable||")] := hwnd
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_highlight")
@@ -1433,7 +1440,7 @@ Settings_iteminfo()
 		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier" vars.poe_version . handle] := hwnd
 	}
 
-	If settings.iteminfo.ilvl
+	If (settings.iteminfo.affixinfo = 2)
 		Loop 8
 		{
 			If (A_Index = 1)
@@ -1580,16 +1587,12 @@ Settings_iteminfo2(cHWND)
 		settings.iteminfo.itembase := LLK_ControlGet(cHWND)
 		IniWrite, % settings.iteminfo.itembase, % "ini" vars.poe_version "\item-checker.ini", settings, enable base-info
 	}
-	Else If (check = "ilvl")
+	Else If InStr(check, "affixinfo_")
 	{
-		If (settings.general.lang_client != "english")
-		{
-			GuiControl,, % cHWND, 0
-			Return
-		}
-		settings.iteminfo.ilvl := LLK_ControlGet(cHWND)
-		IniWrite, % settings.iteminfo.ilvl, % "ini" vars.poe_version "\item-checker.ini", settings, enable item-levels
-		Settings_menu("item-info")
+		previous := settings.iteminfo.affixinfo
+		IniWrite, % (settings.iteminfo.affixinfo := control), % "ini" vars.poe_version "\item-checker.ini", settings, affix-info
+		If InStr(previous . control, 2)
+			Settings_menu("item-info")
 	}
 	Else If InStr(check, "marking_")
 	{

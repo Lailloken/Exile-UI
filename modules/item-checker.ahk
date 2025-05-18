@@ -12,7 +12,7 @@
 	settings.iteminfo.profile := !Blank(check := ini.settings["current profile"]) ? check : 1
 	settings.iteminfo.modrolls := !Blank(check := ini.settings["hide roll-ranges"]) ? check : 0
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
-	settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
+	;settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
@@ -20,6 +20,7 @@
 	;settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
 	settings.iteminfo.roll_range := !Blank(check := ini.settings["roll range"]) ? check : ((check1 := ini.settings["tier bars"]) ? check1 : 2)
 	settings.iteminfo.qual_scaling := !Blank(check := ini.settings["quality scaling"]) ? check : 0
+	settings.iteminfo.affixinfo := !Blank(check := ini.settings["affix-info"]) ? check : (ini.settings["enable item-levels"] ? 2 : 1)
 
 	settings.iteminfo.rules := {}
 	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
@@ -315,7 +316,7 @@ Iteminfo_Stats()
 
 	For class, class_val in db.item_bases ;parse through the item-databases to get relevant information
 	{
-		If !item.itembase && !InStr(item.class, "heist") || !(settings.iteminfo.itembase || settings.iteminfo.ilvl)
+		If !item.itembase && !InStr(item.class, "heist") || !(settings.iteminfo.itembase || settings.iteminfo.affixinfo = 2)
 			Break
 		If (item.class = class)
 		{
@@ -1421,7 +1422,7 @@ Iteminfo_GUI()
 		affix_type := InStr(A_LoopField, " Prefix Modifier ") ? "prefix" : "?", affix_type := InStr(A_LoopField, " Suffix Modifier ") ? "suffix" : affix_type
 		search_class := InStr(item.class, " Flasks") ? "flasks" : IsObject(item.cluster) ? "cluster jewels" : item.class ;flasks and cluster-jewels need to be handled differently when looked up in the databases
 
-		If settings.iteminfo.ilvl && (item.class != "base jewels") ;if item-levels are enabled, look them up in the databases
+		If (settings.iteminfo.affixinfo = 2) && (item.class != "base jewels") ;if item-levels are enabled, look them up in the databases
 		{
 			ilvl := "??" ;set placeholder ilvl
 			If !IsObject(db.item_mods)
@@ -1547,18 +1548,18 @@ Iteminfo_GUI()
 							Continue 2
 					}
 
-					max_tier := max
+					max_tier0 := max
 					For i, tag in oModName[iTier].4
 						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 						{
 							While LLK_HasVal(oModName[max + 1].4, tag)
-								max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
+								max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 							While oModName[max + 1]
 							{
 								For i, tag0 in oModName[max + 1].4
 									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
 									{
-										max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
+										max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 										Continue 2
 									}
 								Break
@@ -1578,15 +1579,16 @@ Iteminfo_GUI()
 							}
 
 							minimum_rolls := oModName[min].3.Clone()
-							maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier) ? max_tier : max].3.Clone()
+							maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].3.Clone()
 
 							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 								ilvl := oModName[iTier].2
 							If tier_override
-								tier_override := "conflict", ilvl := "??"
+								tier_override := "conflict", ilvl := "??", max_tier := 0
 							Else 
 							{
-								tier_override := max + 1 - iTier 
+								tier_override := max + 1 - iTier
+								max_tier := max + 1 - max_tier0
 								;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
 								;	tier_override .= "/" max + 1 - max_tier
 							}
@@ -1608,18 +1610,18 @@ Iteminfo_GUI()
 								Continue 2
 						}
 
-						max_tier := max
+						max_tier0 := max
 						For i, tag in oModName[iTier].4
 							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
 							{
 								While LLK_HasVal(oModName[max + 1].4, tag)
-									max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
+									max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 								While oModName[max + 1]
 								{
 									For i, tag0 in oModName[max + 1].4
 										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
 										{
-											max_tier += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
+											max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
 											Continue 2
 										}
 									Break
@@ -1639,15 +1641,16 @@ Iteminfo_GUI()
 								}
 	
 								minimum_rolls := oModName[min].3.Clone()
-								maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier) ? max_tier : max].3.Clone()
+								maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].3.Clone()
 
 								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 									ilvl := oModName[iTier].2
 								If tier_override
-									tier_override := "conflict", ilvl := "??"
+									tier_override := "conflict", ilvl := "??", max_tier := 0
 								Else 
 								{
 									tier_override := max + 1 - iTier 
+									max_tier := max + 1 - max_tier0
 									;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
 									;	tier_override .= "/" max + 1 - max_tier
 								}
@@ -1774,39 +1777,45 @@ Iteminfo_GUI()
 				Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 			}
 
+			affixinfo := settings.iteminfo.affixinfo
 			label := Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) ? Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
-			width := (label || settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??") ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
+			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
 
 			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border 0x200 Center c" (color = "black" ? "White" : color_t), % tier ;add tier-cell
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack c"color, 100
 			Gui, %GUI_name%: Font, norm
 
-			If (width < UI.wSegment) && (label || settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??") ;divide tier-cell if necessary (to add icon/ilvl)
+			If (width < UI.wSegment) && (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ;divide tier-cell if necessary (to add icon/ilvl)
 			{
 				If !vars.pics.iteminfo[label]
 					vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png")
 
 				If (height <= UI.hSegment) ;if the mod is single-line, enforce standardized height for the cell
 				{
-					If (settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??")
+					If (affixinfo = 2 && item.class != "base jewels" && ilvl != "??")
 						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " wp Border Center BackgroundTrans HWNDhwnd c" ;cont
 						. (ilvl >= settings.iteminfo.ilevels.1 && (settings.iteminfo.colors_ilvl.1 = "ffffff") ? "Red" : "Black"), % ilvl ;add ilvl-cell
-					Else Gui, %GUI_name%: Add, Picture, % "ys h"UI.hSegment-2 " w-1 Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
+					Else If (label && affixinfo = 1)
+						Gui, %GUI_name%: Add, Picture, % "ys h"UI.hSegment-2 " w-1 Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
+					Else If (affixinfo = 3 && max_tier)
+						Gui, %GUI_name%: Add, Text, % "ys h" UI.hSegment " wp Border Center BackgroundTrans HWNDhwnd", % max_tier
 				}
 				Else ;if the mod is multi-line, add a taller cell
 				{
-					If (settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??")
+					If (affixinfo = 2 && item.class != "base jewels" && ilvl != "??")
 						Gui, %GUI_name%: Add, Text, % "x+0 wp hp 0x200 Center Border BackgroundTrans HWNDhwnd c"
 						. (ilvl >= settings.iteminfo.ilevels.1 && (settings.iteminfo.colors_ilvl.1 = "ffffff") ? "Red" : "Black"), % ilvl ;add ilvl-cell
-					Else
+					Else If (label && affixinfo = 1)
 					{
 						Gui, %GUI_name%: Add, Text, % "x+0 wp hp Border BackgroundTrans HWNDhwnd", ;add dummy text-panel with borders (can't use icon's borders for taller cells)
 						Gui, %GUI_name%: Add, Picture, % "xp+1 yp+"height/2 - UI.hSegment/2 + 1 " BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
 					}
+					Else If (affixinfo = 3 && max_tier)
+						Gui, %GUI_name%: Add, Text, % "x+0 wp hp 0x200 Border Center BackgroundTrans HWNDhwnd", % max_tier
 				}
 				ControlGetPos, x, y,,,, % "ahk_id " hwnd ;get the cells coordinates to place progress-control right onto it (can't use xp yp in cases with taller cells that also contain an icon)
-				If (settings.iteminfo.ilvl && item.class != "base jewels" && ilvl != "??") && !InStr(A_LoopField, " (fractured)") ;get the correct color for the ilvl (unless the mod is fractured)
+				If (affixinfo = 2 && item.class != "base jewels" && ilvl != "??") && !InStr(A_LoopField, " (fractured)") ;get the correct color for the ilvl (unless the mod is fractured)
 				{
 					For index, level in settings.iteminfo.ilevels
 						If (ilvl >= level)
