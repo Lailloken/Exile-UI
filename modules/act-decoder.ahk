@@ -299,6 +299,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	Gui_CheckBounds(xPos, yPos, w, h)
 	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + xPos " y" vars.monitor.y + yPos
 	LLK_Overlay(actdecoder_zones, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+	Return 1
 }
 
 Actdecoder_ZoneLayoutsSize(hotkey)

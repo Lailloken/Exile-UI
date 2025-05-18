@@ -65,7 +65,7 @@
 		Return
 
 	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
-	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" settings.hotkeys.item_descriptions : "*~ALT", Hotkeys_Alt, On
+	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" Hotkeys_Convert(settings.hotkeys.item_descriptions) : "*~" Hotkeys_Convert("ALT"), Hotkeys_Alt, On
 }
 
 Hotkeys_Alt()
@@ -338,7 +338,8 @@ Hotkeys_Tab()
 	While settings.features.actdecoder && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
-			active .= " actdecoder", vars.actdecoder.tab := 1, Actdecoder_ZoneLayouts()
+			If (vars.actdecoder.tab := Actdecoder_ZoneLayouts())
+				active .= " actdecoder"
 			Break
 		}
 
