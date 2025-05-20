@@ -2754,9 +2754,9 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	{
 		If !vars.poe_version
 			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "statlas"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
-			vars.settings.sections2.Push(Lang_Trans("ms_" val))
+			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
 
 	If !Blank(LLK_HasVal(vars.hwnd.settings, section))
@@ -2811,7 +2811,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
 			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
 			color := (val = "donations") ? " cCCCC00" : color
-			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.3 . color, % " " Lang_Trans("ms_" val) " "
+			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.3 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1) " "
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 BackgroundBlack cBlack", 100
 			vars.hwnd.settings[val] := hwnd, vars.hwnd.settings["background_"val] := hwnd1
 			If (val = "donations")
@@ -3345,18 +3345,21 @@ Settings_sanctum()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-Planner">wiki page</a>
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 y+" vars.settings.spacing " Checked" settings.features.sanctum, % Lang_Trans("m_sanctum_enable")
+	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 y+" vars.settings.spacing " Checked" settings.features.sanctum, % Lang_Trans("m_sanctum_enable", vars.poe_version ? 2 : 1)
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_sanctum enable"] := hwnd
 
 	If !settings.features.sanctum
 		Return
 
-	Gui, %GUI%: Font, underline bold
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
-	Gui, %GUI%: Font, norm
-
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.cheatsheet, % Lang_Trans("m_sanctum_cheatsheets")
-	vars.hwnd.settings.cheatsheet := vars.hwnd.help_tooltips["settings_sanctum cheatsheet"] := hwnd
+	If !vars.poe_version
+	{
+		Gui, %GUI%: Font, underline bold
+		Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
+		Gui, %GUI%: Font, norm
+	
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.cheatsheet, % Lang_Trans("m_sanctum_cheatsheets")
+		vars.hwnd.settings.cheatsheet := vars.hwnd.help_tooltips["settings_sanctum cheatsheet"] := hwnd
+	}
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
@@ -3379,12 +3382,12 @@ Settings_sanctum2(cHWND := "")
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 	If (check = "enable")
 	{
-		IniWrite, % (settings.features.sanctum := LLK_ControlGet(cHWND)), ini\config.ini, features, enable sanctum planner
+		IniWrite, % (settings.features.sanctum := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable sanctum planner
 		Settings_menu("sanctum")
 	}
 	Else If (check = "cheatsheet")
 	{
-		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), ini\sanctum.ini, settings, enable cheat-sheet
+		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "ini\sanctum.ini", settings, enable cheat-sheet
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
@@ -3399,10 +3402,13 @@ Settings_sanctum2(cHWND := "")
 			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.sanctum.fSize
 			Sleep 200
 		}
-		IniWrite, % settings.sanctum.fSize, ini\sanctum.ini, settings, font-size
+		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "ini\sanctum.ini", settings, font-size
+		LLK_FontDimensions(settings.sanctum.fSize, fHeight, fWidth), settings.sanctum.fWidth := fWidth, settings.sanctum.fHeight := fHeight
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
+		If WinExist("ahk_id " vars.hwnd.sanctum_relics.main)
+			Sanctum_Relics()
 	}
 	Else LLK_ToolTip("no action")
 

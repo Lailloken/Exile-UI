@@ -136,6 +136,8 @@ Hotkeys_ESC()
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
 	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
 		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
+	Else If vars.hwnd.sanctum_relics.main
+		Sanctum_Relics("close")
 	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
 		Gui, alarm_set: Destroy
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -308,6 +310,13 @@ Hotkeys_Tab()
 				Gui, % Gui_Name(val) ": -E0x20"
 				WinSet, Transparent, Off, % "ahk_id "val
 			}
+			Break
+		}
+
+	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13")  && GetKeyState(vars.hotkeys.tab, "P")
+		If (A_TickCount >= start + 200)
+		{
+			Sanctum_Relics(vars.hwnd.sanctum_relics.main ? "close" : "")
 			Break
 		}
 
@@ -498,6 +507,22 @@ SC039::Leveltracker_PobSkilltree("reset")
 *LButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 1)
 *RButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 2)
 *MButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 3, 1)
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse2.x.1, vars.sanctum.relics.coords.mouse2.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse2.y.1, vars.sanctum.relics.coords.mouse2.y.2)
+~LButton::Sanctum_Relics("alt")
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse3.x.1, vars.sanctum.relics.coords.mouse3.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse3.y.1, vars.sanctum.relics.coords.mouse3.y.2)
+~LButton::Sanctum_Relics("close")
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse.x.1, vars.sanctum.relics.coords.mouse.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse.y.1, vars.sanctum.relics.coords.mouse.y.2)
+RButton::Sanctum_RelicsClick()
+
+#If vars.hwnd.sanctum_relics.main && vars.general.cMouse && (vars.general.wMouse = vars.hwnd.sanctum_relics.main)
+LButton::
+RButton::Sanctum_Relics("click")
+
+#If vars.hwnd.sanctum_relics.main
+*~SC038::Sanctum_Relics("trans")
 
 #If vars.hwnd.stash_picker.main && vars.general.cMouse && WinExist("ahk_id " vars.hwnd.stash_picker.main) && LLK_PatternMatch(LLK_HasVal(vars.hwnd.stash_picker, vars.general.cMouse), "", ["confirm_", "bulk"])
 WheelUp::Stash_PricePicker("+")

@@ -134,6 +134,8 @@ DB_Load(database)
 	}
 	Else If (database = "legion")
 		db.legion := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\timeless jewels.json") ? settings.general.lang_client : "english") "\timeless jewels.json"))
+	Else If (database = "relics")
+		db.relics := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\[sanctum] relics" vars.poe_version ".json") ? settings.general.lang_client : "english") "\[sanctum] relics" vars.poe_version ".json"))
 }
 
 FormatSeconds(seconds, leading_zeroes := 1)  ; Convert the specified number of seconds to hh:mm:ss format.
