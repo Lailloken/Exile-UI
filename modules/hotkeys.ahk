@@ -316,6 +316,7 @@ Hotkeys_Tab()
 	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13")  && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
+			active .= " sanctum_relics"
 			Sanctum_Relics(vars.hwnd.sanctum_relics.main ? "close" : "")
 			Break
 		}
