@@ -3343,7 +3343,7 @@ Settings_sanctum()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-Planner">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Sanctum-and-Sekhema-Planner">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 y+" vars.settings.spacing " Checked" settings.features.sanctum, % Lang_Trans("m_sanctum_enable", vars.poe_version ? 2 : 1)
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_sanctum enable"] := hwnd
