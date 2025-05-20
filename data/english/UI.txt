@@ -68,6 +68,7 @@
 		ms_map-info			=	"map-info"
 		ms_minor qol tools		=	"minor qol tools"
 		ms_sanctum			=	"sanctum planner"
+		ms_sanctum			=	"sekhema planner"
 		ms_screen-checks		=	"screen-checks"
 		ms_search-strings		=	"search-strings"
 		ms_stash-ninja			=	"stash-ninja"
@@ -973,6 +974,7 @@
 
 ;## these strings are displayed/required in the "sanctum planner" section of the settings menu
 		m_sanctum_enable		=	"enable the sanctum planner overlay"
+		m_sanctum_enable		=	"enable the sekhema planner overlay"
 		m_sanctum_cheatsheets		=	"show cheat-sheet"
 
 
