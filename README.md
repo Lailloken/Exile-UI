@@ -95,10 +95,11 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_002.png)
 <br>
 
-### [Sanctum Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-Planner): floor scanner & interactive planner/analysis overlay
-| potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
-|---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
+### [Sanctum/Sekhema Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-and-Sekhema-Planner): floor scanner & interactive planner/analysis overlay
+| | potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
+|---|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
+| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
 <br>
 
 ### [Context-menu](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features) for items: single-hotkey access to features and popular 3rd-party websites  
