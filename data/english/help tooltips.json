@@ -264,38 +264,54 @@
     ],
     "iteminfo omni-key": [
       "hold the omni-key while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
-      "click into the game or press <esc> to close it",
-      "(this is the default setting)"
+      "click into the game or press <esc> to close it"
     ],
     "iteminfo alt-key": [
-      "hold <alt> while hovering over items to activate the tooltip",
-      "the tooltip will close automatically once you release <alt>",
+      "hold <alt> while hovering over items to activate the tooltip: the tooltip will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
       "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
     "iteminfo modrolls": [
-      "hides the min/max range on explicit mods",
+      "hide the min/max range on explicit mods",
       "+89 to maximum life\nvs.\n+89(80-89) to maximum Life"
     ],
     "iteminfo modbars tier": [
       "roll-ranges in mod-texts and on bars will represent the roll within the current tier, i.e. the divine orb range",
-      "(this is the default setting)"
+      "example, t2 movement speed:\n30% inc. movement speed"
     ],
     "iteminfo modbars global": [
-      "roll-ranges in mod-texts and on bars will represent the roll on a global scale",
-      "0 to 100 on the bars and (x-y) in mod-texts represent the worst to best possible roll that can ever exist on this specific item"
+      "roll-ranges in mod-texts and on bars will represent the roll on a global scale, i.e. from worst to best possible roll",
+      "example, t2 movement speed:\n30%(10-35) inc. movement speed"
+    ],
+    "iteminfo modbars ilevel": [
+      "roll-ranges in mod-texts and on bars will represent the roll on an ilvl scale, i.e. from worst to best possible roll within the given ilvl",
+      "example, t2 movement speed on ilvl 74 boots:\n30%(10-30) inc. movement speed"
     ],
     "iteminfo quality scaling": [
-      "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes"
+      "shows an additional line at the bottom with defense/damage values after applying quality and greater iron runes",
+      "this can be used to preview a crafted/looted item's theoretical max values"
     ],
     "iteminfo shift-click": [
-      "automatically refreshes the tooltip when applying currency to items via shift-click",
-      "you have to hold <shift> first, right click currency, and then click items",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu"
+      "automatically refreshes/activates the tooltip when applying currency to items via shift-click",
+      "you have to hold <shift> first, right click currency, and then click items"
     ],
     "iteminfo league-start": [
       "adds a section where the item's stats are compared to your current gear",
       "this section replaces the base-stats section and requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu"
+    ],
+    "iteminfo affix-info icon": [
+      "the last column will show an icon for the mod-group of an affix (if available)"
+    ],
+    "iteminfo affix-info ilvl": [
+      "the last column will show the ilvl requirement for each affix, which exposes high-tier but low-lvl mods",
+      "this option caters more to advanced users because it adds even more information"
+    ],
+    "iteminfo affix-info max tier": [
+      "the last column will show the maximum tier possible at the item's current ilvl",
+      "this can be used to check how close affixes are to the ilvl-restricted maximum tier"
+    ],
+    "iteminfo affix-info off": [
+      "don't show any information about affixes in the last column"
     ],
     "iteminfo base-info": [
       "adds a section that shows how the item's stats compare to the best-in-class stats",
@@ -303,10 +319,6 @@
     ],
     "iteminfo base-info 2": [
       "adds a section that shows how the item's stats compare to the best-in-class stats"
-    ],
-    "iteminfo enable item-level": [
-      "adds the ilvl requirement to each mod, which exposes high-tier but low-lvl mods",
-      "this option caters more to advanced users because it adds even more information"
     ],
     "iteminfo marking global": [
       "colors used to highlight globally (un)desired mods",
@@ -330,7 +342,7 @@
     ],
     "iteminfo override": [
       "tiers/ilvl on undesired mods (except fractured) will be highlighted by the <undesired> color instead of the usual color",
-      "this will also hide icons on undesired mods to improve visual clarity"
+      "this will also hide the last column on undesired mods to improve visual clarity"
     ],
     "iteminfo rules": [
       "single-click solution to mark larger mod groups as (un)desired",
@@ -582,12 +594,10 @@
     ],
     "mapinfo omni-key": [
       "press the omni-key while hovering over maps/waystones to activate the panel",
-      "click into the game or press <esc> to close it",
-      "(this is the default setting)"
+      "click into the game or press <esc> to close it"
     ],
     "mapinfo alt-key": [
-      "hold <alt> while hovering over maps/waystones to activate the panel",
-      "the panel will close automatically once you release <alt>",
+      "hold <alt> while hovering over maps/waystones to activate the panel: the panel will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
       "note: this setting might interfere with other 3rd-party tools(/underline)"
     ],
@@ -680,8 +690,8 @@
       "check the links above if you want to use special keys/combinations"
     ],
     "sanctum enable": [
-      "analyzes rooms and connections on the sanctum map and provides tools for highlighting and planning",
-      "hold <tab> during a sanctum run to show the overlay, it will hide upon release",
+      "analyzes rooms and connections on the map and provides tools for highlighting and planning",
+      "hold <tab> during a run to show the overlay, it will hide upon release",
       "press space while holding tab to lock the overlay so it doesn't automatically hide"
     ],
     "sanctum cheatsheet": [
@@ -1261,6 +1271,39 @@
     ],
     "widget grouped": [
       "drag to combine every note into a single, scrollable widget"
+    ]
+  },
+  "sanctum": {
+    "calibrate paths": [
+      "click to open the snipping tool and calibrate the scanner for pathing: use right-click and wasd for more precise snipping",
+      "long-right-click to delete previous calibration data and start over"
+    ],
+    "calibrate rooms": [
+      "click to open the snipping tool and calibrate the scanner for room count and positions",
+      "long-right-click to delete previous calibration data and start over"
+    ],
+    "general": [
+      "press <space> to lock the overlay so it doesn't automatically hide\npress <esc> to close it",
+      "click a room to mark it as a target room:\ngreen highlighting will show the available pathing",
+      "right-click one or more rooms you want to avoid:\npurple highlighting will show the pathing you need to avoid, and black highlighting will show which rooms will become completely blocked",
+      "middle-click a room to treat it as the current room:\nevery room that is no longer relevant will be blacked out. you can also hold middle-click and hover back and forth between rooms."
+    ],
+    "scan": [
+      "click to scan the map, long-right-click to view the scan result"
+    ]
+  },
+  "sanctumrelics": {
+    "general": [
+      "right-click relics to load them into the grid",
+      "note: always move the cursor to the top-left corner of the relic(/underline)",
+      "hold <alt> to temporarily hide boxes\npress <esc> to close the overlay: it will also close when clicking <confirm> in game"
+    ],
+    "mods": [
+      "click up to 2 mods to highlight corresponding relics",
+      "right-click mods to highlight corresponding relics in the in-game stash"
+    ],
+    "clear": [
+      "long-click to clear the grid and mod-list"
     ]
   },
   "screenchecks": {

@@ -17,8 +17,11 @@
 	Gui, %GUI%: Font, norm
 
 	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
-	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
-	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
+	If vars.poe_version
+	{
+		Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
+		vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
+	}
 
 	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
 	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd
@@ -1329,7 +1332,7 @@ Settings_iteminfo()
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_profiles")
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "xs Section Center HWNDhwnd0", % Lang_Trans("m_iteminfo_profiles", 2)
+	;Gui, %GUI%: Add, Text, % "xs Section Center HWNDhwnd0", % Lang_Trans("m_iteminfo_profiles", 2)
 	Loop 5
 	{
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/(A_Index = 1 ? 2 : 4) " Center Border HWNDhwnd gSettings_iteminfo2 c"(InStr(settings.iteminfo.profile, A_Index) ? "Fuchsia" : "White"), % " " A_Index " "
@@ -1349,13 +1352,7 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" settings.iteminfo.omnikey, % "omni-key"
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2 Checked" !settings.iteminfo.omnikey, % "alt"
-	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_iteminfo omni-key"] := hwnd1
-	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_iteminfo alt-key"] := hwnd2
-
-	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd0", % Lang_Trans("global_font")
+	Gui, %GUI%: Add, Text, % "ys Center BackgroundTrans HWNDhwnd0", % Lang_Trans("global_font")
 	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center gSettings_iteminfo2 Border HWNDhwnd w"settings.general.fWidth*2, % "–"
 	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
 	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center gSettings_iteminfo2 Border HWNDhwnd w"settings.general.fWidth*3, % settings.iteminfo.fSize
@@ -1363,25 +1360,45 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center gSettings_iteminfo2 Border HWNDhwnd w"settings.general.fWidth*2, % "+"
 	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.trigger, % Lang_Trans("m_iteminfo_shift")
-	vars.hwnd.settings.trigger := hwnd, vars.hwnd.help_tooltips["settings_iteminfo shift-click"] := hwnd
+	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" settings.iteminfo.omnikey, % "omni"
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2 Checked" !settings.iteminfo.omnikey, % "alt"
+	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_iteminfo omni-key"] := hwnd1
+	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_iteminfo alt-key"] := hwnd2
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("m_iteminfo_modrolls")
-	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.trigger, % Lang_Trans("m_iteminfo_shift")
+	vars.hwnd.settings.trigger := hwnd, vars.hwnd.help_tooltips["settings_iteminfo shift-click"] := hwnd
 
 	If vars.poe_version
 	{
 		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_iteminfo_modbars")
-		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd gSettings_iteminfo2 Checked" settings.iteminfo.bars_tier, % Lang_Trans("global_tier")
-		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" !settings.iteminfo.bars_tier, % Lang_Trans("global_global")
-		vars.hwnd.settings.bars_tier := vars.hwnd.help_tooltips["settings_iteminfo modbars tier"] := hwnd
-		vars.hwnd.settings.bars_tier2 := vars.hwnd.help_tooltips["settings_iteminfo modbars global"] := hwnd1
+		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd gSettings_iteminfo2 Checked" (settings.iteminfo.roll_range = 1 ? 1 : 0), % Lang_Trans("global_tier")
+		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" (settings.iteminfo.roll_range = 2 ? 1 : 0), % Lang_Trans("global_global")
+		Gui, %GUI%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2 Checked" (settings.iteminfo.roll_range = 3 ? 1 : 0), % Lang_Trans("global_ilvl")
+		vars.hwnd.settings.roll_range1 := vars.hwnd.help_tooltips["settings_iteminfo modbars tier"] := hwnd
+		vars.hwnd.settings.roll_range2 := vars.hwnd.help_tooltips["settings_iteminfo modbars global"] := hwnd1
+		vars.hwnd.settings.roll_range3 := vars.hwnd.help_tooltips["settings_iteminfo modbars ilevel"] := hwnd2
+	}
 
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("global_hide")
+	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
+
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_iteminfo_affixinfo")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd Checked" (settings.iteminfo.affixinfo = 1 ? 1 : 0), % Lang_Trans("global_icon")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd1 Checked" (settings.iteminfo.affixinfo = 2 ? 1 : 0), % Lang_Trans("global_ilvl")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd2 Checked" (settings.iteminfo.affixinfo = 3 ? 1 : 0), % Lang_Trans("m_iteminfo_maxtier")
+	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd3 Checked" (settings.iteminfo.affixinfo = 0 ? 1 : 0), % Lang_Trans("global_off")
+	vars.hwnd.settings["affixinfo_1"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info icon"] := hwnd
+	vars.hwnd.settings["affixinfo_2"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info ilvl"] := hwnd1
+	vars.hwnd.settings["affixinfo_3"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info max tier"] := hwnd2
+	vars.hwnd.settings["affixinfo_0"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info off"] := hwnd3
+
+	If vars.poe_version
+	{
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked" settings.iteminfo.qual_scaling, % Lang_Trans("m_iteminfo_quality")
 		vars.hwnd.settings.qual_scaling := hwnd, vars.hwnd.help_tooltips["settings_iteminfo quality scaling"] := hwnd
 	}
-
-	If !vars.poe_version
+	Else
 	{
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.compare (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_league")
 		vars.hwnd.settings.compare := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo league-start" : "lang unavailable") ] := hwnd
@@ -1391,9 +1408,6 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.itembase, % Lang_Trans("m_iteminfo_base")
 		vars.hwnd.settings.itembase := hwnd, vars.hwnd.help_tooltips["settings_iteminfo base-info" vars.poe_version] := hwnd
 	}
-
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.ilvl (settings.general.lang_client != "english" ? " cGray" : ""), % Lang_Trans("m_iteminfo_ilvl")
-	vars.hwnd.settings.ilvl := hwnd, vars.hwnd.help_tooltips["settings_" (settings.general.lang_client = "english" ? "iteminfo enable item-level" : "lang unavailable||")] := hwnd
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_highlight")
@@ -1426,7 +1440,7 @@ Settings_iteminfo()
 		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier" vars.poe_version . handle] := hwnd
 	}
 
-	If settings.iteminfo.ilvl
+	If (settings.iteminfo.affixinfo = 2)
 		Loop 8
 		{
 			If (A_Index = 1)
@@ -1552,8 +1566,8 @@ Settings_iteminfo2(cHWND)
 		IniWrite, % (settings.iteminfo.modrolls := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, hide roll-ranges
 	Else If (check = "qual_scaling")
 		IniWrite, % (settings.iteminfo.qual_scaling := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\item-checker.ini", settings, quality scaling
-	Else If InStr(check, "bars_tier")
-		IniWrite, % (settings.iteminfo.bars_tier := LLK_ControlGet(vars.hwnd.settings.bars_tier)), % "ini" vars.poe_version "\item-checker.ini", settings, tier bars
+	Else If InStr(check, "roll_range")
+		IniWrite, % (settings.iteminfo.roll_range := SubStr(check, 0)), % "ini" vars.poe_version "\item-checker.ini", settings, roll range
 	Else If (check = "compare")
 	{
 		If (settings.general.lang_client != "english")
@@ -1573,16 +1587,12 @@ Settings_iteminfo2(cHWND)
 		settings.iteminfo.itembase := LLK_ControlGet(cHWND)
 		IniWrite, % settings.iteminfo.itembase, % "ini" vars.poe_version "\item-checker.ini", settings, enable base-info
 	}
-	Else If (check = "ilvl")
+	Else If InStr(check, "affixinfo_")
 	{
-		If (settings.general.lang_client != "english")
-		{
-			GuiControl,, % cHWND, 0
-			Return
-		}
-		settings.iteminfo.ilvl := LLK_ControlGet(cHWND)
-		IniWrite, % settings.iteminfo.ilvl, % "ini" vars.poe_version "\item-checker.ini", settings, enable item-levels
-		Settings_menu("item-info")
+		previous := settings.iteminfo.affixinfo
+		IniWrite, % (settings.iteminfo.affixinfo := control), % "ini" vars.poe_version "\item-checker.ini", settings, affix-info
+		If InStr(previous . control, 2)
+			Settings_menu("item-info")
 	}
 	Else If InStr(check, "marking_")
 	{
@@ -2744,9 +2754,9 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	{
 		If !vars.poe_version
 			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "statlas"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
-			vars.settings.sections2.Push(Lang_Trans("ms_" val))
+			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
 
 	If !Blank(LLK_HasVal(vars.hwnd.settings, section))
@@ -2801,7 +2811,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
 			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
 			color := (val = "donations") ? " cCCCC00" : color
-			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.3 . color, % " " Lang_Trans("ms_" val) " "
+			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.3 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1) " "
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 BackgroundBlack cBlack", 100
 			vars.hwnd.settings[val] := hwnd, vars.hwnd.settings["background_"val] := hwnd1
 			If (val = "donations")
@@ -3333,20 +3343,23 @@ Settings_sanctum()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-Planner">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Sanctum-and-Sekhema-Planner">wiki page</a>
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 y+" vars.settings.spacing " Checked" settings.features.sanctum, % Lang_Trans("m_sanctum_enable")
+	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 y+" vars.settings.spacing " Checked" settings.features.sanctum, % Lang_Trans("m_sanctum_enable", vars.poe_version ? 2 : 1)
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_sanctum enable"] := hwnd
 
 	If !settings.features.sanctum
 		Return
 
-	Gui, %GUI%: Font, underline bold
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
-	Gui, %GUI%: Font, norm
-
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.cheatsheet, % Lang_Trans("m_sanctum_cheatsheets")
-	vars.hwnd.settings.cheatsheet := vars.hwnd.help_tooltips["settings_sanctum cheatsheet"] := hwnd
+	If !vars.poe_version
+	{
+		Gui, %GUI%: Font, underline bold
+		Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
+		Gui, %GUI%: Font, norm
+	
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.cheatsheet, % Lang_Trans("m_sanctum_cheatsheets")
+		vars.hwnd.settings.cheatsheet := vars.hwnd.help_tooltips["settings_sanctum cheatsheet"] := hwnd
+	}
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
@@ -3369,12 +3382,12 @@ Settings_sanctum2(cHWND := "")
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 	If (check = "enable")
 	{
-		IniWrite, % (settings.features.sanctum := LLK_ControlGet(cHWND)), ini\config.ini, features, enable sanctum planner
+		IniWrite, % (settings.features.sanctum := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable sanctum planner
 		Settings_menu("sanctum")
 	}
 	Else If (check = "cheatsheet")
 	{
-		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), ini\sanctum.ini, settings, enable cheat-sheet
+		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "ini\sanctum.ini", settings, enable cheat-sheet
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
@@ -3389,10 +3402,13 @@ Settings_sanctum2(cHWND := "")
 			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.sanctum.fSize
 			Sleep 200
 		}
-		IniWrite, % settings.sanctum.fSize, ini\sanctum.ini, settings, font-size
+		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "ini\sanctum.ini", settings, font-size
+		LLK_FontDimensions(settings.sanctum.fSize, fHeight, fWidth), settings.sanctum.fWidth := fWidth, settings.sanctum.fHeight := fHeight
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
+		If WinExist("ahk_id " vars.hwnd.sanctum_relics.main)
+			Sanctum_Relics()
 	}
 	Else LLK_ToolTip("no action")
 

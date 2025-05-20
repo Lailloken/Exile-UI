@@ -43,7 +43,6 @@
     [
       "optional: (img:ring) in sarcophagus (mini-map) near a (img:checkpoint)",
       "kill 2_bosses in areaidg1_8 & areaidg1_9 ;; mausoleum of the praetor & tomb of the consort",
-      "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidg1_7 ;; cemetery of the eternals",
       "talk to and kill lachlann for (quest:ring), enter areaidg1_11 ;; hunting grounds"
     ],
     [
@@ -412,7 +411,7 @@
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
-      "find the (quest:dagger) and table, then place the heart and stab it",
+      "find the (quest:dagger) and table, then place the (quest:heart) and stab it",
       "(hint)____ usually directly (img:0) of the plaza, but you have to go around (img:6)",
       "find and enter (img:checkpoint) areaidg3_17 ;; the black chambers",
       "(hint)____ usually (img:7) of the table"
@@ -470,7 +469,6 @@
     [
       "optional: (img:ring) in sarcophagus (mini-map) near a (img:checkpoint)",
       "kill 2_bosses in areaidc_g1_8 & areaidc_g1_9 ;; mausoleum of the praetor & tomb of the consort",
-      "(hint)____ after the arena:2nd_boss: (img:portal) to town, then (img:waypoint) to areaidc_g1_7 ;; cemetery of the eternals",
       "talk to and kill lachlann for (quest:ring), enter areaidc_g1_11 ;; hunting grounds"
     ],
     [
@@ -726,7 +724,7 @@
     ],
     [
       "find the plaza and the (img:checkpoint), farm for (quest:heart) if needed",
-      "find the (quest:dagger) and table, then place the heart and stab it",
+      "find the (quest:dagger) and table, then place the (quest:heart) and stab it",
       "(hint)____ usually directly (img:0) of the plaza, but you have to go around (img:6)",
       "find and enter (img:checkpoint) areaidc_g3_17 ;; the black chambers",
       "(hint)____ usually (img:7) of the table"

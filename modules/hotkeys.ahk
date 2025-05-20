@@ -65,7 +65,7 @@
 		Return
 
 	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
-	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" settings.hotkeys.item_descriptions : "*~ALT", Hotkeys_Alt, On
+	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" Hotkeys_Convert(settings.hotkeys.item_descriptions) : "*~" Hotkeys_Convert("ALT"), Hotkeys_Alt, On
 }
 
 Hotkeys_Alt()
@@ -136,6 +136,8 @@ Hotkeys_ESC()
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
 	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
 		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
+	Else If vars.hwnd.sanctum_relics.main
+		Sanctum_Relics("close")
 	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
 		Gui, alarm_set: Destroy
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -311,6 +313,14 @@ Hotkeys_Tab()
 			Break
 		}
 
+	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13")  && GetKeyState(vars.hotkeys.tab, "P")
+		If (A_TickCount >= start + 200)
+		{
+			active .= " sanctum_relics"
+			Sanctum_Relics(vars.hwnd.sanctum_relics.main ? "close" : "")
+			Break
+		}
+
 	While settings.features.sanctum && InStr(vars.log.areaID, "sanctum") && !InStr(vars.log.areaID, "fellshrine") && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
@@ -338,7 +348,8 @@ Hotkeys_Tab()
 	While settings.features.actdecoder && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
-			active .= " actdecoder", vars.actdecoder.tab := 1, Actdecoder_ZoneLayouts()
+			If (vars.actdecoder.tab := Actdecoder_ZoneLayouts())
+				active .= " actdecoder"
 			Break
 		}
 
@@ -497,6 +508,22 @@ SC039::Leveltracker_PobSkilltree("reset")
 *LButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 1)
 *RButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 2)
 *MButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 3, 1)
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse2.x.1, vars.sanctum.relics.coords.mouse2.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse2.y.1, vars.sanctum.relics.coords.mouse2.y.2)
+~LButton::Sanctum_Relics("alt")
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse3.x.1, vars.sanctum.relics.coords.mouse3.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse3.y.1, vars.sanctum.relics.coords.mouse3.y.2)
+~LButton::Sanctum_Relics("close")
+
+#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse.x.1, vars.sanctum.relics.coords.mouse.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse.y.1, vars.sanctum.relics.coords.mouse.y.2)
+RButton::Sanctum_RelicsClick()
+
+#If vars.hwnd.sanctum_relics.main && vars.general.cMouse && (vars.general.wMouse = vars.hwnd.sanctum_relics.main)
+LButton::
+RButton::Sanctum_Relics("click")
+
+#If vars.hwnd.sanctum_relics.main
+*~SC038::Sanctum_Relics("trans")
 
 #If vars.hwnd.stash_picker.main && vars.general.cMouse && WinExist("ahk_id " vars.hwnd.stash_picker.main) && LLK_PatternMatch(LLK_HasVal(vars.hwnd.stash_picker, vars.general.cMouse), "", ["confirm_", "bulk"])
 WheelUp::Stash_PricePicker("+")

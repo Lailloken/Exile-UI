@@ -26,7 +26,7 @@
 	settings.actdecoder.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
-	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
+	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) && vars.poe_version ? check : 0
 }
 
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
@@ -104,9 +104,9 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Else vars.actdecoder.zone_layouts[vars.log.areaID][control].Push(flip)
 			}
 		}
-		Else If (click = 1) && !InStr(check, " x") && !vars.actdecoder.zone_layouts[vars.log.areaID].subzone && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, "c_") " " pic "_*")
+		Else If (click = 1) && !InStr(check, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, "c_") " " pic "_*")
 		{
-			vars.actdecoder.zone_layouts[vars.log.areaID] := {"subzone": pic, (pic): vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()}
+			vars.actdecoder.zone_layouts[vars.log.areaID] := {"exclude": vars.actdecoder.zone_layouts[vars.log.areaID].exclude, "subzone": pic, (pic): vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()}
 			Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " " pic "_*"
 			{
 				file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
@@ -192,8 +192,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		{
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
-			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude) || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| vars.poe_version && (count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
+			|| vars.poe_version && (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
 			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
@@ -238,7 +238,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 	
-			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11|g1_4)") ;!InStr(A_LoopFileName, " x")
+			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11|g1_4)")
 			{
 				If !vars.pics.zone_layouts.rotate
 					vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
@@ -299,6 +299,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	Gui_CheckBounds(xPos, yPos, w, h)
 	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + xPos " y" vars.monitor.y + yPos
 	LLK_Overlay(actdecoder_zones, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+	Return 1
 }
 
 Actdecoder_ZoneLayoutsSize(hotkey)

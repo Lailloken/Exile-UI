@@ -76,6 +76,13 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_101.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_103.jpg) |
 <br>
 
+### [Act-Decoder](https://github.com/Lailloken/Exile-UI/wiki/Act%E2%80%90Decoder): campaign layout overlay  
+| | layout selection<br>based on indicators | advanced layouts | simple fallback |
+|---|---|---|---|
+| PoE1 |  |  | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) |
+| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_101.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
+<br>
+
 ### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja/bulk-exchange price-overlay & sale management
 | customizable price-tags and profiles | conversion rates & optional price history | (bulk-)sale management & bulk-exchange listings |
 |---|---|---|
@@ -88,10 +95,11 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_002.png)
 <br>
 
-### [Sanctum Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-Planner): floor scanner & interactive planner/analysis overlay
-| potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
-|---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
+### [Sanctum/Sekhema Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-and-Sekhema-Planner): floor scanner & interactive planner/analysis overlay
+| | potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
+|---|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
+| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
 <br>
 
 ### [Context-menu](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features) for items: single-hotkey access to features and popular 3rd-party websites  

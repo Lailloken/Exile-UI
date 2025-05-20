@@ -2018,7 +2018,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 
 	If InStr(mode, "init ")
 	{
-		version := SubStr(mode, InStr(mode, " ") + 1), dev := settings.general.dev
+		version := SubStr(mode, InStr(mode, " ") + 1), dev := settings.general.dev_env
 		If !FileExist(file := "data\global\[leveltracker] tree" vars.poe_version " " version ".json")
 		{
 			LLK_ToolTip(Lang_Trans("global_downloading"), 2,,,, "Yellow")

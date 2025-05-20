@@ -446,7 +446,7 @@ Init_general()
 	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
 	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
-	settings.features.sanctum := !vars.poe_version && !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
+	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
 	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
