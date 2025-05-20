@@ -84,10 +84,13 @@ Sanctum(cHWND := "", hotkey := 0)
 {
 	local
 	global vars, settings
-	static toggle := 0, dimensions := [], floors := !vars.poe_version ? ["cellar", "vaults", "nave", "crypt"] : ["sanctum_1", "sanctum_2", "sanctum_3", "sanctum_4"]
+	static toggle := 0, dimensions := [], floors
 
 	If vars.sanctum.scanning
 		Return
+
+	If !floors
+		floors := !vars.poe_version ? ["cellar", "vaults", "nave", "crypt"] : ["sanctum_1", "sanctum_2", "sanctum_3", "sanctum_4"]
 
 	If (cHWND = "close")
 	{
@@ -886,7 +889,7 @@ Sanctum_Scan(mode := "")
 		vars.sanctum.avoid := {}, vars.sanctum.avoids := {}, vars.sanctum.blocks := {}
 		If !vars.poe_version
 			vars.sanctum.floor := InStr(vars.log.areaID, "sanctumfoyer") ? SubStr(vars.log.areaID, InStr(vars.log.areaID, "_") + 1, 1) : floors[StrReplace(vars.log.areaID, "sanctum")]
-		Else vars.sanctum.floor := SubStr(vars.log.areaID, 7, 1)
+		Else vars.sanctum.floor := SubStr(vars.log.areaID, 9, 1)
 		IniWrite, % vars.sanctum.floor, % "ini" vars.poe_version "\sanctum.ini", data, floor
 		IniWrite, % """" json.dump(grid) """", % "ini" vars.poe_version "\sanctum.ini", data, grid snapshot
 	}
