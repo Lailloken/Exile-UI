@@ -124,7 +124,7 @@ Sanctum(cHWND := "", hotkey := 0)
 	}
 	Else If (cHWND = "trans")
 	{
-		WinSet, TransColor, Purple 20, % "ahk_id " vars.hwnd.sanctum.main
+		WinSet, TransColor, Purple 1, % "ahk_id " vars.hwnd.sanctum.main
 		KeyWait, LALT
 		WinSet, TransColor, Purple 125, % "ahk_id " vars.hwnd.sanctum.main
 		Return
