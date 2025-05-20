@@ -1,5 +1,13 @@
 [
   [
+	["1.58.3", 15803],
+	"may 20, 2025",
+	"fixes: amazon & ritualist ascendancy trees, sanctum planner couldn't be locked if act-decoder was enabled",
+	"act-decoder: added new advanced layouts for act 1",
+	"item-info: restructured settings, added new roll-range option, added customization for last column",
+	"sanctum/sekhema planner: added poe2 compatibility, greatly improved scan accuracy, added relic management feature"
+  ],
+  [
 	["1.58.2", 15802],
 	"may 8, 2025",
 	"act-tracker: rewrote many sections in poe2 guide, added toggle for optional loot/quests",
