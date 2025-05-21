@@ -181,7 +181,7 @@ HTTPtoVar(URL, mode := "URL", currency := "") ; taken from the AHK-wiki, adapted
 		array.1 := (SubStr(whr.ResponseText, 1, 1) . SubStr(whr.ResponseText, 0) != "{}") || InStr(whr.ResponseText, """error""") ? "" : json.Load(whr.ResponseText)
 		array.2 := limits, array.3 := status, array.4 := (status = 429) ? whr.GetResponseHeader("Retry-After") : ""
 	}
-	Return (mode = "URL" ? whr.ResponseText : array)
+	Return (mode = "URL" ? Trim(whr.ResponseText, " `r`n`t") : array)
 }
 
 IniBatchRead(file, section := "", encoding := "1200")
@@ -268,7 +268,7 @@ LLK_FileRead(file, keep_case := 0, encoding := "65001")
 	FileRead, read, % (!Blank(encoding) ? "*P" encoding " " : "") file
 	If !keep_case
 		StringLower, read, read
-	Return read
+	Return Trim(read, " `r`n`t")
 }
 
 LLK_HasKey(object, value, InStr := 0, case_sensitive := 0, all_results := 0, recurse := 0)
@@ -547,6 +547,8 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 			IniWrite, updater, % "ini" vars.poe_version "\config.ini", versions, reload settings
 		Return
 	}
+	Else version_check := Trim(version_check, " `r`n`t")
+
 	versions_live := Json.Load(version_check) ;load version-list into object
 	If versions_live.HasKey("hotfix")
 		versions_live._release.1 .= "." . (versions_live.hotfix < 10 ? "0" : "") . versions_live.hotfix
@@ -554,6 +556,8 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	vars.updater.skip := LLK_IniRead("ini" vars.poe_version "\config.ini", "versions", "skip", 0)
 
 	Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
+	changelog_check := changelog_check ? Trim(changelog_check, " `r`n`t") : ""
+
 	If (SubStr(changelog_check, 1, 1) . SubStr(changelog_check, 0) = "[]")
 	{
 		vars.updater.changelog := Json.Load(changelog_check)
