@@ -1380,17 +1380,20 @@ Settings_iteminfo()
 		vars.hwnd.settings.roll_range3 := vars.hwnd.help_tooltips["settings_iteminfo modbars ilevel"] := hwnd2
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans("global_hide")
+	Gui, %GUI%: Add, Checkbox, % (vars.poe_version ? "ys" : "Section xs") " gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.modrolls, % Lang_Trans((vars.poe_version ? "global_hide" : "m_iteminfo_hiderange"))
 	vars.hwnd.settings.modrolls := hwnd, vars.hwnd.help_tooltips["settings_iteminfo modrolls"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_iteminfo_affixinfo")
 	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd Checked" (settings.iteminfo.affixinfo = 1 ? 1 : 0), % Lang_Trans("global_icon")
 	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd1 Checked" (settings.iteminfo.affixinfo = 2 ? 1 : 0), % Lang_Trans("global_ilvl")
-	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd2 Checked" (settings.iteminfo.affixinfo = 3 ? 1 : 0), % Lang_Trans("m_iteminfo_maxtier")
+	If vars.poe_version
+	{
+		Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd2 Checked" (settings.iteminfo.affixinfo = 3 ? 1 : 0), % Lang_Trans("m_iteminfo_maxtier")
+		vars.hwnd.settings["affixinfo_3"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info max tier"] := hwnd2
+	}
 	Gui, %GUI%: Add, Radio, % "ys gSettings_iteminfo2 HWNDhwnd3 Checked" (settings.iteminfo.affixinfo = 0 ? 1 : 0), % Lang_Trans("global_off")
 	vars.hwnd.settings["affixinfo_1"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info icon"] := hwnd
 	vars.hwnd.settings["affixinfo_2"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info ilvl"] := hwnd1
-	vars.hwnd.settings["affixinfo_3"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info max tier"] := hwnd2
 	vars.hwnd.settings["affixinfo_0"] := vars.hwnd.help_tooltips["settings_iteminfo affix-info off"] := hwnd3
 
 	If vars.poe_version
