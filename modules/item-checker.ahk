@@ -567,7 +567,7 @@ Iteminfo_Stats2()
 					Else phys_inc += SubStr(A_LoopField, 1, InStr(A_LoopField, "%") - 1)
 				Continue
 			}
-			
+
 			If InStr(A_LoopField, Lang_Trans("items_phys_dmg"))
 				phys_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
 			Else If InStr(A_LoopField, Lang_Trans("items_chaos_dmg"))
@@ -725,9 +725,6 @@ Iteminfo_Mods()
 	If item.itembase && InStr("crimson jewel, viridian jewel, cobalt jewel", item.itembase)
 		item.class := "base jewels"
 
-	If !IsObject(db.anoints)
-		DB_Load("anoints")
-
 	Loop, Parse, clip2, | ;remove unnecessary item-info: implicits, crafted mods, etc.
 	{
 		If (A_Index = 1)
@@ -755,18 +752,26 @@ Iteminfo_Mods()
 			item.cluster.enchant := cluster_enchant
 		}
 
+		If InStr(A_LoopField, " (enchant)") && !IsObject(db.anoints)
+			DB_Load("anoints")
+
 		If InStr(A_LoopField, " (enchant)") && Lang_Match(A_LoopField, vars.lang.mods_blight_enchant, 0) ;parse blight-anointments (amulet)
 		{
 			item.implicits.Push(StrReplace(A_LoopField, " (enchant)"))
 			If !settings.iteminfo.compare ;if item-comparison is turned off (comparison and base-info are mutually exclusive)
-				item.anoint .= (Blank(item.anoint) ? "" : ",") db.anoints.amulets[StrReplace(Lang_Trim(A_LoopField, vars.lang.mods_blight_enchant), " (enchant)")]
+				item.anoint .= (Blank(item.anoint) ? "" : ",") db.anoints.amulets[StrReplace(Lang_Trim(A_LoopField, vars.lang.mods_blight_enchant), " (enchant)")].recipe
 		}
-
-		If db.anoints.rings[StrReplace(A_LoopField, " (enchant)")]
+		Else If InStr(A_LoopField, " (enchant)")
 		{
-			item.implicits.Push(StrReplace(A_LoopField, " (enchant)"))
-			If !settings.iteminfo.compare
-				item.anoint := db.anoints.rings[StrReplace(A_LoopField, " (enchant)")]
+			enchant := StrReplace(A_LoopField, " (enchant)")
+			For index, o in db.anoints.rings
+				If LLK_HasVal(o.stats, enchant)
+				{
+					item.implicits.Push(enchant), match := index
+					Break
+				}
+			If !settings.iteminfo.compare && match
+				item.anoint := db.anoints.rings[index].recipe
 		}
 
 		If (LLK_PatternMatch(A_LoopField, "{ ", [Lang_Trans("items_implicit_vaal"), Lang_Trans("items_implicit_eater"), Lang_Trans("items_implicit_exarch")],,, 0)
@@ -1192,7 +1197,7 @@ Iteminfo_GUI()
 					filler := 1
 
 					If (item.anoint != "") ;add oil-name to cell and determine highlight-color
-						%A_LoopField%_text := db.anoints._oils[A_LoopField]
+						%A_LoopField%_text := db.anoints.oils[A_LoopField]
 						, rank := 14 - A_LoopField, rank := (rank >= 6) ? 6 : rank
 						, color := (rank = 0) ? "White" : settings.iteminfo.colors_tier[rank]
 					Else color := !vars.poe_version && (item.stats[A_LoopField].base_best = item.stats[A_LoopField].class_best) || vars.poe_version && (%A_LoopField%_text = "100%") ? settings.iteminfo.colors_tier.1 : "404040"
@@ -1296,7 +1301,7 @@ Iteminfo_GUI()
 		If !InStr(implicit, Lang_Trans("items_implicit_exarch")) && !InStr(implicit, Lang_Trans("items_implicit_eater"))
 			type := InStr(implicit, Lang_Trans("items_implicit_vaal")) ? "vaal" : InStr(clip, "`r`nSynthesised ", 1) ? "synthesis" : ""
 		Else type := InStr(implicit, Lang_Trans("items_implicit_exarch")) ? "exarch" : "eater"
-		type := InStr(implicit, Lang_Trans("mods_implicit_vendor")) ? "delve" : InStr(implicit, Lang_Trans("mods_blight_enchant", 1)) || db.anoints.rings.HasKey(implicit) ? "blight" : InStr(clip, " Talisman`r`n", 1) ? "talisman" : type
+		type := InStr(implicit, Lang_Trans("mods_implicit_vendor")) ? "delve" : !Blank(item.anoint) && (InStr(implicit, Lang_Trans("mods_blight_enchant", 1)) || LLK_HasVal(db.anoints.rings, implicit,,,, 1)) ? "blight" : InStr(clip, " Talisman`r`n", 1) ? "talisman" : type
 
 		tCheck := ["lesser", "greater", "grand", "exceptional", "exquisite", "perfect"]
 		If InStr("exarch, eater", type)
@@ -1527,7 +1532,6 @@ Iteminfo_GUI()
 									}
 								minimum_rolls := oModName.1.3.Clone()
 								maximum_rolls := oModName[oModName.Count() + 1 - max_tier].3.Clone()
-								;tier_override .= (max_tier && tier_override != 1 ? "/" max_tier : "")
 							}
 
 							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
@@ -1585,12 +1589,10 @@ Iteminfo_GUI()
 								ilvl := oModName[iTier].2
 							If tier_override
 								tier_override := "conflict", ilvl := "??", max_tier := 0
-							Else 
+							Else
 							{
 								tier_override := max + 1 - iTier
 								max_tier := max + 1 - max_tier0
-								;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
-								;	tier_override .= "/" max + 1 - max_tier
 							}
 							Break
 						}
@@ -1639,7 +1641,7 @@ Iteminfo_GUI()
 										}
 									Break
 								}
-	
+
 								minimum_rolls := oModName[min].3.Clone()
 								maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].3.Clone()
 
@@ -1647,17 +1649,14 @@ Iteminfo_GUI()
 									ilvl := oModName[iTier].2
 								If tier_override
 									tier_override := "conflict", ilvl := "??", max_tier := 0
-								Else 
+								Else
 								{
-									tier_override := max + 1 - iTier 
+									tier_override := max + 1 - iTier
 									max_tier := max + 1 - max_tier0
-									;If (tier_override != 1) && max_tier && (settings.iteminfo.roll_range = 3)
-									;	tier_override .= "/" max + 1 - max_tier
 								}
 								Break
 							}
 					}
-
 			tier_override := tier_override ? tier_override : "conflict"
 		}
 
@@ -1672,7 +1671,7 @@ Iteminfo_GUI()
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
 			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
-			
+
 			If vars.poe_version && !unique && Lang_Match(text_check, vars.lang.mods_damage_flat, 0)
 			{
 				first := last := 0
@@ -1750,32 +1749,24 @@ Iteminfo_GUI()
 		If !unique ;add tier and icon/ilvl-cells for non-uniques
 		{
 			;determine the right color for the cells
-			If (tier_override = "conflict")
-				color := "Black"
-			Else If tier_override
-				tier := tier_override
-
-			If (tier_override != "conflict")
+			If InStr(A_LoopField, " (fractured)")
 			{
-				If InStr(A_LoopField, " (fractured)")
+				color := tColors.7 ;fractured mods have a specific color
+				If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && ((tier = 1) || item.class = "base jewels") ;if the fractured mod is also desired, add red highlighting to the text and make it bold
 				{
-					color := tColors.7 ;fractured mods have a specific color
-					If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && ((tier = 1) || item.class = "base jewels") ;if the fractured mod is also desired, add red highlighting to the text and make it bold
-					{
-						color_t := "Red"
-						Gui, %GUI_name%: Font, bold
-					}
+					color_t := "Red"
+					Gui, %GUI_name%: Font, bold
 				}
-				Else If InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && settings.iteminfo.override ;if the override-option is enabled and the mod is undesired, apply t6 color
-					color := mColors.2
-				Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (item.class = "base jewels") ;if the item is a base/generic jewel and the mod is desired, override cell colors with t1 color
-					color := mColors.1
-				Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (tier = 1 || tier = "#") ;if the mod is desired and t1 or untiered, apply white background and red text (Neversink's t1 color-scheme)
-					color := "White", color_t := "Red"
-				Else If (item.class = "base jewels") ;for base/generic jewel mods, use shades of gray (lighter shade = lower weight/probability)
-					color := IsNumber(tier) ? 119-tier*2 . 119-tier*2 . 119-tier*2 : "Black", color_t := (tier < 10) ? "Red" : "White"
-				Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 			}
+			Else If InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && settings.iteminfo.override ;if the override-option is enabled and the mod is undesired, apply t6 color
+				color := mColors.2
+			Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (item.class = "base jewels") ;if the item is a base/generic jewel and the mod is desired, override cell colors with t1 color
+				color := mColors.1
+			Else If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && (tier = 1 || tier = "#") ;if the mod is desired and t1 or untiered, apply white background and red text (Neversink's t1 color-scheme)
+				color := "White", color_t := "Red"
+			Else If (item.class = "base jewels") ;for base/generic jewel mods, use shades of gray (lighter shade = lower weight/probability)
+				color := IsNumber(tier) ? 119-tier*2 . 119-tier*2 . 119-tier*2 : "Black", color_t := (tier < 10) ? "Red" : "White"
+			Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 
 			affixinfo := settings.iteminfo.affixinfo
 			label := Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) ? Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
@@ -1843,7 +1834,7 @@ Iteminfo_GUI()
 	{
 		If !IsObject(db.item_drops)
 			DB_Load("item_drops")
-		
+
 		;If roll_stats.Count()
 		;	Gui, %GUI_name%: Add, Progress, % "xs w" UI.wSegment*UI.segments " Disabled h" UI.hDivider " BackgroundWhite",
 		If db.item_drops[item.name]
