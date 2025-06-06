@@ -1,577 +1,3915 @@
 {
-  "_oils": [
-    "clear",
-    "sepia",
-    "amber",
-    "verd",
-    "teal",
-    "azure",
-    "indi",
-    "violet",
-    "crim",
-    "black",
-    "opal",
-    "silver",
-    "gold",
-    "prism"
-  ],
+  "_timestamp": "2025-06-06, 12:45 (utc)",
   "amulets": {
-    "Acrimony": "1, 10, 10",
-    "Acuity": "1, 8, 10",
-    "Adamant": "6, 8, 10",
-    "Adaptive Steel": "14, 10, 10",
-    "Adder's Touch": "2, 10, 11",
-    "Adjacent Animosity": "7, 9, 11",
-    "Admonisher": "2, 6, 11",
-    "Aggressive Bastion": "4, 8, 10",
-    "Always Angry": "14, 6, 12",
-    "Ambidexterity": "3, 6, 10",
-    "Amplify": "3, 6, 11",
-    "Annihilation": "1, 1, 10",
-    "Anointed Flesh": "7, 13, 13",
-    "Arcane Capacitor": "8, 10, 13",
-    "Arcane Chemistry": "3, 12, 12",
-    "Arcane Expanse": "9, 9, 13",
-    "Arcane Focus": "4, 9, 9",
-    "Arcane Guarding": "1, 5, 10",
-    "Arcane Potency": "6, 10, 12",
-    "Arcane Sanctuary": "1, 12, 12",
-    "Arcane Will": "3, 3, 12",
-    "Arcanist's Dominion": "1, 9, 10",
-    "Arcing Blows": "1, 1, 12",
-    "Arsonist": "4, 4, 6",
-    "Art of the Gladiator": "2, 11, 13",
-    "As The Mountain": "10, 10, 11",
-    "As The Thunder": "1, 1, 7",
-    "Ash, Frost and Storm": "2, 9, 9",
-    "Aspect of Stone": "14, 8, 13",
-    "Aspect of the Eagle": "3, 4, 4",
-    "Aspect of the Lynx": "8, 8, 9",
-    "Assassination": "10, 11, 13",
-    "Assured Strike": "1, 7, 10",
-    "Asylum": "7, 8, 12",
-    "Atrophy": "1, 2, 13",
-    "Avatar of the Hunt": "1, 11, 11",
-    "Awe and Terror": "7, 7, 11",
-    "Backstabbing": "1, 5, 12",
-    "Ballistics": "6, 8, 11",
-    "Bannerman": "7, 8, 9",
-    "Barbarism": "11, 11, 13",
-    "Bastion Breaker": "2, 5, 7",
-    "Bastion of Faith": "14, 9, 9",
-    "Battle Rouse": "2, 4, 6",
-    "Battle Trance": "2, 3, 3",
-    "Beacon of Hope": "14, 8, 9",
-    "Berserking": "1, 2, 11",
-    "Blacksmith's Clout": "4, 10, 11",
-    "Blade Barrier": "1, 8, 11",
-    "Blade Master": "1, 2, 12",
-    "Blade of Cunning": "2, 6, 12",
-    "Bladedancer": "3, 3, 9",
-    "Blast Radius": "1, 4, 11",
-    "Blast Waves": "1, 4, 9",
-    "Blood Drinker": "11, 11, 12",
-    "Blood Siphon": "6, 11, 12",
-    "Bloodless": "3, 9, 13",
-    "Bloodletting": "6, 6, 12",
-    "Blunt Trauma": "5, 9, 12",
-    "Bone Breaker": "4, 6, 6",
-    "Born to Fight": "8, 8, 13",
-    "Brand Equity": "7, 8, 10",
-    "Bravery": "8, 11, 11",
-    "Breath of Flames": "4, 6, 13",
-    "Breath of Lightning": "6, 8, 13",
-    "Breath of Rime": "5, 12, 12",
-    "Brink of Death": "4, 7, 8",
-    "Brinkmanship": "1, 3, 11",
-    "Brutal Blade": "2, 4, 13",
-    "Brutal Skewering": "6, 13, 13",
-    "Burning Brutality": "5, 7, 8",
-    "Burst of Energy": "1, 3, 3",
-    "Butchery": "4, 8, 9",
-    "Cannibalistic Rite": "5, 6, 6",
-    "Careful Conservationist": "7, 10, 11",
-    "Careful Counterattack": "1, 1, 3",
-    "Cauterisation": "2, 2, 7",
-    "Champion of the Cause": "5, 9, 13",
-    "Charisma": "11, 13, 13",
-    "Circle of Life": "1, 7, 8",
-    "Claws of the Falcon": "3, 3, 13",
-    "Claws of the Hawk": "8, 10, 11",
-    "Claws of the Magpie": "2, 6, 6",
-    "Cleansed Thoughts": "14, 6, 13",
-    "Cleaving": "2, 3, 10",
-    "Clever Construction": "2, 6, 9",
-    "Clever Thief": "1, 4, 7",
-    "Cloth and Chain": "1, 1, 6",
-    "Coldhearted Calculation": "9, 9, 9",
-    "Colloidal Mixture": "1, 1, 4",
-    "Combat Stamina": "1, 4, 10",
-    "Command of Steel": "3, 9, 11",
-    "Concussive Force": "5, 7, 12",
-    "Conjured Barrier": "4, 7, 10",
-    "Constitution": "5, 8, 13",
-    "Coordination": "3, 9, 10",
-    "Cornered Prey": "3, 3, 7",
-    "Corruption": "9, 10, 10",
-    "Counterweight": "1, 3, 12",
-    "Courage": "6, 8, 8",
-    "Crackling Speed": "10, 11, 11",
-    "Cruel Preparation": "5, 10, 12",
-    "Cruel Retort": "1, 1, 2",
-    "Crusader": "14, 11, 13",
-    "Crushing Reply": "1, 2, 3",
-    "Crystal Skin": "2, 10, 12",
-    "Dance of Blades": "7, 9, 9",
-    "Dark Arts": "5, 8, 11",
-    "Dazzling Strikes": "5, 5, 11",
-    "Deadly Draw": "2, 4, 9",
-    "Deadly Inclinations": "14, 7, 10",
-    "Death Attunement": "1, 9, 12",
-    "Decay Ward": "2, 4, 5",
-    "Deep Breaths": "5, 7, 11",
-    "Deep Thoughts": "1, 4, 8",
-    "Deep Wisdom": "2, 5, 5",
-    "Defiance": "3, 5, 10",
-    "Defiant Stand": "4, 10, 13",
-    "Defiled Forces": "9, 10, 11",
-    "Deflection": "3, 7, 12",
-    "Deliberate Brutality": "14, 8, 12",
-    "Depth Perception": "3, 4, 5",
-    "Dervish": "6, 9, 10",
-    "Destroyer": "2, 4, 11",
-    "Destructive Apparatus": "2, 3, 12",
-    "Devastating Devices": "5, 5, 12",
-    "Devotion": "9, 9, 12",
-    "Diamond Skin": "2, 5, 11",
-    "Dire Torment": "6, 9, 11",
-    "Dirty Techniques": "3, 11, 13",
-    "Disciple of the Forbidden": "10, 10, 10",
-    "Disciple of the Slaughter": "3, 4, 13",
-    "Disciple of the Unyielding": "8, 9, 11",
-    "Discipline and Training": "10, 12, 12",
-    "Discord Artisan": "3, 5, 6",
-    "Disemboweling": "4, 8, 13",
-    "Disintegration": "8, 10, 10",
-    "Dismembering": "8, 11, 13",
-    "Divine Fervour": "4, 5, 7",
-    "Divine Fury": "3, 3, 10",
-    "Divine Judgement": "2, 5, 10",
-    "Divine Wrath": "3, 3, 11",
-    "Doom Cast": "3, 6, 13",
-    "Dreamer": "2, 5, 6",
-    "Druidic Rite": "1, 9, 13",
-    "Dynamo": "1, 2, 6",
-    "Eagle Eye": "1, 1, 11",
-    "Efficient Explosives": "2, 5, 8",
-    "Elder Power": "5, 5, 8",
-    "Elemental Focus": "2, 3, 6",
-    "Empowered Bond": "1, 7, 7",
-    "Endurance": "1, 10, 13",
-    "Enduring Bond": "1, 4, 13",
-    "Enigmatic Defence": "8, 8, 8",
-    "Enigmatic Reach": "4, 5, 10",
-    "Entrench": "2, 6, 8",
-    "Entropy": "2, 3, 9",
-    "Escalation": "4, 4, 7",
-    "Essence Extraction": "9, 9, 10",
-    "Essence Infusion": "1, 3, 4",
-    "Essence Sap": "5, 8, 10",
-    "Essence Surge": "5, 12, 13",
-    "Ethereal Feast": "3, 12, 13",
-    "Exceptional Performance": "1, 3, 10",
-    "Excess Sustenance": "5, 7, 7",
-    "Executioner": "3, 4, 6",
-    "Expeditious Munitions": "1, 6, 8",
-    "Expert Hunter": "7, 10, 10",
-    "Explosive Elements": "3, 9, 12",
-    "Explosive Impact": "4, 6, 11",
-    "Explosive Runes": "3, 6, 6",
-    "Faith and Steel": "2, 10, 13",
-    "Fangs of Frost": "2, 2, 12",
-    "Fangs of the Viper": "1, 5, 6",
-    "Farsight": "4, 4, 9",
-    "Fatal Blade": "3, 11, 11",
-    "Fatal Toxins": "1, 8, 12",
-    "Fearsome Force": "5, 6, 9",
-    "Feline Swiftness": "1, 1, 5",
-    "Feller of Foes": "3, 10, 11",
-    "Fending": "2, 2, 4",
-    "Fervour": "3, 10, 12",
-    "Field Medicine": "7, 9, 10",
-    "Finesse": "5, 6, 10",
-    "Fingers of Frost": "8, 9, 13",
-    "Fire Walker": "8, 9, 10",
-    "Flash Freeze": "4, 6, 9",
-    "Flaying": "1, 8, 9",
-    "Fleetfoot": "2, 3, 11",
-    "Flow of Battle": "2, 2, 3",
-    "Force of Darkness": "14, 11, 11",
-    "Force Shaper": "1, 7, 12",
-    "Forceful Skewering": "4, 6, 8",
-    "Forces of Nature": "4, 6, 12",
-    "Foresight": "4, 11, 13",
-    "Forethought": "5, 7, 10",
-    "Freedom of Movement": "1, 2, 8",
-    "Frenetic": "6, 12, 12",
-    "From the Shadows": "1, 6, 9",
-    "Frost Walker": "4, 8, 11",
-    "Fury Bolts": "4, 4, 5",
-    "Fusillade": "2, 4, 4",
-    "Galvanic Hammer": "1, 2, 9",
-    "Glacial Cage": "4, 7, 9",
-    "Gladiator's Perseverance": "5, 6, 12",
-    "Golem Commander": "6, 12, 13",
-    "Golem's Blood": "5, 13, 13",
-    "Goliath": "2, 3, 13",
-    "Graceful Assault": "8, 8, 10",
-    "Grave Intentions": "2, 8, 8",
-    "Gravepact": "6, 10, 10",
-    "Growth and Decay": "1, 5, 13",
-    "Hardened Scars": "14, 6, 9",
-    "Harpooner": "5, 7, 9",
-    "Harrier": "6, 9, 9",
-    "Harvester of Foes": "1, 3, 7",
-    "Hatchet Master": "4, 5, 9",
-    "Heart and Soul": "2, 9, 13",
-    "Heart of Darkness": "14, 8, 8",
-    "Heart of Flame": "5, 6, 13",
-    "Heart of Ice": "9, 11, 13",
-    "Heart of Oak": "4, 9, 13",
-    "Heart of the Warrior": "8, 12, 13",
-    "Heart of Thunder": "2, 6, 13",
-    "Heartseeker": "5, 9, 9",
-    "Hearty": "4, 11, 12",
-    "Heavy Draw": "2, 4, 8",
-    "Hematophagy": "8, 10, 12",
-    "Herbalism": "5, 11, 12",
-    "High Explosives": "4, 4, 12",
-    "High Voltage": "3, 7, 7",
-    "Hired Killer": "8, 8, 11",
-    "Hollow Effigy": "14, 9, 12",
-    "Holy Dominion": "6, 6, 9",
-    "Holy Fire": "3, 5, 12",
-    "Hunter's Gambit": "1, 4, 12",
-    "Incorporeal": "14, 12, 12",
-    "Indiscriminate Revenge": "1, 1, 1",
-    "Indomitable Army": "8, 9, 12",
-    "Inexorable": "9, 11, 12",
-    "Influence": "4, 5, 13",
-    "Infused": "9, 12, 12",
-    "Infused Flesh": "3, 7, 10",
-    "Insightfulness": "4, 4, 13",
-    "Inspiring Bond": "3, 5, 7",
-    "Instability": "4, 12, 12",
-    "Instinct": "2, 2, 6",
-    "Intuition": "3, 8, 8",
-    "Inveterate": "10, 10, 13",
-    "Invigorating Blaze": "1, 5, 7",
-    "Ironwood": "1, 3, 5",
-    "Jagged Wounds": "14, 7, 13",
-    "Juggernaut": "3, 5, 11",
-    "Kinetic Impacts": "3, 6, 8",
-    "King of the Hill": "4, 8, 12",
-    "Knowledge Barrier": "14, 11, 12",
-    "Last Rites": "2, 10, 10",
-    "Lava Lash": "1, 1, 13",
-    "Leader of the Pack": "9, 13, 13",
-    "Leadership": "8, 11, 12",
-    "Legacy of the Wilds": "14, 9, 10",
-    "Lethality": "2, 8, 12",
-    "Life Raker": "2, 4, 12",
-    "Light Eater": "6, 8, 9",
-    "Light of Divinity": "8, 9, 9",
-    "Lightning Walker": "2, 2, 10",
-    "Longshot": "5, 9, 11",
-    "Lord of the Dead": "4, 9, 12",
-    "Lust for Carnage": "5, 11, 13",
-    "Magmatic Strikes": "3, 10, 10",
-    "Malicious Intent": "7, 7, 12",
-    "Mana Flows": "1, 11, 13",
-    "Mark the Prey": "2, 7, 10",
-    "Marked for Death": "2, 7, 12",
-    "Martial Experience": "1, 4, 6",
-    "Master Fletcher": "2, 9, 12",
-    "Master of Blades": "6, 11, 13",
-    "Master of the Arena": "2, 11, 12",
-    "Master of Wounds": "1, 5, 8",
-    "Master Sapper": "5, 10, 11",
-    "Measured Fury": "3, 10, 13",
-    "Melding": "2, 8, 11",
-    "Mental Rapidity": "2, 8, 10",
-    "Merciless Skewering": "8, 8, 12",
-    "Mind Drinker": "4, 5, 5",
-    "Mixed Munitions": "14, 9, 11",
-    "Multishot": "7, 10, 12",
-    "Mystic Bulwark": "5, 5, 5",
-    "Mystic Talents": "14, 6, 11",
-    "Mysticism": "5, 6, 11",
-    "Natural Authority": "2, 12, 13",
-    "Natural Remedies": "7, 11, 12",
-    "Nature's Concoction": "5, 5, 7",
-    "Nightstalker": "2, 5, 13",
-    "Nimbleness": "3, 9, 9",
-    "Nomadic Teachings": "10, 13, 13",
-    "One With Nature": "4, 9, 10",
-    "One with the River": "5, 11, 11",
-    "Overcharge": "9, 10, 12",
-    "Overcharged": "1, 11, 12",
-    "Overprepared": "3, 3, 6",
-    "Pain Forger": "1, 8, 8",
-    "Path of the Hunter": "1, 4, 4",
-    "Path of the Savant": "2, 3, 4",
-    "Path of the Warrior": "3, 3, 3",
-    "Perfected Formula": "7, 7, 8",
-    "Perfectionist": "4, 5, 12",
-    "Persistence": "14, 7, 9",
-    "Piercing Shots": "10, 11, 12",
-    "Poisonous Fangs": "1, 3, 6",
-    "Potency of Will": "2, 2, 11",
-    "Potent Connections": "2, 2, 8",
-    "Powerful Bond": "7, 7, 7",
-    "Practical Application": "1, 1, 8",
-    "Practised Reapplication": "2, 2, 2",
-    "Precision": "2, 2, 9",
-    "Prepared Response": "1, 2, 2",
-    "Presage": "3, 7, 13",
-    "Primal Manifestation": "3, 4, 9",
-    "Primal Spirit": "2, 6, 10",
-    "Primeval Force": "6, 8, 12",
-    "Prism Weave": "2, 11, 11",
-    "Prismatic Skin": "12, 13, 13",
-    "Prodigal Perfection": "1, 6, 6",
-    "Profane Chemistry": "4, 10, 12",
-    "Purity of Flesh": "1, 10, 12",
-    "Quick Recovery": "5, 5, 13",
-    "Quickstep": "3, 3, 4",
-    "Rallying Icon": "1, 6, 13",
-    "Rampart": "3, 4, 10",
-    "Ravenous Horde": "4, 12, 13",
-    "Razor's Edge": "4, 5, 8",
-    "Redemption": "2, 8, 9",
-    "Reflexes": "6, 10, 13",
-    "Relentless": "2, 4, 7",
-    "Relentless Pursuit": "2, 7, 9",
-    "Renowned Deeds": "7, 11, 13",
-    "Replenishing Remedies": "2, 3, 7",
-    "Resourcefulness": "4, 11, 11",
-    "Retaliation": "4, 9, 11",
-    "Retribution": "1, 9, 11",
-    "Revelry": "3, 8, 10",
-    "Revenge of the Hunted": "10, 12, 13",
-    "Ribcage Crusher": "5, 10, 10",
-    "Righteous Army": "4, 10, 10",
-    "Righteous Decree": "2, 2, 5",
-    "Righteous Fury": "4, 7, 7",
-    "Rising Tempest": "14, 8, 11",
-    "Roaring Challenge": "1, 2, 4",
-    "Robust": "1, 4, 5",
-    "Runesmith": "6, 9, 12",
-    "Saboteur": "1, 5, 5",
-    "Sacrifice": "5, 6, 8",
-    "Safeguard": "4, 6, 10",
-    "Sanctity": "6, 6, 10",
-    "Sanctuary": "3, 5, 5",
-    "Sanctum of Thought": "6, 6, 13",
-    "Savage Intensity": "6, 6, 11",
-    "Savage Skewering": "1, 2, 7",
-    "Savage Wounds": "5, 10, 13",
-    "Savagery": "9, 10, 13",
-    "Searing Heat": "3, 6, 12",
-    "Season of Ice": "7, 10, 13",
-    "Seasoned Swordplay": "3, 7, 11",
-    "Selective Precision": "14, 9, 13",
-    "Sentinel": "4, 5, 6",
-    "Serpent Stance": "6, 10, 11",
-    "Serpentine Spellslinger": "7, 8, 11",
-    "Settling Ash": "1, 7, 13",
-    "Shaman's Dominion": "1, 6, 12",
-    "Shamanistic Fury": "2, 3, 8",
-    "Shaper": "1, 9, 9",
-    "Silent Steps": "3, 4, 8",
-    "Sione's Ambition": "14, 6, 10",
-    "Skittering Runes": "11, 12, 12",
-    "Skull Cracking": "1, 10, 11",
-    "Slaughter": "6, 6, 6",
-    "Sleight of Hand": "4, 5, 11",
-    "Smashing Strikes": "6, 6, 8",
-    "Snowforged": "3, 5, 13",
-    "Soul of Steel": "1, 13, 13",
-    "Soul Siphon": "3, 3, 8",
-    "Soul Thief": "2, 9, 11",
-    "Sovereignty": "12, 12, 12",
-    "Spiked Bulwark": "1, 2, 5",
-    "Spinecruncher": "4, 8, 8",
-    "Spirit of War": "1, 8, 13",
-    "Spirit Void": "4, 4, 4",
-    "Spiritual Aid": "12, 12, 13",
-    "Spiritual Command": "2, 2, 13",
-    "Split Shot": "1, 7, 11",
-    "Stamina": "10, 10, 12",
-    "Static Blows": "5, 8, 9",
-    "Steadfast": "2, 13, 13",
-    "Steelwood Stance": "5, 5, 6",
-    "Steeped in the Profane": "2, 7, 13",
-    "Storm Weaver": "2, 9, 10",
-    "Strong Arm": "1, 6, 11",
-    "Successive Detonations": "1, 1, 9",
-    "Surge of Vigour": "3, 7, 8",
-    "Surveillance": "2, 7, 11",
-    "Survivalist": "6, 9, 13",
-    "Swagger": "5, 8, 12",
-    "Swift Venoms": "1, 3, 13",
-    "Taste for Blood": "3, 8, 12",
-    "Tempest Blast": "3, 4, 12",
-    "Tenacity": "14, 13, 13",
-    "Testudo": "1, 2, 10",
-    "Thick Skin": "8, 12, 12",
-    "Thrill Killer": "3, 3, 5",
-    "Thrill of Battle": "7, 12, 13",
-    "Throatseeker": "3, 8, 11",
-    "Tireless": "11, 11, 11",
-    "Titanic Impacts": "3, 4, 11",
-    "Tolerance": "9, 9, 11",
-    "Totemic Zeal": "4, 4, 8",
-    "Toxic Strikes": "1, 3, 9",
-    "Tranquility": "14, 12, 13",
-    "Trial of the Faith": "2, 7, 7",
-    "Tribal Fury": "11, 12, 13",
-    "Trick Shot": "3, 8, 13",
-    "Trickery": "4, 4, 10",
-    "True Strike": "5, 9, 10",
-    "Twin Terrors": "1, 6, 10",
-    "Undertaker": "7, 7, 10",
-    "Unfaltering": "7, 7, 9",
-    "Unnatural Calm": "4, 13, 13",
-    "Unstable Munitions": "5, 8, 8",
-    "Utmost Intellect": "3, 8, 9",
-    "Utmost Might": "3, 6, 9",
-    "Utmost Swiftness": "2, 5, 9",
-    "Vampirism": "3, 5, 8",
-    "Vanquisher": "4, 7, 12",
-    "Vengeance": "3, 11, 12",
-    "Vengeant Cascade": "14, 7, 11",
-    "Versatility": "4, 4, 11",
-    "Veteran Soldier": "5, 7, 13",
-    "Veteran's Wrath": "8, 13, 13",
-    "Vigour": "9, 11, 11",
-    "Vinespike Cordial": "14, 10, 12",
-    "Vitality Void": "1, 12, 13",
-    "Void Barrier": "9, 12, 13",
-    "Volatile Mines": "6, 11, 11",
-    "Wall of Steel": "4, 7, 11",
-    "Wandslinger": "5, 5, 9",
-    "Warrior Training": "1, 5, 9",
-    "Warrior's Blood": "5, 5, 10",
-    "Wasting": "2, 12, 12",
-    "Watchtowers": "7, 12, 12",
-    "Way of the Warrior": "14, 10, 11",
-    "Weapon Artistry": "1, 3, 8",
-    "Weathered Hunter": "2, 3, 5",
-    "Whirling Barrier": "3, 5, 9",
-    "Whispers of Doom": "13, 13, 13",
-    "Wicked Blade": "3, 4, 7",
-    "Wild Hunger": "3, 13, 13",
-    "Will of Blades": "2, 4, 10",
-    "Window of Opportunity": "7, 11, 11",
-    "Winter Spirit": "2, 5, 12",
-    "Winter's Embrace": "1, 7, 9",
-    "Wood, Stone, and Spell": "14, 7, 12",
-    "Worship the Blightheart": "14, 14, 14",
-    "Wrecking Ball": "1, 5, 11",
-    "Written in Blood": "2, 8, 13"
+    "Acrimony": {
+      "recipe": "1, 10, 10",
+      "stats": [
+        "+15% to Damage-over-Time Multiplier"
+      ]
+    },
+    "Acuity": {
+      "recipe": "1, 8, 10",
+      "stats": [
+        "6% increased Attack Speed",
+        "+100 to Accuracy",
+        "20% increased Global Accuracy"
+      ]
+    },
+    "Adamant": {
+      "recipe": "6, 8, 10",
+      "stats": [
+        "25% increased Armour",
+        "Remove Bleeding when you use a Guard Skill",
+        "Remove Corrupted Blood when you use a Guard Skill",
+        "Guard Skills have 25% increased Duration"
+      ]
+    },
+    "Adaptive Steel": {
+      "recipe": "14, 10, 10",
+      "stats": [
+        "5% chance to Defend with double your Armour for each\ntime you've been Hit by an enemy Recently, up to 30%"
+      ]
+    },
+    "Adder's Touch": {
+      "recipe": "2, 10, 11",
+      "stats": [
+        "+25% to Damage-over-Time Multiplier for Poison from Critical Strikes",
+        "Critical Strikes with Daggers Poison the enemy"
+      ]
+    },
+    "Adjacent Animosity": {
+      "recipe": "7, 9, 11",
+      "stats": [
+        "10% reduced Projectile Speed",
+        "Projectiles deal 40% increased Damage with Hits to targets at the start\nof their movement, reducing to 0% as they travel farther"
+      ]
+    },
+    "Admonisher": {
+      "recipe": "2, 6, 11",
+      "stats": [
+        "50% increased Warcry Speed",
+        "15% increased Damage for each time you've used a Warcry Recently"
+      ]
+    },
+    "Aggressive Bastion": {
+      "recipe": "4, 8, 10",
+      "stats": [
+        "+8% Chance to Block Attack Damage while holding a Shield",
+        "30% increased Physical Attack Damage while holding a Shield",
+        "Attack Skills deal 30% increased Damage with Ailments while holding a Shield",
+        "10% chance to gain an Endurance Charge on Kill while holding a Shield"
+      ]
+    },
+    "Always Angry": {
+      "recipe": "14, 6, 12",
+      "stats": [
+        "+8 to Minimum Rage"
+      ]
+    },
+    "Ambidexterity": {
+      "recipe": "3, 6, 10",
+      "stats": [
+        "60% increased Attack Damage with Main-Hand while Dual-Wielding",
+        "30% increased Attack Speed with Off-Hand while Dual-Wielding"
+      ]
+    },
+    "Amplify": {
+      "recipe": "3, 6, 11",
+      "stats": [
+        "10% increased Area-of-Effect",
+        "20% increased Area Damage"
+      ]
+    },
+    "Annihilation": {
+      "recipe": "1, 1, 10",
+      "stats": [
+        "50% increased Spell Crit-Chance",
+        "+15% to Crit-Multi for Spell Damage"
+      ]
+    },
+    "Anointed Flesh": {
+      "recipe": "7, 13, 13",
+      "stats": [
+        "+1% to all maximum Elemental Resistances",
+        "20% reduced Elemental Ailment Duration on you",
+        "20% reduced Effect of Chill and Shock on you"
+      ]
+    },
+    "Arcane Capacitor": {
+      "recipe": "8, 10, 13",
+      "stats": [
+        "15% increased maximum Mana",
+        "10% increased Effect of Arcane-Surge on you per\n200 Mana spent Recently, up to 50%",
+        "10% chance to gain Arcane-Surge when you Kill an enemy"
+      ]
+    },
+    "Arcane Chemistry": {
+      "recipe": "3, 12, 12",
+      "stats": [
+        "15% increased maximum Mana",
+        "30% increased Mana Recovery from Flasks",
+        "Mana Flasks gain 1 Charge every 3 seconds"
+      ]
+    },
+    "Arcane Expanse": {
+      "recipe": "9, 9, 13",
+      "stats": [
+        "Spell Skills have 20% increased Area-of-Effect"
+      ]
+    },
+    "Arcane Focus": {
+      "recipe": "4, 9, 9",
+      "stats": [
+        "20% increased maximum Energy-shield",
+        "10% faster start of Energy-shield Recharge",
+        "+10 to Intelligence"
+      ]
+    },
+    "Arcane Guarding": {
+      "recipe": "1, 5, 10",
+      "stats": [
+        "+10% Chance to Block Spell Damage while holding a Shield",
+        "60% increased Energy-shield from Equipped Shield"
+      ]
+    },
+    "Arcane Potency": {
+      "recipe": "6, 10, 12",
+      "stats": [
+        "30% increased Spell Crit-Chance",
+        "+30% to Crit-Multi for Spell Damage"
+      ]
+    },
+    "Arcane Sanctuary": {
+      "recipe": "1, 12, 12",
+      "stats": [
+        "+8% Chance to Block Spell Damage while holding a Shield",
+        "25% increased Spell Damage while holding a Shield",
+        "25% reduced Elemental Ailment Duration on you while holding a Shield"
+      ]
+    },
+    "Arcane Will": {
+      "recipe": "3, 3, 12",
+      "stats": [
+        "30% increased maximum Mana",
+        "Regen 5 Mana per second",
+        "+10 to Intelligence"
+      ]
+    },
+    "Arcanist's Dominion": {
+      "recipe": "1, 9, 10",
+      "stats": [
+        "20% increased Spell Damage",
+        "5% increased Cast Speed",
+        "+20 to Intelligence"
+      ]
+    },
+    "Arcing Blows": {
+      "recipe": "1, 1, 12",
+      "stats": [
+        "Damage with Weapons Penetrates 8% Lightning Resistance",
+        "30% increased Lightning Damage with Attack Skills"
+      ]
+    },
+    "Arsonist": {
+      "recipe": "4, 4, 6",
+      "stats": [
+        "+10% to Fire Damage-over-Time Multiplier",
+        "Regen 1.2% of Life per second"
+      ]
+    },
+    "Art of the Gladiator": {
+      "recipe": "2, 11, 13",
+      "stats": [
+        "10% increased Attack Speed",
+        "10% increased Global Accuracy",
+        "Ignore all Movement Penalties from Armour",
+        "+20 to Dexterity"
+      ]
+    },
+    "As The Mountain": {
+      "recipe": "10, 10, 11",
+      "stats": [
+        "+12% Chance to Block Attack Damage while Dual-Wielding or holding a Shield",
+        "+3% to maximum Chance to Block Attack Damage"
+      ]
+    },
+    "As The Thunder": {
+      "recipe": "1, 1, 7",
+      "stats": [
+        "25% increased Warcry Duration",
+        "20% increased Warcry Buff Effect"
+      ]
+    },
+    "Ash, Frost and Storm": {
+      "recipe": "2, 9, 9",
+      "stats": [
+        "30% increased Elemental Damage",
+        "10% chance to Freeze, Shock and Ignite",
+        "30% increased Effect of Non-Damaging Ailments"
+      ]
+    },
+    "Aspect of Stone": {
+      "recipe": "14, 8, 13",
+      "stats": [
+        "20% chance to Avoid Physical Damage from Hits"
+      ]
+    },
+    "Aspect of the Eagle": {
+      "recipe": "3, 4, 4",
+      "stats": [
+        "20% increased Damage with Bows",
+        "6% increased Attack Speed with Bows",
+        "10% increased Accuracy with Bows",
+        "20% increased Damage Over Time with Bow Skills"
+      ]
+    },
+    "Aspect of the Lynx": {
+      "recipe": "8, 8, 9",
+      "stats": [
+        "20% increased Attack Damage",
+        "5% increased Movement Speed",
+        "20% increased Crit-Chance for Attacks"
+      ]
+    },
+    "Assassination": {
+      "recipe": "10, 11, 13",
+      "stats": [
+        "+25% to Crit-Multi",
+        "25% increased Crit-Chance"
+      ]
+    },
+    "Assured Strike": {
+      "recipe": "1, 7, 10",
+      "stats": [
+        "24% increased Melee Damage",
+        "+0.4 metres to Melee Strike-Range while at least 5 enemies are Nearby"
+      ]
+    },
+    "Asylum": {
+      "recipe": "7, 8, 12",
+      "stats": [
+        "+18% to Chaos Resistance",
+        "18% reduced Effect of Curses on you"
+      ]
+    },
+    "Atrophy": {
+      "recipe": "1, 2, 13",
+      "stats": [
+        "27% increased Chaos Damage",
+        "12% increased Skill-Effect-Duration"
+      ]
+    },
+    "Avatar of the Hunt": {
+      "recipe": "1, 11, 11",
+      "stats": [
+        "30% increased Damage with Bows",
+        "+200 to Evasion",
+        "6% increased Movement Speed",
+        "30% increased Damage Over Time with Bow Skills"
+      ]
+    },
+    "Awe and Terror": {
+      "recipe": "7, 7, 11",
+      "stats": [
+        "enemies Killed near your Banner have 20% chance to Explode, dealing a tenth of their Life as Physical Damage",
+        "Banner Skills have 20% increased Area-of-Effect"
+      ]
+    },
+    "Backstabbing": {
+      "recipe": "1, 5, 12",
+      "stats": [
+        "30% increased Crit-Chance with Daggers",
+        "+30% to Crit-Multi with Daggers",
+        "100% increased Crit-Chance against enemies that are on Full-Life"
+      ]
+    },
+    "Ballistics": {
+      "recipe": "6, 8, 11",
+      "stats": [
+        "20% increased Projectile Speed",
+        "20% increased Projectile Damage",
+        "+20 to Dexterity"
+      ]
+    },
+    "Bannerman": {
+      "recipe": "7, 8, 9",
+      "stats": [
+        "Banner Buffs Linger on you for 3 seconds after you leave the Area",
+        "Banner Skills have 20% increased Duration"
+      ]
+    },
+    "Barbarism": {
+      "recipe": "11, 11, 13",
+      "stats": [
+        "8% increased maximum Life",
+        "+1% to maximum Fire Resistance",
+        "+8% to Fire Resistance"
+      ]
+    },
+    "Bastion Breaker": {
+      "recipe": "2, 5, 7",
+      "stats": [
+        "30% increased Attack Physical Damage",
+        "Hits have 50% chance to ignore enemy Physical Damage Reduction"
+      ]
+    },
+    "Bastion of Faith": {
+      "recipe": "14, 9, 9",
+      "stats": [
+        "Consecrated Ground you create also grants\n50% reduced duration of Damaging Ailments on you"
+      ]
+    },
+    "Battle Rouse": {
+      "recipe": "2, 4, 6",
+      "stats": [
+        "15% increased maximum Mana",
+        "10% of Damage taken Recouped as Mana"
+      ]
+    },
+    "Battle Trance": {
+      "recipe": "2, 3, 3",
+      "stats": [
+        "+10 to Maximum Rage"
+      ]
+    },
+    "Beacon of Hope": {
+      "recipe": "14, 8, 9",
+      "stats": [
+        "80% increased Area-of-Effect of Aura Skills"
+      ]
+    },
+    "Berserking": {
+      "recipe": "1, 2, 11",
+      "stats": [
+        "6% increased Attack Speed",
+        "+5 to Maximum Rage"
+      ]
+    },
+    "Blacksmith's Clout": {
+      "recipe": "4, 10, 11",
+      "stats": [
+        "35% increased Physical Damage with Maces or Sceptres",
+        "Mace or Sceptre Attacks deal 35% increased Damage with Ailments",
+        "+35% to Crit-Multi with Maces or Sceptres"
+      ]
+    },
+    "Blade Barrier": {
+      "recipe": "1, 8, 11",
+      "stats": [
+        "+10% Chance to Block Attack Damage while Dual-Wielding",
+        "50% increased Block Recovery",
+        "Attack Skills deal 25% increased Damage while Dual-Wielding"
+      ]
+    },
+    "Blade Master": {
+      "recipe": "1, 2, 12",
+      "stats": [
+        "20% increased Physical Damage with Swords",
+        "Sword Attacks deal 20% increased Damage with Ailments",
+        "8% increased Attack Speed with Swords",
+        "+200 to Accuracy with Swords"
+      ]
+    },
+    "Blade of Cunning": {
+      "recipe": "2, 6, 12",
+      "stats": [
+        "15% increased Accuracy with Swords",
+        "45% increased Crit-Chance with Swords",
+        "+15% to Crit-Multi with Swords"
+      ]
+    },
+    "Bladedancer": {
+      "recipe": "3, 3, 9",
+      "stats": [
+        "Sword Attacks deal 30% increased Damage with Hits and Ailments",
+        "+0.3 metres to Melee Strike-Range with Swords"
+      ]
+    },
+    "Blast Radius": {
+      "recipe": "1, 4, 11",
+      "stats": [
+        "10% increased Area-of-Effect",
+        "20% increased Area Damage"
+      ]
+    },
+    "Blast Waves": {
+      "recipe": "1, 4, 9",
+      "stats": [
+        "Skills used by Mines deal 30% increased Area Damage if you Detonated a Mine Recently",
+        "Skills used by Mines have 15% increased Area-of-Effect if you Detonated a Mine Recently"
+      ]
+    },
+    "Blood Drinker": {
+      "recipe": "11, 11, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "Recover 2% of Life on Kill"
+      ]
+    },
+    "Blood Siphon": {
+      "recipe": "6, 11, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "gain 10 Life per enemy Killed",
+        "+20 to Strength"
+      ]
+    },
+    "Bloodless": {
+      "recipe": "3, 9, 13",
+      "stats": [
+        "10% increased maximum Life",
+        "enemies cannot Leech Life From you"
+      ]
+    },
+    "Bloodletting": {
+      "recipe": "6, 6, 12",
+      "stats": [
+        "+15% to Damage-over-Time Multiplier for Bleeding",
+        "10% chance to aggravate Bleeding on targets you Hit with Attacks"
+      ]
+    },
+    "Blunt Trauma": {
+      "recipe": "5, 9, 12",
+      "stats": [
+        "40% increased Crit-Chance with Staves",
+        "+20% to Crit-Multi with Staves",
+        "Knocks Back enemies if you get a Critical Strike with a Staff"
+      ]
+    },
+    "Bone Breaker": {
+      "recipe": "4, 6, 6",
+      "stats": [
+        "30% increased Physical Damage with Maces or Sceptres",
+        "Mace or Sceptre Attacks deal 30% increased Damage with Ailments",
+        "15% increased Area-of-Effect"
+      ]
+    },
+    "Born to Fight": {
+      "recipe": "8, 8, 13",
+      "stats": [
+        "4% increased Attack Speed",
+        "+20 to Strength",
+        "26% increased Physical Damage"
+      ]
+    },
+    "Brand Equity": {
+      "recipe": "7, 8, 10",
+      "stats": [
+        "you can Cast 2 additional Brands",
+        "Brand Skills have 20% increased Duration",
+        "Brand Recall has 20% increased Cooldown Recovery Rate"
+      ]
+    },
+    "Bravery": {
+      "recipe": "8, 11, 11",
+      "stats": [
+        "24% increased Evasion and Armour",
+        "8% increased maximum Life"
+      ]
+    },
+    "Breath of Flames": {
+      "recipe": "4, 6, 13",
+      "stats": [
+        "+10% to Fire Damage-over-Time Multiplier",
+        "30% increased Fire Damage"
+      ]
+    },
+    "Breath of Lightning": {
+      "recipe": "6, 8, 13",
+      "stats": [
+        "30% increased Lightning Damage",
+        "50% increased Effect of Lightning Ailments"
+      ]
+    },
+    "Breath of Rime": {
+      "recipe": "5, 12, 12",
+      "stats": [
+        "30% increased Cold Damage",
+        "50% increased Duration of Cold Ailments"
+      ]
+    },
+    "Brink of Death": {
+      "recipe": "4, 7, 8",
+      "stats": [
+        "Regen 4% of Life per second while on Low-Life"
+      ]
+    },
+    "Brinkmanship": {
+      "recipe": "1, 3, 11",
+      "stats": [
+        "Melee Skills have 20% increased Area-of-Effect"
+      ]
+    },
+    "Brutal Blade": {
+      "recipe": "2, 4, 13",
+      "stats": [
+        "+6% Chance to Block Attack Damage while Dual-Wielding or holding a Shield",
+        "Sword Attacks deal 24% increased Damage with Hits and Ailments",
+        "20% chance to gain a Frenzy Charge when you Block Attack Damage"
+      ]
+    },
+    "Brutal Skewering": {
+      "recipe": "6, 13, 13",
+      "stats": [
+        "Impales you inflict last 1 additional Hit"
+      ]
+    },
+    "Burning Brutality": {
+      "recipe": "5, 7, 8",
+      "stats": [
+        "+12% to Fire Damage-over-Time Multiplier with Attack Skills",
+        "6% increased Attack Speed"
+      ]
+    },
+    "Burst of Energy": {
+      "recipe": "1, 3, 3",
+      "stats": [
+        "Recover 15% of Mana when you activate a Tincture"
+      ]
+    },
+    "Butchery": {
+      "recipe": "4, 8, 9",
+      "stats": [
+        "25% increased Physical Damage with Two-Handed Melee Weapons",
+        "Attacks with Two-Handed Melee Weapons deal 25% increased Damage with Ailments",
+        "5% increased Attack Speed with Two-Handed Melee Weapons",
+        "+20 to Strength"
+      ]
+    },
+    "Cannibalistic Rite": {
+      "recipe": "5, 6, 6",
+      "stats": [
+        "Attack Skills Cost Life instead of 10% of Mana Cost",
+        "15% reduced Mana Cost of Attacks"
+      ]
+    },
+    "Careful Conservationist": {
+      "recipe": "7, 10, 11",
+      "stats": [
+        "10% reduced Flask Charges used",
+        "Flasks applied to you have 5% increased Effect",
+        "20% increased Flask Charges gained if you've dealt a Critical Strike Recently"
+      ]
+    },
+    "Careful Counterattack": {
+      "recipe": "1, 1, 3",
+      "stats": [
+        "10% chance to Block Attack Damage if you've used a Retaliation Skill Recently",
+        "10% chance to Block Spell Damage if you've used a Retaliation Skill Recently"
+      ]
+    },
+    "Cauterisation": {
+      "recipe": "2, 2, 7",
+      "stats": [
+        "Bleeding enemies cannot inflict Bleeding on you",
+        "Ignited enemies cannot Ignite you"
+      ]
+    },
+    "Champion of the Cause": {
+      "recipe": "5, 9, 13",
+      "stats": [
+        "12% increased Area-of-Effect of Aura Skills",
+        "8% increased Reservation Efficiency of Skills",
+        "6% increased effect of Non-Curse Auras from your Skills"
+      ]
+    },
+    "Charisma": {
+      "recipe": "11, 13, 13",
+      "stats": [
+        "16% increased Mana Reservation Efficiency of Skills",
+        "6% increased effect of Non-Curse Auras from your Skills"
+      ]
+    },
+    "Circle of Life": {
+      "recipe": "1, 7, 8",
+      "stats": [
+        "gain 10 Life per enemy Hit with Attacks",
+        "12% of Damage taken Recouped as Life"
+      ]
+    },
+    "Claws of the Falcon": {
+      "recipe": "3, 3, 13",
+      "stats": [
+        "15% increased Accuracy with Claws",
+        "+40% to Crit-Multi with Claws"
+      ]
+    },
+    "Claws of the Hawk": {
+      "recipe": "8, 10, 11",
+      "stats": [
+        "60% increased Crit-Chance with Claws",
+        "+20% to Crit-Multi with Claws"
+      ]
+    },
+    "Claws of the Magpie": {
+      "recipe": "2, 6, 6",
+      "stats": [
+        "Claw Attacks deal 25% increased Damage with Hits and Ailments",
+        "10% increased Attack Speed with Claws",
+        "25% chance to Steal Power, Frenzy, and Endurance Charges on Hit with Claws"
+      ]
+    },
+    "Cleansed Thoughts": {
+      "recipe": "14, 6, 13",
+      "stats": [
+        "Chaos Resistance is doubled"
+      ]
+    },
+    "Cleaving": {
+      "recipe": "2, 3, 10",
+      "stats": [
+        "30% increased Physical Damage with Axes",
+        "Axe Attacks deal 30% increased Damage with Ailments",
+        "15% chance to Intimidate enemies for 4 seconds on Hit with Attacks"
+      ]
+    },
+    "Clever Construction": {
+      "recipe": "2, 6, 9",
+      "stats": [
+        "10% Chance for Traps to Trigger an additional time"
+      ]
+    },
+    "Clever Thief": {
+      "recipe": "1, 4, 7",
+      "stats": [
+        "1% of Attack Damage Leeched as Life",
+        "1% of Attack Damage Leeched as Mana"
+      ]
+    },
+    "Cloth and Chain": {
+      "recipe": "1, 1, 6",
+      "stats": [
+        "24% increased Evasion and Armour",
+        "+12% to all Elemental Resistances"
+      ]
+    },
+    "Coldhearted Calculation": {
+      "recipe": "9, 9, 9",
+      "stats": [
+        "12% increased Damage",
+        "20% increased Mana Regen Rate",
+        "+20 to Intelligence"
+      ]
+    },
+    "Colloidal Mixture": {
+      "recipe": "1, 1, 4",
+      "stats": [
+        "Tinctures applied to you have 15% increased Effect",
+        "Tinctures applied to you have 15% increased Effect if you've used a Life Flask Recently"
+      ]
+    },
+    "Combat Stamina": {
+      "recipe": "1, 4, 10",
+      "stats": [
+        "20% increased Armour",
+        "5% increased maximum Life",
+        "Regen 1% of Life per second"
+      ]
+    },
+    "Command of Steel": {
+      "recipe": "3, 9, 11",
+      "stats": [
+        "+8% Chance to Block Attack Damage while holding a Shield",
+        "50% increased Defences from Equipped Shield"
+      ]
+    },
+    "Concussive Force": {
+      "recipe": "5, 7, 12",
+      "stats": [
+        "Hits Stun as though dealing 50% more Melee Fire Damage",
+        "Ignites from Stunning Melee Hits deal 20% more Damage"
+      ]
+    },
+    "Conjured Barrier": {
+      "recipe": "4, 7, 10",
+      "stats": [
+        "30% chance to Ignore Stuns while Casting",
+        "50% increased Stun and Block Recovery",
+        "30% increased Mana Regen Rate while stationary"
+      ]
+    },
+    "Constitution": {
+      "recipe": "5, 8, 13",
+      "stats": [
+        "+20 to maximum Life",
+        "10% increased maximum Life"
+      ]
+    },
+    "Coordination": {
+      "recipe": "3, 9, 10",
+      "stats": [
+        "10% increased Attack Speed",
+        "8% increased Cast Speed",
+        "+10 to Dexterity and Intelligence"
+      ]
+    },
+    "Cornered Prey": {
+      "recipe": "3, 3, 7",
+      "stats": [
+        "+30% to Crit-Multi against Bleeding enemies",
+        "80% increased Crit-Chance against Bleeding enemies"
+      ]
+    },
+    "Corruption": {
+      "recipe": "9, 10, 10",
+      "stats": [
+        "20% increased Effect of Withered"
+      ]
+    },
+    "Counterweight": {
+      "recipe": "1, 3, 12",
+      "stats": [
+        "60% increased Global Crit-Chance while wielding a Staff",
+        "+30% to Global Crit-Multi while wielding a Staff"
+      ]
+    },
+    "Courage": {
+      "recipe": "6, 8, 8",
+      "stats": [
+        "30% increased Armour if you have been Hit Recently",
+        "30% increased Evasion if you haven't been Hit Recently",
+        "+15% chance to Suppress Spell Damage if you've Hit an enemy Recently"
+      ]
+    },
+    "Crackling Speed": {
+      "recipe": "10, 11, 11",
+      "stats": [
+        "24% increased Lightning Damage",
+        "8% increased Cast Speed"
+      ]
+    },
+    "Cruel Preparation": {
+      "recipe": "5, 10, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "+5% to all Elemental Resistances"
+      ]
+    },
+    "Cruel Retort": {
+      "recipe": "1, 1, 2",
+      "stats": [
+        "every fourth Retaliation Skill you use always critically Strikes",
+        "Retaliation Skills have 20% increased Speed"
+      ]
+    },
+    "Crusader": {
+      "recipe": "14, 11, 13",
+      "stats": [
+        "8% increased maximum Mana",
+        "Transfiguration of Mind"
+      ]
+    },
+    "Crushing Reply": {
+      "recipe": "1, 2, 3",
+      "stats": [
+        "Retaliation Skills have 50% increased Stun Duration on enemies",
+        "Retaliation Skills Fortify on Melee Hit"
+      ]
+    },
+    "Crystal Skin": {
+      "recipe": "2, 10, 12",
+      "stats": [
+        "+1% to all maximum Elemental Resistances",
+        "20% chance to Avoid Elemental Ailments"
+      ]
+    },
+    "Dance of Blades": {
+      "recipe": "7, 9, 9",
+      "stats": [
+        "you have Onslaught if you've changed Stance Recently"
+      ]
+    },
+    "Dark Arts": {
+      "recipe": "5, 8, 11",
+      "stats": [
+        "+8% Chance to Block Spell Damage while Dual-Wielding",
+        "+8% Chance to Block Attack Damage while Dual-Wielding",
+        "10% increased Attack Speed while Dual-Wielding",
+        "10% increased Cast Speed while Dual-Wielding"
+      ]
+    },
+    "Dazzling Strikes": {
+      "recipe": "5, 5, 11",
+      "stats": [
+        "50% increased Crit-Chance against Blinded enemies",
+        "20% chance to Blind enemies on Hit with Attacks",
+        "20% increased Blind Effect"
+      ]
+    },
+    "Deadly Draw": {
+      "recipe": "2, 4, 9",
+      "stats": [
+        "30% increased Damage Over Time with Bow Skills",
+        "Damaging Ailments deal damage 10% faster"
+      ]
+    },
+    "Deadly Inclinations": {
+      "recipe": "14, 7, 10",
+      "stats": [
+        "18% increased Evasion",
+        "+12 to maximum Life",
+        "16% increased Projectile Damage",
+        "+30 to Dexterity"
+      ]
+    },
+    "Death Attunement": {
+      "recipe": "1, 9, 12",
+      "stats": [
+        "+1 to Maximum number of Spectres",
+        "+1 to Maximum number of Raised Zombies",
+        "+1 to Maximum number of Skeletons"
+      ]
+    },
+    "Decay Ward": {
+      "recipe": "2, 4, 5",
+      "stats": [
+        "Minions have +18% Chance to Block Attack Damage",
+        "Minions have +18% Chance to Block Spell Damage",
+        "Minions Recover 2% of their Life when they Block"
+      ]
+    },
+    "Deep Breaths": {
+      "recipe": "5, 7, 11",
+      "stats": [
+        "35% increased Warcry Cooldown Recovery Rate",
+        "Warcry Skills have 40% increased Area-of-Effect"
+      ]
+    },
+    "Deep Thoughts": {
+      "recipe": "1, 4, 8",
+      "stats": [
+        "20% increased maximum Mana",
+        "20% increased Mana Regen Rate",
+        "+20 to Intelligence"
+      ]
+    },
+    "Deep Wisdom": {
+      "recipe": "2, 5, 5",
+      "stats": [
+        "+20 to maximum Energy-shield",
+        "+20 to maximum Mana",
+        "+20 to Intelligence"
+      ]
+    },
+    "Defiance": {
+      "recipe": "3, 5, 10",
+      "stats": [
+        "+3% Chance to Block Attack Damage while holding a Shield",
+        "Attack Skills deal 24% increased Damage while holding a Shield",
+        "60% increased Defences from Equipped Shield"
+      ]
+    },
+    "Defiant Stand": {
+      "recipe": "4, 10, 13",
+      "stats": [
+        "gain 3 Endurance Charges when you consume maximum Valour to place a Banner",
+        "gain 3 Frenzy Charges when you consume maximum Valour to place a Banner"
+      ]
+    },
+    "Defiled Forces": {
+      "recipe": "9, 10, 11",
+      "stats": [
+        "Refresh Duration of Ignite, Chill and Shock on enemies you Curse",
+        "Remove Elemental Ailments when you Cast a Curse Spell"
+      ]
+    },
+    "Deflection": {
+      "recipe": "3, 7, 12",
+      "stats": [
+        "+8% Chance to Block Attack Damage while holding a Shield",
+        "25% chance to gain an Endurance Charge when you Block"
+      ]
+    },
+    "Deliberate Brutality": {
+      "recipe": "14, 8, 12",
+      "stats": [
+        "Impales you inflict gain 50% increased Effect once 1 second of Duration has expired"
+      ]
+    },
+    "Depth Perception": {
+      "recipe": "3, 4, 5",
+      "stats": [
+        "+100 to Accuracy",
+        "20% increased Global Accuracy",
+        "25% increased Crit-Chance"
+      ]
+    },
+    "Dervish": {
+      "recipe": "6, 9, 10",
+      "stats": [
+        "+3% Chance to Block Attack Damage while Dual-Wielding",
+        "Attack Skills deal 24% increased Damage while Dual-Wielding",
+        "6% increased Attack Speed while Dual-Wielding"
+      ]
+    },
+    "Destroyer": {
+      "recipe": "2, 4, 11",
+      "stats": [
+        "25% increased Physical Damage with Two-Handed Melee Weapons",
+        "Attacks with Two-Handed Melee Weapons deal 25% increased Damage with Ailments",
+        "5% increased Attack Speed with Two-Handed Melee Weapons",
+        "25% increased Stun Duration with Two-Handed Melee Weapons on enemies"
+      ]
+    },
+    "Destructive Apparatus": {
+      "recipe": "2, 3, 12",
+      "stats": [
+        "60% increased Mine Duration",
+        "12% increased Mine Throwing Speed"
+      ]
+    },
+    "Devastating Devices": {
+      "recipe": "5, 5, 12",
+      "stats": [
+        "50% increased Crit-Chance with Mines",
+        "+25% to Crit-Multi with Mines",
+        "10% chance to gain a Power Charge when your Mine is Detonated targeting an enemy"
+      ]
+    },
+    "Devotion": {
+      "recipe": "9, 9, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "25% increased Effect of Consecrated Ground you create"
+      ]
+    },
+    "Diamond Skin": {
+      "recipe": "2, 5, 11",
+      "stats": [
+        "+15% to all Elemental Resistances"
+      ]
+    },
+    "Dire Torment": {
+      "recipe": "6, 9, 11",
+      "stats": [
+        "+25% to Damage-over-Time Multiplier for Ailments from Critical Strikes",
+        "40% increased Crit-Chance"
+      ]
+    },
+    "Dirty Techniques": {
+      "recipe": "3, 11, 13",
+      "stats": [
+        "Damaging Ailments deal damage 15% faster"
+      ]
+    },
+    "Disciple of the Forbidden": {
+      "recipe": "10, 10, 10",
+      "stats": [
+        "+1 to Minimum Power Charges",
+        "8% chance to gain a Power Charge on Kill",
+        "8% increased Damage per Power Charge"
+      ]
+    },
+    "Disciple of the Slaughter": {
+      "recipe": "3, 4, 13",
+      "stats": [
+        "+1 to Minimum Frenzy Charges",
+        "8% chance to gain a Frenzy Charge on Kill",
+        "8% increased Damage per Frenzy Charge"
+      ]
+    },
+    "Disciple of the Unyielding": {
+      "recipe": "8, 9, 11",
+      "stats": [
+        "+1 to Minimum Endurance Charges",
+        "8% chance to gain an Endurance Charge on Kill",
+        "8% increased Damage per Endurance Charge"
+      ]
+    },
+    "Discipline and Training": {
+      "recipe": "10, 12, 12",
+      "stats": [
+        "+30 to maximum Life",
+        "10% increased maximum Life"
+      ]
+    },
+    "Discord Artisan": {
+      "recipe": "3, 5, 6",
+      "stats": [
+        "15% increased Damage for each Herald affecting you",
+        "20% increased Effect of Herald Buffs on you"
+      ]
+    },
+    "Disemboweling": {
+      "recipe": "4, 8, 13",
+      "stats": [
+        "50% increased Melee Crit-Chance",
+        "+25% to Melee Crit-Multi"
+      ]
+    },
+    "Disintegration": {
+      "recipe": "8, 10, 10",
+      "stats": [
+        "60% increased Crit-Chance with Wands",
+        "+30% to Crit-Multi with Wands",
+        "+20 to Intelligence"
+      ]
+    },
+    "Dismembering": {
+      "recipe": "8, 11, 13",
+      "stats": [
+        "40% increased Melee Crit-Chance",
+        "+20% to Melee Crit-Multi",
+        "20% chance to Maim enemies on Critical Strike with Attacks"
+      ]
+    },
+    "Divine Fervour": {
+      "recipe": "4, 5, 7",
+      "stats": [
+        "20% increased Attack Damage",
+        "30% increased Melee Crit-Chance",
+        "+10 to Strength and Intelligence"
+      ]
+    },
+    "Divine Fury": {
+      "recipe": "3, 3, 10",
+      "stats": [
+        "gain 5% of Physical Damage as Extra Fire Damage",
+        "Damage Penetrates 5% Fire Resistance"
+      ]
+    },
+    "Divine Judgement": {
+      "recipe": "2, 5, 10",
+      "stats": [
+        "50% increased Elemental Damage"
+      ]
+    },
+    "Divine Wrath": {
+      "recipe": "3, 3, 11",
+      "stats": [
+        "gain 5% of Physical Damage as Extra Lightning Damage",
+        "Damage Penetrates 5% Lightning Resistance"
+      ]
+    },
+    "Doom Cast": {
+      "recipe": "3, 6, 13",
+      "stats": [
+        "60% increased Spell Crit-Chance",
+        "+15% to Crit-Multi for Spell Damage"
+      ]
+    },
+    "Dreamer": {
+      "recipe": "2, 5, 6",
+      "stats": [
+        "30% increased Mana Regen Rate",
+        "10% reduced Mana Cost of Skills"
+      ]
+    },
+    "Druidic Rite": {
+      "recipe": "1, 9, 13",
+      "stats": [
+        "20% increased maximum Mana",
+        "20% increased Flask Effect Duration"
+      ]
+    },
+    "Dynamo": {
+      "recipe": "1, 2, 6",
+      "stats": [
+        "18% increased maximum Mana",
+        "Guard Skills have 40% increased Duration"
+      ]
+    },
+    "Eagle Eye": {
+      "recipe": "1, 1, 11",
+      "stats": [
+        "+150 to Accuracy",
+        "20% increased Global Accuracy",
+        "20% increased Crit-Chance"
+      ]
+    },
+    "Efficient Explosives": {
+      "recipe": "2, 5, 8",
+      "stats": [
+        "30% increased Mana Reservation Efficiency of Skills that throw Mines",
+        "Mines have a 15% chance to be Detonated an Additional Time"
+      ]
+    },
+    "Elder Power": {
+      "recipe": "5, 5, 8",
+      "stats": [
+        "10% increased Wand Damage per Power Charge",
+        "10% chance to gain a Power Charge on Kill"
+      ]
+    },
+    "Elemental Focus": {
+      "recipe": "2, 3, 6",
+      "stats": [
+        "20% increased Duration of Elemental Ailments on enemies",
+        "20% increased Elemental Damage",
+        "20% increased Effect of Non-Damaging Ailments"
+      ]
+    },
+    "Empowered Bond": {
+      "recipe": "1, 7, 7",
+      "stats": [
+        "+2 to Level of all Link Skill Gems"
+      ]
+    },
+    "Endurance": {
+      "recipe": "1, 10, 13",
+      "stats": [
+        "+1 to Maximum Endurance Charges"
+      ]
+    },
+    "Enduring Bond": {
+      "recipe": "1, 4, 13",
+      "stats": [
+        "20% increased Skill-Effect-Duration",
+        "Minions deal 30% increased Damage if you've used a Minion Skill Recently",
+        "20% increased Minion Duration"
+      ]
+    },
+    "Enigmatic Defence": {
+      "recipe": "8, 8, 8",
+      "stats": [
+        "20% increased Spell Damage while wielding a Staff",
+        "+8% Chance to Block Attack Damage while wielding a Staff",
+        "+8% Chance to Block Spell Damage while wielding a Staff"
+      ]
+    },
+    "Enigmatic Reach": {
+      "recipe": "4, 5, 10",
+      "stats": [
+        "3% increased Area-of-Effect per Power Charge",
+        "25% chance to gain a Power Charge when you Block Spell Damage",
+        "+8% Chance to Block Spell Damage while wielding a Staff"
+      ]
+    },
+    "Entrench": {
+      "recipe": "2, 6, 8",
+      "stats": [
+        "+12% chance to Suppress Spell Damage",
+        "Life Flasks gain 3 Charges when you Suppress Spell Damage"
+      ]
+    },
+    "Entropy": {
+      "recipe": "2, 3, 9",
+      "stats": [
+        "23% increased Damage-over-Time",
+        "10% increased Skill-Effect-Duration"
+      ]
+    },
+    "Escalation": {
+      "recipe": "4, 4, 7",
+      "stats": [
+        "10% increased Melee Damage for each second you've been affected by a Warcry Buff, up to a maximum of 60%"
+      ]
+    },
+    "Essence Extraction": {
+      "recipe": "9, 9, 10",
+      "stats": [
+        "25% increased Flask Charges gained",
+        "15% increased Mana Recovery Rate during Effect of any Mana Flask"
+      ]
+    },
+    "Essence Infusion": {
+      "recipe": "1, 3, 4",
+      "stats": [
+        "15% faster start of Energy-shield Recharge",
+        "30% increased Energy-shield Recharge-Rate"
+      ]
+    },
+    "Essence Sap": {
+      "recipe": "5, 8, 10",
+      "stats": [
+        "0.5% of Attack Damage Leeched as Mana",
+        "50% increased Maximum total Mana Recovery per second from Leech",
+        "100% increased total Recovery per second from Mana Leech"
+      ]
+    },
+    "Essence Surge": {
+      "recipe": "5, 12, 13",
+      "stats": [
+        "+30 to maximum Energy-shield",
+        "20% faster start of Energy-shield Recharge"
+      ]
+    },
+    "Ethereal Feast": {
+      "recipe": "3, 12, 13",
+      "stats": [
+        "1% of Spell Damage Leeched as Energy-shield",
+        "40% increased Maximum total Energy-shield Recovery per second from Leech"
+      ]
+    },
+    "Exceptional Performance": {
+      "recipe": "1, 3, 10",
+      "stats": [
+        "25% increased Skill-Effect-Duration"
+      ]
+    },
+    "Excess Sustenance": {
+      "recipe": "5, 7, 7",
+      "stats": [
+        "15% chance to gain 200 Life on Hit with Attacks"
+      ]
+    },
+    "Executioner": {
+      "recipe": "3, 4, 6",
+      "stats": [
+        "60% increased Damage with Hits against enemies that are on Low-Life",
+        "15% increased Area-of-Effect if you've Killed Recently"
+      ]
+    },
+    "Expeditious Munitions": {
+      "recipe": "1, 6, 8",
+      "stats": [
+        "50% increased Trap Trigger Area-of-Effect",
+        "12% increased Trap Throwing Speed"
+      ]
+    },
+    "Expert Hunter": {
+      "recipe": "7, 10, 10",
+      "stats": [
+        "20% increased Effect of your Marks"
+      ]
+    },
+    "Explosive Elements": {
+      "recipe": "3, 9, 12",
+      "stats": [
+        "Mine Damage Penetrates 10% Elemental Resistances"
+      ]
+    },
+    "Explosive Impact": {
+      "recipe": "4, 6, 11",
+      "stats": [
+        "30% increased Fire Damage",
+        "12% increased Area-of-Effect"
+      ]
+    },
+    "Explosive Runes": {
+      "recipe": "3, 6, 6",
+      "stats": [
+        "+30% to Brand Crit-Multi",
+        "30% increased Brand Attachment range"
+      ]
+    },
+    "Faith and Steel": {
+      "recipe": "2, 10, 13",
+      "stats": [
+        "15% increased Armour",
+        "10% increased maximum Energy-shield",
+        "+8% to all Elemental Resistances"
+      ]
+    },
+    "Fangs of Frost": {
+      "recipe": "2, 2, 12",
+      "stats": [
+        "Damage with Weapons Penetrates 8% Cold Resistance",
+        "30% increased Cold Damage with Attack Skills"
+      ]
+    },
+    "Fangs of the Viper": {
+      "recipe": "1, 5, 6",
+      "stats": [
+        "20% increased Chaos Damage",
+        "5% increased Movement Speed",
+        "+20 to Dexterity",
+        "20% increased Physical Damage"
+      ]
+    },
+    "Farsight": {
+      "recipe": "4, 4, 9",
+      "stats": [
+        "24% increased Damage with Bows",
+        "6% increased Attack Speed with Bows",
+        "16% increased Accuracy with Bows",
+        "24% increased Damage Over Time with Bow Skills"
+      ]
+    },
+    "Fatal Blade": {
+      "recipe": "3, 11, 11",
+      "stats": [
+        "50% increased Crit-Chance with Swords",
+        "+25% to Crit-Multi with Swords"
+      ]
+    },
+    "Fatal Toxins": {
+      "recipe": "1, 8, 12",
+      "stats": [
+        "+10% to Damage-over-Time Multiplier for Poison",
+        "+10% to Chaos Resistance",
+        "30% increased Damage with Poison"
+      ]
+    },
+    "Fearsome Force": {
+      "recipe": "5, 6, 9",
+      "stats": [
+        "Minions have 60% increased Crit-Chance",
+        "Minions have +20% to Crit-Multi"
+      ]
+    },
+    "Feline Swiftness": {
+      "recipe": "1, 1, 5",
+      "stats": [
+        "+10% Chance to Block Attack Damage while Dual-Wielding",
+        "8% increased Movement Speed while Dual-Wielding"
+      ]
+    },
+    "Feller of Foes": {
+      "recipe": "3, 10, 11",
+      "stats": [
+        "Axe Attacks deal 30% increased Damage with Hits and Ailments",
+        "+40% to Crit-Multi with Axes",
+        "+200 to Accuracy with Axes"
+      ]
+    },
+    "Fending": {
+      "recipe": "2, 2, 4",
+      "stats": [
+        "15% chance to Knock enemies Back on hit",
+        "25% increased Knockback Distance"
+      ]
+    },
+    "Fervour": {
+      "recipe": "3, 10, 12",
+      "stats": [
+        "+1 to Maximum Frenzy Charges"
+      ]
+    },
+    "Field Medicine": {
+      "recipe": "7, 9, 10",
+      "stats": [
+        "30% increased Life Recovery from Flasks",
+        "Life Flasks gain a Charge when you hit an enemy, no more than once each second"
+      ]
+    },
+    "Finesse": {
+      "recipe": "5, 6, 10",
+      "stats": [
+        "8% increased Attack Speed",
+        "15% increased Global Accuracy",
+        "+20 to Dexterity"
+      ]
+    },
+    "Fingers of Frost": {
+      "recipe": "8, 9, 13",
+      "stats": [
+        "enemies Become Chilled as they Unfreeze, causing 30% reduced Action Speed",
+        "30% chance to Freeze enemies which are Chilled"
+      ]
+    },
+    "Fire Walker": {
+      "recipe": "8, 9, 10",
+      "stats": [
+        "25% increased Fire Damage",
+        "5% increased Cast Speed with Fire Skills",
+        "+15% to Fire Resistance"
+      ]
+    },
+    "Flash Freeze": {
+      "recipe": "4, 6, 9",
+      "stats": [
+        "25% increased Cold Damage",
+        "15% chance to Freeze",
+        "30% increased Effect of Cold Ailments"
+      ]
+    },
+    "Flaying": {
+      "recipe": "1, 8, 9",
+      "stats": [
+        "Dagger Attacks deal 24% increased Damage with Hits and Ailments",
+        "12% increased Attack Speed with Daggers",
+        "18% increased Accuracy with Daggers"
+      ]
+    },
+    "Fleetfoot": {
+      "recipe": "2, 3, 11",
+      "stats": [
+        "30% increased Evasion",
+        "5% increased Movement Speed",
+        "30% increased Cooldown Recovery Rate of Movement Skills"
+      ]
+    },
+    "Flow of Battle": {
+      "recipe": "2, 2, 3",
+      "stats": [
+        "Retaliation Skills deal 30% increased Damage",
+        "gain 5 Rage on Hit with Retaliation Skills"
+      ]
+    },
+    "Force of Darkness": {
+      "recipe": "14, 11, 11",
+      "stats": [
+        "Damage Penetrates 15% Chaos Resistance"
+      ]
+    },
+    "Force Shaper": {
+      "recipe": "1, 7, 12",
+      "stats": [
+        "gain 10% of Physical Damage as Extra Chaos Damage",
+        "4% increased Attack Speed and Cast Speed"
+      ]
+    },
+    "Forceful Skewering": {
+      "recipe": "4, 6, 8",
+      "stats": [
+        "15% chance to Impale enemies on Hit with Attacks",
+        "10% increased Impale Effect"
+      ]
+    },
+    "Forces of Nature": {
+      "recipe": "4, 6, 12",
+      "stats": [
+        "Attack Damage Penetrates 10% of enemy Elemental Resistances"
+      ]
+    },
+    "Foresight": {
+      "recipe": "4, 11, 13",
+      "stats": [
+        "+20 to maximum Energy-shield",
+        "14% increased maximum Energy-shield",
+        "10% increased Energy-shield Recharge-Rate"
+      ]
+    },
+    "Forethought": {
+      "recipe": "5, 7, 10",
+      "stats": [
+        "30% increased maximum Mana",
+        "10% increased Mana Cost of Skills"
+      ]
+    },
+    "Freedom of Movement": {
+      "recipe": "1, 2, 8",
+      "stats": [
+        "40% increased Evasion while Phasing",
+        "10% increased Movement Speed while Phasing",
+        "+20 to Dexterity"
+      ]
+    },
+    "Frenetic": {
+      "recipe": "6, 12, 12",
+      "stats": [
+        "+1 to Maximum Frenzy Charges"
+      ]
+    },
+    "From the Shadows": {
+      "recipe": "1, 6, 9",
+      "stats": [
+        "12% increased Attack Speed with Daggers",
+        "40% increased Elusive Effect"
+      ]
+    },
+    "Frost Walker": {
+      "recipe": "4, 8, 11",
+      "stats": [
+        "25% increased Cold Damage",
+        "5% increased Cast Speed with Cold Skills",
+        "+15% to Cold Resistance"
+      ]
+    },
+    "Fury Bolts": {
+      "recipe": "4, 4, 5",
+      "stats": [
+        "20% increased Projectile Speed",
+        "20% increased Projectile Damage",
+        "+20 to Strength"
+      ]
+    },
+    "Fusillade": {
+      "recipe": "2, 4, 4",
+      "stats": [
+        "15% increased Attack Speed with Wands",
+        "30% increased Accuracy with Wands"
+      ]
+    },
+    "Galvanic Hammer": {
+      "recipe": "1, 2, 9",
+      "stats": [
+        "10% increased Accuracy with Maces or Sceptres",
+        "30% increased Elemental Damage with Maces or Sceptres",
+        "Damage with Weapons Penetrates 5% Elemental Resistances"
+      ]
+    },
+    "Glacial Cage": {
+      "recipe": "4, 7, 9",
+      "stats": [
+        "enemies permanently take 1% increased Damage for each second they've ever been Chilled by you, up to a maximum of 10%"
+      ]
+    },
+    "Gladiator's Perseverance": {
+      "recipe": "5, 6, 12",
+      "stats": [
+        "10% increased Attack Speed when on Full-Life",
+        "1% of Physical Attack Damage Leeched as Life",
+        "40% increased Attack Damage while Leeching"
+      ]
+    },
+    "Golem Commander": {
+      "recipe": "6, 12, 13",
+      "stats": [
+        "40% increased Effect of Buffs granted by your Golems",
+        "+1 to maximum number of Summoned Golems"
+      ]
+    },
+    "Golem's Blood": {
+      "recipe": "5, 13, 13",
+      "stats": [
+        "10% increased maximum Life",
+        "Regen 1.6% of Life per second"
+      ]
+    },
+    "Goliath": {
+      "recipe": "2, 3, 13",
+      "stats": [
+        "50% chance to double Stun Duration"
+      ]
+    },
+    "Graceful Assault": {
+      "recipe": "8, 8, 10",
+      "stats": [
+        "30% increased Effect of Onslaught on you",
+        "10% chance to gain Onslaught for 4 seconds on Kill",
+        "30% increased Armour and Evasion during Onslaught"
+      ]
+    },
+    "Grave Intentions": {
+      "recipe": "2, 8, 8",
+      "stats": [
+        "Minions have +27% to Chaos Resistance",
+        "Minions gain 20% of Maximum Life as Extra Maximum Energy-shield"
+      ]
+    },
+    "Gravepact": {
+      "recipe": "6, 10, 10",
+      "stats": [
+        "30% increased Minion Accuracy",
+        "Minions have 6% chance to deal Double Damage"
+      ]
+    },
+    "Growth and Decay": {
+      "recipe": "1, 5, 13",
+      "stats": [
+        "+12% to Damage-over-Time Multiplier",
+        "Regen 1% of Life per second"
+      ]
+    },
+    "Hardened Scars": {
+      "recipe": "14, 6, 9",
+      "stats": [
+        "15% increased Life Recovery from Flasks",
+        "25% less Damage-over-Time taken during Effect of any Life Flask"
+      ]
+    },
+    "Harpooner": {
+      "recipe": "5, 7, 9",
+      "stats": [
+        "20% chance to Impale enemies on Hit with Two-Handed Weapons",
+        "30% increased Effect of Impales you inflict with Two-Handed Weapons on Non-Impaled enemies",
+        "50% increased Impale Duration"
+      ]
+    },
+    "Harrier": {
+      "recipe": "6, 9, 9",
+      "stats": [
+        "8% increased Attack Speed",
+        "6% increased Cast Speed",
+        "5% increased Movement Speed"
+      ]
+    },
+    "Harvester of Foes": {
+      "recipe": "1, 3, 7",
+      "stats": [
+        "30% increased Physical Damage with Axes",
+        "Axe Attacks deal 30% increased Damage with Ailments",
+        "12% increased Impale Effect"
+      ]
+    },
+    "Hatchet Master": {
+      "recipe": "4, 5, 9",
+      "stats": [
+        "Axe Attacks deal 24% increased Damage with Hits and Ailments",
+        "10% increased Attack Speed with Axes",
+        "20% chance to gain Onslaught for 4 seconds on Kill"
+      ]
+    },
+    "Heart and Soul": {
+      "recipe": "2, 9, 13",
+      "stats": [
+        "8% increased maximum Life",
+        "12% increased maximum Mana"
+      ]
+    },
+    "Heart of Darkness": {
+      "recipe": "14, 8, 8",
+      "stats": [
+        "27% increased Chaos Damage",
+        "Damage Penetrates 7% Chaos Resistance"
+      ]
+    },
+    "Heart of Flame": {
+      "recipe": "5, 6, 13",
+      "stats": [
+        "30% increased Fire Damage",
+        "Damage Penetrates 6% Fire Resistance"
+      ]
+    },
+    "Heart of Ice": {
+      "recipe": "9, 11, 13",
+      "stats": [
+        "30% increased Cold Damage",
+        "Damage Penetrates 6% Cold Resistance"
+      ]
+    },
+    "Heart of Oak": {
+      "recipe": "4, 9, 13",
+      "stats": [
+        "8% increased maximum Life",
+        "20% chance to Avoid being Stunned",
+        "Regen 2% of Life per second if you've used a Life Flask in the past 10 seconds"
+      ]
+    },
+    "Heart of the Warrior": {
+      "recipe": "8, 12, 13",
+      "stats": [
+        "+20 to maximum Life",
+        "10% increased maximum Life",
+        "+10 to Strength"
+      ]
+    },
+    "Heart of Thunder": {
+      "recipe": "2, 6, 13",
+      "stats": [
+        "30% increased Lightning Damage",
+        "Damage Penetrates 6% Lightning Resistance"
+      ]
+    },
+    "Heartseeker": {
+      "recipe": "5, 9, 9",
+      "stats": [
+        "+30% to Crit-Multi"
+      ]
+    },
+    "Hearty": {
+      "recipe": "4, 11, 12",
+      "stats": [
+        "15% increased Life Regen rate",
+        "Regen 1.8% of Life per second"
+      ]
+    },
+    "Heavy Draw": {
+      "recipe": "2, 4, 8",
+      "stats": [
+        "30% increased Physical Damage with Bows",
+        "50% increased Stun Duration with Bows on enemies",
+        "30% increased Damage Over Time with Bow Skills"
+      ]
+    },
+    "Hematophagy": {
+      "recipe": "8, 10, 12",
+      "stats": [
+        "40% increased Maximum total Life Recovery per second from Leech",
+        "100% increased total Recovery per second from Life Leech"
+      ]
+    },
+    "Herbalism": {
+      "recipe": "5, 11, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "30% increased Flask Recovery rate"
+      ]
+    },
+    "High Explosives": {
+      "recipe": "4, 4, 12",
+      "stats": [
+        "60% increased Crit-Chance with Traps",
+        "+20% to Crit-Multi with Traps",
+        "15% chance to gain a Power Charge when your Trap is triggered by an enemy"
+      ]
+    },
+    "High Voltage": {
+      "recipe": "3, 7, 7",
+      "stats": [
+        "100% increased Crit-Chance against Shocked enemies"
+      ]
+    },
+    "Hired Killer": {
+      "recipe": "8, 8, 11",
+      "stats": [
+        "7% increased maximum Life",
+        "Recover 2% of Life on Kill"
+      ]
+    },
+    "Hollow Effigy": {
+      "recipe": "14, 9, 12",
+      "stats": [
+        "your Offering Skills do not require a Corpse"
+      ]
+    },
+    "Holy Dominion": {
+      "recipe": "6, 6, 9",
+      "stats": [
+        "+12% to all Elemental Resistances",
+        "24% increased Elemental Damage",
+        "10% chance to Freeze, Shock and Ignite"
+      ]
+    },
+    "Holy Fire": {
+      "recipe": "3, 5, 12",
+      "stats": [
+        "+12% to Fire Damage-over-Time Multiplier",
+        "+24% to Fire Resistance"
+      ]
+    },
+    "Hunter's Gambit": {
+      "recipe": "1, 4, 12",
+      "stats": [
+        "+10% to Chaos Damage-over-Time Multiplier",
+        "10% increased Skill-Effect-Duration",
+        "25% increased Damage Over Time with Bow Skills"
+      ]
+    },
+    "Incorporeal": {
+      "recipe": "14, 12, 12",
+      "stats": [
+        "Elusive on you reduces in effect 50% slower",
+        "Elusive is removed from you at 20% effect"
+      ]
+    },
+    "Indiscriminate Revenge": {
+      "recipe": "1, 1, 1",
+      "stats": [
+        "Retaliation Skills have 30% increased Area-of-Effect"
+      ]
+    },
+    "Indomitable Army": {
+      "recipe": "8, 9, 12",
+      "stats": [
+        "Minions have 15% additional Physical Damage Reduction",
+        "Minions have +15% to all Elemental Resistances",
+        "Moving while Bleeding doesn't cause Minions to take extra Damage"
+      ]
+    },
+    "Inexorable": {
+      "recipe": "9, 11, 12",
+      "stats": [
+        "25% chance to gain an Endurance Charge when you are Hit",
+        "50% increased Armour while stationary"
+      ]
+    },
+    "Influence": {
+      "recipe": "4, 5, 13",
+      "stats": [
+        "14% increased effect of Non-Curse Auras from your Skills"
+      ]
+    },
+    "Infused": {
+      "recipe": "9, 12, 12",
+      "stats": [
+        "+1 to Maximum Power Charges"
+      ]
+    },
+    "Infused Flesh": {
+      "recipe": "3, 7, 10",
+      "stats": [
+        "18% of Damage taken Recouped as Life"
+      ]
+    },
+    "Insightfulness": {
+      "recipe": "4, 4, 13",
+      "stats": [
+        "10% increased maximum Energy-shield",
+        "16% increased maximum Mana",
+        "10% reduced Mana Cost of Skills while on Full Energy-shield"
+      ]
+    },
+    "Inspiring Bond": {
+      "recipe": "3, 5, 7",
+      "stats": [
+        "10% chance for Energy-shield Recharge to start when you Link to a target",
+        "Link Skills have 20% increased Buff Effect if you have Linked to a target Recently"
+      ]
+    },
+    "Instability": {
+      "recipe": "4, 12, 12",
+      "stats": [
+        "+1 to Maximum Power Charges"
+      ]
+    },
+    "Instinct": {
+      "recipe": "2, 2, 6",
+      "stats": [
+        "+12% chance to Suppress Spell Damage",
+        "Recover 50 Energy-shield when you Suppress Spell Damage"
+      ]
+    },
+    "Intuition": {
+      "recipe": "3, 8, 8",
+      "stats": [
+        "+8% chance to Suppress Spell Damage",
+        "15% increased Evasion",
+        "5% increased maximum Life"
+      ]
+    },
+    "Inveterate": {
+      "recipe": "10, 10, 13",
+      "stats": [
+        "Prevent +3% of Suppressed Spell Damage",
+        "+15% chance to Suppress Spell Damage"
+      ]
+    },
+    "Invigorating Blaze": {
+      "recipe": "1, 5, 7",
+      "stats": [
+        "+10% to Fire Damage-over-Time Multiplier with Attack Skills",
+        "Recover 2% of Life when you Ignite a non-Ignited enemy"
+      ]
+    },
+    "Ironwood": {
+      "recipe": "1, 3, 5",
+      "stats": [
+        "40% increased Totem Life",
+        "Totems have 40% additional Physical Damage Reduction"
+      ]
+    },
+    "Jagged Wounds": {
+      "recipe": "14, 7, 13",
+      "stats": [
+        "20% increased Maximum total Life Recovery per second from\nLeech if you've dealt a Critical Strike recently"
+      ]
+    },
+    "Juggernaut": {
+      "recipe": "3, 5, 11",
+      "stats": [
+        "24% increased Armour",
+        "8% increased maximum Life"
+      ]
+    },
+    "Kinetic Impacts": {
+      "recipe": "3, 6, 8",
+      "stats": [
+        "25% increased Physical Damage with Two-Handed Melee Weapons",
+        "Attacks with Two-Handed Melee Weapons deal 25% increased Damage with Ailments",
+        "10% chance to double Stun Duration",
+        "5% chance to deal Double Damage"
+      ]
+    },
+    "King of the Hill": {
+      "recipe": "4, 8, 12",
+      "stats": [
+        "100% increased Crit-Chance with Bows"
+      ]
+    },
+    "Knowledge Barrier": {
+      "recipe": "14, 11, 12",
+      "stats": [
+        "6% increased Energy-shield Recharge-Rate for each different type of Mastery you have Allocated"
+      ]
+    },
+    "Last Rites": {
+      "recipe": "2, 10, 10",
+      "stats": [
+        "Cursed enemies you Kill are destroyed",
+        "enemies Cursed by you have 50% reduced Life Regen Rate",
+        "enemies you Curse cannot Recharge Energy-shield"
+      ]
+    },
+    "Lasting Tempest": {
+      "recipe": "14, 8, 11",
+      "stats": [
+        "50% increased Duration of Elemental Ailments on enemies"
+      ]
+    },
+    "Lava Lash": {
+      "recipe": "1, 1, 13",
+      "stats": [
+        "Damage with Weapons Penetrates 8% Fire Resistance",
+        "30% increased Fire Damage with Attack Skills"
+      ]
+    },
+    "Leader of the Pack": {
+      "recipe": "9, 13, 13",
+      "stats": [
+        "20% increased Area-of-Effect of Aura Skills",
+        "12% increased Reservation Efficiency of Skills"
+      ]
+    },
+    "Leadership": {
+      "recipe": "8, 11, 12",
+      "stats": [
+        "30% increased Area-of-Effect of Aura Skills",
+        "6% increased effect of Non-Curse Auras from your Skills"
+      ]
+    },
+    "Legacy of the Wilds": {
+      "recipe": "14, 9, 10",
+      "stats": [
+        "Tinctures have 40% increased effect while at or above 10 stacks of Mana Burn"
+      ]
+    },
+    "Lethality": {
+      "recipe": "2, 8, 12",
+      "stats": [
+        "Projectile Attack Skills have 50% increased Crit-Chance",
+        "Projectile Attack Skills have +30% to Crit-Multi"
+      ]
+    },
+    "Life Raker": {
+      "recipe": "2, 4, 12",
+      "stats": [
+        "12% increased Attack Speed with Claws",
+        "12% increased Accuracy with Claws",
+        "gain 6 Life per enemy Hit with Attacks"
+      ]
+    },
+    "Light Eater": {
+      "recipe": "6, 8, 9",
+      "stats": [
+        "0.8% of Spell Damage Leeched as Energy-shield",
+        "30% increased Maximum total Energy-shield Recovery per second from Leech",
+        "24% increased Damage while on Full Energy-shield"
+      ]
+    },
+    "Light of Divinity": {
+      "recipe": "8, 9, 9",
+      "stats": [
+        "20% increased Spell Damage",
+        "30% increased Spell Crit-Chance",
+        "10% increased Light-Radius",
+        "+10 to Strength and Intelligence"
+      ]
+    },
+    "Lightning Walker": {
+      "recipe": "2, 2, 10",
+      "stats": [
+        "25% increased Lightning Damage",
+        "5% increased Cast Speed with Lightning Skills",
+        "+15% to Lightning Resistance"
+      ]
+    },
+    "Longshot": {
+      "recipe": "5, 9, 11",
+      "stats": [
+        "30% increased Projectile Speed",
+        "Projectiles gain Damage as they travel farther, dealing up\nto 60% increased Damage with Hits to targets"
+      ]
+    },
+    "Lord of the Dead": {
+      "recipe": "4, 9, 12",
+      "stats": [
+        "Minions have 15% increased maximum Life",
+        "Minions deal 20% increased Damage",
+        "+1 to Maximum number of Raised Zombies",
+        "+1 to Maximum number of Skeletons"
+      ]
+    },
+    "Lust for Carnage": {
+      "recipe": "5, 11, 13",
+      "stats": [
+        "12% increased Attack Speed",
+        "1.5% of Physical Attack Damage Leeched as Life"
+      ]
+    },
+    "Magmatic Strikes": {
+      "recipe": "3, 10, 10",
+      "stats": [
+        "every 10 seconds, gain 30% of Physical Damage\nas Extra Fire Damage for 4 seconds"
+      ]
+    },
+    "Malicious Intent": {
+      "recipe": "7, 7, 12",
+      "stats": [
+        "+2 to Level of all Curse Skill Gems"
+      ]
+    },
+    "Mana Flows": {
+      "recipe": "1, 11, 13",
+      "stats": [
+        "16% increased maximum Mana",
+        "30% increased Mana Regen Rate",
+        "+20 to Intelligence"
+      ]
+    },
+    "Mark the Prey": {
+      "recipe": "2, 7, 10",
+      "stats": [
+        "Marked enemy has 10% reduced Accuracy",
+        "Marked enemy takes 10% increased Damage"
+      ]
+    },
+    "Marked for Death": {
+      "recipe": "2, 7, 12",
+      "stats": [
+        "Culling-Strike against Marked enemy"
+      ]
+    },
+    "Martial Experience": {
+      "recipe": "1, 4, 6",
+      "stats": [
+        "30% increased Physical Damage with Two-Handed Melee Weapons",
+        "Attacks with Two-Handed Melee Weapons deal 30% increased Damage with Ailments",
+        "100% increased total Recovery per second from Life Leech",
+        "Hits have 30% chance to ignore enemy Physical Damage Reduction"
+      ]
+    },
+    "Master Fletcher": {
+      "recipe": "2, 9, 12",
+      "stats": [
+        "Bow Attacks fire an additional Arrow"
+      ]
+    },
+    "Master of Blades": {
+      "recipe": "6, 11, 13",
+      "stats": [
+        "Hits have 30% chance to ignore enemy Physical Damage Reduction",
+        "+30 to Strength",
+        "30% increased Physical Damage"
+      ]
+    },
+    "Master of the Arena": {
+      "recipe": "2, 11, 12",
+      "stats": [
+        "Regen 1% of Life per second",
+        "10% increased Melee Physical Damage",
+        "+0.3 metres to Melee Strike-Range",
+        "+20 to Strength"
+      ]
+    },
+    "Master of Wounds": {
+      "recipe": "1, 5, 8",
+      "stats": [
+        "+12% to Damage-over-Time Multiplier for Bleeding",
+        "30% reduced Bleed Duration on you"
+      ]
+    },
+    "Master Sapper": {
+      "recipe": "5, 10, 11",
+      "stats": [
+        "30% increased Trap Damage",
+        "Can have up to 2 additional Traps placed at a time",
+        "15% chance to gain a Frenzy Charge when your Trap is triggered by an enemy"
+      ]
+    },
+    "Measured Fury": {
+      "recipe": "3, 10, 13",
+      "stats": [
+        "Warcries Exert 1 additional Attack"
+      ]
+    },
+    "Melding": {
+      "recipe": "2, 8, 11",
+      "stats": [
+        "7% increased maximum Life",
+        "gain 3% of Maximum Life as Extra Maximum Energy-shield"
+      ]
+    },
+    "Mental Rapidity": {
+      "recipe": "2, 8, 10",
+      "stats": [
+        "10% increased Cast Speed",
+        "30% increased Mana Regen Rate"
+      ]
+    },
+    "Merciless Skewering": {
+      "recipe": "8, 8, 12",
+      "stats": [
+        "15% chance to Impale enemies on Hit with Attacks",
+        "12% increased Impale Effect"
+      ]
+    },
+    "Mind Drinker": {
+      "recipe": "4, 5, 5",
+      "stats": [
+        "20% increased maximum Mana",
+        "Recover 2% of Mana on Kill"
+      ]
+    },
+    "Mixed Munitions": {
+      "recipe": "14, 9, 11",
+      "stats": [
+        "5% increased Cooldown Recovery Rate for throwing Traps per Mine Detonated Recently"
+      ]
+    },
+    "Multishot": {
+      "recipe": "7, 10, 12",
+      "stats": [
+        "Attacks fire an additional Projectile"
+      ]
+    },
+    "Mystic Bulwark": {
+      "recipe": "5, 5, 5",
+      "stats": [
+        "6% Chance to Block Spell Damage",
+        "1% increased Mana Regen Rate per 1% Chance to Block Spell Damage"
+      ]
+    },
+    "Mystic Talents": {
+      "recipe": "14, 6, 11",
+      "stats": [
+        "16% increased Spell Damage",
+        "+14 to maximum Energy-shield",
+        "25% increased Mana Regen Rate",
+        "+30 to Intelligence"
+      ]
+    },
+    "Mysticism": {
+      "recipe": "5, 6, 11",
+      "stats": [
+        "20% increased Spell Damage while Dual-Wielding",
+        "6% increased Cast Speed while Dual-Wielding",
+        "40% increased Mana Regen if you've used a Movement Skill Recently"
+      ]
+    },
+    "Natural Authority": {
+      "recipe": "2, 12, 13",
+      "stats": [
+        "enemies Taunted by your Warcries take 8% increased Damage",
+        "20% increased Warcry Buff Effect"
+      ]
+    },
+    "Natural Remedies": {
+      "recipe": "7, 11, 12",
+      "stats": [
+        "20% increased Flask Effect Duration",
+        "Flasks applied to you have 10% increased Effect",
+        "Remove Maim and Hinder when you use a Flask"
+      ]
+    },
+    "Nature's Concoction": {
+      "recipe": "5, 5, 7",
+      "stats": [
+        "Flasks adjacent to active Tinctures gain 2 charges when you Hit an\nenemy with a Melee Weapon, no more than once every second"
+      ]
+    },
+    "Nightstalker": {
+      "recipe": "2, 5, 13",
+      "stats": [
+        "+30% to Crit-Multi with Daggers",
+        "0.6% of Attack Damage Leeched as Life",
+        "0.6% of Attack Damage Leeched as Mana"
+      ]
+    },
+    "Nimbleness": {
+      "recipe": "3, 9, 9",
+      "stats": [
+        "8% increased Cast Speed",
+        "+15% to Crit-Multi for Spell Damage"
+      ]
+    },
+    "No Forgiveness": {
+      "recipe": "14, 10, 13",
+      "stats": [
+        "20% chance for used Retaliation Skills to remain Usable and not consume a Cooldown Use"
+      ]
+    },
+    "Nomadic Teachings": {
+      "recipe": "10, 13, 13",
+      "stats": [
+        "+2% to all maximum Elemental Resistances"
+      ]
+    },
+    "One With Nature": {
+      "recipe": "4, 9, 10",
+      "stats": [
+        "+8% to all Elemental Resistances",
+        "24% increased Crit-Chance for Attacks",
+        "24% increased Elemental Damage with Attack Skills"
+      ]
+    },
+    "One with the River": {
+      "recipe": "5, 11, 11",
+      "stats": [
+        "30% increased Elemental Damage with Staves",
+        "Damage with Weapons Penetrates 5% Elemental Resistances"
+      ]
+    },
+    "Overcharge": {
+      "recipe": "9, 10, 12",
+      "stats": [
+        "+1 to Maximum Power Charges"
+      ]
+    },
+    "Overcharged": {
+      "recipe": "1, 11, 12",
+      "stats": [
+        "8% chance to gain a Power, Frenzy or Endurance Charge on Kill"
+      ]
+    },
+    "Overprepared": {
+      "recipe": "3, 3, 6",
+      "stats": [
+        "Skills which Throw Traps have +1 Cooldown Use"
+      ]
+    },
+    "Pain Forger": {
+      "recipe": "1, 8, 8",
+      "stats": [
+        "60% increased Crit-Chance with Maces or Sceptres",
+        "10% reduced enemy Stun Threshold with Maces or Sceptres",
+        "10% chance to gain a Power Charge when you Stun with Melee Damage"
+      ]
+    },
+    "Path of the Hunter": {
+      "recipe": "1, 4, 4",
+      "stats": [
+        "+100 to Accuracy",
+        "16% increased Projectile Damage",
+        "+20 to Dexterity"
+      ]
+    },
+    "Path of the Savant": {
+      "recipe": "2, 3, 4",
+      "stats": [
+        "16% increased Spell Damage",
+        "+20 to maximum Mana",
+        "+20 to Intelligence"
+      ]
+    },
+    "Path of the Warrior": {
+      "recipe": "3, 3, 3",
+      "stats": [
+        "+50 to Armour",
+        "+20 to Strength",
+        "16% increased Physical Damage"
+      ]
+    },
+    "Perfected Formula": {
+      "recipe": "7, 7, 8",
+      "stats": [
+        "15% chance for Tinctures to not inflict Mana Burn",
+        "Tinctures applied to you have 10% reduced Mana Burn rate"
+      ]
+    },
+    "Perfectionist": {
+      "recipe": "4, 5, 12",
+      "stats": [
+        "5% increased Movement Speed",
+        "30% chance to Avoid being Stunned",
+        "50% increased Stun and Block Recovery"
+      ]
+    },
+    "Persistence": {
+      "recipe": "14, 7, 9",
+      "stats": [
+        "-10 Physical Damage taken from Hits",
+        "-1 Physical Damage taken from Hits per Level"
+      ]
+    },
+    "Piercing Shots": {
+      "recipe": "10, 11, 12",
+      "stats": [
+        "Projectiles Pierce 2 additional Targets"
+      ]
+    },
+    "Poisonous Fangs": {
+      "recipe": "1, 3, 6",
+      "stats": [
+        "+10% to Damage-over-Time Multiplier for Poison",
+        "Claw Attacks deal 25% increased Damage with Ailments",
+        "6% increased Attack Speed with Claws"
+      ]
+    },
+    "Potency of Will": {
+      "recipe": "2, 2, 11",
+      "stats": [
+        "25% increased Skill-Effect-Duration"
+      ]
+    },
+    "Potent Connections": {
+      "recipe": "2, 2, 8",
+      "stats": [
+        "25% increased Defences while you have at least four Linked targets",
+        "10% increased Movement Speed while you have at least two Linked targets"
+      ]
+    },
+    "Powerful Bond": {
+      "recipe": "7, 7, 7",
+      "stats": [
+        "20% increased Buff Effect of your Links for which 50% of Link Duration has Expired",
+        "Curses are inflicted on you instead of Linked targets"
+      ]
+    },
+    "Practical Application": {
+      "recipe": "1, 1, 8",
+      "stats": [
+        "+10% to all Elemental Resistances",
+        "25% chance to Ignore Stuns while Casting",
+        "+20 to Strength and Dexterity"
+      ]
+    },
+    "Practised Reapplication": {
+      "recipe": "2, 2, 2",
+      "stats": [
+        "25% increased Tincture Cooldown Recovery Rate"
+      ]
+    },
+    "Precision": {
+      "recipe": "2, 2, 9",
+      "stats": [
+        "10% increased Global Accuracy",
+        "6% increased Attack Speed and Cast Speed",
+        "+20 to Dexterity"
+      ]
+    },
+    "Prepared Response": {
+      "recipe": "1, 2, 2",
+      "stats": [
+        "25% chance when you use a Retaliation Skill for a different Retaliation Skill to become Usable",
+        "Retaliation Skills become Usable for 30% longer"
+      ]
+    },
+    "Presage": {
+      "recipe": "3, 7, 13",
+      "stats": [
+        "Herald Skills have 25% increased Area-of-Effect",
+        "20% increased Mana Reservation Efficiency of Herald Skills"
+      ]
+    },
+    "Primal Manifestation": {
+      "recipe": "3, 4, 9",
+      "stats": [
+        "30% increased Totem Damage",
+        "30% increased Totem Life",
+        "50% increased Totem Duration"
+      ]
+    },
+    "Primal Spirit": {
+      "recipe": "2, 6, 10",
+      "stats": [
+        "20% increased maximum Mana",
+        "gain 4 Mana per enemy Hit with Attacks if you've used a Mana Flask in the past 10 seconds",
+        "+20 to Strength and Intelligence"
+      ]
+    },
+    "Primeval Force": {
+      "recipe": "6, 8, 12",
+      "stats": [
+        "25% increased Elemental Damage during any Flask Effect",
+        "25% increased Elemental Damage with Attack Skills"
+      ]
+    },
+    "Prism Weave": {
+      "recipe": "2, 11, 11",
+      "stats": [
+        "6% increased Attack Speed with Wands",
+        "24% increased Elemental Damage with Wands",
+        "Damage with Weapons Penetrates 5% Elemental Resistances"
+      ]
+    },
+    "Prismatic Skin": {
+      "recipe": "12, 13, 13",
+      "stats": [
+        "+2% to all maximum Elemental Resistances"
+      ]
+    },
+    "Prodigal Perfection": {
+      "recipe": "1, 6, 6",
+      "stats": [
+        "20% increased maximum Mana",
+        "2% increased Spell Damage per 100 Maximum Mana, up to 40%"
+      ]
+    },
+    "Profane Chemistry": {
+      "recipe": "4, 10, 12",
+      "stats": [
+        "7% increased maximum Life",
+        "30% increased Life Recovery from Flasks",
+        "Life Flasks gain 1 Charge every 3 seconds"
+      ]
+    },
+    "Purity of Flesh": {
+      "recipe": "1, 10, 12",
+      "stats": [
+        "8% increased maximum Energy-shield",
+        "10% increased maximum Life",
+        "+8% to Chaos Resistance"
+      ]
+    },
+    "Quick Recovery": {
+      "recipe": "5, 5, 13",
+      "stats": [
+        "7% increased maximum Life",
+        "20% increased Mana Regen Rate",
+        "Regen 0.8% of Life per second"
+      ]
+    },
+    "Quickstep": {
+      "recipe": "3, 3, 4",
+      "stats": [
+        "+10% chance to Suppress Spell Damage",
+        "6% increased Movement Speed"
+      ]
+    },
+    "Rallying Icon": {
+      "recipe": "1, 6, 13",
+      "stats": [
+        "Banner Skills have 15% increased Aura Effect",
+        "Banners also grant +5% to all Elemental Resistances to you and Allies"
+      ]
+    },
+    "Rampart": {
+      "recipe": "3, 4, 10",
+      "stats": [
+        "30% increased Armour and Evasion while Fortified",
+        "Fortifying Hits against Unique enemies grant 100% increased Fortification"
+      ]
+    },
+    "Ravenous Horde": {
+      "recipe": "4, 12, 13",
+      "stats": [
+        "Minions have 30% increased Movement Speed",
+        "Minions have 30% chance to gain Onslaught for 4 seconds on Kill"
+      ]
+    },
+    "Razor's Edge": {
+      "recipe": "4, 5, 8",
+      "stats": [
+        "35% increased Physical Damage with Swords",
+        "Sword Attacks deal 35% increased Damage with Ailments",
+        "Hits have 35% chance to ignore enemy Physical Damage Reduction"
+      ]
+    },
+    "Redemption": {
+      "recipe": "2, 8, 9",
+      "stats": [
+        "Minions deal 20% increased Damage",
+        "Minions have 10% increased Attack Speed",
+        "Minions have 10% increased Cast Speed"
+      ]
+    },
+    "Reflexes": {
+      "recipe": "6, 10, 13",
+      "stats": [
+        "+10% chance to Suppress Spell Damage",
+        "+100 to Evasion",
+        "30% increased Evasion"
+      ]
+    },
+    "Relentless": {
+      "recipe": "2, 4, 7",
+      "stats": [
+        "Regen 1% of Life per second if you have Stunned an enemy Recently",
+        "25% increased Physical Damage"
+      ]
+    },
+    "Relentless Pursuit": {
+      "recipe": "2, 7, 9",
+      "stats": [
+        "10% increased Attack Speed if you've cast a Mark Spell Recently",
+        "10% increased Movement Speed if you've cast a Mark Spell Recently"
+      ]
+    },
+    "Renowned Deeds": {
+      "recipe": "7, 11, 13",
+      "stats": [
+        "+30 to maximum Valour"
+      ]
+    },
+    "Replenishing Remedies": {
+      "recipe": "2, 3, 7",
+      "stats": [
+        "15% increased Flask Charges gained",
+        "Life Flasks gain 2 Charges every 3 seconds",
+        "Mana Flasks gain 2 Charges every 3 seconds"
+      ]
+    },
+    "Resourcefulness": {
+      "recipe": "4, 11, 11",
+      "stats": [
+        "+8% chance to Suppress Spell Damage",
+        "10% increased maximum Energy-shield",
+        "5% increased maximum Life"
+      ]
+    },
+    "Retaliation": {
+      "recipe": "4, 9, 11",
+      "stats": [
+        "Attack Skills deal 20% increased Damage while holding a Shield",
+        "8% increased Attack Speed while holding a Shield",
+        "60% increased Defences from Equipped Shield"
+      ]
+    },
+    "Retribution": {
+      "recipe": "1, 9, 11",
+      "stats": [
+        "15% increased Damage",
+        "Minions deal 15% increased Damage",
+        "5% increased Attack Speed and Cast Speed",
+        "+10 to Strength and Intelligence"
+      ]
+    },
+    "Revelry": {
+      "recipe": "3, 8, 10",
+      "stats": [
+        "+25 to maximum Mana",
+        "15% increased maximum Mana",
+        "10% increased Effect of Non-Curse Auras from your Skills on enemies"
+      ]
+    },
+    "Revenge of the Hunted": {
+      "recipe": "10, 12, 13",
+      "stats": [
+        "18% increased Evasion",
+        "10% increased maximum Life",
+        "+10% chance to Suppress Spell Damage while on Full-Life"
+      ]
+    },
+    "Ribcage Crusher": {
+      "recipe": "5, 10, 10",
+      "stats": [
+        "Mace or Sceptre Attacks deal 24% increased Damage with Hits and Ailments",
+        "6% increased Attack Speed with Maces or Sceptres",
+        "15% increased Area-of-Effect if you have Stunned an enemy Recently"
+      ]
+    },
+    "Righteous Army": {
+      "recipe": "4, 10, 10",
+      "stats": [
+        "Regen 1% of Life per second",
+        "Minions deal 20% increased Damage",
+        "Minions Regen 1% of Life per second"
+      ]
+    },
+    "Righteous Decree": {
+      "recipe": "2, 2, 5",
+      "stats": [
+        "22% increased maximum Mana",
+        "6% reduced Mana Cost of Skills"
+      ]
+    },
+    "Righteous Fury": {
+      "recipe": "4, 7, 7",
+      "stats": [
+        "10% chance to create Consecrated Ground on Melee Kill, lasting 4 seconds",
+        "40% increased Melee Damage with Hits at Close-Range"
+      ]
+    },
+    "Roaring Challenge": {
+      "recipe": "1, 2, 4",
+      "stats": [
+        "25% increased total Power counted by Warcries"
+      ]
+    },
+    "Robust": {
+      "recipe": "1, 4, 5",
+      "stats": [
+        "Regen 10 Life per second",
+        "Regen 1.2% of Life per second"
+      ]
+    },
+    "Runesmith": {
+      "recipe": "6, 9, 12",
+      "stats": [
+        "12% increased Cast Speed with Brand Skills",
+        "enemies take 5% increased Damage for each of your Brands Attached to them"
+      ]
+    },
+    "Saboteur": {
+      "recipe": "1, 5, 5",
+      "stats": [
+        "30% increased Trap Damage",
+        "30% increased Mine Damage",
+        "Can have up to 2 additional Traps placed at a time",
+        "Can have up to 2 additional Remote Mines placed at a time"
+      ]
+    },
+    "Sacrifice": {
+      "recipe": "5, 6, 8",
+      "stats": [
+        "Minions have 20% increased maximum Life",
+        "Regen 1% of Life per second",
+        "Minions Regen 1% of Life per second"
+      ]
+    },
+    "Safeguard": {
+      "recipe": "4, 6, 10",
+      "stats": [
+        "+3% to maximum Chance to Block Spell Damage",
+        "Recover 50 Energy-shield when you Block Spell Damage",
+        "+10% chance to Block Spell Damage while holding a Staff or Shield"
+      ]
+    },
+    "Sanctity": {
+      "recipe": "6, 6, 10",
+      "stats": [
+        "20% increased Armour",
+        "10% increased maximum Energy-shield",
+        "Regen 1% of Life per second",
+        "+10 to Strength and Intelligence"
+      ]
+    },
+    "Sanctuary": {
+      "recipe": "3, 5, 5",
+      "stats": [
+        "+4% Chance to Block Attack Damage while holding a Shield",
+        "+4% Chance to Block Spell Damage while holding a Shield",
+        "+1% to all maximum Elemental Resistances"
+      ]
+    },
+    "Sanctum of Thought": {
+      "recipe": "6, 6, 13",
+      "stats": [
+        "you take 30% reduced Extra Damage from Critical Strikes",
+        "18% increased Armour",
+        "12% increased maximum Energy-shield"
+      ]
+    },
+    "Savage Intensity": {
+      "recipe": "6, 6, 11",
+      "stats": [
+        "20% reduced Cost of Attacks while you have at least 20 Rage",
+        "Inherent loss of Rage is 20% slower"
+      ]
+    },
+    "Savage Skewering": {
+      "recipe": "1, 2, 7",
+      "stats": [
+        "15% increased Impale Effect"
+      ]
+    },
+    "Savage Wounds": {
+      "recipe": "5, 10, 13",
+      "stats": [
+        "Bleeding you inflict deals Damage 15% faster"
+      ]
+    },
+    "Savagery": {
+      "recipe": "9, 10, 13",
+      "stats": [
+        "+1 to Maximum Frenzy Charges"
+      ]
+    },
+    "Searing Heat": {
+      "recipe": "3, 6, 12",
+      "stats": [
+        "Ignites you inflict deal Damage 15% faster"
+      ]
+    },
+    "Season of Ice": {
+      "recipe": "7, 10, 13",
+      "stats": [
+        "+12% to Cold Damage-over-Time Multiplier",
+        "20% increased Effect of Chill"
+      ]
+    },
+    "Seasoned Swordplay": {
+      "recipe": "3, 7, 11",
+      "stats": [
+        "50% increased Mana Reservation Efficiency of Stance Skills"
+      ]
+    },
+    "Selective Precision": {
+      "recipe": "14, 9, 13",
+      "stats": [
+        "First and Final shots of Barrage sequences fire Projectiles that Return to you"
+      ]
+    },
+    "Sentinel": {
+      "recipe": "4, 5, 6",
+      "stats": [
+        "24% increased Evasion and Armour",
+        "+10% to all Elemental Resistances"
+      ]
+    },
+    "Serpent Stance": {
+      "recipe": "6, 10, 11",
+      "stats": [
+        "40% increased Global Crit-Chance while wielding a Staff",
+        "+30% to Global Crit-Multi while wielding a Staff",
+        "+5% Chance to Block Attack Damage if you've dealt a Critical Strike Recently"
+      ]
+    },
+    "Serpentine Spellslinger": {
+      "recipe": "7, 8, 11",
+      "stats": [
+        "enemies Poisoned by you have -5% to Chaos Resistance",
+        "Spell Skills have +12% to Damage-over-Time Multiplier for Poison"
+      ]
+    },
+    "Settling Ash": {
+      "recipe": "1, 7, 13",
+      "stats": [
+        "Nearby enemies are Covered in Ash if you haven't moved in the past 2 seconds"
+      ]
+    },
+    "Shaman's Dominion": {
+      "recipe": "1, 6, 12",
+      "stats": [
+        "60% increased Crit-Chance with Totem Skills",
+        "+20% to Crit-Multi with Totem Skills"
+      ]
+    },
+    "Shamanistic Fury": {
+      "recipe": "2, 3, 8",
+      "stats": [
+        "25% increased Totem Damage",
+        "25% increased Totem Placement speed"
+      ]
+    },
+    "Shaper": {
+      "recipe": "1, 9, 9",
+      "stats": [
+        "40% increased Mana Regen Rate",
+        "Regen 1% of Life per second"
+      ]
+    },
+    "Silent Steps": {
+      "recipe": "3, 4, 8",
+      "stats": [
+        "20% increased Evasion",
+        "40% increased Blind Effect"
+      ]
+    },
+    "Sione's Ambition": {
+      "recipe": "14, 6, 10",
+      "stats": [
+        "Strike Skills which target additional enemies can do so from 40% further away"
+      ]
+    },
+    "Skittering Runes": {
+      "recipe": "11, 12, 12",
+      "stats": [
+        "50% increased Area-of-Effect of Hex Skills",
+        "20% increased Mana Reservation Efficiency of Curse Aura Skills",
+        "20% reduced Mana Cost of Curse Skills"
+      ]
+    },
+    "Skull Cracking": {
+      "recipe": "1, 10, 11",
+      "stats": [
+        "36% increased Physical Damage with Maces or Sceptres",
+        "Mace or Sceptre Attacks deal 36% increased Damage with Ailments",
+        "12% reduced enemy Stun Threshold with Maces or Sceptres"
+      ]
+    },
+    "Slaughter": {
+      "recipe": "6, 6, 6",
+      "stats": [
+        "25% increased Physical Damage with Axes",
+        "Axe Attacks deal 25% increased Damage with Ailments",
+        "8% increased Attack Speed with Axes",
+        "gain 1 Rage on Hit with Axes"
+      ]
+    },
+    "Sleight of Hand": {
+      "recipe": "4, 5, 11",
+      "stats": [
+        "Attacks with One-Handed Weapons deal 30% increased Damage with Ailments",
+        "8% increased Attack Speed with One-Handed Weapons",
+        "20% increased Damage with One-Handed Weapons"
+      ]
+    },
+    "Smashing Strikes": {
+      "recipe": "6, 6, 8",
+      "stats": [
+        "Staff Attacks deal 30% increased Damage with Hits and Ailments",
+        "30% increased Crit-Chance with Staves",
+        "10% chance to gain an Endurance Charge on Melee Critical Strike"
+      ]
+    },
+    "Snowforged": {
+      "recipe": "3, 5, 13",
+      "stats": [
+        "25% increased Fire Damage",
+        "25% increased Cold Damage",
+        "enemies Ignited or Chilled by you have -5% to Elemental Resistances"
+      ]
+    },
+    "Soul of Steel": {
+      "recipe": "1, 13, 13",
+      "stats": [
+        "+150 to Armour",
+        "30% increased Armour",
+        "+1% to all maximum Elemental Resistances"
+      ]
+    },
+    "Soul Siphon": {
+      "recipe": "3, 3, 8",
+      "stats": [
+        "+20 to maximum Mana",
+        "18% increased maximum Mana",
+        "gain 10 Mana per enemy Killed"
+      ]
+    },
+    "Soul Thief": {
+      "recipe": "2, 9, 11",
+      "stats": [
+        "15% increased Evasion",
+        "10% increased maximum Energy-shield",
+        "Recover 2% of Energy-shield on Kill"
+      ]
+    },
+    "Sovereignty": {
+      "recipe": "12, 12, 12",
+      "stats": [
+        "12% increased Mana Reservation Efficiency of Skills",
+        "10% increased effect of Non-Curse Auras from your Skills"
+      ]
+    },
+    "Spiked Bulwark": {
+      "recipe": "1, 2, 5",
+      "stats": [
+        "28% increased Armour",
+        "Reflects 50 Physical Damage to Melee Attackers"
+      ]
+    },
+    "Spinecruncher": {
+      "recipe": "4, 8, 8",
+      "stats": [
+        "30% increased Physical Damage with Maces or Sceptres",
+        "Mace or Sceptre Attacks deal 30% increased Damage with Ailments",
+        "100% increased Stun Duration against enemies that are on Full-Life"
+      ]
+    },
+    "Spirit of War": {
+      "recipe": "1, 8, 13",
+      "stats": [
+        "0.5% of Physical Attack Damage Leeched as Mana",
+        "15% reduced Mana Cost of Attacks"
+      ]
+    },
+    "Spirit Void": {
+      "recipe": "4, 4, 4",
+      "stats": [
+        "1% of Attack Damage Leeched as Mana",
+        "40% increased Maximum total Mana Recovery per second from Leech"
+      ]
+    },
+    "Spiritual Aid": {
+      "recipe": "12, 12, 13",
+      "stats": [
+        "Increases and Reductions to Minion Damage also affect you"
+      ]
+    },
+    "Spiritual Command": {
+      "recipe": "2, 2, 13",
+      "stats": [
+        "Minions have 8% increased Attack Speed",
+        "Minions have 8% increased Cast Speed",
+        "Increases and Reductions to Minion Attack Speed also affect you"
+      ]
+    },
+    "Split Shot": {
+      "recipe": "1, 7, 11",
+      "stats": [
+        "Projectiles have 50% chance for an additional Projectile when Forking"
+      ]
+    },
+    "Stamina": {
+      "recipe": "10, 10, 12",
+      "stats": [
+        "+1 to Maximum Endurance Charges"
+      ]
+    },
+    "Static Blows": {
+      "recipe": "5, 8, 9",
+      "stats": [
+        "30% increased Damage if you have Shocked an enemy Recently",
+        "50% increased Duration of Lightning Ailments",
+        "30% increased Effect of Lightning Ailments"
+      ]
+    },
+    "Steadfast": {
+      "recipe": "2, 13, 13",
+      "stats": [
+        "+3 to maximum Fortification",
+        "Regen 0.1% of Life per second per Fortification"
+      ]
+    },
+    "Steelwood Stance": {
+      "recipe": "5, 5, 6",
+      "stats": [
+        "Staff Attacks deal 30% increased Damage with Hits and Ailments",
+        "+800 Armour if you've Blocked Recently",
+        "+10% Chance to Block Attack Damage while wielding a Staff"
+      ]
+    },
+    "Steeped in the Profane": {
+      "recipe": "2, 7, 13",
+      "stats": [
+        "15% reduced Effect of Curses on you",
+        "10% increased Effect of your Curses"
+      ]
+    },
+    "Storm Weaver": {
+      "recipe": "2, 9, 10",
+      "stats": [
+        "25% increased Cold Damage",
+        "25% increased Lightning Damage",
+        "enemies Shocked or Frozen by you take 5% increased Elemental Damage"
+      ]
+    },
+    "Strong Arm": {
+      "recipe": "1, 6, 11",
+      "stats": [
+        "25% increased Physical Damage with One-Handed Melee Weapons",
+        "Attacks with One-Handed Melee Weapons deal 25% increased Damage with Ailments",
+        "5% increased Attack Speed with One-Handed Melee Weapons",
+        "+20 to Strength"
+      ]
+    },
+    "Successive Detonations": {
+      "recipe": "1, 1, 9",
+      "stats": [
+        "10% increased Crit-Chance for each Mine Detonated\nRecently, up to 100%",
+        "+4% to Crit-Multi for each Mine Detonated\nRecently, up to 40%"
+      ]
+    },
+    "Surge of Vigour": {
+      "recipe": "3, 7, 8",
+      "stats": [
+        "every 4 seconds, Regen 15% of Life over one second"
+      ]
+    },
+    "Surveillance": {
+      "recipe": "2, 7, 11",
+      "stats": [
+        "Attacks used by Totems have 8% increased Attack Speed",
+        "Attack Skills have +1 to maximum number of Summoned Ballista Totems",
+        "Each Totem applies 1% increased Damage taken to enemies near it"
+      ]
+    },
+    "Survivalist": {
+      "recipe": "6, 9, 13",
+      "stats": [
+        "24% increased Evasion",
+        "+8% to all Elemental Resistances",
+        "+1% to maximum Cold Resistance"
+      ]
+    },
+    "Swagger": {
+      "recipe": "5, 8, 12",
+      "stats": [
+        "+8% Chance to Block Attack Damage while Dual-Wielding",
+        "25% chance to gain a Frenzy Charge when you Block"
+      ]
+    },
+    "Swift Venoms": {
+      "recipe": "1, 3, 13",
+      "stats": [
+        "+14% to Damage-over-Time Multiplier for Poison",
+        "10% increased Attack Speed"
+      ]
+    },
+    "Taste for Blood": {
+      "recipe": "3, 8, 12",
+      "stats": [
+        "1% of Attack Damage Leeched as Life",
+        "30% increased Maximum total Life Recovery per second from Leech"
+      ]
+    },
+    "Tempest Blast": {
+      "recipe": "3, 4, 12",
+      "stats": [
+        "gain 20% of Wand Physical Damage as Extra Lightning Damage"
+      ]
+    },
+    "Tenacity": {
+      "recipe": "14, 13, 13",
+      "stats": [
+        "5% increased maximum Life",
+        "Transfiguration of Body"
+      ]
+    },
+    "Testudo": {
+      "recipe": "1, 2, 10",
+      "stats": [
+        "+10% Chance to Block Attack Damage while holding a Shield",
+        "60% increased Block Recovery",
+        "Recover 30 Life when you Block"
+      ]
+    },
+    "Thick Skin": {
+      "recipe": "8, 12, 12",
+      "stats": [
+        "10% increased maximum Life",
+        "8% chance to Avoid Elemental Ailments"
+      ]
+    },
+    "Thrill Killer": {
+      "recipe": "3, 3, 5",
+      "stats": [
+        "16% increased maximum Mana",
+        "Recover 2% of Mana on Kill"
+      ]
+    },
+    "Thrill of Battle": {
+      "recipe": "7, 12, 13",
+      "stats": [
+        "gain 2 Mana per enemy Hit with Attacks",
+        "15% reduced Mana Cost of Attacks"
+      ]
+    },
+    "Throatseeker": {
+      "recipe": "3, 8, 11",
+      "stats": [
+        "+30% to Crit-Multi"
+      ]
+    },
+    "Tireless": {
+      "recipe": "11, 11, 11",
+      "stats": [
+        "10% increased maximum Life",
+        "6% reduced Cost of Skills"
+      ]
+    },
+    "Titanic Impacts": {
+      "recipe": "3, 4, 11",
+      "stats": [
+        "+45% to Crit-Multi with Two-Handed Melee Weapons"
+      ]
+    },
+    "Tolerance": {
+      "recipe": "9, 9, 11",
+      "stats": [
+        "+19% to Chaos Resistance",
+        "30% chance to Avoid being Poisoned",
+        "30% chance to Avoid Bleeding"
+      ]
+    },
+    "Totemic Zeal": {
+      "recipe": "4, 4, 8",
+      "stats": [
+        "30% increased Totem Placement speed",
+        "Spells Cast by Totems have 8% increased Cast Speed",
+        "Attacks used by Totems have 10% increased Attack Speed"
+      ]
+    },
+    "Toxic Strikes": {
+      "recipe": "1, 3, 9",
+      "stats": [
+        "+15% to Damage-over-Time Multiplier for Poison",
+        "15% chance to Poison on Hit"
+      ]
+    },
+    "Tranquility": {
+      "recipe": "14, 12, 13",
+      "stats": [
+        "5% increased maximum Energy-shield",
+        "Transfiguration of Soul"
+      ]
+    },
+    "Trial of the Faith": {
+      "recipe": "2, 7, 7",
+      "stats": [
+        "50% increased Stun and Block Recovery",
+        "Regen 5% of Energy-shield over 1 second when Stunned",
+        "Regen 5% of Life over 1 second when Stunned"
+      ]
+    },
+    "Tribal Fury": {
+      "recipe": "11, 12, 13",
+      "stats": [
+        "Melee Strike Skills deal Splash Damage to surrounding targets"
+      ]
+    },
+    "Trick Shot": {
+      "recipe": "3, 8, 13",
+      "stats": [
+        "30% increased Chaining range"
+      ]
+    },
+    "Trickery": {
+      "recipe": "4, 4, 10",
+      "stats": [
+        "20% increased Damage",
+        "20% increased Crit-Chance",
+        "+10 to Dexterity and Intelligence"
+      ]
+    },
+    "True Strike": {
+      "recipe": "5, 9, 10",
+      "stats": [
+        "+15% to Crit-Multi",
+        "45% increased Crit-Chance"
+      ]
+    },
+    "Twin Terrors": {
+      "recipe": "1, 6, 10",
+      "stats": [
+        "100% increased Attack Crit-Chance while Dual-Wielding"
+      ]
+    },
+    "Undertaker": {
+      "recipe": "7, 7, 10",
+      "stats": [
+        "30% increased Damage if you have Consumed a corpse Recently",
+        "Desecrate and Unearth have +2 to Maximum number of corpses allowed",
+        "Regen 2% of Life per second if you've Consumed a corpse Recently"
+      ]
+    },
+    "Unfaltering": {
+      "recipe": "7, 7, 9",
+      "stats": [
+        "50% increased Stun Threshold",
+        "10% of Damage taken from Stunning Hits is Recovered as Life"
+      ]
+    },
+    "Unnatural Calm": {
+      "recipe": "4, 13, 13",
+      "stats": [
+        "18% increased maximum Energy-shield",
+        "15% increased Energy-shield Recharge-Rate",
+        "+1% to maximum Lightning Resistance"
+      ]
+    },
+    "Unstable Munitions": {
+      "recipe": "5, 8, 8",
+      "stats": [
+        "30% increased Trap Damage",
+        "12% increased Area-of-Effect",
+        "50% increased Trap Trigger Area-of-Effect"
+      ]
+    },
+    "Utmost Intellect": {
+      "recipe": "3, 8, 9",
+      "stats": [
+        "+40 to Intelligence",
+        "8% increased Intelligence"
+      ]
+    },
+    "Utmost Might": {
+      "recipe": "3, 6, 9",
+      "stats": [
+        "+40 to Strength",
+        "8% increased Strength"
+      ]
+    },
+    "Utmost Swiftness": {
+      "recipe": "2, 5, 9",
+      "stats": [
+        "+40 to Dexterity",
+        "8% increased Dexterity"
+      ]
+    },
+    "Vampirism": {
+      "recipe": "3, 5, 8",
+      "stats": [
+        "Recover 3% of Life on Kill",
+        "12% of Damage taken Recouped as Life"
+      ]
+    },
+    "Vanquisher": {
+      "recipe": "4, 7, 12",
+      "stats": [
+        "Crush enemies for 4 seconds when you Hit them while they are on Full-Life",
+        "40% increased Physical Damage"
+      ]
+    },
+    "Vengeance": {
+      "recipe": "3, 11, 12",
+      "stats": [
+        "every Rage also grants 1% increased Armour",
+        "gain 3 Rage when Hit by an enemy"
+      ]
+    },
+    "Vengeant Cascade": {
+      "recipe": "14, 7, 11",
+      "stats": [
+        "Returning Projectiles have 150% increased Speed"
+      ]
+    },
+    "Versatility": {
+      "recipe": "4, 4, 11",
+      "stats": [
+        "15% increased Global Accuracy",
+        "5% increased Movement Speed",
+        "+20 to Dexterity and Intelligence"
+      ]
+    },
+    "Veteran Soldier": {
+      "recipe": "5, 7, 13",
+      "stats": [
+        "+15% to Physical Damage-over-Time Multiplier",
+        "+25 to maximum Life"
+      ]
+    },
+    "Veteran's Wrath": {
+      "recipe": "8, 13, 13",
+      "stats": [
+        "gain 2 Rage on Melee Hit",
+        "Inherent Rage Loss starts 1 second later"
+      ]
+    },
+    "Vigour": {
+      "recipe": "9, 11, 11",
+      "stats": [
+        "+1 to Maximum Endurance Charges"
+      ]
+    },
+    "Vinespike Cordial": {
+      "recipe": "14, 10, 12",
+      "stats": [
+        "Inflict a Grasping Vine on Hit against enemies with fewer than\n8 Grasping Vines during Effect of any Life Flask"
+      ]
+    },
+    "Vitality Void": {
+      "recipe": "1, 12, 13",
+      "stats": [
+        "1% of Attack Damage Leeched as Life",
+        "40% increased Maximum total Life Recovery per second from Leech"
+      ]
+    },
+    "Void Barrier": {
+      "recipe": "9, 12, 13",
+      "stats": [
+        "18% increased Evasion",
+        "12% increased maximum Energy-shield",
+        "+10% chance to Suppress Spell Damage while on Full Energy-shield"
+      ]
+    },
+    "Volatile Mines": {
+      "recipe": "6, 11, 11",
+      "stats": [
+        "30% increased Mine Duration",
+        "Can have up to 3 additional Remote Mines placed at a time",
+        "Mines have 30% increased Detonation Speed"
+      ]
+    },
+    "Wall of Steel": {
+      "recipe": "4, 7, 11",
+      "stats": [
+        "+10% Chance to Block Attack Damage while Dual-Wielding or holding a Shield",
+        "+300 Armour if you've Blocked Recently"
+      ]
+    },
+    "Wandslinger": {
+      "recipe": "5, 5, 9",
+      "stats": [
+        "30% increased Damage while wielding a Wand",
+        "10% increased Attack Speed with Wands"
+      ]
+    },
+    "Warrior Training": {
+      "recipe": "1, 5, 9",
+      "stats": [
+        "+0.2 metres to Melee Strike-Range",
+        "Melee Skills have 12% increased Area-of-Effect"
+      ]
+    },
+    "Warrior's Blood": {
+      "recipe": "5, 5, 10",
+      "stats": [
+        "Regen 1.8% of Life per second",
+        "20% increased Stun Threshold",
+        "+20 to Strength"
+      ]
+    },
+    "Wasting": {
+      "recipe": "2, 12, 12",
+      "stats": [
+        "+10% to Chaos Damage-over-Time Multiplier",
+        "+17% to Chaos Resistance"
+      ]
+    },
+    "Watchtowers": {
+      "recipe": "7, 12, 12",
+      "stats": [
+        "24% increased Totem Damage",
+        "Attack Skills have +1 to maximum number of Summoned Ballista Totems",
+        "1% increased Movement Speed per Summoned Totem"
+      ]
+    },
+    "Way of the Warrior": {
+      "recipe": "14, 10, 11",
+      "stats": [
+        "16% increased Melee Damage",
+        "16% increased Armour",
+        "+16 to maximum Life",
+        "+30 to Strength"
+      ]
+    },
+    "Weapon Artistry": {
+      "recipe": "1, 3, 8",
+      "stats": [
+        "+4% Chance to Block Attack Damage while Dual-Wielding or holding a Shield",
+        "8% increased Attack Speed",
+        "+0.2 metres to Melee Strike-Range"
+      ]
+    },
+    "Weathered Hunter": {
+      "recipe": "2, 3, 5",
+      "stats": [
+        "+100 to Accuracy",
+        "20% increased Global Accuracy",
+        "+10% to all Elemental Resistances"
+      ]
+    },
+    "Whirling Barrier": {
+      "recipe": "3, 5, 9",
+      "stats": [
+        "20% chance to gain a Power Charge when you Block",
+        "+8% Chance to Block Attack Damage while wielding a Staff",
+        "+8% Chance to Block Spell Damage while wielding a Staff"
+      ]
+    },
+    "Whispers of Doom": {
+      "recipe": "13, 13, 13",
+      "stats": [
+        "you can apply an additional Curse"
+      ]
+    },
+    "Wicked Blade": {
+      "recipe": "3, 4, 7",
+      "stats": [
+        "30% increased Damage with Bleeding",
+        "20% increased Bleeding Duration"
+      ]
+    },
+    "Wild Hunger": {
+      "recipe": "3, 13, 13",
+      "stats": [
+        "0.8% of Attack Damage Leeched as Life",
+        "30% increased Maximum total Life Recovery per second from Leech"
+      ]
+    },
+    "Will of Blades": {
+      "recipe": "2, 4, 10",
+      "stats": [
+        "40% increased Crit-Chance",
+        "20% increased Physical Damage"
+      ]
+    },
+    "Window of Opportunity": {
+      "recipe": "7, 11, 11",
+      "stats": [
+        "15% reduced Skill-Effect-Duration",
+        "Debuffs on you expire 15% faster"
+      ]
+    },
+    "Winter Spirit": {
+      "recipe": "2, 5, 12",
+      "stats": [
+        "gain 10% of Physical Damage as Extra Cold Damage"
+      ]
+    },
+    "Winter's Embrace": {
+      "recipe": "1, 7, 9",
+      "stats": [
+        "60% increased Freeze Duration on enemies",
+        "30% increased Damage if you've Shattered an enemy Recently"
+      ]
+    },
+    "Wood, Stone, and Spell": {
+      "recipe": "14, 7, 12",
+      "stats": [
+        "10% increased effect of Arcane-Surge on you per Summoned Totem"
+      ]
+    },
+    "Worship the Blightheart": {
+      "recipe": "14, 14, 14",
+      "stats": [
+        "Create Fungal Ground instead of Consecrated Ground"
+      ]
+    },
+    "Wrecking Ball": {
+      "recipe": "1, 5, 11",
+      "stats": [
+        "Attacks with Two-Handed Melee Weapons deal 25% increased Damage with Hits and Ailments",
+        "10% increased Attack Speed with Two-Handed Melee Weapons",
+        "40% increased Stun Duration with Two-Handed Melee Weapons on enemies"
+      ]
+    },
+    "Written in Blood": {
+      "recipe": "2, 8, 13",
+      "stats": [
+        "10% increased maximum Energy-shield",
+        "10% increased maximum Life",
+        "+10 to Strength"
+      ]
+    }
   },
-  "rings": {
-    "all towers in range of your empowering towers have 50% chance to deal double damage": "13, 13",
-    "cages created by your glacial cage towers are 20% larger": "7, 11",
-    "enemies inside glacial cage take 10% increased damage": "1, 11",
-    "enemies petrified by your stone gaze towers take 10% increased damage": "7, 9",
-    "minions summoned by your scout towers have 25% increased damage": "3, 3",
-    "minions summoned by your scout towers have 25% increased movement speed": "6, 11",
-    "minions summoned by your scout towers inflict malediction on hit": "7, 10",
-    "minions summoned by your sentinel towers have 25% increased damage": "1, 5",
-    "minions summoned by your sentinel towers have 25% increased movement speed": "8, 11",
-    "minions summoned by your sentinel towers have 50% increased life": "10, 11",
-    "minions summoned by your sentinel towers leech 2% of damage as life": "7, 7",
-    "minions summoned by your summoning towers have 25% increased damage": "2, 4",
-    "minions summoned by your summoning towers have 25% increased movement speed": "5, 11",
-    "minions summoned by your summoning towers have 50% increased life": "5, 12",
-    "your arc towers deal 25% increased damage": "4, 4",
-    "your arc towers have 20% chance to inflict sap": "3, 7",
-    "your arc towers have 25% increased range": "3, 9",
-    "your arc towers have 3 additional chains": "3, 13",
-    "your arc towers repeats 1 additional times": "1, 12",
-    "your chilling towers deal 25% increased damage": "1, 1",
-    "your chilling towers freeze enemies for 0.2 seconds while they are affected by chilling beams": "11, 12",
-    "your chilling towers have 25% increased duration": "8, 10",
-    "your chilling towers have 25% increased effect of chill": "8, 8",
-    "your chilling towers have 25% increased range": "4, 6",
-    "your empowering towers also grant 20% increased cast speed": "8, 12",
-    "your empowering towers also grant 25% increased damage": "10, 12",
-    "your empowering towers have 25% increased effect": "2, 6",
-    "your empowering towers have 25% increased range": "4, 10",
-    "your fireball towers deal 25% increased damage": "1, 3",
-    "your fireball towers fire an additional 2 projectiles": "2, 11",
-    "your fireball towers fire an additional 8 projectiles": "11, 13",
-    "your fireball towers have 15% increased cast speed": "6, 9",
-    "your fireball towers have 25% increased range": "2, 8",
-    "your flamethrower towers deal 25% increased damage": "2, 3",
-    "your flamethrower towers deal full damage to fire enemies": "8, 9",
-    "your flamethrower towers have 15% increased cast speed": "3, 11",
-    "your flamethrower towers have 20% chance to inflict scorch": "2, 7",
-    "your flamethrower towers have 25% increased range": "3, 8",
-    "your freezebolt tower deal full damage to cold enemies": "4, 9",
-    "your freezebolt towers deal 25% increased damage": "1, 2",
-    "your freezebolt towers fire 2 additional projectiles": "9, 10",
-    "your freezebolt towers have 20% chance to inflict brittle": "4, 7",
-    "your freezebolt towers have 25% increased range": "1, 8",
-    "your glacial cage towers have 20% increased cooldown recovery rate": "5, 9",
-    "your glacial cage towers have 25% increased duration": "2, 2",
-    "your glacial cage towers have 25% increased range": "5, 6",
-    "your imbuing towers also grant 50% increased critical strike chance": "9, 12",
-    "your imbuing towers also grant 50% increased damage": "8, 13",
-    "your imbuing towers also grant onslaught": "6, 7",
-    "your imbuing towers have 25% increased effect": "3, 6",
-    "your imbuing towers have 25% increased range": "5, 10",
-    "your lightning storm towers create storms centred on enemies": "7, 12",
-    "your lightning storm towers deal 25% increased damage": "2, 5",
-    "your lightning storm towers have 25% increased explosion area of effect": "2, 13",
-    "your lightning storm towers have 25% increased range": "2, 9",
-    "your lightning storm towers have 25% reduced impact delay": "10, 10",
-    "your meteor towers always stun": "9, 9",
-    "your meteor towers create burning ground for 3 seconds on hit": "7, 8",
-    "your meteor towers deal 25% increased damage": "1, 4",
-    "your meteor towers drop an additional meteor": "4, 11",
-    "your meteor towers have 25% increased range": "4, 8",
-    "your scout towers have 25% increased range": "5, 8",
-    "your scout towers summon an additional minion": "6, 12",
-    "your seismic towers deal 25% increased damage": "3, 5",
-    "your seismic towers have 100% increased length and range of cascades": "12, 13",
-    "your seismic towers have 25% increased range": "1, 10",
-    "your seismic towers have 25% increased stun duration": "2, 12",
-    "your seismic towers have an additional cascade": "4, 13",
-    "your sentinel towers have 25% increased range": "6, 8",
-    "your shock nova towers deal 25% increased damage": "3, 4",
-    "your shock nova towers deal full damage to lightning enemies": "9, 11",
-    "your shock nova towers have 25% increased effect of shock": "1, 13",
-    "your shock nova towers have 25% increased range": "1, 9",
-    "your shock nova towers have 30% increased area of effect per repeat": "10, 13",
-    "your smothering towers also grant 10% chance to be frozen, shocked and ignited": "1, 7",
-    "your smothering towers also grant 10% reduced damage": "9, 13",
-    "your smothering towers also grant 20% reduced movement speed": "11, 11",
-    "your smothering towers have 25% increased effect": "5, 5",
-    "your smothering towers have 25% increased range": "6, 10",
-    "your stone gaze cage towers have 25% increased range": "3, 10",
-    "your stone gaze towers have 20% increased cooldown recovery rate": "4, 12",
-    "your stone gaze towers have 20% reduced petrification delay": "6, 13",
-    "your stone gaze towers have 25% increased duration": "4, 5",
-    "your summoning towers have 25% increased range": "6, 6",
-    "your summoning towers summon 2 additional minions": "12, 12",
-    "your temporal towers also grant stun immunity": "5, 7",
-    "your temporal towers also grant you 20% increased action speed": "5, 13",
-    "your temporal towers effects decay 25% slower": "3, 12",
-    "your temporal towers have 25% increased effect": "1, 6",
-    "your temporal towers have 25% increased range": "2, 10",
-    "your towers deal 10% increased damage per type of tower active": "7, 13"
-  }
+  "rings": [
+    {
+      "recipe": "9, 7, 10, 1, 1",
+      "stats": [
+        "your Chilling Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "7, 8",
+      "stats": [
+        "your Meteor Towers create Burning Ground for 3 seconds on Hit"
+      ]
+    },
+    {
+      "recipe": "1, 4",
+      "stats": [
+        "your Meteor Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "4, 12",
+      "stats": [
+        "your Stone Gaze Towers have 20% increased Cooldown Recovery Rate"
+      ]
+    },
+    {
+      "recipe": "1, 12",
+      "stats": [
+        "your Arc Towers repeats 1 additional Times"
+      ]
+    },
+    {
+      "recipe": "2, 5",
+      "stats": [
+        "your Lightning Storm Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "9, 9",
+      "stats": [
+        "your Meteor Towers always Stun"
+      ]
+    },
+    {
+      "recipe": "2, 4",
+      "stats": [
+        "Minions summoned by your Summoning Towers have 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "3, 7",
+      "stats": [
+        "your Arc Towers have 20% chance to inflict Sap"
+      ]
+    },
+    {
+      "recipe": "13, 13",
+      "stats": [
+        "All Towers in range of your Empowering Towers have 50% chance to deal Double Damage"
+      ]
+    },
+    {
+      "recipe": "2, 11",
+      "stats": [
+        "your Fireball Towers fire an additional 2 Projectiles"
+      ]
+    },
+    {
+      "recipe": "7, 12",
+      "stats": [
+        "your Lightning Storm Towers create Storms centred on Enemies"
+      ]
+    },
+    {
+      "recipe": "8, 8",
+      "stats": [
+        "your Chilling Towers have 25% increased effect of Chill"
+      ]
+    },
+    {
+      "recipe": "11, 12",
+      "stats": [
+        "your Chilling Towers freeze enemies for 0.2 seconds while they are affected by chilling beams"
+      ]
+    },
+    {
+      "recipe": "6, 10",
+      "stats": [
+        "your Smothering Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "8, 12",
+      "stats": [
+        "your Empowering Towers also grant 20% increased Cast Speed"
+      ]
+    },
+    {
+      "recipe": "1, 10",
+      "stats": [
+        "your Seismic Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "5, 8",
+      "stats": [
+        "your Scout Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "3, 11",
+      "stats": [
+        "your Flamethrower Towers have 15% increased Cast Speed"
+      ]
+    },
+    {
+      "recipe": "4, 7",
+      "stats": [
+        "your Freezebolt Towers have 20% chance to inflict Brittle"
+      ]
+    },
+    {
+      "recipe": "3, 8",
+      "stats": [
+        "your Flamethrower Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "10, 11",
+      "stats": [
+        "Minions summoned by your Sentinel Towers have 50% increased Life"
+      ]
+    },
+    {
+      "recipe": "7, 7",
+      "stats": [
+        "Minions summoned by your Sentinel Towers Leech 2% of Damage as Life"
+      ]
+    },
+    {
+      "recipe": "1, 3",
+      "stats": [
+        "your Fireball Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "6, 6",
+      "stats": [
+        "your Summoning Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "7, 10",
+      "stats": [
+        "Minions summoned by your Scout Towers inflict Malediction on Hit"
+      ]
+    },
+    {
+      "recipe": "3, 12",
+      "stats": [
+        "your Temporal Towers effects decay 25% slower"
+      ]
+    },
+    {
+      "recipe": "2, 9",
+      "stats": [
+        "your Lightning Storm Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "4, 9",
+      "stats": [
+        "your Freezebolt Towers deal full damage to Cold Enemies"
+      ]
+    },
+    {
+      "recipe": "10, 13",
+      "stats": [
+        "your Shock Nova Towers have 30% increased area of effect per repeat",
+        "your Shock Nova Towers repeats 2 additional Times"
+      ]
+    },
+    {
+      "recipe": "5, 11",
+      "stats": [
+        "Minions summoned by your Summoning Towers have 25% increased Movement Speed"
+      ]
+    },
+    {
+      "recipe": "7, 13",
+      "stats": [
+        "your Towers deal 10% increased Damage per Tower-Type Active"
+      ]
+    },
+    {
+      "recipe": "4, 5",
+      "stats": [
+        "your Stone Gaze Towers have 25% increased Duration"
+      ]
+    },
+    {
+      "recipe": "8, 11",
+      "stats": [
+        "Minions summoned by your Sentinel Towers have 25% increased Movement Speed"
+      ]
+    },
+    {
+      "recipe": "6, 12",
+      "stats": [
+        "your Scout Towers summon an additional minion"
+      ]
+    },
+    {
+      "recipe": "9, 12",
+      "stats": [
+        "your Imbuing Towers also grant 50% increased Critical Strike Chance"
+      ]
+    },
+    {
+      "recipe": "7, 11",
+      "stats": [
+        "Cages created by your Glacial Cage Towers are 20% larger"
+      ]
+    },
+    {
+      "recipe": "7, 9",
+      "stats": [
+        "Enemies Petrified by your Stone Gaze Towers take 10% increased Damage"
+      ]
+    },
+    {
+      "recipe": "6, 7",
+      "stats": [
+        "your Imbuing Towers also grant Onslaught"
+      ]
+    },
+    {
+      "recipe": "5, 7",
+      "stats": [
+        "your Temporal Towers also grant Stun Immunity"
+      ]
+    },
+    {
+      "recipe": "6, 9",
+      "stats": [
+        "your Fireball Towers have 15% increased Cast Speed"
+      ]
+    },
+    {
+      "recipe": "2, 7",
+      "stats": [
+        "your Flamethrower Towers have 20% chance to inflict Scorch"
+      ]
+    },
+    {
+      "recipe": "2, 10",
+      "stats": [
+        "your Temporal Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "8, 9",
+      "stats": [
+        "your Flamethrower Towers deal full damage to Fire Enemies"
+      ]
+    },
+    {
+      "recipe": "4, 6",
+      "stats": [
+        "your Chilling Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "9, 11",
+      "stats": [
+        "your Shock Nova Towers deal full damage to Lightning Enemies"
+      ]
+    },
+    {
+      "recipe": "4, 10",
+      "stats": [
+        "your Empowering Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "1, 7",
+      "stats": [
+        "your Smothering Towers also grant 10% chance to be Frozen, Shocked and Ignited"
+      ]
+    },
+    {
+      "recipe": "8, 13",
+      "stats": [
+        "your Imbuing Towers also grant 50% increased Damage"
+      ]
+    },
+    {
+      "recipe": "11, 13",
+      "stats": [
+        "your Fireball Towers fire an additional 8 Projectiles",
+        "your Fireball Towers Projectiles fire in a circle"
+      ]
+    },
+    {
+      "recipe": "12, 12",
+      "stats": [
+        "your Summoning Towers summon 2 additional Minions"
+      ]
+    },
+    {
+      "recipe": "4, 8",
+      "stats": [
+        "your Meteor Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "9, 13",
+      "stats": [
+        "your Smothering Towers also grant 10% reduced Damage"
+      ]
+    },
+    {
+      "recipe": "12, 13",
+      "stats": [
+        "your Seismic Towers have 100% increased length and range of Cascades"
+      ]
+    },
+    {
+      "recipe": "10, 10",
+      "stats": [
+        "your Lightning Storm Towers have 25% reduced Impact Delay"
+      ]
+    },
+    {
+      "recipe": "10, 12",
+      "stats": [
+        "your Empowering Towers also grant 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "4, 11",
+      "stats": [
+        "your Meteor Towers drop an additional Meteor"
+      ]
+    },
+    {
+      "recipe": "6, 13",
+      "stats": [
+        "your Stone Gaze Towers have 20% reduced Petrification Delay"
+      ]
+    },
+    {
+      "recipe": "5, 13",
+      "stats": [
+        "your Temporal Towers also grant you 20% increased action speed"
+      ]
+    },
+    {
+      "recipe": "1, 9",
+      "stats": [
+        "your Shock Nova Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "4, 13",
+      "stats": [
+        "your Seismic Towers have an additional Cascade"
+      ]
+    },
+    {
+      "recipe": "4, 4",
+      "stats": [
+        "your Arc Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "3, 13",
+      "stats": [
+        "your Arc Towers have 3 additional chains"
+      ]
+    },
+    {
+      "recipe": "2, 13",
+      "stats": [
+        "your Lightning Storm Towers have 25% increased explosion Area of Effect"
+      ]
+    },
+    {
+      "recipe": "1, 5",
+      "stats": [
+        "Minions summoned by your Sentinel Towers have 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "3, 3",
+      "stats": [
+        "Minions summoned by your Scout Towers have 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "2, 6",
+      "stats": [
+        "your Empowering Towers have 25% increased Effect"
+      ]
+    },
+    {
+      "recipe": "3, 5",
+      "stats": [
+        "your Seismic Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "1, 2",
+      "stats": [
+        "your Freezebolt Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "1, 13",
+      "stats": [
+        "your Shock Nova Towers have 25% increased effect of Shock"
+      ]
+    },
+    {
+      "recipe": "2, 3",
+      "stats": [
+        "your Flamethrower Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "11, 11",
+      "stats": [
+        "your Smothering Towers also grant 20% reduced Movement Speed"
+      ]
+    },
+    {
+      "recipe": "8, 10",
+      "stats": [
+        "your Chilling Towers have 25% increased Duration"
+      ]
+    },
+    {
+      "recipe": "3, 4",
+      "stats": [
+        "your Shock Nova Towers deal 25% increased Damage"
+      ]
+    },
+    {
+      "recipe": "2, 12",
+      "stats": [
+        "your Seismic Towers have 25% increased Stun Duration"
+      ]
+    },
+    {
+      "recipe": "5, 6",
+      "stats": [
+        "your Glacial Cage Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "1, 8",
+      "stats": [
+        "your Freezebolt Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "3, 10",
+      "stats": [
+        "your Stone Gaze Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "5, 12",
+      "stats": [
+        "Minions summoned by your Summoning Towers have 50% increased Life"
+      ]
+    },
+    {
+      "recipe": "9, 10",
+      "stats": [
+        "your Freezebolt Towers fire 2 additional Projectiles"
+      ]
+    },
+    {
+      "recipe": "2, 2",
+      "stats": [
+        "your Glacial Cage Towers have 25% increased Duration"
+      ]
+    },
+    {
+      "recipe": "6, 11",
+      "stats": [
+        "Minions summoned by your Scout Towers have 25% increased Movement Speed"
+      ]
+    },
+    {
+      "recipe": "2, 8",
+      "stats": [
+        "your Fireball Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "5, 10",
+      "stats": [
+        "your Imbuing Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "3, 9",
+      "stats": [
+        "your Arc Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "1, 6",
+      "stats": [
+        "your Temporal Towers have 25% increased Effect"
+      ]
+    },
+    {
+      "recipe": "6, 8",
+      "stats": [
+        "your Sentinel Towers have 25% increased Range"
+      ]
+    },
+    {
+      "recipe": "1, 11",
+      "stats": [
+        "Enemies inside Glacial Cage take 10% increased Damage"
+      ]
+    },
+    {
+      "recipe": "5, 5",
+      "stats": [
+        "your Smothering Towers have 25% increased Effect"
+      ]
+    },
+    {
+      "recipe": "5, 9",
+      "stats": [
+        "your Glacial Cage Towers have 20% increased Cooldown Recovery Rate"
+      ]
+    }
+  ]
 }

@@ -121,8 +121,10 @@
 					Mapinfo_GUI()
 			Case "recombination":
 				Recombination()
-			Case "distilled emotions":
-				Distilled_Emotions()
+			Case "anoints":
+				Anoints()
+			Case "anoints_stock":
+				Anoints("stock")
 		}
 	}
 	Else If Blank(vars.omnikey.hotkey2) || !Blank(vars.omnikey.hotkey2) && !InStr(A_ThisHotkey, vars.omnikey.hotkey2) ;prevent item-only omni-key from executing non-item features
@@ -235,9 +237,11 @@ Omni_Context(mode := 0)
 		While (!settings.features.stash || GetKeyState("ALT", "P")) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")) && InStr(item.name, "Essence of ", 1) || (item.name = "remnant of corruption")
 			If (A_TickCount >= vars.omnikey.start + 200)
 				Return "essences"
+	If vars.hwnd.anoints.main && LLK_StringCompare(item.name, ["Distilled "])
+		Return "anoints_stock"
 	While vars.poe_version && LLK_StringCompare(item.name, ["Distilled "]) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P"))
 		If (A_TickCount >= vars.omnikey.start + 200)
-			Return "distilled emotions"
+			Return "anoints"
 	If settings.features.lootfilter && !vars.general.shift_trigger && (item.name || item.itembase) && (WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState("Shift", "P"))
 		Return "lootfilter"
 	If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
@@ -349,7 +353,7 @@ Omni_ContextMenu()
 					class := item.class
 
 				Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: " 
-				. (class = "socketable" ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : "rune") : LLK_StringCase((InStr(item.itembase, "Runic ") ? "runic " : "") . class))
+				. (class = "socketable" ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul cores" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talismans" : "runes")) : LLK_StringCase((InStr(item.itembase, "Runic ") ? "runic " : "") . class))
 				ControlGetPos,,, w2,,, % "ahk_id " hwnd
 				If (class != "cluster jewels") && (!Blank(LLK_HasVal(db.item_bases._classes, item.class)) || vars.poe_version && vars.omnikey.poedb[item.class] || InStr(item.class, "heist") && item.itembase)
 				{
@@ -363,7 +367,7 @@ Omni_ContextMenu()
 				}
 				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
-				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : "rune") : class, vars.hwnd.omni_context.poedb := hwnd1
+				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talisman" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
 				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3
 				width := (Max(w, w1, w2) > width) ? Max(w, w1, w2) : width
 			}
@@ -550,5 +554,8 @@ Omni_ItemInfo()
 
 		If InStr(A_LoopField, Lang_Trans("items_maptier"))
 			item.tier := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2)
+
+		If InStr(A_LoopField, Lang_Trans("items_stack"))
+			item.stack := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), item.stack := SubStr(item.stack, 1, InStr(item.stack, "/") - 1)
 	}
 }

@@ -64,7 +64,7 @@
 	If vars.client.stream
 		Return
 
-	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
+	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" Hotkeys_Convert(settings.hotkeys.item_descriptions) : "*~" Hotkeys_Convert("ALT"), Hotkeys_Alt, On
 }
 
@@ -91,13 +91,17 @@ Hotkeys_Alt()
 
 		If Clipboard
 		{
-			vars.omnikey.item := {}, Omni_ItemInfo()
-			If !settings.mapinfo.omnikey && InStr(Clipboard, Lang_Trans("items_class") " " Lang_Trans("items_waystone"))
+			vars.omnikey.item := {}, Omni_ItemInfo(), item := vars.omnikey.item
+			If settings.features.mapinfo && !settings.mapinfo.omnikey && RegExMatch(item.name . item.itembase, "i)\smap$|waystone")
 			{
 				If Mapinfo_Parse(1, vars.poe_version)
 					Mapinfo_GUI()
 			}
-			Else If !settings.iteminfo.omnikey
+			Else If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "Distilled\s.*|.*\sOil")
+				Anoints("stock")
+			Else If settings.features.anoints && RegExMatch(vars.omnikey.item.name, "Distilled\s.*|.*\sOil")
+				Anoints()
+			Else If settings.features.iteminfo && !settings.iteminfo.omnikey
 				Iteminfo()
 		}
 	}
@@ -134,16 +138,18 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
-	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
-		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
-	Else If vars.hwnd.sanctum_relics.main
-		Sanctum_Relics("close")
-	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
-		Gui, alarm_set: Destroy
 	Else If WinExist("LLK-UI: notepad reminder")
 		WinActivate, ahk_group poe_window
 	Else If WinActive("ahk_id " vars.hwnd.notepad.main)
 		Notepad("save"), LLK_Overlay(vars.hwnd.notepad.main, "destroy"), vars.hwnd.notepad.main := ""
+	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
+		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
+	Else If vars.hwnd.anoints.main
+		Anoints("close")
+	Else If vars.hwnd.sanctum_relics.main
+		Sanctum_Relics("close")
+	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
+		Gui, alarm_set: Destroy
 	Else If vars.leveltracker.skilltree_schematics.GUI
 		Leveltracker_PobSkilltree("close")
 	Else If WinExist("ahk_id " vars.hwnd.lootfilter.main)
@@ -460,8 +466,12 @@ Hotkeys_Tab()
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
-#If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey) && WinActive("ahk_id " vars.hwnd.poe_client)
+#If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
+
+#If vars.hwnd.anoints.main && (vars.general.wMouse = vars.hwnd.anoints.main) && IsNumber(SubStr(LLK_HasVal(vars.hwnd.anoints, vars.general.cMouse), 1, 1))
+WheelUp::Anoints("stock+")
+WheelDown::Anoints("stock-")
 
 #If vars.hwnd.statlas.main && (vars.general.cMouse = vars.hwnd.statlas.tier)
 WheelUp::Statlas_GUI("tier_plus")

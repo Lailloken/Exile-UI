@@ -550,7 +550,7 @@ Leveltracker_GuideEditor(cHWND)
 		Else icons := ["waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out", 0, 1, 2, 3, 4, 5, 6, 7]
 
 	If !vars.leveltracker_editor.act
-		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(Trim(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json"), "`r`n ")), "page": [1]}
+		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json"), "`r`n "), "page": [1]}
 		, vars.leveltracker_editor.default_guide := json.dump(vars.leveltracker_editor.default_guide)
 
 	If !IsObject(db.leveltracker)

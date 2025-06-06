@@ -57,6 +57,7 @@ Init_vars()
 Startup()
 Init_screenchecks(), LLK_Log("initialized screenchecks settings")
 Init_general(), LLK_Log("initialized general settings")
+Init_anoints(), LLK_Log("initialized anoints settings")
 Init_betrayal(), LLK_Log("initialized betrayal settings")
 Init_cheatsheets(), LLK_Log("initialized cheat-sheet settings")
 Init_cloneframes(), LLK_Log("initialized clone-frames settings")
@@ -111,6 +112,7 @@ Return
 
 #Include modules\_functions.ahk
 #Include modules\act-decoder.ahk
+#Include modules\anoints.ahk
 #Include modules\betrayal-info.ahk
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk
@@ -447,7 +449,8 @@ Init_general()
 	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
-	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
+	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
+	settings.features.lootfilter := 0 ;!Blank(check := ini.features["enable filterspoon"]) ? check : 0
 	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
 	settings.features.iteminfo := !Blank(check := ini.features["enable item-info"]) ? check : 0
@@ -460,7 +463,8 @@ Init_general()
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png")}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
+		, "anoints": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -719,6 +723,9 @@ Loop_main()
 			WinActivate, % "ahk_id " vars.hwnd.poe_client
 	}
 
+	If vars.hwnd.anoints.main && WinActive("ahk_id " vars.hwnd.anoints.main) && (vars.general.wMouse = vars.hwnd.poe_client)
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+
 	If vars.hwnd.maptracker_logs.sum_tooltip && WinExist("ahk_id " vars.hwnd.maptracker_logs.sum_tooltip) && !WinActive("ahk_id " vars.hwnd.maptracker_logs.sum_tooltip)
 	{
 		Gui, maptracker_tooltip: Destroy
@@ -804,8 +811,10 @@ Loop_main()
 	{
 		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || InStr(control, "update changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
 			Gui_HelpToolTip(check_help)
-		Else If (vars.general.drag || !check_help || WinExist("ahk_id "vars.hwnd.screencheck_info.main)) && WinExist("ahk_id "vars.hwnd.help_tooltips.main)
+		Else If (vars.general.drag || !check_help || WinExist("ahk_id "vars.hwnd.screencheck_info.main)) && WinExist("ahk_id " vars.hwnd.help_tooltips.main)
 			LLK_Overlay(vars.hwnd.help_tooltips.main, "destroy"), vars.general.active_tooltip := "", vars.hwnd.help_tooltips.main := ""
+		;Else If vars.hwnd.help_tooltips.main
+		;	LLK_Overlay(vars.hwnd.help_tooltips.main, "show")
 		tick_helptooltips := 0
 	}
 

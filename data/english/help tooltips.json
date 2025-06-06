@@ -109,7 +109,17 @@
     ],
     "actdecoder layouts locked zoom": [
       "custom zoom setting for when the overlay is locked (0 = disabled)",
-      "this means you can have separate settings while (not) holding TAB"
+      "this means you can have separate settings while (not) holding <tab>"
+    ],
+    "anoints enable": [
+      "provides a quick-access interface to find and filter which anoint/instill recipes are available with the materials you currently have",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu",
+      "hover over materials and hold <alt> to open the interface:",
+      "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>"
+    ],
+    "anoints update": [
+      "(re)download the latest database",
+      "this is mainly for league-start so the feature can be used without having to wait for a whole new release"
     ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
@@ -243,7 +253,7 @@
     ],
     "hotkeys tab": [
       "this hotkey (re)activates certain widgets and non-permanent overlays",
-      "if something is bound to tab in game and requires it to be held down (e.g. skills, movement), you'll have to specify an alternative key in the edit field",
+      "if something is bound to <tab> in game and requires it to be held down (e.g. skills, movement), you'll have to specify an alternative key in the edit field",
       "tooltips will refer to it as tab, even when rebound"
     ],
     "hotkeys restart": [
@@ -371,7 +381,7 @@
       "automatically hides the overlay after a delay (except when in towns)",
       "delay: x seconds after switching guide pages",
       "whenever it switches pages, the overlay will be shown again and the delay will be restarted",
-      "it will also be shown while holding tab"
+      "it will also be shown while holding <tab>"
     ],
     "leveltracker fade mouse": [
       "overlay will be shown while hovering the cursor over its previous area",
@@ -456,7 +466,7 @@
       "(hint)____ sub-tasks can be completed in random order or",
       "(hint)____ at the same time, depending on the zone",
       "(hint)____",
-      "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
+      "if text is (color:00FFFF)highlighted_like_this, hold <tab> to see an image",
       "(hint)____",
       "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
       "(hint)____",
@@ -657,12 +667,12 @@
       "tabs can also be individually customized afterwards"
     ],
     "notepad opacity": [
-      "the opacity of inactive widgets (when tab is not held down)",
+      "the opacity of inactive widgets (when <tab> is not held down)",
       "0 = inactive widgets are hidden"
     ],
     "lab enable": [
       "simple lab layout overlay and tracker for casual runs",
-      "activated by holding tab in lab or the aspirants' plaza"
+      "activated by holding <tab> in lab or the aspirants' plaza"
     ],
     "ocr enable": [
       "screen-reading feature that scans the screen and displays certain information/text in customizable & compact tooltips",
@@ -692,7 +702,7 @@
     "sanctum enable": [
       "analyzes rooms and connections on the map and provides tools for highlighting and planning",
       "hold <tab> during a run to show the overlay, it will hide upon release",
-      "press space while holding tab to lock the overlay so it doesn't automatically hide"
+      "press <space> while holding <tab> to lock the overlay so it doesn't automatically hide"
     ],
     "sanctum cheatsheet": [
       "shows an additional panel that lists the different room types and their objectives, as well as special fountain characteristics"
@@ -899,6 +909,29 @@
     "update skip": [
       "long-click to skip this version and no longer receive notifications",
       "notifications will start showing again with the next version"
+    ]
+  },
+  "anoints": {
+    "materials": [
+      "hover over materials in your stash/inventory and hold <alt> to load the available amounts",
+      "alternatively, hover over the icons below and scroll the mouse-wheel to manually adjust the amounts"
+    ],
+    "keywords": [
+      "this optional search method uses groups (similar to the trade site) and keywords",
+      "keywords are sorted by occurrence (high to low):\nleft-click keywords to add them to the <and> group\nlong-click keywords to add them to the <count> group\nright-click keywords to add them to the <not> group",
+      "type strings into the search-bar and press <enter> to highlight keywords"
+    ],
+    "matches": [
+      "left-click a box below to highlight the node on the in-game passive tree (make sure it's open)",
+      "right-click boxes to hide unwanted nodes until only useful ones are left",
+      "numbers after node names = required # of upgrades/reforges",
+      "type a string into the search-bar and press <enter> to filter the results (supports regex)"
+    ],
+    "reforging": [
+      "whether reforging/upgrading materials should be included to make more recipes available: only 2 tiers above the highest available material are taken into account"
+    ],
+    "rings": [
+      "toggles between amulet & ring recipes"
     ]
   },
   "cheatsheets": {
@@ -1265,7 +1298,7 @@
       "click to select tab, drag to create a widget, hold right-click to delete"
     ],
     "widget help": [
-      "widgets are inactive (unclickable) unless tab is held down",
+      "widgets are inactive (unclickable) unless <tab> is held down",
       "left-click to drag widgets, right-click to destroy widgets",
       "you can create scrollable widgets with individual pages by separating the text with lines that only contain a single hash-sign (#)"
     ],

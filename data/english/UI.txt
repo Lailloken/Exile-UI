@@ -56,6 +56,7 @@
 ;## the feature-names are used here and there, so make sure to be consistent across each mention
 		ms_general			=	"general"
 		ms_actdecoder			=	"act-decoder"
+		ms_anoints			=	"enchant finder"
 		ms_betrayal-info		=	"betrayal-info"
 		ms_cheat-sheets			=	"cheat-sheets"
 		ms_clone-frames			=	"clone-frames"
@@ -177,6 +178,7 @@
 		global_search			=	"search:"
 		global_toggle			=	"toggle"
 		global_hide			=	"hide"
+		global_unhide			=	"unhide"
 		global_revert			=	"revert"
 		global_apply			=	"apply"
 		global_apply			=	"apply changes"
@@ -195,6 +197,17 @@
 		global_copy			=	"copy"
 		global_icon			=	"icon"
 		global_off			=	"off"
+		global_keywords			=	"keywords"		;## related to search-results: words that come up often
+		global_matches			=	"matches"		;## matches of a search-result
+		global_colon			=	":"
+		global_ok			=	"ok"
+		global_cost			=	"cost"
+		global_ascending		=	"ascending"
+		global_descending		=	"descending"
+		global_calculate		=	"calculate"
+		global_databaseinfo		=	"database information"
+		global_current			=	"current"
+		global_updatewait		=	"try again later"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -219,6 +232,22 @@
 		mechanic_enslaver		=	"enslaver"
 		mechanic_eradicator		=	"eradicator"
 		mechanic_purifier		=	"purifier"
+
+
+
+;#####################################################
+;## anoints/enchant finder
+;#####################################################
+
+;## these strings are displayed/required in the enchant finder overlay
+		anoints_reforging		=	"upgrading"
+		anoints_reforging		=	"reforging"
+		anoints_materials		=	"materials"		;## as in crafting materials
+		anoints_statgroups		=	"and"			;## same as on the trade site
+		anoints_statgroups		=	"count"
+		anoints_statgroups		=	"not"
+		anoints_rings			=	"rings"
+
 
 
 ;#####################################################
@@ -761,6 +790,15 @@
 
 
 ;#####################################################
+;## settings menu: act-decoder
+;#####################################################
+
+;## these strings are displayed/required in the "act-decoder" section of the settings menu
+		m_anoints_enable		=	"enable the enchant finder feature"
+
+
+
+;#####################################################
 ;## settings menu: betrayal-info
 ;#####################################################
 
@@ -855,6 +893,7 @@
 		m_iteminfo_undesired		=	"(un)desired:"
 		m_iteminfo_modbars		=	"roll-range:"
 		m_iteminfo_shift		=	"shift-click"
+		m_iteminfo_hiderange		=	"hide affix roll-range"
 		m_iteminfo_league		=	"enable league-start mode"
 		m_iteminfo_base			=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg
 		m_iteminfo_class		=	"item-class"

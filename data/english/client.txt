@@ -259,6 +259,7 @@
 ;## these strings are the item-names of certain items (top of the in-game tooltip)
 		items_waystone			=	"Waystone"						;## PoE2 only (whole block)
 		items_soul_core			=	"Soul Core of"
+		items_talisman			=	"Talisman"
 		items_uncut_gem			=	"Uncut Skill Gem"
 		items_uncut_gem			=	"Uncut Support Gem"
 		items_uncut_gem			=	"Uncut Spirit Gem"
