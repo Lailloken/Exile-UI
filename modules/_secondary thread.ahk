@@ -41,6 +41,7 @@ Return
 
 #Include modules\_functions.ahk
 #Include modules\act-decoder.ahk
+#Include modules\anoints.ahk
 #Include modules\betrayal-info.ahk
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk

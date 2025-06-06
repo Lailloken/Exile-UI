@@ -52,7 +52,12 @@ DB_Load(database)
 	Else If (database = "item_drops")
 		db.item_drops := Json.Load(LLK_FileRead("data\global\item drop-tiers" vars.poe_version ".json"))
 	Else If (database = "anoints")
-		db.anoints := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\anoints.json") ? settings.general.lang_client : "english") "\anoints.json",, "65001"))
+	{
+		db.anoints := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\anoints" vars.poe_version ".json") ? settings.general.lang_client : "english") "\anoints" vars.poe_version ".json", 1, "65001"))
+		If !vars.poe_version
+			db.anoints.oils := ["clear", "sepia", "amber", "verd", "teal", "azure", "indi", "violet", "crim", "black", "opal", "silver", "gold", "prism"]
+		vars.anoints.timestamp := db.anoints._timestamp, db.anoints.Delete("_timestamp")
+	}
 	Else If (database = "essences")
 		db.essences := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\essences.json") ? settings.general.lang_client : "english") "\essences.json",, "65001"))
 	Else If (database = "mapinfo")
