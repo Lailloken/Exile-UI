@@ -45,9 +45,9 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 
   - to my knowledge, GGG has never approved any (local) 3rd-party tool
  
-  - I can't make any claims regarding bans, only that I strictly follow [GGG's guidelines](https://www.pathofexile.com/developer/docs/index#policy): creators can be banned for distributing tools that violate the ToS, so it's in my best interest to follow them
+  - I can't make any claims about whether you'll get banned or not. All I can say is that I strictly follow [GGG's guidelines](https://www.pathofexile.com/developer/docs/index#policy): creators can be banned for distributing tools that violate the ToS, so it's in my best interest to follow them
  
-  - (weak) annecdotal evidence: I have not been banned, nor have I heard of anyone else being banned
+  - (weak) anecdotal evidence: I have not been banned, nor have I heard of anyone else being banned
 </details>
 <br>
 
@@ -66,7 +66,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | | example: rare | example: unique| example: anointed |
 |---|---|---|---|
 | PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_001.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_002.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_003.png) |
-| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_101.png)<br>automatically converts affix tiers | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_102.png) | |
+| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_101.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_102.png) | |
 <br>
 
 ### [Act-Tracker](https://github.com/Lailloken/Lailloken-UI/wiki/Act%E2%80%90Tracker): campaign-related QoL features  
