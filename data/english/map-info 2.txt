@@ -280,18 +280,18 @@ type	=	monsters
 text	=	area of effect: +%
 ID	=	046
 
-[Players are Cursed with Enfeeble]
-type	=	player
+[Area is Cursed with Enfeeble]
+type	=	area
 text	=	enfeeble
 ID	=	047
 
-[Players are Cursed with Temporal Chains]
-type	=	player
+[Area is Cursed with Temporal Chains]
+type	=	area
 text	=	temp chains
 ID	=	048
 
-[Players are Cursed with Elemental Weakness]
-type	=	player
+[Area is Cursed with Elemental Weakness]
+type	=	area
 text	=	ele weakness
 ID	=	049
 
