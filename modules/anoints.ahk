@@ -15,7 +15,7 @@
 	settings.anoints.reforge := !Blank(check := ini.settings.reforging) ? check : 0
 	settings.anoints.collapse_keywords := !Blank(check := ini.settings["collapse keywords"]) ? check : 0
 	settings.anoints.cost := !Blank(check := ini.settings["cost sorting"]) ? check : "ascending"
-	settings.anoints.fSize := !Blank(check := ini.settings["font size"]) ? check : settings.general.fSize
+	settings.anoints.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	If ini.settings.stock
 		Try stock := json.load(ini.settings.stock)
 
@@ -260,7 +260,7 @@ Anoints(cHWND := "")
 
 	For index, hbmBitmap in vars.pics.anoints
 	{
-		Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section xs y+" margin : "ys x+0") " BackgroundTrans HWNDhwnd w" wIcons, % " " anoints.stock[index]
+		Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section xs y+" margin : "ys x+0") " BackgroundTrans HWNDhwnd -Wrap w" wIcons, % " " anoints.stock[index]
 		Gui, %GUI_name%: Add, Pic, % "xp+1 yp+1 wp hp HWNDhwnd2 BackgroundTrans", % "HBitmap:*" vars.pics.global.black_trans
 		Gui, %GUI_name%: Add, Pic, % "xp-1 yp-1 Border HWNDhwnd3", % "HBitmap:*" hbmBitmap
 		Gui, %GUI_name%: Add, Text, % "Disabled xp y+-1 wp h" margin*2 " Border BackgroundTrans HWNDhwnd_mats"
