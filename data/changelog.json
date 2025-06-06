@@ -1,5 +1,12 @@
 [
   [
+	["1.58.4", 15804],
+	"june 6, 2025",
+	"removed the filterspoon feature for the time being",
+	"poe2: added wiki-links for talismans, added support for updated 0.2.1 map mods",
+	"added new <enchant finder> feature for anointing/instilling"
+  ],
+  [
 	["1.58.3", 15803],
 	"may 20, 2025",
 	"fixes: amazon & ritualist ascendancy trees, sanctum planner couldn't be locked if act-decoder was enabled",
