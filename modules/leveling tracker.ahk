@@ -1113,10 +1113,18 @@ Leveltracker_Import(profile := "")
 
 	If !InStr(Clipboard, " areaid")
 	{
-		Try PoB := Leveltracker_PobImport(Clipboard, profile)
+		If InStr(Clipboard, "pobb.in")
+			Try pobbin := HTTPtoVar(Clipboard "/raw")
+			Catch
+			{
+				LLK_ToolTip("pobb.in error",,,,, "Red")
+				Return
+			}
+
+		Try PoB := Leveltracker_PobImport(pobbin ? pobbin : Clipboard, profile)
 		If !IsObject(PoB)
 		{
-			LLK_ToolTip(Lang_Trans("lvltracker_importerror", 2), 1.5,,,, "red")
+			LLK_ToolTip(Lang_Trans(pobbin ? "pobb.in error" : "lvltracker_importerror", 2), 1.5,,,, "red")
 			Return
 		}
 		Else
