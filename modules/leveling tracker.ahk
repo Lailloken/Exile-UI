@@ -1108,6 +1108,12 @@ Leveltracker_Import(profile := "")
 	global vars, settings, Json, db
 
 	KeyWait, LButton
+	If Blank(Clipboard)
+	{
+		LLK_ToolTip("clipboard is blank!",,,,, "Red")
+		Return
+	}
+
 	If !IsObject(db.leveltracker)
 		DB_Load("leveltracker")
 
@@ -2026,6 +2032,8 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 		{
 			LLK_ToolTip(Lang_Trans("global_downloading"), 2,,,, "Yellow")
 			Try download := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/refs/heads/" (dev ? "dev" : "main") "/data/global/%5Bleveltracker%5D%20tree" vars.poe_version "%20" version ".json")
+
+			MsgBox, % "!" SubStr(download, 1, 2) ", " SubStr(download, -1) "!"
 			If (SubStr(download, 1, 1) . SubStr(download, 0) != "{}")
 			{
 				failed_versions[version] := 1
