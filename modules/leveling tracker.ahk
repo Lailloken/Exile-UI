@@ -39,7 +39,10 @@
 		If !IsObject(settings.leveltracker["guide" profile])
 			settings.leveltracker["guide" profile] := {"info": {"leaguestart": 1}}
 		If !FileExist("ini" vars.poe_version "\leveling guide" profile ".ini")
+		{
+			vars.leveltracker.Delete("PoB" profile)
 			Continue
+		}
 		ini2 := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini")
 		vars.leveltracker["PoB" profile] := {}
 		For index, category in ["class", "ascendancies", (!vars.poe_version ? "bandit" : ""), "gems", "trees", "active tree"]
