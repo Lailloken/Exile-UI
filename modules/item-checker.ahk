@@ -1773,6 +1773,9 @@ Iteminfo_GUI()
 			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
 
+			If (affixinfo = 3 && tier = max_tier) && InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n"))
+				width := UI.wSegment, color := "White", color_t := "Red"
+
 			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border 0x200 Center c" (color = "black" ? "White" : color_t), % tier ;add tier-cell
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack c"color, 100
 			Gui, %GUI_name%: Font, norm
