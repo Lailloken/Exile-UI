@@ -1121,6 +1121,7 @@ Leveltracker_Import(profile := "")
 				Return
 			}
 
+		MsgBox, % "Clipboard-test:\n" SubStr(Clipboard, 1, 5) "..." SubStr(Clipboard, -4)
 		Try PoB := Leveltracker_PobImport(pobbin ? pobbin : Clipboard, profile)
 		If !IsObject(PoB)
 		{
