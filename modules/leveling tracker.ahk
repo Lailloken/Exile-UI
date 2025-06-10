@@ -1124,7 +1124,7 @@ Leveltracker_Import(profile := "")
 		Try PoB := Leveltracker_PobImport(pobbin ? pobbin : Clipboard, profile)
 		If !IsObject(PoB)
 		{
-			LLK_ToolTip(Lang_Trans(pobbin ? "pobb.in error" : "lvltracker_importerror", 2), 1.5,,,, "red")
+			LLK_ToolTip(pobbin ? "pobb.in error" : Lang_Trans("lvltracker_importerror", 2), 1.5,,,, "red")
 			Return
 		}
 		Else
@@ -1969,6 +1969,7 @@ Leveltracker_PobImport(b64, profile)
 			IniWrite, % """" (IsObject(val) ? json.dump(val) : val) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB, % key
 		Return object
 	}
+	Else MsgBox, % "PoB code doesn't contain a valid XML-File"
 }
 
 Leveltracker_PobRemoveTags(string) ; removes tags and color-coding from PoB-related text
@@ -2033,10 +2034,12 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 		If !FileExist(file := "data\global\[leveltracker] tree" vars.poe_version " " version ".json")
 		{
 			LLK_ToolTip(Lang_Trans("global_downloading"), 2,,,, "Yellow")
+			MsgBox, % "Trying to download skill-tree json"
 			Try download := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/refs/heads/" (dev ? "dev" : "main") "/data/global/%5Bleveltracker%5D%20tree" vars.poe_version "%20" version ".json")
 			If (SubStr(download, 1, 1) . SubStr(download, 0) != "{}")
 			{
 				failed_versions[version] := 1
+				MsgBox, % "Download failed, please report this:`n" SubStr(download, 1, 5) . SubStr(download, -4)
 				Return
 			}
 			file_new := FileOpen(file, "w", "UTF-8-RAW")
