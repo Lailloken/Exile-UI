@@ -553,7 +553,7 @@ Leveltracker_GuideEditor(cHWND)
 		Else icons := ["waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out", 0, 1, 2, 3, 4, 5, 6, 7]
 
 	If !vars.leveltracker_editor.act
-		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json"), "`r`n "), "page": [1]}
+		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json")), "page": [1]}
 		, vars.leveltracker_editor.default_guide := json.dump(vars.leveltracker_editor.default_guide)
 
 	If !IsObject(db.leveltracker)
@@ -1121,7 +1121,6 @@ Leveltracker_Import(profile := "")
 				Return
 			}
 
-		MsgBox, % "Clipboard-test:\n" SubStr(Clipboard, 1, 5) "..." SubStr(Clipboard, -4)
 		Try PoB := Leveltracker_PobImport(pobbin ? pobbin : Clipboard, profile)
 		If !IsObject(PoB)
 		{
@@ -2035,12 +2034,10 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 		If !FileExist(file := "data\global\[leveltracker] tree" vars.poe_version " " version ".json")
 		{
 			LLK_ToolTip(Lang_Trans("global_downloading"), 2,,,, "Yellow")
-			MsgBox, % "Trying to download skill-tree json"
 			Try download := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/refs/heads/" (dev ? "dev" : "main") "/data/global/%5Bleveltracker%5D%20tree" vars.poe_version "%20" version ".json")
 			If (SubStr(download, 1, 1) . SubStr(download, 0) != "{}")
 			{
 				failed_versions[version] := 1
-				MsgBox, % "Download failed, please report this:`n" SubStr(download, 1, 5) . SubStr(download, -4)
 				Return
 			}
 			file_new := FileOpen(file, "w", "UTF-8-RAW")
