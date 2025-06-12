@@ -907,7 +907,7 @@ Leveltracker_GuideEditor(cHWND)
 	{
 		If (icon != "help") && !vars.pics.leveltracker[icon]
 			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png")
-		Gui, %GUI_name%: Add, Pic, % (InStr("1,10", index) || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
+		Gui, %GUI_name%: Add, Pic, % (vars.poe_version && index = 10 || index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
 		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
 	}
 
@@ -1033,9 +1033,6 @@ Leveltracker_Hints()
 	local
 	global vars, settings, db
 
-	If settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"])
-		Return
-
 	For key in vars.leveltracker.hints
 		If LLK_HasVal(vars.leveltracker.guide.group1, key, 1)
 		{
@@ -1053,7 +1050,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, 0, 0
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 
-	If pic
+	If pic && !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -1496,7 +1493,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	global vars, settings, db
 	static dimensions
 
-	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info"].Clone()}) : vars.leveltracker.guide
+	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info" vars.poe_version].Clone()}) : vars.leveltracker.guide
 	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
 	If (dimensions.1 != settings.leveltracker.fSize)
 		LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : Leveltracker_Experience()], settings.leveltracker.fSize, wExp, hExp), dimensions := [settings.leveltracker.fSize, wExp]
@@ -1599,7 +1596,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					If InStr(step, "(hint)")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
+					If !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
 						For key in vars.leveltracker.hints
 							If InStr(StrReplace(part, "_", " "), key)
 								color := "Aqua"
