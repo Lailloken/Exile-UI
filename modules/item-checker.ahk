@@ -23,7 +23,7 @@
 	settings.iteminfo.affixinfo := !Blank(check := ini.settings["affix-info"]) ? check : (ini.settings["enable item-levels"] ? 2 : 1)
 
 	settings.iteminfo.rules := {}
-	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
+	;settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
 	settings.iteminfo.rules.res := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["res override"]) ? check : 0
 	settings.iteminfo.rules.spells := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["spells override"]) ? check : 0
 	settings.iteminfo.rules.attacks := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["attacks override"]) ? check : 0

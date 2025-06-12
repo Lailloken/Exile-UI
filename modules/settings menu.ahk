@@ -1550,24 +1550,19 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd0 y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_rules")
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd0", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd01 c" colors.2 " Checked"settings.iteminfo.rules.res_weapons, % Lang_Trans("m_iteminfo_rules", 2)
-	vars.hwnd.help_tooltips["settings_iteminfo rules"] := hwnd0, vars.hwnd.settings.rule_res_weapons := hwnd01
-	GuiControlGet, text_, Pos, % hwnd01
-	checkbox_spacing := text_w + settings.general.fWidth/2
-
-	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing " BackgroundTrans gSettings_iteminfo2 HWNDhwnd02 c" colors.2 " Checked"settings.iteminfo.rules.attacks, % Lang_Trans("m_iteminfo_rules", 3)
+	Gui, %GUI%: Add, Checkbox, % "Section xs BackgroundTrans gSettings_iteminfo2 HWNDhwnd02 c" colors.2 " Checked"settings.iteminfo.rules.attacks, % Lang_Trans("m_iteminfo_rules", 3)
 	vars.hwnd.settings.rule_attacks := hwnd02
 	GuiControlGet, text_, Pos, % hwnd02
-	checkbox_spacing1 := text_w + settings.general.fWidth/2
+	checkbox_spacing := text_w + settings.general.fWidth/2
 
-	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing1 "BackgroundTrans gSettings_iteminfo2 HWNDhwnd03 c" colors.2 " Checked"settings.iteminfo.rules.spells, % Lang_Trans("m_iteminfo_rules", 4)
+	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing "BackgroundTrans gSettings_iteminfo2 HWNDhwnd03 c" colors.2 " Checked"settings.iteminfo.rules.spells, % Lang_Trans("m_iteminfo_rules", 4)
 	vars.hwnd.settings.rule_spells := hwnd03
+	Gui, %GUI%: Add, Checkbox, % "ys BackgroundTrans gSettings_iteminfo2 HWNDhwnd06 c" colors.2 " Checked"settings.iteminfo.rules.crit, % Lang_Trans("m_iteminfo_rules", 7)
+	vars.hwnd.settings.rule_crit := hwnd06
 	Gui, %GUI%: Add, Checkbox, % "xs Section BackgroundTrans gSettings_iteminfo2 HWNDhwnd04 c" colors.1 " Checked"settings.iteminfo.rules.res, % Lang_Trans("m_iteminfo_rules", 5)
 	vars.hwnd.settings.rule_res := hwnd04
 	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing " BackgroundTrans gSettings_iteminfo2 HWNDhwnd05 c" colors.2 "" " Checked"settings.iteminfo.rules.hitgain, % Lang_Trans("m_iteminfo_rules", 6)
 	vars.hwnd.settings.rule_hitgain := hwnd05
-	Gui, %GUI%: Add, Checkbox, % "xs Section BackgroundTrans gSettings_iteminfo2 HWNDhwnd06 c" colors.2 " Checked"settings.iteminfo.rules.crit, % Lang_Trans("m_iteminfo_rules", 7)
-	vars.hwnd.settings.rule_crit := hwnd06
 
 	If (settings.general.lang_client != "english")
 		Loop 6
