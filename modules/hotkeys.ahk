@@ -354,8 +354,10 @@ Hotkeys_Tab()
 	While settings.features.actdecoder && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
-			If (vars.actdecoder.tab := Actdecoder_ZoneLayouts())
+			vars.actdecoder.tab := 1
+			If Actdecoder_ZoneLayouts()
 				active .= " actdecoder"
+			Else vars.actdecoder.tab := 0
 			Break
 		}
 
