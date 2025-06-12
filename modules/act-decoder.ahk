@@ -26,7 +26,7 @@
 	settings.actdecoder.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
-	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) && vars.poe_version ? check : 0
+	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
 }
 
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
@@ -193,7 +193,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		{
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| vars.poe_version && (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			|| (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
 			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
@@ -229,7 +229,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Else Gdip_ImageRotateFlip(pBitmap, (operation = "h" ? 4 : 6))
 	
 			new_width := (vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1) ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1)
-			new_width := (vars.poe_version || alignment = "horizontal") && (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
+			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
 			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
 			Gdip_DisposeBitmap(pBitmap)
 			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
@@ -283,7 +283,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If (mode = 1)
 	{
-		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\act-decoder\zones" vars.poe_version "\explanation" (!pic_count0 ? "_y" : "") "." (vars.poe_version ? "jpg" : "png"))
+		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\act-decoder\zones" vars.poe_version "\explanation" (!pic_count0 ? "_y" : "") "." (!vars.poe_version && !pic_count0 ? "png" : "jpg"))
 		Gdip_GetImageDimension(pBitmap, wInfo, hInfo)
 		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, wInfo * settings.actdecoder.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
 		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)

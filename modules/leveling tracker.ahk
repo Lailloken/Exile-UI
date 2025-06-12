@@ -39,7 +39,10 @@
 		If !IsObject(settings.leveltracker["guide" profile])
 			settings.leveltracker["guide" profile] := {"info": {"leaguestart": 1}}
 		If !FileExist("ini" vars.poe_version "\leveling guide" profile ".ini")
+		{
+			vars.leveltracker.Delete("PoB" profile)
 			Continue
+		}
 		ini2 := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini")
 		vars.leveltracker["PoB" profile] := {}
 		For index, category in ["class", "ascendancies", (!vars.poe_version ? "bandit" : ""), "gems", "trees", "active tree"]
@@ -550,7 +553,7 @@ Leveltracker_GuideEditor(cHWND)
 		Else icons := ["waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out", 0, 1, 2, 3, 4, 5, 6, 7]
 
 	If !vars.leveltracker_editor.act
-		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json"), "`r`n "), "page": [1]}
+		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json")), "page": [1]}
 		, vars.leveltracker_editor.default_guide := json.dump(vars.leveltracker_editor.default_guide)
 
 	If !IsObject(db.leveltracker)
@@ -904,7 +907,7 @@ Leveltracker_GuideEditor(cHWND)
 	{
 		If (icon != "help") && !vars.pics.leveltracker[icon]
 			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png")
-		Gui, %GUI_name%: Add, Pic, % (InStr("1,10", index) || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
+		Gui, %GUI_name%: Add, Pic, % (vars.poe_version && index = 10 || index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
 		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
 	}
 
@@ -1030,9 +1033,6 @@ Leveltracker_Hints()
 	local
 	global vars, settings, db
 
-	If settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"])
-		Return
-
 	For key in vars.leveltracker.hints
 		If LLK_HasVal(vars.leveltracker.guide.group1, key, 1)
 		{
@@ -1050,7 +1050,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, 0, 0
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 
-	If pic
+	If pic && !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -1110,10 +1110,18 @@ Leveltracker_Import(profile := "")
 
 	If !InStr(Clipboard, " areaid")
 	{
-		Try PoB := Leveltracker_PobImport(Clipboard, profile)
+		If InStr(Clipboard, "pobb.in")
+			Try pobbin := HTTPtoVar(Clipboard "/raw")
+			Catch
+			{
+				LLK_ToolTip("pobb.in error",,,,, "Red")
+				Return
+			}
+
+		Try PoB := Leveltracker_PobImport(pobbin ? pobbin : Clipboard, profile)
 		If !IsObject(PoB)
 		{
-			LLK_ToolTip(Lang_Trans("lvltracker_importerror", 2), 1.5,,,, "red")
+			LLK_ToolTip(pobbin ? "pobb.in error" : Lang_Trans("lvltracker_importerror", 2), 1.5,,,, "red")
 			Return
 		}
 		Else
@@ -1485,7 +1493,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	global vars, settings, db
 	static dimensions
 
-	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info"].Clone()}) : vars.leveltracker.guide
+	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info" vars.poe_version].Clone()}) : vars.leveltracker.guide
 	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
 	If (dimensions.1 != settings.leveltracker.fSize)
 		LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : Leveltracker_Experience()], settings.leveltracker.fSize, wExp, hExp), dimensions := [settings.leveltracker.fSize, wExp]
@@ -1588,7 +1596,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					If InStr(step, "(hint)")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
+					If !(settings.features.actdecoder && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
 						For key in vars.leveltracker.hints
 							If InStr(StrReplace(part, "_", " "), key)
 								color := "Aqua"
@@ -1958,6 +1966,7 @@ Leveltracker_PobImport(b64, profile)
 			IniWrite, % """" (IsObject(val) ? json.dump(val) : val) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB, % key
 		Return object
 	}
+	Else MsgBox, % "PoB code doesn't contain a valid XML-File"
 }
 
 Leveltracker_PobRemoveTags(string) ; removes tags and color-coding from PoB-related text

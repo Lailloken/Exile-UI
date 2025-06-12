@@ -17,11 +17,8 @@
 	Gui, %GUI%: Font, norm
 
 	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
-	If vars.poe_version
-	{
-		Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
-		vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
-	}
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
+	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
 	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd
@@ -1550,24 +1547,19 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Text, % "xs Section Center BackgroundTrans HWNDhwnd0 y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_rules")
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd0", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_iteminfo2 HWNDhwnd01 c" colors.2 " Checked"settings.iteminfo.rules.res_weapons, % Lang_Trans("m_iteminfo_rules", 2)
-	vars.hwnd.help_tooltips["settings_iteminfo rules"] := hwnd0, vars.hwnd.settings.rule_res_weapons := hwnd01
-	GuiControlGet, text_, Pos, % hwnd01
-	checkbox_spacing := text_w + settings.general.fWidth/2
-
-	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing " BackgroundTrans gSettings_iteminfo2 HWNDhwnd02 c" colors.2 " Checked"settings.iteminfo.rules.attacks, % Lang_Trans("m_iteminfo_rules", 3)
+	Gui, %GUI%: Add, Checkbox, % "Section xs BackgroundTrans gSettings_iteminfo2 HWNDhwnd02 c" colors.2 " Checked"settings.iteminfo.rules.attacks, % Lang_Trans("m_iteminfo_rules", 3)
 	vars.hwnd.settings.rule_attacks := hwnd02
 	GuiControlGet, text_, Pos, % hwnd02
-	checkbox_spacing1 := text_w + settings.general.fWidth/2
+	checkbox_spacing := text_w + settings.general.fWidth/2
 
-	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing1 "BackgroundTrans gSettings_iteminfo2 HWNDhwnd03 c" colors.2 " Checked"settings.iteminfo.rules.spells, % Lang_Trans("m_iteminfo_rules", 4)
+	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing "BackgroundTrans gSettings_iteminfo2 HWNDhwnd03 c" colors.2 " Checked"settings.iteminfo.rules.spells, % Lang_Trans("m_iteminfo_rules", 4)
 	vars.hwnd.settings.rule_spells := hwnd03
+	Gui, %GUI%: Add, Checkbox, % "ys BackgroundTrans gSettings_iteminfo2 HWNDhwnd06 c" colors.2 " Checked"settings.iteminfo.rules.crit, % Lang_Trans("m_iteminfo_rules", 7)
+	vars.hwnd.settings.rule_crit := hwnd06
 	Gui, %GUI%: Add, Checkbox, % "xs Section BackgroundTrans gSettings_iteminfo2 HWNDhwnd04 c" colors.1 " Checked"settings.iteminfo.rules.res, % Lang_Trans("m_iteminfo_rules", 5)
 	vars.hwnd.settings.rule_res := hwnd04
 	Gui, %GUI%: Add, Checkbox, % "ys xp+"checkbox_spacing " BackgroundTrans gSettings_iteminfo2 HWNDhwnd05 c" colors.2 "" " Checked"settings.iteminfo.rules.hitgain, % Lang_Trans("m_iteminfo_rules", 6)
 	vars.hwnd.settings.rule_hitgain := hwnd05
-	Gui, %GUI%: Add, Checkbox, % "xs Section BackgroundTrans gSettings_iteminfo2 HWNDhwnd06 c" colors.2 " Checked"settings.iteminfo.rules.crit, % Lang_Trans("m_iteminfo_rules", 7)
-	vars.hwnd.settings.rule_crit := hwnd06
 
 	If (settings.general.lang_client != "english")
 		Loop 6
@@ -1863,7 +1855,7 @@ Settings_leveltracker()
 	}
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Checkbox, % "Section xs Hidden HWNDhwnd h" settings.general.fHeight, bla
+	Gui, %GUI%: Add, Edit, % "Section xs Hidden HWNDhwnd h" settings.general.fHeight, bla
 	ControlGetPos,,,, hEdit,, ahk_id %hwnd%
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
@@ -1913,25 +1905,23 @@ Settings_leveltracker()
 			, % Lang_Trans("m_lvltracker_leaguestart")
 			vars.hwnd.settings["leaguestart"] := vars.hwnd.help_tooltips["settings_leveltracker leaguestart" vars.poe_version] := hwnd
 
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals
+			, % Lang_Trans("m_lvltracker_optionals")
+			vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals" vars.poe_version] := hwnd
+
 			If !vars.poe_version
 			{
-				Gui, %Gui%: Add, Text, % "xs hp y+" settings.general.fWidth/4, % Lang_Trans("m_lvltracker_bandit") ": "
+				Gui, %Gui%: Add, Text, % "xs hp Center Border y+" settings.general.fWidth/4, % " " Lang_Trans("m_lvltracker_bandit") " "
 				Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-				Gui, %GUI%: Add, DDL, % "yp x+0 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
+				Gui, %GUI%: Add, DDL, % "yp x+-1 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
 				, % Lang_Trans("global_none") "|" Lang_Trans("m_lvltracker_bandits") "|" Lang_Trans("m_lvltracker_bandits", 2) "|" Lang_Trans("m_lvltracker_bandits", 3)
 				vars.hwnd.settings["bandit"] := vars.hwnd.help_tooltips["settings_leveltracker bandit"] := hwnd
 				Gui, %GUI%: Font, % "s" settings.general.fSize
 			}
-			Else
-			{
-				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals
-				, % Lang_Trans("m_lvltracker_optionals")
-				vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals"] := hwnd
-			}
 		}
 		Else
 		{
-			Gui, %GUI%: Add, Text, % (files ? "ys x+"settings.general.fWidth/2 : "ys x" x_anchor + settings.general.fWidth*2.25) " Center 0x200 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load h" hEdit * 2 + settings.general.fWidth/4, % " " Lang_Trans("lvltracker_editor_load") " "
+			Gui, %GUI%: Add, Text, % (files ? "ys x+"settings.general.fWidth/2 : "ys x" x_anchor + settings.general.fWidth*2.25) " Center 0x200 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load", % " " Lang_Trans("lvltracker_editor_load") " "
 			vars.hwnd.settings["loaddefault"] := vars.hwnd.help_tooltips["settings_leveltracker default"] := hwnd_load
 		}
 	}

@@ -3252,6 +3252,19 @@
       }
     }
   },
+  "focused chanelling support": {
+    "attribute": 3,
+    "level": 31,
+    "quests": {
+      "a fixture of fate": {
+        "quest": [
+          "shadow",
+          "witch"
+        ],
+        "vendor": []
+      }
+    }
+  },
   "forbidden rite": {
     "attribute": 3,
     "level": 16,

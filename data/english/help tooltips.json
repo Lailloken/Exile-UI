@@ -436,7 +436,7 @@
       "hold right-click to delete the guide in this slot"
     ],
     "leveltracker import": [
-      "imports pob data or custom guides from clipboard into this guide slot",
+      "imports pobb.in-links, pob-codes or custom guides from clipboard into this guide slot",
       "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker default": [
@@ -459,6 +459,16 @@
       "long-click to view an explanation of the guide format"
     ],
     "leveltracker guide format info": [
+      "each line is a step you need to complete",
+      "(hint)____ indented lines provide more info for the step above",
+      "(hint)____",
+      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
+      "(hint)____",
+      "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
+      "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
+      "(hint)____ walk around obstacles and find another way into that direction"
+    ],
+    "leveltracker guide format info 2": [
       "each line is a step you need to complete",
       "(hint)____ indented lines provide more info for the step above",
       "(hint)____",
@@ -490,6 +500,10 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker optionals": [
+      "choose whether optional loot/quests/encounters should be shown or not",
+      "examples:\n- strongboxes\n- rogue exiles, breaches"
+    ],
+    "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
       "examples:\n- boss quests (e.g. devourer, mektul)\n- artificer's orbs & gems\n- jewelry & flasks"
     ],
@@ -1085,7 +1099,7 @@
       "press <q> or <e> to switch between individual skill-trees",
       "hold <w> to show an overview of the whole tree",
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
-      "press <space> to move the tree's starting point (white circle) to the cursor's position"
+      "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position"
     ]
   },
   "actdecoder": {

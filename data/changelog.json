@@ -1,5 +1,13 @@
 [
   [
+	["1.58.5", 15805],
+	"june 12, 2025",
+	"not the final 3.26 update(/highlight)",
+	"act-decoder: added advanced layouts to 9 zones in acts 1 and 2",
+	"act-tracker: added pobb.in support, added 3.26 pob support",
+	"act-tracker: updated the default guide with hints from cyclon's guide, updated/added some hint images"
+  ],
+  [
 	["1.58.4", 15804],
 	"june 6, 2025",
 	"removed the filterspoon feature for the time being",

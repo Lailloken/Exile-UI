@@ -23,7 +23,7 @@
 	settings.iteminfo.affixinfo := !Blank(check := ini.settings["affix-info"]) ? check : (ini.settings["enable item-levels"] ? 2 : 1)
 
 	settings.iteminfo.rules := {}
-	settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
+	;settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
 	settings.iteminfo.rules.res := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["res override"]) ? check : 0
 	settings.iteminfo.rules.spells := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["spells override"]) ? check : 0
 	settings.iteminfo.rules.attacks := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["attacks override"]) ? check : 0
@@ -1772,6 +1772,9 @@ Iteminfo_GUI()
 			label := Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) ? Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
 			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
+
+			If (affixinfo = 3 && tier = max_tier) && InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n"))
+				width := UI.wSegment, color := "White", color_t := "Red"
 
 			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border 0x200 Center c" (color = "black" ? "White" : color_t), % tier ;add tier-cell
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack c"color, 100
