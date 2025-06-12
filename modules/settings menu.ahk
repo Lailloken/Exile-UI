@@ -1858,7 +1858,7 @@ Settings_leveltracker()
 	}
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Checkbox, % "Section xs Hidden HWNDhwnd h" settings.general.fHeight, bla
+	Gui, %GUI%: Add, Edit, % "Section xs Hidden HWNDhwnd h" settings.general.fHeight, bla
 	ControlGetPos,,,, hEdit,, ahk_id %hwnd%
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
@@ -1908,25 +1908,23 @@ Settings_leveltracker()
 			, % Lang_Trans("m_lvltracker_leaguestart")
 			vars.hwnd.settings["leaguestart"] := vars.hwnd.help_tooltips["settings_leveltracker leaguestart" vars.poe_version] := hwnd
 
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals
+			, % Lang_Trans("m_lvltracker_optionals")
+			vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals" vars.poe_version] := hwnd
+
 			If !vars.poe_version
 			{
-				Gui, %Gui%: Add, Text, % "xs hp y+" settings.general.fWidth/4, % Lang_Trans("m_lvltracker_bandit") ": "
+				Gui, %Gui%: Add, Text, % "xs hp Center Border y+" settings.general.fWidth/4, % " " Lang_Trans("m_lvltracker_bandit") " "
 				Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-				Gui, %GUI%: Add, DDL, % "yp x+0 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
+				Gui, %GUI%: Add, DDL, % "yp x+-1 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
 				, % Lang_Trans("global_none") "|" Lang_Trans("m_lvltracker_bandits") "|" Lang_Trans("m_lvltracker_bandits", 2) "|" Lang_Trans("m_lvltracker_bandits", 3)
 				vars.hwnd.settings["bandit"] := vars.hwnd.help_tooltips["settings_leveltracker bandit"] := hwnd
 				Gui, %GUI%: Font, % "s" settings.general.fSize
 			}
-			Else
-			{
-				Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/4 " Border Center gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals
-				, % Lang_Trans("m_lvltracker_optionals")
-				vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals"] := hwnd
-			}
 		}
 		Else
 		{
-			Gui, %GUI%: Add, Text, % (files ? "ys x+"settings.general.fWidth/2 : "ys x" x_anchor + settings.general.fWidth*2.25) " Center 0x200 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load h" hEdit * 2 + settings.general.fWidth/4, % " " Lang_Trans("lvltracker_editor_load") " "
+			Gui, %GUI%: Add, Text, % (files ? "ys x+"settings.general.fWidth/2 : "ys x" x_anchor + settings.general.fWidth*2.25) " Center 0x200 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd_load", % " " Lang_Trans("lvltracker_editor_load") " "
 			vars.hwnd.settings["loaddefault"] := vars.hwnd.help_tooltips["settings_leveltracker default"] := hwnd_load
 		}
 	}
