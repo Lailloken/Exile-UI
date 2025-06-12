@@ -193,7 +193,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		{
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| vars.poe_version && (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			|| (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
 			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
@@ -283,7 +283,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If (mode = 1)
 	{
-		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\act-decoder\zones" vars.poe_version "\explanation" (!pic_count0 ? "_y" : "") "." (vars.poe_version ? "jpg" : "png"))
+		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\act-decoder\zones" vars.poe_version "\explanation" (!pic_count0 ? "_y" : "") "." (!vars.poe_version && !pic_count0 ? "png" : "jpg"))
 		Gdip_GetImageDimension(pBitmap, wInfo, hInfo)
 		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, wInfo * settings.actdecoder.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
 		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
