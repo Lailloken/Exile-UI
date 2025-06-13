@@ -187,91 +187,16 @@
     [
       "go (img:1), enter areaid1_2_2 ;; the old fields"
     ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find (img:arena) areaid1_2_2a, place (img:portal) ;; the den",
-        "follow the road, enter areaid1_2_3 ;; the crossroads"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "follow the road, (img:waypoint) to areaid1_2_town (img:town) ;; the forest encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "take (img:portal) to areaid1_2_2 ;; the old fields"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "enter areaid1_2_2a ;; the den"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "find and kill the_great_white_beast",
-        "relog to areaid1_2_town (img:town) ;; the forest encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "yeena: <the_great_white_beast>",
-        "(img:waypoint) to areaid1_2_3 ;; the crossroads"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "go (img:7), enter areaid1_2_6_1 ;; the chamber of sins level 1"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "follow the road, enter areaid1_2_3 ;; the crossroads"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "no"
-      ],
-      "lines": [
-        "follow the road, activate the (img:waypoint)",
-        "go (img:7), enter areaid1_2_6_1 ;; the chamber of sins level 1"
-      ]
-    },
+    [
+      "optional: find (img:arena) areaid1_2_2a, place (img:portal) (q-reward: <belt> / flask) ;; the den",
+      "follow the road, enter areaid1_2_3 ;; the crossroads"
+    ],
+    [
+      "follow the road, activate the (img:waypoint)",
+      "optional: (img:waypoint) to town, enter (img:portal), enter (img:arena) the_den ;; the forest encampment",
+      "(hint)____ kill white_beast, relog, yeena: <the_great_white_beast>",
+      "go (img:7), enter areaid1_2_6_1 ;; the chamber of sins level 1"
+    ],
     [
       "enter areaid1_2_6_2 ;; the chamber of sins level 2",
       "(hint)____ try to go (img:2), otherwise (img:6). reach the central room.",
@@ -948,7 +873,15 @@
         "yes"
       ],
       "lines": [
-        "(img:waypoint) to areaid1_3_15 ;; the imperial gardens",
+        "(img:waypoint) to areaid1_3_15 ;; the imperial gardens"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
         "go (img:7), enter areaid1_3_17_1 ;; the library"
       ]
     },
@@ -999,8 +932,7 @@
         "yes"
       ],
       "lines": [
-        "find and enter areaid1_3_18_1 ;; the sceptre of god",
-        "(hint)____ follow the series of wagons"
+        "follow the wagons, enter areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
     {
@@ -1011,8 +943,7 @@
       "lines": [
         "follow the road, activate the (img:waypoint)",
         "(img:waypoint) to (color:fec076)your_hideout, lilly: <a_fixture_of_fate>  ;; this line only shows with imported pob",
-        "find and enter areaid1_3_18_1 ;; the sceptre of god",
-        "(hint)____ follow the series of wagons"
+        "follow the wagons, enter areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
     [

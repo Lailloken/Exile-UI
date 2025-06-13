@@ -1,5 +1,11 @@
 [
   [
+	["1.58.6", 15806],
+	"june 13, 2025",
+	"league-start psa: read full release notes",
+	"act-tracker: added extended regex support, great white beast now optional"
+  ],
+  [
 	["1.58.5", 15805],
 	"june 12, 2025",
 	"not the final 3.26 update(/highlight)",

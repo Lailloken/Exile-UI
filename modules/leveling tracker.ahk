@@ -163,7 +163,7 @@ Geartracker(mode := "")
 		If (vars.system.click = 1)
 		{
 			KeyWait, LButton
-			regex := SubStr(check, (InStr(check, ":") ? InStr(check, ": ") + 2 : InStr(check, " ") + 1)), regex := (StrLen(regex) > 48) ? SubStr(regex, 1, 48) : regex, Clipboard := """" regex """"
+			regex := SubStr(check, (InStr(check, ":") ? InStr(check, ": ") + 2 : InStr(check, " ") + 1)), regex := (StrLen(regex) > 248) ? SubStr(regex, 1, 248) : regex, Clipboard := """" regex """"
 			WinActivate, ahk_group poe_window
 			WinWaitActive, ahk_group poe_window
 			SendInput, ^{f}
@@ -1939,7 +1939,7 @@ Leveltracker_PobImport(b64, profile)
 				{
 					For gem in oGems
 					{
-						If (StrLen(regex "|" gem) > 46)
+						If (StrLen(regex "|" gem) > 246)
 							regex_dump .= (!regex_dump ? "" : " `;`;`; ") "^(" regex ")$", regex := ""
 						regex .= (!regex ? "" : "|") StrReplace(gem, " ", ".")
 					}
@@ -2758,7 +2758,7 @@ Leveltracker_Strings()
 	strings := [], string := "", attr_check := ["str", "dex", "int"], attr_check.0 := "none"
 	For key, val in vars.leveltracker.guide.itemList
 	{
-		If (StrLen(string "|" StrReplace(val, " ", "\s")) > 47)
+		If (StrLen(string "|" StrReplace(val, " ", "\s")) > 246)
 			strings.Push(string), string := StrReplace(val, " ", "\s")
 		Else string .= (Blank(string) ? "" : "|") StrReplace(val, " ", "\s")
 	}
@@ -2777,13 +2777,13 @@ Leveltracker_Strings()
 		If !Blank(LLK_HasVal(vars.leveltracker.guide.group1, "fixture_of_fate", 1))
 		{
 			attr := attr_check[db.leveltracker.gems[val].attribute], type := InStr(val, " support") ? "_supp" : ""
-			If (StrLen(string_%attr%%type% "|" regex) > 46)
+			If (StrLen(string_%attr%%type% "|" regex) > 246)
 				strings_%attr%%type%.Push(string_%attr%%type%), string_%attr%%type% := regex
 			Else string_%attr%%type% .= (Blank(string_%attr%%type%) ? "" : "|") regex
 		}
 		Else
 		{
-			If (StrLen(string_gems "|" regex) > 46)
+			If (StrLen(string_gems "|" regex) > 246)
 				strings_gems.Push(string_gems), string_gems := regex
 			Else string_gems .= (Blank(string_gems) ? "" : "|") regex
 		}
