@@ -1036,7 +1036,7 @@
     "button": [
       "red = layout unavailable/outdated, yellow = layout only, green = layout + tracking",
       "click to open poelab.com: select difficulty, right-click layout image, click <copy image>",
-      "optional: right-click <lab compass file>, click <copy link address>"
+      "optional: right-click <lab compass file>, click <copy link address>, press ctrl + a and then ctrl + c"
     ]
   },
   "leveltracker": {

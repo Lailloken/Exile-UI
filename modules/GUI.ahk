@@ -830,7 +830,7 @@ ToolTip_Mouse(mode := "", timeout := 0)
 		Case "killtracker":
 			text := Lang_Trans("maptracker_kills")
 		Case "lab":
-			text := "-> " . Lang_Trans("omnikey_labimport") . "`n-> " . Lang_Trans("omnikey_labimport", 2) . "`n-> " . Lang_Trans("omnikey_labimport", 3) . "`n-> " . Lang_Trans("omnikey_labimport", 4) . "`n-> " . Lang_Trans("omnikey_labimport", 5) . "`n" . Lang_Trans("omnikey_escape")
+			text := "-> " . Lang_Trans("omnikey_labimport") . "`n-> " . Lang_Trans("omnikey_labimport", 2) . "`n-> " . Lang_Trans("omnikey_labimport", 3) . "`n-> " . Lang_Trans("omnikey_labimport", 4) . "`n-> " . Lang_Trans("omnikey_labimport", 5) . "`n-> " Lang_Trans("omnikey_labimport", 6) . "`n" . Lang_Trans("omnikey_escape")
 	}
 
 	If vars.tooltip_mouse.timeout && WinActive("ahk_group poe_window") && IsNumber(start) && (A_TickCount >= start + 1000) || GetKeyState("ESC", "P") && (name != "killtracker") || !vars.tooltip_mouse
