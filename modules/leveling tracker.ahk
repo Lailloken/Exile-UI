@@ -1966,7 +1966,6 @@ Leveltracker_PobImport(b64, profile)
 			IniWrite, % """" (IsObject(val) ? json.dump(val) : val) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB, % key
 		Return object
 	}
-	Else MsgBox, % "PoB code doesn't contain a valid XML-File"
 }
 
 Leveltracker_PobRemoveTags(string) ; removes tags and color-coding from PoB-related text

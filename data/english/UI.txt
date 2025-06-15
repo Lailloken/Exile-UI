@@ -553,6 +553,7 @@
 		omnikey_labimport		=	"click <copy image>;optional:"				;## "copy image" when right-clicking a picture in your browser
 		omnikey_labimport		=	"right-click <lab compass file>"			;## there's a link underneath each lab-layout image on poelab.com
 		omnikey_labimport		=	"click <copy link address>"				;## when right-clicking a link in your browser
+		omnikey_labimport		=	"press ctrl + a, ctrl + c"
 		omnikey_poedb			=	"modifiers"						;## it's the name of this section on poeDB, displayed at the top: https://poedb.tw/us/Modifiers
 
 

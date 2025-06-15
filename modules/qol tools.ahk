@@ -525,6 +525,22 @@ Lab(mode := "", override := 0)
 					vars.tooltip_mouse := ""
 					Break
 				}
+				Run, % Clipboard
+				Sleep, 500
+				Clipboard := ""
+			}
+			If (step = 2) && InStr(Clipboard, """difficulty"":")
+			{
+				Try lab_compass_json := Json.Load(Clipboard)
+				If lab_compass_json.Count()
+				{
+					LLK_ToolTip(Lang_Trans("global_success"), 1.5,,,, "lime")
+					Loop, % lab_compass_json.rooms.Count()
+						roomname := lab_compass_json.rooms[A_Index].name, lab_compass_json.rooms[A_Index].name := Lang_Trans("lab_" roomname) ? Lang_Trans("lab_" roomname) : roomname
+					FileAppend, % Json.Dump(lab_compass_json), img\lab compass.json
+					vars.tooltip_mouse := ""
+					Break
+				}
 				Else LLK_ToolTip(Lang_Trans("global_fail"), 1.5,,,, "red")
 				Clipboard := ""
 			}
