@@ -2,6 +2,7 @@
   [
 	["1.58.6", 15806],
 	"june 13, 2025",
+	"hotfix 1: lab-compass import fallback, fixed outdated horizon orb tooltip",
 	"league-start psa: read full release notes",
 	"act-tracker: added extended regex support, great white beast now optional"
   ],
