@@ -368,8 +368,8 @@
     [
       "0",
       "0",
-      "veiled orb",
-      "veiled-orb"
+      "blessed orb",
+      "blessed"
     ],
     [
       "46",
@@ -456,10 +456,16 @@
       "chrome"
     ],
     [
-      "630",
+      "554",
       "0",
-      "stacked deck",
-      "stacked-deck"
+      "veiled exalted orb",
+      "veiled-exalted-orb"
+    ],
+    [
+      "0",
+      "0",
+      "veiled chaos orb",
+      "veiled-chaos-orb"
     ],
     [
       "706",
@@ -560,8 +566,8 @@
     [
       "0",
       "0",
-      "blessed orb",
-      "blessed"
+      "stacked deck",
+      "stacked-deck"
     ],
     [
       "0",
@@ -630,6 +636,12 @@
       "crusaders-exalted-orb"
     ],
     [
+      "758",
+      "0",
+      "shaper's exalted orb",
+      "shapers-exalted-orb"
+    ],
+    [
       "62",
       "334",
       "maven's chisel of proliferation",
@@ -676,6 +688,12 @@
       "0",
       "warlord's exalted orb",
       "warlords-exalted-orb"
+    ],
+    [
+      "758",
+      "0",
+      "elder's exalted orb",
+      "elders-exalted-orb"
     ],
     [
       "62",
@@ -796,6 +814,24 @@
       "0",
       "sacred crystallised lifeforce",
       "sacred-lifeforce"
+    ],
+    [
+      "755",
+      "522",
+      "orb of remembrance",
+      "orb-of-remembrance"
+    ],
+    [
+      "755",
+      "604",
+      "orb of unravelling",
+      "orb-of-unravelling"
+    ],
+    [
+      "755",
+      "684",
+      "orb of intention",
+      "orb-of-intention"
     ]
   ],
   "delirium": [
@@ -1745,7 +1781,7 @@
       "tab_breach"
     ],
     [
-      "154",
+      "124",
       "266",
       "sacrifice at dusk",
       "dusk"
@@ -1757,7 +1793,7 @@
       "mid"
     ],
     [
-      "374",
+      "288",
       "0",
       "veritania's crest",
       "veritanias-crest"
@@ -1769,7 +1805,19 @@
       "al-hezmins-crest"
     ],
     [
-      "594",
+      "456",
+      "0",
+      "offering to the goddess",
+      "offer"
+    ],
+    [
+      "0",
+      "0",
+      "dedication to the goddess",
+      "offer-dedication"
+    ],
+    [
+      "626",
       "0",
       "mortal grief",
       "grie"
@@ -1781,7 +1829,7 @@
       "rage"
     ],
     [
-      "154",
+      "124",
       "346",
       "sacrifice at noon",
       "noon"
@@ -1793,7 +1841,7 @@
       "dawn"
     ],
     [
-      "373",
+      "288",
       "0",
       "drox's crest",
       "droxs-crest"
@@ -1805,7 +1853,19 @@
       "barans-crest"
     ],
     [
-      "593",
+      "456",
+      "0",
+      "gift to the goddess",
+      "offer-gift"
+    ],
+    [
+      "0",
+      "0",
+      "tribute to the goddess",
+      "offer-tribute"
+    ],
+    [
+      "626",
       "0",
       "mortal ignorance",
       "ign"
@@ -1818,31 +1878,13 @@
     ],
     [
       "154",
-      "470",
+      "430",
       "ritual splinter",
       "ritual-splinter"
     ],
     [
-      "674",
-      "0",
-      "crescent splinter",
-      "crescent-splinter"
-    ],
-    [
-      "154",
-      "548",
-      "ritual vessel",
-      "ritual-vessel"
-    ],
-    [
-      "674",
-      "0",
-      "the maven's writ",
-      "the-mavens-writ"
-    ],
-    [
       "252",
-      "430",
+      "0",
       "timeless eternal empire splinter",
       "timeless-eternal-empire-splinter"
     ],
@@ -1871,8 +1913,20 @@
       "timeless-maraketh-splinter"
     ],
     [
-      "252",
+      "674",
+      "0",
+      "crescent splinter",
+      "crescent-splinter"
+    ],
+    [
+      "154",
       "510",
+      "ritual vessel",
+      "ritual-vessel"
+    ],
+    [
+      "252",
+      "0",
       "timeless eternal emblem",
       "timeless-eternal-emblem"
     ],
@@ -1901,8 +1955,20 @@
       "timeless-maraketh-emblem"
     ],
     [
-      "252",
+      "674",
+      "0",
+      "the maven's writ",
+      "the-mavens-writ"
+    ],
+    [
+      "154",
       "590",
+      "an audience with the king",
+      "an-audience-with-the-king"
+    ],
+    [
+      "252",
+      "0",
       "unrelenting timeless eternal emblem",
       "uber-timeless-eternal-emblem"
     ],
@@ -1931,34 +1997,34 @@
       "uber-timeless-maraketh-emblem"
     ],
     [
+      "674",
+      "0",
+      "syndicate medallion",
+      "syndicate-medallion"
+    ],
+    [
       "154",
       "676",
       "divine vessel",
       "divine-vessel"
     ],
     [
-      "258",
+      "310",
       "0",
-      "offering to the goddess",
-      "offer"
+      "echo of trauma",
+      "echo-of-trauma"
     ],
     [
-      "362",
+      "414",
       "0",
-      "tribute to the goddess",
-      "offer-tribute"
+      "echo of loneliness",
+      "echo-of-loneliness"
     ],
     [
-      "466",
+      "518",
       "0",
-      "gift to the goddess",
-      "offer-gift"
-    ],
-    [
-      "570",
-      "0",
-      "dedication to the goddess",
-      "offer-dedication"
+      "echo of reverence",
+      "echo-of-reverence"
     ],
     [
       "674",
@@ -2152,7 +2218,7 @@
       "divination-scarab-of-pilfering"
     ],
     [
-      "183",
+      "96",
       "303",
       "anarchy scarab",
       "anarchy-scarab"
@@ -2170,7 +2236,7 @@
       "anarchy-scarab-of-partnership"
     ],
     [
-      "365",
+      "278",
       "0",
       "ritual scarab of selectiveness",
       "ritual-scarab-of-selectiveness"
@@ -2188,7 +2254,7 @@
       "ritual-scarab-of-abundance"
     ],
     [
-      "549",
+      "460",
       "0",
       "harvest scarab",
       "harvest-scarab"
@@ -2204,6 +2270,24 @@
       "0",
       "of cornucopia",
       "harvest-scarab-of-cornucopia"
+    ],
+    [
+      "640",
+      "0",
+      "kalguuran scarab",
+      "kalguuran-scarab"
+    ],
+    [
+      "0",
+      "0",
+      "of guarded riches",
+      "kalguuran-scarab-of-guarded-riches"
+    ],
+    [
+      "0",
+      "0",
+      "of refinement",
+      "kalguuran-scarab-of-refinement"
     ],
     [
       "93",
