@@ -231,7 +231,16 @@ Settings_betrayal()
 		Else pos := "Section ys x+"settings.general.fWidth/4
 		Gui, %GUI%: Add, Text, % pos " Border gSettings_betrayal2 HWNDhwnd w"width, % " " Lang_Trans("betrayal_" member)
 		vars.hwnd.settings[member] := hwnd
+		ControlGetPos, xLast, yLast, wLast, hLast,, ahk_id %hwnd%
+		yMax := (yLast + hLast > yMax) ? yLast + hLast : yMax
 	}
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs x" vars.settings.x_anchor " Center y" yMax + vars.settings.spacing, % Lang_Trans("global_databaseinfo") . Lang_Trans("global_colon")
+	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Text, % "Section xs Center", % Lang_Trans("global_current") . Lang_Trans("global_colon") " " vars.betrayal.timestamp " "
+	Gui, %GUI%: Add, Pic, % "ys x+0 hp-2 w-1 Border BackgroundTrans HWNDhwnd gSettings_betrayal2", % "HBitmap:*" vars.pics.global.reload
+	vars.hwnd.settings.update := vars.hwnd.help_tooltips["settings_betrayal update"] := hwnd
 }
 
 Settings_betrayal2(cHWND := "")
@@ -292,6 +301,28 @@ Settings_betrayal2(cHWND := "")
 		Betrayal_Info(check)
 		KeyWait, LButton
 		vars.hwnd.betrayal_info.active := "", LLK_Overlay(vars.hwnd.betrayal_info.main, "destroy")
+	}
+	Else If (check = "update")
+	{
+		If vars.settings.betrayal_timestamp && (A_TickCount < vars.settings.betrayal_timestamp + 60000)
+		{
+			LLK_ToolTip(Lang_Trans("global_updatewait"), 2,,,, "Yellow")
+			Return
+		}
+		vars.settings.betrayal_timestamp := A_TickCount
+		Try file := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/english/Betrayal.json")
+
+		If file
+			Try database := json.load(file)
+		If !IsObject(database)
+		{
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
+			Return
+		}
+		file_new := FileOpen("data\english\Betrayal.json", "w", "UTF-8-RAW")
+		file_new.Write(file "`r`n"), file_new.Close()
+		Init_betrayal()
+		Settings_menu("betrayal-info"), LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
 	}
 	Else LLK_ToolTip("no action")
 }

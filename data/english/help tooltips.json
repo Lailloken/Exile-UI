@@ -141,6 +141,10 @@
       "hover over a reward and press a number key to apply a color, or space to remove it",
       "rewards can also be tiered when using the overlay on the syndicate board"
     ],
+    "betrayal update": [
+      "(re)download the latest database",
+      "this is mainly for league-start so the feature can be used without having to wait for a whole new release"
+    ],
     "cheatsheets enable": [
       "provides a toolkit to create and manage customizable cheat sheet overlays"
     ],

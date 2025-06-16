@@ -23,6 +23,7 @@
 		vars.betrayal.board := Json.Load(ini.settings.board), vars.betrayal.board0 := ini.settings.board
 
 	vars.betrayal.members := Json.Load(LLK_FileRead("data\" file "\Betrayal.json", 0, "65001")), vars.betrayal.members_localized := {}, vars.betrayal.divisions_localized := {}
+	vars.betrayal.timestamp := vars.betrayal.members._timestamp, vars.betrayal.members.Delete("_timestamp")
 	For key in vars.betrayal.members ;create an object with localized names (solely for alphabetical ordering)
 		vars.betrayal.members_localized[Lang_Trans("betrayal_" key)] := key
 	vars.betrayal.divisions := {"transportation": {}, "fortification": {}, "research": {}, "intervention": {}} ;each object stores the BIS members of a given division
