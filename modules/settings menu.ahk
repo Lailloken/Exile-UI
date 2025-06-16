@@ -246,7 +246,7 @@ Settings_betrayal()
 Settings_betrayal2(cHWND := "")
 {
 	local
-	global vars, settings
+	global vars, settings, json
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), divisions := {"t": "transportation", "f": "fortification", "r": "research", "i": "intervention"}
 
