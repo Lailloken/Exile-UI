@@ -79,7 +79,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 ### [Act-Decoder](https://github.com/Lailloken/Exile-UI/wiki/Act%E2%80%90Decoder): campaign layout overlay  
 | | layout selection<br>based on indicators | advanced layouts | simple fallback |
 |---|---|---|---|
-| PoE1 |  |  | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) |
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) |
 | PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
 <br>
 
@@ -87,25 +87,6 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | customizable price-tags and profiles | conversion rates & optional price history | (bulk-)sale management & bulk-exchange listings |
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_003.jpg) |
-<br>
-
-### [Recombination Simulator](https://github.com/Lailloken/Lailloken-UI/wiki/Recombination-Simulator): in-game overlay that simulates outcomes in a few clicks
-| example 1: single mod transfer | example 2: runic + zeffre + archmage's wand |
-|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_002.png)
-<br>
-
-### [Sanctum/Sekhema Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-and-Sekhema-Planner): floor scanner & interactive planner/analysis overlay
-| | potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
-<br>
-
-### [Context-menu](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features) for items: single-hotkey access to features and popular 3rd-party websites  
-| PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_002.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_003.jpg) |
-|---|---|---|---|
-| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_101.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_102.jpg) | |
 <br>
 
 ### \*[Map-Tracker](https://github.com/Lailloken/Lailloken-UI/wiki/Map%E2%80%90Tracker): collect, save, view, and export mapping-related data for statistical analysis
@@ -120,6 +101,32 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 |---|---|---|---|
 | PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_003.png) |
 | PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_101.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_102.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_103.png) |
+<br>
+
+### [Sanctum/Sekhema Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-and-Sekhema-Planner): floor scanner & interactive planner/analysis overlay
+| | potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
+|---|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
+| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
+<br>
+
+### [Enchant Finder](https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder): quick-access enchant calculator for blight oils and distilled emotions
+| | streamlined import of materials | flexible searching/filtering via regex or keywords |
+|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_002.jpg) |
+| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_102.jpg) |
+<br>
+
+### [Recombination Simulator](https://github.com/Lailloken/Lailloken-UI/wiki/Recombination-Simulator): in-game overlay that simulates outcomes in a few clicks
+| example 1: single mod transfer | example 2: runic + zeffre + archmage's wand |
+|---|---|
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/recombination_002.png)
+<br>
+
+### [Context-menu](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features) for items: single-hotkey access to features and popular 3rd-party websites  
+| PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_002.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_003.jpg) |
+|---|---|---|---|
+| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_101.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_102.jpg) | |
 <br>
 
 ### [Statlas](https://github.com/Lailloken/Exile-UI/wiki/Statlas): quick-access atlas overlay for map layouts, bosses, and statistics
