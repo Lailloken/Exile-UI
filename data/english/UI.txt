@@ -232,6 +232,8 @@
 		mechanic_enslaver		=	"enslaver"
 		mechanic_eradicator		=	"eradicator"
 		mechanic_purifier		=	"purifier"
+		mechanic_seer			=	"nameless seer"
+		mechanic_mist			=	"reflecting mist"
 
 
 

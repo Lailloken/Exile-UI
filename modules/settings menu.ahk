@@ -2654,33 +2654,40 @@ Settings_maptracker()
 
 	If settings.maptracker.mechanics
 	{
-		Gui, %GUI%: Add, Text, % "xs Section Center xp+" settings.general.fWidth * 2, % Lang_Trans("m_maptracker_dialogue")
+		added := 0
+		For mechanic, type in vars.maptracker.mechanics
+		{
+			If type
+				Continue
+			added += 1, color := settings.maptracker[mechanic] ? " cLime" : " c505050"
+			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section x" x_anchor + settings.general.fWidth * 2 : "ys x+"settings.general.fWidth/4) " Border Center gSettings_maptracker2 HWNDhwnd" color, % " " Lang_Trans("mechanic_" mechanic) " "
+			vars.hwnd.settings["mechanic_"mechanic] := vars.hwnd.help_tooltips["settings_maptracker dialoguemechanic"handle] := hwnd, handle .= "|"
+		}
+
+		Gui, %GUI%: Add, Text, % "xs Section Center x" x_anchor + settings.general.fWidth * 2, % Lang_Trans("m_maptracker_dialogue")
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 		vars.hwnd.help_tooltips["settings_maptracker dialogue tracking"] := hwnd, added := 0, ingame_dialogs := vars.maptracker.dialog := InStr(LLK_FileRead(vars.system.config), "output_all_dialogue_to_chat=true") ? 1 : 0
-		Gui, %GUI%: Font, c505050
 		For mechanic, type in vars.maptracker.mechanics
 		{
 			If (type != 1)
 				Continue
-			added += 1, color := !ingame_dialogs ? " cRed" : settings.maptracker[mechanic] ? " cLime" : ""
-			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section" : "ys x+"settings.general.fWidth/4) " Border Center gSettings_maptracker2 HWNDhwnd"color, % " " Lang_Trans("mechanic_" mechanic) " "
+			added += 1, color := !ingame_dialogs ? " cRed" : settings.maptracker[mechanic] ? " cLime" : " c505050"
+			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section" : "ys x+"settings.general.fWidth/4) " Border Center gSettings_maptracker2 HWNDhwnd" color, % " " Lang_Trans("mechanic_" mechanic) " "
 			vars.hwnd.settings["mechanic_"mechanic] := vars.hwnd.help_tooltips["settings_maptracker dialoguemechanic"handle] := hwnd, handle .= "|"
 		}
-		Gui, %GUI%: Font, cWhite
 
 		Gui, %GUI%: Add, Text, % "xs Section Center", % Lang_Trans("m_maptracker_screen")
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 		vars.hwnd.help_tooltips["settings_maptracker screen tracking"] := hwnd, handle := "", added := 0
-		Gui, %GUI%: Font, c505050
 		For mechanic, type in vars.maptracker.mechanics
 		{
 			If (type != 2)
 				Continue
-			added += 1, color := !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? "red" : settings.maptracker[mechanic] ? " cLime" : ""
-			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section" : "ys x+"settings.general.fWidth/4) " Border Center gSettings_maptracker2 HWNDhwnd c"color, % " " Lang_Trans("mechanic_" mechanic) " "
+			added += 1, color := !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? "red" : settings.maptracker[mechanic] ? " cLime" : " c505050"
+			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section" : "ys x+"settings.general.fWidth/4) " Border Center gSettings_maptracker2 HWNDhwnd c" color, % " " Lang_Trans("mechanic_" mechanic) " "
 			vars.hwnd.settings["screenmechanic_"mechanic] := vars.hwnd.help_tooltips["settings_maptracker screenmechanic"handle] := hwnd, handle .= "|"
 		}
-		Gui, %GUI%: Font, cWhite
+
 		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.portal_reminder, % Lang_Trans("m_maptracker_portal")
 		ControlGetPos,,, wControl,,, ahk_id %hwnd%
 		vars.hwnd.settings.portal_reminder := vars.hwnd.help_tooltips["settings_maptracker portal reminder"] := hwnd, handle := ""
