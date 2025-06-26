@@ -202,8 +202,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			If (outer = 1)
 				Continue
 			If (alignment = "vertical")
-				style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section" : " Section xs"
-			Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section" : " Section ys"
+				style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section y" yFirst : " Section xs"
+			Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section x" xFirst : " Section ys"
 
 			pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), Gdip_GetImageDimension(pBitmap, width, height)
 			For index, operation in vars.actdecoder.zone_layouts[vars.log.areaID][file]
@@ -233,7 +233,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
 			Gdip_DisposeBitmap(pBitmap)
 			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
-			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" (mode != 2 && alignment = "vertical" && count = 5 ? " Section ys y" yFirst : style), % "HBitmap:" hbmBitmap
+			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % "HBitmap:" hbmBitmap
 			vars.hwnd.actdecoder[vars.log.areaID " " file] := hwnd, DeleteObject(hbmBitmap)
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
