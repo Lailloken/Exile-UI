@@ -208,6 +208,8 @@
 		global_databaseinfo		=	"database information"
 		global_current			=	"current"
 		global_updatewait		=	"try again later"
+		global_duration			=	"duration (sec)"
+		global_position			=	"position"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -1003,6 +1005,7 @@
 
 ;## these strings are displayed/required in the "minor qol tools" section of the settings menu
 		m_qol_alarm			=	"alarm/timer widget:"
+		m_qol_map_events		=	"map-event notifications:"
 		m_qol_notepad			=	"notepad:"
 		m_qol_widget			=	"widget opacity:"
 		m_qol_widgetcolor		=	"default widget colors:"

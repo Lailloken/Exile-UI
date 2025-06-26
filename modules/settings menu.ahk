@@ -3308,14 +3308,57 @@ Settings_qol()
 		vars.hwnd.settings.alarmfont_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " HWNDhwnd Border Center gSettings_qol2 w"settings.general.fWidth*2, % "+"
 		vars.hwnd.settings.alarmfont_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth, % Lang_Trans("global_color", 2)
 
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth, % Lang_Trans("global_color", 2)
 		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.alarm.color, 100
 		vars.hwnd.settings.color_alarm := hwnd, vars.hwnd.settings.color_alarm_bar := vars.hwnd.help_tooltips["settings_generic color double"] := hwnd1
 		Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.alarm.color1, 100
 		vars.hwnd.settings.color_alarm1 := hwnd, vars.hwnd.settings.color_alarm1_bar := vars.hwnd.help_tooltips["settings_generic color double1"] := hwnd1
+	}
+
+	If !vars.poe_version
+	{
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "xs HWNDhwnd0 y+"vars.settings.spacing " Section", % Lang_Trans("m_qol_map_events")
+		Gui, %GUI%: Font, norm
+		Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " gSettings_qol2 HWNDhwnd Checked" settings.qol.mapevents, % Lang_Trans("global_enable")
+		vars.hwnd.help_tooltips["settings_map-events enable"] := hwnd0, vars.hwnd.settings.enable_mapevents := vars.hwnd.help_tooltips["settings_map-events enable|"] := hwnd
+
+		If settings.qol.mapevents
+		{
+			Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("global_font")
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " HWNDhwnd Border Center gSettings_qol2 w"settings.general.fWidth*2, % "–"
+			vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.mapeventsfont_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " HWNDhwnd Border Center gSettings_qol2 w"settings.general.fWidth*3, % settings.mapevents.fSize
+			vars.hwnd.settings.mapeventsfont_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+			Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " HWNDhwnd Border Center gSettings_qol2 w"settings.general.fWidth*2, % "+"
+			vars.hwnd.settings.mapeventsfont_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth, % Lang_Trans("global_color", 2)
+			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
+			Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.mapevents.color, 100
+			vars.hwnd.settings.color_mapevents := hwnd, vars.hwnd.settings.color_mapevents_bar := vars.hwnd.help_tooltips["settings_generic color double|"] := hwnd1
+			Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
+			Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.mapevents.color1, 100
+			vars.hwnd.settings.color_mapevents1 := hwnd, vars.hwnd.settings.color_mapevents1_bar := vars.hwnd.help_tooltips["settings_generic color double1|"] := hwnd1
+
+			Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_duration") . Lang_Trans("global_colon")
+			Gui, %GUI%: Add, Slider, % "ys x+0 hp w" settings.general.fWidth*10 " HWNDhwnd ToolTip gSettings_qol2 NoTicks Center Range3-10", % settings.mapevents.duration
+			vars.hwnd.settings.duration_mapevents := hwnd
+
+			Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd", % Lang_Trans("global_position") . Lang_Trans("global_colon") " "
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+			For index, val in ["top", "bottom", "left", "right"]
+				mapevents_ddl .= (index = 1 ? "" : "|") . Lang_Trans("m_general_pos" val)
+			Gui, %GUI%: Add, DDL, % "ys x+0 hp w" settings.general.fWidth*10 " HWNDhwnd1 gSettings_qol2 AltSubmit R4 Choose" settings.mapevents.position, % mapevents_ddl
+			Gui, %GUI%: Font, % "s" settings.general.fSize
+			vars.hwnd.settings.position_mapevents := hwnd1, vars.hwnd.help_tooltips["settings_map-events position"] := hwnd
+
+			Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd gSettings_qol2", % " " Lang_Trans("global_test") " "
+			vars.hwnd.settings.test_mapevents := vars.hwnd.help_tooltips["settings_map-events test"] := hwnd
+		}
 	}
 
 	Gui, %GUI%: Font, bold underline
@@ -3337,10 +3380,10 @@ Settings_qol()
 		vars.hwnd.help_tooltips["settings_notepad default color"] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.notepad.color, 100
-		vars.hwnd.settings.color_notepad := hwnd, vars.hwnd.settings.color_notepad_bar := vars.hwnd.help_tooltips["settings_generic color double|"] := hwnd1
+		vars.hwnd.settings.color_notepad := hwnd, vars.hwnd.settings.color_notepad_bar := vars.hwnd.help_tooltips["settings_generic color double||"] := hwnd1
 		Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans Border HWNDhwnd gSettings_qol2", % "  "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack HWNDhwnd1 c" settings.notepad.color1, 100
-		vars.hwnd.settings.color_notepad1 := hwnd, vars.hwnd.settings.color_notepad1_bar := vars.hwnd.help_tooltips["settings_generic color double1|"] := hwnd1
+		vars.hwnd.settings.color_notepad1 := hwnd, vars.hwnd.settings.color_notepad1_bar := vars.hwnd.help_tooltips["settings_generic color double1||"] := hwnd1
 		Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd", % Lang_Trans("m_qol_widget")
 		vars.hwnd.help_tooltips["settings_notepad opacity"] := hwnd, handle := "|"
 		Loop 6
@@ -3398,8 +3441,8 @@ Settings_qol2(cHWND)
 		Else
 		{
 			If InStr(check, "1")
-				control := StrReplace(control, "1"), settings[control].color1 := (vars.system.click = 1) ? picked_rgb : "000000"
-			Else settings[control].color := (vars.system.click = 1) ? picked_rgb : "FFFFFF"
+				control := StrReplace(control, "1"), settings[control].color1 := (vars.system.click = 1) ? picked_rgb : (InStr(check, "mapevents") ? "FFFFFF" : "000000")
+			Else settings[control].color := (vars.system.click = 1) ? picked_rgb : (InStr(check, "mapevents") ? "FF0000" : "FFFFFF")
 		}
 		IniWrite, % settings[control]["color" (InStr(check, "1") ? "1" : "")], % "ini" vars.poe_version "\qol tools.ini", % control, % (InStr(check, "1") ? "background " : "font-") "color"
 		GuiControl, % "+c"settings[control]["color" (InStr(check, "1") ? "1" : "")], % vars.hwnd.settings[check "_bar"]
@@ -3415,6 +3458,10 @@ Settings_qol2(cHWND)
 		If (control = "alarm") && vars.alarm.toggle
 			Alarm()
 	}
+	Else If InStr(check, "duration_")
+		IniWrite, % (settings.mapevents.duration := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\qol tools.ini", % control, duration
+	Else If InStr(check, "position_")
+		IniWrite, % (settings.mapevents.position := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\qol tools.ini", % control, position
 	Else If InStr(check, "font_")
 	{
 		control1 := StrReplace(control1, "font")
@@ -3454,6 +3501,8 @@ Settings_qol2(cHWND)
 			For key, val in vars.hwnd.notepad_widgets
 				WinSet, Transparent, % (key = "notepad_reminder_feature") ? 250 : 50 * settings.notepad.trans, % "ahk_id "val
 	}
+	Else If (check = "test_mapevents")
+		MapEvent("seer")
 	Else LLK_ToolTip("no action")
 }
 

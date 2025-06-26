@@ -677,6 +677,16 @@
       "leave name blank for single-use timer",
       "hold <right-click> on a name to remove a timer"
     ],
+    "map-events enable": [
+      "displays notifications whenever certain map events spawn",
+      "examples:\nnameless seer\nreflecting mist"
+    ],
+    "map-events position": [
+      "the notification will be docked to one of the client's edges"
+    ],
+    "map-events test": [
+      "click to activate a test-notification"
+    ],
     "notepad enable": [
       "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes"
     ],

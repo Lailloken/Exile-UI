@@ -477,5 +477,13 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 
 		If settings.features.maptracker && settings.maptracker.mechanics && vars.maptracker.map.id && (vars.log.areaID = vars.maptracker.map.id)
 			Maptracker_ParseDialogue(loopfield)
+
+		If settings.qol.mapevents
+			For index0, type in ["mist", "seer"]
+				If InStr(loopfield, Lang_Trans("log_" type), 1)
+				{
+					MapEvent(type)
+					Break
+				}
 	}
 }
