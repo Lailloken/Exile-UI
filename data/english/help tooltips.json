@@ -950,6 +950,9 @@
     ],
     "rings": [
       "toggles between amulet & ring recipes"
+    ],
+    "stock reset": [
+      "long-click to reset materials to 0"
     ]
   },
   "cheatsheets": {
