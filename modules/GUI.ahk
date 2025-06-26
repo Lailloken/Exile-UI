@@ -27,11 +27,11 @@
 	vars.hwnd.LLK_panel.restart := hwnd0, vars.hwnd.LLK_panel["restart|"] := vars.hwnd.LLK_panel.restart_bar := hwnd01, vars.hwnd.LLK_panel.close := hwnd, vars.hwnd.LLK_panel["close|"] := vars.hwnd.LLK_panel.close_bar := hwnd1
 
 	Gui, LLK_panel: Margin, % margin, % margin
-	Loop, Parse, % "leveltracker, maptracker, notepad", `,, %A_Space%
+	Loop, Parse, % "leveltracker, anoints, maptracker, notepad", `,, %A_Space%
 	{
 		If (settings.features[A_LoopField] || settings.qol[A_LoopField])
 		{
-			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : ""
+			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (A_LoopField = "anoints" ? vars.poe_version : "")
 			file := (A_LoopField = "maptracker" && vars.maptracker.pause) ? 0 : file
 			If (A_LoopField = "leveltracker")
 			{
@@ -283,6 +283,8 @@ Gui_ToolbarButtons(cHWND, hotkey)
 		Maptracker(cHWND, hotkey)
 	Else If (check = "notepad")
 		Notepad(cHWND, hotkey)
+	Else If (check = "anoints")
+		Anoints(vars.hwnd.anoints.main ? "close" : "")
 }
 
 Gui_ToolbarHide()

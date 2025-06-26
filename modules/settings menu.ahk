@@ -129,6 +129,7 @@ Settings_anoints2(cHWND)
 	If (check = "enable")
 	{
 		IniWrite, % (settings.features.anoints := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable enchant finder
+		Init_GUI()
 		Settings_menu("anoints")
 	}
 	Else If (check = "update")
