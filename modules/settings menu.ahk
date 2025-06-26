@@ -620,9 +620,13 @@ Settings_cloneframes()
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 	}
 
+	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLast + hLast + settings.general.fWidth/2, % Lang_Trans("m_clone_town")
+	Gui, %GUI%: Font, % "cWhite norm s" settings.general.fSize
+
 	LLK_PanelDimensions([Lang_Trans("global_coordinates"), Lang_Trans("global_width") "/" Lang_Trans("global_height")], settings.general.fSize, width, height)
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " HWNDhwnd y" yLast + hLast + vars.settings.spacing, % Lang_Trans("m_clone_editing")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " HWNDhwnd y+" vars.settings.spacing, % Lang_Trans("m_clone_editing")
 	colors := ["3399FF", "Yellow", "DC3220"], handle := "", vars.hwnd.settings.edit_text := vars.hwnd.help_tooltips["settings_cloneframes corners"handle] := hwnd
 	Gui, %GUI%: Font, norm
 	For index, val in vars.lang.global_mouse

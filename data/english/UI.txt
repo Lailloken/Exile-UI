@@ -857,6 +857,7 @@
 		m_clone_scale			=	"scale:"
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders		=	"invalid frame borders"
+		m_clone_town			=	"clone-frames are disabled in hideouts/towns"
 
 
 
