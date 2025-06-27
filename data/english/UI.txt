@@ -720,8 +720,8 @@
 		m_general_kill			=	"exit x minutes after closing the game:"
 		m_general_browser		=	"browser features"
 		m_general_capslock		=	"capslock-toggling"		;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
-		m_general_character		=	"current char:"
-		m_general_build			=	"current build:"
+		m_general_character		=	"char"
+		m_general_build			=	"build"
 		m_general_level			=	"lvl"
 		m_general_client		=	"game-client settings:"
 		m_general_client		=	"game-client info:"

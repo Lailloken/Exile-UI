@@ -351,8 +351,8 @@ Log_Loop(mode := 0)
 					}
 		}
 
-		If character_class && WinExist("ahk_id " vars.hwnd.settings.main) && (vars.settings.active = "general")
-			Settings_menu("general",, 0)
+		If character_class && WinExist("ahk_id " vars.hwnd.settings.main) && RegExMatch(vars.settings.active, "i)general|leveling.tracker")
+			Settings_menu(vars.settings.active,, 0)
 	}
 
 	If mode

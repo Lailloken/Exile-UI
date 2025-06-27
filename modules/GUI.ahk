@@ -160,7 +160,14 @@ Gui_HelpToolTip(HWND_key)
 			If LLK_StringCompare(target_array[count - (A_Index - 1)], ["class", "#"])
 				target_array.RemoveAt(count - (A_Index - 1))
 	}
-	Else target_array := (donation ? database[control].2 : database[check][control])
+	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
+
+	If (control = "leveltracker profile select")
+	{
+		profile := LLK_ControlGet(vars.general.cMouse), profile := (profile = 1 ? "" : profile), ini := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini", "info")
+		If (name := ini.info.name)
+			target_array.InsertAt(1, Trim(ini.info.character ":`n" name, "`n:") "(/underline)(/bold)")
+	}
 
 	If InStr(control, "update changelog")
 		For index0, val in vars.updater.changelog
