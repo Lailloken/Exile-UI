@@ -1054,7 +1054,7 @@ Settings_general()
 
 		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_general_logfile")
 		red := Min(255, Max(0, vars.log.file_size - 100)), green := 255 - red, rgb := (red < 10 ? "0" : "") . Format("{:X}", red) . (green < 10 ? "0" : "") . Format("{:X}", green) "00"
-		Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0 BackgroundTrans gSettings_general2 c" rgb, % " " Max(0, Round((355-vars.log.file_size)/355*100)) "% (" vars.log.file_size " mb / " vars.log.access_time " ms) "
+		Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0 BackgroundTrans gSettings_general2 c" rgb, % " " Max(0, Round((500-vars.log.file_size)/500*100)) "% (" vars.log.file_size " mb / " vars.log.access_time " ms) "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack cRed Vertical Range0-500 HWNDhwnd1", 0
 		If !vars.pics.global.folder
 			vars.pics.global.folder := LLK_ImageCache("img\GUI\folder.png")
@@ -2960,7 +2960,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 			|| WinExist("ahk_exe GeForceNOW.exe") && InStr("item-info, map-info, filterspoon", val)
 				Continue
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
-			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
+			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
 			color := (val = "donations") ? " cCCCC00" : color
 			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.2 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1) " "
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 BackgroundBlack cBlack", 100

@@ -134,8 +134,14 @@ Gui_HelpToolTip(HWND_key)
 	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0}
 	If (check != "settings")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
+
+	For index, val in ["xWin", "yWin", "wWin", "hWin"]
+		If !IsNumber(%val%)
+			%val% := 0
+
 	If (check = "lab" && InStr(control, "square"))
 		vars.help.lab[control] := [vars.lab.compass.rooms[StrReplace(control, "square")].name], vars.help.lab[control].1 .= (vars.help.lab[control].1 = vars.lab.room.2) ? " (" Lang_Trans("lab_movemarker") ")" : ""
+
 	If (check = "lootfilter" && InStr(control, "tooltip"))
 		database := vars.lootfilter.filter, lootfilter := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
@@ -291,7 +297,11 @@ Gui_ToolbarButtons(cHWND, hotkey)
 	Else If (check = "notepad")
 		Notepad(cHWND, hotkey)
 	Else If (check = "anoints")
+	{
+		KeyWait, LButton
+		KeyWait, RButton
 		Anoints(vars.hwnd.anoints.main ? "close" : "")
+	}
 }
 
 Gui_ToolbarHide()
