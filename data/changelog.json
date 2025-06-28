@@ -1,5 +1,13 @@
 [
   [
+	["1.58.7", 15807],
+	"june 28, 2025",
+	"fixes: act-decoder multi-monitor, map-info alt-activation on invitations, act-tracker guide-panel unhiding after completion",
+	"act-tracker: added per-slot character tracking, increased max slots to 9",
+	"map-tracker: added support for nameless seer and reflecting mist",
+	"new minor qol feature: map-event notifications (nameless seer and reflecting mist)"
+  ],
+  [
 	["1.58.6", 15806],
 	"june 13, 2025",
 	"hotfix 1: lab-compass import fallback, fixed outdated horizon orb tooltip",
