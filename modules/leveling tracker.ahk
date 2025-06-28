@@ -45,7 +45,9 @@
 		Else If (category = "active tree") && vars.leveltracker["pob" profile].Count() && !StrLen(string)
 			vars.leveltracker["pob" profile][category] := 1
 	}
-	settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
+	If IsObject(ini2.info)
+		settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
+	Else settings.leveltracker["guide" profile] := {"info": {"custom": 0}}
 	settings.leveltracker["guide" profile].info.leaguestart .= Blank(settings.leveltracker["guide" profile].info.leaguestart) ? 0 : ""
 	settings.leveltracker["guide" profile].info.bandit .= Blank(settings.leveltracker["guide" profile].info.bandit) ? "none" : ""
 	settings.leveltracker["guide" profile].info.optionals .= Blank(settings.leveltracker["guide" profile].info.optionals) ? 0 : ""
