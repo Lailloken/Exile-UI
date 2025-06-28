@@ -78,6 +78,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 					vars.general.drag := 0
 			}
 			Else x := (settings.actdecoder.aLayouts = "horizontal") ? "" : 0, y := (settings.actdecoder.aLayouts = "horizontal") ? 0 : ""
+			KeyWait, LButton
+			KeyWait, RButton
 		}
 		Else If LLK_PatternMatch(check, "", ["_rotate", "_flip"])
 		{
@@ -291,13 +293,14 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			, % "HBitmap:" hbmBitmap2
 		DeleteObject(hbmBitmap2)
 	}
-	Gui, %GUI_name%: Show, % "NA x10000 y10000"
-	WinGetPos,,, w, h, % "ahk_id "vars.hwnd.actdecoder.main
-	xPos := Blank(settings.actdecoder.xLayouts) ? (alignment = "horizontal" ? vars.client.xc - w/2 : 0) : settings.actdecoder.xLayouts
-	yPos := Blank(settings.actdecoder.yLayouts) ? (alignment = "vertical" ? vars.client.yc - h/2 : 0) : settings.actdecoder.yLayouts
-	xPos := (xPos >= vars.monitor.w / 2) ? xPos - w + 1 : xPos, yPos := (yPos >= vars.monitor.h / 2) ? yPos - h + 1 : yPos
+	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
+	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.actdecoder.main
+	xPos := Blank(settings.actdecoder.xLayouts) ? (alignment = "horizontal" ? vars.monitor.x + vars.client.xc - w/2 : vars.monitor.x) : vars.monitor.x + settings.actdecoder.xLayouts
+	yPos := Blank(settings.actdecoder.yLayouts) ? (alignment = "vertical" ? vars.monitor.y + vars.monitor.h/2 - h/2 : vars.monitor.y) : vars.monitor.y + settings.actdecoder.yLayouts
+	xPos := (xPos >= vars.monitor.x + vars.monitor.w / 2) ? xPos - w + 1 : xPos, yPos := (yPos >= vars.monitor.y + vars.monitor.h / 2) ? yPos - h + 1 : yPos
 	Gui_CheckBounds(xPos, yPos, w, h)
-	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + xPos " y" vars.monitor.y + yPos
+
+	Gui, %GUI_name%: Show, % "NA AutoSize x" xPos " y" yPos
 	LLK_Overlay(actdecoder_zones, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	Return 1
 }
