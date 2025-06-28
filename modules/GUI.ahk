@@ -27,11 +27,11 @@
 	vars.hwnd.LLK_panel.restart := hwnd0, vars.hwnd.LLK_panel["restart|"] := vars.hwnd.LLK_panel.restart_bar := hwnd01, vars.hwnd.LLK_panel.close := hwnd, vars.hwnd.LLK_panel["close|"] := vars.hwnd.LLK_panel.close_bar := hwnd1
 
 	Gui, LLK_panel: Margin, % margin, % margin
-	Loop, Parse, % "leveltracker, maptracker, notepad", `,, %A_Space%
+	Loop, Parse, % "leveltracker, anoints, maptracker, notepad", `,, %A_Space%
 	{
 		If (settings.features[A_LoopField] || settings.qol[A_LoopField])
 		{
-			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : ""
+			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (A_LoopField = "anoints" ? vars.poe_version : "")
 			file := (A_LoopField = "maptracker" && vars.maptracker.pause) ? 0 : file
 			If (A_LoopField = "leveltracker")
 			{
@@ -134,8 +134,14 @@ Gui_HelpToolTip(HWND_key)
 	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0}
 	If (check != "settings")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
+
+	For index, val in ["xWin", "yWin", "wWin", "hWin"]
+		If !IsNumber(%val%)
+			%val% := 0
+
 	If (check = "lab" && InStr(control, "square"))
 		vars.help.lab[control] := [vars.lab.compass.rooms[StrReplace(control, "square")].name], vars.help.lab[control].1 .= (vars.help.lab[control].1 = vars.lab.room.2) ? " (" Lang_Trans("lab_movemarker") ")" : ""
+
 	If (check = "lootfilter" && InStr(control, "tooltip"))
 		database := vars.lootfilter.filter, lootfilter := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
@@ -160,7 +166,14 @@ Gui_HelpToolTip(HWND_key)
 			If LLK_StringCompare(target_array[count - (A_Index - 1)], ["class", "#"])
 				target_array.RemoveAt(count - (A_Index - 1))
 	}
-	Else target_array := (donation ? database[control].2 : database[check][control])
+	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
+
+	If (control = "leveltracker profile select")
+	{
+		profile := LLK_ControlGet(vars.general.cMouse), profile := (profile = 1 ? "" : profile), ini := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini", "info")
+		If (name := ini.info.name)
+			target_array.InsertAt(1, Trim(ini.info.character ":`n" name, "`n:") "(/underline)(/bold)")
+	}
 
 	If InStr(control, "update changelog")
 		For index0, val in vars.updater.changelog
@@ -283,6 +296,12 @@ Gui_ToolbarButtons(cHWND, hotkey)
 		Maptracker(cHWND, hotkey)
 	Else If (check = "notepad")
 		Notepad(cHWND, hotkey)
+	Else If (check = "anoints")
+	{
+		KeyWait, LButton
+		KeyWait, RButton
+		Anoints(vars.hwnd.anoints.main ? "close" : "")
+	}
 }
 
 Gui_ToolbarHide()

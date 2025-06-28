@@ -47,7 +47,7 @@
 	If !IsObject(vars.maptracker)
 	{
 		If !vars.poe_version
-			vars.maptracker := {"keywords": [], "mechanics": {"blight": 1, "delirium": 1, "expedition": 1, "legion": 2, "ritual": 2, "harvest": 1, "incursion": 1, "bestiary": 1, "betrayal": 1, "delve": 1, "ultimatum": 1, "maven": 1}}
+			vars.maptracker := {"keywords": [], "mechanics": {"blight": 1, "delirium": 1, "expedition": 1, "legion": 2, "ritual": 2, "harvest": 1, "incursion": 1, "bestiary": 1, "betrayal": 1, "delve": 1, "ultimatum": 1, "maven": 1, "seer": 0, "mist": 0}}
 		Else vars.maptracker := {"keywords": [], "mechanics": {"delirium": 1, "expedition": 1, "ritual": 2}}
 		If vars.poe_version
 			vars.maptracker.leagues := [["ea standard", 20241206, 20250403], ["ea dawn", 20250404, 20251231]]
@@ -55,7 +55,7 @@
 	}
 
 	For mechanic in vars.maptracker.mechanics
-		settings.maptracker[mechanic] := !Blank(check := ini.mechanics[mechanic]) ? check : 0
+		settings.maptracker[mechanic] := !Blank(check := ini.mechanics[mechanic]) ? check : (InStr("seer,mist", mechanic) ? 1 : 0)
 
 	settings.maptracker.colors.date_unselected := !Blank(check := ini.UI["date_unselected color"]) ? check : settings.maptracker.dColors.date_unselected
 	settings.maptracker.colors.date_selected := !Blank(check := ini.UI["date_selected color"]) ? check : settings.maptracker.dColors.date_selected
@@ -1668,9 +1668,9 @@ Maptracker_ParseDialogue(line)
 
 	For mechanic, type in vars.maptracker.mechanics
 	{
-		If (type != 1) || !settings.maptracker[mechanic] || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic))
+		If (type = 2) || !settings.maptracker[mechanic] || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic))
 			Continue
-		For index, identifier in vars.lang["log_" mechanic (InStr("expedition", mechanic) ? vars.poe_version : "")]
+		For index, identifier in vars.lang["log_" mechanic . (InStr("expedition", mechanic) ? vars.poe_version : "")]
 			If InStr(line, identifier, 1)
 			{
 				vars.maptracker.map.content.Push(mechanic)

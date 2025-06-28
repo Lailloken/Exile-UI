@@ -224,7 +224,7 @@ Omni_Release()
 		vars.omnikey.last := "", vars.omnikey.last2 := ""
 }
 
-Omni_Context(mode := 0)
+Omni_Context(mode := 0, alt := 0)
 {
 	local
 	global vars, settings
@@ -277,7 +277,7 @@ Omni_Context(mode := 0)
 		If InStr(clip, Lang_Trans("items_mapreward"))
 			Return "context_menu"
 
-		If settings.mapinfo.omnikey && settings.features.mapinfo
+		If (settings.mapinfo.omnikey || settings.mapinfo.trigger && vars.general.shift_trigger || alt) && settings.features.mapinfo
 			Return "mapinfo"
 	}
 	If settings.features.stash && !GetKeyState("ALT", "P")

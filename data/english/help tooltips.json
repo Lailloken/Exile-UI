@@ -44,23 +44,24 @@
       "background color: click to open the color-palette, right click to reset"
     ],
     "active character": [
-      "type in your character name and press <enter>",
-      "used for optional features such as level tracking, e-exp calculations, and map-tracker logging"
+      "optional: enter the name of your current character",
+      "this enables level tracking and e-exp calculations"
     ],
     "active character status": [
-      "red: no name specified",
+      "orange: no name specified",
       "yellow: char not found / waiting for level-up",
       "green: char found, tracking active"
     ],
     "active character whois": [
-      "click this button to use the \"/whois\" in-game command to force-refresh character info"
+      "click this button to use the \"/whois\" in-game command to force-refresh character info",
+      "make sure the in-game chat box is closed but available(/underline)"
     ],
     "ascendancy": [
       "the game only logs ascendancies when a character levels up",
       "this label will be out of sync if you have recently (re)specced but not leveled up yet: in that case, click the refresh button on the left"
     ],
     "active build": [
-      "optional: type in a name/description of your build and press <enter>",
+      "optional: enter a description/name of the current build",
       "used in the map-tracker feature to log which build was played"
     ],
     "logfile": [
@@ -187,8 +188,7 @@
     "cloneframes toggle-info": [
       "clone-frames can be toggled on/off automatically to avoid blocking in-game content",
       "global: settings will apply to every clone-frame\ncustom: each frame can have its own settings",
-      "below, you can choose how clone-frames behave when certain in-game interfaces are on screen",
-      "note: after closing this settings section, clone-frames are always hidden in towns/hideouts(/underline)"
+      "below, you can choose how clone-frames behave when certain in-game interfaces are on screen"
     ],
     "cloneframes toggle-modes": [
       "ignore: clone-frames will ignore what is on screen and will never toggle",
@@ -435,32 +435,29 @@
       "opens the folder with overlay images",
       "if you want to edit the images yourself, you can move them to this folder manually"
     ],
+    "leveltracker profile create": [
+      "click to add a guide slot"
+    ],
     "leveltracker profile select": [
       "click to activate this guide slot",
-      "hold right-click to delete the guide in this slot"
+      "hold right-click to delete this guide slot"
     ],
     "leveltracker import": [
       "imports pobb.in-links, pob-codes or custom guides from clipboard into this guide slot",
       "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
-    "leveltracker default": [
-      "click to load the default guide and enable this slot"
-    ],
     "leveltracker editor": [
       "open the editor to edit the guide in this slot"
     ],
     "leveltracker guide info": [
-      "there are up to three individual guide slots you can use and switch between",
+      "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
       "credits: default guide originally derived from exile-leveling by heartofphos"
     ],
     "leveltracker guide info 2": [
-      "there are up to three individual guide slots you can use and switch between",
+      "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
-      "credits: default guide originally derived from u/xebtria's walkthrough"
-    ],
-    "leveltracker guide format": [
-      "long-click to view an explanation of the guide format"
+      "credits: default guide originally derived from u/xebtria's quick-guide"
     ],
     "leveltracker guide format info": [
       "each line is a step you need to complete",
@@ -504,8 +501,7 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker optionals": [
-      "choose whether optional loot/quests/encounters should be shown or not",
-      "examples:\n- strongboxes\n- rogue exiles, breaches"
+      "choose whether optional loot/quests/encounters should be shown or not"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
@@ -514,11 +510,23 @@
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
     ],
+    "leveltracker character info": [
+      "optional: enter the name of the character you will play while using this guide",
+      "this enables level tracking and e-exp calculations",
+      "this name will also be applied to the <general> tab, i.e. this character will be tracked globally(/underline)"
+    ],
+    "leveltracker character status": [
+      "orange: no name specified",
+      "yellow: char not found / refresh required",
+      "green: char found, tracking active"
+    ],
     "leveltracker profile name": [
-      "optional: type in a description/name for the guide in this slot and press <enter>"
+      "optional: enter a description/name for the build you will play with this guide",
+      "it will also be applied to the <general> tab, i.e. this description will be used globally(/underline)"
     ],
     "leveltracker pob preview": [
-      "long-click to check available pob data, long-right-click to delete pob data"
+      "long-click to check available pob data",
+      "long-right-click to delete pob data"
     ],
     "leveltracker hotkeys enable": [
       "allows you to switch guide-pages via customizable hotkeys"
@@ -676,6 +684,16 @@
       "leave time blank to start stopwatch: click xx:xx to loop",
       "leave name blank for single-use timer",
       "hold <right-click> on a name to remove a timer"
+    ],
+    "map-events enable": [
+      "displays notifications whenever certain map events spawn",
+      "examples:\nnameless seer\nreflecting mist"
+    ],
+    "map-events position": [
+      "the notification will be docked to one of the client's edges"
+    ],
+    "map-events test": [
+      "click to activate a test-notification"
     ],
     "notepad enable": [
       "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes"
@@ -950,6 +968,9 @@
     ],
     "rings": [
       "toggles between amulet & ring recipes"
+    ],
+    "stock reset": [
+      "long-click to reset materials to 0"
     ]
   },
   "cheatsheets": {

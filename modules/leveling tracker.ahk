@@ -15,14 +15,14 @@
 	}
 
 	settings.leveltracker := {}, ini := IniBatchRead("ini" vars.poe_version "\leveling tracker.ini")
-	settings.leveltracker.profile := !Blank(check := ini.settings["profile"]) ? check : ""
+	profile := settings.leveltracker.profile := !Blank(check := ini.settings["profile"]) ? check : ""
 
-	If !LLK_HasKey(ini, "current run" settings.leveltracker.profile)
+	If !LLK_HasKey(ini, "current run" profile)
 	{
-		IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, name
-		IniWrite, 0, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, time
+		IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, name
+		IniWrite, 0, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, time
 		Loop, % vars.poe_version ? 6 : 10
-			IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, act %A_Index%
+			IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, act %A_Index%
 	}
 
 	If vars.poe_version
@@ -34,48 +34,36 @@
 			vars.leveltracker.hints[StrReplace(StrReplace(A_LoopFileName, "_", " "), ".jpg")] := 1
 	}
 
-	For index0, profile in ["", 2, 3]
+	ini2 := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini"), vars.leveltracker["PoB" profile] := {}
+	For index, category in ["class", "ascendancies", (!vars.poe_version ? "bandit" : ""), "gems", "trees", "active tree"]
 	{
-		If !IsObject(settings.leveltracker["guide" profile])
-			settings.leveltracker["guide" profile] := {"info": {"leaguestart": 1}}
-		If !FileExist("ini" vars.poe_version "\leveling guide" profile ".ini")
-		{
-			vars.leveltracker.Delete("PoB" profile)
+		If !category
 			Continue
-		}
-		ini2 := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini")
-		vars.leveltracker["PoB" profile] := {}
-		For index, category in ["class", "ascendancies", (!vars.poe_version ? "bandit" : ""), "gems", "trees", "active tree"]
-		{
-			If !category
-				Continue
-			string := ini2.PoB[category]
-			If StrLen(string)
-				vars.leveltracker["pob" profile][category] := InStr("{}[]", SubStr(string, 1, 1) . SubStr(string, 0)) ? json.Load(string) : string
-			Else If (category = "active tree") && vars.leveltracker["pob" profile].Count() && !StrLen(string)
-				vars.leveltracker["pob" profile][category] := 1
-		}
-		settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
-		settings.leveltracker["guide" profile].info.leaguestart .= Blank(settings.leveltracker["guide" profile].info.leaguestart) ? 1 : ""
-		settings.leveltracker["guide" profile].info.bandit .= Blank(settings.leveltracker["guide" profile].info.bandit) ? "none" : ""
-		settings.leveltracker["guide" profile].info.optionals .= Blank(settings.leveltracker["guide" profile].info.optionals) ? 1 : ""
-
-		If (profile = settings.leveltracker.profile)
-		{
-			vars.leveltracker.gearfilter := 1, vars.leveltracker.gear := []
-			For key in ini2["Tracker - Gear"]
-				vars.leveltracker.gear.Push(key)
-			For key in ini2["Tracker - Gems"]
-				vars.leveltracker.gear.Push(key)
-			vars.leveltracker.gear := LLK_ArraySort(vars.leveltracker.gear)
-		}
+		string := ini2.PoB[category]
+		If StrLen(string)
+			vars.leveltracker["pob" profile][category] := InStr("{}[]", SubStr(string, 1, 1) . SubStr(string, 0)) ? json.Load(string) : string
+		Else If (category = "active tree") && vars.leveltracker["pob" profile].Count() && !StrLen(string)
+			vars.leveltracker["pob" profile][category] := 1
 	}
+	If IsObject(ini2.info)
+		settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
+	Else settings.leveltracker["guide" profile] := {"info": {"custom": 0}}
+	settings.leveltracker["guide" profile].info.leaguestart .= Blank(settings.leveltracker["guide" profile].info.leaguestart) ? 0 : ""
+	settings.leveltracker["guide" profile].info.bandit .= Blank(settings.leveltracker["guide" profile].info.bandit) ? "none" : ""
+	settings.leveltracker["guide" profile].info.optionals .= Blank(settings.leveltracker["guide" profile].info.optionals) ? 0 : ""
 
-	If !FileExist("img\GUI\skill-tree" settings.leveltracker.profile)
-		FileCreateDir, % "img\GUI\skill-tree" settings.leveltracker.profile
+	vars.leveltracker.gearfilter := 1, vars.leveltracker.gear := []
+	For key in ini2["Tracker - Gear"]
+		vars.leveltracker.gear.Push(key)
+	For key in ini2["Tracker - Gems"]
+		vars.leveltracker.gear.Push(key)
+	vars.leveltracker.gear := LLK_ArraySort(vars.leveltracker.gear)
 
-	If vars.poe_version && !FileExist("img\GUI\skill-tree" settings.leveltracker.profile "\PoE 2\")
-		FileCreateDir, % "img\GUI\skill-tree" settings.leveltracker.profile "\PoE 2\"
+	If !FileExist("img\GUI\skill-tree" profile)
+		FileCreateDir, % "img\GUI\skill-tree" profile
+
+	If vars.poe_version && !FileExist("img\GUI\skill-tree" profile "\PoE 2\")
+		FileCreateDir, % "img\GUI\skill-tree" profile "\PoE 2\"
 
 	settings.leveltracker.timer := vars.client.stream ? 0 : !Blank(check := ini.settings["enable timer"]) ? check : 0
 	settings.leveltracker.pausetimer := !Blank(check := ini.settings["hideout pause"]) ? check : 0
@@ -113,11 +101,11 @@
 	If !IsObject(vars.leveltracker.guide)
 		vars.leveltracker.guide := {}
 
-	vars.leveltracker.timer := {"name": ini["current run" settings.leveltracker.profile].name, "current_split": !Blank(check := ini["current run" settings.leveltracker.profile].time) ? check : 0, "current_act": 1, "total_time": 0, "pause": -1}, vars.leveltracker.timer.current_split0 := vars.leveltracker.timer.current_split
+	vars.leveltracker.timer := {"name": ini["current run" profile].name, "current_split": !Blank(check := ini["current run" profile].time) ? check : 0, "current_act": 1, "total_time": 0, "pause": -1}, vars.leveltracker.timer.current_split0 := vars.leveltracker.timer.current_split
 	Loop, % vars.poe_version ? 7 : 11
 	{
 		vars.leveltracker.timer.current_act := A_Index
-		If Blank(check := ini["current run" settings.leveltracker.profile]["act " A_Index])
+		If Blank(check := ini["current run" profile]["act " A_Index])
 		{
 			If vars.poe_version && (A_Index = 7)
 				vars.leveltracker.timer.current_act := 11
@@ -125,8 +113,8 @@
 		}
 		vars.leveltracker.timer.total_time += check
 	}
-	vars.leveltracker.skilltree := {"active": !Blank(check := ini.settings["last skilltree-image" settings.leveltracker.profile]) ? check : "00"}
-	vars.leveltracker.skilltree_schematics := {"active": !Blank(check := ini.settings["last skilltree-schematic" settings.leveltracker.profile]) ? check : "1"
+	vars.leveltracker.skilltree := {"active": !Blank(check := ini.settings["last skilltree-image" profile]) ? check : "00"}
+	vars.leveltracker.skilltree_schematics := {"active": !Blank(check := ini.settings["last skilltree-schematic" profile]) ? check : "1"
 		, "scale": !Blank(check2 := ini.settings["schematic scaling"]) ? check2 : 0}
 }
 
@@ -589,7 +577,9 @@ Leveltracker_GuideEditor(cHWND)
 		{
 			profile := 0
 			If !vars.poe_version && !settings.leveltracker["guide" targetProfile].info.bandit
-				settings.leveltracker["guide" targetProfile].info.bandit := "none"
+				If !IsObject(settings.leveltracker["guide" targetProfile].info)
+					settings.leveltracker["guide" targetProfile].info := {"bandit": "none"}
+				Else settings.leveltracker["guide" targetProfile].info.bandit := "none"
 			If (vars.settings.active = "leveling tracker")
 				Settings_menu("leveling tracker")
 			Return

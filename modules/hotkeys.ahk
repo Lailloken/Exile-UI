@@ -92,7 +92,7 @@ Hotkeys_Alt()
 		If Clipboard
 		{
 			vars.omnikey.item := {}, Omni_ItemInfo(), item := vars.omnikey.item
-			If settings.features.mapinfo && !settings.mapinfo.omnikey && RegExMatch(item.name . item.itembase, "i)\smap$|waystone")
+			If settings.features.mapinfo && !settings.mapinfo.omnikey && (Omni_Context(0, 1) = "mapinfo") ;RegExMatch(item.name . item.itembase, "i)\smap$|waystone")
 			{
 				If Mapinfo_Parse(1, vars.poe_version)
 					Mapinfo_GUI()

@@ -126,6 +126,13 @@ Anoints(cHWND := "")
 			GuiControl, % "MoveDraw", % vars.hwnd.anoints.rings
 			Return
 		}
+		Else If (check = "stock_reset")
+		{
+			If LLK_Progress(vars.hwnd.anoints.stock_reset_bar, "LButton")
+				For index, val in vars.anoints.stock
+					vars.anoints.stock[index] := 0, vars.anoints.stock_check := 0
+			Else Return
+		}
 		Else If InStr(check, "collapse_")
 		{
 			settings.anoints["collapse_" control] := (!settings.anoints["collapse_" control] ? 1 : 0)
@@ -210,6 +217,8 @@ Anoints(cHWND := "")
 		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.search
 		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.reforge
 		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.rings
+		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset
+		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset_bar
 		Return
 	}
 
@@ -243,6 +252,10 @@ Anoints(cHWND := "")
 		Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border gAnoints HWNDhwnd c" (vars.anoints.rings ? "Lime" : "Gray") . (vars.anoints.stock_check ? "" : " Hidden"), % " " Lang_Trans("anoints_rings") " "
 		vars.hwnd.anoints.rings := vars.hwnd.help_tooltips["anoints_rings"] := hwnd
 	}
+
+	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border BackgroundTrans gAnoints HWNDhwnd" (vars.anoints.stock_check ? "" : " Hidden"), % " " Lang_Trans("global_reset") " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundBlack cRed Range0-500 Vertical" (vars.anoints.stock_check ? "" : " Hidden"), 0
+	vars.hwnd.anoints.stock_reset := hwnd, vars.hwnd.anoints.stock_reset_bar := vars.hwnd.help_tooltips["anoints_stock reset"] := hwnd1
 
 	If !vars.pics.anoints.Count()
 		Loop

@@ -9,7 +9,8 @@
 	ini := IniBatchRead("ini" vars.poe_version "\qol tools.ini")
 	settings.qol := {"alarm": !Blank(check := ini.features.alarm) ? check : 0
 		, "notepad": !Blank(check1 := ini.features.notepad) ? check1 : 0
-		, "lab": (settings.general.lang_client = "unknown") ? 0 : !Blank(check2 := ini.features.lab) ? check2 : 0}
+		, "lab": (settings.general.lang_client = "unknown") ? 0 : !Blank(check2 := ini.features.lab) ? check2 : 0
+		, "mapevents": !Blank(check3 := ini.features.mapevents) ? check3 : 0}
 
 	settings.alarm := {"fSize": !Blank(check := ini.alarm["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.alarm.fSize, font_height, font_width), settings.alarm.fHeight := font_height, settings.alarm.fWidth := font_width
@@ -35,6 +36,13 @@
 
 	If InStr(vars.log.areaID, "labyrinth_")
 		Lab("init")
+
+	settings.mapevents := {"fSize": !Blank(check := ini.mapevents["font-size"]) ? check : settings.general.fSize * 2}
+	LLK_FontDimensions(settings.mapevents.fSize, font_height, font_width), settings.mapevents.fHeight := font_height, settings.mapevents.fWidth := font_width
+	settings.mapevents.color := !Blank(check := ini.mapevents["font-color"]) ? check : "FF0000"
+	settings.mapevents.color1 := !Blank(check := ini.mapevents["background color"]) ? check : "FFFFFF"
+	settings.mapevents.duration := !Blank(check := ini.mapevents.duration) ? check : 5
+	settings.mapevents.position := !Blank(check := ini.mapevents.position) ? check : 1
 
 	settings.notepad := {"fSize": !Blank(check := ini.notepad["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.notepad.fSize, font_height, font_width), settings.notepad.fHeight := font_height, settings.notepad.fWidth := font_width
@@ -684,6 +692,28 @@ Lab(mode := "", override := 0)
 	Gui, %GUI_name2%: Show, % "NA x"x " y"y
 	LLK_Overlay(lab, "show",, GUI_name), LLK_Overlay(lab2, "show",, GUI_name2)
 	LLK_Overlay(hwnd_old, "destroy"), LLK_Overlay(hwnd_old2, "destroy")
+}
+
+MapEvent(type)
+{
+	local
+	global vars, settings
+
+	position := settings.mapevents.position, text := (position > 2) ? StrReplace(Lang_Trans("mechanic_" type), " ", "`n") : Lang_Trans("mechanic_" type)
+	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "_mapevents_" type, settings.mapevents.color, settings.mapevents.fSize, (position = 4 ? "Right" : ""),,, settings.mapevents.color1)
+	WinGetPos,,, Width, Height, % "ahk_id" vars.hwnd["tooltip_mapevents_" type]
+	Switch position
+	{
+		case 1:
+		xPos := vars.monitor.x + vars.client.xc - Width/2, yPos := vars.client.y
+		case 2:
+		xPos := vars.monitor.x + vars.client.xc - Width/2, yPos := vars.client.y + vars.client.h - Height
+		case 3:
+		xPos := vars.client.x, yPos := vars.monitor.y + vars.client.yc - Height/2
+		case 4:
+		xPos := vars.client.x + vars.client.w - Width, yPos := vars.monitor.y + vars.client.yc - Height/2
+	}
+	Gui, % "tooltip_mapevents_" type ": Show", % "NA x" xPos " y" yPos
 }
 
 Notepad(cHWND := "", hotkey := "", color := 0)

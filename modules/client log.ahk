@@ -321,7 +321,7 @@ Log_Loop(mode := 0)
 					vars.log.areaname := "" ;make it blank because there sometimes is a desync between it and areaID, i.e. they are parsed in two separate loop-ticks
 				Else vars.log.areaname := Log_Get(areaID, "areaname")
 		}
-		If settings.features.leveltracker && !LLK_HasVal(vars.leveltracker.guide.group1, "an_end_to_hunger", 1) && !LLK_PatternMatch(vars.log.areaID, "", ["labyrinth_", "g3_10", "g2_13", "sanctum_"],,, 0) && (!Blank(areaID) && (areaID != vars.leveltracker.guide.target_area) || IsNumber(level) && (level0 != level)) && LLK_Overlay(vars.hwnd.leveltracker.main, "check") ;player has leveled up or moved to a different location: update overlay for exp-gain, and act clarifications
+		If settings.features.leveltracker && !LLK_HasVal(vars.leveltracker.guide.group1, Lang_Trans("ms_leveling tracker"), 1) && !LLK_PatternMatch(vars.log.areaID, "", ["labyrinth_", "g3_10", "g2_13", "sanctum_"],,, 0) && (!Blank(areaID) && (areaID != vars.leveltracker.guide.target_area) || IsNumber(level) && (level0 != level)) && LLK_Overlay(vars.hwnd.leveltracker.main, "check") ;player has leveled up or moved to a different location: update overlay for exp-gain, and act clarifications
 			Leveltracker_Progress()
 
 		If settings.features.actdecoder && vars.actdecoder.layouts_lock && !Blank(areaID) && (areaID != vars.actdecoder.current_zone)
@@ -351,8 +351,8 @@ Log_Loop(mode := 0)
 					}
 		}
 
-		If character_class && WinExist("ahk_id " vars.hwnd.settings.main) && (vars.settings.active = "general")
-			Settings_menu("general",, 0)
+		If character_class && WinExist("ahk_id " vars.hwnd.settings.main) && RegExMatch(vars.settings.active, "i)general|leveling.tracker")
+			Settings_menu(vars.settings.active,, 0)
 	}
 
 	If mode
@@ -477,5 +477,13 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 
 		If settings.features.maptracker && settings.maptracker.mechanics && vars.maptracker.map.id && (vars.log.areaID = vars.maptracker.map.id)
 			Maptracker_ParseDialogue(loopfield)
+
+		If settings.qol.mapevents
+			For index0, type in ["mist", "seer"]
+				If InStr(loopfield, Lang_Trans("log_" type), 1)
+				{
+					MapEvent(type)
+					Break
+				}
 	}
 }

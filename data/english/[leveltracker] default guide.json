@@ -2173,7 +2173,7 @@
       "lines": [
         "activate the (img:craft), talk to (img:quest) kirac",
         "<type_\"/passives\"_in_chat_to_check_for_missing_skillpoints>",
-        "<disable_the_act-tracker_in_the_settings>"
+        "<the_act-tracker_can_now_be_disabled_in_the_settings>"
       ]
     },
     {
@@ -2183,7 +2183,7 @@
       ],
       "lines": [
         "<type_\"/passives\"_in_chat_to_check_for_missing_skillpoints>",
-        "<disable_the_act-tracker_in_the_settings>"
+        "<the_act-tracker_can_now_be_disabled_in_the_settings>"
       ]
     }
   ]
