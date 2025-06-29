@@ -2,7 +2,7 @@
   [
 	["1.58.7", 15807],
 	"june 28, 2025",
-	"if the updater fails, reade the full release notes",
+	"if the updater fails, read the full release notes",
 	"fixes: act-decoder multi-monitor, map-info alt-activation on invitations, act-tracker guide-panel unhiding after completion",
 	"act-tracker: added per-slot character tracking, increased max slots to 9",
 	"map-tracker: added support for nameless seer and reflecting mist",
