@@ -513,16 +513,12 @@ Exchange_CandleGraph(width, height, data, ByRef stats)
 	For index, candle in candles
 	{
 		color := (candle.open <= candle.close ? "green" : "orange")
-		xBody := wMargins + (index - 1) * wDay + wDay/4
-		If (color = "green")
-			yBody1 := Min(Floor(baseline - candle.open * yScale), Ceil(baseline - candle.close * yScale)), yBody2 := Abs(Floor(baseline - candle.open * yScale) - Ceil(baseline - candle.close * yScale))
-		Else yBody1 := Min(Ceil(baseline - candle.open * yScale), Floor(baseline - candle.close * yScale)), yBody2 := Abs(Ceil(baseline - candle.open * yScale) - Floor(baseline - candle.close * yScale))
-		xWick := xBody + wCandle/2
+		xBody := wMargins + (index - 1) * wDay + wDay/4, xWick := xBody + wCandle/2
+		yBody1 := Min(baseline - candle.open * yScale, baseline - candle.close * yScale), yBody2 := Abs((baseline - candle.open * yScale) - (baseline - candle.close * yScale))
 		Gdip_DrawCurve(gBitmap, pen[color], [xWick, Ceil(baseline - candle.high * yScale), xWick, Floor(baseline - candle.low * yScale)], 0)
 		Gdip_FillRectangle(gBitmap, brush[color], xBody, yBody1, wCandle, yBody2)
 	}
 
-	
 	stats := {"balance": (balance >= 0 ? "+" : "") . Round(balance, 1), "min": (min >= 0 ? "+" : "") . Round(min, 1), "max": (max >= 0 ? "+" : "") . Round(max, 1), "trades": trades}
 	SelectObject(hdcBitmap, obmBitmap), DeleteDC(hdcBitmap), Gdip_DeleteGraphics(gBitmap)
 	Return hbmBitmap
