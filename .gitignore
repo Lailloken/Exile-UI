@@ -15,6 +15,7 @@ modules/hotkeys?custom*
 # sub-folders/files within img, created on demand
 img/recognition*/
 img/GUI/skill-tree*/
+img/GUI/vaal street*/
 img/*.json
 img/*.jpg
 
