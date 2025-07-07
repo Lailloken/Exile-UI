@@ -224,6 +224,7 @@
 		mechanic_vaal area		=	"vaal area"
 		mechanic_abyssal depths		=	"abyssal depths"
 		mechanic_lab trial		=	"lab trial"
+		mechanic_starfall crater	=	"starfall crater"
 		mechanic_ultimatum		=	"ultimatum"
 		mechanic_maven			=	"maven"
 		mechanic_baran			=	"baran"

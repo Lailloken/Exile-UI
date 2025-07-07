@@ -149,8 +149,8 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	local
 	global vars, settings
 
-	mode_check := ["abyssleague", "endgame_labyrinth_trials", "mapsidearea"]
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0})
+	mode_check := ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"]
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -1459,7 +1459,7 @@ Maptracker_MechanicsCheck()
 		Return
 	wait := 1, pScreen := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
 	If settings.general.blackbars ;crop the screenshot if there are black bars
-		pScreen_copy := Gdip_CloneBitmapArea(pScreen, vars.client.x, 0, vars.client.w, vars.client.h,, 1), Gdip_DisposeImage(pScreen), pScreen := pScreen_copy
+		pScreen_copy := Gdip_CloneBitmapArea(pScreen, vars.client.x - vars.monitor.x, 0, vars.client.w, vars.client.h,, 1), Gdip_DisposeImage(pScreen), pScreen := pScreen_copy
 
 	For mechanic, type in vars.maptracker.mechanics
 	{
@@ -1684,7 +1684,7 @@ Maptracker_Reminder()
 	local
 	global vars, settings
 
-	ignore := ["vaal area", "abyssal depths", "lab trial", "maven", "harvest", "delirium", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor"]
+	ignore := ["vaal area", "abyssal depths", "lab trial", "maven", "harvest", "delirium", "starfall crater", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor"]
 
 	For index, mechanic in vars.maptracker.map.content
 	{
@@ -1861,7 +1861,7 @@ Maptracker_Timer()
 			Maptracker_Save(), new := 1
 
 		vars.maptracker.map.portals += vars.maptracker.hideout && !new ? 1 : 0 ;entering through a portal from hideout? -> increase portal-count
-		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal depths": "abyssleague", "vaal area": "mapsidearea"}
+		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal depths": "abyssleague", "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
 
 		If Maptracker_Check(1)
 			For key, val in side_areas
