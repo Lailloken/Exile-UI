@@ -104,6 +104,46 @@ Gui_ClientFiller(mode := "") ;creates a black full-screen GUI to fill blank spac
 	}
 }
 
+Gui_CreateGraph(width, height, graph, color)
+{
+	local
+	global vars, settings
+	static brush, pen
+
+	wPen := Ceil(height/80)
+	If !IsObject(brush)
+		brush := {"black": Gdip_BrushCreateSolid(0xFF000000)}, pen := {"baseline": Gdip_CreatePen(0xFFFFFFFF, 1)}
+
+	hbmBitmap := CreateDIBSection(width, height), hdcBitmap := CreateCompatibleDC(), obmBitmap := SelectObject(hdcBitmap, hbmBitmap), gBitmap := Gdip_GraphicsFromHDC(hdcBitmap)
+	Gdip_FillRectangle(gBitmap, brush.black, 0, 0, width, height)
+	
+
+	wMargins := Round(width/40), hMargins := Round(height/20), width2 := width - 2*wMargins, height2 := height - 2*hMargins, line := []
+	If !pen[color]
+		pen[color] := Gdip_CreatePen(0xFF . color, wPen)
+	If !brush[color]
+		brush[color] := Gdip_BrushCreateSolid(0xFF . color)
+
+	min := max := running := 0
+	For index, val in graph
+		running += val, min := (running < min ? running : min), max := (running > max ? running : max)
+
+	xScale := Floor(width2 / graph.Count()), yScale := Round(height2 / (max + Abs(min)), 4)
+	baseline := hMargins + max * yScale, running := 0, line.InsertAt(1, wMargins, baseline)
+	Gdip_DrawCurve(gBitmap, pen.baseline, [wMargins, baseline, width - wMargins, baseline])
+	Gdip_SetSmoothingMode(gBitmap, 4)
+	For index, val in graph
+	{
+		running += val, line.Push(index * xScale), line.Push(baseline - running * yScale)
+		Gdip_FillRectangleC(gBitmap, brush[color], index * xScale, baseline - running * yScale, wPen)
+	}
+
+	Gdip_DrawCurve(gBitmap, pen[color], line, 0)
+
+	SelectObject(hdcBitmap, obmBitmap), DeleteDC(hdcBitmap), Gdip_DeleteGraphics(gBitmap)
+	Return hbmBitmap
+}
+
 Gui_Dummy(hwnd) ;used for A_Gui checks: "If (A_Gui = hwnd)" doesn't work reliably if the hwnd is blank, so this function returns -1 instead
 {
 	local
@@ -122,7 +162,7 @@ Gui_HelpToolTip(HWND_key)
 	If vars.general.drag
 		Return
 
-	WinGetPos,, y,, h, % "ahk_id " vars.hwnd.help_tooltips[HWND_key]
+	WinGetPos, xControl, y, wControl, h, % "ahk_id " vars.hwnd.help_tooltips[HWND_key]
 	If Blank(y) || Blank(h)
 	{
 		MouseGetPos, x, y
@@ -131,7 +171,7 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0}
+	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0}
 	If (check != "settings")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
 
@@ -148,6 +188,9 @@ Gui_HelpToolTip(HWND_key)
 
 	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (check = "anoints" ? settings.general.fWidth * 50 : tooltip_width)
+
+	If (check = "exchange")
+		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
 	If !tooltip_width
 		Return
 

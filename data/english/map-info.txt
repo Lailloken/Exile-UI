@@ -554,7 +554,7 @@ type	=	player
 text	=	vuln | chains | ele weak
 ID	=	158
 
-[increased number of rare monsters|rare monsters each have # additional modifiers]
+[increased number of rare monsters|rare monsters each have # additional modifier]
 type	=	monsters
 text	=	inc rares | extra mods
 ID	=	159

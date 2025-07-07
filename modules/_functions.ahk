@@ -276,6 +276,14 @@ LLK_FileRead(file, keep_case := 0, encoding := "65001")
 	Return Trim(read, " `r`n`t")
 }
 
+LLK_FormatTime(time, format)
+{
+	local
+
+	FormatTime, formatted, % time, % format
+	Return formatted
+}
+
 LLK_HasKey(object, value, InStr := 0, case_sensitive := 0, all_results := 0, recurse := 0)
 {
 	local

@@ -299,7 +299,11 @@ Log_Loop(mode := 0)
 
 	guide := vars.leveltracker.guide ;short-cut variable
 	If !WinActive("ahk_group poe_ahk_window") || !vars.log.file_location || !WinExist("ahk_group poe_window") || !FileExist(vars.log.file_location)
+	{
+		If WinExist("ahk_id " vars.hwnd.maptracker.main)
+			LLK_Overlay(vars.hwnd.maptracker.main, "destroy")
 		Return
+	}
 
 	If IsObject(vars.maptracker)
 		vars.maptracker.hideout := Maptracker_Towncheck() ? 1 : 0 ;flag to determine if the player is using a portal to re-enter the map (as opposed to re-entering from side-content)

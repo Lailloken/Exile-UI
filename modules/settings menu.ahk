@@ -947,6 +947,114 @@ Settings_donations()
 	vars.hwnd.help_tooltips["settings_donations howto"] := hwnd
 }
 
+Settings_exchange()
+{
+	local
+	global vars, settings
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, xMargin := settings.general.fWidth * 0.75
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Vaal-Street">wiki page</a>
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 y+" vars.settings.spacing " Checked" settings.features.exchange, % Lang_Trans("m_exchange_enable")
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_exchange enable"] := hwnd
+
+	If !settings.features.exchange
+		Return
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 Checked" settings.exchange.graphs, % Lang_Trans("m_exchange_graphs")
+	vars.hwnd.settings.graphs := vars.hwnd.help_tooltips["settings_exchange graphs"] := hwnd
+
+	count := vars.exchange.transactions.Count(), count1 := 0
+	For date, array in vars.exchange.transactions
+		count1 += array.Count()
+
+	If (count * count1)
+	{
+		Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("maptracker_logs") " " count " " Lang_Trans("global_day", (count > 1 ? 2 : 1)) ", " count1 " " Lang_Trans("global_trade", (count1 > 1 ? 2 : 1))
+		Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans HWNDhwnd gSettings_exchange2", % " " Lang_Trans("global_delete") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Border Range0-500 Vertical HWNDhwnd1", 0
+		vars.hwnd.settings.logs_delete := hwnd, vars.hwnd.help_tooltips["settings_exchange delete logs"] := vars.hwnd.settings.logs_delete_bar := hwnd1
+	}
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("global_font")
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*3, % settings.exchange.fSize
+	vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+}
+
+Settings_exchange2(cHWND)
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If (check = "enable")
+	{
+		IniWrite, % (settings.features.exchange := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable vaal street
+		If WinExist("ahk_id " vars.hwnd.exchange.main)
+			Exchange("close")
+		Settings_menu("exchange")
+	}
+	Else If (check = "graphs")
+	{
+		IniWrite, % (settings.exchange.graphs := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\vaal street.ini", settings, % "show graphs"
+		If vars.pics.exchange_trades.graph_day
+			DeleteObject(vars.pics.exchange_trades.graph_day), vars.pics.exchange_trades.graph_day := ""
+		If vars.pics.exchange_trades.graph_week
+			DeleteObject(vars.pics.exchange_trades.graph_week), vars.pics.exchange_trades.graph_week := ""
+		If WinExist("ahk_id " vars.hwnd.exchange.main)
+			Exchange()
+	}
+	Else If (check = "logs_delete")
+	{
+		If LLK_Progress(vars.hwnd.settings[check "_bar"], "LButton")
+		{
+			For key, hbm in vars.pics.exchange_trades
+				DeleteObject(hbm)
+			FileRemoveDir, % "img\GUI\vaal street" vars.poe_version, 1
+			vars.pics.exchange_trades := {}, vars.exchange.transactions := {}, vars.exchange.date := 0
+			FileDelete, % "ini" vars.poe_version "\vaal street log.ini"
+			If WinExist("ahk_id " vars.hwnd.exchange.main)
+				Exchange()
+			Settings_menu("exchange")
+		}
+		Else Return
+
+		If vars.pics.exchange_trades.graph_day
+			DeleteObject(vars.pics.exchange_trades.graph_day), vars.pics.exchange_trades.graph_day := ""
+		If vars.pics.exchange_trades.graph_week
+			DeleteObject(vars.pics.exchange_trades.graph_week), vars.pics.exchange_trades.graph_week := ""
+	}
+	Else If InStr(check, "font_")
+	{
+		While GetKeyState("LButton", "P")
+		{
+			If (control = "reset")
+				settings.exchange.fSize := settings.general.fSize
+			Else settings.exchange.fSize += (control = "minus") ? -1 : 1, settings.exchange.fSize := (settings.exchange.fSize < 6) ? 6 : settings.exchange.fSize
+			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.exchange.fSize
+			Sleep 150
+		}
+		IniWrite, % settings.exchange.fSize, % "ini" vars.poe_version "\vaal street.ini", settings, font-size
+		LLK_FontDimensions(settings.exchange.fSize, height, width), settings.exchange.fWidth := width, settings.exchange.fHeight := height
+
+		If WinExist("ahk_id " vars.hwnd.exchange.main)
+			Exchange()
+	}
+	Else LLK_ToolTip("no action")
+}
+
 Settings_general()
 {
 	local
@@ -2904,7 +3012,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips"], "sections2": []}
+			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
 		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
@@ -2950,7 +3058,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width, vars.hwnd.settings["background_general"] := hwnd1
 	vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints"}
+	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints", "exchange": "exchange"}
 	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode
@@ -3054,6 +3162,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_cloneframes()
 		Case "donations":
 			Settings_donations()
+		Case "exchange":
+			Settings_exchange()
 		Case "tldr-tooltips":
 			Settings_OCR()
 		Case "filterspoon":
@@ -3658,7 +3768,7 @@ Settings_screenchecks()
 	For key in vars.imagesearch.list
 	{
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
+		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
 			Continue
 		count += 1
 	}
@@ -3674,7 +3784,7 @@ Settings_screenchecks()
 	For key in vars.imagesearch.list
 	{
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
+		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
 			Continue
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-info"handle] := hwnd
@@ -3788,7 +3898,7 @@ Settings_ScreenChecksValid()
 	For key, val in vars.imagesearch.list
 	{
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (vars.poe_version || !settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || (key = "betrayal") && !settings.features[key]
+		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
 			Continue
 		valid *= FileExist("img\Recognition ("vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") && !Blank(vars.imagesearch[key].x1) ? 1 : 0
 	}

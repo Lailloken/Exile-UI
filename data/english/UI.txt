@@ -76,6 +76,7 @@
 		ms_statlas			=	"statlas"		;## blend of "stats" and "atlas"
 		ms_stream-clients		=	"stream-clients"
 		ms_tldr-tooltips		=	"tldr-tooltips"
+		ms_exchange			=	"vaal street"		;## reference to Wall Street
 		ms_updater			=	"updater"
 
 
@@ -210,6 +211,13 @@
 		global_updatewait		=	"try again later"
 		global_duration			=	"duration (sec)"
 		global_position			=	"position"
+		global_exchange			=	"currency exchange"
+		global_day			=	"day"
+		global_day			=	"days"
+		global_week			=	"week"
+		global_trade			=	"trade"
+		global_trade			=	"trades"
+		global_last			=	"last"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -224,6 +232,7 @@
 		mechanic_vaal area		=	"vaal area"
 		mechanic_abyssal depths		=	"abyssal depths"
 		mechanic_lab trial		=	"lab trial"
+		mechanic_starfall crater	=	"starfall crater"
 		mechanic_ultimatum		=	"ultimatum"
 		mechanic_maven			=	"maven"
 		mechanic_baran			=	"baran"
@@ -336,6 +345,16 @@
 		cheat_flip			=	"cannot flip through images"			;## this string + one of the following two form a sentence
 		cheat_flip			=	"in segmented cheat-sheets"
 		cheat_flip			=	"after using letter-keys"
+
+
+
+;#####################################################
+;## vaal street
+;#####################################################
+
+;## these strings are displayed/required when using the vaal street feature
+		exchange_chaos_div		=	"chaos/div;ratio required!"
+		exchange_7days			=	"past 7 days"
 
 
 
@@ -858,6 +877,16 @@
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders		=	"invalid frame borders"
 		m_clone_town			=	"clone-frames are disabled in hideouts/towns"
+
+
+
+;#####################################################
+;## settings menu: vaal street
+;#####################################################
+
+;## these strings are displayed/required in the "vaal street" section of the settings menu
+		m_exchange_enable		=	"enable the vaal street feature"
+		m_exchange_graphs		=	"show balance graphs"
 
 
 

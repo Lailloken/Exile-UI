@@ -61,6 +61,7 @@ Init_anoints(), LLK_Log("initialized anoints settings")
 Init_betrayal(), LLK_Log("initialized betrayal settings")
 Init_cheatsheets(), LLK_Log("initialized cheat-sheet settings")
 Init_cloneframes(), LLK_Log("initialized clone-frames settings")
+Init_exchange(), LLK_Log("initialized vaal street settings")
 If WinExist("ahk_exe GeForceNOW.exe")
 	Init_geforce(), LLK_Log("initialized geforce now settings")
 Init_iteminfo(), LLK_Log("initialized item-info settings")
@@ -117,6 +118,7 @@ Return
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk
 #Include modules\clone-frames.ahk
+#Include modules\exchange.ahk
 #Include modules\GUI.ahk
 #Include modules\hotkeys.ahk
 #Include *i modules\hotkeys custom.ahk
@@ -468,6 +470,7 @@ Init_general()
 	settings.features.OCR := !vars.poe_version && !Blank(check := ini.features["enable ocr"]) ? check : 0
 	settings.features.stash := !vars.poe_version && !Blank(check := ini.features["enable stash-ninja"]) ? check : 0
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
+	settings.features.exchange := !Blank(check := ini.features["enable vaal street"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
@@ -679,7 +682,7 @@ Loop_main()
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")
 		Else vars.pixels.gamescreen := 0
 
-		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.iteminfo.compare
+		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.iteminfo.compare || vars.hwnd.exchange.main
 			vars.pixels.inventory := Screenchecks_PixelSearch("inventory")
 		Else vars.pixels.inventory := 0
 	}
@@ -697,6 +700,9 @@ Loop_main()
 	If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
 	&& vars.general.cMouse && (check := LLK_HasVal(vars.hwnd.leveltracker_gemlinks, vars.general.cMouse)) && (vars.leveltracker.gemlinks.hover != SubStr(check, 0))
 		Leveltracker_PobGemLinks("", SubStr(check, 0))
+
+	If vars.hwnd.exchange.main && (vars.pixels.inventory != vars.exchange.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
+			Exchange()
 
 	If vars.hwnd.recombination.main && WinActive("ahk_id " vars.hwnd.recombination.main) && (vars.general.wMouse = vars.hwnd.poe_client)
 	{

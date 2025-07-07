@@ -9,7 +9,7 @@
 #Include data\JSON.ahk
 #Persistent
 
-vars := {"general": {}, "hwnd": {}, "log": {}, "pixels": {}, "sanctum": {}, "settings": {}}
+vars := {"general": {}, "hwnd": {}, "log": {}, "pixels": {}, "sanctum": {}, "settings": {}, "exchange": {}}
 settings := {"general": {}, "iteminfo": {}}
 If !(vars.general.Gdip := Gdip_Startup(1))
 	ExitApp
@@ -46,6 +46,7 @@ Return
 #Include modules\cheat sheets.ahk
 #Include modules\client log.ahk
 #Include modules\clone-frames.ahk
+#Include modules\exchange.ahk
 #Include modules\GUI.ahk
 #Include modules\item-checker.ahk
 #Include modules\languages.ahk
@@ -106,6 +107,10 @@ Loop()
 	}
 	Else vars.settings.active := ""
 
+	If WinExist("LLK-UI: vaal street")
+		vars.exchange.active := 1
+	Else vars.exchange.active := 0
+
 	If (tick = 5) && vars.PID ;in case the main thread crashes without sending the 0x8000 message
 	{
 		tick := 0
@@ -116,7 +121,7 @@ Loop()
 
 	If !vars.pixelsearch.wait
 		For pixel in vars.pixelsearch.list
-			If !vars.poe_version && (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare)
+			If !vars.poe_version && (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active)
 				vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
 			Else vars.pixels[pixel] := 0
 

@@ -138,10 +138,14 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If vars.snipping_tool.GUI
+		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("LLK-UI: notepad reminder")
 		WinActivate, ahk_group poe_window
 	Else If WinActive("ahk_id " vars.hwnd.notepad.main)
 		Notepad("save"), LLK_Overlay(vars.hwnd.notepad.main, "destroy"), vars.hwnd.notepad.main := ""
+	Else If vars.hwnd.exchange.main
+		Exchange("close")
 	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
 		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
 	Else If vars.hwnd.anoints.main
@@ -193,8 +197,6 @@ Hotkeys_ESC()
 			Settings_menu(vars.settings.active)
 		Else LLK_Overlay(vars.hwnd.settings.main, "show", 0)
 	}
-	Else If vars.snipping_tool.GUI
-		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("ahk_id " vars.hwnd.ocr_tooltip.main)
 		OCR_Close()
 	Else If WinExist("ahk_id " vars.hwnd.maptracker_logs.sum_tooltip)
@@ -307,6 +309,15 @@ Hotkeys_Tab()
 				Return
 			}
 
+	If settings.features.exchange && !vars.hwnd.exchange.main && LLK_StringCompare(vars.log.areaID, ["hideout"]) && Screenchecks_ImageSearch("exchange")
+			While GetKeyState(vars.hotkeys.tab, "P")
+				If (A_TickCount >= start + 200)
+				{
+					Exchange()
+					KeyWait, % vars.hotkeys.tab
+					Return
+				}
+
 	While settings.qol.notepad && vars.hwnd.notepad_widgets.Count() && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
@@ -319,7 +330,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13")  && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13") && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			active .= " sanctum_relics"
@@ -470,6 +481,18 @@ Hotkeys_Tab()
 #If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
 #If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
+
+#If vars.hwnd.exchange.main && WinExist("ahk_id " vars.hwnd.exchange.main)
+~SC0038::Exchange("hide")
+
+#If vars.hwnd.exchange.main && (vars.general.wMouse = vars.hwnd.exchange.main)
+*WheelUp::Exchange("hotkey", "WheelUp")
+*WheelDown::Exchange("hotkey", "WheelDown")
+
+#If vars.hwnd.exchange.main && Exchange_coords() && WinExist("ahk_id " vars.hwnd.exchange.main)
+~LButton::Exchange2("LButton")
+~RButton::Exchange2("RButton")
+SC0039::Exchange2("Space")
 
 #If vars.hwnd.anoints.main && (vars.general.wMouse = vars.hwnd.anoints.main) && IsNumber(SubStr(LLK_HasVal(vars.hwnd.anoints, vars.general.cMouse), 1, 1))
 WheelUp::Anoints("stock+")

@@ -222,6 +222,17 @@
     "donations howto": [
       "github thread with more info"
     ],
+    "exchange enable": [
+      "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
+      "requires the <currency exchange> screen-check to be set up correctly(/underline)",
+      "in your hideout, hold <tab> while the currency exchange window is on screen to activate the feature"
+    ],
+    "exchange delete logs": [
+      "long-click to delete the entire trade log"
+    ],
+    "exchange graphs": [
+      "visualizes how your in-/outflow developed over the course of a specific day and the past week"
+    ],
     "hotkeys ingame-keybinds": [
       "to avoid conflicts between custom in-game keybinds and the script's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
     ],
@@ -558,7 +569,7 @@
     ],
     "maptracker side-content": [
       "side-areas you enter and the time spent inside will be logged",
-      "examples: abyssal depths, lab trials, vaal areas"
+      "examples: abyssal depths, lab trials, vaal areas, starfall crater"
     ],
     "maptracker hide": [
       "hides the panel instead of just graying it out whenever tracking is paused (by right-clicking the button in the toolbar)",
@@ -1050,6 +1061,22 @@
       "click to check if the app launches correctly"
     ]
   },
+  "exchange": {
+    "chaos-div": [
+      "the current div-price in chaos (e.g. 210):\nthis value is used to convert chaos to divines when logging trades"
+    ],
+    "general": [
+      "enter values into the edit fields below, or scroll the mouse wheel while hovering over them",
+      "hover over the < x : y > ratio and scroll the wheel to adjust the currency amounts\n(hold shift to adjust by 10x)",
+      "in-game edit fields:\n- click: copy the values into the calculator\n- right-click: paste values from the calculator\n- space: clear/reset the field under the cursor",
+      "hold <alt> to temporarily hide the overlay",
+      "optional: click a chaos/divine icon on one side to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
+    ],
+    "logs": [
+      "click a date to view trades from that day",
+      "hold right-click on a date or trade to delete it"
+    ]
+  },
   "geartracker": {
     "about": [
       "click items on the list to highlight them in in-game searches",
@@ -1070,7 +1097,7 @@
     ],
     "skilltree-cap ascend": [
       "load images into slots via pasting or snipping",
-      "slot 05 is reserved for a potential endgame respec"
+      "slot 05 is reserved for a potential endgame respec or alternative tree"
     ],
     "skilltree-cap index": [
       "click to add a caption to this slot"
@@ -1385,6 +1412,19 @@
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ],
+    "betrayal": [
+      "(/bold)(/underline)instructions:",
+      "-> open the syndicate board and make sure the x-button is fully visible",
+      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
+      "-> follow the instructions in <test>"
+    ],
+    "exchange": [
+      "(/bold)(/underline)instructions:",
+      "-> open the currency exchange",
+      "-> make sure the inventory is closed",
+      "-> click <cal>",
+      "-> follow the instructions in <test>"
+    ],
     "gamescreen": [
       "(/bold)(/underline)explanation:",
       "-> this check is used to determine whether you are controlling your character or accessing a menu",
@@ -1400,12 +1440,6 @@
       "-> open the inventory",
       "-> the top-right corner (img: yellow) has to be fully visible",
       "-> click <cal>",
-      "-> follow the instructions in <test>"
-    ],
-    "betrayal": [
-      "(/bold)(/underline)instructions:",
-      "-> open the syndicate board and make sure the x-button is fully visible",
-      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ],
     "skilltree": [
