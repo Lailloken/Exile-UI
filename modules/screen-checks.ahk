@@ -34,10 +34,11 @@
 	If !vars.poe_version
 	{
 		vars.imagesearch.search := ["skilltree", "betrayal"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
-		vars.imagesearch.list := {"betrayal": 1, "skilltree": 1, "stash": 0} ;this object is parsed when listing image-checks in the settings menu
+		vars.imagesearch.list := {"betrayal": 1, "exchange": 1, "skilltree": 1, "stash": 0} ;this object is parsed when listing image-checks in the settings menu
 		vars.imagesearch.checks := {"betrayal": {"x": vars.client.w - Round((1/72) * vars.client.h) * 2 , "y": Round((1/72) * vars.client.h), "w": Round((1/72) * vars.client.h), "h": Round((1/72) * vars.client.h)}
 		, "skilltree": {"x": vars.client.w//2 - Round((1/16) * vars.client.h)//2, "y": Round(0.054 * vars.client.h), "w": Round((1/16) * vars.client.h), "h": Round(0.02 * vars.client.h)}
-		, "stash": {"x": Round(0.27 * vars.client.h), "y": Round(0.055 * vars.client.h), "w": Round(0.07 * vars.client.h), "h": Round((1/48) * vars.client.h)}}
+		, "stash": {"x": Round(0.27 * vars.client.h), "y": Round(0.055 * vars.client.h), "w": Round(0.07 * vars.client.h), "h": Round((1/48) * vars.client.h)}
+		, "exchange": {"x": Round(vars.client.w/2 - vars.client.h/8), "y": Round(vars.client.h/9), "w": Round(vars.client.h * (17/72)), "h": Round(vars.client.h * 0.023)}}
 	}
 	Else
 	{
@@ -178,6 +179,9 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 		Return
 
 	pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1) ;take screenshot from client
+	If settings.general.blackbars
+		pCopy := Gdip_CloneBitmapArea(pHaystack, vars.client.x - vars.monitor.x, 0, vars.client.w, vars.client.h,, 1), Gdip_DisposeBitmap(pHaystack), pHaystack := pCopy
+
 	For index, val in vars.imagesearch.search
 	{
 		If name ;if parameter was passed to function, override val
@@ -190,6 +194,8 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 			x1 := 0, y1 := 0, x2 := 0, y2 := 0, settings_menu := 1
 		Else If !vars.imagesearch[val].x1 || !FileExist("img\Recognition (" vars.client.h "p)\GUI\" val . vars.poe_version ".bmp") ;skip check if reference-image or coordinates are missing
 			continue
+		Else If (val = "exchange")
+			x1 := vars.client.w * 0.25, y1 := Round(vars.client.h/9), x2 := Round(vars.client.w/2 + vars.client.h * (18/144)), y2 := Round(vars.client.h/9 + vars.client.h * 0.024)
 		Else x1 := vars.imagesearch[val].x1, y1 := vars.imagesearch[val].y1, x2 := vars.imagesearch[val].x2, y2 := vars.imagesearch[val].y2
 
 		pNeedle := Gdip_CreateBitmapFromFile("img\Recognition (" vars.client.h "p)\GUI\" val . vars.poe_version ".bmp") ;load the reference image
