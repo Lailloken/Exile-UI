@@ -1,5 +1,12 @@
 [
   [
+	["1.58.8", 15808],
+	"july 7, 2025",
+	"map-info: fixed the t17 rare monster map-mod",
+	"map-tracker: added starfall crater to trackable side-areas (untested, needs feedback)",
+	"added a new <vaal street> feature: currency exchange qol, trade logging, balance tracking"
+  ],
+  [
 	["1.58.7", 15807],
 	"june 28, 2025",
 	"if the updater fails, read the full release notes",
