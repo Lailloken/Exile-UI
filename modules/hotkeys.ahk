@@ -138,6 +138,8 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If vars.snipping_tool.GUI
+		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("LLK-UI: notepad reminder")
 		WinActivate, ahk_group poe_window
 	Else If WinActive("ahk_id " vars.hwnd.notepad.main)
@@ -195,8 +197,6 @@ Hotkeys_ESC()
 			Settings_menu(vars.settings.active)
 		Else LLK_Overlay(vars.hwnd.settings.main, "show", 0)
 	}
-	Else If vars.snipping_tool.GUI
-		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("ahk_id " vars.hwnd.ocr_tooltip.main)
 		OCR_Close()
 	Else If WinExist("ahk_id " vars.hwnd.maptracker_logs.sum_tooltip)
