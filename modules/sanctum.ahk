@@ -606,7 +606,7 @@ Sanctum_Relics(cHWND := "")
 	LLK_PanelDimensions(dimensions, settings.sanctum.fSize, wValues, hValues), wText := vars.client.h * 0.35 - 2* fWidth - wValues
 	For mod, val in mods2
 	{
-		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x" fWidth + wValues " y" vars.client.h / 3 : "xs y+0") " BackgroundTrans HWNDhwnd w" wText . (LLK_HasVal(search, val.2) ? " cLime" : ""), % Trim(mod, " %+x")
+		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x" fWidth + wValues " y" vars.client.h / 3 : "xs y+0") " BackgroundTrans HWNDhwnd w" wText . (LLK_HasVal(search, val.2) ? " cLime" : ""), % mod ;Trim(mod, " %+x")
 		If val.2
 			vars.hwnd.sanctum_relics["mod_" val.2] := hwnd
 		Gui, %GUI_name%: Add, Text, % "xp-" fWidth " yp wp+" 2 * fWidth " hp Border BackgroundTrans"
