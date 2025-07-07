@@ -223,7 +223,7 @@
       "github thread with more info"
     ],
     "exchange enable": [
-      "provides ux improvements, a ratio calculator, and trade logging for the in-game currency exchange",
+      "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
       "requires the <currency exchange> screen-check to be set up correctly(/underline)",
       "in your hideout, hold <tab> while the currency exchange window is on screen to activate the feature"
     ],
@@ -569,7 +569,7 @@
     ],
     "maptracker side-content": [
       "side-areas you enter and the time spent inside will be logged",
-      "examples: abyssal depths, lab trials, vaal areas"
+      "examples: abyssal depths, lab trials, vaal areas, starfall crater"
     ],
     "maptracker hide": [
       "hides the panel instead of just graying it out whenever tracking is paused (by right-clicking the button in the toolbar)",
@@ -1063,11 +1063,11 @@
   },
   "exchange": {
     "chaos-div": [
-      "the current chaos/div ratio:\nthis value is used to convert chaos to divines when logging trades"
+      "the current div-price in chaos (e.g. 210):\nthis value is used to convert chaos to divines when logging trades"
     ],
     "general": [
       "enter values into the edit fields below, or scroll the mouse wheel while hovering over them",
-      "hover over the < x : y > ratio and scroll the wheel to increase the currency amounts\n(hold shift to increase by 10x)",
+      "hover over the < x : y > ratio and scroll the wheel to adjust the currency amounts\n(hold shift to adjust by 10x)",
       "in-game edit fields:\n- click: copy the values into the calculator\n- right-click: paste values from the calculator\n- space: clear/reset the field under the cursor",
       "hold <alt> to temporarily hide the overlay",
       "optional: click a chaos/divine icon on one side to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"

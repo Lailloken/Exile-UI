@@ -251,7 +251,7 @@ Exchange(cHWND := "", hotkey := "")
 		For index, day in dates
 		{
 			color := (date_selection = index ? " cAqua": ""), date := LLK_StringCase(LLK_FormatTime(StrReplace(day.date, "-"), "MMM d")), selected_date := (date_selection = index ? date : selected_date)
-			Gui, %GUI_name%: Add, Text, % (index = 1 && dates.Count() = 7 ? "Section x0 y" settings.exchange.fHeight - 1 : "ys x+-1") " BackgroundTrans Center Border gExchange HWNDhwnd w" wDays . color, % date
+			Gui, %GUI_name%: Add, Text, % (index = 1 && dates.Count() = 7 ? "Section x0 y" settings.exchange.fHeight - 1 : "ys x+-1") " BackgroundTrans -Wrap Center Border gExchange HWNDhwnd w" wDays " h" settings.exchange.fHeight . color, % date
 			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Vertical Border Range0-500 HWNDhwnd1", 0
 			vars.hwnd.exchange["day_" index "_" day.date] := hwnd, vars.hwnd.exchange["day_" index "_bar"] := hwnd1
 		}
@@ -426,7 +426,7 @@ Exchange2(hotkey)
 			pCrop := Gdip_CloneBitmapArea(pBitmap, screenshot.1, screenshot.2, screenshot.3, screenshot.4,, 1)
 			If !FileExist((folder := "img\GUI\vaal street" vars.poe_version))
 				FileCreateDir, % folder
-			Gdip_SaveBitmapToFile(pCrop, folder . "\" date ", " time ".jpg", 75)
+			Gdip_SaveBitmapToFile(pCrop, folder . "\" date ", " time ".jpg", 85)
 			Gdip_DisposeBitmap(pBitmap), Gdip_DisposeBitmap(pCrop)
 
 			If vars.pics.exchange_trades.graph_day
