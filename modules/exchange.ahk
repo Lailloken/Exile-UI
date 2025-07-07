@@ -323,12 +323,12 @@ Exchange(cHWND := "", hotkey := "")
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
 	vars.hwnd.help_tooltips["exchange_chaos-div"] := vars.hwnd.exchange.chaos_div := hwnd
 
-	Gui, %GUI_name%: Add, Text, % "Section Border x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 + settings.exchange.fHeight - 1 " HWNDhwnd w" wBoxes " h" hBoxes
-	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border"
-	Gui, %GUI_name%: Add, Text, % "ys x+" gBoxes - 1 " Border HWNDhwnd1 h" hBoxes " w" wBoxes
-	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border"
-	Gui, %GUI_name%: Add, Text, % "Section x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2819 " y" vars.client.h * 0.176 + settings.exchange.fHeight - 1 " w" wOrder " h" hOrder " Border HWNDhwnd2"
-	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border"
+	Gui, %GUI_name%: Add, Text, % "Section Border Hidden x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 + settings.exchange.fHeight - 1 " HWNDhwnd w" wBoxes " h" hBoxes
+	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
+	Gui, %GUI_name%: Add, Text, % "ys x+" gBoxes - 1 " Border Hidden HWNDhwnd1 h" hBoxes " w" wBoxes
+	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
+	Gui, %GUI_name%: Add, Text, % "Section x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2819 " y" vars.client.h * 0.176 + settings.exchange.fHeight - 1 " w" wOrder " h" hOrder " Border Hidden HWNDhwnd2"
+	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
 	vars.hwnd.exchange.amount1 := hwnd, vars.hwnd.exchange.amount2 := hwnd1, vars.hwnd.exchange.order := hwnd2
 
 	If !vars.pixels.inventory && dates.Count() && settings.exchange.graphs
