@@ -32,7 +32,7 @@ Statlas()
 	WinSet, Trans, 1
 	Gui, statlas_comms: Add, Text,, % "client: " vars.hwnd.poe_client
 	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//8 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//4 "|" Round(vars.client.h/(settings.statlas.notable ? 10 : 12)) "`n"
-	. (settings.general.blackbars ? "blackbars: " vars.client.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
+	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
 	Gui, statlas_comms: Show, NA x10000 y10000
 
 	vars.statlas := {}
