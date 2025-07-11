@@ -142,16 +142,23 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | PoE2 | | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_103.jpg) |
 <br>
 
+### [Vaal Street](https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street): currency exchange ratio-calculator, QoL, trade logging, and balance tracking
+**`currently Path of Exile 1 only`**
+| optional trade logging | ratio-calculator | optional balance tracking |
+|---|---|---|
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_003.jpg) |
+<br>
+
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  
 | essence tooltip to check the next tier's stats | orb of horizons tooltips | countdown & stopwatch |
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
 ||| **Path of Exile 2 compatible** |
 
-| in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs |
+| in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs | map-event notifications |
 |---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) |
-| **Path of Exile 2 compatible** ||
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_006.png) |
+| **Path of Exile 2 compatible** |||
 <br>
 
 ### [Seed-explorer](https://github.com/Lailloken/Lailloken-UI/wiki/Seed-explorer): in-client UI to quickly test a legion jewel in every socket
