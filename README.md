@@ -156,7 +156,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 ||| **Path of Exile 2 compatible** |
 
 | in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs | map-event notifications |
-|---|---|
+|---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_006.png) |
 | **Path of Exile 2 compatible** |||
 <br>
