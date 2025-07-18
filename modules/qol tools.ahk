@@ -716,6 +716,23 @@ MapEvent(type)
 	Gui, % "tooltip_mapevents_" type ": Show", % "NA x" xPos " y" yPos
 }
 
+MapEvent_InfamousMerc(clientTXT_line)
+{
+	local
+	global vars, settings, json
+	static FirstApproach
+
+	If !IsObject(FirstApproach)
+	{
+		lang := FileExist("data\" settings.general.lang_client "\mercenaries.json") ? settings.general.lang_client : "english"
+		file := LLK_FileRead("data\" lang "\mercenaries.json"), FirstApproach := json.load(file)
+	}
+
+	For index, line in FirstApproach
+		If InStr(clientTXT_line, line)
+			Return 1
+}
+
 Notepad(cHWND := "", hotkey := "", color := 0)
 {
 	local

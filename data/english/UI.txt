@@ -245,6 +245,7 @@
 		mechanic_purifier		=	"purifier"
 		mechanic_seer			=	"nameless seer"
 		mechanic_mist			=	"reflecting mist"
+		mechanic_infamous		=	"infamous mercenary"
 
 
 
