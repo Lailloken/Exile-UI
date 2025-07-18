@@ -116,7 +116,6 @@ Gui_CreateGraph(width, height, graph, color)
 
 	hbmBitmap := CreateDIBSection(width, height), hdcBitmap := CreateCompatibleDC(), obmBitmap := SelectObject(hdcBitmap, hbmBitmap), gBitmap := Gdip_GraphicsFromHDC(hdcBitmap)
 	Gdip_FillRectangle(gBitmap, brush.black, 0, 0, width, height)
-	
 
 	wMargins := Round(width/40), hMargins := Round(height/20), width2 := width - 2*wMargins, height2 := height - 2*hMargins, line := []
 	If !pen[color]
@@ -441,7 +440,7 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 		If top_left && (yTarget + height > vars.monitor.h)
 			yTarget := vars.monitor.h - height, yPos := yTarget
 	}
-	
+
 	If snap && LLK_IsBetween(xMouse, vars.monitor.x + vars.client.xc * 0.9, vars.monitor.x + vars.client.xc * 1.1)
 		xPos := "", xTarget := vars.client.xc - width/2 + 1
 	Else If snap && LLK_IsBetween(yMouse, vars.monitor.y + vars.client.yc * 0.9, vars.monitor.y + vars.client.yc * 1.1)

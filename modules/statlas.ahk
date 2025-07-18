@@ -208,13 +208,13 @@ Statlas_GUI(mode := "")
 		Gui, %GUI_name%: Add, Progress, % "Disabled BackgroundBlack HWNDhwnd xp yp wp hp", 0
 		ControlGetPos, xTier, yTier, wTier, hTier,, ahk_id %hwnd%
 		vars.hwnd.statlas.tier := vars.hwnd.help_tooltips["statlas_tier"] := hwnd
-		
+
 		Gui, %GUI_name%: Add, Text, % "Section ys BackgroundTrans Border Center HWNDhwnd w" wColumns, % Lang_Trans("global_league")
 		ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 		If stats.legacy.runs
 			Gui, %GUI_name%: Add, Text, % "ys BackgroundTrans Border Center w" wColumns, % Lang_Trans("statlas_legacy")
 		Gui, %GUI_name%: Add, Text, % "ys BackgroundTrans Border Center cLime w" wColumn
-		
+
 		For index, val in ["runs", "run", "deaths", "kills"]
 		{
 			Gui, %GUI_name%: Add, Text, % "Section xs BackgroundTrans Right Border w" wColumns, % stats.current[val] " "

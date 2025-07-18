@@ -596,7 +596,7 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		FileDelete, data\english\necropolis.json
 	If FileExist("ini\altars.ini")
 		FileMove, ini\altars.ini, ini\ocr - altars.ini, 1
-	
+
 	If !FileExist("data\") || !FileExist("data\global\") || !FileExist("data\english\") || !FileExist("data\english\UI.txt") || !FileExist("data\english\client.txt")
 		Return 0
 	Else Return 1

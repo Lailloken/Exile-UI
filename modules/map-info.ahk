@@ -539,7 +539,7 @@ Mapinfo_Parse2(mode)
 			map[key][5 - A_Index] := []
 
 	Loop, Parse, clip, `n, `r
-	{		
+	{
 		If !map.name
 			If !InStr(A_LoopField, Lang_Trans("system_parenthesis"))
 				Continue
@@ -559,7 +559,7 @@ Mapinfo_Parse2(mode)
 				Break
 			}
 	}
-	
+
 	If InStr(raw_text, "(enchant)")
 	{
 		Loop, Parse, % SubStr(raw_text, 1, InStr(raw_text, "`r`n---") - 1), `n, % "`r "
@@ -592,7 +592,7 @@ Mapinfo_Parse2(mode)
 				If InStr(val.ID, "044") || (val.ID = 44)
 					map_mods[key] := SubStr(map_mods[key], 1, InStr(map_mods[key], "/") - 1) ;freeze/ignite/shock hybrid mod is always X/X/X %, so simply display as X%
 			}
-		
+
 		If !match
 		{
 			map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1, map.mods += 1

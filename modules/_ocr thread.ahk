@@ -42,7 +42,7 @@ Statlas()
 		pBitmap_copy := Gdip_CloneBitmapArea(pBitmap, blackbars.1, blackbars.2, blackbars.3, blackbars.4,, 1), Gdip_DisposeImage(pBitmap), pBitmap := pBitmap_copy
 	pBitmap_cropped := Gdip_CloneBitmapArea(pBitmap, clip.1, clip.2, clip.3, clip.4,, 1)
 	Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_cropped
-	
+
 	Gdip_GetImageDimensions(pBitmap, width, height)
 	pBitmap_resized := Gdip_ResizeBitmap(pBitmap, width*2, height*2, 1, 7, 1), Gdip_DisposeImage(pBitmap), pBitmap := pBitmap_resized
 	pEffect := Gdip_CreateEffect(5, 0, 25), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)

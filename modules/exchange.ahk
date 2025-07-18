@@ -123,7 +123,7 @@ Exchange(cHWND := "", hotkey := "")
 			edit1 := LLK_ControlGet(vars.hwnd.exchange.edit1), edit2 := LLK_ControlGet(vars.hwnd.exchange.edit2)
 		}
 		vars.exchange.amount1 := edit1, vars.exchange.amount2 := edit2, vars.exchange.multiplier := 1
-		
+
 		value1 := Round(edit1 / Min(edit1, edit2), Mod(edit1, Min(edit1, edit2)) ? 2 : 0)
 		value2 := Round(edit2 / Min(edit1, edit2), Mod(edit2, Min(edit1, edit2)) ? 2 : 0)
 		GuiControl, Text, % vars.hwnd.exchange["ratio_text" (lock ? "2" : "")], % value1 " : " value2
@@ -168,7 +168,7 @@ Exchange(cHWND := "", hotkey := "")
 			If !vars.exchange.transactions[date].Count()
 				vars.exchange.transactions.Delete(date)
 			IniDelete, % "ini" vars.poe_version "\vaal street log.ini", % control
-			
+
 			If vars.pics.exchange_trades.graph_day
 				DeleteObject(vars.pics.exchange_trades.graph_day), vars.pics.exchange_trades.graph_day := ""
 			If vars.pics.exchange_trades.graph_week
@@ -300,7 +300,7 @@ Exchange(cHWND := "", hotkey := "")
 				balance += amount, min := (balance < min ? balance : min), max := (balance > max ? balance : max)
 			}
 			balance := (balance >= 0 ? "+" : "") . Round(balance, 1), min := (min >= 0 ? "+" : "") . Round(min, 1), max := max := (max >= 0 ? "+" : "") . Round(max, 1)
-			
+
 			If !settings.exchange.graphs
 			{
 				Gui, %GUI_name%: Add, Text, % "Section xs y+0 BackgroundTrans Border Center w" wUI2, % Lang_Trans("global_trade", 2) . Lang_Trans("global_colon") " " trades.Count() ", " Lang_Trans("m_clone_performance", 5)

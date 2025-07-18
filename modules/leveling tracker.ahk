@@ -2309,7 +2309,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 						cX := (x + x2)/2 + (y2 - y) * (rConnection > 0 ? 1 : -1) * Sqrt((rConnection**2 / ((x - x2)**2 + (y - y2)**2)) - 0.25)
 						cY := (y + y2)/2 + (x - x2) * (rConnection > 0 ? 1 : -1) * Sqrt((rConnection**2 / ((x - x2)**2 + (y - y2)**2)) - 0.25)
 						angleCheck1 := [], angleCheck2 := []
-						
+
 						Loop
 						{
 							If (A_Index > 360)

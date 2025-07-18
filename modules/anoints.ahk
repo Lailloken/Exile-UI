@@ -305,7 +305,7 @@ Anoints(cHWND := "")
 						keyword_list0[ring_keyword] := !keyword_list0[ring_keyword] ? 0 : keyword_list0[ring_keyword] + 1
 				Continue
 			}
-			
+
 			stat := StrSplit(stat, " ", " .,")
 			For index, word in stat
 			{

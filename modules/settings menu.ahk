@@ -60,7 +60,7 @@ Settings_actdecoder2(cHWND := "")
 	{
 		If (settings.actdecoder.trans_zones = 1) && (control = "minus") || (settings.actdecoder.trans_zones = 10) && (control = "plus")
 			Return
-		
+
 		IniWrite, % (settings.actdecoder.trans_zones += (control = "plus") ? 1 : -1), % "ini" vars.poe_version "\act-decoder.ini", settings, zone transparency
 		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25), % "ahk_id " vars.hwnd.actdecoder.main
@@ -72,7 +72,7 @@ Settings_actdecoder2(cHWND := "")
 	{
 		If (settings.actdecoder.sLayouts1 = 0) && (control = "minus") || (settings.actdecoder.sLayouts1 = 5) && (control = "plus")
 			Return
-		
+
 		IniWrite, % (settings.actdecoder.sLayouts1 += (control = "plus") ? 1 : -1), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts locked size
 		If WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			Actdecoder_ZoneLayouts(2)
@@ -1865,7 +1865,7 @@ Settings_iteminfo2(cHWND)
 		If (vars.system.click = 1)
 			picked_rgb := RGB_Picker(settings.iteminfo.colors_marking[type])
 		Else picked_rgb := settings.iteminfo.dColors_marking[type]
-		
+
 		If Blank(picked_rgb)
 			Return
 		IniWrite, % """" (settings.iteminfo.colors_marking[type] := picked_rgb) """", % "ini" vars.poe_version "\item-checker.ini", UI, % StrReplace(control, "_", " ") " highlighting"
@@ -2256,7 +2256,7 @@ Settings_leveltracker2(cHWND := "")
 		control := (hwnd = vars.hwnd.settings.hotkey_1) ? 1 : 2
 		IniWrite, % (settings.leveltracker["hotkey_" control] := input0), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "hotkey " control
 		Leveltracker_Hotkeys("refresh")
-		
+
 		GuiControl, +cBlack, % hwnd
 		GuiControl, movedraw, % hwnd
 	}

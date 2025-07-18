@@ -1839,7 +1839,7 @@ Maptracker_Timer()
 	{
 		If vars.poe_version && Blank(vars.log.areaname) && !Blank(vars.log.areaID)
 			vars.log.areaname := Log_Get(vars.log.areaID, "areaname")
-		
+
 		If !vars.maptracker.map.name && vars.log.areaname ;get the map's name from the client.txt's area-name
 		{
 			If settings.maptracker.rename

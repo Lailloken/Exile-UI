@@ -290,7 +290,7 @@ Omni_Context(mode := 0, alt := 0)
 				Return
 			}
 	}
-	
+
 	If settings.features.iteminfo && settings.iteminfo.omnikey
 	{
 		If WinExist("ahk_id " vars.hwnd.iteminfo.main)
@@ -352,7 +352,7 @@ Omni_ContextMenu()
 				Else If (settings.general.lang_client = "english") || vars.poe_version
 					class := item.class
 
-				Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: " 
+				Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: "
 				. (class = "socketable" ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul cores" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talismans" : "runes")) : LLK_StringCase((InStr(item.itembase, "Runic ") ? "runic " : "") . class))
 				ControlGetPos,,, w2,,, % "ahk_id " hwnd
 				If (class != "cluster jewels") && (!Blank(LLK_HasVal(db.item_bases._classes, item.class)) || vars.poe_version && vars.omnikey.poedb[item.class] || InStr(item.class, "heist") && item.itembase)

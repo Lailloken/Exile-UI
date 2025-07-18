@@ -479,7 +479,7 @@ Lootfilter_GUI(cHWND := "", side := "", activation := "")
 			If (gems_hide[index] > 1)
 				append .= (!append ? "" : "`n`n") "Hide`nBaseType == ""Uncut " gem " Gem""`nItemLevel < " gems_hide[index] "`nSetBorderColor 255 0 0 255`n# LLK-UI modification (global): hide " LLK_StringCase(gem) " gems"
 		}
-		
+
 		If append
 			vars.lootfilter.filter[-3] := append
 		Else vars.lootfilter.filter.Delete(-3)
@@ -733,7 +733,7 @@ Lootfilter_GUI(cHWND := "", side := "", activation := "")
 			Gui, %Gui_name%: Add, Text, % "ys x-1 y" yFirst + (A_Index = 1 ? 0 : 1) " Border BackgroundTrans Center 0x200 gLootfilter_GUI HWNDhwnd h" yLast + margin + 2 - yFirst " w" wLabel, % Lang_Trans("global_" (modified ? "revert" : "hide"))
 			Gui, %Gui_name%: Add, Progress, % "Disabled Border HWNDhwnd2 Border xp yp wp hp BackgroundBlack c" (modified ? settings.lootfilter.gui_color : "Black"), % 100
 			Gui, %Gui_name%: Add, Text, % "x+-1 yp w" xMax - wLabel + 1 " hp Border BackgroundTrans", % ""
-			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" settings.lootfilter.gui_color, 100 
+			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" settings.lootfilter.gui_color, 100
 			vars.hwnd.lootfilter["hide_" base] := hide_last := hwnd
 			vars.hwnd.help_tooltips["lootfilter_" (modified ? "revert" : "hide") . handle] := hwnd2, handle .= "|"
 
@@ -848,7 +848,7 @@ Lootfilter_GUI(cHWND := "", side := "", activation := "")
 		}
 		If (vars.lootfilter.selection_backup.modifications.Count() != vars.lootfilter.selection.modifications.Count())
 			vars.lootfilter.selection.pending := 1
-		Else 
+		Else
 			For key, val in vars.lootfilter.selection_backup.modifications
 				If (val != vars.lootfilter.selection.modifications[key])
 					vars.lootfilter.selection.pending := 1
