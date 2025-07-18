@@ -584,12 +584,12 @@ Sanctum_Relics(cHWND := "")
 	Gui, %GUI_name%: Add, Pic, % "x+0 yp hp-2 w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.close
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 BackgroundBlack Vertical Range0-500 cMaroon", 0
 	vars.hwnd.sanctum_relics.clear := vars.hwnd.sanctum_relics.clear_bar := vars.hwnd.help_tooltips["sanctumrelics_clear"] := hwnd2
-	
+
 	Gui, %GUI_name%: Add, Text, % "x0 Border BackgroundTrans y" vars.client.h * 0.275 " w" vars.client.h * (1/30) " h" vars.client.h * (1/30)
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundPurple", 0
 	base_x := vars.client.x + vars.client.w/2, base_y := vars.client.y + coords.y
 	coords.mouse2 := {"x": [base_x + coords[alt ? "x2" : "x"], base_x + coords[alt ? "x2" : "x"] + vars.client.h * (1/30)], "y": [base_y + vars.client.h * 0.275, base_y + vars.client.h * 0.275 + vars.client.h * (1/30)]}
-	
+
 	;Gui, %GUI_name%: Add, Text, % "x" coords.xConfirm " Border BackgroundTrans y" coords.yConfirm " w" coords.wConfirm " h" coords.hConfirm
 	;Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundPurple", 0
 	coords.mouse3 := {"x": [base_x + coords[alt ? "x2" : "x"] + coords.xConfirm, base_x + coords[alt ? "x2" : "x"] + coords.xConfirm + coords.wConfirm], "y": [base_y + coords.yConfirm, base_y + coords.yConfirm + coords.hConfirm]}
@@ -630,7 +630,7 @@ Sanctum_RelicsClick()
 {
 	local
 	global vars, settings
-	
+
 	coords := vars.sanctum.relics.coords, w := coords.wGrid, spacing := settings.sanctum.gridspacing, items := vars.sanctum.relics.items, grid := vars.sanctum.relics.grid
 	alt := vars.sanctum.relics.alt
 	For outer in [1, 2, 3, 4]

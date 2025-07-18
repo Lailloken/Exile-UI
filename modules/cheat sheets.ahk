@@ -132,7 +132,7 @@ Cheatsheet_Add(name, type)
 	FileCreateDir, % "cheat-sheets" vars.poe_version "\" name
 	If !error && !FileExist("cheat-sheets" vars.poe_version "\" name "\")
 		error := 1, LLK_FilePermissionError("create", A_ScriptDir "\cheat-sheets" vars.poe_version "\" name)
-	
+
 	If error
 		Return
 	types := ["images", "app", "advanced"]

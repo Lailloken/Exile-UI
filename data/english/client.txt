@@ -232,6 +232,10 @@
 		log_maven			=	"The Maven:"
 		log_seer			=	"The Nameless Seer has appeared nearby"
 		log_mist			=	"A Reflecting Mist has manifested nearby"
+		log_infamous			=	", the Cyaxan"
+		log_infamous			=	", the Keitan"
+		log_infamous			=	", the Azadin"
+		log_infamous			=	", the Bardiyan"
 
 
 ;## expedition note: in PoE1, there is a difference in displayed names depending on whether the NPCs greet you when they first see you in a map (Gwennen, the Gambler) or whether the encounter has finished (Gwennen)
@@ -460,7 +464,7 @@
 		mods_cluster_replace		=	"Damage Over Time"
 		mods_cluster_replace		=	"DoT"					;## if the target language doesn't have a common abbreviation, simply leave both values as they are
 
-												
+
 		mods_cluster_replace_res	=	"to "					;## PoE1 only (whole block), the tooltip doesn't show numerical values since cluster-enchants have fixed rolls, which looks weird if the language uses a preposition ("to cold resistance")
 		mods_cluster_replace_res	=	"Resistance"				;## the preposition has to be removed, so edit these strings so that it is the first value of this key: instead of using placeholders, you simply have to omit variable elements of this string
 												;## "to # Resistance" becomes:

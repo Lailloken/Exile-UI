@@ -21,7 +21,7 @@
 	max_pointer := log_file.Tell()
 	Loop
 	{
-		move := Min(max_pointer, 5 * A_Index * 1024000), log_file.Seek(-move, 2), log_read := log_file.Read(5*1024000)
+		move := Min(max_pointer, 3 * A_Index * 1024000), log_file.Seek(-move, 2), log_read := log_file.Read(3*1024000)
 		If !mode && !IsObject(log_content) && (check := InStr(log_read, " Generating level ", 1, 0, 3))
 			log_content := StrSplit(SubStr(log_read, check), "`n", "`r" vars.lang.system_fullstop.1)
 
@@ -483,11 +483,12 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 			Maptracker_ParseDialogue(loopfield)
 
 		If settings.qol.mapevents
-			For index0, type in ["mist", "seer"]
-				If InStr(loopfield, Lang_Trans("log_" type), 1)
-				{
-					MapEvent(type)
-					Break
-				}
+			For index0, type in ["mist", "seer", "infamous"]
+				For index1, line in vars.lang["log_" type]
+					If InStr(loopfield, line, 1) && (type != "infamous" || type = "infamous" && MapEvent_InfamousMerc(loopfield "."))
+					{
+						MapEvent(type)
+						Break
+					}
 	}
 }

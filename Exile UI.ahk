@@ -596,7 +596,7 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		FileDelete, data\english\necropolis.json
 	If FileExist("ini\altars.ini")
 		FileMove, ini\altars.ini, ini\ocr - altars.ini, 1
-	
+
 	If !FileExist("data\") || !FileExist("data\global\") || !FileExist("data\english\") || !FileExist("data\english\UI.txt") || !FileExist("data\english\client.txt")
 		Return 0
 	Else Return 1
@@ -657,8 +657,6 @@ Loop_main()
 	tick += 1
 
 	MouseHover()
-	If vars.leveltracker.skilltree_schematics.GUI && vars.leveltracker.skilltree_schematics.offsets
-		Gui, skilltree_schematics: Show, % "NA x" (vars.leveltracker.skilltree_schematics.xPos := vars.general.xMouse - vars.leveltracker.skilltree_schematics.offsets.1) " y" (vars.leveltracker.skilltree_schematics.yPos := vars.general.yMouse - vars.leveltracker.skilltree_schematics.offsets.2)
 	If Mod(tick, 2)
 		Return
 

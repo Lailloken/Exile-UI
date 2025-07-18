@@ -200,7 +200,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Continue
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
 			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0, ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
-	
+
 			If (outer = 1)
 				Continue
 			If (alignment = "vertical")
@@ -229,7 +229,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 					Gdip_GetImageDimension(pBitmap, width, height)
 				}
 				Else Gdip_ImageRotateFlip(pBitmap, (operation = "h" ? 4 : 6))
-	
+
 			new_width := (vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1) ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1)
 			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
 			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
@@ -239,7 +239,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			vars.hwnd.actdecoder[vars.log.areaID " " file] := hwnd, DeleteObject(hbmBitmap)
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
-	
+
 			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11|g1_4)")
 			{
 				If !vars.pics.zone_layouts.rotate
@@ -271,7 +271,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 						vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (!vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "" : "|") A_LoopField
 				}
 	}
-	
+
 	reset_check := 0
 	For key, val in vars.actdecoder.zone_layouts[vars.log.areaID]
 		If IsObject(val) || !Blank(val)
