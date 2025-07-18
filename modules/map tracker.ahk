@@ -150,7 +150,7 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	global vars, settings
 
 	mode_check := ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"]
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0})
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -1663,7 +1663,7 @@ Maptracker_ParseDialogue(line)
 	global vars, settings
 
 	For mechanic, type in vars.maptracker.mechanics
-		If (type = 1) && (InStr(vars.log.areaID, mechanic) || LLK_PatternMatch(vars.log.areaID, "", ["affliction", "maven", "heist", "sanctum", "primordialboss"],,, 0)) ;don't track contents in league-specific instances (logbook, temple, syndicate hideouts, heists, etc.)
+		If (type = 1) && (InStr(vars.log.areaID, mechanic) || LLK_PatternMatch(vars.log.areaID, "", ["affliction", "maven", "heist", "sanctum", "primordialboss", "harvestleagueboss"],,, 0)) ;don't track contents in league-specific instances (logbook, temple, syndicate hideouts, heists, etc.)
 			Return
 
 	For mechanic, type in vars.maptracker.mechanics
