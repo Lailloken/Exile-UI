@@ -171,9 +171,9 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0}
+	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0}
 	If (check != "settings")
-		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : (check = "alarm" && InStr(HWND_key, "set ") ? "alarm_set" : "main")]
 
 	For index, val in ["xWin", "yWin", "wWin", "hWin"]
 		If !IsNumber(%val%)
@@ -191,6 +191,9 @@ Gui_HelpToolTip(HWND_key)
 
 	If (check = "exchange")
 		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
+	Else If (check = "alarm" || check = "leveltrackerschematics")
+		tooltip_width := vars.monitor.h/2, xWin := xWin + wWin/2 - tooltip_width/2
+
 	If !tooltip_width
 		Return
 
@@ -245,10 +248,18 @@ Gui_HelpToolTip(HWND_key)
 	WinGetPos,,, width, height, ahk_id %tooltip%
 	xPos := (check = "settings") ? vars.settings.x + vars.settings.wSelection - 1 : xWin + (check = "leveltrackereditor" ? (wWin - 2)//8 : 0)
 	yPos := InStr(control, "update changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
+
 	If (check = "lootfilter")
 		yPos := vars.lootfilter.yPos - height, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos
 	Else If (check = "statlas")
 		yPos := yWin + hWin
+	Else If (check = "exchange" || check = "alarm")
+		yPos := yWin - height + 1
+
+	If (check = "alarm" && yPos < vars.monitor.y)
+		yPos := yWin + hWin - 1
+
+	Gui_CheckBounds(xPos, yPos, width, height)
 	Gui, %GUI_name%: Show, % "NA x"xPos " y"(InStr("notepad, lab, leveltracker, snip, searchstrings, maptracker", check) ? yWin - (InStr("maptracker", check) ? height - 1 : 0) : yPos)
 	LLK_Overlay(tooltip, (width < 10) ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
@@ -757,8 +768,8 @@ RGB_Picker(RGB := "")
 		Return
 	}
 
-	hwnd_GUI := {}
-	Gui, RGB_palette: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border HWNDhwnd +E0x02000000 +E0x00080000 HWNDhwnd_palette
+	hwnd_GUI := {}, vars.RGB_picker := {"cancel": 0}
+	Gui, RGB_palette: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border HWNDhwnd +E0x02000000 +E0x00080000 HWNDhwnd_palette, Exile UI: RGB-Picker
 	Gui, RGB_palette: Color, Black
 	Gui, RGB_palette: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
 	Gui, RGB_palette: Margin, % settings.general.fWidth, % settings.general.fWidth
@@ -801,15 +812,13 @@ RGB_Picker(RGB := "")
 			timeout := 1
 		Sleep 10
 	}
-	While Blank(picked_rgb) && (vars.general.wMouse = hwnd_palette)
+	While Blank(picked_rgb) && (vars.general.wMouse = hwnd_palette) && !vars.RGB_picker.cancel
 	{
 		KeyWait, LButton, D T0.1
 		If !ErrorLevel && hwnd_GUI.HasKey(vars.general.cMouse)
 			hover_last := vars.general.cMouse, rgb := StrReplace(hwnd_GUI[hover_last], """")
 		Else If !ErrorLevel && (vars.general.cMouse = hwnd_save)
-		{
 			picked_rgb := current_rgb
-		}
 		Else
 		{
 			current_rgb := ""
@@ -842,6 +851,7 @@ RGB_Picker(RGB := "")
 	}
 	KeyWait, LButton
 	Gui, RGB_palette: Destroy
+	vars.Delete("RGB_picker")
 	Return picked_rgb
 }
 
