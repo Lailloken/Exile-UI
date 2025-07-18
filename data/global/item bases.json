@@ -4597,7 +4597,7 @@
       }
     },
     "Armour/Evasion": {
-      "_best": "410",
+      "_best": "472",
       "Bronzescale Gauntlets": {
         "_tags": [
           "str_dex_armour",
@@ -4617,8 +4617,8 @@
           "gloves",
           "default"
         ],
-        "Armour": "176-176",
-        "Evasion": "176-176"
+        "Armour": "176-203",
+        "Evasion": "176-203"
       },
       "Dragonscale Gauntlets": {
         "_tags": [
@@ -4701,8 +4701,8 @@
           "gloves",
           "default"
         ],
-        "Armour": "205-205",
-        "Evasion": "205-205"
+        "Armour": "205-236",
+        "Evasion": "205-236"
       }
     },
     "Energy": {
@@ -6189,7 +6189,6 @@
       ]
     }
   },
-  "Idols": {},
   "Jewels": {
     "Cobalt Jewel": {
       "_tags": [
