@@ -7,7 +7,7 @@
 		IniWrite, % "", % "ini" vars.poe_version "\exchange.ini", settings
 
 	If !IsObject(vars.exchange)
-		vars.exchange := {"date": 0, "inventory": 0, "multiplier": 1, "transactions": {}}, vars.pics.exchange := {}, vars.pics.exchange_trades := {}
+		vars.exchange := {"date": 0, "inventory": 0, "multiplier": 1, "ratio_lock": 0, "transactions": {}}, vars.pics.exchange := {}, vars.pics.exchange_trades := {}
 
 	If !IsObject(settings.exchange)
 		settings.exchange := {}
@@ -37,7 +37,7 @@ Exchange(cHWND := "", hotkey := "")
 {
 	local
 	global vars, settings
-	static toggle := 0, fSize, wEdits, hEdits, wait, wHighCurrLow, stats
+	static toggle := 0, fSize, wEdits, hEdits, wait, wHighCurrLow, stats, wRatio
 
 	If wait
 		Return
@@ -112,16 +112,22 @@ Exchange(cHWND := "", hotkey := "")
 			GuiControl, +gExchange, % vars.hwnd.exchange.edit1
 			GuiControl, +gExchange, % vars.hwnd.exchange.edit2
 		}
+
+		If (lock := vars.exchange.ratio_lock)
+		{
+			Loop 2
+				GuiControl, -g, % vars.hwnd.exchange["edit" A_Index]
+			GuiControl,, % vars.hwnd.exchange["edit" (InStr(check, 1) ? 2 : 1)], % Round((InStr(check, 1) ? edit1 / vars.exchange.ratio : edit2 * vars.exchange.ratio))
+			Loop 2
+				GuiControl, +gExchange, % vars.hwnd.exchange["edit" A_Index]
+			edit1 := LLK_ControlGet(vars.hwnd.exchange.edit1), edit2 := LLK_ControlGet(vars.hwnd.exchange.edit2)
+		}
 		vars.exchange.amount1 := edit1, vars.exchange.amount2 := edit2, vars.exchange.multiplier := 1
 		
 		value1 := Round(edit1 / Min(edit1, edit2), Mod(edit1, Min(edit1, edit2)) ? 2 : 0)
 		value2 := Round(edit2 / Min(edit1, edit2), Mod(edit2, Min(edit1, edit2)) ? 2 : 0)
-		While (StrLen(value1) < StrLen(value2))
-			value1 := " " value1
-		While (StrLen(value2) < StrLen(value1))
-			value2 .= " "
-		GuiControl, Text, % vars.hwnd.exchange.ratio_text, % value1 " : " value2
-		GuiControl, % "+c" (edit1 / Min(edit1, edit2) != value1 || edit2 / Min(edit1, edit2) != value2 ? "FF8000" : "White"), % vars.hwnd.exchange.ratio_text
+		GuiControl, Text, % vars.hwnd.exchange["ratio_text" (lock ? "2" : "")], % value1 " : " value2
+		GuiControl, % "+c" (edit1 / Min(edit1, edit2) != value1 || edit2 / Min(edit1, edit2) != value2 ? "FF8000" : "White"), % vars.hwnd.exchange["ratio_text" (lock ? "2" : "")]
 		Return
 	}
 	Else If InStr(check, "day_")
@@ -181,6 +187,29 @@ Exchange(cHWND := "", hotkey := "")
 		}
 		Return
 	}
+	Else If (check = "ratio_text" || cHWND = "lock")
+	{
+		If (check = "ratio_text") && !(vars.exchange.amount1 * vars.exchange.amount2)
+		{
+			LLK_ToolTip(Lang_Trans("global_errorname"),,,,, "Red")
+			Return
+		}
+		lock := vars.exchange.ratio_lock := !vars.exchange.ratio_lock
+		GuiControl, % "+Background" (lock ? "Lime" : "Black"), % vars.hwnd.exchange.ratio
+		GuiControl, % (lock ? "-" : "+") "Hidden", % vars.hwnd.exchange.ratio2
+
+		edit1 := vars.exchange.amount1, edit2 := vars.exchange.amount2
+		value1 := Round(edit1 / Min(edit1, edit2), Mod(edit1, Min(edit1, edit2)) ? 2 : 0)
+		value2 := Round(edit2 / Min(edit1, edit2), Mod(edit2, Min(edit1, edit2)) ? 2 : 0)
+		vars.exchange.ratio := value1 / value2
+		GuiControl, % "Text", % vars.hwnd.exchange.ratio_text2, % value1 " : " value2
+		GuiControl, % (lock ? "-" : "+") "Hidden", % vars.hwnd.exchange.ratio_text2
+		GuiControl, % "+c" (edit1 / Min(edit1, edit2) != value1 || edit2 / Min(edit1, edit2) != value2 ? "FF8000" : "White"), % vars.hwnd.exchange.ratio_text2
+
+		If !lock
+			GuiControl,, % vars.hwnd.exchange.edit1, % LLK_ControlGet(vars.hwnd.exchange.edit1)
+		Return
+	}
 	Else If RegExMatch(check, "i)chaos|divine")
 	{
 		If InStr(check, "chaos") && !settings.exchange.chaos_div
@@ -204,8 +233,9 @@ Exchange(cHWND := "", hotkey := "")
 	wait := 1
 	toggle := !toggle, GUI_name := "exchange" toggle, wBoxes := vars.client.h * 0.069, hBoxes := vars.client.h/40, gBoxes := vars.client.h * 0.1
 	xOrder := vars.client.h * 0.0375, wOrder := vars.client.h * 0.1625, hOrder := xOrder, wUI := vars.client.h * 0.725
+	hIcons := Ceil(vars.client.h * 0.03611111)
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_exchange", LLK-UI: vaal street
-	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 4 " cWhite", % vars.system.font
+	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 2 " cWhite", % vars.system.font
 	Gui, %GUI_name%: Margin, 0, 0
 	Gui, %GUI_name%: Color, % "Purple"
 	WinSet, TransColor, Purple
@@ -215,19 +245,19 @@ Exchange(cHWND := "", hotkey := "")
 	If (fSize != settings.exchange.fSize)
 	{
 		fSize := settings.exchange.fSize
-		For key, hbmBitmap in vars.pics.exchange
-			DeleteObject(hbmBitmap)
-		vars.pics.exchange := {}
 		If vars.pics.exchange_trades.graph_day
 			DeleteObject(vars.pics.exchange_trades.graph_day), vars.pics.exchange_trades.graph_day := ""
 		If vars.pics.exchange_trades.graph_week
 			DeleteObject(vars.pics.exchange_trades.graph_week), vars.pics.exchange_trades.graph_week := ""
 
 		LLK_PanelDimensions([Lang_Trans("m_clone_performance", 3), Lang_Trans("m_clone_performance", 5), Lang_Trans("global_last")], fSize, wHighCurrLow, hHighCurrLow)
+		LLK_PanelDimensions(["7777.77 : 1"], fSize + 2, wRatio, hRatio)
 		Gui, %GUI_name%: Add, Edit, % "x0 y0 Hidden R1 Limit Center cBlack HWNDhwnd", 7777
 		ControlGetPos,,, wEdits, hEdits,, ahk_id %hwnd%
-		vars.pics.exchange.chaos := LLK_ImageCache("img\GUI\chaos" vars.poe_version ".png", hEdits - 2), vars.pics.exchange.divine := LLK_ImageCache("img\GUI\divine" vars.poe_version ".png", hEdits - 2)
 	}
+
+	If !vars.pics.exchange.chaos
+		vars.pics.exchange.chaos := LLK_ImageCache("img\GUI\chaos" vars.poe_version ".png", hIcons - 2), vars.pics.exchange.divine := LLK_ImageCache("img\GUI\divine" vars.poe_version ".png", hIcons - 2)
 
 	dates := []
 	For date, object in vars.exchange.transactions
@@ -244,14 +274,14 @@ Exchange(cHWND := "", hotkey := "")
 		Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
 		If (dates.Count() < 7)
 		{
-			Gui, %GUI_name%: Add, Text, % "Section x0 y" settings.exchange.fHeight - 1 " BackgroundTrans Border w" (7 - dates.Count()) * wDays - (7 - dates.Count() - 1)
+			Gui, %GUI_name%: Add, Text, % "Section x0 y0 BackgroundTrans Border w" (7 - dates.Count()) * wDays - (7 - dates.Count() - 1)
 			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", 0
 		}
 
 		For index, day in dates
 		{
 			color := (date_selection = index ? " cAqua": ""), date := LLK_StringCase(LLK_FormatTime(StrReplace(day.date, "-"), "MMM d")), selected_date := (date_selection = index ? date : selected_date)
-			Gui, %GUI_name%: Add, Text, % (index = 1 && dates.Count() = 7 ? "Section x0 y" settings.exchange.fHeight - 1 : "ys x+-1") " BackgroundTrans -Wrap Center Border gExchange HWNDhwnd w" wDays " h" settings.exchange.fHeight . color, % date
+			Gui, %GUI_name%: Add, Text, % (index = 1 && dates.Count() = 7 ? "Section x0 y0" : "ys x+-1") " BackgroundTrans -Wrap Center Border gExchange HWNDhwnd w" wDays " h" settings.exchange.fHeight . color, % date
 			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Vertical Border Range0-500 HWNDhwnd1", 0
 			vars.hwnd.exchange["day_" index "_" day.date] := hwnd, vars.hwnd.exchange["day_" index "_bar"] := hwnd1
 		}
@@ -287,47 +317,49 @@ Exchange(cHWND := "", hotkey := "")
 					Gui, %GUI_name%: Add, Progress, % "Disabled x+-1 yp+1 hp-2 w" settings.exchange.fWidth " BackgroundPurple cRed Range0-500 Vertical HWNDhwnd1", 0
 					vars.hwnd.exchange["trade_" timestamp] := hwnd, vars.hwnd.exchange["trade_" timestamp "_bar"] := hwnd1, added := 1
 					ControlGetPos, xLast, yLast, wLast, hLast,, ahk_id %hwnd1%
-					If (yLast + hLast*2 - settings.exchange.fHeight >= vars.client.h * 0.79)
+					If (yLast + hLast*2 >= vars.client.h * 0.79)
 						Break
 				}
 		}
 	}
 
-	xCalc := (transactions.Count() ? wUI/2 + wUI2 - hEdits * 2 - wEdits * 2.25 : wUI/2 - hEdits*2 - wEdits*2.25)
-	Gui %GUI_name%: Add, Pic, % "x" xCalc + hEdits * 2 + wEdits * 2.25 - settings.exchange.fHeight/2 " y0 w" settings.exchange.fHeight - 2 " h-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
-	Gui %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack HWNDhwnd", 0
-	vars.hwnd.help_tooltips["exchange_general"] := hwnd, vars.exchange.wTooltip := hEdits * 4 + wEdits * 4.5
-
-	Gui, %GUI_name%: Add, Pic, % "Section x" xCalc " y" settings.exchange.fHeight - 1 " BackgroundTrans Border HWNDhwnd gExchange", % "HBitmap:*" vars.pics.exchange.chaos
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp h" hEdits " w" hEdits " BackgroundBlack cGreen HWNDhwnd1", 0
-	Gui, %GUI_name%: Add, Pic, % "ys xp+" hEdits " BackgroundTrans Border HWNDhwnd2 gExchange", % "HBitmap:*" vars.pics.exchange.divine
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp h" hEdits " w" hEdits " BackgroundBlack cGreen HWNDhwnd3", 0
+	xCalc := (transactions.Count() ? wUI/2 + wUI2 - hIcons * 2 : wUI/2 - hIcons * 2) - wRatio/2 - wEdits, vars.exchange.wTooltip := wUI
+	Gui, %GUI_name%: Add, Pic, % "Section x" xCalc " y0 BackgroundTrans Border HWNDhwnd gExchange", % "HBitmap:*" vars.pics.exchange.chaos
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd1", 0
+	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd2 gExchange", % "HBitmap:*" vars.pics.exchange.divine
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd3", 0
 	vars.hwnd.exchange.chaos1 := hwnd, vars.hwnd.exchange.chaos1_bar := hwnd1, vars.hwnd.exchange.divine1 := hwnd2, vars.hwnd.exchange.divine1_bar := hwnd3
+	vars.hwnd.help_tooltips["exchange_currency icons"] := hwnd1, vars.hwnd.help_tooltips["exchange_currency icons|"] := hwnd3
 
-	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 4
+	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 2
 	Gui, %GUI_name%: Add, Edit, % "ys R1 Limit Center cBlack HWNDhwnd gExchange w" wEdits, 0
-	Gui, %GUI_name%: Add, Text, % "ys hp 0x200 Center Border HWNDhwnd1 BackgroundTrans cFF8000 w" 2.5 * wEdits, % "0 : 0"
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd3 BackgroundBlack", 0
+	Gui, %GUI_name%: Add, Text, % "ys hp 0x200 Center Border gExchange HWNDhwnd1 BackgroundTrans cFF8000 w" wRatio, % "0 : 0"
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd3 BackgroundBlack cBlack", 100
+	Gui, %GUI_name%: Add, Text, % "xp y+-1 wp hp Hidden 0x200 Center Border HWNDhwnd4 BackgroundTrans"
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Hidden HWNDhwnd5 BackgroundBlack cBlack", 100
 	Gui, %GUI_name%: Add, Edit, % "ys R1 Limit Center cBlack HWNDhwnd2 gExchange w" wEdits, 0
 	vars.hwnd.exchange.edit1 := hwnd, vars.hwnd.exchange.ratio_text := hwnd1, vars.hwnd.exchange.ratio := hwnd3, vars.hwnd.exchange.edit2 := hwnd2
+	vars.hwnd.exchange.ratio_text2 := hwnd4, vars.hwnd.exchange.ratio2 := hwnd5
+	vars.hwnd.help_tooltips["exchange_edit fields"] := hwnd, vars.hwnd.help_tooltips["exchange_edit fields|"] := hwnd2, vars.hwnd.help_tooltips["exchange_ratio"] := hwnd3, vars.hwnd.help_tooltips["exchange_ratio 2"] := hwnd5
 
 	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd gExchange", % "HBitmap:*" vars.pics.exchange.divine
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp h" hEdits " w" hEdits " BackgroundBlack cFF8000 HWNDhwnd1", 0
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cFF8000 HWNDhwnd1", 0
 	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd2 gExchange", % "HBitmap:*" vars.pics.exchange.chaos
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp h" hEdits " w" hEdits " BackgroundBlack cFF8000 HWNDhwnd3", 0
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cFF8000 HWNDhwnd3", 0
 	vars.hwnd.exchange.chaos2 := hwnd2, vars.hwnd.exchange.chaos2_bar := hwnd3, vars.hwnd.exchange.divine2 := hwnd, vars.hwnd.exchange.divine2_bar := hwnd1
+	vars.hwnd.help_tooltips["exchange_currency icons||"] := hwnd1, vars.hwnd.help_tooltips["exchange_currency icons|||"] := hwnd3
 
 	ControlGetPos, xChaos1, yChaos1, wChaos1, hChaos1,, % "ahk_id " vars.hwnd.exchange.chaos1
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize - 2
-	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hEdits * 2, % settings.exchange.chaos_div
+	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 2, % settings.exchange.chaos_div
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
 	vars.hwnd.help_tooltips["exchange_chaos-div"] := vars.hwnd.exchange.chaos_div := hwnd
 
-	Gui, %GUI_name%: Add, Text, % "Section Border Hidden x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 + settings.exchange.fHeight - 1 " HWNDhwnd w" wBoxes " h" hBoxes
+	Gui, %GUI_name%: Add, Text, % "Section Border Hidden x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 " HWNDhwnd w" wBoxes " h" hBoxes
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
 	Gui, %GUI_name%: Add, Text, % "ys x+" gBoxes - 1 " Border Hidden HWNDhwnd1 h" hBoxes " w" wBoxes
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
-	Gui, %GUI_name%: Add, Text, % "Section x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2819 " y" vars.client.h * 0.176 + settings.exchange.fHeight - 1 " w" wOrder " h" hOrder " Border Hidden HWNDhwnd2"
+	Gui, %GUI_name%: Add, Text, % "Section x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2819 " y" vars.client.h * 0.176 " w" wOrder " h" hOrder " Border Hidden HWNDhwnd2"
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
 	vars.hwnd.exchange.amount1 := hwnd, vars.hwnd.exchange.amount2 := hwnd1, vars.hwnd.exchange.order := hwnd2
 
@@ -342,7 +374,7 @@ Exchange(cHWND := "", hotkey := "")
 		}
 		balance := (balance >= 0 ? "+" : "") . Round(balance, 1), min := (min >= 0 ? "+" : "") . Round(min, 1), max := max := (max >= 0 ? "+" : "") . Round(max, 1)
 
-		Gui, %GUI_name%: Add, Text, % "Section Border BackgroundTrans x" wUI2 + wUI " y" settings.exchange.fHeight - 1 " w" wUI2, % " " selected_date . Lang_Trans("global_colon")
+		Gui, %GUI_name%: Add, Text, % "Section Border BackgroundTrans x" wUI2 + wUI " y0 w" wUI2, % " " selected_date . Lang_Trans("global_colon")
 		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", 0
 
 		LLK_PanelDimensions(["+77777.0"], settings.exchange.fSize, wHighCurrLow2, hHighCurrLow2), w := wUI2 - wHighCurrLow - wHighCurrLow2
@@ -357,7 +389,7 @@ Exchange(cHWND := "", hotkey := "")
 		Gui, %GUI_name%: Add, Text, % "ys x+-1 yp BackgroundTrans Border 0x200 Right w" wHighCurrLow2 " h" hCustom, % balance " "
 		Gui, %GUI_name%: Add, Text, % "Section xs y+-1 BackgroundTrans Border 0x200 Center w" wHighCurrLow " h" hCustom, % Lang_Trans("m_clone_performance", 3)
 		Gui, %GUI_name%: Add, Text, % "ys x+-1 yp BackgroundTrans Border 0x200 Right w" wHighCurrLow2 " h" hCustom, % min " "
-		Gui, %GUI_name%: Add, Progress, % "Disabled Section x" wUI2 + wUI + w " y" settings.exchange.fHeight * 2 - 2 " w" wHighCurrLow + wHighCurrLow2 - 1 " h" hCustom * 4 - 3 " BackgroundBlack", 0
+		Gui, %GUI_name%: Add, Progress, % "Disabled Section x" wUI2 + wUI + w " y" settings.exchange.fHeight - 1 " w" wHighCurrLow + wHighCurrLow2 - 1 " h" hCustom * 4 - 3 " BackgroundBlack", 0
 
 		If !vars.pics.exchange_trades.graph_week
 			vars.pics.exchange_trades.graph_week := Exchange_CandleGraph(w, hCustom * 4 - 5, dates, stats)
@@ -380,7 +412,7 @@ Exchange(cHWND := "", hotkey := "")
 
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, wWin, hWin, ahk_id %hwnd_exchange%
-	Gui, %GUI_name%: Show, % "NA x" vars.client.x + vars.client.w/2 - wUI/2 - (vars.pixels.inventory ? vars.client.h * 0.3083 : 0) - (transactions.Count() ? wUI2 : 0) " y" vars.client.y + vars.client.h * 0.1055 - settings.exchange.fHeight + 1
+	Gui, %GUI_name%: Show, % "NA x" vars.client.x + vars.client.w/2 - wUI/2 - (vars.pixels.inventory ? vars.client.h * 0.3083 : 0) - (transactions.Count() ? wUI2 : 0) " y" vars.client.y + vars.client.h * 0.1055
 
 	vars.exchange.inventory := vars.pixels.inventory, vars.exchange.coords := {}
 	LLK_Overlay(hwnd_exchange, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
@@ -404,9 +436,9 @@ Exchange2(hotkey)
 	box := Exchange_coords()
 	If !InStr("amount1, amount2, order", box) || (box = "order" && hotkey = "Space")
 		Return
-	
+
 	KeyWait, % hotkey
-	If !Exchange_coords() || !WinActive("ahk_id " vars.hwnd.poe_client) ;prevent coincidental activation when dragging a window that happens to be in that spot
+	If !Exchange_coords() || !WinActive("ahk_id " vars.hwnd.poe_client) && !WinActive("ahk_id " vars.hwnd.exchange.main) ;prevent coincidental activation when dragging a window that happens to be in that spot
 		Return
 	If (box = "order")
 	{
@@ -441,11 +473,16 @@ Exchange2(hotkey)
 		}
 		Else If selection
 			GuiControl,, % vars.hwnd.exchange[selection "_bar"], 0
+
+		If vars.exchange.ratio_lock
+			Exchange("lock")
 		GuiControl,, % vars.hwnd.exchange.edit1, 0
 		GuiControl,, % vars.hwnd.exchange.edit2, 0
 	}
 	Else If (hotkey = "LButton")
 	{
+		If vars.exchange.ratio_lock
+			Exchange("lock")
 		Clipboard := ""
 		Sleep 50
 		SendInput, ^{a}^{c}
@@ -455,6 +492,8 @@ Exchange2(hotkey)
 	}
 	Else If (hotkey = "Space")
 	{
+		If vars.exchange.ratio_lock
+			Exchange("lock")
 		vars.exchange.multiplier := 1
 		Click
 		SendInput, ^{a}{DEL}{Enter}
