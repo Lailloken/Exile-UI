@@ -1,12 +1,12 @@
 {
   "settings": {
     "multi-threading 0": [
-      "the tool is running on a single cpu thread",
-      "certain advanced features and performance options are not available"
+      "advanced features and performance options are not available",
+      "examples:\n- clone-frames fps options"
     ],
     "multi-threading 1": [
-      "the tool is running on multiple cpu threads",
-      "this enables certain advanced features and performance options"
+      "advanced features and performance options are available",
+      "examples:\n- clone-frames fps options"
     ],
     "kill timer": [
       "automatically closes the script if the game client is not running",
@@ -114,8 +114,8 @@
     ],
     "anoints enable": [
       "provides a quick-access interface to find and filter which anoint/instill recipes are available with the materials you currently have",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu",
-      "hover over materials and hold <alt> to open the interface:",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu(/underline)",
+      "hover over materials and hold <alt> to open the interface",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>"
     ],
     "anoints update": [
@@ -125,7 +125,7 @@
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
       "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu",
-      "while the syndicate board is on screen, hold the omni-key to activate the overlay"
+      "while the syndicate board is on screen, hold the <omni-key> to activate the overlay"
     ],
     "betrayal ruthless": [
       "show ruthless rewards and use separate highlighting instead"
@@ -134,8 +134,7 @@
       "folder that contains calibration files"
     ],
     "betrayal color": [
-      "click a button to open the color-palette, right click to reset",
-      "hover over a reward and press a number key to apply the corresponding color"
+      "click a button to open the color-palette, right click to reset"
     ],
     "betrayal rewards": [
       "long-click a name below to show that member's rewards",
@@ -150,8 +149,8 @@
       "provides a toolkit to create and manage customizable cheat sheet overlays"
     ],
     "cheatsheets modifier-key": [
-      "cheat sheets are activated by pressing the modifier and omni-key simultaneously",
-      "if a sheet is configured as <hold>, only the omni-key has to be held down",
+      "cheat sheets are activated by pressing the modifier and <omni-key> simultaneously",
+      "if a sheet is configured as <hold>, only the <omni-key> has to be held down",
       "pick a combination that is not used in game"
     ],
     "cheatsheets color": [
@@ -197,7 +196,7 @@
     ],
     "cloneframes performance": [
       "select a preferred/compatible performance profile",
-      "try to balance the number of clone-frames and the target-fps so that the measured performance stays green"
+      "try to balance the number of clone-frames and the target fps so that the measured performance stays green"
     ],
     "cloneframes new": [
       "to create a new frame, enter a name and press enter"
@@ -224,8 +223,9 @@
     ],
     "exchange enable": [
       "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
-      "requires the <currency exchange> screen-check to be set up correctly(/underline)",
-      "in your hideout, hold <tab> while the currency exchange window is on screen to activate the feature"
+      "requires the <currency exchange> screen-check to be set up correctly in the <screen-checks> menu(/underline)",
+      "in your hideout, hold <tab> while the currency exchange window is on screen to activate the feature",
+      "hold <alt> to temporarily hide the overlay"
     ],
     "exchange delete logs": [
       "long-click to delete the entire trade log"
@@ -248,13 +248,13 @@
       "it does not block game actions bound to it"
     ],
     "hotkeys omnikey": [
-      "if you want to move the omni-key to a different key, specify it in the edit-field",
+      "if you want to move the <omni-key> to a different key, specify it in the edit-field",
       "since the hotkey is used a lot, i highly recommend avoiding key combinations",
-      "don't bind it to a key used for chatting, as features might randomly activate",
+      "don't bind it to modifier-keys or keys used for chatting, otherwise features might randomly activate",
       "for special keys, check the links above to find proper names and formatting"
     ],
     "hotkeys omnikey2": [
-      "due to a game bug, having the c-key rebound in game requires a secondary omni-key for items",
+      "due to a game bug, having the c-key rebound in game requires a secondary <omni-key> for items",
       "whenever a feature requires you to omni-click an item, you will have to use this secondary one",
       "for special keys, check the links above to find proper names and formatting"
     ],
@@ -269,14 +269,14 @@
     "hotkeys tab": [
       "this hotkey (re)activates certain widgets and non-permanent overlays",
       "if something is bound to <tab> in game and requires it to be held down (e.g. skills, movement), you'll have to specify an alternative key in the edit field",
-      "tooltips will refer to it as tab, even when rebound"
+      "tooltips will refer to it as <tab>, even when rebound"
     ],
     "hotkeys restart": [
       "if the script crashes and stops responding, use this combination to restart it"
     ],
     "iteminfo enable": [
       "provides a customizable item tooltip which adds glance value to loot you pick up",
-      "hold the omni-key while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
+      "hold the <omni-key> while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
       "click into the game or press <esc> to close it",
       "note: requires the <inventory> screen-check to be set up correctly(/underline)"
     ],
@@ -287,8 +287,8 @@
     "iteminfo reset": [
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
     ],
-    "iteminfo omni-key": [
-      "hold the omni-key while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
+    "iteminfo <omni-key>": [
+      "hold the <omni-key> while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
       "click into the game or press <esc> to close it"
     ],
     "iteminfo alt-key": [
@@ -322,7 +322,7 @@
     ],
     "iteminfo league-start": [
       "adds a section where the item's stats are compared to your current gear",
-      "this section replaces the base-stats section and requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu"
+      "this section replaces the base-stats section"
     ],
     "iteminfo affix-info icon": [
       "the last column will show an icon for the mod-group of an affix (if available)"
@@ -415,7 +415,7 @@
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
-      "while hovering over a gem, hold the omni-key to show an overlay with gem setups/links",
+      "while hovering over a gem, hold the <omni-key> to show an overlay with gem setups/links",
       "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu",
       "",
       "while the skill-tree is on screen, press <tab> to show overlays with skill-tree schematics",
@@ -426,13 +426,13 @@
       "deleting them is only required if the schematics are outdated or otherwise incorrect"
     ],
     "leveltracker pob gems": [
-      "the gem-overlay will stay on screen after releasing the omni-key, until you press <esc>",
+      "the gem-overlay will stay on screen after releasing the <omni-key>, until you press <esc>",
       "this option also allows the overlay to be moved around by long-clicking a gem-name in the list(s)",
       "clicking a gem-name in the list(s) will start an in-game search for that gem"
     ],
     "leveltracker pob manual": [
       "the tree-overlay will use manual screen-caps instead of schematics rendered from pob's data",
-      "this option also changes how the overlay is accessed: hold the omni-key while the skill-tree is on screen"
+      "this option also changes how the overlay is accessed: hold the <omni-key> while the skill-tree is on screen"
     ],
     "leveltracker pob": [
       "m-mouse in pob will open the screen-cap menu",
@@ -474,7 +474,7 @@
       "each line is a step you need to complete",
       "(hint)____ indented lines provide more info for the step above",
       "(hint)____",
-      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
+      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold <tab> to see more info",
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
@@ -544,7 +544,7 @@
     ],
     "leveltracker hotkeys": [
       "type in a key-name and press <enter>",
-      "don't bind it to keys used for chatting"
+      "don't bind it to modifier-keys or keys used for chatting"
     ],
     "lootfilter enable": [
       "provides an interface to modify your lootfilter and apply changes on the fly",
@@ -614,9 +614,8 @@
       "refreshing kills only has to be done if you have finished the map and won't go back in"
     ],
     "maptracker mapinfo": [
-      "map-mods in the map-info panel will be logged",
-      "this also includes information such as:\nelder guardians, conquerors, type of maven invitation, blight(-ravaged), contract/blueprint",
-      "the map-info panel is a separate feature and has to be enabled"
+      "map-mods from the map-info panel will be logged\n(separate feature, has to be enabled and used)",
+      "this also includes information such as:\nelder guardians, conquerors, type of maven invitation, blight(-ravaged), contract/blueprint"
     ],
     "maptracker notes": [
       "adds an icon to the tracker panel to log custom notes for individual map runs",
@@ -636,11 +635,11 @@
     ],
     "mapinfo enable": [
       "provides a compact and customizable info-panel for map mods",
-      "omni-clicking a map opens the panel, and pressing 1-4 while hovering over mods applies highlight colors",
-      "to ignore mods, press space while hovering over them"
+      "omni-clicking a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu(/underline)"
     ],
-    "mapinfo omni-key": [
-      "press the omni-key while hovering over maps/waystones to activate the panel",
+    "mapinfo <omni-key>": [
+      "press the <omni-key> while hovering over maps/waystones to activate the panel",
       "click into the game or press <esc> to close it"
     ],
     "mapinfo alt-key": [
@@ -650,8 +649,7 @@
     ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
-      "you have to hold <shift> first, right click currency, and then click a map",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu"
+      "you have to hold <shift> first, right click currency, and then click a map"
     ],
     "mapinfo tab": [
       "hold <tab> to view a compact version of the panel on the right of the screen",
@@ -685,20 +683,15 @@
     ],
     "mapinfo reset tiers": [
       "long-click to reset every map mod tier to default (white, not crossed out)",
-      "(/underline)note: this affects every single mod, not just the pinned ones below"
+      "(/underline)this affects every single mod, not just the pinned ones below"
     ],
     "alarm enable": [
       "timer-widget with alarm/countdown and stopwatch functionality",
-      "hidden by default, hold <tab> to display it",
-      "+ adds a new timer: type in a time (top), a name (bot), and press <enter>",
-      "click an existing timer to start it, right-click to stop it",
-      "leave time blank to start stopwatch: click xx:xx to loop",
-      "leave name blank for single-use timer",
-      "hold <right-click> on a name to remove a timer"
+      "hidden by default, hold <tab> in game to display it"
     ],
     "map-events enable": [
       "displays notifications whenever certain map events spawn",
-      "examples:\nnameless seer\nreflecting mist"
+      "examples: nameless seer, reflecting mist"
     ],
     "map-events position": [
       "the notification will be docked to one of the client's edges"
@@ -707,11 +700,12 @@
       "click to activate a test-notification"
     ],
     "notepad enable": [
-      "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes"
+      "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes",
+      "adds a button to the main toolbar: click it to toggle the notepad, right-click it to create a single-use sticky note"
     ],
     "notepad default color": [
-      "specify the colors for new tabs",
-      "tabs can also be individually customized afterwards"
+      "specify the default colors for widgets of new tabs",
+      "these can be customized for each tab afterwards"
     ],
     "notepad opacity": [
       "the opacity of inactive widgets (when <tab> is not held down)",
@@ -743,7 +737,7 @@
     ],
     "ocr hotkey": [
       "type in the hotkey you want to use to activate this feature",
-      "do not choose keys used for chatting in order to prevent accidentally activating the feature",
+      "don't bind it to modifier-keys or keys used for chatting in order to prevent accidentally activating the feature",
       "check the links above if you want to use special keys/combinations"
     ],
     "sanctum enable": [
@@ -777,7 +771,7 @@
     ],
     "screenchecks image-about": [
       "same principle as pixel-checks (see above) but more precise",
-      "these help the omni-key interpret which feature to activate when pressed"
+      "these are used to interpret which feature to activate when pressing the <omni-key> or <tab>"
     ],
     "screenchecks image-info": [
       "long-click to see instructions"
@@ -806,13 +800,13 @@
     ],
     "searchstrings about": [
       "search-strings are grouped into use-cases, e.g. gwennen, harvest, vendor",
-      "when pressing the omni-key, the script detects the right use-case and displays a list with entries to choose from",
+      "when pressing the <omni-key>, the script detects the right use-case and displays a list with entries to choose from",
       "this detection requires manual image calibration for each use-case",
-      "some use-cases (e.g. bestiary index) don't automatically hide the league-info panel in the top-right corner, so you have to open the inventory before pressing the omni-key"
+      "some use-cases (e.g. bestiary index) don't automatically hide the league-info panel in the top-right corner, so you have to open the inventory before pressing the <omni-key>"
     ],
     "searchstrings about 2": [
       "search-strings are grouped into use-cases, e.g. gem cutting, stash, vendor",
-      "when pressing the omni-key, the script detects the right use-case and displays a list with entries to choose from",
+      "when pressing the <omni-key>, the script detects the right use-case and displays a list with entries to choose from",
       "this detection requires manual image calibration for each use-case"
     ],
     "searchstrings calibrate": [
@@ -856,13 +850,13 @@
       "this is what bookmarked price tags look like"
     ],
     "stash enable": [
-      "stash feature that highlights items in specific stash tabs according to rough market prices",
-      "long-press the omni-key (default: middle mouse-button) while hovering over an item in a tab to activate the feature",
-      "there needs to be at least one tab-folder somewhere in your stash (the overlay will be slightly offset otherwise)"
+      "stash feature that overlays price-tags onto currencies in specific stash tabs",
+      "long-press the <omni-key> while hovering over an item in a tab to activate the feature",
+      "there needs to be at least one tab-folder somewhere in your stash (the overlay will be slightly offset otherwise)(/underline)"
     ],
     "stash hotkey": [
       "this hotkey is exclusive to streaming clients, and pressing it will open an exclusive selection menu that lists the available tabs",
-      "bind this feature to a key not used for chatting: type in a key-name and press <enter>"
+      "don't bind it to modifier-keys or keys used for chatting: type in a key-name and press <enter>"
     ],
     "stash history": [
       "shows an additional bar-chart with an item's price history for this week",
@@ -888,7 +882,7 @@
       "profile 5 will be left untouched in order to allow creating a trash/vendor tier"
     ],
     "stash config": [
-      "to configure individual tabs, open them in game and long-press the omni-key over an item in the tab",
+      "to configure individual tabs, open them in game and long-press the <omni-key> over an item in the tab",
       "once the stash-ninja overlay is active, settings for the active tab will appear below"
     ],
     "stash gap": [
@@ -958,6 +952,34 @@
       "notifications will start showing again with the next version"
     ]
   },
+  "alarm": {
+    "add": [
+      "add a new timer"
+    ],
+    "drag": [
+      "drag to reposition the whole widget"
+    ],
+    "name": [
+      "hold right-click to permanently remove this timer"
+    ],
+    "orientation": [
+      "toggle between horizontal and vertical layout"
+    ],
+    "set name": [
+      "optional: enter a name to create a permanent, reusable timer",
+      "un-named timers are lost when restarting the tool(/underline)"
+    ],
+    "set time": [
+      "supported formats: hh:mm:ss, hh mm ss",
+      "leave blank to use the timer as a stopwatch"
+    ],
+    "timer": [
+      "left-click to loop the timer\nright-click to stop the timer"
+    ],
+    "timer idle": [
+      "click to start this timer"
+    ]
+  },
   "anoints": {
     "materials": [
       "hover over materials in your stash/inventory and hold <alt> to load the available amounts",
@@ -992,7 +1014,7 @@
     ],
     "menu activation": [
       "how long the sheet stays on screen after activation",
-      "hold: until omni-key is released",
+      "hold: until <omni-key> is released",
       "toggle: until esc is pressed",
       "activating a sheet by pressing two modifier keys will always <toggle>"
     ],
@@ -1065,16 +1087,24 @@
     "chaos-div": [
       "the current div-price in chaos (e.g. 210):\nthis value is used to convert chaos to divines when logging trades"
     ],
-    "general": [
-      "enter values into the edit fields below, or scroll the mouse wheel while hovering over them",
-      "hover over the < x : y > ratio and scroll the wheel to adjust the currency amounts\n(hold shift to adjust by 10x)",
-      "in-game edit fields:\n- click: copy the values into the calculator\n- right-click: paste values from the calculator\n- space: clear/reset the field under the cursor",
-      "hold <alt> to temporarily hide the overlay",
-      "optional: click a chaos/divine icon on one side to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
+    "currency icons": [
+      "optional: click a currency icon to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
+    ],
+    "edit fields": [
+      "enter a value, or scroll to adjust the current value (hold <shift> to adjust by 10)",
+      "click in-game fields to copy values here, or right-click them to paste from here",
+      "press <space> while hovering in-game fields to reset them"
     ],
     "logs": [
       "click a date to view trades from that day",
       "hold right-click on a date or trade to delete it"
+    ],
+    "ratio": [
+      "scroll to adjust both values according to the ratio (hold shift to adjust by 10x)",
+      "click to lock the ratio: values will now be adjusted as close to this ratio as possible"
+    ],
+    "ratio 2": [
+      "the actual ratio compared to the locked one"
     ]
   },
   "geartracker": {
@@ -1147,11 +1177,20 @@
     ]
   },
   "leveltrackerschematics": {
+    "color spec": [
+      "color used to highlight new nodes",
+      "left-click to open the color palette\nright-click to reset to default"
+    ],
+    "color unspec": [
+      "color used to highlight nodes to unspec",
+      "left-click to open the color palette\nright-click to reset to default"
+    ],
     "how-to": [
       "press <q> or <e> to switch between individual skill-trees",
       "hold <w> to show an overview of the whole tree",
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
-      "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position"
+      "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position",
+      "hold <alt> to temporarily hide the overlay"
     ]
   },
   "actdecoder": {

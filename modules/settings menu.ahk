@@ -902,7 +902,7 @@ Settings_donations()
 	local
 	global vars, settings, JSON
 	static last_update, live_list, patterns := [["000000", "F99619"], ["000000", "F05A23"], ["FFFFFF", "F05A23"], ["Red", "FFFFFF"]]
-	, placeholder := "these are placeholders, not actual donations:`ncouldn't download the list, or it doesn't exist yet"
+	, placeholder := "these are placeholders, not actual donations:`ncouldn't download the list"
 
 	If !vars.settings.donations
 		vars.settings.donations := {"Le Toucan": [1, ["june 17, 2024:`ni have arrived. caw, caw"]], "Lightwoods": [4, ["december 23, 2015:`ni can offer you 2 exalted orbs for your mirror", "december 23, 2015:`nsince i'm feeling happy today, i'll give you some maps on top", "december 23, 2015:`n<necropolis map> 5 of these?"]], "Average Redditor": [1, ["june 18, 2024:`nbruh, just enjoy the game"]], "Sanest Redditor": [3, ["august 5, 2023:`nyassss keep making more powerful and intrusive tools so ggg finally bans all ahk scripts"]], "ILoveLootsy": [2, ["february 1, 2016:`ndang yo"]]}
@@ -1061,7 +1061,7 @@ Settings_general()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki">llk-ui wiki && setup guide</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki">exile ui wiki && setup guide</a>
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_general_settings")
@@ -1732,7 +1732,7 @@ Settings_iteminfo()
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd0", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Checkbox, % "Section xs BackgroundTrans gSettings_iteminfo2 HWNDhwnd02 c" colors.2 " Checked"settings.iteminfo.rules.attacks, % Lang_Trans("m_iteminfo_rules", 3)
-	vars.hwnd.settings.rule_attacks := hwnd02
+	vars.hwnd.settings.rule_attacks := hwnd02, vars.hwnd.help_tooltips["settings_iteminfo rules"] := hwnd0
 	GuiControlGet, text_, Pos, % hwnd02
 	checkbox_spacing := text_w + settings.general.fWidth/2
 
@@ -3009,6 +3009,9 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	global vars, settings
 	static toggle := 0
 
+	If vars.settings.wait
+		Return
+
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
@@ -3124,7 +3127,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 
 	GuiControl, Move, % vars.hwnd.settings.winbar, % "w"w - settings.general.fWidth*2 + 2
 	GuiControl, Move, % vars.hwnd.settings.winx, % "x"w - settings.general.fWidth*2 " y-1"
-	sleep 50
+	Sleep 50
 
 	If (vars.settings.x != "") && (vars.settings.y != "")
 	{
@@ -4446,7 +4449,7 @@ Settings_unsupported()
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % "this feature is not available on clients`nwith an unsupported language.`n`nit will be available once a language-`npack for the current language has been`ninstalled.`n`nthese packs have to be created by the`ncommunity. to find out if there are any`nfor your language or how to`ncreate one, click the link below.`n"
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Link, % "Section xs", <a href="https://github.com/Lailloken/Lailloken-UI/discussions/categories/translations-localization">llk-ui discussions: translations</a>
+	Gui, %GUI%: Add, Link, % "Section xs", <a href="https://github.com/Lailloken/Lailloken-UI/discussions/categories/translations-localization">exile ui discussions: translations</a>
 }
 
 Settings_updater()
