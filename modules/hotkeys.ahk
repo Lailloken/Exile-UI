@@ -138,6 +138,8 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If WinExist("Exile UI: RGB-Picker")
+		vars.RGB_picker.cancel := 1
 	Else If vars.snipping_tool.GUI
 		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -245,6 +247,7 @@ Hotkeys_ESC()
 		KeyWait, ESC
 		SendInput, {ESC up}
 	}
+	KeyWait, ESC
 }
 
 Hotkeys_RemoveModifiers(hotkey)
@@ -489,7 +492,7 @@ Hotkeys_Tab()
 *WheelUp::Exchange("hotkey", "WheelUp")
 *WheelDown::Exchange("hotkey", "WheelDown")
 
-#If vars.hwnd.exchange.main && Exchange_coords() && WinExist("ahk_id " vars.hwnd.exchange.main)
+#If vars.hwnd.exchange.main && Exchange_coords() && WinExist("ahk_id " vars.hwnd.exchange.main) && (WinActive("ahk_id " vars.hwnd.exchange.main) || WinActive("ahk_id " vars.hwnd.poe_client))
 ~LButton::Exchange2("LButton")
 ~RButton::Exchange2("RButton")
 SC0039::Exchange2("Space")
@@ -523,6 +526,7 @@ SC010::Leveltracker_PobGemLinks("hotkey1")
 SC012::Leveltracker_PobGemLinks("hotkey2")
 
 #If vars.leveltracker.skilltree_schematics.GUI && WinExist("ahk_id " vars.hwnd.skilltree_schematics.main)
+&& !(vars.general.cMouse && InStr(vars.hwnd.skilltree_schematics.color_1bar "," vars.hwnd.skilltree_schematics.color_2bar, vars.general.cMouse))
 RButton::Leveltracker_PobSkilltree("drag")
 SC002::Leveltracker_PobSkilltree("ascendancy 1")
 SC003::Leveltracker_PobSkilltree("ascendancy 2")
@@ -531,6 +535,7 @@ SC005::Leveltracker_PobSkilltree("ascendancy 4")
 SC010::Leveltracker_PobSkilltree("prev")
 SC012::Leveltracker_PobSkilltree("next")
 SC011::Leveltracker_PobSkilltree("overview")
+SC038::Leveltracker_PobSkilltree("hide")
 SC039::Leveltracker_PobSkilltree("reset")
 
 #If settings.features.sanctum && vars.sanctum.active && WinExist("ahk_id " vars.hwnd.sanctum.second) && !vars.sanctum.lock ;last condition needed to make the space-key usable again after initial lock
