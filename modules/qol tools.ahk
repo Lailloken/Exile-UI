@@ -204,7 +204,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 				{
 					vars.alarm.timers.Delete(pCheck)
 					vars.alarm.timers["xyz|" control] := control
-					IniWrite, % """[0," (vars.alarm.defaults[control] ? """" vars.alarm.defaults[control] """" : """") "]""", % "ini" vars.poe_version "\qol tools.ini", alarm - timers, % control
+					IniWrite, % """[0,""" (vars.alarm.defaults[control] ? vars.alarm.defaults[control] : "") """]""", % "ini" vars.poe_version "\qol tools.ini", alarm - timers, % control
 				}
 				Else vars.alarm.timers.Delete(control)
 			}
