@@ -1,5 +1,13 @@
 [
   [
+	["1.58.9", 15809],
+	"july 18, 2025",
+	"map-tracker: fixed oshabi fight, replaced reflecting mist icon",
+	"act-tracker: pob-tree improvements (smoothness, color customization)",
+	"map-event notifications: added support for infamous mercenaries",
+	"vaal street: added ratio locking"
+  ],
+  [
 	["1.58.8", 15808],
 	"july 7, 2025",
 	"map-info: fixed the t17 rare monster map-mod",
