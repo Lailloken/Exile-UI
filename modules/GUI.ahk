@@ -254,6 +254,8 @@ Gui_HelpToolTip(HWND_key)
 		yPos := yWin + hWin
 	Else If (check = "exchange" || check = "alarm")
 		yPos := yWin - height + 1
+	Else If (check = "leveltrackerschematics")
+		xPos := vars.client.x + vars.client.w/2 - tooltip_width/2
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1

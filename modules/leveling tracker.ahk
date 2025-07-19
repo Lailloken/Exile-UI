@@ -87,8 +87,9 @@
 	settings.leveltracker.xCoord := !Blank(check := ini.settings["x-coordinate"]) ? check : ""
 	settings.leveltracker.yCoord := !Blank(check := ini.settings["y-coordinate"]) ? check : ""
 	settings.leveltracker.gemlinksToggle := !Blank(check := ini.settings["toggle gem-links"]) ? check : 0
-	settings.leveltracker.pobtree_color1 := !Blank(check := ini.settings["pob-tree color spec"]) ? check : "00CC00"
-	settings.leveltracker.pobtree_color2 := !Blank(check := ini.settings["pob-tree color unspec"]) ? check : "FF0000"
+	settings.leveltracker.pobtree_color1 := !Blank(check := ini.settings["pob-tree color spec"]) ? (check = "800080" ? "810081" : check) : "00CC00"
+	settings.leveltracker.pobtree_color2 := !Blank(check := ini.settings["pob-tree color unspec"]) ? (check = "800080" ? "810081" : check) : "FF0000"
+	settings.leveltracker.pobtree_opacity := !Blank(check := ini.settings["pob-tree opacity"]) ? check : 100
 
 	If settings.leveltracker.hotkeys
 	{
@@ -1988,7 +1989,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 {
 	local
 	global vars, settings, JSON, db
-	static angles, pen, brush, wait, radii, toggle := 0, color1, color2
+	static angles, pen, brush, wait, radii, toggle := 0, color1, color2, opacity
 
 	check := LLK_HasVal(vars.hwnd.skilltree_schematics, mode), control := SubStr(check, InStr(check, "_") + 1)
 	If InStr(check, "color_")
@@ -1999,12 +2000,22 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 
 		If Blank(color_pick)
 			Return
+		color_pick := (color_pick = "800080") ? "810081" : color_pick
 		IniWrite, % """" (settings.leveltracker["pobtree_color" control] := color_pick) """", % "ini" vars.poe_version "\leveling tracker.ini", settings, % "pob-tree color " (control = 1 ? "spec" : "unspec")
 		For key, pBrush in brush
 			Gdip_DeleteBrush(pBrush)
 		For key, pPen in pen
 			Gdip_DeletePen(pPen)
 		angles := ""
+	}
+	Else If (check = "opacity")
+	{
+		For key, pBrush in brush
+			Gdip_DeleteBrush(pBrush)
+		For key, pPen in pen
+			Gdip_DeletePen(pPen)
+		angles := ""
+		IniWrite, % (settings.leveltracker.pobtree_opacity := LLK_ControlGet(mode)), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "pob-tree opacity"
 	}
 	Else If !Blank(check)
 	{
@@ -2018,12 +2029,13 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 			, [10, 20, 30, 40, 45, 50, 60, 70, 80, 90, 100, 110, 120, 130, 135, 140, 150, 160, 170, 180, 190, 200, 210, 220, 225, 230, 240, 250, 260, 270, 280, 290, 300, 310, 315, 320, 330, 340, 350]]
 		angles.1.0 := 0, angles.2.0 := 0
 		radii := {"classstart": 200, "mastery": 100, "keystone": 100, "notable": 60, "normal": 40, "line": 10}
-		color1 := settings.leveltracker.pobtree_color1, color2 := settings.leveltracker.pobtree_color2
-		brush := {"white": Gdip_BrushCreateSolid(0x64ffffff), "white2": Gdip_BrushCreateSolid(0x99ffffff), "white3": Gdip_BrushCreateSolid(0xffffffff)
-		, "red0": Gdip_BrushCreateSolid(0x64ff0000), "red": Gdip_BrushCreateSolid(0x64 . color2), "red2": Gdip_BrushCreateSolid(0x99 . color2), "red3": Gdip_BrushCreateSolid(0xff . color2), "red4": Gdip_BrushCreateSolid(0xffff0000)
-		, "green0": Gdip_BrushCreateSolid(0x6400cc00), "green": Gdip_BrushCreateSolid(0x64 . color1), "green2": Gdip_BrushCreateSolid(0x99 . color1), "green3": Gdip_BrushCreateSolid(0xff . color1), "green4": Gdip_BrushCreateSolid(0xff00cc00)
-		, "blue0": Gdip_BrushCreateSolid(0x640000ff), "blue4": Gdip_BrushCreateSolid(0xff0000ff)
-		, "black": Gdip_BrushCreateSolid(0xff000000), "gray": Gdip_BrushCreateSolid(0xff606060), "yellow": Gdip_BrushCreateSolid(0x64ffff00)}
+		color1 := settings.leveltracker.pobtree_color1, color2 := settings.leveltracker.pobtree_color2, opacity := Format("{:#x}", settings.leveltracker.pobtree_opacity)
+
+		brush := {"white": Gdip_BrushCreateSolid(opacity "ffffff"), "white2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . "ffffff"), "white3": Gdip_BrushCreateSolid(0xffffffff)
+		, "red0": Gdip_BrushCreateSolid(opacity "ff0000"), "red": Gdip_BrushCreateSolid(opacity . color2), "red2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . color2), "red3": Gdip_BrushCreateSolid(0xff . color2), "red4": Gdip_BrushCreateSolid(0xffff0000)
+		, "green0": Gdip_BrushCreateSolid(opacity "00cc00"), "green": Gdip_BrushCreateSolid(opacity . color1), "green2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . color1), "green3": Gdip_BrushCreateSolid(0xff . color1), "green4": Gdip_BrushCreateSolid(0xff00cc00)
+		, "blue0": Gdip_BrushCreateSolid(opacity "0000ff"), "blue4": Gdip_BrushCreateSolid(0xff0000ff)
+		, "black": Gdip_BrushCreateSolid(0xff000000), "gray": Gdip_BrushCreateSolid(0xff606060), "yellow": Gdip_BrushCreateSolid(opacity "ffff00")}
 		pen := ""
 	}
 
@@ -2204,7 +2216,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 	mWidth := Round(mWidth * scale), mHeight := Round(mHeight * scale), xOffset := x_coords.1, yOffset := y_coords.1
 
 	If !pen
-		wPen := Max(2, Ceil(radii.line * scale)), pen := {"white": Gdip_CreatePen(0x64ffffff, wPen), "green": Gdip_CreatePen(0x64 . color1, wPen), "red": Gdip_CreatePen(0x64 . color2, wPen)}
+		wPen := Max(2, Ceil(radii.line * scale)), pen := {"white": Gdip_CreatePen(opacity "ffffff", wPen), "green": Gdip_CreatePen(opacity . color1, wPen), "red": Gdip_CreatePen(opacity . color2, wPen)}
 
 	Gui, skilltree_schematics: -DPIScale -Caption +E0x80000 +E0x20 +ToolWindow +LastFound +OwnDialogs +AlwaysOnTop +HWNDhwnd_skilltree_schematics
 	Gui, skilltree_schematics: Show, NA
@@ -2369,22 +2381,22 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 
 	LLK_PanelDimensions([label ": " tree_title], fSize, wPanel, hPanel)
 	hwnd_old := vars.hwnd.skilltree_schematics.info, vars.hwnd.skilltree_schematics := {"main": hwnd_skilltree_schematics, "info": hwnd_skilltree_schematics_info}
-	Gui, %GUI_name%: Add, Text, % "Section Border Center BackgroundTrans", % " " label ": " tree_title " "
+	Gui, %GUI_name%: Add, Text, % "Section x" vars.client.w/2 - wPanel/2 " Border Center BackgroundTrans", % " " label ": " tree_title " "
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack", 0
 
-	Gui, %GUI_name%: Add, Text, % "Section xs y+-1 xp+" wPanel/2 - settings.leveltracker.fHeight * 1.5 " h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd"
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd01 c" color1, 100
-	Gui, %GUI_name%: Add, Pic, % "ys x+-1 h" settings.leveltracker.fHeight - 2 " w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI_name%: Add, Pic, % "Section xs y+-1 x" vars.client.w/2 - settings.leveltracker.fHeight*3 " h" settings.leveltracker.fHeight - 2 " w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack HWNDhwnd1", 0
+	Gui, %GUI_name%: Add, Text, % "ys x+-1 h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd"
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd01 c" color1, 100
 	Gui, %GUI_name%: Add, Text, % "ys x+-1 h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd2"
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd21 c" color2, 100
+	Gui, %GUI_name%: Add, Slider, % "ys x+-1 hp w" settings.leveltracker.fHeight*3 " Center NoTicks Range50-255 Line5 ToolTip BackgroundBlack gLeveltracker_PobSkilltree HWNDhwnd3", % settings.leveltracker.pobtree_opacity
 	vars.hwnd.skilltree_schematics.color_1 := hwnd, vars.hwnd.skilltree_schematics.color_1bar := vars.hwnd.help_tooltips["leveltrackerschematics_color spec"] := hwnd01
 	vars.hwnd.skilltree_schematics.color_2 := hwnd2, vars.hwnd.skilltree_schematics.color_2bar := vars.hwnd.help_tooltips["leveltrackerschematics_color unspec"] := hwnd21
-	vars.hwnd.help_tooltips["leveltrackerschematics_how-to"] := hwnd1
+	vars.hwnd.help_tooltips["leveltrackerschematics_how-to"] := hwnd1, vars.hwnd.skilltree_schematics.opacity := vars.hwnd.help_tooltips["leveltrackerschematics_opacity"] := hwnd3
+	ControlFocus,, % "ahk_id " hwnd
 
-	Gui, %GUI_name%: Show, % "NA x10000 y10000"
-	WinGetPos,,, wWin, hWin, ahk_id %hwnd_skilltree_schematics_info%
-	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + vars.client.xc - wWin//2 " y" vars.monitor.y + vars.client.y
+	Gui, %GUI_name%: Show, % "NA x" vars.client.x " y" vars.client.y
 	LLK_Overlay(hwnd_skilltree_schematics_info, "show",, GUI_name), LLK_Overlay(hwnd_skilltree_schematics, "show",, "skilltree_schematics"), LLK_Overlay(hwnd_old, "destroy")
 
 	If ascendancy || (mode = "overview")

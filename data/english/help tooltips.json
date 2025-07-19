@@ -691,7 +691,7 @@
     ],
     "map-events enable": [
       "displays notifications whenever certain map events spawn",
-      "examples: nameless seer, reflecting mist"
+      "examples: nameless seer, reflecting mist, infamous mercenary"
     ],
     "map-events position": [
       "the notification will be docked to one of the client's edges"
@@ -1191,6 +1191,9 @@
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
       "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position",
       "hold <alt> to temporarily hide the overlay"
+    ],
+    "opacity": [
+      "adjust the opacity of the overlay (default: 100)"
     ]
   },
   "actdecoder": {

@@ -406,7 +406,8 @@ Hotkeys_Tab()
 			Break
 		}
 
-	If !active && settings.features.leveltracker && !settings.leveltracker.pobmanual && !Screenchecks_PixelSearch("gamescreen") && Screenchecks_ImageSearch("skilltree")
+	If !active && settings.features.leveltracker && !settings.leveltracker.pobmanual && !Screenchecks_PixelSearch("gamescreen") && Screenchecks_ImageSearch("skilltree") && !(settings.general.dev && WinActive("ahk_exe Code.exe"))
+	&& !GetKeyState("ALT", "P")
 	{
 		If !vars.leveltracker.skilltree_schematics.GUI
 			Leveltracker_PobSkilltree()
@@ -527,6 +528,7 @@ SC012::Leveltracker_PobGemLinks("hotkey2")
 
 #If vars.leveltracker.skilltree_schematics.GUI && WinExist("ahk_id " vars.hwnd.skilltree_schematics.main)
 && !(vars.general.cMouse && InStr(vars.hwnd.skilltree_schematics.color_1bar "," vars.hwnd.skilltree_schematics.color_2bar, vars.general.cMouse))
+&& !(settings.general.dev && WinActive("ahk_exe Code.exe"))
 RButton::Leveltracker_PobSkilltree("drag")
 SC002::Leveltracker_PobSkilltree("ascendancy 1")
 SC003::Leveltracker_PobSkilltree("ascendancy 2")
