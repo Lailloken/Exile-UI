@@ -81,6 +81,10 @@ Betrayal_Calibrate(cHWND := "")
 		If !vars.betrayal.members_localized[A_GuiControl] && !vars.betrayal.divisions_localized[A_GuiControl]
 			Return
 		selection := vars.betrayal.members_localized[A_GuiControl] ? vars.betrayal.members_localized[A_GuiControl] : vars.betrayal.divisions_localized[A_GuiControl]
+
+		If vars.pics.betrayal_checks[selection]
+			DeleteObject(vars.pics.betrayal_checks[selection])
+		vars.pics.betrayal_checks[selection] := Gdip_CreateHBITMAPFromBitmap(pBetrayal, 0)
 		Gdip_SaveBitmapToFile(pBetrayal, "img\Recognition (" vars.client.h "p)\Betrayal\" selection ".bmp", 100)
 	}
 	Else
@@ -387,7 +391,10 @@ Betrayal_Search(hotkey)
 			parse := SubStr(A_LoopFileName, 1, InStr(A_LoopFileName, ".") - 1)
 			If vars.betrayal.divisions.HasKey(parse) ;skip divisions and recently unassigned members
 				continue
-			pNeedle := Gdip_CreateBitmapFromFile(A_LoopFilePath)
+
+			If !vars.pics.betrayal_checks[parse]
+				vars.pics.betrayal_checks[parse] := LLK_ImageCache(A_LoopFilePath)
+			pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[parse])
 			width := Gdip_GetImageWidth(pNeedle)
 			x1 := (vars.general.xMouse - vars.client.x - vars.client.w/3 < 0) ? 0 : vars.general.xMouse - vars.client.x - vars.client.w/3
 			x2 := (vars.general.xMouse - vars.client.x + vars.client.w/3 > vars.client.w) ? vars.client.w - 1 : vars.general.xMouse - vars.client.x + vars.client.w/3
@@ -420,7 +427,9 @@ Betrayal_Search(hotkey)
 			If !FileExist("img\Recognition ("vars.client.h "p)\Betrayal\"division ".bmp")
 				continue
 
-			pNeedle := Gdip_CreateBitmapFromFile("img\Recognition ("vars.client.h "p)\Betrayal\"division ".bmp")
+			If !vars.pics.betrayal_checks[division]
+				vars.pics.betrayal_checks[division] := LLK_ImageCache("img\Recognition (" vars.client.h "p)\Betrayal\" division ".bmp")
+			pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[division])
 			width := Gdip_GetImageWidth(pNeedle), result := Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation + 20,, 1, 1)
 			Gdip_DisposeImage(pNeedle)
 

@@ -190,6 +190,9 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 		If (val != name) && ((settings.features[val] = 0) || (val = "skilltree" && !settings.features.leveltracker) || (val = "stash" && (!settings.features.maptracker || !settings.maptracker.loot)))
 			continue ;skip check if the connected feature is not enabled
 
+		If !vars.pics.screen_checks[val]
+			vars.pics.screen_checks[val] := LLK_ImageCache("img\Recognition (" vars.client.h "p)\GUI\" val . vars.poe_version ".bmp")
+
 		If InStr(A_Gui, "settings_menu") ;when testing a screen-check via the settings, check the whole screenshot
 			x1 := 0, y1 := 0, x2 := 0, y2 := 0, settings_menu := 1
 		Else If !vars.imagesearch[val].x1 || !FileExist("img\Recognition (" vars.client.h "p)\GUI\" val . vars.poe_version ".bmp") ;skip check if reference-image or coordinates are missing
@@ -198,7 +201,7 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 			x1 := vars.client.w * 0.25, y1 := Round(vars.client.h/9), x2 := Round(vars.client.w/2 + vars.client.h * (18/144)), y2 := Round(vars.client.h/9 + vars.client.h * 0.024)
 		Else x1 := vars.imagesearch[val].x1, y1 := vars.imagesearch[val].y1, x2 := vars.imagesearch[val].x2, y2 := vars.imagesearch[val].y2
 
-		pNeedle := Gdip_CreateBitmapFromFile("img\Recognition (" vars.client.h "p)\GUI\" val . vars.poe_version ".bmp") ;load the reference image
+		pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.screen_checks[val]) ;load the reference image
 		If (Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation,, 1, 1) > 0) ;search within the screenshot
 		{
 			Gdip_GetImageDimension(pNeedle, width, height)

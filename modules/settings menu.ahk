@@ -621,6 +621,9 @@ Settings_cheatsheets2(cHWND)
 		pBitmap := Screenchecks_ImageRecalibrate()
 		If (pBitmap > 0)
 		{
+			If vars.pics.cheatsheets_checks[control " [check].bmp"]
+				DeleteObject(vars.pics.cheatsheets_checks[control " [check].bmp"])
+			vars.pics.cheatsheets_checks[control " [check].bmp"] := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0)
 			Gdip_SaveBitmapToFile(pBitmap, "cheat-sheets" vars.poe_version "\" control "\[check].bmp", 100)
 			Gdip_DisposeImage(pBitmap)
 			IniDelete, % "cheat-sheets" vars.poe_version "\" control "\info.ini", image search
@@ -647,6 +650,9 @@ Settings_cheatsheets2(cHWND)
 		If LLK_Progress(vars.hwnd.settings["delbar_"control], "LButton", cHWND)
 		{
 			FileRemoveDir, % "cheat-sheets" vars.poe_version "\" control "\", 1
+			For key, hbm in vars.pics.cheatsheets_checks
+				If InStr(key, control " [")
+					DeleteObject(hbm), vars.pics.cheatsheets_checks.Delete(key)
 			Settings_menu("cheat-sheets")
 			KeyWait, LButton
 		}
@@ -2966,6 +2972,10 @@ Settings_maptracker2(cHWND)
 					pClipboard := Screenchecks_ImageRecalibrate()
 					If (pClipboard <= 0)
 						Return
+
+					If vars.pics.maptracker_checks[control]
+						DeleteObject(vars.pics.maptracker_checks[control])
+					vars.pics.maptracker_checks[control] := Gdip_CreateHBITMAPFromBitmap(pClipboard, 0)
 					Gdip_SaveBitmapToFile(pClipboard, "img\Recognition ("vars.client.h "p)\Mapping Tracker\"control . vars.poe_version ".bmp", 100), Gdip_DisposeImage(pClipboard)
 					GuiControl, % "+c"(settings.maptracker[control] ? "Lime" : "505050"), % vars.hwnd.settings["screenmechanic_"control]
 					GuiControl, movedraw, % vars.hwnd.settings["screenmechanic_"control]
@@ -3866,6 +3876,9 @@ Settings_screenchecks2(cHWND := "")
 							Return
 						Else
 						{
+							If vars.pics.screen_checks[control]
+								DeleteObject(vars.pics.screen_checks[control])
+							vars.pics.screen_checks[control] := Gdip_CreateHBITMAPFromBitmap(pClipboard, 0)
 							Gdip_SaveBitmapToFile(pClipboard, "img\Recognition (" vars.client.h "p)\GUI\" control . vars.poe_version ".bmp", 100), Gdip_DisposeImage(pClipboard)
 							For key in vars.imagesearch[control]
 							{
@@ -3985,6 +3998,9 @@ Settings_searchstrings2(cHWND)
 		pBitmap := Screenchecks_ImageRecalibrate()
 		If (pBitmap > 0)
 		{
+			If vars.pics.search_strings[control]
+				DeleteObject(vars.pics.search_strings[control])
+			vars.pics.search_strings[control] := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0)
 			Gdip_SaveBitmapToFile(pBitmap, "img\Recognition (" vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " control ".bmp", 100)
 			Gdip_DisposeImage(pBitmap)
 			IniDelete, % "ini" vars.poe_version "\search-strings.ini", % control, last coordinates
