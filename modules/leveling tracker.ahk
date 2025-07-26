@@ -1202,7 +1202,7 @@ Leveltracker_Load(profile := "")
 				, quests_page.Push(StrReplace(quest, "_", " ")), loop += 1
 
 			new_group.Push(line)
-			If !InStr(line, "lilly: <a_fixture_of_fate>")
+			If !RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
 				For index, quest in quests_line
 					For index, gem in vars.leveltracker.guide.gems
 						If gems[gem].quests[quest] && gems[gem].quests[quest].quest && (!gems[gem].quests[quest].quest.Count() || LLK_HasVal(gems[gem].quests[quest].quest, class))
@@ -1226,9 +1226,9 @@ Leveltracker_Load(profile := "")
 			If !vars.leveltracker.guide.gems[count - (A_Index - 1)]
 				vars.leveltracker.guide.gems.RemoveAt(count - (A_Index - 1))
 
-		If !reward_available
+		If !reward_available && !settings.leveltracker["guide" profile].info.leaguestart
 			For index, line in new_group
-				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate)")
+				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
 				{
 					new_group.RemoveAt(index)
 					Break
@@ -1521,7 +1521,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			While InStr(guide.group1[index_raw - trace_optional], "(hint)__")
 				trace_optional += 1
 
-			If !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+			If !preview && !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
 				Continue
 
 			step := StrReplace(step, ", <breaking_some_eggs2>")
