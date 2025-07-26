@@ -19,7 +19,18 @@
 
 	If !IsObject(vars.searchstrings)
 		vars.searchstrings := {}
-	vars.searchstrings.list := {}, vars.searchstrings.enabled := 0, ini := IniBatchRead("ini" vars.poe_version "\search-strings.ini")
+	vars.searchstrings.list := {}, vars.searchstrings.enabled := 0, ini := IniBatchRead("ini" vars.poe_version "\search-strings.ini"), remove := []
+
+	For key in ini["hideout lilly"]
+		If InStr(key, "exile leveling")
+		{
+			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % key
+			remove.Push(key)
+		}
+
+	For index, val in remove
+		ini["hideout lilly"].Delete(val)
+
 	For key, val in ini.searches
 	{
 		If (settings.general.lang_client != "english" && !vars.client.stream && key = "beast crafting")
@@ -48,7 +59,7 @@
 				Continue
 			If !IsObject(vars.searchstrings.list[key].strings)
 				vars.searchstrings.list[key].strings := {}
-			vars.searchstrings.list[key].strings[inikey] := []
+			inikey := LLK_StringCase(inikey), vars.searchstrings.list[key].strings[inikey] := []
 			Loop, Parse, % StrReplace(inival, " `;`;`; ", "`n"), `n
 			{
 				If Blank(A_LoopField)

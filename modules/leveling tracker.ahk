@@ -1941,14 +1941,14 @@ Leveltracker_PobImport(b64, profile)
 				}
 			If regex_dump
 			{
-				IniWrite, % """" regex_dump """", % "ini\search-strings.ini", % "hideout lilly", % "00-exile leveling gems" profile
+				IniWrite, % """" regex_dump """", % "ini\search-strings.ini", % "hideout lilly", % "00-PoB gems: slot " (!profile ? "1" : profile)
 				If !vars.searchstrings.list["hideout lilly"]
 				{
 					IniWrite, 0, % "ini\search-strings.ini", % "Searches", % "hideout lilly"
 					vars.searchstrings.list["hideout lilly"] := {}
 				}
 			}
-			Else IniDelete, % "ini\search-strings.ini", % "hideout lilly", % "00-exile leveling gems" profile
+			Else IniDelete, % "ini\search-strings.ini", % "hideout lilly", % "00-PoB gems: slot " (!profile ? "1" : profile)
 
 			If vars.searchstrings.list["hideout lilly"]
 				Init_searchstrings()

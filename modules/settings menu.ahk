@@ -2308,6 +2308,10 @@ Settings_leveltracker2(cHWND := "")
 		If FileExist("ini" vars.poe_version "\leveling guide" target_profile ".ini") && LLK_Progress(vars.hwnd.settings["profile" target_profile "_bar"], "RButton")
 		{
 			FileDelete, % "ini" vars.poe_version "\leveling guide" target_profile ".ini"
+			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!target_profile ? "1" : target_profile)
+			If vars.searchstrings.list["hideout lilly"]
+				Init_searchstrings()
+
 			If (settings.leveltracker.profile = target_profile)
 			{
 				Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
@@ -2375,8 +2379,9 @@ Settings_leveltracker2(cHWND := "")
 			If vars.leveltracker.skilltree_schematics.GUI
 				Leveltracker_PobSkilltree("close")
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB
-			Init_leveltracker()
-			Leveltracker_Load()
+			Init_leveltracker(), Leveltracker_Load()
+			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!profile ? "1" : profile)
+			Init_searchstrings()
 			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 				Leveltracker_Progress(1)
 			Settings_menu("leveling tracker")
