@@ -499,7 +499,7 @@
       "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
-      "choose whether quests/objectives that only need to be done once per league should be shown or not",
+      "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",
       "if a pob import with gems is present and league-start is disabled, some gem quests may be replaced with hideout lilly instead",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
@@ -1152,8 +1152,11 @@
     ]
   },
   "leveltrackereditor": {
+    "add page": [
+      "insert a new guide page after this one"
+    ],
     "conditions": [
-      "you can choose to only show/include certain guide-pages under specific conditions"
+      "you can choose to only show/include certain guide pages under specific conditions"
     ],
     "discard": [
       "long-click to discard unsaved changes"
@@ -1174,6 +1177,10 @@
     "save": [
       "long-click to save the changes to this guide slot",
       "note: your current guide progress will be reset(/underline)"
+    ],
+    "search": [
+      "type in strings to search within the currently selected act",
+      "pages with matching text will be highlighted green on the page-selection bar"
     ]
   },
   "leveltrackerschematics": {
