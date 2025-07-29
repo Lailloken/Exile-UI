@@ -152,13 +152,13 @@
       "(img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch"
     ],
     [
-      "take (img:portal) to areaid1_1_9 ;; the ship graveyard"
+      "enter (img:portal) to areaid1_1_9 ;; the ship graveyard"
     ],
     [
       "enter areaid1_1_9a ;; the ship graveyard cave"
     ],
     [
-      "find (quest:slave_girl) for (quest:allflame) || enter areaid1_1_9 ;; the ship graveyard",
+      "find (quest:girl) for (quest:allflame) || enter areaid1_1_9 ;; the ship graveyard",
       "(hint)____ search diagonally opposite the entrance",
       "kill fairgraves || relog to areaid1_1_town (img:town) ;; lioneye's watch"
     ],
@@ -178,26 +178,26 @@
   ],
   [
     [
-      "follow the (img:1) edge to areaid1_2_town (img:town) ;; the forest encampment"
+      "follow (img:1) edge to areaid1_2_town (img:town) ;; the forest encampment"
     ],
     [
       "go (img:1) to areaid1_2_2 ;; the old fields"
     ],
     [
-      "optional: <the_great_white_beast> (flask / rare belt)",
-      "(hint)____ find (img:arena) areaid1_2_2a and place a (img:portal) ;; the den",
+      "optional: <great_white_beast> (flask / rare belt)",
+      "(hint)____ find (img:arena) areaid1_2_2a, place a (img:portal) ;; the den",
       "follow the road to areaid1_2_3 ;; the crossroads"
     ],
     [
       "follow the road, activate the (img:waypoint)",
-      "optional: <the_great_white_beast>",
+      "optional: <great_white_beast>",
       "(hint)____ (img:waypoint) to town || enter (img:portal) || enter (img:arena) the_den ;; the forest encampment",
       "(hint)____ kill white_beast || relog || talk to (img:quest) yeena",
       "go (img:7) to areaid1_2_6_1 ;; the chamber of sins level 1"
     ],
     [
       "enter areaid1_2_6_2 ;; the chamber of sins level 2",
-      "(hint)____ reach central room with (img:waypoint) that points to the exit"
+      "(hint)____ reach central room. (img:waypoint) points to the exit"
     ],
     {
       "condition": [
@@ -313,7 +313,7 @@
       ],
       "lines": [
         "optional: chest + 3 rogue exiles",
-        "(hint)____ follow the road to the (img:waypoint), look for ruins nearby",
+        "(hint)____ follow the road to (img:waypoint), look for ruins nearby",
         "follow the road, kill kraityn for (quest:amulet)",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
@@ -352,7 +352,7 @@
         ]
       ],
       "lines": [
-        "follow the trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
+        "follow trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
       ]
     },
     {
@@ -367,7 +367,7 @@
       "lines": [
         "find & kill oak for (quest:oak's_amulet)",
         "(img:waypoint) to areaid1_2_9 ;; the western forest",
-        "(hint)____ usually (img:1) or (img:7) of oak's camp, rarely (img:5)"
+        "(hint)____ usually (img:1) or (img:7), rarely (img:5)"
       ]
     },
     {
@@ -391,8 +391,8 @@
         ]
       ],
       "lines": [
-        "go (img:4) to a torch on the road || follow side path to kill alira for (quest:amulet)",
-        "follow the main road to kill arteri for (quest:thaumetic_emblem)",
+        "go (img:4) to torch on the road || follow side path, kill alira for (quest:amulet)",
+        "follow the main road, kill arteri for (quest:thaumetic_emblem)",
         "activate the (quest:seal) || relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
     },
@@ -404,8 +404,8 @@
         ]
       ],
       "lines": [
-        "go (img:4) to a torch on the road || follow side path to help (color:ff8111)alira, take (quest:apex)",
-        "follow the main road to kill arteri for (quest:thaumetic_emblem)",
+        "go (img:4) to torch on the road || follow side path, help (color:ff8111)alira for (quest:apex)",
+        "follow the main road, kill arteri for (quest:thaumetic_emblem)",
         "activate the (quest:seal) || relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
     },
@@ -466,7 +466,7 @@
       ],
       "lines": [
         "optional: chest + 3 rogue exiles",
-        "(hint)____ follow the road to the (img:waypoint), look for ruins nearby",
+        "(hint)____ follow the road to (img:waypoint), look for ruins nearby",
         "follow the road, help (color:ff8111)kraityn, take (quest:the_apex)",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
@@ -491,7 +491,7 @@
         ]
       ],
       "lines": [
-        "follow the trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
+        "follow trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
       ]
     },
     {
@@ -504,7 +504,7 @@
       "lines": [
         "find & help (color:ff8111)oak, take (quest:the_apex)",
         "poison the (quest:tree_roots), enter areaid1_2_11 ;; the vaal ruins",
-        "(hint)____ usually (img:1) or (img:7) of oak's camp, rarely (img:5)"
+        "(hint)____ usually (img:1) or (img:7), rarely (img:5)"
       ]
     },
     {
@@ -557,8 +557,8 @@
         "yes"
       ],
       "lines": [
-        "after the (img:waypoint), find & activate the (img:craft) (secret door)",
-        "search in the corners for areaid1_2_14_3 ;; the ancient pyramid"
+        "after the (img:waypoint), search in the corners for areaid1_2_14_3 ;; the ancient pyramid",
+        "(hint)____ hidden (img:craft): locked door with 2 pillar-switches"
       ]
     },
     {
@@ -577,7 +577,7 @@
       ],
       "lines": [
         "find & enter (img:arena) pyramid_apex, kill vaal_oversoul",
-        "(hint)____ 1st exit is in random corner, then opposite the entrances",
+        "(hint)____ 1st (img:arena) stairs in random corner, then diagonally opposite",
         "(hint)____ recommended level: 20-22",
         "activate the (img:craft) || enter areaid1_3_1 ;; the city of sarn"
       ]
@@ -589,7 +589,7 @@
       ],
       "lines": [
         "find & enter (img:arena) pyramid_apex, kill vaal_oversoul",
-        "(hint)____ 1st exit is in random corner, then opposite the entrances",
+        "(hint)____ 1st (img:arena) stairs in random corner, then diagonally opposite",
         "(hint)____ recommended level: 20-22",
         "enter areaid1_3_1 ;; the city of sarn"
       ]
@@ -604,7 +604,7 @@
       "lines": [
         "activate the (img:craft)",
         "help & talk to (img:quest) clarissa",
-        "follow the (img:5) wall to areaid1_3_town (img:town) ;; the sarn encampment"
+        "follow (img:5) edge to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
     {
@@ -614,7 +614,7 @@
       ],
       "lines": [
         "help & talk to (img:quest) clarissa",
-        "follow the (img:5) wall to areaid1_3_town (img:town) ;; the sarn encampment"
+        "follow (img:5) edge to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
     [
@@ -675,7 +675,7 @@
         "yes"
       ],
       "lines": [
-        "activate the (img:waypoint)",
+        "find & activate the (img:waypoint)",
         "find & enter areaid1_3_6 nearby ;; the catacombs"
       ]
     },
@@ -686,7 +686,7 @@
       ],
       "lines": [
         "complete the (img:lab) trial || activate the (img:craft)",
-        "(hint)____ search in the zone-corners near the (img:arena) entrance",
+        "(hint)____ often found by moving parallel to (img:arena) entrance wall",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -712,7 +712,8 @@
         "yes"
       ],
       "lines": [
-        "enter (img:arena) eternal_laboratory, activate the (img:craft)",
+        "find & activate the (img:waypoint)",
+        "get (img:craft) in (img:arena) eternal_laboratory",
         "(img:waypoint) to areaid1_3_7 ;; the battlefront"
       ]
     },
@@ -722,6 +723,7 @@
         "no"
       ],
       "lines": [
+        "find & activate the (img:waypoint)",
         "(img:waypoint) to areaid1_3_7 ;; the battlefront"
       ]
     },
@@ -788,7 +790,7 @@
       ],
       "lines": [
         "find & kill piety for (quest:tower_key)",
-        "(hint)____ follow: stairs that go up, single wagon at the fork.",
+        "(hint)____ follow: stairs that go up, single wagon at the fork",
         "(hint)____ recommended level: 27",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
@@ -838,7 +840,7 @@
       ],
       "lines": [
         "activate the (img:waypoint)",
-        "find the loose candle, enter areaid1_3_17_2 ;; the archives"
+        "find loose candle, enter areaid1_3_17_2 ;; the archives"
       ]
     },
     {
@@ -848,7 +850,8 @@
       ],
       "lines": [
         "hidden (img:craft): candle in a narrow corridor",
-        "find 4x (quest:golden_page) || relog to areaid1_3_town (img:town) ;; the sarn encampment"
+        "find 4x (quest:golden_page)",
+        "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
     {
@@ -893,12 +896,12 @@
     },
     [
       "find & enter areaid1_3_18_2 ;; the upper sceptre of god",
-      "(hint)____ floors are circles, stairs can spawn every 90 degrees"
+      "(hint)____ floors are circles, (img:arena) stairs can spawn every 90\u00b0"
     ],
     [
       "find & enter (img:arena) tower_rooftop",
-      "(hint)____ same floor & stair layout, go (img:1) after scion cage",
-      "kill dominus, enter areaid1_4_1 ;; the aqueduct",
+      "(hint)____ same zone layout, go (img:1) after scion cage",
+      "kill dominus || enter areaid1_4_1 ;; the aqueduct",
       "(hint)____ recommended level: 28"
     ]
   ],
@@ -993,7 +996,7 @@
     ],
     [
       "enter areaid1_4_5_2 ;; the grand arena",
-      "(hint)____ exit is usually (img:1) in the zone, sometimes (img:6)"
+      "(hint)____ exit is usually (img:1), sometimes (img:6)"
     ],
     {
       "condition": [
@@ -1018,7 +1021,8 @@
       "enter areaid1_4_4_1 ;; kaom's dream"
     ],
     [
-      "go (img:1), then follow bridges to areaid1_4_4_3 ;; kaom's stronghold"
+      "go (img:1), then follow bridges",
+      "enter areaid1_4_4_3 ;; kaom's stronghold"
     ],
     {
       "condition": [
@@ -1026,8 +1030,8 @@
         "yes"
       ],
       "lines": [
-        "activate the (img:craft) || enter (img:arena) caldera_of_the_king",
-        "kill kaom for (quest:the_eye_of_fury) || (img:portal) to areaid1_4_town ;; highgate"
+        "activate (img:craft) || enter (img:arena) caldera_of_the_king",
+        "kill kaom for (quest:eye_of_fury) || (img:portal) to areaid1_4_town ;; highgate"
       ]
     },
     {
@@ -1037,7 +1041,7 @@
       ],
       "lines": [
         "enter (img:arena) caldera_of_the_king",
-        "kill kaom for (quest:the_eye_of_fury) || (img:portal) to areaid1_4_town ;; highgate"
+        "kill kaom for (quest:eye_of_fury) || (img:portal) to areaid1_4_town ;; highgate"
       ]
     },
     [
@@ -1076,7 +1080,7 @@
       ],
       "lines": [
         "enter (img:arena) bowels_of_the_beast, kill piety",
-        "talk to (img:quest) piety to enter areaid1_4_6_3 ;; the harvest"
+        "talk to (img:quest) piety || enter areaid1_4_6_3 ;; the harvest"
       ]
     },
     [
@@ -1111,7 +1115,7 @@
   ],
   [
     [
-      "follow the (img:5) edge to the corridor with hanged karui",
+      "follow (img:5) edge to the corridor with hanged karui",
       "(hint)____ exit is always (img:5) of corridor, move clockwise to reach it",
       "kill overseer_krow to enter areaid1_5_town (img:town) ;; overseer's tower"
     ],
@@ -1128,7 +1132,7 @@
       "go (img:1) to areaid1_5_4 ;; the templar courts"
     ],
     [
-      "move clockwise to areaid1_5_5 ;; the chamber of innocence",
+      "move clockwise, enter  areaid1_5_5 ;; the chamber of innocence",
       "(hint)____ recommended level: 37+",
       "(hint)____ farm level: 40-42"
     ],
@@ -1138,8 +1142,8 @@
         "yes"
       ],
       "lines": [
-        "move c-clockwise, find the (img:craft)",
         "move c-clockwise, enter (img:arena) sanctum_of_innocence",
+        "(hint)____ (img:craft) in side corridor, about halfway through",
         "kill avarius || relog to areaid1_5_town (img:town) ;; overseer's tower"
       ]
     },
@@ -1193,7 +1197,7 @@
     ],
     [
       "go (img:5) to the square",
-      "optional: <the_king's_feast> (rare weapon)",
+      "optional: <king's_feast> (rare weapon)",
       "(hint)____ go (img:3), kill utula",
       "go (img:4) to areaid1_5_7 ;; the reliquary"
     ],
@@ -1219,7 +1223,7 @@
     },
     [
       "lani: <kitava's_torments>",
-      "optional: <the_king's_feast>",
+      "optional: <king's_feast>",
       "(hint)____ talk to (img:quest) bannon",
       "(img:waypoint) to areaid1_5_3b ;; the ruined square"
     ],
@@ -1267,7 +1271,7 @@
         "no"
       ],
       "lines": [
-        "(img:waypoint) to (color:fec076)your_hideout, lilly: <fallen_from_grace>  ;; only shows with imported pob",
+        "(img:waypoint) to (color:fec076)your_hideout || lilly: <fallen_from_grace>  ;; only shows with imported pob",
         "enter areaid2_6_2 ;; the coast"
       ]
     },
@@ -1275,8 +1279,8 @@
       "enter areaid2_6_4 ;; the mud flats"
     ],
     [
-      "follow the (img:1) edge, kill queen for (quest:eye)",
-      "follow the (img:7) edge to areaid2_6_5 ;; the karui fortress"
+      "follow (img:1) edge, kill queen for (quest:eye)",
+      "follow (img:7) edge to areaid2_6_5 ;; the karui fortress"
     ],
     {
       "condition": [
@@ -1350,8 +1354,8 @@
         "yes"
       ],
       "lines": [
-        "find a torch on the road, follow side path for (img:craft)",
-        "follow the main road to areaid2_6_10 ;; the riverways"
+        "follow the main road to areaid2_6_10 ;; the riverways",
+        "(hint)____ (img:craft): follow side path marked by torch on the road"
       ]
     },
     {
@@ -1365,10 +1369,10 @@
     },
     [
       "follow the road, activate the (img:waypoint)",
-      "follow the trail between 2 pillars nearby to areaid2_6_11 ;; the wetlands"
+      "follow trail between 2 pillars nearby to areaid2_6_11 ;; the wetlands"
     ],
     [
-      "go (img:7), find & enter (img:arena) the_spawning_ground",
+      "go (img:7), find & enter (img:arena) spawning_ground",
       "kill ryslatha || relog to areaid2_6_town (img:town) ;; lioneye's watch"
     ],
     [
@@ -1575,7 +1579,7 @@
         "yes"
       ],
       "lines": [
-        "activate the (img:craft)",
+        "find & activate the (img:craft)",
         "take (img:quest) (quest:kishara's_star) || enter areaid2_7_11 ;; the vaal city"
       ]
     },
@@ -1602,7 +1606,7 @@
       ],
       "lines": [
         "find & activate the (img:craft)",
-        "find 7x (quest:firefly) || find (img:arena) den to kill gruthkul",
+        "find 7x (quest:firefly) || find (img:arena) den, kill gruthkul",
         "(img:portal) to areaid2_7_town ;; the bridge encampment"
       ]
     },
@@ -1612,7 +1616,7 @@
         "no"
       ],
       "lines": [
-        "find 7x (quest:firefly) || find (img:arena) den to kill gruthkul",
+        "find 7x (quest:firefly) || find (img:arena) den, kill gruthkul",
         "(img:portal) to areaid2_7_town ;; the bridge encampment"
       ]
     },
@@ -1665,7 +1669,9 @@
       "go (img:6) to areaid2_8_2_1 ;; the toxic conduits"
     ],
     [
-      "enter areaid2_8_2_2 ;; doedre's cesspool"
+      "enter areaid2_8_2_2 ;; doedre's cesspool",
+      "(hint)____ starting area is a loop with 1 exit.",
+      "(hint)____ go (img:1) as much as possible after loop."
     ],
     {
       "condition": [
@@ -1689,7 +1695,7 @@
       ]
     },
     [
-      "follow the (img:5) edge, find (quest:ankh_of_eternity)",
+      "follow (img:5) edge, find (quest:ankh_of_eternity)",
       "go (img:3) to (img:arena) resurrection_site, kill tolman",
       "find & enter areaid2_8_9 ;; the grain gate"
     ],
@@ -1797,9 +1803,9 @@
         "yes"
       ],
       "lines": [
-        "follow the (img:0) edge for the (img:lab) trial and (img:craft)",
+        "follow (img:0) edge for the (img:lab) trial and (img:craft)",
         "(hint)____ look for a (img:help) -icon on the map",
-        "follow the (img:0) edge to areaid2_8_4 ;; the high gardens"
+        "follow (img:0) edge to areaid2_8_4 ;; the high gardens"
       ]
     },
     {
@@ -1808,7 +1814,7 @@
         "no"
       ],
       "lines": [
-        "follow the (img:0) edge to areaid2_8_4 ;; the high gardens"
+        "follow (img:0) edge to areaid2_8_4 ;; the high gardens"
       ]
     },
     [
@@ -1857,7 +1863,7 @@
         "yes"
       ],
       "lines": [
-        "go (img:1), kill the_basilisk for (quest:basilisk_acid)",
+        "go (img:1), kill basilisk for (quest:basilisk_acid)",
         "activate the (img:craft) || relog to areaid2_9_town (img:town) ;; highgate"
       ]
     },
@@ -1867,14 +1873,14 @@
         "no"
       ],
       "lines": [
-        "go (img:1), kill the_basilisk for (quest:basilisk_acid)",
+        "go (img:1), kill basilisk for (quest:acid)",
         "relog to areaid2_9_town (img:town) ;; highgate"
       ]
     },
     [
-      "petarus & vanja: <the_storm_blade>",
+      "petarus: <the_storm_blade>",
       "talk to (img:quest) sin",
-      "petarus & vanja: <the_queen_of_sands>, take (quest:bottled_storm)",
+      "petarus: <queen_of_sands>, take (quest:bottled_storm)",
       "(img:waypoint) to areaid2_9_3 ;; the vastiri desert"
     ],
     [
@@ -1898,7 +1904,7 @@
         "yes"
       ],
       "lines": [
-        "look for side path with (img:help) to find (img:lab) trial and (img:craft)",
+        "(img:lab) trial and (img:craft): side corridor with (img:help)",
         "follow the main path to areaid2_9_8 ;; the quarry"
       ]
     },
@@ -1987,14 +1993,14 @@
     ],
     [
       "go down the stairs, place a (img:portal)",
-      "follow the (img:5) edge to areaid2_10_7 ;; the control blocks"
+      "follow (img:5) edge to areaid2_10_7 ;; the control blocks"
     ],
     [
       "(img:waypoint) to areaid2_10_town (img:town) ;; oriath docks"
     ],
     [
       "lani: <safe_passage>",
-      "take (img:portal) to areaid2_10_2 ;; the ravaged square"
+      "enter (img:portal) to areaid2_10_2 ;; the ravaged square"
     ],
     {
       "condition": [
@@ -2041,7 +2047,7 @@
       "(img:waypoint) to areaid2_10_7 ;; the control blocks"
     ],
     [
-      "follow the (img:7) edge to kill vilenta",
+      "follow (img:7) edge, kill vilenta",
       "relog to areaid2_10_town (img:town) ;; oriath docks"
     ],
     [
@@ -2060,8 +2066,8 @@
         "yes"
       ],
       "lines": [
-        "move c-clockwise, find the (img:craft)",
         "move c-clockwise, enter (img:arena) sanctum_of_innocence",
+        "(hint)____ (img:craft) in side corridor, about halfway through",
         "kill avarius for (quest:staff) || relog to areaid2_10_town (img:town) ;; oriath docks"
       ]
     },
@@ -2085,7 +2091,7 @@
       "enter areaid2_10_5 ;; the canals"
     ],
     [
-      "enter areaid2_10_6 ;; the feeding trough"
+      "find & enter areaid2_10_6 ;; the feeding trough"
     ],
     {
       "condition": [
@@ -2093,7 +2099,7 @@
         "yes"
       ],
       "lines": [
-        "activate the (img:craft) || talk to (img:quest) sin",
+        "activate the (img:craft), talk to (img:quest) sin",
         "enter (img:arena) altar_of_hunger, kill kitava",
         "talk to (img:quest) sin || enter areaid2_10_town (img:town) ;; oriath docks"
       ]
