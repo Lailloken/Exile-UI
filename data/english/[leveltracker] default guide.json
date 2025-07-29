@@ -352,7 +352,7 @@
         ]
       ],
       "lines": [
-        "follow trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
+        "follow trail between 2 pillars to areaid1_2_12 ;; the wetlands"
       ]
     },
     {
@@ -491,7 +491,7 @@
         ]
       ],
       "lines": [
-        "follow trail between 2 pillars nearby to areaid1_2_12 ;; the wetlands"
+        "follow trail between 2 pillars to areaid1_2_12 ;; the wetlands"
       ]
     },
     {
@@ -1354,7 +1354,7 @@
     },
     [
       "follow the road, activate the (img:waypoint)",
-      "follow trail between 2 pillars nearby to areaid2_6_11 ;; the wetlands"
+      "follow trail between 2 pillars to areaid2_6_11 ;; the wetlands"
     ],
     [
       "go (img:7), find & enter (img:arena) spawning_ground",
@@ -1656,7 +1656,7 @@
     [
       "enter areaid2_8_2_2 ;; doedre's cesspool",
       "(hint)____ starting area is a loop with 1 exit.",
-      "(hint)____ go (img:1) as much as possible after loop."
+      "(hint)____ go (img:1) as much as possible after exit."
     ],
     {
       "condition": [
