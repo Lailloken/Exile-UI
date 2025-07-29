@@ -811,7 +811,7 @@ Notepad(cHWND := "", hotkey := "", color := 0)
 		MouseGetPos, xMouse, yMouse
 		While GetKeyState("LButton", "P")
 		{
-			LLK_Drag(wWin, hWin, xPos, yPos, 1,, 1, xMouse - xWin, yMouse - yWin)
+			LLK_Drag(wWin, hWin, xPos, yPos, 1,, 1, xMouse - xWin, yMouse - yWin, 1)
 			Sleep 1
 		}
 		vars.general.drag := 0
