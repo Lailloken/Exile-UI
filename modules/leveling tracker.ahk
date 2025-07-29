@@ -1277,13 +1277,18 @@ Leveltracker_Load(profile := "")
 			If !vars.leveltracker.guide.gems[count - (A_Index - 1)]
 				vars.leveltracker.guide.gems.RemoveAt(count - (A_Index - 1))
 
-		If !reward_available && !settings.leveltracker["guide" profile].info.leaguestart
-			For index, line in new_group
-				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
-				{
-					new_group.RemoveAt(index)
-					Break
-				}
+		If !reward_available && LLK_HasVal(new_group, "lilly:", 1)
+			If !settings.leveltracker["guide" profile].info.leaguestart
+			{
+				For index, line in new_group
+					If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
+					{
+						new_group.RemoveAt(index)
+						Break
+					}
+			}
+			Else If LLK_HasVal(new_group, "fallen_from_grace", 1)
+				new_group := [new_group[new_group.MaxIndex()]]
 
 		If aPage.condition
 			vars.leveltracker.guide.import[iPage].lines := new_group.Clone()

@@ -557,7 +557,8 @@
         "yes"
       ],
       "lines": [
-        "after the (img:waypoint), search in the corners for areaid1_2_14_3 ;; the ancient pyramid",
+        "find & activate the (img:waypoint)",
+        "search in the corners for areaid1_2_14_3 ;; the ancient pyramid",
         "(hint)____ hidden (img:craft): locked door with 2 pillar-switches"
       ]
     },
@@ -567,7 +568,8 @@
         "no"
       ],
       "lines": [
-        "after the (img:waypoint), search in the corners for areaid1_2_14_3 ;; the ancient pyramid"
+        "find & activate the (img:waypoint)",
+        "search in the corners for areaid1_2_14_3 ;; the ancient pyramid"
       ]
     },
     {
@@ -646,8 +648,8 @@
       ]
     },
     [
-      "talk to (img:quest) clarissa, take (quest:sewer_keys)",
       "maramoa: <lost_in_love>",
+      "talk to (img:quest) clarissa, take (quest:sewer_keys)",
       "enter areaid1_3_2 ;; the slums"
     ],
     [
@@ -1242,26 +1244,9 @@
         "yes"
       ],
       "lines": [
-        "enter areaid2_6_1 ;; the twilight strand"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "kill everything",
-        "relog to areaid2_6_town (img:town) ;; lioneye's watch"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "lilly: <fallen_from_grace>",
+        "enter & clear areaid2_6_1 ;; the twilight strand",
+        "relog to areaid2_6_town (img:town) ;; lioneye's watch",
+        "lilly: <fallen_from_grace> ;; this line and those above only show with imported pob",
         "enter areaid2_6_2 ;; the coast"
       ]
     },
