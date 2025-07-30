@@ -132,7 +132,7 @@
     [
       "optional: find chemist's strongbox (flasks)",
       "(hint)____ high chance for quicksilver flask (qsf)",
-      "(hint)____ vendor: qsf + aug + boots // qsf + aug + ms boots",
+      "(hint)____ vendor: qsf + aug + boots || qsf + aug + ms boots",
       "find & kill brutus || relog to areaid1_1_town (img:town) ;; lioneye's watch",
       "(hint)____ recommended level: 8-10"
     ],
@@ -850,7 +850,6 @@
       ],
       "lines": [
         "go (img:7) to areaid1_3_17_1 ;; the library",
-        "(hint)____ long-click next-button to skip quest (and gems!)",
         "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
@@ -930,7 +929,7 @@
     [
       "find & enter (img:arena) tower_rooftop",
       "(hint)____ same zone layout, go (img:1) after scion cage",
-      "kill dominus || enter areaid1_4_1 ;; the aqueduct",
+      "kill dominus, enter areaid1_4_1 ;; the aqueduct",
       "(hint)____ recommended level: 28"
     ]
   ],
@@ -958,7 +957,7 @@
         "no"
       ],
       "lines": [
-        "find & kill voll for (quest:deshret's_banner)",
+        "find & kill voll for (quest:banner)",
         "(hint)____ recommended level: 30",
         "relog to areaid1_4_town (img:town) ;; highgate"
       ]
@@ -1066,7 +1065,7 @@
       ],
       "lines": [
         "enter (img:arena) caldera_of_the_king",
-        "kill kaom for (quest:eye_of_fury) || (img:portal) to areaid1_4_town ;; highgate"
+        "kill kaom for (quest:eye) || (img:portal) to areaid1_4_town ;; highgate"
       ]
     },
     [
@@ -1075,7 +1074,7 @@
     [
       "find & enter (img:arena) the_ring_of_blades",
       "(hint)____ follow the path and go (img:7) as much as possible",
-      "kill daresso for (quest:eye_of_desire) || relog to areaid1_4_town (img:town) ;; highgate"
+      "kill daresso for (quest:eye) || relog to areaid1_4_town (img:town) ;; highgate"
     ],
     [
       "(img:waypoint) to areaid1_4_3_3 ;; the crystal veins"
@@ -1142,7 +1141,7 @@
     [
       "follow (img:5) edge to the corridor with hanged karui",
       "(hint)____ exit is always (img:5) of corridor, move clockwise to reach it",
-      "kill overseer_krow to enter areaid1_5_town (img:town) ;; overseer's tower"
+      "kill overseer_krow, enter areaid1_5_town (img:town) ;; overseer's tower"
     ],
     [
       "lani: <return_to_oriath>",
@@ -1158,8 +1157,7 @@
     ],
     [
       "move clockwise, enter  areaid1_5_5 ;; the chamber of innocence",
-      "(hint)____ recommended level: 37+",
-      "(hint)____ farm level: 40-42"
+      "(hint)____ recommended level: 37+ || farm level: 40-42"
     ],
     {
       "condition": [
@@ -1481,7 +1479,7 @@
       ],
       "lines": [
         "complete the (img:lab) trial || activate the (img:craft)",
-        "find sarcophagus to next floor || find (quest:maligaro's_map)",
+        "find (img:arena) sarcophagus || find (quest:maligaro's_map)",
         "relog to areaid2_7_town (img:town) ;; the bridge encampment"
       ]
     },
@@ -1491,7 +1489,7 @@
         "no"
       ],
       "lines": [
-        "find sarcophagus to next floor || find (quest:maligaro's_map)",
+        "find (img:arena) sarcophagus || find (quest:maligaro's_map)",
         "relog to areaid2_7_town (img:town) ;; the bridge encampment"
       ]
     },
@@ -1560,7 +1558,7 @@
       ],
       "lines": [
         "complete the (img:lab) trial || activate the (img:craft)",
-        "open the (img:quest) (color:aaaaaa)secret_passage to areaid2_7_6 ;; the den"
+        "open (img:quest) (color:aaaaaa)secret_passage to areaid2_7_6 ;; the den"
       ]
     },
     {
@@ -1569,7 +1567,7 @@
         "no"
       ],
       "lines": [
-        "open the (img:quest) (color:aaaaaa)secret_passage to areaid2_7_6 ;; the den"
+        "open (img:quest) (color:aaaaaa)secret_passage to areaid2_7_6 ;; the den"
       ]
     },
     [
@@ -1666,8 +1664,7 @@
         "yes"
       ],
       "lines": [
-        "find & activate the (img:craft)",
-        "enter (img:arena) arakaali's_web",
+        "find the (img:craft) || enter (img:arena) arakaali's_web",
         "(hint)____ (img:arena) stairs are diagonally opposite, move in z-pattern",
         "kill arakaali || enter areaid2_8_1 ;; the sarn ramparts"
       ]
@@ -1714,7 +1711,7 @@
       ],
       "lines": [
         "enter (img:arena) the_cauldron, kill doedre",
-        "enter (img:arena) sewer_outlet || go (img:1) to areaid2_8_8 ;; the quay"
+        "enter (img:arena) sewer_outlet, go (img:1) to areaid2_8_8 ;; the quay"
       ]
     },
     [
@@ -1861,7 +1858,7 @@
       ],
       "lines": [
         "go (img:2), activate the (img:waypoint)",
-        "find the (img:craft) || find (quest:the_storm_blade)",
+        "find (img:craft) || find (quest:storm_blade)",
         "go (img:7) to areaid2_9_5 ;; the foothills"
       ]
     },
@@ -2011,7 +2008,7 @@
       "enter areaid2_10_1 ;; the cathedral rooftop"
     ],
     [
-      "go (img:0), enter (img:arena) cathedral_apex, kill plaguewing",
+      "go (img:0) to (img:arena) cathedral_apex, kill plaguewing",
       "go (img:3) to areaid2_10_2 ;; the ravaged square"
     ],
     [

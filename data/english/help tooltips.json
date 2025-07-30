@@ -512,7 +512,8 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker optionals": [
-      "choose whether optional loot/quests/encounters should be shown or not"
+      "choose whether optional loot/quests/encounters should be shown or not",
+      "examples: strongboxes, gear quests"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
