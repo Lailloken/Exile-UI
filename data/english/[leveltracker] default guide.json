@@ -832,7 +832,8 @@
       ],
       "lines": [
         "go (img:7) to areaid1_3_17_1 ;; the library",
-        "(hint)____ to skip the quest, long-click the next-button"
+        "(hint)____ long-click next-button to skip quest (and gems!)",
+        "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
     {
@@ -842,7 +843,8 @@
       ],
       "lines": [
         "activate the (img:waypoint)",
-        "find loose candle, enter areaid1_3_17_2 ;; the archives"
+        "find loose candle, enter areaid1_3_17_2 ;; the archives",
+        "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
     {
@@ -851,9 +853,10 @@
         "yes"
       ],
       "lines": [
-        "hidden (img:craft): candle in a narrow corridor",
         "find 4x (quest:golden_page)",
-        "relog to areaid1_3_town (img:town) ;; the sarn encampment"
+        "(hint)____ hidden (img:craft): candle in a narrow corridor",
+        "relog to areaid1_3_town (img:town) ;; the sarn encampment",
+        "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
     {
@@ -863,7 +866,8 @@
       ],
       "lines": [
         "get some currency",
-        "(img:waypoint) to areaid1_3_17_1 ;; the library"
+        "(img:waypoint) to areaid1_3_17_1 ;; the library",
+        "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
     {
@@ -873,7 +877,8 @@
       ],
       "lines": [
         "siosa: <a_fixture_of_fate>",
-        "(img:waypoint) to areaid1_3_15 ;; the imperial gardens"
+        "(img:waypoint) to areaid1_3_15 ;; the imperial gardens",
+        "siosa-check ;; this is a routing-check and will not be shown"
       ]
     },
     {

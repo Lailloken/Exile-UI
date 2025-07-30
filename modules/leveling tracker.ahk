@@ -1233,24 +1233,26 @@ Leveltracker_Load(profile := "")
 					If !LLK_HasVal(vars.leveltracker.guide.gems, InStr(vGem, " |–") ? StrReplace(StrReplace(StrReplace(vGem, "vaal "), "awakened "), " |–") " support" : vGem)
 						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") " support" : vGem)
 
-	stat_colors := ["D81C1C", "00BF40", "0077FF"]
+	stat_colors := ["D81C1C", "00BF40", "0077FF"], remove := [], array_offset := 0
 	For iPage, aPage in vars.leveltracker.guide.import
 	{
-		If !Leveltracker("condition", iPage) || !LLK_HasVal(aPage, ": <", 1,,, 1)
+		If !Leveltracker("condition", iPage) || !LLK_HasVal(aPage, ": <", 1,,, 1) && !LLK_HasVal(aPage, "siosa-check", 1,,, 1)
 			Continue
 
-		new_group := [], quests_page := [], delete := [], reward_available := 0
+		new_group := [], quests_page := {}, delete := [], reward_available := siosa_check := 0
 		For index, line in (aPage.condition ? aPage.lines : aPage)
 		{
 			If !InStr(line, "<")
 			{
-				new_group.Push(line)
+				If InStr(line, "siosa-check")
+					siosa_check := 1, quests_page["a fixture of fate"] := 1
+				Else new_group.Push(line)
 				Continue
 			}
 			quests_line := [], loop := 1
 			While InStr(line, "<",,, loop)
 				quest := SubStr(line, InStr(line, "<",,, loop) + 1), quest := SubStr(quest, 1, InStr(quest, ">") - 1), quests_line.Push(StrReplace(quest, "_", " "))
-				, quests_page.Push(StrReplace(quest, "_", " ")), loop += 1
+				, quests_page[StrReplace(quest, "_", " ")] := 1, loop += 1
 
 			new_group.Push(line)
 			If !RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
@@ -1264,14 +1266,18 @@ Leveltracker_Load(profile := "")
 						}
 		}
 
-		For index, gem in vars.leveltracker.guide.gems
-			For kQuest, oQuest in db.leveltracker.gems[gem].quests
-				If LLK_HasVal(quests_page, "fallen from grace") || LLK_HasVal(quests_page, kQuest) && (IsObject(oQuest.vendor) && !oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, class,,,, 1))
-				{
-					vars.leveltracker.guide.gems[index] := "", reward_available := 1
-					new_group.InsertAt(new_group.MaxIndex(), "buy gem: " gem)
-					Continue 2
-				}
+		If quests_page.Count()
+			For index, gem in vars.leveltracker.guide.gems
+				For kQuest, oQuest in db.leveltracker.gems[gem].quests
+					If quests_page["fallen from grace"] || quests_page[kQuest] && (IsObject(oQuest.vendor) && !oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, class,,,, 1))
+					{
+						reward_available := 1
+						If siosa_check && LLK_HasVal(vars.leveltracker.guide.import[iPage + 1], "siosa-check", 1,,, 1)
+							Break 2
+						vars.leveltracker.guide.gems[index] := ""
+						new_group.InsertAt(new_group.MaxIndex(), "buy gem: " gem)
+						Continue 2
+					}
 
 		Loop, % (count := vars.leveltracker.guide.gems.Count())
 			If !vars.leveltracker.guide.gems[count - (A_Index - 1)]
@@ -1290,10 +1296,16 @@ Leveltracker_Load(profile := "")
 			Else If LLK_HasVal(new_group, "fallen_from_grace", 1)
 				new_group := [new_group[new_group.MaxIndex()]]
 
+		If siosa_check && !reward_available
+			remove.Push(iPage)
+
 		If aPage.condition
 			vars.leveltracker.guide.import[iPage].lines := new_group.Clone()
 		Else vars.leveltracker.guide.import[iPage] := new_group.Clone()
 	}
+
+	For index, page in remove
+		vars.leveltracker.guide.import.RemoveAt(page - array_offset), array_offset += 1
 }
 
 Leveltracker_ScreencapMenu()
@@ -1570,6 +1582,8 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 		For index_raw, step in guide.group1
 		{
 			If !preview && !vars.poe_version && LLK_PatternMatch(step, "", [Lang_Trans("lvltracker_recommended"), Lang_Trans("lvltracker_recommended", 2)]) && !settings.leveltracker.recommend
+				Continue
+			If InStr(step, "siosa-check")
 				Continue
 
 			trace_optional := 0

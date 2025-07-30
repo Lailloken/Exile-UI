@@ -2379,6 +2379,7 @@ Settings_leveltracker2(cHWND := "")
 			If vars.leveltracker.skilltree_schematics.GUI
 				Leveltracker_PobSkilltree("close")
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB
+			IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
 			Init_leveltracker(), Leveltracker_Load()
 			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!profile ? "1" : profile)
 			Init_searchstrings()
