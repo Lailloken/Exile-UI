@@ -715,7 +715,7 @@
       ],
       "lines": [
         "find & activate the (img:waypoint)",
-        "get (img:craft) in (img:arena) eternal_laboratory",
+        "(hint)____ (img:craft) in (img:arena) eternal_laboratory near (img:waypoint)",
         "(img:waypoint) to areaid1_3_7 ;; the battlefront"
       ]
     },
@@ -782,7 +782,7 @@
         "find & kill piety for (quest:tower_key)",
         "(hint)____ follow: stairs that go up, single wagon at the fork",
         "(hint)____ recommended level: 27",
-        "activate the (img:craft) _|| relog to areaid1_3_town (img:town) ;; the sarn encampment"
+        "activate the (img:craft) || relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
     {
@@ -797,11 +797,29 @@
         "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
-    [
-      "maramoa: <sever_the_right_hand>",
-      "grigor: <piety's_pets>",
-      "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
-    ],
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "maramoa: <sever_the_right_hand>",
+        "grigor: <piety's_pets>",
+        "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
+        "maramoa: <sever_the_right_hand>",
+        "grigor: <piety's_pets>",
+        "(img:waypoint) to (color:fec076)your_hideout || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
+        "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
+      ]
+    },
     [
       "go (img:1) to areaid1_3_15 ;; the imperial gardens"
     ],
@@ -887,6 +905,9 @@
         "yes"
       ],
       "lines": [
+        "early option: complete (img:lab) normal_lab (33)",
+        "(hint)____ build-dependent, another reminder later.",
+        "(hint)____ (img:waypoint) to (color:fec076)town (img:town), enter areaidlabyrinth_airlock ;; aspirants' plaza",
         "follow the wagons to areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
@@ -897,7 +918,8 @@
       ],
       "lines": [
         "follow the road, activate the (img:waypoint)",
-        "(img:waypoint) to (color:fec076)your_hideout || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
+        "early option: complete (img:lab) normal_lab (33)",
+        "(hint)____ build-dependent, another reminder later",
         "follow the wagons to areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
@@ -973,7 +995,7 @@
         "yes"
       ],
       "lines": [
-        "activate the (img:craft)",
+        "find & activate the (img:craft) and (img:waypoint)",
         "(img:waypoint) to areaid1_4_town (img:town) ;; highgate"
       ]
     },
@@ -983,19 +1005,15 @@
         "no"
       ],
       "lines": [
+        "find & activate the (img:waypoint)",
         "(img:waypoint) to areaid1_4_town (img:town) ;; highgate"
       ]
     },
     [
       "tasuni: <an_indomitable_spirit>",
       "oyun: <breaking_the_seal>",
-      "(img:waypoint) to areaid1_3_town (img:town) ;; the sarn encampment"
-    ],
-    [
-      "enter areaidlabyrinth_airlock ;; aspirants' plaza"
-    ],
-    [
-      "complete the (img:lab) normal_lab",
+      "regular option: complete (img:lab) normal_lab",
+      "(hint)____ (img:waypoint) to (color:fec076)a3_|_town (img:town), enter areaidlabyrinth_airlock ;; the sarn encampment ;; aspirants' plaza",
       "(img:waypoint) to areaid1_4_3_3 ;; the crystal veins"
     ],
     [
@@ -1249,9 +1267,26 @@
         "yes"
       ],
       "lines": [
-        "enter & clear areaid2_6_1 ;; the twilight strand",
-        "relog to areaid2_6_town (img:town) ;; lioneye's watch",
-        "lilly: <fallen_from_grace> ;; this line and those above only show with imported pob",
+        "enter areaid2_6_1 ;; the twilight strand"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "kill everything",
+        "relog to areaid2_6_town (img:town) ;; lioneye's watch"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "lilly: <fallen_from_grace>",
         "enter areaid2_6_2 ;; the coast"
       ]
     },
@@ -1279,7 +1314,7 @@
       ],
       "lines": [
         "enter (img:arena) tukohama's_keep, kill tukohama",
-        "activate the (img:craft) _|| go (img:0) to areaid2_6_6 ;; the ridge"
+        "activate the (img:craft) || go (img:0) to areaid2_6_6 ;; the ridge"
       ]
     },
     {
@@ -1541,8 +1576,9 @@
       "enter areaid2_7_7 ;; the ashen fields"
     ],
     [
-      "go (img:5) to (img:arena) the_forest_encampment",
-      "kill greust || enter areaid2_7_8 ;; the northern forest"
+      "early option: complete (img:lab) cruel_lab (55)",
+      "(hint)____ build-dependent, another reminder later.",
+      "go (img:5), kill greust || enter areaid2_7_8 ;; the northern forest"
     ],
     [
       "(img:waypoint) to areaid2_7_town (img:town) ;; the bridge encampment"
@@ -1613,10 +1649,7 @@
     [
       "weylam: <kishara's_star>",
       "eramir: <queen_of_despair>",
-      "(img:waypoint) to areaidlabyrinth_airlock ;; aspirants' plaza"
-    ],
-    [
-      "complete the (img:lab) cruel_lab",
+      "regular option: complete (img:lab) cruel_lab",
       "(img:waypoint) to areaid2_7_11 ;; the vaal city"
     ],
     [
@@ -1670,8 +1703,8 @@
       ],
       "lines": [
         "enter (img:arena) the_cauldron, kill doedre",
-        "enter (img:arena) sewer_outlet || activate the (img:craft)",
-        "go (img:1) to areaid2_8_8 ;; the quay"
+        "enter (img:arena) sewer_outlet",
+        "activate the (img:craft) || go (img:1) to areaid2_8_8 ;; the quay"
       ]
     },
     {
@@ -1708,8 +1741,8 @@
         "yes"
       ],
       "lines": [
-        "find & kill dawn for (quest:sun_orb) || activate (img:craft)",
-        "relog to areaid2_8_town (img:town) ;; the sarn encampment"
+        "find & kill dawn for (quest:sun_orb)",
+        "get (img:craft) || relog to areaid2_8_town (img:town) ;; the sarn encampment"
       ]
     },
     {
@@ -1750,9 +1783,9 @@
         "yes"
       ],
       "lines": [
-        "find & kill dusk for (quest:moon_orb) || activate the (img:craft)",
+        "find & kill dusk for (quest:moon_orb)",
         "(hint)____ follow: stairs that go up, single flower-pot at the fork",
-        "relog to areaid2_8_town (img:town) ;; the sarn encampment"
+        "get (img:craft) || relog to areaid2_8_town (img:town) ;; the sarn encampment"
       ]
     },
     {
@@ -1793,7 +1826,7 @@
         "yes"
       ],
       "lines": [
-        "follow (img:0) edge for the (img:lab) trial and (img:craft)",
+        "follow (img:0) edge to (img:lab) trial and (img:craft)",
         "(hint)____ look for a (img:help) -icon on the map",
         "follow (img:0) edge to areaid2_8_4 ;; the high gardens"
       ]
@@ -1828,7 +1861,7 @@
       ],
       "lines": [
         "go (img:2), activate the (img:waypoint)",
-        "activate the (img:craft) || find (quest:the_storm_blade)",
+        "find the (img:craft) || find (quest:the_storm_blade)",
         "go (img:7) to areaid2_9_5 ;; the foothills"
       ]
     },
@@ -1854,7 +1887,7 @@
       ],
       "lines": [
         "go (img:1), kill basilisk for (quest:basilisk_acid)",
-        "activate the (img:craft) || relog to areaid2_9_town (img:town) ;; highgate"
+        "activate (img:craft) || relog to areaid2_9_town (img:town) ;; highgate"
       ]
     },
     {
@@ -1943,7 +1976,7 @@
       ],
       "lines": [
         "follow the cart tracks through the zone",
-        "(hint)____ the (img:craft) can be found where tracks end in a grate",
+        "(hint)____ (img:craft) can be found where tracks end in a grate",
         "kill adus for (quest:powder) || relog to areaid2_9_town (img:town) ;; highgate"
       ]
     },
@@ -1999,7 +2032,7 @@
       ],
       "lines": [
         "go along the (img:2) edge, follow the 2nd passage",
-        "go (img:1), activate the (img:waypoint) _|| enter areaid2_10_9 ;; the ossuary"
+        "go (img:1), activate the (img:waypoint) || enter areaid2_10_9 ;; the ossuary"
       ]
     },
     {
@@ -2033,7 +2066,7 @@
       ]
     },
     [
-      "complete the (img:lab) merciless_lab",
+      "complete (img:lab) merciless_lab",
       "(img:waypoint) to areaid2_10_7 ;; the control blocks"
     ],
     [

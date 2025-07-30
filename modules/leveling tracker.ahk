@@ -480,7 +480,7 @@ Leveltracker(cHWND := "", hotkey := "")
 		Leveltracker_Progress("init")
 	Else
 	{
-		Leveltracker_Toggle("hide"), vars.leveltracker.toggle := 0
+		Leveltracker_Toggle("hide")
 		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, img\GUI\leveltracker0.png
 	}
 	;WinActivate, ahk_group poe_window
@@ -1274,8 +1274,11 @@ Leveltracker_Load(profile := "")
 						reward_available := 1
 						If siosa_check && LLK_HasVal(vars.leveltracker.guide.import[iPage + 1], "siosa-check", 1,,, 1)
 							Break 2
-						vars.leveltracker.guide.gems[index] := ""
-						new_group.InsertAt(new_group.MaxIndex(), "buy gem: " gem)
+						vars.leveltracker.guide.gems[index] := "", last_quest_line := LLK_HasVal(new_group, ": <", 1,, 1), last_quest_line := last_quest_line[last_quest_line.MaxIndex()] + 1
+
+						While RegexMatch(new_group[last_quest_line], "i)\(hint\)|\(img\:quest\)")
+							last_quest_line += 1
+						new_group.InsertAt(last_quest_line, "buy gem: " gem)
 						Continue 2
 					}
 
@@ -1283,18 +1286,13 @@ Leveltracker_Load(profile := "")
 			If !vars.leveltracker.guide.gems[count - (A_Index - 1)]
 				vars.leveltracker.guide.gems.RemoveAt(count - (A_Index - 1))
 
-		If !reward_available && LLK_HasVal(new_group, "lilly:", 1)
-			If !settings.leveltracker["guide" profile].info.leaguestart
-			{
-				For index, line in new_group
-					If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
-					{
-						new_group.RemoveAt(index)
-						Break
-					}
-			}
-			Else If LLK_HasVal(new_group, "fallen_from_grace", 1)
-				new_group := [new_group[new_group.MaxIndex()]]
+		If !reward_available && !settings.leveltracker["guide" profile].info.leaguestart && LLK_HasVal(new_group, "lilly:", 1)
+			For index, line in new_group
+				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
+				{
+					new_group.RemoveAt(index)
+					Break
+				}
 
 		If siosa_check && !reward_available
 			remove.Push(iPage)
@@ -1625,7 +1623,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				Continue
 			}
 
-			If (index_raw = guide.group1.Count()) && buy_prompt
+			If buy_prompt
 			{
 				Gui, %name_main%: Add, Text, % style " cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
 				buy_prompt := 0
@@ -3049,4 +3047,5 @@ Leveltracker_Toggle(mode)
 	global vars
 
 	LLK_Overlay(vars.hwnd.leveltracker.main, mode), LLK_Overlay(vars.hwnd.leveltracker.background, mode), LLK_Overlay(vars.hwnd.leveltracker.controls2, mode), LLK_Overlay(vars.hwnd.leveltracker.controls1, mode)
+	vars.leveltracker.toggle := (mode = "show" ? 1 : 0)
 }
