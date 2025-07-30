@@ -474,7 +474,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-		, "anoints": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -576,7 +576,7 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		FileRemoveDir, % "img\GUI\leveling tracker\zones 2\", 1
 	}
 
-	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken"]
+	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken", "between_2_pillars_nearby"]
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
 
@@ -642,6 +642,9 @@ Loop()
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)
 	}
+
+	If settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(vars.log.areaID, "i)labyrinth_|sanctum_") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+		Leveltracker_Toggle("hide")
 
 	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill[2]* 60000) && settings.general.kill[1]
 		ExitApp

@@ -254,11 +254,14 @@ Gui_HelpToolTip(HWND_key)
 		yPos := yWin + hWin
 	Else If (check = "exchange" || check = "alarm")
 		yPos := yWin - height + 1
+	Else If (check = "leveltrackerschematics")
+		xPos := vars.client.x + vars.client.w/2 - tooltip_width/2
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1
 
-	Gui_CheckBounds(xPos, yPos, width, height)
+	If (check != "leveltrackereditor")
+		Gui_CheckBounds(xPos, yPos, width, height)
 	Gui, %GUI_name%: Show, % "NA x"xPos " y"(InStr("notepad, lab, leveltracker, snip, searchstrings, maptracker", check) ? yWin - (InStr("maptracker", check) ? height - 1 : 0) : yPos)
 	LLK_Overlay(tooltip, (width < 10) ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }

@@ -165,7 +165,10 @@ Cheatsheet_Advanced(name, hotkey := "")
 		{
 			Loop, Files, % "cheat-sheets" vars.poe_version "\" name "\[check] *.bmp"
 			{
-				pNeedle := Gdip_LoadImageFromFile(A_LoopFilePath)
+				If !vars.pics.cheatsheets_checks[name " " A_LoopFileName]
+					vars.pics.cheatsheets_checks[name " " A_LoopFileName] := LLK_ImageCache(A_LoopFilePath)
+				pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.cheatsheets_checks[name " " A_LoopFileName])
+
 				If (pNeedle <= 0)
 					Continue
 				x1 := (vars.general.xMouse - vars.client.x - vars.client.w/3 < 0) ? 0 : vars.general.xMouse - vars.client.x - vars.client.w/3
@@ -1381,7 +1384,10 @@ Cheatsheet_Search(name)
 		: (vars.cheatsheets.list[name].y1 + vars.cheatsheets.list[name].y2 + 100 >= vars.client.h) ? vars.client.h - 1 : vars.cheatsheets.list[name].y1 + vars.cheatsheets.list[name].y2 + 100
 	}
 
-	pNeedle := Gdip_CreateBitmapFromFile("cheat-sheets" vars.poe_version "\"name "\[check].bmp") ;load reference img-file that will be searched for in the screenshot
+	If !vars.pics.cheatsheets_checks[name " [check].bmp"]
+		vars.pics.cheatsheets_checks[name " [check].bmp"] := LLK_ImageCache("cheat-sheets" vars.poe_version "\"name "\[check].bmp")
+	pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.cheatsheets_checks[name " [check].bmp"]) ;load reference img-file that will be searched for in the screenshot
+
 	If (pNeedle <= 0)
 	{
 		MsgBox, % Lang_Trans("cheat_loaderror") " " name

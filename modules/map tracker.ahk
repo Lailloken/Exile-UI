@@ -1465,7 +1465,11 @@ Maptracker_MechanicsCheck()
 	{
 		If (type != 2) || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic))
 			Continue
-		pNeedle := Gdip_LoadImageFromFile("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp")
+
+		If !vars.pics.maptracker_checks[mechanic]
+			vars.pics.maptracker_checks[mechanic] := LLK_ImageCache("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp")
+		pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.maptracker_checks[mechanic])
+
 		If (0 < Gdip_ImageSearch(pScreen, pNeedle, LIST,,,,, 10))
 			vars.maptracker.map.content.Push(mechanic)
 		Gdip_DisposeImage(pNeedle)

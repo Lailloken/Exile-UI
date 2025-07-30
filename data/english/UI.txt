@@ -436,7 +436,7 @@
 
 
 		lvltracker_editor		=	"guide editor"					;## PoE2 only (whole block)
-		lvltracker_editor_slot		=	"slot"						;## the act-tracker has 3 slots to save guides into
+		lvltracker_editor_slot		=	"slot"						;## the act-tracker has multiple slots to save guides into
 		lvltracker_editor_acts		=	"acts:"
 		lvltracker_editor_save		=	"unsaved changes:"
 		lvltracker_editor_export	=	"export guide"
@@ -449,7 +449,7 @@
 		lvltracker_editor_quest-name	=	"quest-name"
 		lvltracker_editor_quest-item	=	"quest-item"
 		lvltracker_editor_remove	=	"remove page"
-		lvltracker_editor_add		=	"add page"
+		lvltracker_editor_condition	=	"no condition"
 
 
 ;#####################################################

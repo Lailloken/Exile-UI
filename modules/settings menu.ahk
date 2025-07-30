@@ -621,6 +621,9 @@ Settings_cheatsheets2(cHWND)
 		pBitmap := Screenchecks_ImageRecalibrate()
 		If (pBitmap > 0)
 		{
+			If vars.pics.cheatsheets_checks[control " [check].bmp"]
+				DeleteObject(vars.pics.cheatsheets_checks[control " [check].bmp"])
+			vars.pics.cheatsheets_checks[control " [check].bmp"] := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0)
 			Gdip_SaveBitmapToFile(pBitmap, "cheat-sheets" vars.poe_version "\" control "\[check].bmp", 100)
 			Gdip_DisposeImage(pBitmap)
 			IniDelete, % "cheat-sheets" vars.poe_version "\" control "\info.ini", image search
@@ -647,6 +650,9 @@ Settings_cheatsheets2(cHWND)
 		If LLK_Progress(vars.hwnd.settings["delbar_"control], "LButton", cHWND)
 		{
 			FileRemoveDir, % "cheat-sheets" vars.poe_version "\" control "\", 1
+			For key, hbm in vars.pics.cheatsheets_checks
+				If InStr(key, control " [")
+					DeleteObject(hbm), vars.pics.cheatsheets_checks.Delete(key)
 			Settings_menu("cheat-sheets")
 			KeyWait, LButton
 		}
@@ -2302,6 +2308,10 @@ Settings_leveltracker2(cHWND := "")
 		If FileExist("ini" vars.poe_version "\leveling guide" target_profile ".ini") && LLK_Progress(vars.hwnd.settings["profile" target_profile "_bar"], "RButton")
 		{
 			FileDelete, % "ini" vars.poe_version "\leveling guide" target_profile ".ini"
+			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!target_profile ? "1" : target_profile)
+			If vars.searchstrings.list["hideout lilly"]
+				Init_searchstrings()
+
 			If (settings.leveltracker.profile = target_profile)
 			{
 				Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
@@ -2369,8 +2379,10 @@ Settings_leveltracker2(cHWND := "")
 			If vars.leveltracker.skilltree_schematics.GUI
 				Leveltracker_PobSkilltree("close")
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB
-			Init_leveltracker()
-			Leveltracker_Load()
+			IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+			Init_leveltracker(), Leveltracker_Load()
+			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!profile ? "1" : profile)
+			Init_searchstrings()
 			If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 				Leveltracker_Progress(1)
 			Settings_menu("leveling tracker")
@@ -2966,6 +2978,10 @@ Settings_maptracker2(cHWND)
 					pClipboard := Screenchecks_ImageRecalibrate()
 					If (pClipboard <= 0)
 						Return
+
+					If vars.pics.maptracker_checks[control]
+						DeleteObject(vars.pics.maptracker_checks[control])
+					vars.pics.maptracker_checks[control] := Gdip_CreateHBITMAPFromBitmap(pClipboard, 0)
 					Gdip_SaveBitmapToFile(pClipboard, "img\Recognition ("vars.client.h "p)\Mapping Tracker\"control . vars.poe_version ".bmp", 100), Gdip_DisposeImage(pClipboard)
 					GuiControl, % "+c"(settings.maptracker[control] ? "Lime" : "505050"), % vars.hwnd.settings["screenmechanic_"control]
 					GuiControl, movedraw, % vars.hwnd.settings["screenmechanic_"control]
@@ -3866,6 +3882,9 @@ Settings_screenchecks2(cHWND := "")
 							Return
 						Else
 						{
+							If vars.pics.screen_checks[control]
+								DeleteObject(vars.pics.screen_checks[control])
+							vars.pics.screen_checks[control] := Gdip_CreateHBITMAPFromBitmap(pClipboard, 0)
 							Gdip_SaveBitmapToFile(pClipboard, "img\Recognition (" vars.client.h "p)\GUI\" control . vars.poe_version ".bmp", 100), Gdip_DisposeImage(pClipboard)
 							For key in vars.imagesearch[control]
 							{
@@ -3985,6 +4004,9 @@ Settings_searchstrings2(cHWND)
 		pBitmap := Screenchecks_ImageRecalibrate()
 		If (pBitmap > 0)
 		{
+			If vars.pics.search_strings[control]
+				DeleteObject(vars.pics.search_strings[control])
+			vars.pics.search_strings[control] := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0)
 			Gdip_SaveBitmapToFile(pBitmap, "img\Recognition (" vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " control ".bmp", 100)
 			Gdip_DisposeImage(pBitmap)
 			IniDelete, % "ini" vars.poe_version "\search-strings.ini", % control, last coordinates

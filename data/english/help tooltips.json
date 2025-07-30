@@ -474,7 +474,7 @@
       "each line is a step you need to complete",
       "(hint)____ indented lines provide more info for the step above",
       "(hint)____",
-      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold <tab> to see more info",
+      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
       "(hint)____",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
@@ -488,7 +488,7 @@
       "(hint)____ sub-tasks can be completed in random order or",
       "(hint)____ at the same time, depending on the zone",
       "(hint)____",
-      "if text is (color:00FFFF)highlighted_like_this, hold <tab> to see an image",
+      "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
       "(hint)____",
       "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
       "(hint)____",
@@ -499,7 +499,7 @@
       "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
-      "choose whether quests/objectives that only need to be done once per league should be shown or not",
+      "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",
       "if a pob import with gems is present and league-start is disabled, some gem quests may be replaced with hideout lilly instead",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
@@ -512,7 +512,8 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker optionals": [
-      "choose whether optional loot/quests/encounters should be shown or not"
+      "choose whether optional loot/quests/encounters should be shown or not",
+      "examples: strongboxes, gear quests"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
@@ -691,7 +692,7 @@
     ],
     "map-events enable": [
       "displays notifications whenever certain map events spawn",
-      "examples: nameless seer, reflecting mist"
+      "examples: nameless seer, reflecting mist, infamous mercenary"
     ],
     "map-events position": [
       "the notification will be docked to one of the client's edges"
@@ -1152,8 +1153,11 @@
     ]
   },
   "leveltrackereditor": {
+    "add page": [
+      "insert a new guide page after this one"
+    ],
     "conditions": [
-      "you can choose to only show/include certain guide-pages under specific conditions"
+      "you can choose to only show/include certain guide pages under specific conditions"
     ],
     "discard": [
       "long-click to discard unsaved changes"
@@ -1174,6 +1178,10 @@
     "save": [
       "long-click to save the changes to this guide slot",
       "note: your current guide progress will be reset(/underline)"
+    ],
+    "search": [
+      "type in strings to search within the currently selected act",
+      "pages with matching text will be highlighted green on the page-selection bar"
     ]
   },
   "leveltrackerschematics": {
@@ -1191,6 +1199,9 @@
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
       "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position",
       "hold <alt> to temporarily hide the overlay"
+    ],
+    "opacity": [
+      "adjust the opacity of the overlay (default: 100)"
     ]
   },
   "actdecoder": {

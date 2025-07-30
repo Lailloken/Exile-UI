@@ -75,11 +75,17 @@
 	settings.leveltracker.hotkeys := !Blank(check := ini.settings["enable page hotkeys"]) ? check : vars.client.stream
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
 	settings.leveltracker.hotkey_2 := !Blank(check := ini.settings["hotkey 2"]) ? check : "F4"
+
 	settings.leveltracker.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize, font_height, font_width), settings.leveltracker.fHeight := font_height, settings.leveltracker.fWidth := font_width
+
 	settings.leveltracker.fSize_editor := !Blank(check := ini.settings["font-size editor"]) ? check : settings.leveltracker.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize_editor, font_height, font_width), settings.leveltracker.fHeight_editor := font_height, settings.leveltracker.fWidth_editor := font_width
+
 	settings.leveltracker.fSize_editor1 := !Blank(check := ini.settings["font-size editor text"]) ? check : settings.leveltracker.fSize
+	settings.leveltracker.fSize_editor2 := settings.leveltracker.fSize_editor - 2
+	LLK_FontDimensions(settings.leveltracker.fSize_editor2, font_height, font_width), settings.leveltracker.fHeight_editor2 := font_height, settings.leveltracker.fWidth_editor2 := font_width
+
 	settings.leveltracker.pobmanual := !Blank(check := ini.settings["manual pob-screencap"]) ? check : 0
 	settings.leveltracker.pob := !Blank(check := ini.settings["enable pob-screencap"]) ? check : 0
 	settings.leveltracker.trans := !Blank(check := ini.settings["transparency"]) ? check : 5
@@ -87,8 +93,9 @@
 	settings.leveltracker.xCoord := !Blank(check := ini.settings["x-coordinate"]) ? check : ""
 	settings.leveltracker.yCoord := !Blank(check := ini.settings["y-coordinate"]) ? check : ""
 	settings.leveltracker.gemlinksToggle := !Blank(check := ini.settings["toggle gem-links"]) ? check : 0
-	settings.leveltracker.pobtree_color1 := !Blank(check := ini.settings["pob-tree color spec"]) ? check : "00CC00"
-	settings.leveltracker.pobtree_color2 := !Blank(check := ini.settings["pob-tree color unspec"]) ? check : "FF0000"
+	settings.leveltracker.pobtree_color1 := !Blank(check := ini.settings["pob-tree color spec"]) ? (check = "800080" ? "810081" : check) : "00CC00"
+	settings.leveltracker.pobtree_color2 := !Blank(check := ini.settings["pob-tree color unspec"]) ? (check = "800080" ? "810081" : check) : "FF0000"
+	settings.leveltracker.pobtree_opacity := !Blank(check := ini.settings["pob-tree opacity"]) ? check : 100
 
 	If settings.leveltracker.hotkeys
 	{
@@ -473,7 +480,7 @@ Leveltracker(cHWND := "", hotkey := "")
 		Leveltracker_Progress("init")
 	Else
 	{
-		Leveltracker_Toggle("hide"), vars.leveltracker.toggle := 0
+		Leveltracker_Toggle("hide")
 		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, img\GUI\leveltracker0.png
 	}
 	;WinActivate, ahk_group poe_window
@@ -532,7 +539,7 @@ Leveltracker_GuideEditor(cHWND)
 {
 	local
 	global vars, settings, db, json
-	static wait, toggle := 0, profile := 0, icons, bandits := ["none", "alira", "kraityn", "oak"]
+	static wait, toggle := 0, profile := 0, icons, bandits := ["none", "alira", "kraityn", "oak"], fSize, wPanels, wAreaHeader, wAreas := [], wOak, open_pages
 
 	If wait
 		Return
@@ -603,7 +610,7 @@ Leveltracker_GuideEditor(cHWND)
 		}
 		Else If InStr(cHWND, "Wheel")
 		{
-			If InStr(cHWND, "up") && (vars.leveltracker_editor.page[act] = 1) || InStr(cHWND, "down") && (vars.leveltracker_editor.page[act] = vars.leveltracker_editor.guide[act].Count())
+			If InStr(cHWND, "up") && (vars.leveltracker_editor.page[act] = 1) || InStr(cHWND, "down") && open_pages[vars.leveltracker_editor.guide[act].Count()]
 				Return
 			vars.leveltracker_editor.page[act] += InStr(cHWND, "up") ? -1 : 1
 		}
@@ -645,7 +652,11 @@ Leveltracker_GuideEditor(cHWND)
 
 			IniWrite, % settings.leveltracker["fSize_editor" type], % "ini" vars.poe_version "\leveling tracker.ini", settings, % "font-size editor" . (type ? " text" : "")
 			If !type
+			{
 				LLK_FontDimensions(settings.leveltracker.fSize_editor, fHeight, fWidth), settings.leveltracker.fWidth_editor := fWidth, settings.leveltracker.fHeight_editor := fHeight
+				settings.leveltracker.fSize_editor2 := settings.leveltracker.fSize_editor - 2
+				LLK_FontDimensions(settings.leveltracker.fSize_editor2, fHeight, fWidth), settings.leveltracker.fWidth_editor2 := fWidth, settings.leveltracker.fHeight_editor2 := fHeight
+			}
 		}
 		Else If (check = "save") || InStr(cHWND, "save#") ;clicking "save changes", or manually calling the function to save the default guide into a specific slot-#
 		{
@@ -680,7 +691,7 @@ Leveltracker_GuideEditor(cHWND)
 			If (profile = settings.leveltracker.profile)
 			{
 				Leveltracker_Load()
-				LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+				If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 					Leveltracker_Progress(1)
 			}
 			guide_last := vars.leveltracker_editor.guide_last := LLK_CloneObject(vars.leveltracker_editor.guide), vars.leveltracker_editor.guide_last_json := json.dump(guide_last)
@@ -707,7 +718,9 @@ Leveltracker_GuideEditor(cHWND)
 			GuiControl, % "movedraw", % cHWND
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.save_text
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.save
+			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.savebar
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.discard
+			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.discardbar
 			GuiControl, % (!modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.export
 		}
 		Else If InStr(check, "conditiontype_")
@@ -732,19 +745,16 @@ Leveltracker_GuideEditor(cHWND)
 		{
 			page_content := Trim(LLK_ControlGet(vars.hwnd.leveltracker_editor["textfield_" control]), " `r`n"), page_content := StrSplit(page_content, "`n", " ")
 			vars.leveltracker_editor.dummy_guide := {"group1": page_content.Clone()}
-			Leveltracker_PageDraw("guidepreview_main", "guidepreview_back", 1, wPreview, hPreview, hwnd_oldPreview)
-			Gui, guidepreview_back: Show, % "NA x" vars.general.xMouse - wPreview " y" vars.general.yMouse - hPreview " w" wPreview " h" hPreview
-			Gui, guidepreview_main: Show, % "NA x" vars.general.xMouse - wPreview " y" vars.general.yMouse - hPreview " w" wPreview " h" hPreview
+			Leveltracker_PageDraw("guidepreview_main", "guidepreview_back", 1, wPreview0, hPreview0, hwnd_oldPreview)
+			Gui, guidepreview_back: Show, % "NA x" vars.general.xMouse - wPreview0 " y" vars.general.yMouse - hPreview0 " w" wPreview0 " h" hPreview0
+			Gui, guidepreview_main: Show, % "NA x" vars.general.xMouse - wPreview0 " y" vars.general.yMouse - hPreview0 " w" wPreview0 " h" hPreview0
 			KeyWait, LButton
 			Gui, guidepreview_back: destroy
 			Gui, guidepreview_main: destroy
 			Return
 		}
 		Else If InStr(check, "addpanel_")
-		{
-			vars.leveltracker_editor.page[act] += (control = page[act]) ? 1 : 0
 			vars.leveltracker_editor.guide[act].InsertAt(control, [])
-		}
 		Else If InStr(check, "removepanel_")
 		{
 			If (guide[act].Count() < 2)
@@ -809,12 +819,12 @@ Leveltracker_GuideEditor(cHWND)
 			For index, val in vars.leveltracker_editor.guide[act]
 			{
 				match := 0
-				If vars.leveltracker_editor.search && (StrLen(vars.leveltracker_editor.search) > 3)
+				If vars.leveltracker_editor.search && (StrLen(vars.leveltracker_editor.search) >= 3)
 					For iLine, vLine in (val.lines ? val.lines : val)
 						If (match := RegExMatch(vLine, "i)" StrReplace(vars.leveltracker_editor.search, " ", ".")))
 							Break
 
-				GuiControl, % "+c" (match ? "Lime" : "White"), % vars.hwnd.leveltracker_editor["page_" index]
+				GuiControl, % "+c" (match ? "Lime" : (!vars.poe_version && vars.leveltracker_editor.guide[act][A_Index].condition.1 = "bandit" ? "Yellow" : "White")), % vars.hwnd.leveltracker_editor["page_" index]
 				GuiControl, % "movedraw", % vars.hwnd.leveltracker_editor["page_" index]
 			}
 			Return
@@ -836,7 +846,62 @@ Leveltracker_GuideEditor(cHWND)
 	Gui, %GUI_name%: Add, Text, % "ys Center Border gLeveltracker_GuideEditor HWNDhwnd_xbutton w" settings.leveltracker.fWidth_editor * 2, % "x"
 	vars.hwnd.leveltracker_editor.xbutton := hwnd_xbutton, vars.hwnd.leveltracker_editor.winbar := hwnd_winbar
 
-	Gui, %GUI_name%: Add, Text, % "Section xs x" margin " y+" margin, % Lang_Trans("global_uisize") " "
+	If (fSize != settings.leveltracker.fSize_editor)
+	{
+		fSize := settings.leveltracker.fSize_editor, wOak := "", wAreas := []
+		LLK_PanelDimensions([Lang_Trans("global_uisize"), Lang_Trans("global_search")], fSize, wPanels, hPanels,,, 0)
+		LLK_PanelDimensions([Lang_Trans("lvltracker_editor_areas")], fSize, wAreaHeader, hAreaHeader,,, 0)
+	}
+
+	If !wAreas[act]
+	{
+		dimensions := []
+		For index, highlight in ["hint", "quest-name", "quest-item"]
+			dimensions.Push(Lang_Trans("lvltracker_editor_" highlight))
+		For index, object in db.leveltracker.areas[act]
+			dimensions.Push(object.name (InStr(object.id, "g2_3a") ? " " Lang_Trans("lvltracker_editor_blocked") : ""))
+		dimensions.Push(db.leveltracker.areas[act + 1].1.name)
+		LLK_PanelDimensions(dimensions, settings.leveltracker.fSize_editor, wArea, hArea), wAreas[act] := Max(wArea, wAreaHeader)
+	}
+
+	Gui, %GUI_name%: Font, % "underline"
+	Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans x" margin " y+" margin, % Lang_Trans("lvltracker_editor_areas")
+	Gui, %GUI_name%: Font, % "norm"
+	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden ys hp w" margin + 1
+
+	For index, object in db.leveltracker.areas[act]
+	{
+		Gui, %GUI_name%: Add, Text, % (index = 1 ? "y+" margin : "") " Section xs Border HWNDhwnd gLeveltracker_GuideEditor w" wAreas[act] . (object.id = "labyrinth_airlock" ? " c569777" : ""), % " " object.name . (InStr(object.id, "g2_3a") ? " " Lang_Trans("lvltracker_editor_blocked") : "")
+		vars.hwnd.leveltracker_editor["pastearea_" object.id] := hwnd
+	}
+
+	Gui, %GUI_name%: Add, Text, % "Section xs Border HWNDhwnd gLeveltracker_GuideEditor cYellow w" wAreas[act], % " " db.leveltracker.areas[act + 1].1.name
+	vars.hwnd.leveltracker_editor["pastearea_" db.leveltracker.areas[act + 1].1.id] := hwnd
+
+	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden ys hp w" margin + 1
+	Gui, %GUI_name%: Font, % "underline"
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_icons")
+	Gui, %GUI_name%: Font, % "norm"
+
+	For index, icon in icons
+	{
+		If (icon != "help") && !vars.pics.leveltracker[icon]
+			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png")
+		Gui, %GUI_name%: Add, Pic, % (vars.poe_version && index = 10 || index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
+		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
+	}
+
+	Gui, %GUI_name%: Font, % "underline"
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_highlight")
+	Gui, %GUI_name%: Font, % "norm"
+	For index, highlight in ["hint", "quest-name", "quest-item"]
+	{
+		Gui, %GUI_name%: Add, Text, % (index = 1 ? "y+" margin : "") " Section xs Border HWNDhwnd gLeveltracker_GuideEditor w" wAreas[act], % " " Lang_Trans("lvltracker_editor_" highlight)
+		vars.hwnd.leveltracker_editor["highlight_" highlight] := hwnd
+	}
+
+	Gui, %GUI_name%: Add, Text, % "Section ys x+" margin * 2 " y" settings.leveltracker.fHeight_editor + margin " HWNDhwnd w" wPanels, % Lang_Trans("global_uisize") " "
+	ControlGetPos, xSize, ySize, wSize, hSize,, % "ahk_id " hwnd
 	Gui, %GUI_name%: Add, Text, % "ys x+0 Border HWNDhwnd gLeveltracker_GuideEditor Center w" settings.leveltracker.fWidth_editor * 2, % "–"
 	Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd1 gLeveltracker_GuideEditor Center w" settings.leveltracker.fWidth_editor * 2, % "r"
 	Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd2 gLeveltracker_GuideEditor Center w" settings.leveltracker.fWidth_editor * 2, % "+"
@@ -858,117 +923,114 @@ Leveltracker_GuideEditor(cHWND)
 
 	Gui, %GUI_name%: Add, Text, % "ys Center" (modified ? "" : " Hidden") " cRed HWNDhwnd x+" margin*2, % Lang_Trans("lvltracker_editor_save")
 	Gui, %GUI_name%: Add, Text, % "ys Center Border" (modified ? "" : " Hidden") " HWNDhwnd2 BackgroundTrans gLeveltracker_GuideEditor x+" margin, % " " Lang_Trans("global_save") " "
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen Vertical HWNDhwnd21 Range0-500", 0
+	Gui, %GUI_name%: Add, Progress, % "Disabled" (modified ? "" : " Hidden") " xp yp wp hp BackgroundBlack cGreen Vertical HWNDhwnd21 Range0-500", 0
 	Gui, %GUI_name%: Add, Text, % "ys Center Border" (modified ? "" : " Hidden") " HWNDhwnd3 BackgroundTrans gLeveltracker_GuideEditor x+" margin, % " " Lang_Trans("global_discard") " "
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Vertical HWNDhwnd31 Range0-500", 0
+	Gui, %GUI_name%: Add, Progress, % "Disabled" (modified ? "" : " Hidden") " xp yp wp hp BackgroundBlack cRed Vertical HWNDhwnd31 Range0-500", 0
 	vars.hwnd.leveltracker_editor.save_text := hwnd, vars.hwnd.leveltracker_editor.save := hwnd2, vars.hwnd.leveltracker_editor.discard := hwnd3
 	vars.hwnd.leveltracker_editor.savebar := vars.hwnd.help_tooltips["leveltrackereditor_save"] := hwnd21
 	vars.hwnd.leveltracker_editor.discardbar := vars.hwnd.help_tooltips["leveltrackereditor_discard"] := hwnd31
 	ControlGetPos, xEdit, yEdit,, hEdit,, ahk_id %hwnd%
 	wEdit := settings.leveltracker.fWidth_editor * 90, yEdit := yEdit + hEdit - 1, wPage := 0
 
-	Gui, %GUI_name%: Font, % "underline"
-	Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans x" wEdit + margin*2 " y" yEdit + margin + (vars.leveltracker_editor.guide.Count() ? settings.leveltracker.fHeight_editor : 0), % Lang_Trans("lvltracker_editor_areas")
-	Gui, %GUI_name%: Font, % "norm"
-	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden ys hp w" margin + 1
-	dimensions := [Lang_Trans("lvltracker_editor_load"), Lang_Trans("lvltracker_editor_export")]
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin - 1 " w" wPanels, % Lang_Trans("global_search")
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor - 4
+	Gui, %GUI_name%: Add, Edit, % "ys x+0 hp HWNDhwnd cBlack gLeveltracker_GuideEditor w" settings.leveltracker.fWidth_editor * 12, % vars.leveltracker_editor.search
+	vars.hwnd.leveltracker_editor.search := vars.hwnd.help_tooltips["leveltrackereditor_search"] := hwnd
 
-	For index, highlight in ["hint", "quest-name", "quest-item"]
-		dimensions.Push(Lang_Trans("lvltracker_editor_" highlight))
-
-	For index, object in db.leveltracker.areas[act]
-		dimensions.Push(object.name (InStr(object.id, "g2_3a") ? " " Lang_Trans("lvltracker_editor_blocked") : ""))
-
-	dimensions.Push(db.leveltracker.areas[act + 1].1.name)
-	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize_editor, width, height)
-	For index, object in db.leveltracker.areas[act]
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
+	Gui, %GUI_name%: Add, Text, % "ys x+" margin " hp Border 0x200 BackgroundTrans Center HWNDhwnd gLeveltracker_GuideEditor", % " " Lang_Trans("lvltracker_editor_load") " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border Range0-500 Vertical HWNDhwnd1 BackgroundBlack cRed", 0
+	vars.hwnd.leveltracker_editor.reset := hwnd, vars.hwnd.leveltracker_editor.reset_bar := vars.hwnd.help_tooltips["leveltrackereditor_guide reset"] := hwnd1
+	If vars.leveltracker_editor.guide.Count() && !modified && (vars.leveltracker_editor.default_guide != guide_snapshot)
 	{
-		Gui, %GUI_name%: Add, Text, % (index = 1 ? "y+" margin : "") " Section xs Border HWNDhwnd gLeveltracker_GuideEditor w" width . (object.id = "labyrinth_airlock" ? " c569777" : ""), % " " object.name . (InStr(object.id, "g2_3a") ? " " Lang_Trans("lvltracker_editor_blocked") : "")
-		vars.hwnd.leveltracker_editor["pastearea_" object.id] := hwnd
+		Gui, %GUI_name%: Add, Text, % "ys x+" margin " hp Border 0x200 BackgroundTrans Center HWNDhwnd gLeveltracker_GuideEditor", % " " Lang_Trans("lvltracker_editor_export") " "
+		vars.hwnd.leveltracker_editor.export := vars.hwnd.help_tooltips["leveltrackereditor_export"] := hwnd
 	}
 
-	Gui, %GUI_name%: Add, Text, % "Section xs Border HWNDhwnd gLeveltracker_GuideEditor cYellow w" width, % " " db.leveltracker.areas[act + 1].1.name
-	vars.hwnd.leveltracker_editor["pastearea_" db.leveltracker.areas[act + 1].1.id] := hwnd
-
-	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden ys hp w" margin + 1
-	Gui, %GUI_name%: Font, % "underline"
-	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_icons")
-	Gui, %GUI_name%: Font, % "norm"
-
-	For index, icon in icons
-	{
-		If (icon != "help") && !vars.pics.leveltracker[icon]
-			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png")
-		Gui, %GUI_name%: Add, Pic, % (vars.poe_version && index = 10 || index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
-		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
-	}
-
-	Gui, %GUI_name%: Font, % "underline"
-	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_highlight")
-	Gui, %GUI_name%: Font, % "norm"
-	For index, highlight in ["hint", "quest-name", "quest-item"]
-	{
-		Gui, %GUI_name%: Add, Text, % (index = 1 ? "y+" margin : "") " Section xs Border HWNDhwnd gLeveltracker_GuideEditor w" width, % " " Lang_Trans("lvltracker_editor_" highlight)
-		vars.hwnd.leveltracker_editor["highlight_" highlight] := hwnd
-	}
-
-	ControlGetPos, xLast, yLast, wLast, hLast,, ahk_id %hwnd%
-	Gui, %GUI_name%: Add, Progress, % "xs Disabled Hidden h" margin + 2
-	Gui, %GUI_name%: Add, Text, % "Section x" margin " y" yEdit + margin, % Lang_Trans("maptracker_page")
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor2
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin " Center Border HWNDhwnd_page w" (wPages := Round(settings.leveltracker.fWidth_editor2 * 2.5)), % "#"
 
 	Loop, % Max(vars.leveltracker_editor.guide[act].Count(), 1)
 	{
+		If (yPage + hPage >= vars.monitor.h * 0.80)
+		{
+			ControlMove,,,, wPages * 2 - 1,, ahk_id %hwnd_page%
+			GuiControl, movedraw, %hwnd_page%
+			style := "Section ys x+-1"
+		}
+		Else style := "xs y+-1"
+
 		If (search := vars.leveltracker_editor.search)
 		{
 			match := 0, val := vars.leveltracker_editor.guide[act][A_Index]
 			For iLine, vLine in (val.lines ? val.lines : val)
 				If (match := RegExMatch(vLine, "i)" StrReplace(search, " ", ".")))
 					Break
-			color := match ? "Lime" : "White"
 		}
-		Else color := "White"
-		Gui, %GUI_name%: Add, Text, % (xPage + wPage >= wEdit - wPage ? "xs Section" : "ys") . (A_Index = 1 ? " Section x+" margin : "") " Border HWNDhwnd BackgroundTrans gLeveltracker_GuideEditor Center"
-		. " w" settings.leveltracker.fWidth_editor*2.5 . (!vars.poe_version && vars.leveltracker_editor.guide[act][A_Index].condition.1 = "bandit" ? " cYellow" : " c" color), % A_Index
-		If (A_Index = page[act] || LLK_IsBetween(A_Index, page[act] - 1, page[act] + 1))
-			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" (A_Index = page[act] ? "202060" : LLK_IsBetween(A_Index, page[act] - 1, page[act] + 1) ? "505090" : "Black"), 100
-		vars.hwnd.leveltracker_editor["page_" A_Index] := hwnd
-		ControlGetPos, xPage, yPage, wPage, hPage,, ahk_id %hwnd%
+
+		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs y+-1" : style) " Border HWNDhwnd BackgroundTrans gLeveltracker_GuideEditor Center"
+		. " w" wPages . (match ? " cLime" : (!vars.poe_version && vars.leveltracker_editor.guide[act][A_Index].condition.1 = "bandit" ? " cYellow" : " cWhite")), % A_Index
+		;If (A_Index = page[act] || LLK_IsBetween(A_Index, page[act] - 1, page[act] + 1))
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack cBlack", 100
+		vars.hwnd.leveltracker_editor["page_" A_Index] := hwnd, vars.hwnd.leveltracker_editor["page_" A_Index "_bar"] := hwnd1
+		ControlGetPos, xPage, yPage, wPage, hPage,, % "ahk_id " hwnd
 	}
+	ControlGetPos, xPage0, yPage0, wPage0, hPage0,, % "ahk_id " hwnd_page
+	types := ["none", "league-start", "bandit"], options := ["none", ["yes", "no"]], handle := "", open_pages := []
 
-	Gui, %GUI_name%: Add, Text, % "Section xs x" margin, % Lang_Trans("global_search")
-	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor - 4
-	Gui, %GUI_name%: Add, Edit, % "ys x+" settings.leveltracker.fWidth_editor/4 " hp HWNDhwnd cBlack gLeveltracker_GuideEditor w" settings.leveltracker.fWidth_editor * 12, % vars.leveltracker_editor.search
-	vars.hwnd.leveltracker_editor.search := hwnd
-
-	types := ["none", "league-start", "bandit"], options := ["none", ["yes", "no"]], handle := ""
-	LLK_PanelDimensions([Lang_Trans("lvltracker_editor_add")], settings.leveltracker.fSize_editor, wAdd, hAdd), LLK_PanelDimensions([Lang_Trans("global_preview")], settings.leveltracker.fSize_editor, wPreview, hPreview)
-	For i, offset in [-1, 0, 1]
+	Loop
 	{
+		i := A_Index, offset := A_Index - 1
 		Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor1
 		page1 := page[act] + offset, array := vars.leveltracker_editor.guide[act][page1], panel := areaID := ""
+
+		If !IsObject(array)
+			Break
+
 		For index, line in (array.HasKey("condition") ? array.lines : array)
 			panel .= (!panel ? "" : "`n") line, areaID := InStr(line, "areaid") && !InStr(line, "(hint)__") ? 1 : areaID
-		style := (page1 < 1 || page1 > vars.leveltracker_editor.guide[act].Count() ? " Hidden" : "")
 		color := !areaID && !InStr(panel, "act-tracker") && !(act = guide.Count() && page1 = guide[act].Count()) ? "Red" : (json.dump(array) != json.dump(guide_last[act][page1]) ? "Blue" : "Black")
-		Gui, %GUI_name%: Add, Edit, % "Section xs" (i = 1 ? " x" margin : "") " -Wrap c" color " HWNDhwnd Lowercase gLeveltracker_GuideEditor w" wEdit " h" (yLast + hLast - yEdit)//4 . style, % panel
-		vars.hwnd.leveltracker_editor["textfield_" page1] := hwnd
 
+		line_count := (array.HasKey("condition") ? array.lines : array).Count()
+		Gui, %GUI_name%: Add, Edit, % "Section xs" (i = 1 ? " x" xPage0 + wPage0 - 2 " y" yPage0 - 1 : "") " -Wrap c" color " HWNDhwnd Hidden Lowercase gLeveltracker_GuideEditor w" wEdit " r" Max(3, line_count), % panel
+		vars.hwnd.leveltracker_editor["textfield_" page1] := hwnd
+		ControlGetPos, xCheck, yCheck, wCheck, hCheck,, % "ahk_id " hwnd
+
+		If (yCheck + hCheck >= vars.monitor.h * 0.8)
+			Break
+
+		GuiControl, -Hidden, % hwnd
+		GuiControl, % "+c" (page1 = page[act] ? "202060" : "505090"), % vars.hwnd.leveltracker_editor["page_" page1 "_bar"]
+		open_pages[page1] := 1
 		Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
-		Gui, %GUI_name%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd gLeveltracker_GuideEditor" style, % " " Lang_Trans("lvltracker_editor_remove") " "
-		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp cRed BackgroundBlack Vertical Range0-500 HWNDhwnd2" style, 0
+		Gui, %GUI_name%: Add, Text, % "x+0 yp Border Center HWNDhwnd gLeveltracker_GuideEditor", % " " Lang_Trans("global_preview") " "
+		vars.hwnd.leveltracker_editor["preview_" page1] := vars.hwnd.help_tooltips["leveltrackereditor_preview" handle] := hwnd
+
+		Gui, %GUI_name%: Add, Text, % "x+-1 yp Border BackgroundTrans HWNDhwnd gLeveltracker_GuideEditor", % " " Lang_Trans("global_delete", 2) " "
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp cRed BackgroundBlack Vertical Range0-500 HWNDhwnd2", 0
 		vars.hwnd.leveltracker_editor["removepanel_" page1] := hwnd
 		vars.hwnd.leveltracker_editor["removepanelbar_" page1] := vars.hwnd.help_tooltips["leveltrackereditor_remove panel" handle] := hwnd2
 
-		Gui, %GUI_name%: Add, Text, % "ys hp x+" margin . style, % " " Lang_Trans("global_condition")
+		Gui, %GUI_name%: Add, Text, % "x+-1 yp Center Border gLeveltracker_GuideEditor HWNDhwnd", % " " Lang_Trans("global_add") " "
+		vars.hwnd.leveltracker_editor["addpanel_" page1 + 1] := vars.hwnd.help_tooltips["leveltrackereditor_add page" handle] := hwnd
+
+		If (i = 1)
+			Gui, %GUI_name%: Add, Progress, % "Disabled x+0 yp hp w" margin " BackgroundBlack", 0
+
+		ControlGetPos, xDel, yDel, wDel, hDel,, % "ahk_id " vars.hwnd.leveltracker_editor["removepanel_" page1]
+		ControlGetPos, xPreview, yPreview, wPreview, hPreview,, % "ahk_id " vars.hwnd.leveltracker_editor["preview_" page1]
+		ControlGetPos, xAdd, yAdd, wAdd, hAdd,, % "ahk_id " vars.hwnd.leveltracker_editor["addpanel_" page1 + 1]
+		xCondition := xPreview - 1, yCondition := yDel + hDel - 1, wCondition := wDel + wPreview + wAdd - 2
+
+		;Gui, %GUI_name%: Add, Text, % "ys hp x+" margin, % " " Lang_Trans("global_condition")
 		Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor - 4
-		Gui, %GUI_name%: Add, DDL, % "ys x+" margin " hp r" (vars.poe_version ? 2 : 3) . style . " gLeveltracker_GuideEditor AltSubmit HWNDhwnd Choose" (option := !array.condition.1 ? 1 : LLK_HasVal(types, array.condition.1))
-		. " w" settings.leveltracker.fWidth_editor * 11, % Lang_Trans("global_none") "|" Lang_Trans("m_lvltracker_leaguestart") . (!vars.poe_version ? "|" Lang_Trans("m_lvltracker_bandit") : "")
+		Gui, %GUI_name%: Add, DDL, % "x" xCondition " y" yCondition " hp r" (vars.poe_version ? 2 : 3) " gLeveltracker_GuideEditor AltSubmit HWNDhwnd Choose" (option := !array.condition.1 ? 1 : LLK_HasVal(types, array.condition.1))
+		. " w" wCondition, % Lang_Trans("lvltracker_editor_condition") "|" Lang_Trans("m_lvltracker_leaguestart") . (!vars.poe_version ? "|" Lang_Trans("m_lvltracker_bandit") : "")
 		vars.hwnd.leveltracker_editor["conditiontype_" page1] := vars.hwnd.help_tooltips["leveltrackereditor_conditions" handle] := hwnd
 
 		If (option = 2)
 		{
-			Gui, %GUI_name%: Add, DDL, % "ys hp r2" style " gLeveltracker_GuideEditor AltSubmit HWNDhwnd Choose" LLK_HasVal(options[option], array.condition.2) " w" settings.leveltracker.fWidth_editor*8
-			, % Lang_Trans("global_yes") "|" Lang_Trans("global_no")
+			Gui, %GUI_name%: Add, DDL, % "xp y+0 wp hp r2 gLeveltracker_GuideEditor AltSubmit HWNDhwnd Choose" LLK_HasVal(options[option], array.condition.2), % Lang_Trans("global_yes") "|" Lang_Trans("global_no")
 			vars.hwnd.leveltracker_editor["leaguestart_" page1] := hwnd
 		}
 		Else If (option = 3)
@@ -976,44 +1038,34 @@ Leveltracker_GuideEditor(cHWND)
 			Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
 			For index, val in ["none", "alira", "kraityn", "oak"]
 			{
-				Gui, %GUI_name%: Add, Checkbox, % "ys x+" margin " HWNDhwnd gLeveltracker_GuideEditor Checked" (LLK_HasVal(array.condition.2, val) ? 1 : 0), % Lang_Trans((index = 1) ? "global_none" : "m_lvltracker_bandits", (index = 1) ? 1 : index - 1)
+				;Gui, %GUI_name%: Add, Checkbox, % (index = 1 ? "xp y+0" : "x+0 yp") " HWNDhwnd gLeveltracker_GuideEditor Checked" (LLK_HasVal(array.condition.2, val) ? 1 : 0), % Lang_Trans((index = 1) ? "global_none" : "m_lvltracker_bandits", (index = 1) ? 1 : index - 1)
+				If !wOak && (index = 2)
+					ControlGetPos, xNone, yNone, wNone, hNone,, % "ahk_id " hwnd
+				If !wOak && (index = 4)
+				{
+					ControlGetPos, xKraityn, yKraityn, wKraityn, hKraityn,, % "ahk_id " hwnd
+					wOak := " w" wCondition - (xKraityn + wKraityn - xNone) + 1
+				}
+				width := wOak
+
+				Gui, %GUI_name%: Add, Text, % (index = 1 ? "xp y+0" : "x+-1 yp") " HWNDhwnd Border gLeveltracker_GuideEditor" (LLK_HasVal(array.condition.2, val) ? " cLime" : "") . (index = 4 ? width : "")
+				, % " " (index = 1 ? Lang_Trans("global_none") : SubStr(Lang_Trans("m_lvltracker_bandits", index - 1), 1, (index = 4 ? 3 : 2))) " "
 				vars.hwnd.leveltracker_editor["bandit" index "_" page1] := hwnd
 			}
 		}
 
 		Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
-		Gui, %GUI_name%: Add, Text, % "ys x" margin + wEdit - wPreview " Border HWNDhwnd gLeveltracker_GuideEditor w" wPreview . style, % " " Lang_Trans("global_preview")
-		vars.hwnd.leveltracker_editor["preview_" page1] := vars.hwnd.help_tooltips["leveltrackereditor_preview" handle] := hwnd, handle .= "|"
-
-		If (i < 3)
-		{
-			Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
-			Gui, %GUI_name%: Add, Text, % "xs x" margin + wEdit//2 - wAdd//2 " y+" margin " Center 0x200 Border gLeveltracker_GuideEditor HWNDhwnd", % " " Lang_Trans("lvltracker_editor_add") " "
-			vars.hwnd.leveltracker_editor["addpanel_" page[act] + (i - 1)] := hwnd
-			Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor1
-			Gui, %GUI_name%: Add, Progress, % "Disabled Hidden xs h" margin + 2
-		}
-	}
-	;Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize_editor
-	Gui, %GUI_name%: Add, Progress, % "xs Disabled Hidden h" margin + 2
-
-	Gui, %GUI_name%: Add, Text, % "Section Border BackgroundTrans Center HWNDhwnd gLeveltracker_GuideEditor x" wEdit + margin*2 " y" yEdit - hEdit + 1 " w" width, % Lang_Trans("lvltracker_editor_load")
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border Range0-500 Vertical HWNDhwnd1 BackgroundBlack cRed", 0
-	vars.hwnd.leveltracker_editor.reset := hwnd, vars.hwnd.leveltracker_editor.reset_bar := vars.hwnd.help_tooltips["leveltrackereditor_guide reset"] := hwnd1
-	If vars.leveltracker_editor.guide.Count() && !modified && (vars.leveltracker_editor.default_guide != guide_snapshot)
-	{
-		Gui, %GUI_name%: Add, Text, % "xs Border BackgroundTrans Center HWNDhwnd gLeveltracker_GuideEditor w" width, % Lang_Trans("lvltracker_editor_export")
-		vars.hwnd.leveltracker_editor.export := vars.hwnd.help_tooltips["leveltrackereditor_export"] := hwnd
+		handle .= "|"
 	}
 
-	Gui, %GUI_name%: Show, NA x10000 y10000
+	Gui, %GUI_name%: Show, % "NA x10000 y10000 h" vars.monitor.h * 0.82
 	ControlFocus,, % "ahk_id " vars.hwnd.leveltracker_editor.xbutton
 	WinGetPos, xWin, yWin, wWin, hWin, ahk_id %hwnd_editor%
 	ControlMove,,,, wWin - settings.leveltracker.fWidth_editor*2 + 1,, % "ahk_id " vars.hwnd.leveltracker_editor.winbar
 	ControlMove,, wWin - settings.leveltracker.fWidth_editor*2,,,, % "ahk_id " vars.hwnd.leveltracker_editor.xbutton
 
 	If Blank(vars.leveltracker_editor.xPos)
-		xPos := vars.leveltracker_editor.xPos := vars.monitor.x + vars.client.xc - wWin//2, yPos := vars.leveltracker_editor.yPos := vars.monitor.y + vars.client.yc - hWin//2
+		xPos := vars.monitor.x + vars.client.xc - wWin//2, yPos := vars.monitor.y + vars.monitor.h/2 - hWin/2
 	Else xPos := vars.leveltracker_editor.xPos, yPos := vars.leveltracker_editor.yPos
 	;Gui_CheckBounds(xPos, yPos, wWin, hWin)
 	Gui, %GUI_name%: Show, % "NA x" xPos " y" yPos
@@ -1181,27 +1233,29 @@ Leveltracker_Load(profile := "")
 					If !LLK_HasVal(vars.leveltracker.guide.gems, InStr(vGem, " |–") ? StrReplace(StrReplace(StrReplace(vGem, "vaal "), "awakened "), " |–") " support" : vGem)
 						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") " support" : vGem)
 
-	stat_colors := ["D81C1C", "00BF40", "0077FF"]
+	stat_colors := ["D81C1C", "00BF40", "0077FF"], remove := [], array_offset := 0
 	For iPage, aPage in vars.leveltracker.guide.import
 	{
-		If !Leveltracker("condition", iPage) || !LLK_HasVal(aPage, ": <", 1,,, 1)
+		If !Leveltracker("condition", iPage) || !LLK_HasVal(aPage, ": <", 1,,, 1) && !LLK_HasVal(aPage, "siosa-check", 1,,, 1)
 			Continue
 
-		new_group := [], quests_page := [], delete := [], reward_available := 0
+		new_group := [], quests_page := {}, delete := [], reward_available := siosa_check := 0
 		For index, line in (aPage.condition ? aPage.lines : aPage)
 		{
 			If !InStr(line, "<")
 			{
-				new_group.Push(line)
+				If InStr(line, "siosa-check")
+					siosa_check := 1, quests_page["a fixture of fate"] := 1
+				Else new_group.Push(line)
 				Continue
 			}
 			quests_line := [], loop := 1
 			While InStr(line, "<",,, loop)
 				quest := SubStr(line, InStr(line, "<",,, loop) + 1), quest := SubStr(quest, 1, InStr(quest, ">") - 1), quests_line.Push(StrReplace(quest, "_", " "))
-				, quests_page.Push(StrReplace(quest, "_", " ")), loop += 1
+				, quests_page[StrReplace(quest, "_", " ")] := 1, loop += 1
 
 			new_group.Push(line)
-			If !InStr(line, "lilly: <a_fixture_of_fate>")
+			If !RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
 				For index, quest in quests_line
 					For index, gem in vars.leveltracker.guide.gems
 						If gems[gem].quests[quest] && gems[gem].quests[quest].quest && (!gems[gem].quests[quest].quest.Count() || LLK_HasVal(gems[gem].quests[quest].quest, class))
@@ -1212,31 +1266,44 @@ Leveltracker_Load(profile := "")
 						}
 		}
 
-		For index, gem in vars.leveltracker.guide.gems
-			For kQuest, oQuest in db.leveltracker.gems[gem].quests
-				If LLK_HasVal(quests_page, "fallen from grace") || LLK_HasVal(quests_page, kQuest) && (IsObject(oQuest.vendor) && !oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, class,,,, 1))
-				{
-					vars.leveltracker.guide.gems[index] := "", reward_available := 1
-					new_group.InsertAt(new_group.MaxIndex(), "buy gem: " gem)
-					Continue 2
-				}
+		If quests_page.Count()
+			For index, gem in vars.leveltracker.guide.gems
+				For kQuest, oQuest in db.leveltracker.gems[gem].quests
+					If quests_page["fallen from grace"] || quests_page[kQuest] && (IsObject(oQuest.vendor) && !oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, class,,,, 1))
+					{
+						reward_available := 1
+						If siosa_check && LLK_HasVal(vars.leveltracker.guide.import[iPage + 1], "siosa-check", 1,,, 1)
+							Break 2
+						vars.leveltracker.guide.gems[index] := "", last_quest_line := LLK_HasVal(new_group, ": <", 1,, 1), last_quest_line := last_quest_line[last_quest_line.MaxIndex()] + 1
+
+						While RegexMatch(new_group[last_quest_line], "i)\(hint\)|\(img\:quest\)")
+							last_quest_line += 1
+						new_group.InsertAt(last_quest_line, "buy gem: " gem)
+						Continue 2
+					}
 
 		Loop, % (count := vars.leveltracker.guide.gems.Count())
 			If !vars.leveltracker.guide.gems[count - (A_Index - 1)]
 				vars.leveltracker.guide.gems.RemoveAt(count - (A_Index - 1))
 
-		If !reward_available
+		If !reward_available && !settings.leveltracker["guide" profile].info.leaguestart && LLK_HasVal(new_group, "lilly:", 1)
 			For index, line in new_group
-				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate)")
+				If RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
 				{
 					new_group.RemoveAt(index)
 					Break
 				}
 
+		If siosa_check && !reward_available
+			remove.Push(iPage)
+
 		If aPage.condition
 			vars.leveltracker.guide.import[iPage].lines := new_group.Clone()
 		Else vars.leveltracker.guide.import[iPage] := new_group.Clone()
 	}
+
+	For index, page in remove
+		vars.leveltracker.guide.import.RemoveAt(page - array_offset), array_offset += 1
 }
 
 Leveltracker_ScreencapMenu()
@@ -1487,12 +1554,11 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 
 	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info" vars.poe_version].Clone()}) : vars.leveltracker.guide
 	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
-	If (dimensions.1 != settings.leveltracker.fSize)
-		LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : Leveltracker_Experience()], settings.leveltracker.fSize, wExp, hExp), dimensions := [settings.leveltracker.fSize, wExp]
+	LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : Leveltracker_Experience("", 1)], settings.leveltracker.fSize, wExp, hExp)
 	wButtons := Round(settings.leveltracker.fWidth*2)
 	While Mod(wButtons, 2)
 		wButtons += 1
-	wMin := Ceil((dimensions.2 * 2 + wButtons * 3) / settings.leveltracker.fWidth), wMin := Max(24, wMin)
+	wMin := Ceil((wExp * 2 + wButtons * 3) / settings.leveltracker.fWidth), wMin := Max(24, wMin)
 
 	Loop 2 ;create guide panel twice to check its width and correct it if necessary
 	{
@@ -1513,14 +1579,16 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 		guide.gemList := [], guide.itemList := []
 		For index_raw, step in guide.group1
 		{
-			If !vars.poe_version && LLK_PatternMatch(step, "", [Lang_Trans("lvltracker_recommended"), Lang_Trans("lvltracker_recommended", 2)]) && !settings.leveltracker.recommend
+			If !preview && !vars.poe_version && LLK_PatternMatch(step, "", [Lang_Trans("lvltracker_recommended"), Lang_Trans("lvltracker_recommended", 2)]) && !settings.leveltracker.recommend
+				Continue
+			If InStr(step, "siosa-check")
 				Continue
 
 			trace_optional := 0
 			While InStr(guide.group1[index_raw - trace_optional], "(hint)__")
 				trace_optional += 1
 
-			If !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+			If !preview && !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
 				Continue
 
 			step := StrReplace(step, ", <breaking_some_eggs2>")
@@ -1555,7 +1623,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				Continue
 			}
 
-			If (index_raw = guide.group1.Count()) && buy_prompt
+			If buy_prompt
 			{
 				Gui, %name_main%: Add, Text, % style " cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
 				buy_prompt := 0
@@ -1940,14 +2008,14 @@ Leveltracker_PobImport(b64, profile)
 				}
 			If regex_dump
 			{
-				IniWrite, % """" regex_dump """", % "ini\search-strings.ini", % "hideout lilly", % "00-exile leveling gems" profile
+				IniWrite, % """" regex_dump """", % "ini\search-strings.ini", % "hideout lilly", % "00-PoB gems: slot " (!profile ? "1" : profile)
 				If !vars.searchstrings.list["hideout lilly"]
 				{
 					IniWrite, 0, % "ini\search-strings.ini", % "Searches", % "hideout lilly"
 					vars.searchstrings.list["hideout lilly"] := {}
 				}
 			}
-			Else IniDelete, % "ini\search-strings.ini", % "hideout lilly", % "00-exile leveling gems" profile
+			Else IniDelete, % "ini\search-strings.ini", % "hideout lilly", % "00-PoB gems: slot " (!profile ? "1" : profile)
 
 			If vars.searchstrings.list["hideout lilly"]
 				Init_searchstrings()
@@ -1988,7 +2056,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 {
 	local
 	global vars, settings, JSON, db
-	static angles, pen, brush, wait, radii, toggle := 0, color1, color2
+	static angles, pen, brush, wait, radii, toggle := 0, color1, color2, opacity
 
 	check := LLK_HasVal(vars.hwnd.skilltree_schematics, mode), control := SubStr(check, InStr(check, "_") + 1)
 	If InStr(check, "color_")
@@ -1999,12 +2067,22 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 
 		If Blank(color_pick)
 			Return
+		color_pick := (color_pick = "800080") ? "810081" : color_pick
 		IniWrite, % """" (settings.leveltracker["pobtree_color" control] := color_pick) """", % "ini" vars.poe_version "\leveling tracker.ini", settings, % "pob-tree color " (control = 1 ? "spec" : "unspec")
 		For key, pBrush in brush
 			Gdip_DeleteBrush(pBrush)
 		For key, pPen in pen
 			Gdip_DeletePen(pPen)
 		angles := ""
+	}
+	Else If (check = "opacity")
+	{
+		For key, pBrush in brush
+			Gdip_DeleteBrush(pBrush)
+		For key, pPen in pen
+			Gdip_DeletePen(pPen)
+		angles := ""
+		IniWrite, % (settings.leveltracker.pobtree_opacity := LLK_ControlGet(mode)), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "pob-tree opacity"
 	}
 	Else If !Blank(check)
 	{
@@ -2018,12 +2096,13 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 			, [10, 20, 30, 40, 45, 50, 60, 70, 80, 90, 100, 110, 120, 130, 135, 140, 150, 160, 170, 180, 190, 200, 210, 220, 225, 230, 240, 250, 260, 270, 280, 290, 300, 310, 315, 320, 330, 340, 350]]
 		angles.1.0 := 0, angles.2.0 := 0
 		radii := {"classstart": 200, "mastery": 100, "keystone": 100, "notable": 60, "normal": 40, "line": 10}
-		color1 := settings.leveltracker.pobtree_color1, color2 := settings.leveltracker.pobtree_color2
-		brush := {"white": Gdip_BrushCreateSolid(0x64ffffff), "white2": Gdip_BrushCreateSolid(0x99ffffff), "white3": Gdip_BrushCreateSolid(0xffffffff)
-		, "red0": Gdip_BrushCreateSolid(0x64ff0000), "red": Gdip_BrushCreateSolid(0x64 . color2), "red2": Gdip_BrushCreateSolid(0x99 . color2), "red3": Gdip_BrushCreateSolid(0xff . color2), "red4": Gdip_BrushCreateSolid(0xffff0000)
-		, "green0": Gdip_BrushCreateSolid(0x6400cc00), "green": Gdip_BrushCreateSolid(0x64 . color1), "green2": Gdip_BrushCreateSolid(0x99 . color1), "green3": Gdip_BrushCreateSolid(0xff . color1), "green4": Gdip_BrushCreateSolid(0xff00cc00)
-		, "blue0": Gdip_BrushCreateSolid(0x640000ff), "blue4": Gdip_BrushCreateSolid(0xff0000ff)
-		, "black": Gdip_BrushCreateSolid(0xff000000), "gray": Gdip_BrushCreateSolid(0xff606060), "yellow": Gdip_BrushCreateSolid(0x64ffff00)}
+		color1 := settings.leveltracker.pobtree_color1, color2 := settings.leveltracker.pobtree_color2, opacity := Format("{:#x}", settings.leveltracker.pobtree_opacity)
+
+		brush := {"white": Gdip_BrushCreateSolid(opacity "ffffff"), "white2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . "ffffff"), "white3": Gdip_BrushCreateSolid(0xffffffff)
+		, "red0": Gdip_BrushCreateSolid(opacity "ff0000"), "red": Gdip_BrushCreateSolid(opacity . color2), "red2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . color2), "red3": Gdip_BrushCreateSolid(0xff . color2), "red4": Gdip_BrushCreateSolid(0xffff0000)
+		, "green0": Gdip_BrushCreateSolid(opacity "00cc00"), "green": Gdip_BrushCreateSolid(opacity . color1), "green2": Gdip_BrushCreateSolid(Format("{:#x}", Max(0x99, opacity)) . color1), "green3": Gdip_BrushCreateSolid(0xff . color1), "green4": Gdip_BrushCreateSolid(0xff00cc00)
+		, "blue0": Gdip_BrushCreateSolid(opacity "0000ff"), "blue4": Gdip_BrushCreateSolid(0xff0000ff)
+		, "black": Gdip_BrushCreateSolid(0xff000000), "gray": Gdip_BrushCreateSolid(0xff606060), "yellow": Gdip_BrushCreateSolid(opacity "ffff00")}
 		pen := ""
 	}
 
@@ -2204,7 +2283,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 	mWidth := Round(mWidth * scale), mHeight := Round(mHeight * scale), xOffset := x_coords.1, yOffset := y_coords.1
 
 	If !pen
-		wPen := Max(2, Ceil(radii.line * scale)), pen := {"white": Gdip_CreatePen(0x64ffffff, wPen), "green": Gdip_CreatePen(0x64 . color1, wPen), "red": Gdip_CreatePen(0x64 . color2, wPen)}
+		wPen := Max(2, Ceil(radii.line * scale)), pen := {"white": Gdip_CreatePen(opacity "ffffff", wPen), "green": Gdip_CreatePen(opacity . color1, wPen), "red": Gdip_CreatePen(opacity . color2, wPen)}
 
 	Gui, skilltree_schematics: -DPIScale -Caption +E0x80000 +E0x20 +ToolWindow +LastFound +OwnDialogs +AlwaysOnTop +HWNDhwnd_skilltree_schematics
 	Gui, skilltree_schematics: Show, NA
@@ -2369,22 +2448,22 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 
 	LLK_PanelDimensions([label ": " tree_title], fSize, wPanel, hPanel)
 	hwnd_old := vars.hwnd.skilltree_schematics.info, vars.hwnd.skilltree_schematics := {"main": hwnd_skilltree_schematics, "info": hwnd_skilltree_schematics_info}
-	Gui, %GUI_name%: Add, Text, % "Section Border Center BackgroundTrans", % " " label ": " tree_title " "
+	Gui, %GUI_name%: Add, Text, % "Section x" vars.client.w/2 - wPanel/2 " Border Center BackgroundTrans", % " " label ": " tree_title " "
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack", 0
 
-	Gui, %GUI_name%: Add, Text, % "Section xs y+-1 xp+" wPanel/2 - settings.leveltracker.fHeight * 1.5 " h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd"
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd01 c" color1, 100
-	Gui, %GUI_name%: Add, Pic, % "ys x+-1 h" settings.leveltracker.fHeight - 2 " w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI_name%: Add, Pic, % "Section xs y+-1 x" vars.client.w/2 - settings.leveltracker.fHeight*3 " h" settings.leveltracker.fHeight - 2 " w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack HWNDhwnd1", 0
+	Gui, %GUI_name%: Add, Text, % "ys x+-1 h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd"
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd01 c" color1, 100
 	Gui, %GUI_name%: Add, Text, % "ys x+-1 h" settings.leveltracker.fHeight " w" settings.leveltracker.fHeight " Border BackgroundTrans gLeveltracker_PobSkilltree HWNDhwnd2"
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd21 c" color2, 100
+	Gui, %GUI_name%: Add, Slider, % "ys x+-1 hp w" settings.leveltracker.fHeight*3 " Center NoTicks Range50-255 Line5 ToolTip BackgroundBlack gLeveltracker_PobSkilltree HWNDhwnd3", % settings.leveltracker.pobtree_opacity
 	vars.hwnd.skilltree_schematics.color_1 := hwnd, vars.hwnd.skilltree_schematics.color_1bar := vars.hwnd.help_tooltips["leveltrackerschematics_color spec"] := hwnd01
 	vars.hwnd.skilltree_schematics.color_2 := hwnd2, vars.hwnd.skilltree_schematics.color_2bar := vars.hwnd.help_tooltips["leveltrackerschematics_color unspec"] := hwnd21
-	vars.hwnd.help_tooltips["leveltrackerschematics_how-to"] := hwnd1
+	vars.hwnd.help_tooltips["leveltrackerschematics_how-to"] := hwnd1, vars.hwnd.skilltree_schematics.opacity := vars.hwnd.help_tooltips["leveltrackerschematics_opacity"] := hwnd3
+	ControlFocus,, % "ahk_id " hwnd
 
-	Gui, %GUI_name%: Show, % "NA x10000 y10000"
-	WinGetPos,,, wWin, hWin, ahk_id %hwnd_skilltree_schematics_info%
-	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + vars.client.xc - wWin//2 " y" vars.monitor.y + vars.client.y
+	Gui, %GUI_name%: Show, % "NA x" vars.client.x " y" vars.client.y
 	LLK_Overlay(hwnd_skilltree_schematics_info, "show",, GUI_name), LLK_Overlay(hwnd_skilltree_schematics, "show",, "skilltree_schematics"), LLK_Overlay(hwnd_old, "destroy")
 
 	If ascendancy || (mode = "overview")
@@ -2527,7 +2606,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	level_diff := vars.log.level - vars.log.arealevel
 
 	If vars.log.level
-		exp_info := vars.poe_version ? RegExMatch(vars.log.areaID, "i)^hideout|_town$") ? "" : Lang_Trans("lvltracker_exp") " " (level_diff > 0 ? "+" : "") level_diff : Leveltracker_Experience("", 1)
+		exp_info := vars.poe_version ? (RegExMatch(vars.log.areaID, "i)^hideout|_town$") ? "" : Lang_Trans("lvltracker_exp") " " (level_diff > 0 ? "+" : "") level_diff) : Leveltracker_Experience("", 1)
 	color := !vars.poe_version ? (!InStr(exp_info, "100%") ? "Red" : "Lime") : (Abs(level_diff) > 3 ? "Red" : Abs(level_diff) > 2 ? "FF8000" : "Lime")
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "?"
@@ -2968,4 +3047,5 @@ Leveltracker_Toggle(mode)
 	global vars
 
 	LLK_Overlay(vars.hwnd.leveltracker.main, mode), LLK_Overlay(vars.hwnd.leveltracker.background, mode), LLK_Overlay(vars.hwnd.leveltracker.controls2, mode), LLK_Overlay(vars.hwnd.leveltracker.controls1, mode)
+	vars.leveltracker.toggle := (mode = "show" ? 1 : 0)
 }
