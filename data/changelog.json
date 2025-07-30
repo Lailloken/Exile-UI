@@ -1,5 +1,13 @@
 [
   [
+	["1.59.0", 15900],
+	"july 30, 2025",
+	"act-tracker: stylistic rewrite of poe1 guide, guide-panel auto hides in lab",
+	"act-tracker: added optional steps for earlier ascension, a3 library & a6 twilight strand now pob gem-dependent",
+	"pob skilltree overlay: added transparency customization",
+	"guide editor: major redesign"
+  ],
+  [
 	["1.58.9", 15809],
 	"july 18, 2025",
 	"map-tracker: fixed oshabi fight, replaced reflecting mist icon",
