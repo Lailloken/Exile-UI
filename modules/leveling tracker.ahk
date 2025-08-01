@@ -2941,7 +2941,7 @@ Leveltracker_Timer(mode := "")
 	{
 		If (mode = "pause") && (timer.current_act = 11)
 			error := [Lang_Trans("lvltracker_timererror", 1), 1.5, "yellow"]
-		Else If (mode = "reset") && !(vars.log.areaID = "1_1_1" || vars.log.areaID = "g1_1")
+		Else If (mode = "reset") && !RegExMatch(vars.log.areaID, "i)^(1_1_1|1_1_town|g1_1|g1_town)$")
 			error := [Lang_Trans("lvltracker_timererror", 2), 2, "red"]
 		Else If (mode = "reset") && !timer.pause
 			error := [Lang_Trans("lvltracker_timererror", 3), 1, "red"]
@@ -2973,7 +2973,7 @@ Leveltracker_Timer(mode := "")
 		}
 		Else If (mode = "pause") && (timer.current_act != 11)
 		{
-			If !InStr(timer.name, ",") && (vars.log.areaID = "1_1_1" || vars.log.areaID = "g1_1")
+			If !InStr(timer.name, ",") && RegExMatch(vars.log.areaID, "i)^(1_1_1|1_1_town|g1_1|g1_town)$")
 			{
 				FormatTime, date,, ShortDate
 				FormatTime, time,, Time
@@ -3031,14 +3031,17 @@ Leveltracker_TimerCSV()
 {
 	local
 	global vars, settings
+	static csv
 
 	If !FileExist("exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv")
 		FileAppend, % """date, time"",act 1,act 2,act 3,act 4,act 5,act 6" (!vars.poe_version ? ",act 7,act 8,act 9,act 10" : ""), % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
 
-	FileRead, csv, % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
+	If !csv
+		FileRead, csv, % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
 	If InStr(csv, vars.leveltracker.timer.name)
-		FileAppend, % ","""FormatSeconds(vars.leveltracker.timer.current_split) ".00""", % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
-	Else FileAppend, % "`n"""vars.leveltracker.timer.name ""","""FormatSeconds(vars.leveltracker.timer.current_split) ".00""", % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
+		FileAppend, % (append := ","""FormatSeconds(vars.leveltracker.timer.current_split) ".00"""), % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
+	Else FileAppend, % (append := "`n"""vars.leveltracker.timer.name ""","""FormatSeconds(vars.leveltracker.timer.current_split) ".00"""), % "exports\campaign runs" (vars.poe_version ? " (PoE 2)" : "") ".csv"
+	csv .= append
 }
 
 Leveltracker_Toggle(mode)
