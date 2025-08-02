@@ -2997,7 +2997,7 @@ Leveltracker_Timer(mode := "")
 	If !IsObject(db.leveltracker)
 		DB_Load("leveltracker")
 
-	If vars.hwnd.leveltracker.main && (timer.pause = 1) && (db.leveltracker.areas.HasKey(vars.log.areaID) || InStr(vars.log.areaID, "labyrinth")) && (timer.current_act != 11) ;resume the timer after leaving a hideout (if it wasn't paused manually by the user)
+	If vars.hwnd.leveltracker.main && (timer.pause = 1) && (LLK_HasVal(db.leveltracker.areas, vars.log.areaID,,,, 1) || InStr(vars.log.areaID, "labyrinth")) && (timer.current_act != 11) ;resume the timer after leaving a hideout (if it wasn't paused manually by the user)
 		timer.pause := 0
 
 	If vars.hwnd.leveltracker.main && (timer.pause = 0) ;advance the timer
