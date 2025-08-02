@@ -1,4 +1,30 @@
 {
+  "_quests": {
+    "a fixture of fate": 3,
+    "breaking some eggs1": 1,
+    "breaking some eggs2": 1,
+    "breaking the seal": 3,
+    "enemy at the gate": 1,
+    "fallen from grace": 6,
+    "intruders in black": 2,
+    "lost in love": 3,
+    "mercy mission": 1,
+    "sever the right hand": 3,
+    "sharp and cruel": 2,
+    "the caged brute1": 1,
+    "the caged brute2": 1,
+    "the eternal nightmare": 3,
+    "the root of the problem": 2,
+    "the siren's cadence": 1
+  },
+  "quicksilver flask": {
+    "attribute": 2,
+    "quests": {
+      "mercy mission": {
+        "quest": []
+      }
+    }
+  },
   "absolution": {
     "attribute": 1,
     "level": 12,

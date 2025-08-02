@@ -20,15 +20,6 @@
     {
       "condition": [
         "league-start",
-        "no"
-      ],
-      "lines": [
-        "(img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
         "yes"
       ],
       "lines": [
@@ -73,9 +64,20 @@
         "no"
       ],
       "lines": [
+        "(img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch",
+        "quest-check: <breaking_some_eggs1>, <breaking_some_eggs2>, <mercy_mission> ;; this is a hidden routing-check"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
         "tarkleigh: <breaking_some_eggs1>, <breaking_some_eggs2>",
         "(img:waypoint) to (color:fec076)your_hideout || lilly: <mercy_mission> ;; only shows with imported pob",
-        "(img:waypoint) to areaid1_1_4_1 ;; the submerged passage"
+        "(img:waypoint) to areaid1_1_4_1 ;; the submerged passage",
+        "quest-check: <breaking_some_eggs1>, <breaking_some_eggs2>, <mercy_mission> ;; this is a hidden routing-check"
       ]
     },
     [
@@ -850,7 +852,7 @@
       ],
       "lines": [
         "go (img:7) to areaid1_3_17_1 ;; the library",
-        "siosa-check ;; this is a routing-check and will not be shown"
+        "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
     },
     {
@@ -861,7 +863,7 @@
       "lines": [
         "activate the (img:waypoint)",
         "find loose candle, enter areaid1_3_17_2 ;; the archives",
-        "siosa-check ;; this is a routing-check and will not be shown"
+        "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
     },
     {
@@ -873,7 +875,7 @@
         "find 4x (quest:golden_page)",
         "(hint)____ hidden (img:craft): candle in a narrow corridor",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment",
-        "siosa-check ;; this is a routing-check and will not be shown"
+        "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
     },
     {
@@ -884,7 +886,7 @@
       "lines": [
         "get some currency",
         "(img:waypoint) to areaid1_3_17_1 ;; the library",
-        "siosa-check ;; this is a routing-check and will not be shown"
+        "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
     },
     {
@@ -895,7 +897,7 @@
       "lines": [
         "siosa: <a_fixture_of_fate>",
         "(img:waypoint) to areaid1_3_15 ;; the imperial gardens",
-        "siosa-check ;; this is a routing-check and will not be shown"
+        "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
     },
     {
@@ -2046,20 +2048,12 @@
     {
       "condition": [
         "league-start",
-        "yes"
-      ],
-      "lines": [
-        "(img:waypoint) to areaidlabyrinth_airlock ;; aspirants' plaza"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
         "no"
       ],
       "lines": [
         "go along the (img:2) edge, follow the 2nd passage",
-        "go (img:1), then (img:waypoint) to areaidlabyrinth_airlock ;; aspirants' plaza"
+        "go (img:1) , activate the (img:waypoint) || complete (img:lab) merciless_lab",
+        "(img:waypoint) to areaid2_10_7 ;; the control blocks"
       ]
     },
     [
