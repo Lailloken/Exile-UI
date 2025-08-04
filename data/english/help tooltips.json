@@ -386,8 +386,8 @@
     "leveltracker timer": [
       "adds a timer between guide text and navigation buttons that records your act times and stores them in csv-files",
       "timer structure:\ntotal time | act # | current act time",
-      "click <act #> to pause/resume the timer, long-right-click it to reset for a new run",
-      "how to reset: create a new character, enter the first zone, long-right-click on <act #>, then click it to start the new run"
+      "click <act #> to pause/resume the timer\n(it will auto-pause when afk for 10+ seconds)",
+      "how to reset: in the first zone or town, long-right-click on <act #>"
     ],
     "leveltracker timer-pause": [
       "automatically pauses the timer in hideouts, and resumes it when you leave"

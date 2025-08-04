@@ -3012,7 +3012,7 @@ Leveltracker_Timer(mode := "")
 		Return
 	}
 
-	If !settings.leveltracker.timer
+	If !settings.leveltracker.timer || (A_TimeIdle >= 10000)
 		Return
 
 	If !IsObject(db.leveltracker)
