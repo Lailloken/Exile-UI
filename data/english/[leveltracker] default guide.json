@@ -81,7 +81,7 @@
       ]
     },
     [
-      "find the bridge or (img:arena) submerged_passage, place (img:portal) ;; the submerged passage",
+      "find the bridge or (img:arena) flooded_depths, place (img:portal)",
       "cross the bridge, find & enter areaid1_1_5 ;; the ledge"
     ],
     [
@@ -1515,18 +1515,13 @@
     {
       "condition": [
         "league-start",
-        "no"
+        "yes"
       ],
       "lines": [
-        "activate the (img:waypoint)",
-        "use (quest:maligaro's_map) in (quest:map_device)",
-        "enter areaid2_7_5_map ;; maligaro's sanctum"
+        "follow the edges & bridges to (img:arena) maligaro's_workshop",
+        "kill maligaro for (quest:venom) || relog to areaid2_7_town (img:town) ;; the bridge encampment"
       ]
     },
-    [
-      "follow the edges & bridges to (img:arena) maligaro's_workshop",
-      "kill maligaro for (quest:venom) || relog to areaid2_7_town (img:town) ;; the bridge encampment"
-    ],
     {
       "condition": [
         "league-start",
@@ -1544,8 +1539,19 @@
         "no"
       ],
       "lines": [
-        "helena: <essence_of_the_artist>",
-        "(img:waypoint) to areaid2_7_5_1 ;; the chamber of sins level 1"
+        "activate the (img:waypoint)",
+        "use (quest:maligaro's_map) in (quest:map_device)",
+        "enter areaid2_7_5_map ;; maligaro's sanctum"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
+        "follow the edges & bridges to (img:arena) maligaro's_workshop",
+        "kill maligaro for (quest:venom) || (img:portal) to areaid2_7_5_1 ;; the chamber of sins level 1"
       ]
     },
     [
@@ -1583,10 +1589,27 @@
     [
       "(img:waypoint) to areaid2_7_town (img:town) ;; the bridge encampment"
     ],
-    [
-      "eramir: <the_master_of_a_million_faces>",
-      "(img:waypoint) to areaid2_6_8 ;; prisoner's gate"
-    ],
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "eramir: <the_master_of_a_million_faces>",
+        "(img:waypoint) to areaid2_6_8 ;; prisoner's gate"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
+        "eramir: <the_master_of_a_million_faces>",
+        "helena: <essence_of_the_artist>",
+        "(img:waypoint) to areaid2_6_8 ;; prisoner's gate"
+      ]
+    },
     [
       "enter (img:arena) valley_of_the_fire_drinker",
       "(hint)____ follow the ledge next to the road",
