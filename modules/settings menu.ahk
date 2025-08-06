@@ -2114,7 +2114,7 @@ Settings_leveltracker()
 		If !vars.poe_version && vars.leveltracker["pob" profile].gems.Count()
 		{
 			Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems ? "Lime" : "Gray"), % " " Lang_Trans("global_gem", 2) " "
-			Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 cBlack HWNDhwnd1 Background" (vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), 100
+			Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 cBlack HWNDhwnd1 Background" (settings.leveltracker["guide" profile].info.gems && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), 100
 			vars.hwnd.settings.gems := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems"] := hwnd1
 		}
 
@@ -2448,6 +2448,7 @@ Settings_leveltracker2(cHWND := "")
 			Leveltracker_Progress(1)
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
+		GuiControl, % "+Background" (input && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), % vars.hwnd.help_tooltips["settings_leveltracker gems"]
 	}
 	Else If (check = "bandit")
 	{

@@ -953,7 +953,6 @@ Leveltracker_GuideEditor(cHWND)
 		{
 			Clipboard := ""
 			KeyWait, LButton
-			ControlFocus,, % "ahk_id " vars.hwnd.leveltracker_editor.text_field
 			Sleep 50
 			SendInput, ^{c}
 			ClipWait, 0.1
@@ -964,7 +963,15 @@ Leveltracker_GuideEditor(cHWND)
 			}
 			If (control = "hint")
 				Clipboard := "(hint)____ " . Clipboard
-			Else Clipboard := (control = "quest-name" ? "<" : "(quest:") . StrReplace(clipboard, " ", "_") . (control = "quest-name" ? ">" : ")")
+			Else If InStr(control, "quest")
+				Clipboard := (control = "quest-name" ? "<" : "(quest:") . StrReplace(clipboard, " ", "_") . (control = "quest-name" ? ">" : ")")
+			Else
+			{
+				picked_rgb := RGB_Picker()
+				If Blank(picked_rgb)
+					Return
+				Clipboard := "(color:" picked_rgb ")" . Clipboard
+			}
 			SendInput, ^{v}
 			Return
 		}
@@ -1025,7 +1032,7 @@ Leveltracker_GuideEditor(cHWND)
 	If !wAreas[act]
 	{
 		dimensions := []
-		For index, highlight in ["hint", "quest-name", "quest-item"]
+		For index, highlight in ["hint", "quest-name", "quest-item", "color"]
 			dimensions.Push(Lang_Trans("lvltracker_editor_" highlight))
 		For index, object in db.leveltracker.areas[act]
 			dimensions.Push(object.name (InStr(object.id, "g2_3a") ? " " Lang_Trans("lvltracker_editor_blocked") : ""))
@@ -1063,7 +1070,7 @@ Leveltracker_GuideEditor(cHWND)
 	Gui, %GUI_name%: Font, % "underline"
 	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_highlight")
 	Gui, %GUI_name%: Font, % "norm"
-	For index, highlight in ["hint", "quest-name", "quest-item"]
+	For index, highlight in ["hint", "quest-name", "quest-item", "color"]
 	{
 		Gui, %GUI_name%: Add, Text, % (index = 1 ? "y+" margin : "") " Section xs Border HWNDhwnd gLeveltracker_GuideEditor w" wAreas[act], % " " Lang_Trans("lvltracker_editor_" highlight)
 		vars.hwnd.leveltracker_editor["highlight_" highlight] := hwnd

@@ -451,6 +451,7 @@
 		lvltracker_editor_hint		=	"hint / more info"
 		lvltracker_editor_quest-name	=	"quest-name"
 		lvltracker_editor_quest-item	=	"quest-item"
+		lvltracker_editor_color		=	"apply custom color"
 		lvltracker_editor_remove	=	"remove page"
 		lvltracker_editor_condition	=	"no condition"
 
