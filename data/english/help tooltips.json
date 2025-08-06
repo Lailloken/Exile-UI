@@ -465,14 +465,23 @@
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
       "credits: default guide originally derived from exile-leveling by heartofphos"
     ],
+    "leveltracker gems": [
+      "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
+      "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
+      "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)",
+      "this toggle is forced to on if <league-start> is on (/underline)"
+    ],
     "leveltracker guide info 2": [
       "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
       "credits: default guide originally derived from u/xebtria's quick-guide"
     ],
     "leveltracker guide format info": [
-      "each line is a step you need to complete",
+      "each line has one or more steps you need to complete",
       "(hint)____ indented lines provide more info for the step above",
+      "(hint)____",
+      "when handing in quests, (img:skip) means the npc has quests queued up",
+      "(hint)____ these don't have relevant rewards and can be skipped",
       "(hint)____",
       "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
       "(hint)____",
@@ -481,7 +490,7 @@
       "(hint)____ walk around obstacles and find another way into that direction"
     ],
     "leveltracker guide format info 2": [
-      "each line is a step you need to complete",
+      "each line has one or more steps you need to complete",
       "(hint)____ indented lines provide more info for the step above",
       "(hint)____",
       "(color:FF00FF)x_tasks: some steps have x sub-tasks to complete",
@@ -500,7 +509,7 @@
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",
-      "if a pob import with gems is present and league-start is disabled, some gem quests may be replaced with hideout lilly instead",
+      "if a pob import with gems is present and league-start is disabled, some gem-quests may be replaced with hideout lilly instead",
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
     ],
     "leveltracker bandit": [
@@ -1182,6 +1191,15 @@
     "search": [
       "type in strings to search within the currently selected act",
       "pages with matching text will be highlighted green on the page-selection bar"
+    ]
+  },
+  "leveltrackergems": {
+    "general": [
+      "adjust when and/or whether to pick up specific gems during the campaign",
+      "select <skip> if you don't want to pick up certain gems (e.g. if you are already muling them with a different character)"
+    ],
+    "save-reset": [
+      "applying/reverting changes will also reset your guide progress(/underline)"
     ]
   },
   "leveltrackerschematics": {

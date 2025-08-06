@@ -2094,7 +2094,7 @@ Settings_leveltracker()
 
 		If !vars.poe_version
 		{
-			Gui, %Gui%: Add, Text, % "ys x+" margin " Center Border HWNDhwnd" hDDL, % " " Lang_Trans("m_lvltracker_bandit") " "
+			Gui, %Gui%: Add, Text, % "ys x+" margin " hp Center Border HWNDhwnd", % " " Lang_Trans("m_lvltracker_bandit") " "
 			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 			Gui, %GUI%: Add, DDL, % "yp x+-1 r4 AltSubmit gSettings_leveltracker2 HWNDhwnd1 Choose" LLK_HasVal(bandits, settings.leveltracker["guide" profile].info.bandit) " w" settings.general.fWidth * 8
 			, % Lang_Trans("global_none") "|" Lang_Trans("m_lvltracker_bandits") "|" Lang_Trans("m_lvltracker_bandits", 2) "|" Lang_Trans("m_lvltracker_bandits", 3)
@@ -2108,8 +2108,15 @@ Settings_leveltracker()
 
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Border gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.optionals ? "Lime" : "Gray") " w" wOptionals . hDDL
 		, % " " Lang_Trans("m_lvltracker_optionals") " "
-		vars.hwnd.settings["optionals"] := vars.hwnd.help_tooltips["settings_leveltracker optionals" vars.poe_version] := hwnd
+		vars.hwnd.settings.optionals := vars.hwnd.help_tooltips["settings_leveltracker optionals" vars.poe_version] := hwnd
 		ControlGetPos, xOptionals,, wOptionals,,, ahk_id %hwnd%
+
+		If !vars.poe_version && vars.leveltracker["pob" profile].gems.Count()
+		{
+			Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems ? "Lime" : "Gray"), % " " Lang_Trans("global_gem", 2) " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 cBlack HWNDhwnd1 Background" (vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), 100
+			vars.hwnd.settings.gems := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems"] := hwnd1
+		}
 
 		Settings_CharTracking("leveltracker", xOptionals + wOptionals - x_anchor)
 
@@ -2379,6 +2386,7 @@ Settings_leveltracker2(cHWND := "")
 			If vars.leveltracker.skilltree_schematics.GUI
 				Leveltracker_PobSkilltree("close")
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", PoB
+			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems
 			IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
 			Init_leveltracker(), Leveltracker_Load()
 			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!profile ? "1" : profile)
@@ -2395,18 +2403,22 @@ Settings_leveltracker2(cHWND := "")
 		KeyWait, LButton
 		vars.tooltip[vars.hwnd["tooltippobtooltip"]] := A_TickCount
 	}
-	Else If InStr(check, "leaguestart")
+	Else If (check = "leaguestart")
 	{
 		profile := settings.leveltracker.profile
 		IniWrite, % (input := settings.leveltracker["guide" profile].info.leaguestart := !settings.leveltracker["guide" profile].info.leaguestart), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, leaguestart
 		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+
+		If input
+			IniWrite, % (settings.leveltracker["guide" profile].info.gems := 1), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems
+		Settings_menu("leveling tracker")
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress(1)
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
-	Else If InStr(check, "optionals")
+	Else If (check = "optionals")
 	{
 		profile := settings.leveltracker.profile
 		IniWrite, % (input := settings.leveltracker["guide" profile].info.optionals := !settings.leveltracker["guide" profile].info.optionals), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, optionals
@@ -2415,7 +2427,29 @@ Settings_leveltracker2(cHWND := "")
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
-	Else If InStr(check, "bandit")
+	Else If (check = "gems")
+	{
+		profile := settings.leveltracker.profile
+		If (vars.system.click = 2)
+		{
+			KeyWait, RButton
+			If !settings.leveltracker["guide" profile].info.gems
+				Return
+			LLK_Overlay(vars.hwnd.settings.main, "hide")
+			Leveltracker_GemPickups()
+			Return
+		}
+		If settings.leveltracker["guide" profile].info.leaguestart
+			Return
+		IniWrite, % (input := settings.leveltracker["guide" profile].info.gems := !settings.leveltracker["guide" profile].info.gems), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems
+		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+		Leveltracker_Load()
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
+		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+	}
+	Else If (check = "bandit")
 	{
 		bandits := ["none", "alira", "kraityn", "oak"], profile := settings.leveltracker.profile
 		IniWrite, % (settings.leveltracker["guide" profile].info.bandit := bandits[LLK_ControlGet(cHWND)]), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, bandit

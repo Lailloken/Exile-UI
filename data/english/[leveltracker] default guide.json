@@ -61,11 +61,11 @@
     {
       "condition": [
         "league-start",
-        "no"
+        "yes"
       ],
       "lines": [
-        "(img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch",
-        "quest-check: <breaking_some_eggs1>, <breaking_some_eggs2>, <mercy_mission> ;; this is a hidden routing-check"
+        "find the bridge or (img:arena) flooded_depths, place (img:portal)",
+        "cross the bridge, find & enter areaid1_1_5 ;; the ledge"
       ]
     },
     {
@@ -74,16 +74,11 @@
         "no"
       ],
       "lines": [
-        "tarkleigh: <breaking_some_eggs1>, <breaking_some_eggs2>",
-        "(img:waypoint) to (color:fec076)your_hideout || lilly: <mercy_mission> ;; only shows with imported pob",
-        "(img:waypoint) to areaid1_1_4_1 ;; the submerged passage",
-        "quest-check: <breaking_some_eggs1>, <breaking_some_eggs2>, <mercy_mission> ;; this is a hidden routing-check"
+        "(img:waypoint) to (color:fec076)hideout || (color:ff00ff)buy_gems || (img:waypoint) to (color:fec076)submerged_passage || lilly: <mercy_mission>, <breaking_some_eggs1>, <breaking_some_eggs2> ;; only shows with imported pob",
+        "find the bridge or (img:arena) flooded_depths, place (img:portal)",
+        "cross the bridge, find & enter areaid1_1_5 ;; the ledge"
       ]
     },
-    [
-      "find the bridge or (img:arena) flooded_depths, place (img:portal)",
-      "cross the bridge, find & enter areaid1_1_5 ;; the ledge"
-    ],
     [
       "follow the wall to areaid1_1_6 ;; the climb",
       "(hint)____ safer route: follow the cliff"
@@ -818,7 +813,7 @@
       "lines": [
         "maramoa: <sever_the_right_hand>",
         "grigor: <piety's_pets>",
-        "(img:waypoint) to (color:fec076)your_hideout || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
+        "(img:waypoint) to (color:fec076)hideout || (color:ff00ff)buy_gems || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
         "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
       ]
     },
@@ -1296,7 +1291,7 @@
         "no"
       ],
       "lines": [
-        "(img:waypoint) to (color:fec076)your_hideout || lilly: <fallen_from_grace>  ;; only shows with imported pob",
+        "(img:waypoint) to (color:fec076)hideout || (color:ff00ff)buy_gems || (img:waypoint) to areaid2_6_town (img:town) || lilly: <fallen_from_grace>  ;; only shows with imported pob",
         "enter areaid2_6_2 ;; the coast"
       ]
     },
