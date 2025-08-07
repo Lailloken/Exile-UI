@@ -970,7 +970,7 @@ Leveltracker_GuideEditor(cHWND)
 				picked_rgb := RGB_Picker()
 				If Blank(picked_rgb)
 					Return
-				Clipboard := "(color:" picked_rgb ")" . Clipboard
+				Clipboard := "(color:" picked_rgb ")" . StrReplace(Clipboard, " ", "_")
 			}
 			SendInput, ^{v}
 			Return
@@ -1406,8 +1406,8 @@ Leveltracker_Load(profile := "")
 		For iGroup, oGroup in oSkillset.groups
 			For iGem, vGem in oGroup.gems
 				If !LLK_PatternMatch(vGem, "", ["empower", "enhance", "enlighten"],,, 0) && !LLK_HasVal(vars.leveltracker.starter_gems[class], StrReplace(vGem, " |–"))
-					If !LLK_HasVal(vars.leveltracker.guide.gems, InStr(vGem, " |–") ? StrReplace(StrReplace(StrReplace(vGem, "vaal "), "awakened "), " |–") " support" : vGem)
-						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") " support" : vGem)
+					If !LLK_HasVal(vars.leveltracker.guide.gems, InStr(vGem, " |–") ? StrReplace(StrReplace(StrReplace(vGem, "vaal "), "awakened "), " |–") . (!InStr(vGem, "support") ? " support" : "") : vGem)
+						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") . (!InStr(vGem, "support") ? " support" : "") : vGem)
 
 	stat_colors := ["D81C1C", "00BF40", "0077FF"], remove := [], array_offset := 0, vars.leveltracker.guide.gems_initial := vars.leveltracker.guide.gems.Clone()
 	skipped_quests := []
@@ -1974,7 +1974,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		last_yPos := yPos
 	Else yPos := last_yPos
 
-	support := InStr(gem_name, " support") || (item.class = Lang_Trans("items_gem", 2)) ? 1 : 0, gem_name := StrReplace(gem_name, " support")
+	support := InStr(gem_name, " support") || (item.class = Lang_Trans("items_gem", 2)) ? 1 : 0, gem_name := (gem_name != "barrage support" ? StrReplace(gem_name, " support") : gem_name)
 	check := LLK_HasVal(pob.gems, (support ? " |–" : "") . gem_name,,, 1, 1)
 	If !vars.leveltracker.gemlinks.drag
 		orientation := (xPos - vars.monitor.x <= vars.monitor.x + vars.client.w//2) ? "right" : "left"
@@ -2057,7 +2057,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 
 		For link, gem in (vars.poe_version ? dimensions : pob.gems[hover].groups[val].gems)
 		{
-			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
+			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version || InStr(gem, "support") ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
 			gem_lookup := InStr(gem_lookup, "(") ? SubStr(gem_lookup, 1, InStr(gem_lookup, "(") - 2) : gem_lookup
 			style := (index = 1 && link = 1) ? (orientation = "left" || check.Count() = 1 ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-1")
 			color := vars.poe_version ? stat_colors[db.leveltracker.gems[LLK_HasKey(db.leveltracker.gems, gem_lookup,,,, 1)][gem_lookup].2] : stat_colors[db.leveltracker.gems[gem_lookup].attribute]
@@ -2200,13 +2200,13 @@ Leveltracker_PobImport(b64, profile)
 				{
 					support := InStr(A_LoopField, "/supportgem")
 					name := SubStr(A_LoopField, InStr(A_LoopField, "namespec=""") + 10), name := SubStr(name, 1, InStr(name, """") - 1), name := StrReplace(StrReplace(name, "vaal "), "awakened ")
-					If !Blank(name) && (!vars.poe_version && gems[name . (support ? " support" : "")] || vars.poe_version && LLK_HasKey(gems, name,,,, 1))
+					If !Blank(name) && (!vars.poe_version && gems[name . (support && !InStr(name, "support") ? " support" : "")] || vars.poe_version && LLK_HasKey(gems, name,,,, 1))
 					{
 						group.gems.Push((support ? " |–" : "") . name)
 						If !LLK_PatternMatch(name, "", ["enlighten", "empower", "enhance"],,, 0) && !LLK_HasVal(vars.leveltracker.starter_gems[class], name)
 						{
-							geartracker_gems["(" ((level := gems[name (support ? " support" : "")].level) < 10 ? "0" : "") . level ") gem: " name] := 1
-							name0 := name . (support ? " support" : ""), attribute := gems[name0].attribute ? gems[name0].attribute : 4
+							geartracker_gems["(" ((level := gems[name (support && !InStr(name, "support") ? " support" : "")].level) < 10 ? "0" : "") . level ") gem: " name] := 1
+							name0 := name . (support && !InStr(name, "support") ? " support" : ""), attribute := gems[name0].attribute ? gems[name0].attribute : 4
 							searchstrings_gems[attribute][support ? 2 : 1][name0] := 1
 						}
 					}
