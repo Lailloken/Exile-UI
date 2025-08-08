@@ -55,6 +55,8 @@ Settings_actdecoder2(cHWND := "")
 		IniWrite, % (settings.actdecoder.generic := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\act-decoder.ini", settings, show generic layouts
 		If !vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			Actdecoder_ZoneLayouts(2)
+		If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+			Leveltracker_Progress()
 	}
 	Else If InStr(check, "zonesopac_")
 	{
