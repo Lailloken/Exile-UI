@@ -726,6 +726,7 @@ Loop_main()
 	If settings.general.ClientFiller
 	{
 		If vars.hwnd.ClientFiller && !WinExist("ahk_id " vars.hwnd.ClientFiller) && !WinActive("ahk_exe code.exe") && WinActive("ahk_group poe_window") && !WinActive("ahk_id " vars.hwnd.leveltracker_editor.main)
+		&& !WinActive("ahk_id " vars.hwnd.leveltracker_gempickups.main)
 			Gui_ClientFiller("show"), ClientFiller_count := 0
 		Else If (ClientFiller_count = 3)
 			Gui, ClientFiller: Hide
@@ -846,7 +847,7 @@ Loop_main()
 		remove_tooltips := ""
 	}
 
-	If !vars.general.gui_hide && (WinActive("ahk_group poe_ahk_window") || (settings.general.dev && WinActive("ahk_exe code.exe"))) && !vars.client.closed && !WinActive("ahk_id "vars.hwnd.leveltracker_screencap.main) && !WinActive("ahk_id "vars.hwnd.snip.main) && !WinActive("ahk_id "vars.hwnd.cheatsheet_menu.main) && !WinActive("ahk_id "vars.hwnd.searchstrings_menu.main) && !WinActive("ahk_id "vars.hwnd.notepad.main) && !WinActive("ahk_id " vars.hwnd.alarm.main) && !(vars.general.inactive && WinActive("ahk_id "vars.hwnd.settings.main)) && !WinActive("ahk_id " vars.hwnd.leveltracker_editor.main)
+	If !vars.general.gui_hide && (WinActive("ahk_group poe_ahk_window") || (settings.general.dev && WinActive("ahk_exe code.exe"))) && !vars.client.closed && !WinActive("ahk_id "vars.hwnd.leveltracker_screencap.main) && !WinActive("ahk_id "vars.hwnd.snip.main) && !WinActive("ahk_id "vars.hwnd.cheatsheet_menu.main) && !WinActive("ahk_id "vars.hwnd.searchstrings_menu.main) && !WinActive("ahk_id "vars.hwnd.notepad.main) && !WinActive("ahk_id " vars.hwnd.alarm.main) && !(vars.general.inactive && WinActive("ahk_id "vars.hwnd.settings.main)) && !WinActive("ahk_id " vars.hwnd.leveltracker_editor.main) && !WinActive("ahk_id " vars.hwnd.leveltracker_gempickups.main)
 	{
 		If vars.general.inactive
 		{

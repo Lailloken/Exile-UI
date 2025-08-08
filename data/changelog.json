@@ -1,5 +1,12 @@
 [
   [
+	["1.59.1", 15901],
+	"august 8, 2025",
+	"act-tracker: improved routing to skip irrelevant gem-quests and reduce backtracking and npc interactions",
+	"act-tracker: timer can now be reset in the first area and first town, added afk auto-pause after 10 seconds",
+	"act-tracker: added a <gems> toggle to enable/disable gem-quests, added a gem-pickup configurator to adjust when gems should be picked up"
+  ],
+  [
 	["1.59.0", 15900],
 	"july 30, 2025",
 	"act-tracker: stylistic rewrite of poe1 guide, guide-panel auto hides in lab",

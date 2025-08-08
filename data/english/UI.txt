@@ -218,6 +218,9 @@
 		global_trade			=	"trade"
 		global_trade			=	"trades"
 		global_last			=	"last"
+		global_gem			=	"gem"
+		global_gem			=	"gems"
+		global_act			=	"act"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -415,7 +418,7 @@
 		lvltracker_multipaste		=	"# entries starting from # will potentially be overwritten.;Continue?"	;## the placeholders will be replaced by numbers
 		lvltracker_noimages		=	"couldn't find;image-files"
 		lvltracker_timererror		=	"can't resume: run complete"			;## campaign timer can't be resumed because the run has finished
-		lvltracker_timererror		=	"enter the first zone to reset"			;## timer can only be reset with a fresh character
+		lvltracker_timererror		=	"enter the first zone or town to reset"			;## timer can only be reset in specific areas
 		lvltracker_timererror		=	"pause the timer first"
 		lvltracker_timererror		=	"blocked by hideout-pause setting"		;## there's a setting "pause timer in hideouts" which blocks manual resuming
 		lvltracker_timermessage		=	"run started"
@@ -448,8 +451,12 @@
 		lvltracker_editor_hint		=	"hint / more info"
 		lvltracker_editor_quest-name	=	"quest-name"
 		lvltracker_editor_quest-item	=	"quest-item"
+		lvltracker_editor_color		=	"apply custom color"
 		lvltracker_editor_remove	=	"remove page"
 		lvltracker_editor_condition	=	"no condition"
+
+
+		lvltracker_gempickups		=	"gem pickups"					;## a manager to adjust when gems should be picked up
 
 
 ;#####################################################

@@ -1,4 +1,78 @@
 {
+  "_quests": {
+    "a fixture of fate": {
+      "act": 3,
+      "npc": "siosa"
+    },
+    "breaking some eggs1": {
+      "act": 1,
+      "npc": "tarkleigh"
+    },
+    "breaking some eggs2": {
+      "act": 1,
+      "npc": "tarkleigh"
+    },
+    "breaking the seal": {
+      "act": 3,
+      "npc": "oyun"
+    },
+    "enemy at the gate": {
+      "act": 1,
+      "npc": "tarkleigh"
+    },
+    "fallen from grace": {
+      "act": 6,
+      "npc": "lilly"
+    },
+    "intruders in black": {
+      "act": 2,
+      "npc": "greust"
+    },
+    "lost in love": {
+      "act": 3,
+      "npc": "maramoa"
+    },
+    "mercy mission": {
+      "act": 1,
+      "npc": "nessa"
+    },
+    "sever the right hand": {
+      "act": 3,
+      "npc": "maramoa"
+    },
+    "sharp and cruel": {
+      "act": 2,
+      "npc": "silk"
+    },
+    "the caged brute1": {
+      "act": 1,
+      "npc": "nessa"
+    },
+    "the caged brute2": {
+      "act": 1,
+      "npc": "tarkleigh"
+    },
+    "the eternal nightmare": {
+      "act": 3,
+      "npc": "dialla"
+    },
+    "the root of the problem": {
+      "act": 2,
+      "npc": ""
+    },
+    "the siren's cadence": {
+      "act": 1,
+      "npc": "nessa"
+    }
+  },
+  "quicksilver flask": {
+    "attribute": 2,
+    "quests": {
+      "mercy mission": {
+        "quest": []
+      }
+    }
+  },
   "absolution": {
     "attribute": 1,
     "level": 12,

@@ -170,7 +170,7 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0}
+	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0, "leveltrackergems": "leveltracker_gempickups"}
 	If (check != "settings")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : (check = "alarm" && InStr(HWND_key, "set ") ? "alarm_set" : "main")]
 
@@ -307,7 +307,7 @@ Gui_ToolbarButtons(cHWND, hotkey)
 		}
 		vars.toolbar.drag := 0
 
-		If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main) || WinExist("ahk_id " vars.hwnd.leveltracker_editor.main)
+		If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main) || WinExist("ahk_id " vars.hwnd.leveltracker_editor.main) || WinExist("ahk_id " vars.hwnd.leveltracker_gempickups.main)
 			LLK_ToolTip(Lang_Trans("global_configwindow"), 2,,,, "yellow")
 		Else If (hotkey = 2)
 		{
@@ -498,14 +498,16 @@ LLK_FontSizeGet(height, ByRef font_width) ;returns a font-size that approximates
 	}
 }
 
-LLK_ImageCache(file, resize := "")
+LLK_ImageCache(file, resize := "", use_height := "")
 {
 	local
 	global vars, settings
 
-	pBitmap := Gdip_CreateBitmapFromFile(file)
+	pBitmap := Gdip_CreateBitmapFromFile(file), resizeY := 10000
+	If IsNumber(use_height)
+		resize := 10000, resizeY := use_height
 	If IsNumber(resize)
-		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, resize, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_resized
+		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, resize, resizeY, 1, 7, 1), Gdip_DisposeBitmap(pBitmap), pBitmap := pBitmap_resized
 	pHBM := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0), Gdip_DisposeImage(pBitmap)
 	Return pHBM
 }
@@ -535,7 +537,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	{
 		For index, val in vars.GUI
 		{
-			If (val.hwnd = vars.hwnd.settings.main) && (vars.settings.active = "betrayal-info") || !WinExist("ahk_id " val.hwnd) || InStr(vars.hwnd.cheatsheet_menu.main "," vars.hwnd.searchstrings_menu.main "," vars.hwnd.leveltracker_screencap.main "," vars.hwnd.notepad.main "," vars.hwnd.leveltracker_editor.main, val.hwnd)
+			If (val.hwnd = vars.hwnd.settings.main) && (vars.settings.active = "betrayal-info") || !WinExist("ahk_id " val.hwnd) || InStr(vars.hwnd.cheatsheet_menu.main "," vars.hwnd.searchstrings_menu.main "," vars.hwnd.leveltracker_screencap.main "," vars.hwnd.notepad.main "," vars.hwnd.leveltracker_editor.main "," vars.hwnd.leveltracker_gempickups.main, val.hwnd)
 				Continue
 			Gui, % val.name ": Hide"
 		}
