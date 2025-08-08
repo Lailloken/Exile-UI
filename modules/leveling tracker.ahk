@@ -644,12 +644,12 @@ Leveltracker_GemPickups(cHWND := "")
 	dimensions := [], gems := {}, character_class := vars.leveltracker["PoB" profile].class, default_acts := {}
 	For index, gem in vars.leveltracker.guide.gems_initial
 		If !InStr(gem, "quicksilver")
-			gems[gem] := 1, dimensions.Push(StrReplace(gem, " support"))
+			gems[gem] := 1, dimensions.Push(" " . (gem != "barrage support" ? StrReplace(gem, " support") : gem))
 	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wList, hList,,, 0)
 
 	For gem in gems
 	{
-		acts := [], ddl := "", gem_name := StrReplace(gem, " support")
+		acts := [], ddl := "", gem_name := (gem != "barrage support" ? StrReplace(gem, " support") : gem)
 		For Quest, oQuest in db.leveltracker.gems[gem].quests
 			If oQuest.vendor && (!oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, character_class)) || oQuest.quest && (!oQuest.quest.Count() || LLK_HasVal(oQuest.quest, character_class))
 				acts[db.leveltracker.gems._quests[Quest].act] := 1
