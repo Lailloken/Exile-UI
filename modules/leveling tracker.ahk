@@ -647,6 +647,7 @@ Leveltracker_GemPickups(cHWND := "")
 			gems[gem] := 1, dimensions.Push(" " . (gem != "barrage support" ? StrReplace(gem, " support") : gem))
 	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wList, hList,,, 0)
 
+	vars.leveltracker_gempickups.tooltips := {}
 	For gem in gems
 	{
 		acts := [], ddl := "", gem_name := (gem != "barrage support" ? StrReplace(gem, " support") : gem)
@@ -654,6 +655,16 @@ Leveltracker_GemPickups(cHWND := "")
 			If oQuest.vendor && (!oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, character_class)) || oQuest.quest && (!oQuest.quest.Count() || LLK_HasVal(oQuest.quest, character_class))
 				acts[db.leveltracker.gems._quests[Quest].act] := 1
 		default_acts[gem] := acts.MinIndex(), acts.0 := 1, acts.6 := 1
+
+		vars.leveltracker_gempickups.tooltips[gem_name] := ["skillset(s):"]
+		For index, skillset in vars.leveltracker["PoB" profile].gems
+			For index, group in skillset.groups
+				For index, gem0 in group.gems
+					If RegExMatch(gem0, "i)" gem_name "$")
+					{
+						vars.leveltracker_gempickups.tooltips[gem_name].Push(skillset.title)
+						Continue 3
+					}
 
 		For act in acts
 			ddl .= (!ddl ? "" : "|") . (!act ? Lang_Trans("m_updater_skip") : Lang_Trans("global_act") " " act) . (act = vars.leveltracker["PoB" profile].vendors[gem] ? "||" : "")
@@ -673,6 +684,7 @@ Leveltracker_GemPickups(cHWND := "")
 
 		color := ((attribute := db.leveltracker.gems[gem].attribute) ? colors[attribute] : "White")
 		Gui, %GUI_name%: Add, Text, % "ys x+" margin/2 " yp hp 0x200 HWNDhwnd w" wList " c" color, % gem_name
+		vars.hwnd.help_tooltips["leveltrackergems_gem " gem_name] := hwnd
 		ControlGetPos, xLast, yLast, wLast, hLast,, % "ahk_id " hwnd
 		Gui, %GUI_name%: Font, norm
 	}

@@ -183,6 +183,8 @@ Gui_HelpToolTip(HWND_key)
 
 	If (check = "lootfilter" && InStr(control, "tooltip"))
 		database := vars.lootfilter.filter, lootfilter := 1
+	Else If (check = "leveltrackergems") && InStr(control, "gem ")
+		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
 
 	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
@@ -211,6 +213,8 @@ Gui_HelpToolTip(HWND_key)
 			If LLK_StringCompare(target_array[count - (A_Index - 1)], ["class", "#"])
 				target_array.RemoveAt(count - (A_Index - 1))
 	}
+	Else If gempickups
+		target_array := database[SubStr(control, 5)]
 	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
 
 	If (control = "leveltracker profile select")
