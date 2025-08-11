@@ -1059,6 +1059,7 @@
 		m_sanctum_enable		=	"enable the sanctum planner overlay"
 		m_sanctum_enable		=	"enable the sekhema planner overlay"
 		m_sanctum_cheatsheets		=	"show cheat-sheet"
+		m_sanctum_relics		=	"enable the relic-management overlay"
 
 
 

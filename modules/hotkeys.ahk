@@ -333,7 +333,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13") && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.sanctum && settings.sanctum.relics && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13") && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			active .= " sanctum_relics"
@@ -550,9 +550,6 @@ SC039::Leveltracker_PobSkilltree("reset")
 *LButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 1)
 *RButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 2)
 *MButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 3, 1)
-
-#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse2.x.1, vars.sanctum.relics.coords.mouse2.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse2.y.1, vars.sanctum.relics.coords.mouse2.y.2)
-~LButton::Sanctum_Relics("alt")
 
 #If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse3.x.1, vars.sanctum.relics.coords.mouse3.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse3.y.1, vars.sanctum.relics.coords.mouse3.y.2)
 ~LButton::Sanctum_Relics("close")

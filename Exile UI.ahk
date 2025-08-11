@@ -703,7 +703,10 @@ Loop_main()
 		Leveltracker_PobGemLinks("", SubStr(check, 0))
 
 	If vars.hwnd.exchange.main && (vars.pixels.inventory != vars.exchange.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
-			Exchange()
+		Exchange()
+
+	If vars.hwnd.sanctum_relics.main && (vars.pixels.inventory != vars.sanctum.relics.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
+		Sanctum_Relics()
 
 	If vars.hwnd.recombination.main && WinActive("ahk_id " vars.hwnd.recombination.main) && (vars.general.wMouse = vars.hwnd.poe_client)
 	{

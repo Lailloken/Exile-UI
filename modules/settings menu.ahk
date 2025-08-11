@@ -3719,6 +3719,9 @@ Settings_sanctum()
 	If !settings.features.sanctum
 		Return
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.relics, % Lang_Trans("m_sanctum_relics")
+	vars.hwnd.settings.relics := vars.hwnd.help_tooltips["settings_sanctum relics"] := hwnd
+
 	If !vars.poe_version
 	{
 		Gui, %GUI%: Font, underline bold
@@ -3754,10 +3757,17 @@ Settings_sanctum2(cHWND := "")
 	}
 	Else If (check = "cheatsheet")
 	{
-		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "ini\sanctum.ini", settings, enable cheat-sheet
+		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\sanctum.ini", settings, enable cheat-sheet
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
+	}
+	Else If (check = "relics")
+	{
+		input := LLK_ControlGet(cHWND)
+		IniWrite, % (settings.sanctum.relics := input), % "ini" vars.poe_version "\sanctum.ini", settings, enable relic management
+		If !input && WinExist("ahk_id " vars.hwnd.sanctum_relics.main)
+			Sanctum_Relics("close")
 	}
 	Else If InStr(check, "font_")
 	{
@@ -3769,7 +3779,7 @@ Settings_sanctum2(cHWND := "")
 			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.sanctum.fSize
 			Sleep 200
 		}
-		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "ini\sanctum.ini", settings, font-size
+		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "\sanctum.ini", settings, font-size
 		LLK_FontDimensions(settings.sanctum.fSize, fHeight, fWidth), settings.sanctum.fWidth := fWidth, settings.sanctum.fHeight := fHeight
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
