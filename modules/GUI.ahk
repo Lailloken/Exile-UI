@@ -236,11 +236,14 @@ Gui_HelpToolTip(HWND_key)
 	Else
 		For index, text in target_array
 		{
-			font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font
+			font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
+			color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
+			For index0, remove in ["underline", "bold", "highlight"]
+				text := StrReplace(text, "(/" remove ")")
 			Gui, %GUI_name%: Font, % font
-			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % StrReplace(StrReplace(StrReplace(text, "&", "&&"), "(/underline)"), "(/bold)")
+			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % LLK_StringCase(text)
 			Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
-			Gui, %GUI_name%: Add, Text, % "Center xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : ""), % LLK_StringCase(StrReplace(StrReplace(StrReplace(text, "&", "&&"), "(/underline)"), "(/bold)"))
+			Gui, %GUI_name%: Add, Text, % "Center xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color), % LLK_StringCase(text)
 		}
 
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000

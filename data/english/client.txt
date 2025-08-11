@@ -23,11 +23,8 @@
 
 
 ;## some notation remarks
-	;## AutoHotkey-specific:
-		;## in order to add ampersands (&) to a string, include double ampersands in the value, e.g. key = "this && that"
-	;## custom notations:
-		;## in order to add line-breaks to a string, include ";" in the value, e.g. "line 1;line2"
-		;## I use "<>" as a replacement for quotation marks because they look better when using Fontin Smallcaps
+	;## in order to add line-breaks to a string, include ";" in the value, e.g. "line 1;line2"
+	;## I use "<>" as a replacement for quotation marks because they look better when using Fontin Smallcaps
 
 
 ;## syntax differences
@@ -453,14 +450,14 @@
 
 
 		mods_cluster_replace		=	"Axe Attacks"				;## PoE1 only (whole block), these values are groups of two, where the first string will be replaced with the second one
-		mods_cluster_replace		=	"Axe && Sword Attacks"			;## so instead of displaying two lines, the tooltip will display:
+		mods_cluster_replace		=	"Axe & Sword Attacks"			;## so instead of displaying two lines, the tooltip will display:
 												;## Axe & Sword Attacks deal increased Damage with Hits and Ailments
 		mods_cluster_replace		=	"Staff Attacks"
 		mods_cluster_replace		=	"Staff, Mace or Sceptre Attacks"
 		mods_cluster_replace		=	"Claw Attacks"
-		mods_cluster_replace		=	"Claw && Dagger Attacks"
+		mods_cluster_replace		=	"Claw & Dagger Attacks"
 		mods_cluster_replace		=	"Life Recovery"
-		mods_cluster_replace		=	"Life && Mana Recovery"
+		mods_cluster_replace		=	"Life & Mana Recovery"
 		mods_cluster_replace		=	"Damage Over Time"
 		mods_cluster_replace		=	"DoT"					;## if the target language doesn't have a common abbreviation, simply leave both values as they are
 
