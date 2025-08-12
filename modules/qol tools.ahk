@@ -510,7 +510,7 @@ Lab(mode := "", override := 0)
 	If (mode = "link")
 	{
 		If GetKeyState(vars.hotkeys.tab, "P")
-			LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 0,,, "poelab")
+			LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 0,,, "poelab"), vars.alarm.toggle := 0, LLK_Overlay(vars.hwnd.alarm.main, "destroy")
 		KeyWait, % vars.hotkeys.tab
 		LLK_Overlay(vars.hwnd["tooltippoelab"], "destroy"), LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
 		Run, % "https://www.poelab.com/"
