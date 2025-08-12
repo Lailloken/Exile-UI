@@ -171,8 +171,11 @@ Gui_HelpToolTip(HWND_key)
 	If (check = "donation")
 		check := "settings", donation := 1
 	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0, "leveltrackergems": "leveltracker_gempickups"}
-	If (check != "settings")
-		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : (check = "alarm" && InStr(HWND_key, "set ") ? "alarm_set" : "main")]
+
+	If (check = "alarm") && InStr(HWND_key, "set ")
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " vars.hwnd.alarm.alarm_set.main
+	Else If (check != "settings")
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
 
 	For index, val in ["xWin", "yWin", "wWin", "hWin"]
 		If !IsNumber(%val%)
@@ -193,7 +196,7 @@ Gui_HelpToolTip(HWND_key)
 	If (check = "exchange")
 		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
 	Else If (check = "alarm" || check = "leveltrackerschematics")
-		tooltip_width := vars.monitor.h/2, xWin := xWin + wWin/2 - tooltip_width/2
+		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
 
 	If !tooltip_width
 		Return

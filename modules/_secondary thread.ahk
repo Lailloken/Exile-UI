@@ -253,6 +253,11 @@ Hotkeys_Convert(a := "", b := "", c := "", d := "")
 	Return
 }
 
+Hotkeys_ESC(a := "", b := "", c := "", d := "")
+{
+	Return
+}
+
 Init_hotkeys(a := "", b := "", c := "", d := "")
 {
 	Return

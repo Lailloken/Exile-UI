@@ -154,8 +154,6 @@ Hotkeys_ESC()
 		Anoints("close")
 	Else If vars.hwnd.sanctum_relics.main
 		Sanctum_Relics("close")
-	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
-		Gui, alarm_set: Destroy
 	Else If vars.leveltracker.skilltree_schematics.GUI
 		Leveltracker_PobSkilltree("close")
 	Else If WinExist("ahk_id " vars.hwnd.lootfilter.main)
@@ -168,7 +166,7 @@ Hotkeys_ESC()
 		If !vars.recombination.item2.locked
 			vars.recombination.item2 := {}
 	}
-	Else If vars.hwnd.alarm.alarm_set && WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
+	Else If vars.hwnd.alarm.alarm_set.main && WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
 	{
 		Gui, alarm_set: Destroy
 		vars.hwnd.alarm.alarm_set := ""
@@ -474,9 +472,10 @@ Hotkeys_Tab()
 		vars.maptracker.toggle := 0, LLK_Overlay(vars.hwnd.maptracker.main, "hide")
 	If InStr(active, " lab") && WinExist("ahk_id "vars.hwnd.lab.main)
 		LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
-	If vars.hwnd.alarm.alarm_set && WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
-		WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set
-	Else If active && !settings.general.dev
+	;If vars.hwnd.alarm.alarm_set.main && WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
+	;	WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set.main
+	;Else If active && !settings.general.dev
+	If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
 }
 
@@ -673,6 +672,10 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 
 *LButton::Alarm(1, vars.general.cMouse)
 *RButton::Alarm(2, vars.general.cMouse)
+
+#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.alarm.alarm_set.main) && !Blank(LLK_HasVal(vars.hwnd.alarm.alarm_set, vars.general.cMouse)) ;hovering the alarm-timer and clicking
+
+*LButton::Alarm("alarm_set", vars.general.cMouse)
 
 #If (vars.system.timeout = 0) && ((vars.general.wMouse = vars.hwnd.mapinfo.main) && !Blank(LLK_HasVal(vars.hwnd.mapinfo, vars.general.cMouse)) || (vars.general.wMouse = vars.hwnd.settings.main) && InStr(LLK_HasVal(vars.hwnd.settings, vars.general.cMouse), "mapmod_")) ;ranking map-mods
 

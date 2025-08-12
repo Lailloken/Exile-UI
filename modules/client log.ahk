@@ -287,8 +287,10 @@ Log_Loop(mode := 0)
 		For timestamp, timer in vars.alarm.timers
 			If IsNumber(StrReplace(timestamp, "|")) && (timestamp <= A_Now)
 				expired := "expired"
-		If (expired || vars.alarm.toggle) && !WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
+		If (expired || vars.alarm.toggle) && !WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
 			Alarm("", "", vars.alarm.toggle ? "" : expired)
+		Else If WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main) && !(expired || vars.alarm.toggle)
+			LLK_Overlay(vars.hwnd.alarm.main, "destroy")
 	}
 
 	If vars.log.file_location ;for the unlikely event where the user manually deletes the client.txt while the tool is still running
