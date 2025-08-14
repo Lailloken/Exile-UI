@@ -493,7 +493,7 @@
       "each line has one or more steps you need to complete",
       "(hint)____ indented lines provide more info for the step above",
       "(hint)____",
-      "(color:FF00FF)x_tasks: some steps have x sub-tasks to complete",
+      "(color:FF00FF)x_tasks: some lines have x sub-tasks to complete",
       "(hint)____ sub-tasks can be completed in random order or",
       "(hint)____ at the same time, depending on the zone",
       "(hint)____",
@@ -505,7 +505,7 @@
       "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
       "(hint)____ walk around obstacles and find another way into that direction",
       "(hint)____",
-      "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
+      "\"xyz (map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",
@@ -526,7 +526,7 @@
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
-      "examples:\n- boss quests (e.g. devourer, mektul)\n- artificer's orbs & gems\n- jewelry & flasks"
+      "examples:\nboss quests (e.g. devourer, mektul)\nartificer's orbs & gems\njewelry & flasks"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"

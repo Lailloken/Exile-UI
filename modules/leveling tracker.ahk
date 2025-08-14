@@ -724,8 +724,8 @@ Leveltracker_GuideEditor(cHWND)
 
 	If !icons
 		If vars.poe_version
-			icons := ["checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out", "skill", "spirit", "support", "artificer", "ring", 0, 1, 2, 3, 4, 5, 6, 7]
-		Else icons := ["waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out", 0, 1, 2, 3, 4, 5, 6, 7]
+			icons := [0, 1, 2, 3, 4, 5, 6, 7, "checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out", "ring", "artificer", "jeweller", "skill", "spirit", "support"]
+		Else icons := [0, 1, 2, 3, 4, 5, 6, 7, "waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out"]
 
 	If !vars.leveltracker_editor.act
 		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json")), "page": [1]}
@@ -1067,17 +1067,6 @@ Leveltracker_GuideEditor(cHWND)
 	vars.hwnd.leveltracker_editor["pastearea_" db.leveltracker.areas[act + 1].1.id] := hwnd
 
 	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden ys hp w" margin + 1
-	Gui, %GUI_name%: Font, % "underline"
-	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_icons")
-	Gui, %GUI_name%: Font, % "norm"
-
-	For index, icon in icons
-	{
-		If (icon != "help") && !vars.pics.leveltracker[icon]
-			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png",, settings.leveltracker.fHeight - 2)
-		Gui, %GUI_name%: Add, Pic, % (vars.poe_version && index = 10 || index = 1 || !icon ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
-		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
-	}
 
 	Gui, %GUI_name%: Font, % "underline"
 	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_highlight")
@@ -1088,7 +1077,18 @@ Leveltracker_GuideEditor(cHWND)
 		vars.hwnd.leveltracker_editor["highlight_" highlight] := hwnd
 	}
 
-	Gui, %GUI_name%: Add, Text, % "Section ys x+" margin * 2 " y" settings.leveltracker.fHeight_editor + margin " HWNDhwnd w" wPanels, % Lang_Trans("global_uisize") " "
+	Gui, %GUI_name%: Font, % "underline"
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin*2, % Lang_Trans("lvltracker_editor_icons")
+	Gui, %GUI_name%: Font, % "norm"
+	For index, icon in icons
+	{
+		If (icon != "help") && !vars.pics.leveltracker[icon]
+			vars.pics.leveltracker[icon] := LLK_ImageCache("img\GUI\leveling tracker\" icon ".png",, settings.leveltracker.fHeight - 2)
+		Gui, %GUI_name%: Add, Pic, % (index = 1 || index = 9 || vars.poe_version && index = 16 ? "Section xs y+" (index = 4 ? -1 : margin) : "ys") " Border hp" (index = 1 ? "" : "-2") " w-1 gLeveltracker_GuideEditor HWNDhwnd", % "HBitmap:*" (icon = "help" ? vars.pics.global.help : vars.pics.leveltracker[icon])
+		vars.hwnd.leveltracker_editor["pasteicon_" icon] := hwnd
+	}
+
+	Gui, %GUI_name%: Add, Text, % "Section ys x" margin * 3 + wAreas[act] " y" settings.leveltracker.fHeight_editor + margin " HWNDhwnd w" wPanels, % Lang_Trans("global_uisize") " "
 	ControlGetPos, xSize, ySize, wSize, hSize,, % "ahk_id " hwnd
 	Gui, %GUI_name%: Add, Text, % "ys x+0 Border HWNDhwnd gLeveltracker_GuideEditor Center w" settings.leveltracker.fWidth_editor * 2, % "–"
 	Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd1 gLeveltracker_GuideEditor Center w" settings.leveltracker.fWidth_editor * 2, % "r"
@@ -1282,7 +1282,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, 0, 0
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 
-	If pic && !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
+	If pic && !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"]))
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -1902,14 +1902,14 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 						replace := SubStr(text, InStr(text, "(quest:")), replace := SubStr(replace, 1, InStr(replace, ")")), item := StrReplace(SubStr(replace, InStr(replace, ":") + 1), ")"), text := StrReplace(text, replace, item)
 					If (text_parts[index - 1] = "(img:arena)")
 						color := "AAAAAA"
-					Else color := InStr(part, "areaid") ? "FEC076" : kill && (part != "everything") || InStr(part, "arena:") ? "FF8111" : InStr(part, "<") ? "FFDB1F" : InStr(part, "(quest:") ? "Lime" : InStr(part, "trial") || InStr(part, "_lab") ? "569777" : "White"
+					Else color := InStr(part, "areaid") ? "FEC076" : kill && !InStr("everything, it", part) || InStr(part, "arena:") ? "FF8111" : InStr(part, "<") ? "FFDB1F" : InStr(part, "(quest:") ? "Lime" : InStr(part, "trial") || InStr(part, "_lab") ? "569777" : "White"
 					If InStr(part, "(color:")
 						color := SubStr(part, InStr(part, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), text := StrReplace(text, "(color:"color ")")
 					If InStr(step, "(hint)")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If !(settings.features.actdecoder && !settings.actdecoder.generic
-					&& (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"] || vars.poe_version && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]))
+					If preview || !(settings.features.actdecoder && !settings.actdecoder.generic
+					&& (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"]))
 						For key in vars.leveltracker.hints
 							If InStr(StrReplace(part, "_", " "), key)
 								color := "Aqua"
