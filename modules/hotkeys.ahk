@@ -760,7 +760,7 @@ WheelDown::Cloneframes_SettingsApply(vars.general.cMouse, A_ThisHotkey)
 
 LButton::
 RButton::
-MButton::Cloneframes_Snap(A_ThisHotkey)
+MButton::Cloneframes_Snap(StrReplace(A_ThisHotkey, "~"))
 
 #If WinActive("ahk_id "vars.hwnd.snip.main) ;moving the snip-widget via arrow keys
 
