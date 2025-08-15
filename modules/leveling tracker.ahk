@@ -975,7 +975,7 @@ Leveltracker_GuideEditor(cHWND)
 				Return
 			}
 			If (control = "hint")
-				Clipboard := "(hint)____ " . Clipboard
+				Clipboard := "(hint)__ " . Clipboard
 			Else If InStr(control, "quest")
 				Clipboard := (control = "quest-name" ? "<" : "(quest:") . StrReplace(clipboard, " ", "_") . (control = "quest-name" ? ">" : ")")
 			Else
@@ -1456,7 +1456,7 @@ Leveltracker_Load(profile := "")
 						If gem && gems[gem].quests[quest] && gems[gem].quests[quest].quest && (!gems[gem].quests[quest].quest.Count() || LLK_HasVal(gems[gem].quests[quest].quest, class))
 						&& (Blank(gem_check := vars.leveltracker["PoB" (profile ? profile : current_profile)].vendors[gem]) || (gem_check = db.leveltracker.gems._quests[quest].act))
 						{
-							new_group.Push("(hint)____ take: " ((check := gems[gem].attribute) ? "(color:" stat_colors[check] ")" : "") StrReplace(StrReplace(gem, " support"), " ", "_"))
+							new_group.Push("(hint)__ take: " ((check := gems[gem].attribute) ? "(color:" stat_colors[check] ")" : "") StrReplace(StrReplace(gem, " support"), " ", "_"))
 							vars.leveltracker.guide.gems[index] := "", reward_available[quest] := 1
 							If (gem = "quicksilver flask")
 								Continue
@@ -1903,7 +1903,8 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					img := SubStr(part, InStr(part, "(img:") + 5), img := SubStr(img, 1, InStr(img, ")") - 1), img := StrReplace(img, " ", "_")
 					If (img != "help") && !vars.pics.leveltracker[img]
 						vars.pics.leveltracker[img] := LLK_ImageCache("img\GUI\leveling tracker\" img ".png",, settings.leveltracker.fHeight - 2)
-					Gui, %name_main%: Add, Picture, % (index = 1 && bullets ? "ys x+0" : style) . (A_Index = 1 ? "" : " x+"(settings.leveltracker.fWidth/(InStr(step, "(hint)") ? 3 : 2))) " BackgroundTrans "(InStr(step, "(hint)") ? "hp-2" : "h" settings.leveltracker.fHeight - 2) " w-1", % "HBitmap:*" (img = "help" ? vars.pics.global.help : vars.pics.leveltracker[img])
+					Gui, %name_main%: Add, Picture, % (index = 1 && bullets ? "ys x+0" : style) . (A_Index = 1 ? "" : " x+"(settings.leveltracker.fWidth/(InStr(step, "(hint)") ? 3 : 2)))
+					. " BackgroundTrans h" settings.leveltracker["fHeight" (hint ? "2" : "")] - 2 " w-1", % "HBitmap:*" (img = "help" ? vars.pics.global.help : vars.pics.leveltracker[img])
 				}
 				Else
 				{
