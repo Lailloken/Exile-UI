@@ -182,12 +182,13 @@
     ],
     [
       "optional: <great_white_beast> (flask / rare belt)",
+      "optional: flask / <belt> (quest)",
       "(hint)____ find (img:arena) areaid1_2_2a, place a (img:portal) ;; the den",
       "follow the road to areaid1_2_3 ;; the crossroads"
     ],
     [
       "follow the road, activate the (img:waypoint)",
-      "optional: <great_white_beast>",
+      "optional: flask / <belt> (quest)",
       "(hint)____ (img:waypoint) to town || enter (img:portal) || enter (img:arena) the_den ;; the forest encampment",
       "(hint)____ kill white_beast || relog || talk to (img:quest) yeena",
       "go (img:7) to areaid1_2_6_1 ;; the chamber of sins level 1"
@@ -1217,7 +1218,7 @@
     ],
     [
       "go (img:5) to the square",
-      "optional: <king's_feast> (rare weapon)",
+      "optional: <weapon> (quest)",
       "(hint)____ go (img:3), kill utula",
       "go (img:4) to areaid1_5_7 ;; the reliquary"
     ],
@@ -1243,7 +1244,7 @@
     },
     [
       "lani: <kitava's_torments>",
-      "optional: <king's_feast>",
+      "optional: arena:utula quest",
       "(hint)____ talk to (img:quest) bannon",
       "(img:waypoint) to areaid1_5_3b ;; the ruined square"
     ],
