@@ -82,6 +82,7 @@
 
 	settings.leveltracker.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize, font_height, font_width), settings.leveltracker.fHeight := font_height, settings.leveltracker.fWidth := font_width
+	LLK_FontDimensions(settings.leveltracker.fSize - 2, font_height, font_width), settings.leveltracker.fHeight2 := font_height, settings.leveltracker.fWidth2 := font_width
 
 	settings.leveltracker.fSize_editor := !Blank(check := ini.settings["font-size editor"]) ? check : settings.leveltracker.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize_editor, font_height, font_width), settings.leveltracker.fHeight_editor := font_height, settings.leveltracker.fWidth_editor := font_width
@@ -1795,7 +1796,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	wButtons := Round(settings.leveltracker.fWidth*2)
 	While Mod(wButtons, 2)
 		wButtons += 1
-	wMin := Ceil((wExp * 2 + wButtons * 3) / settings.leveltracker.fWidth), wMin := Max(24, wMin)
+	wMin := Ceil((wExp * 2 + wButtons * 3) / settings.leveltracker.fWidth), wMin := Max(24, wMin), bullets := 0
 
 	If (fSize != settings.leveltracker.fSize)
 	{
@@ -1803,6 +1804,10 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			DeleteObject(pHBM)
 		vars.pics.leveltracker := {}, fSize := settings.leveltracker.fSize
 	}
+
+	For index_raw, step in guide.group1
+		bullets += (InStr(step, "(hint)") ? 0 : 1)
+	bullets := (bullets > 1 ? 1 : 0)
 
 	Loop 2 ;create guide panel twice to check its width and correct it if necessary
 	{
@@ -1844,7 +1849,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If (lilly_check := InStr(step, "|| lilly:"))
 				step := SubStr(step, 1, lilly_check - 2)
 
-			style := "Section xs", line := step, step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := []
+			style := "Section xs", line := step, step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := [], hint := InStr(line, "(hint)")
 			If (check := InStr(step, " `;"))
 				step := SubStr(step, 1, check - 1)
 
@@ -1875,11 +1880,20 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				Continue
 			}
 
+			If !vars.pics.leveltracker.diamond
+				vars.pics.leveltracker.diamond := LLK_ImageCache("img\GUI\diamond.png",, settings.leveltracker.fHeight - 2)
+
 			If buy_prompt && !hardcoded_buy
 			{
-				Gui, %name_main%: Add, Text, % style " cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
+				Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.diamond
+				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
 				buy_prompt := 0
 			}
+
+			If bullets
+				If !hint
+					Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.diamond
+				Else Gui, %name_main%: Add, Progress, % "Disabled Section xs w" (settings.leveltracker.fHeight2 - 2)/2 " h" settings.leveltracker.fHeight2 - 2 " BackgroundBlack", 0
 
 			For index, part in text_parts
 			{
@@ -1889,7 +1903,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					img := SubStr(part, InStr(part, "(img:") + 5), img := SubStr(img, 1, InStr(img, ")") - 1), img := StrReplace(img, " ", "_")
 					If (img != "help") && !vars.pics.leveltracker[img]
 						vars.pics.leveltracker[img] := LLK_ImageCache("img\GUI\leveling tracker\" img ".png",, settings.leveltracker.fHeight - 2)
-					Gui, %name_main%: Add, Picture, % style (A_Index = 1 ? "" : " x+"(settings.leveltracker.fWidth/(InStr(step, "(hint)") ? 3 : 2))) " BackgroundTrans "(InStr(step, "(hint)") ? "hp-2" : "h" settings.leveltracker.fHeight - 2) " w-1", % "HBitmap:*" (img = "help" ? vars.pics.global.help : vars.pics.leveltracker[img])
+					Gui, %name_main%: Add, Picture, % (index = 1 && bullets ? "ys x+0" : style) . (A_Index = 1 ? "" : " x+"(settings.leveltracker.fWidth/(InStr(step, "(hint)") ? 3 : 2))) " BackgroundTrans "(InStr(step, "(hint)") ? "hp-2" : "h" settings.leveltracker.fHeight - 2) " w-1", % "HBitmap:*" (img = "help" ? vars.pics.global.help : vars.pics.leveltracker[img])
 				}
 				Else
 				{
@@ -1915,7 +1929,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 								color := "Aqua"
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
 						text := SubStr(text, 1, -1)
-					Gui, %name_main%: Add, Text, % style " c"color, % (index = text_parts.MaxIndex()) || spacing_check || InStr(text_parts[index + 1], "(img:") ? text : text " "
+					Gui, %name_main%: Add, Text, % (index = 1 && bullets ? "ys x+0" : style) " c"color, % (index = text_parts.MaxIndex()) || spacing_check || InStr(text_parts[index + 1], "(img:") ? text : text " "
 					Gui, %name_main%: Font, % "norm s"settings.leveltracker.fSize
 					kill := (part = Lang_Trans("lvltracker_format_kill")) ? 1 : 0
 				}

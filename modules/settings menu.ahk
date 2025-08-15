@@ -2477,6 +2477,7 @@ Settings_leveltracker2(cHWND := "")
 		}
 		IniWrite, % settings.leveltracker.fSize, % "ini" vars.poe_version "\leveling tracker.ini", settings, font-size
 		LLK_FontDimensions(settings.leveltracker.fSize, height, width), settings.leveltracker.fHeight := height, settings.leveltracker.fWidth := width
+		LLK_FontDimensions(settings.leveltracker.fSize - 2, height, width), settings.leveltracker.fHeight2 := height, settings.leveltracker.fWidth2 := width
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker()
 		If WinExist("ahk_id "vars.hwnd.geartracker.main)
