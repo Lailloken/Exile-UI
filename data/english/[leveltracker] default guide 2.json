@@ -305,19 +305,24 @@
       "(img:waypoint) to areaidg3_5 ;; chimeral wetlands"
     ],
     [
-      "follow (img:6) edge, enter (img:checkpoint) areaidg3_10_airlock ;; the temple of chaos",
-      "(hint)____ if you find arena:chimera, kill it. then (img:checkpoint) -travel to",
-      "(hint)____ the start and follow the opposite edge"
+      "follow (img:2) edge, kill chimera for (quest:ultimatum)",
+      "(hint)____ if you find (img:arena) areaidg3_10_airlock, (img:checkpoint) back to ;; the temple of chaos",
+      "(hint)____ the start and follow the opposite edge",
+      "enter areaidg3_6_1 ;; jiquani's machinarium"
+    ],
+    [
+      "activate the (img:waypoint)",
+      "(img:waypoint) to areaidg3_5 ;; chimeral wetlands"
+    ],
+    [
+      "find & enter (img:checkpoint) areaidg3_10_airlock ;; the temple of chaos",
+      "(hint)____ follow the opposite edge, or (img:checkpoint) to it"
     ],
     [
       "activate the (img:waypoint)",
       "(hint)____ ascension is based on user preference.",
       "(hint)____ you can do it now or come back later.",
-      "(img:waypoint) to areaidg3_5 ;; chimeral wetlands"
-    ],
-    [
-      "kill chimera, enter areaidg3_6_1 ;; jiquani's machinarium",
-      "(hint)____ follow the opposite edge, or (img:checkpoint) -travel"
+      "(img:waypoint) to areaidg3_6_1 ;; jiquani's machinarium"
     ],
     [
       "find (quest:small_soul_core), activate the (color:aaaaaa)stone_altar",
