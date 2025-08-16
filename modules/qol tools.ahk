@@ -75,10 +75,10 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 			Return
 		}
 		time := A_Now, sections := [], units := ["seconds", "minutes", "hours"]
-		input := LLK_ControlGet(vars.hwnd.alarm.edit), input := !input ? 0 : input
+		input := LLK_ControlGet(vars.hwnd.alarm.alarm_set.edit), input := !input ? 0 : input
 		If Blank(vars.alarm.override)
 		{
-			input1 := LLK_ControlGet(vars.hwnd.alarm.edit1)
+			input1 := LLK_ControlGet(vars.hwnd.alarm.alarm_set.edit1)
 			Loop, Parse, input1, µ, % " |;,."
 				input1 := A_LoopField
 			If !Blank(input1) && (LLK_PatternMatch(input1, "", ["[", "]", "="]))
@@ -86,7 +86,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 		}
 		Else input1 := vars.alarm.override
 
-		WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.alarm.edit
+		WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.alarm.alarm_set.edit
 		Loop, Parse, % (input := StrReplace(input, " ", ":")), % ":"
 		{
 			If Blank(A_LoopField) || (A_Index > 3) || !IsNumber(A_LoopField)
@@ -161,7 +161,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 				Gui, alarm_set: Add, Edit, % "ys x+-1 cBlack Center Limit HWNDhwnd1 r1 w" vars.alarm.wTimers
 				vars.alarm.override := ""
 			}
-			vars.hwnd.alarm.edit := vars.hwnd.help_tooltips["alarm_set time"] := hwnd, vars.hwnd.alarm.edit1 := vars.hwnd.help_tooltips["alarm_set name"] := hwnd1
+			vars.hwnd.alarm.alarm_set.edit := vars.hwnd.help_tooltips["alarm_set time"] := hwnd, vars.hwnd.alarm.alarm_set.edit1 := vars.hwnd.help_tooltips["alarm_set name"] := hwnd1
 			Gui, alarm_set: Add, Button, % "xp yp hp wp Hidden Default gAlarm cBlack", OK
 
 			If (cHWND = "start")

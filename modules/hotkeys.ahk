@@ -673,7 +673,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *LButton::Alarm(1, vars.general.cMouse)
 *RButton::Alarm(2, vars.general.cMouse)
 
-#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.alarm.alarm_set.main) && !Blank(LLK_HasVal(vars.hwnd.alarm.alarm_set, vars.general.cMouse)) ;hovering the alarm-timer and clicking
+#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.alarm.alarm_set.main) && vars.general.cMouse && InStr(vars.hwnd.alarm.alarm_set.start "," vars.hwnd.alarm.alarm_set.cancel, vars.general.cMouse)
 
 *LButton::Alarm("alarm_set", vars.general.cMouse)
 
