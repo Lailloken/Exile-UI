@@ -104,7 +104,7 @@
 
 	If settings.leveltracker.hotkeys
 	{
-		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main
+		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_1), Leveltracker_Hotkeys, On
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_2), Leveltracker_Hotkeys, On
 	}
@@ -1317,7 +1317,7 @@ Leveltracker_Hotkeys(mode := "")
 		hotkey := (A_Index = 1) ? A_ThisHotkey : hotkey, hotkey := StrReplace(hotkey, A_LoopField)
 	If (mode = "refresh")
 	{
-		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main
+		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_01), Leveltracker_Hotkeys, Off
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_02), Leveltracker_Hotkeys, Off
 		If settings.leveltracker.hotkeys
@@ -1849,7 +1849,8 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If (lilly_check := InStr(step, "|| lilly:"))
 				step := SubStr(step, 1, lilly_check - 2)
 
-			style := "Section xs", line := step, step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := [], hint := InStr(line, "(hint)")
+			line := step, hint := InStr(step, "(hint)"), optional := InStr(step, Lang_Trans("lvltracker_format_optional")), step := StrReplace(step, Lang_Trans("lvltracker_format_optional") " ")
+			style := "Section xs", step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := []
 			If (check := InStr(step, " `;"))
 				step := SubStr(step, 1, check - 1)
 
@@ -1880,19 +1881,20 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				Continue
 			}
 
-			If !vars.pics.leveltracker.diamond
-				vars.pics.leveltracker.diamond := LLK_ImageCache("img\GUI\diamond.png",, settings.leveltracker.fHeight - 2)
+			If !vars.pics.leveltracker.bullet_diamond
+				vars.pics.leveltracker.bullet_diamond := LLK_ImageCache("img\GUI\bullet_diamond.png",, settings.leveltracker.fHeight - 2)
+			, 	vars.pics.leveltracker.bullet_plus := LLK_ImageCache("img\GUI\bullet_plus.png",, settings.leveltracker.fHeight - 2)
 
 			If buy_prompt && !hardcoded_buy
 			{
-				Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.diamond
+				Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.bullet_diamond
 				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
 				buy_prompt := 0
 			}
 
 			If bullets
 				If !hint
-					Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.diamond
+					Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker[optional ? "bullet_plus" : "bullet_diamond"]
 				Else Gui, %name_main%: Add, Progress, % "Disabled Section xs w" (settings.leveltracker.fHeight2 - 2)/2 " h" settings.leveltracker.fHeight2 - 2 " BackgroundBlack", 0
 
 			For index, part in text_parts

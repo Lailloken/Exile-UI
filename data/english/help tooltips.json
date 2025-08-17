@@ -526,7 +526,7 @@
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
-      "examples:\nboss quests (e.g. devourer, mektul)\nartificer's orbs & gems\njewelry & flasks"
+      "examples: artificer's orbs, gems, jewelry, flasks"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
