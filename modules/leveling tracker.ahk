@@ -2043,7 +2043,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 				{
 					For key in regex_string
 						string .= key "|"
-					Clipboard := Trim(StrReplace(string, " ", "."), "|")
+					Clipboard := "^(" Trim(StrReplace(string, " ", "."), "|") ")$"
 					LLK_ToolTip(Lang_Trans("lvltracker_gemregex"), 1.5,,,, "Lime")
 					Return
 				}
