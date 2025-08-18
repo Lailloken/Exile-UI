@@ -33,7 +33,7 @@
 ;## system-settings
 ;#####################################################
 
-;## these are some global system-settings that are dependant on the target language
+;## these are some global system-settings that are dependent on the target language
 		system_font			=	"Fontin SmallCaps"		;## except for Fontin SmallCaps, the specified font-type has to be installed on the system
 											;## this key is also present in the client.txt file, where it takes precedence (i.e. the value there will override this one)
 

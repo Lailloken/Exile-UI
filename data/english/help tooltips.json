@@ -478,33 +478,36 @@
     ],
     "leveltracker guide format info": [
       "each line has one or more steps you need to complete",
-      "(hint)____ indented lines provide more info for the step above",
-      "(hint)____",
+      "(hint)__ indented lines provide more info for the step above",
+      "(hint)__",
+      "optional: lines marked with a plus-sign show optional steps",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__",
       "when handing in quests, (img:skip) means the npc has quests queued up",
-      "(hint)____ these don't have relevant rewards and can be skipped",
-      "(hint)____",
+      "(hint)__ these don't have relevant rewards and can be skipped",
+      "(hint)__",
       "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
-      "(hint)____",
+      "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
-      "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction"
+      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)"
     ],
     "leveltracker guide format info 2": [
       "each line has one or more steps you need to complete",
-      "(hint)____ indented lines provide more info for the step above",
-      "(hint)____",
-      "(color:FF00FF)x_tasks: some lines have x sub-tasks to complete",
-      "(hint)____ sub-tasks can be completed in random order or",
-      "(hint)____ at the same time, depending on the zone",
-      "(hint)____",
+      "(hint)__ indented lines provide more info for the step above",
+      "(hint)__",
+      "(color:FF00FF)x_tasks: some lines have x sub-tasks you need to complete",
+      "(hint)__ they can be completed in random order or simultaneously (zone-dependent)",
+      "(hint)__",
+      "optional: lines marked with a plus-sign show optional steps",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
-      "(hint)____",
-      "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
-      "(hint)____",
+      "(hint)__",
+      "(img:in-out) (img:arena) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
+      "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
-      "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction",
-      "(hint)____",
+      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)",
+      "(hint)__",
       "\"xyz (map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
@@ -522,10 +525,12 @@
     ],
     "leveltracker optionals": [
       "choose whether optional loot/quests/encounters should be shown or not",
+      "they will be marked with a plus-sign in the guide(/highlight)",
       "examples: strongboxes, gear quests"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
+      "they will be marked with a plus-sign in the guide(/highlight)",
       "examples: artificer's orbs, gems, jewelry, flasks"
     ],
     "leveltracker reset": [
