@@ -14,7 +14,7 @@
     ],
     [
       "follow streams of water, find 3x (quest:glyph)",
-      "(hint)____ the streams form a triangle or line",
+      "(hint)__ the streams form a triangle or line",
       "find & enter areaid1_1_4_1 ;; the submerged passage"
     ],
     {
@@ -42,8 +42,8 @@
       ],
       "lines": [
         "find & kill hailrake for (quest:medicine_chest)",
-        "(hint)____ go (img:6). if there's a ledge, go (img:2) instead",
-        "(hint)____ recommended level: 4",
+        "(hint)__ go (img:6). if there's a ledge, go (img:2) instead",
+        "(hint)__ recommended level: 4",
         "relog to areaid1_1_town (img:town) ;; lioneye's watch"
       ]
     },
@@ -81,7 +81,7 @@
     },
     [
       "follow the wall to areaid1_1_6 ;; the climb",
-      "(hint)____ safer route: follow the cliff"
+      "(hint)__ safer route: follow the cliff"
     ],
     [
       "enter areaid1_1_7_1 ;; the lower prison"
@@ -94,11 +94,11 @@
     ],
     [
       "find & enter areaid1_1_4_0 ;; the flooded depths",
-      "(hint)____ usually (img:6) or (img:1) before the bridge, rarely (img:3)"
+      "(hint)__ usually (img:6) or (img:1) before the bridge, rarely (img:3)"
     ],
     [
       "find & kill dweller_of_the_deep",
-      "(hint)____ search diagonally opposite the entrance",
+      "(hint)__ search diagonally opposite the entrance",
       "relog to areaid1_1_town (img:town) ;; lioneye's watch"
     ],
     [
@@ -113,7 +113,7 @@
       ],
       "lines": [
         "complete the (img:lab) trial",
-        "(hint)____ usually (img:1) in the zone",
+        "(hint)__ usually (img:1) in the zone",
         "enter areaid1_1_7_2 ;; the upper prison"
       ]
     },
@@ -128,10 +128,10 @@
     },
     [
       "optional: find chemist's strongbox (flasks)",
-      "(hint)____ high chance for quicksilver flask (qsf)",
-      "(hint)____ vendor: qsf + aug + boots || qsf + aug + ms boots",
+      "(hint)__ high chance for quicksilver flask (qsf)",
+      "(hint)__ vendor: qsf + aug + boots || qsf + aug + ms boots",
       "find & kill brutus || relog to areaid1_1_town (img:town) ;; lioneye's watch",
-      "(hint)____ recommended level: 8-10"
+      "(hint)__ recommended level: 8-10"
     ],
     [
       "tarkleigh: <the_caged_brute2>",
@@ -156,7 +156,7 @@
     ],
     [
       "find (quest:girl) for (quest:allflame) || enter areaid1_1_9 ;; the ship graveyard",
-      "(hint)____ search diagonally opposite the entrance",
+      "(hint)__ search diagonally opposite the entrance",
       "kill fairgraves || relog to areaid1_1_town (img:town) ;; lioneye's watch"
     ],
     [
@@ -170,7 +170,7 @@
     [
       "follow the water to (img:arena) merveil's_lair",
       "kill merveil, enter areaid1_2_1 ;; the southern forest",
-      "(hint)____ recommended level: 11-13"
+      "(hint)__ recommended level: 11-13"
     ]
   ],
   [
@@ -181,20 +181,20 @@
       "go (img:1) to areaid1_2_2 ;; the old fields"
     ],
     [
-      "optional: <great_white_beast> (flask / rare belt)",
-      "(hint)____ find (img:arena) areaid1_2_2a, place a (img:portal) ;; the den",
+      "optional: flask / <belt> (quest)",
+      "(hint)__ find (img:arena) areaid1_2_2a, place a (img:portal) ;; the den",
       "follow the road to areaid1_2_3 ;; the crossroads"
     ],
     [
       "follow the road, activate the (img:waypoint)",
-      "optional: <great_white_beast>",
-      "(hint)____ (img:waypoint) to town || enter (img:portal) || enter (img:arena) the_den ;; the forest encampment",
-      "(hint)____ kill white_beast || relog || talk to (img:quest) yeena",
+      "optional: flask / <belt> (quest)",
+      "(hint)__ (img:waypoint) to town || enter (img:portal) || enter (img:arena) the_den ;; the forest encampment",
+      "(hint)__ kill white_beast || relog || talk to (img:quest) yeena",
       "go (img:7) to areaid1_2_6_1 ;; the chamber of sins level 1"
     ],
     [
       "enter areaid1_2_6_2 ;; the chamber of sins level 2",
-      "(hint)____ reach central room. (img:waypoint) points to the exit"
+      "(hint)__ reach central room. (img:waypoint) points to the exit"
     ],
     {
       "condition": [
@@ -204,7 +204,7 @@
       "lines": [
         "complete the (img:lab) trial",
         "find a long corridor, kill fidelitas for (quest:baleful_gem)",
-        "(hint)____ recommended level: 14-15",
+        "(hint)__ recommended level: 14-15",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
     },
@@ -215,7 +215,7 @@
       ],
       "lines": [
         "find a long corridor, kill fidelitas for (quest:baleful_gem)",
-        "(hint)____ recommended level: 14-15",
+        "(hint)__ recommended level: 14-15",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
     },
@@ -250,7 +250,7 @@
     },
     [
       "find (quest:altar), take (quest:golden_hand)",
-      "(hint)____ search diagonally opposite the entrance",
+      "(hint)__ search diagonally opposite the entrance",
       "relog to areaid1_2_town (img:town) ;; the forest encampment"
     ],
     [
@@ -264,12 +264,12 @@
     [
       "follow the road, activate the (img:waypoint)",
       "enter areaid1_2_10 ;; the weaver's chambers",
-      "(hint)____ search the side of road opposite the (img:waypoint)"
+      "(hint)__ search the side of road opposite the (img:waypoint)"
     ],
     [
       "find & kill the_weaver for (quest:maligaro's_spike)",
-      "(hint)____ go (img:6) from the entrance. if it's blocked, go (img:1)",
-      "(hint)____ recommended level: 16",
+      "(hint)__ go (img:6) from the entrance. if it's blocked, go (img:1)",
+      "(hint)__ recommended level: 16",
       "relog to areaid1_2_town (img:town) ;; the forest encampment"
     ],
     {
@@ -310,7 +310,7 @@
       ],
       "lines": [
         "optional: chest + 3 rogue exiles",
-        "(hint)____ follow the road to (img:waypoint), look for ruins nearby",
+        "(hint)__ follow the road to (img:waypoint), look for ruins nearby",
         "follow the road, kill kraityn for (quest:amulet)",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
@@ -364,7 +364,7 @@
       "lines": [
         "find & kill oak for (quest:oak's_amulet)",
         "(img:waypoint) to areaid1_2_9 ;; the western forest",
-        "(hint)____ usually (img:1) or (img:7), rarely (img:5)"
+        "(hint)__ usually (img:1) or (img:7), rarely (img:5)"
       ]
     },
     {
@@ -463,7 +463,7 @@
       ],
       "lines": [
         "optional: chest + 3 rogue exiles",
-        "(hint)____ follow the road to (img:waypoint), look for ruins nearby",
+        "(hint)__ follow the road to (img:waypoint), look for ruins nearby",
         "follow the road, help (color:ff8111)kraityn, take (quest:the_apex)",
         "relog to areaid1_2_town (img:town) ;; the forest encampment"
       ]
@@ -501,7 +501,7 @@
       "lines": [
         "find & help (color:ff8111)oak, take (quest:the_apex)",
         "poison the (quest:tree_roots), enter areaid1_2_11 ;; the vaal ruins",
-        "(hint)____ usually (img:1) or (img:7), rarely (img:5)"
+        "(hint)__ usually (img:1) or (img:7), rarely (img:5)"
       ]
     },
     {
@@ -543,7 +543,7 @@
     },
     [
       "find & enter areaid1_2_8 ;; the northern forest",
-      "(hint)____ zone is usually s- or l-shaped"
+      "(hint)__ zone is usually s- or l-shaped"
     ],
     [
       "enter areaid1_2_14_2 ;; the caverns"
@@ -556,7 +556,7 @@
       "lines": [
         "find & activate the (img:waypoint)",
         "search in the corners for areaid1_2_14_3 ;; the ancient pyramid",
-        "(hint)____ hidden (img:craft): locked door with 2 pillar-switches"
+        "(hint)__ hidden (img:craft): locked door with 2 pillar-switches"
       ]
     },
     {
@@ -576,8 +576,8 @@
       ],
       "lines": [
         "find & enter (img:arena) pyramid_apex, kill vaal_oversoul",
-        "(hint)____ 1st (img:arena) stairs in random corner, then diagonally opposite",
-        "(hint)____ recommended level: 20-22",
+        "(hint)__ 1st (img:arena) stairs in random corner, then diagonally opposite",
+        "(hint)__ recommended level: 20-22",
         "activate the (img:craft) || enter areaid1_3_1 ;; the city of sarn"
       ]
     },
@@ -588,8 +588,8 @@
       ],
       "lines": [
         "find & enter (img:arena) pyramid_apex, kill vaal_oversoul",
-        "(hint)____ 1st (img:arena) stairs in random corner, then diagonally opposite",
-        "(hint)____ recommended level: 20-22",
+        "(hint)__ 1st (img:arena) stairs in random corner, then diagonally opposite",
+        "(hint)__ recommended level: 20-22",
         "enter areaid1_3_1 ;; the city of sarn"
       ]
     }
@@ -621,7 +621,7 @@
     ],
     [
       "find & enter areaid1_3_3_1 ;; the crematorium",
-      "(hint)____ search diagonally opposite the entrance"
+      "(hint)__ search diagonally opposite the entrance"
     ],
     {
       "condition": [
@@ -656,7 +656,7 @@
     [
       "find 1x (quest:platinum_bust) || activate the (img:waypoint)",
       "find 2x (quest:platinum_bust) || enter areaid1_3_5 ;; the marketplace",
-      "(hint)____ if 2nd (quest:bust) is in a large room, 3rd is (img:0). otherwise (img:2)"
+      "(hint)__ if 2nd (quest:bust) is in a large room, 3rd is (img:0). otherwise (img:2)"
     ],
     {
       "condition": [
@@ -685,7 +685,7 @@
       ],
       "lines": [
         "complete the (img:lab) trial || activate the (img:craft)",
-        "(hint)____ often found by moving parallel to (img:arena) entrance wall",
+        "(hint)__ often found by moving parallel to (img:arena) entrance wall",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -695,7 +695,7 @@
     ],
     [
       "enter areaid1_3_7 ;; the battlefront",
-      "(hint)____ usually (img:1) or (img:0), rarely (img:5)"
+      "(hint)__ usually (img:1) or (img:0), rarely (img:5)"
     ],
     [
       "go (img:6) to activate the (img:waypoint)",
@@ -712,7 +712,7 @@
       ],
       "lines": [
         "find & activate the (img:waypoint)",
-        "(hint)____ (img:craft) in (img:arena) eternal_laboratory near (img:waypoint)",
+        "(hint)__ (img:craft) in (img:arena) eternal_laboratory near (img:waypoint)",
         "(img:waypoint) to areaid1_3_7 ;; the battlefront"
       ]
     },
@@ -728,7 +728,7 @@
     },
     [
       "go (img:7) to areaid1_3_9 ;; the docks",
-      "(hint)____ recommended level: 24"
+      "(hint)__ recommended level: 24"
     ],
     [
       "find (quest:thaumetic_sulphite)",
@@ -777,8 +777,8 @@
       ],
       "lines": [
         "find & kill piety for (quest:tower_key)",
-        "(hint)____ follow: stairs that go up, single wagon at the fork",
-        "(hint)____ recommended level: 27",
+        "(hint)__ follow: stairs that go up, single wagon at the fork",
+        "(hint)__ recommended level: 27",
         "activate the (img:craft) || relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -789,8 +789,8 @@
       ],
       "lines": [
         "find & kill piety for (quest:tower_key)",
-        "(hint)____ follow: stairs that go up, single wagon at the fork",
-        "(hint)____ recommended level: 27",
+        "(hint)__ follow: stairs that go up, single wagon at the fork",
+        "(hint)__ recommended level: 27",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -868,7 +868,7 @@
       ],
       "lines": [
         "find 4x (quest:golden_page)",
-        "(hint)____ hidden (img:craft): candle in a narrow corridor",
+        "(hint)__ hidden (img:craft): candle in a narrow corridor",
         "relog to areaid1_3_town (img:town) ;; the sarn encampment",
         "quest-check: <a_fixture_of_fate> ;; this is a hidden routing-check"
       ]
@@ -902,8 +902,8 @@
       ],
       "lines": [
         "early option: complete (img:lab) normal_lab (33)",
-        "(hint)____ build-dependent, another reminder later.",
-        "(hint)____ (img:waypoint) to (color:fec076)town (img:town), enter areaidlabyrinth_airlock ;; aspirants' plaza",
+        "(hint)__ build-dependent, another reminder later.",
+        "(hint)__ (img:waypoint) to (color:fec076)town (img:town), enter areaidlabyrinth_airlock ;; aspirants' plaza",
         "follow the wagons to areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
@@ -915,19 +915,19 @@
       "lines": [
         "follow the road, activate the (img:waypoint)",
         "early option: complete (img:lab) normal_lab (33)",
-        "(hint)____ build-dependent, another reminder later",
+        "(hint)__ build-dependent, another reminder later",
         "follow the wagons to areaid1_3_18_1 ;; the sceptre of god"
       ]
     },
     [
       "find & enter areaid1_3_18_2 ;; the upper sceptre of god",
-      "(hint)____ floors are circles, (img:arena) stairs can spawn every 90\u00b0"
+      "(hint)__ floors are circles, (img:arena) stairs can spawn every 90\u00b0"
     ],
     [
       "find & enter (img:arena) tower_rooftop",
-      "(hint)____ same zone layout, go (img:1) after scion cage",
+      "(hint)__ same zone layout, go (img:1) after scion cage",
       "kill dominus, enter areaid1_4_1 ;; the aqueduct",
-      "(hint)____ recommended level: 28"
+      "(hint)__ recommended level: 28"
     ]
   ],
   [
@@ -944,7 +944,7 @@
       ],
       "lines": [
         "find & kill voll for (quest:deshret's_banner)",
-        "(hint)____ recommended level: 30",
+        "(hint)__ recommended level: 30",
         "activate the (img:craft) || relog to areaid1_4_town (img:town) ;; highgate"
       ]
     },
@@ -955,7 +955,7 @@
       ],
       "lines": [
         "find & kill voll for (quest:banner)",
-        "(hint)____ recommended level: 30",
+        "(hint)__ recommended level: 30",
         "relog to areaid1_4_town (img:town) ;; highgate"
       ]
     },
@@ -1009,7 +1009,7 @@
       "tasuni: <an_indomitable_spirit>",
       "oyun: <breaking_the_seal>",
       "regular option: complete (img:lab) normal_lab",
-      "(hint)____ (img:waypoint) to (color:fec076)a3_|_town (img:town), enter areaidlabyrinth_airlock ;; the sarn encampment ;; aspirants' plaza",
+      "(hint)__ (img:waypoint) to (color:fec076)a3_|_town (img:town), enter areaidlabyrinth_airlock ;; the sarn encampment ;; aspirants' plaza",
       "(img:waypoint) to areaid1_4_3_3 ;; the crystal veins"
     ],
     [
@@ -1017,7 +1017,7 @@
     ],
     [
       "enter areaid1_4_5_2 ;; the grand arena",
-      "(hint)____ exit is usually (img:1), sometimes (img:6)"
+      "(hint)__ exit is usually (img:1), sometimes (img:6)"
     ],
     {
       "condition": [
@@ -1070,7 +1070,7 @@
     ],
     [
       "find & enter (img:arena) the_ring_of_blades",
-      "(hint)____ follow the path and go (img:7) as much as possible",
+      "(hint)__ follow the path and go (img:7) as much as possible",
       "kill daresso for (quest:eye) || relog to areaid1_4_town (img:town) ;; highgate"
     ],
     [
@@ -1108,7 +1108,7 @@
       "find & kill doedre, (color:ff8111)maligaro, (color:ff8111)shavronne",
       "talk to (img:quest) piety, enter (img:arena) the_black_core",
       "kill malachai || relog to areaid1_4_town (img:town) ;; highgate",
-      "(hint)____ recommended level: 34-35"
+      "(hint)__ recommended level: 34-35"
     ],
     [
       "dialla: <the_eternal_nightmare>",
@@ -1137,7 +1137,7 @@
   [
     [
       "follow (img:5) edge to the corridor with hanged karui",
-      "(hint)____ exit is always (img:5) of corridor, move clockwise to reach it",
+      "(hint)__ exit is always (img:5) of corridor, move clockwise to reach it",
       "kill overseer_krow, enter areaid1_5_town (img:town) ;; overseer's tower"
     ],
     [
@@ -1154,7 +1154,7 @@
     ],
     [
       "move clockwise, enter  areaid1_5_5 ;; the chamber of innocence",
-      "(hint)____ recommended level: 37+ || farm level: 40-42"
+      "(hint)__ recommended level: 37+ || farm level: 40-42"
     ],
     {
       "condition": [
@@ -1163,7 +1163,7 @@
       ],
       "lines": [
         "move c-clockwise, enter (img:arena) sanctum_of_innocence",
-        "(hint)____ (img:craft) in side corridor, about halfway through",
+        "(hint)__ (img:craft) in side corridor, about halfway through",
         "kill avarius || relog to areaid1_5_town (img:town) ;; overseer's tower"
       ]
     },
@@ -1217,8 +1217,8 @@
     ],
     [
       "go (img:5) to the square",
-      "optional: <king's_feast> (rare weapon)",
-      "(hint)____ go (img:3), kill utula",
+      "optional: <weapon> (quest)",
+      "(hint)__ go (img:3), kill utula",
       "go (img:4) to areaid1_5_7 ;; the reliquary"
     ],
     {
@@ -1243,8 +1243,8 @@
     },
     [
       "lani: <kitava's_torments>",
-      "optional: <king's_feast>",
-      "(hint)____ talk to (img:quest) bannon",
+      "optional: arena:utula quest",
+      "(hint)__ talk to (img:quest) bannon",
       "(img:waypoint) to areaid1_5_3b ;; the ruined square"
     ],
     [
@@ -1375,7 +1375,7 @@
       ],
       "lines": [
         "follow the main road to areaid2_6_10 ;; the riverways",
-        "(hint)____ (img:craft): follow side path marked by torch on the road"
+        "(hint)__ (img:craft): follow side path marked by torch on the road"
       ]
     },
     {
@@ -1408,7 +1408,7 @@
     ],
     [
       "take (quest:the_black_flag) || find & enter areaid2_6_14 ;; the beacon",
-      "(hint)____ (img:arena) exit is usually (img:3) or (img:1) in the zone, rarely (img:7)"
+      "(hint)__ (img:arena) exit is usually (img:3) or (img:1) in the zone, rarely (img:7)"
     ],
     {
       "condition": [
@@ -1552,7 +1552,7 @@
     [
       "silk: <web_of_secrets>, take (quest:obsidian_key)",
       "enter areaid2_7_5_2 ;; the chamber of sins level 2",
-      "(hint)____ the (img:waypoint) points to the exit"
+      "(hint)__ the (img:waypoint) points to the exit"
     ],
     {
       "condition": [
@@ -1578,7 +1578,7 @@
     ],
     [
       "early option: complete (img:lab) cruel_lab (55)",
-      "(hint)____ build-dependent, another reminder later.",
+      "(hint)__ build-dependent, another reminder later.",
       "go (img:5), kill greust || enter areaid2_7_8 ;; the northern forest"
     ],
     [
@@ -1607,7 +1607,7 @@
     },
     [
       "enter (img:arena) valley_of_the_fire_drinker",
-      "(hint)____ follow the ledge next to the road",
+      "(hint)__ follow the ledge next to the road",
       "kill abberath || (img:portal) to areaid2_6_town ;; lioneye's watch"
     ],
     [
@@ -1676,7 +1676,7 @@
     ],
     [
       "enter areaid2_7_12_2 ;; the temple of decay level 2",
-      "(hint)____ (img:arena) stairs are diagonally opposite, move in z-pattern"
+      "(hint)__ (img:arena) stairs are diagonally opposite, move in z-pattern"
     ],
     {
       "condition": [
@@ -1685,7 +1685,7 @@
       ],
       "lines": [
         "find the (img:craft) || enter (img:arena) arakaali's_web",
-        "(hint)____ (img:arena) stairs are diagonally opposite, move in z-pattern",
+        "(hint)__ (img:arena) stairs are diagonally opposite, move in z-pattern",
         "kill arakaali || enter areaid2_8_1 ;; the sarn ramparts"
       ]
     },
@@ -1696,7 +1696,7 @@
       ],
       "lines": [
         "enter (img:arena) arakaali's_web",
-        "(hint)____ (img:arena) stairs are diagonally opposite, move in z-pattern",
+        "(hint)__ (img:arena) stairs are diagonally opposite, move in z-pattern",
         "kill arakaali || enter areaid2_8_1 ;; the sarn ramparts"
       ]
     }
@@ -1710,8 +1710,8 @@
     ],
     [
       "enter areaid2_8_2_2 ;; doedre's cesspool",
-      "(hint)____ starting area is a loop with 1 exit.",
-      "(hint)____ go (img:1) as much as possible after exit."
+      "(hint)__ starting area is a loop with 1 exit.",
+      "(hint)__ go (img:1) as much as possible after exit."
     ],
     {
       "condition": [
@@ -1801,7 +1801,7 @@
       ],
       "lines": [
         "find & kill dusk for (quest:moon_orb)",
-        "(hint)____ follow: stairs that go up, single flower-pot at the fork",
+        "(hint)__ follow: stairs that go up, single flower-pot at the fork",
         "get (img:craft) || relog to areaid2_8_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -1812,7 +1812,7 @@
       ],
       "lines": [
         "find & kill dusk for (quest:moon_orb)",
-        "(hint)____ follow: stairs that go up, single flower-pot at the fork",
+        "(hint)__ follow: stairs that go up, single flower-pot at the fork",
         "relog to areaid2_8_town (img:town) ;; the sarn encampment"
       ]
     },
@@ -1824,7 +1824,7 @@
     ],
     [
       "enter (img:arena) sky_shrine, kill lunaris_&_solaris",
-      "(hint)____ recommended level: 54+",
+      "(hint)__ recommended level: 54+",
       "enter areaid2_9_1 ;; the blood aqueduct"
     ]
   ],
@@ -1844,7 +1844,7 @@
       ],
       "lines": [
         "follow (img:0) edge to (img:lab) trial and (img:craft)",
-        "(hint)____ look for a (img:help) -icon on the map",
+        "(hint)__ look for a (img:help) -icon on the map",
         "follow (img:0) edge to areaid2_8_4 ;; the high gardens"
       ]
     },
@@ -1928,7 +1928,7 @@
     ],
     [
       "enter (img:arena) the_sand_pit",
-      "(hint)____ usually along the (img:2) edge of the zone",
+      "(hint)__ usually along the (img:2) edge of the zone",
       "kill shakari || relog to areaid2_9_town (img:town) ;; highgate"
     ],
     [
@@ -1993,7 +1993,7 @@
       ],
       "lines": [
         "follow the cart tracks through the zone",
-        "(hint)____ (img:craft) can be found where tracks end in a grate",
+        "(hint)__ (img:craft) can be found where tracks end in a grate",
         "kill adus for (quest:powder) || relog to areaid2_9_town (img:town) ;; highgate"
       ]
     },
@@ -2099,7 +2099,7 @@
       ],
       "lines": [
         "move c-clockwise, enter (img:arena) sanctum_of_innocence",
-        "(hint)____ (img:craft) in side corridor, about halfway through",
+        "(hint)__ (img:craft) in side corridor, about halfway through",
         "kill avarius for (quest:staff) || relog to areaid2_10_town (img:town) ;; oriath docks"
       ]
     },

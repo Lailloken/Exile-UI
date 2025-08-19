@@ -171,8 +171,11 @@ Gui_HelpToolTip(HWND_key)
 	If (check = "donation")
 		check := "settings", donation := 1
 	HWND_checks := {"cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0, "leveltrackergems": "leveltracker_gempickups"}
-	If (check != "settings")
-		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id "vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : (check = "alarm" && InStr(HWND_key, "set ") ? "alarm_set" : "main")]
+
+	If (check = "alarm") && InStr(HWND_key, "set ")
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " vars.hwnd.alarm.alarm_set.main
+	Else If (check != "settings")
+		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " vars.hwnd[(HWND_checks[check] = 0) ? check : HWND_checks[check]][(check = "leveltrackerschematics") ? "info" : "main"]
 
 	For index, val in ["xWin", "yWin", "wWin", "hWin"]
 		If !IsNumber(%val%)
@@ -183,6 +186,8 @@ Gui_HelpToolTip(HWND_key)
 
 	If (check = "lootfilter" && InStr(control, "tooltip"))
 		database := vars.lootfilter.filter, lootfilter := 1
+	Else If (check = "leveltrackergems") && InStr(control, "gem ")
+		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
 	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
 
 	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
@@ -191,7 +196,7 @@ Gui_HelpToolTip(HWND_key)
 	If (check = "exchange")
 		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
 	Else If (check = "alarm" || check = "leveltrackerschematics")
-		tooltip_width := vars.monitor.h/2, xWin := xWin + wWin/2 - tooltip_width/2
+		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
 
 	If !tooltip_width
 		Return
@@ -211,6 +216,8 @@ Gui_HelpToolTip(HWND_key)
 			If LLK_StringCompare(target_array[count - (A_Index - 1)], ["class", "#"])
 				target_array.RemoveAt(count - (A_Index - 1))
 	}
+	Else If gempickups
+		target_array := database[SubStr(control, 5)]
 	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
 
 	If (control = "leveltracker profile select")
@@ -236,11 +243,14 @@ Gui_HelpToolTip(HWND_key)
 	Else
 		For index, text in target_array
 		{
-			font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font
+			font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
+			color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
+			For index0, remove in ["underline", "bold", "highlight"]
+				text := StrReplace(text, "(/" remove ")")
 			Gui, %GUI_name%: Font, % font
-			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % StrReplace(StrReplace(StrReplace(text, "&", "&&"), "(/underline)"), "(/bold)")
+			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % LLK_StringCase(text)
 			Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
-			Gui, %GUI_name%: Add, Text, % "Center xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : ""), % LLK_StringCase(StrReplace(StrReplace(StrReplace(text, "&", "&&"), "(/underline)"), "(/bold)"))
+			Gui, %GUI_name%: Add, Text, % "Center xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color), % LLK_StringCase(text)
 		}
 
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000

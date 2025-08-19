@@ -3,9 +3,6 @@
 	local
 	global vars, settings, JSON
 
-	;If vars.poe_version
-	;	Return
-
 	If !FileExist("ini" vars.poe_version "\sanctum.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\sanctum.ini", settings
 
@@ -30,6 +27,7 @@
 	ini := IniBatchRead("ini" vars.poe_version "\sanctum.ini")
 	settings.sanctum.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.sanctum.fSize, fHeight, fWidth), settings.sanctum.fWidth := fWidth, settings.sanctum.fHeight := fHeight
+	settings.sanctum.relics := !Blank(check := ini.settings["enable relic management"]) ? check : 1
 	settings.sanctum.cheatsheet := !Blank(check := ini.settings["enable cheat-sheet"]) ? check : 0
 	settings.sanctum.gridspacing := Round(vars.client.h/240)
 
@@ -41,8 +39,8 @@
 
 	h := vars.client.h
 	If vars.poe_version
-		vars.sanctum.relics := {"alt": 0, "search": [], "coords": {"x": h * (2/15), "x2": -h * (29/60), "y": h * 0.3, "xGrid": h * 0.055, "yGrid": h * 0.055, "wGrid": h * 0.045, "xConfirm": h * 0.1125, "wConfirm": h * 0.125, "yConfirm": h * 0.2708, "hConfirm": h * 0.0375}}
-	Else vars.sanctum.relics := {"alt": 0, "search": [], "coords": {"x": h * (2/15), "x2": -h * (29/60), "y": h * 0.31, "xGrid": h * 0.055, "yGrid": h * 0.055, "wGrid": h * 0.045, "xConfirm": h * 0.1125, "wConfirm": h * 0.125, "yConfirm": h * 0.2708, "hConfirm": h * 0.0375}}
+		vars.sanctum.relics := {"search": [], "coords": {"x": h * (2/15), "x2": -h * (29/60), "y": h * 0.3, "xGrid": h * 0.055, "yGrid": h * 0.055, "wGrid": h * 0.045, "xConfirm": h * 0.1125, "wConfirm": h * 0.125, "yConfirm": h * 0.2708, "hConfirm": h * 0.0375}}
+	Else vars.sanctum.relics := {"search": [], "coords": {"x": h * (2/15), "x2": -h * (29/60), "y": h * 0.31, "xGrid": h * 0.055, "yGrid": h * 0.055, "wGrid": h * 0.045, "xConfirm": h * 0.1125, "wConfirm": h * 0.125, "yConfirm": h * 0.2708, "hConfirm": h * 0.0375}}
 
 	If !Blank(relic_grid := ini.data["relic grid"]) && (SubStr(relic_grid, 1, 1) . SubStr(relic_grid, 0) = "[]")
 		vars.sanctum.relics.grid := json.load(relic_grid), vars.sanctum.relics.grid0 := relic_grid
@@ -182,8 +180,6 @@ Sanctum(cHWND := "", hotkey := 0)
 		LLK_Overlay(vars.hwnd.sanctum.second, "show"), vars.sanctum.active := 1
 		Return
 	}
-	;If error
-	;	Return
 
 	toggle := !toggle, GUI_name := "sanctum" toggle, GUI_name2 := "sanctum2" toggle
 	wSnip := vars.sanctum.wSnip, hSnip := vars.sanctum.hSnip
@@ -197,8 +193,6 @@ Sanctum(cHWND := "", hotkey := 0)
 	WinSet, TransColor, Purple 125
 	Gui, %GUI_name%: Margin, 0, 0
 	hwnd_old := vars.hwnd.sanctum.main, hwnd_old2 := vars.hwnd.sanctum.second, vars.hwnd.sanctum := {"main": hwnd_sanctum, "GUI_name": GUI_name}, vars.sanctum.lock := 0
-
-	;Gui, %GUI_name%: Add, Text, % "Section Border BackgroundTrans w" wSnip " h" hSnip
 
 	If correct_floor
 		For iColumn, vColumn in grid
@@ -373,8 +367,6 @@ Sanctum_Mark(room, mode, hold := 0)
 	Loop 7 ; inaccessible rooms behind (already passed) and ahead (resulting from bans)
 	{
 		column := A_Index
-		;If (A_Index = 1)
-		;	Continue
 		For iRoom, vRoom in grid[column]
 		{
 			check := Max(1, vRoom.entries.Count())
@@ -460,11 +452,6 @@ Sanctum_Relics(cHWND := "")
 			IniWrite, % (vars.sanctum.relics.grid0 := check), % "ini" vars.poe_version "\sanctum.ini", data, relic grid
 		Return
 	}
-	Else If (cHWND = "alt")
-	{
-		KeyWait, LButton
-		vars.sanctum.relics.alt := !vars.sanctum.relics.alt
-	}
 	Else If cHWND
 	{
 		check := LLK_HasVal(vars.hwnd.sanctum_relics, (cHWND = "click") ? vars.general.cMouse : cHWND), control := SubStr(check, InStr(check, "_") + 1)
@@ -484,13 +471,11 @@ Sanctum_Relics(cHWND := "")
 			}
 			Else
 			{
-				If vars.sanctum.relics.alt
+				If vars.sanctum.relics.inventory
 					Return
 				WinActivate, % "ahk_id " vars.hwnd.poe_client
 				WinWaitActive, % "ahk_id " vars.hwnd.poe_client
 				regex := Trim(StrReplace(control, "#", ".*"), " +%")
-				For key, val in {"increased ": "inc.*", " on the trial map": "", "additional room is revealed": "add.*room.*revealed", "maximum ": "max.*", "% chance to ": ".*", " the start of the trial": "", "  ": " ", " .": ".", ".* ": ".*", ".*.*": ".*"}
-					regex := StrReplace(regex, key, val)
 				Clipboard := Trim(StrReplace(regex, " ", "."), " .*")
 				SendInput, ^{f}
 				Sleep 100
@@ -522,7 +507,7 @@ Sanctum_Relics(cHWND := "")
 
 	toggle := !toggle, GUI_name := "sanctum_relics" toggle
 	coords := vars.sanctum.relics.coords, spacing := settings.sanctum.gridspacing, grid := vars.sanctum.relics.grid, items := vars.sanctum.relics.items, fWidth := settings.sanctum.fWidth
-	search := vars.sanctum.relics.search, alt := vars.sanctum.relics.alt
+	search := vars.sanctum.relics.search, inventory := vars.sanctum.relics.inventory := vars.pixels.inventory
 
 	Gui, %GUI_name%: New, % "-Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_relics"
 	Gui, %GUI_name%: Font, % "cWhite s" settings.sanctum.fSize, % vars.system.font
@@ -585,14 +570,8 @@ Sanctum_Relics(cHWND := "")
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 BackgroundBlack Vertical Range0-500 cMaroon", 0
 	vars.hwnd.sanctum_relics.clear := vars.hwnd.sanctum_relics.clear_bar := vars.hwnd.help_tooltips["sanctumrelics_clear"] := hwnd2
 
-	Gui, %GUI_name%: Add, Text, % "x0 Border BackgroundTrans y" vars.client.h * 0.275 " w" vars.client.h * (1/30) " h" vars.client.h * (1/30)
-	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundPurple", 0
 	base_x := vars.client.x + vars.client.w/2, base_y := vars.client.y + coords.y
-	coords.mouse2 := {"x": [base_x + coords[alt ? "x2" : "x"], base_x + coords[alt ? "x2" : "x"] + vars.client.h * (1/30)], "y": [base_y + vars.client.h * 0.275, base_y + vars.client.h * 0.275 + vars.client.h * (1/30)]}
-
-	;Gui, %GUI_name%: Add, Text, % "x" coords.xConfirm " Border BackgroundTrans y" coords.yConfirm " w" coords.wConfirm " h" coords.hConfirm
-	;Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundPurple", 0
-	coords.mouse3 := {"x": [base_x + coords[alt ? "x2" : "x"] + coords.xConfirm, base_x + coords[alt ? "x2" : "x"] + coords.xConfirm + coords.wConfirm], "y": [base_y + coords.yConfirm, base_y + coords.yConfirm + coords.hConfirm]}
+	coords.mouse3 := {"x": [base_x + coords[inventory ? "x2" : "x"] + coords.xConfirm, base_x + coords[inventory ? "x2" : "x"] + coords.xConfirm + coords.wConfirm], "y": [base_y + coords.yConfirm, base_y + coords.yConfirm + coords.hConfirm]}
 
 	mods2 := {}, dimensions := []
 	For mod, val in mods
@@ -621,8 +600,8 @@ Sanctum_Relics(cHWND := "")
 		vars.hwnd.help_tooltips["sanctumrelics_mods"] := hwnd
 	}
 
-	coords.mouse := {"x": [base_x + coords[alt ? "x2" : "x"] + coords.xGrid, base_x + coords[alt ? "x2" : "x"] + coords.xGrid + width], "y": [base_y + coords.yGrid, base_y + coords.yGrid + height]}
-	Gui, %GUI_name%: Show, % "NA x" base_x + coords[alt ? "x2" : "x"] " y" vars.client.y + coords.y
+	coords.mouse := {"x": [base_x + coords[inventory ? "x2" : "x"] + coords.xGrid, base_x + coords[inventory ? "x2" : "x"] + coords.xGrid + width], "y": [base_y + coords.yGrid, base_y + coords.yGrid + height]}
+	Gui, %GUI_name%: Show, % "NA x" base_x + coords[inventory ? "x2" : "x"] " y" vars.client.y + coords.y
 	LLK_Overlay(hwnd_relics, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
@@ -632,14 +611,12 @@ Sanctum_RelicsClick()
 	global vars, settings
 
 	coords := vars.sanctum.relics.coords, w := coords.wGrid, spacing := settings.sanctum.gridspacing, items := vars.sanctum.relics.items, grid := vars.sanctum.relics.grid
-	alt := vars.sanctum.relics.alt
+	inventory := vars.sanctum.relics.inventory
 	For outer in [1, 2, 3, 4]
 		For inner in [1, 2, 3, 4, 5]
 		{
 			cell := ""
-			x := vars.client.x + vars.client.w/2 + coords[alt ? "x2" : "x"] + coords.xGrid + (inner - 1) * (w + spacing), y := vars.client.y + coords.y + coords.yGrid + (outer - 1) * (w + spacing)
-			;If !IsObject(grid[(outer - 1) * 5 + inner])
-			;	grid[(outer - 1) * 5 + inner] := [], grid[(outer - 1) * 5 + inner].0 := []
+			x := vars.client.x + vars.client.w/2 + coords[inventory ? "x2" : "x"] + coords.xGrid + (inner - 1) * (w + spacing), y := vars.client.y + coords.y + coords.yGrid + (outer - 1) * (w + spacing)
 			If LLK_IsBetween(vars.general.xMouse, x, x + w) && LLK_IsBetween(vars.general.yMouse, y, y + w)
 			{
 				cell := (outer - 1) * 5 + inner
@@ -787,9 +764,8 @@ Sanctum_Scan(mode := "")
 			GuiControl,, % vars.hwnd.sanctum.scan2, % iColumn
 			If (iColumn = 7)
 			{
-				;grid.8 := [{"x": Round(wSnip - wBox), "y": rows.6, "connections": {"entries": {}}}]
 				For iRoom in grid.7
-					grid.7[iRoom].exits.81 := 1 ;, grid.8.1.connections.entries["7" iRoom] := 1
+					grid.7[iRoom].exits.81 := 1
 				Break
 			}
 			Else If (iColumn = 1) && vars.poe_version && InStr(vars.log.areaID, "sanctum_1")

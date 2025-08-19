@@ -580,7 +580,7 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
 
-	For index, val in ["the_wall_with_notes", "a_large_spiral"]
+	For index, val in ["the_wall_with_notes", "a_large_spiral", "form_a_triangle", "but_you_have_to_loop_around"]
 		If FileExist("img\GUI\leveling tracker\hints 2\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints 2\" val ".jpg"
 
@@ -643,7 +643,7 @@ Loop()
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)
 	}
 
-	If settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(vars.log.areaID, "i)labyrinth_|sanctum_") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+	If settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(vars.log.areaID, "i)labyrinth_|sanctum_|g3_10$") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Leveltracker_Toggle("hide")
 
 	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill[2]* 60000) && settings.general.kill[1]
@@ -703,7 +703,10 @@ Loop_main()
 		Leveltracker_PobGemLinks("", SubStr(check, 0))
 
 	If vars.hwnd.exchange.main && (vars.pixels.inventory != vars.exchange.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
-			Exchange()
+		Exchange()
+
+	If vars.hwnd.sanctum_relics.main && (vars.pixels.inventory != vars.sanctum.relics.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
+		Sanctum_Relics()
 
 	If vars.hwnd.recombination.main && WinActive("ahk_id " vars.hwnd.recombination.main) && (vars.general.wMouse = vars.hwnd.poe_client)
 	{
@@ -824,7 +827,7 @@ Loop_main()
 	tick_helptooltips += 1
 	If !Mod(tick_helptooltips, 3) || check_help
 	{
-		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || InStr(control, "update changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
+		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || InStr(control, "update changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip") || check = "leveltrackergems" && InStr(control, "gem ")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
 			Gui_HelpToolTip(check_help)
 		Else If (vars.general.drag || !check_help || WinExist("ahk_id "vars.hwnd.screencheck_info.main)) && WinExist("ahk_id " vars.hwnd.help_tooltips.main)
 			LLK_Overlay(vars.hwnd.help_tooltips.main, "destroy"), vars.general.active_tooltip := "", vars.hwnd.help_tooltips.main := ""

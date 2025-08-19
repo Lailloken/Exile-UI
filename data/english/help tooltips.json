@@ -54,7 +54,7 @@
     ],
     "active character whois": [
       "click this button to use the \"/whois\" in-game command to force-refresh character info",
-      "make sure the in-game chat box is closed but available(/underline)"
+      "make sure the in-game chat box is closed but available(/highlight)"
     ],
     "ascendancy": [
       "the game only logs ascendancies when a character levels up",
@@ -100,7 +100,7 @@
     "actdecoder enable": [
       "provides an interactive zone-layout overlay for campaign areas",
       "hold <tab> while in a supported campaign area to activate the overlay",
-      "note: accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/underline)"
+      "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
     ],
     "actdecoder generic": [
       "disables sub-layout selections and only shows very basic layouts"
@@ -114,7 +114,7 @@
     ],
     "anoints enable": [
       "provides a quick-access interface to find and filter which anoint/instill recipes are available with the materials you currently have",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu(/underline)",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu(/highlight)",
       "hover over materials and hold <alt> to open the interface",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>"
     ],
@@ -124,7 +124,7 @@
     ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
-      "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu",
+      "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu(/highlight)",
       "while the syndicate board is on screen, hold the <omni-key> to activate the overlay"
     ],
     "betrayal ruthless": [
@@ -223,7 +223,7 @@
     ],
     "exchange enable": [
       "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
-      "requires the <currency exchange> screen-check to be set up correctly in the <screen-checks> menu(/underline)",
+      "requires the <currency exchange> screen-check to be set up correctly in the <screen-checks> menu(/highlight)",
       "in your hideout, hold <tab> while the currency exchange window is on screen to activate the feature",
       "hold <alt> to temporarily hide the overlay"
     ],
@@ -237,7 +237,7 @@
       "to avoid conflicts between custom in-game keybinds and the script's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
     ],
     "hotkeys movekey": [
-      "note: only required when using cursor-movement, not wasd(/underline)",
+      "only required when using cursor-movement, not wasd(/highlight)",
       "specifying the key allows the script to adapt its behavior in certain situations",
       "example: not activating on-hover overlays while moving the character",
       "for special keys, check the links above to find proper names and formatting"
@@ -278,7 +278,7 @@
       "provides a customizable item tooltip which adds glance value to loot you pick up",
       "hold the <omni-key> while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
       "click into the game or press <esc> to close it",
-      "note: requires the <inventory> screen-check to be set up correctly(/underline)"
+      "requires the <inventory> screen-check to be set up correctly(/highlight)"
     ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
@@ -294,7 +294,7 @@
     "iteminfo alt-key": [
       "hold <alt> while hovering over items to activate the tooltip: the tooltip will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
-      "note: this setting might interfere with other 3rd-party tools(/underline)"
+      "this setting might interfere with other 3rd-party tools(/highlight)"
     ],
     "iteminfo modrolls": [
       "hide the min/max range on explicit mods",
@@ -407,19 +407,19 @@
     ],
     "leveltracker geartracker": [
       "notifies you when new gear can be equipped (the guide button will show a green number)",
+      "requires your character-name in the <general> settings(/highlight)",
       "accessed by right-clicking the guide button in the toolbar",
-      "while the panel is open, omni-click items to add them to the list",
-      "you have to specify your character-name in the <general> section of the settings first"
+      "while the panel is open, omni-click items to add them to the list"
     ],
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
       "while hovering over a gem, hold the <omni-key> to show an overlay with gem setups/links",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu(/highlight)",
       "",
       "while the skill-tree is on screen, press <tab> to show overlays with skill-tree schematics",
-      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
+      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu(/highlight)"
     ],
     "leveltracker skilltree clear": [
       "long-click to delete the skill-tree files used to render schematics: they will be re-downloaded the next time they are needed",
@@ -455,7 +455,7 @@
     ],
     "leveltracker import": [
       "imports pobb.in-links, pob-codes or custom guides from clipboard into this guide slot",
-      "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+      "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker editor": [
       "open the editor to edit the guide in this slot"
@@ -469,7 +469,7 @@
       "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
       "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
       "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)",
-      "this toggle is forced to on if <league-start> is on (/underline)"
+      "this toggle is forced to on if <league-start> is on (/highlight)"
     ],
     "leveltracker guide info 2": [
       "there are up to nine individual guide slots you can use and switch between",
@@ -478,55 +478,60 @@
     ],
     "leveltracker guide format info": [
       "each line has one or more steps you need to complete",
-      "(hint)____ indented lines provide more info for the step above",
-      "(hint)____",
+      "(hint)__ indented lines provide more info for the step above",
+      "(hint)__",
+      "optional: lines marked with a plus-sign show optional steps",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__",
       "when handing in quests, (img:skip) means the npc has quests queued up",
-      "(hint)____ these don't have relevant rewards and can be skipped",
-      "(hint)____",
+      "(hint)__ these don't have relevant rewards and can be skipped",
+      "(hint)__",
       "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold tab to see more info",
-      "(hint)____",
+      "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
-      "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction"
+      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)"
     ],
     "leveltracker guide format info 2": [
       "each line has one or more steps you need to complete",
-      "(hint)____ indented lines provide more info for the step above",
-      "(hint)____",
-      "(color:FF00FF)x_tasks: some steps have x sub-tasks to complete",
-      "(hint)____ sub-tasks can be completed in random order or",
-      "(hint)____ at the same time, depending on the zone",
-      "(hint)____",
+      "(hint)__ indented lines provide more info for the step above",
+      "(hint)__",
+      "(color:FF00FF)x_tasks: some lines have x sub-tasks you need to complete",
+      "(hint)__ they can be completed in random order or simultaneously (zone-dependent)",
+      "(hint)__",
+      "optional: lines marked with a plus-sign show optional steps",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
-      "(hint)____",
-      "\" (img:in-out) (color:FEC076)zone-name for x \" means \"enter zone to get x, then leave again\"",
-      "(hint)____",
+      "(hint)__",
+      "(img:in-out) (img:arena) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
+      "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
-      "(hint)____ direct pathing might sometimes be blocked, so you'll have to",
-      "(hint)____ walk around obstacles and find another way into that direction",
-      "(hint)____",
-      "\"xyz (mini-map)\" means a point of interest is marked on the mini-map"
+      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)",
+      "(hint)__",
+      "\"xyz (map)\" means a point of interest is marked on the mini-map"
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",
       "if a pob import with gems is present and league-start is disabled, some gem-quests may be replaced with hideout lilly instead",
-      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker bandit": [
       "choose which bandit you want to help in act 2",
-      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker leaguestart 2": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not",
-      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in"
+      "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker optionals": [
       "choose whether optional loot/quests/encounters should be shown or not",
+      "they will be marked with a plus-sign in the guide(/highlight)",
       "examples: strongboxes, gear quests"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
-      "examples:\n- boss quests (e.g. devourer, mektul)\n- artificer's orbs & gems\n- jewelry & flasks"
+      "they will be marked with a plus-sign in the guide(/highlight)",
+      "examples: artificer's orbs, gems, jewelry, flasks"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
@@ -534,7 +539,7 @@
     "leveltracker character info": [
       "optional: enter the name of the character you will play while using this guide",
       "this enables level tracking and e-exp calculations",
-      "this name will also be applied to the <general> tab, i.e. this character will be tracked globally(/underline)"
+      "this name will also be applied to the <general> tab, i.e. this character will be tracked globally(/highlight)"
     ],
     "leveltracker character status": [
       "orange: no name specified",
@@ -543,7 +548,7 @@
     ],
     "leveltracker profile name": [
       "optional: enter a description/name for the build you will play with this guide",
-      "it will also be applied to the <general> tab, i.e. this description will be used globally(/underline)"
+      "it will also be applied to the <general> tab, i.e. this description will be used globally(/highlight)"
     ],
     "leveltracker pob preview": [
       "long-click to check available pob data",
@@ -590,7 +595,7 @@
     ],
     "maptracker dialogue tracking": [
       "these mechanics can be tracked automatically via in-game dialogue",
-      "requires enabling <output dialogue to chat> at the bottom of the game's <ui> settings"
+      "requires enabling <output dialogue to chat> at the bottom of the game's <ui> settings(/highlight)"
     ],
     "maptracker screen tracking": [
       "these mechanics will be tracked by searching the screen for specific ui elements",
@@ -616,7 +621,7 @@
     "maptracker loot-tracker": [
       "items you ctrl-click into the stash will be logged",
       "ctrl-right-click will remove previously added items one by one (similar to ctrl-z in text editing)",
-      "requires the <stash> image-check to be set up correctly in the <screen-checks> menu"
+      "requires the <stash> image-check to be set up correctly in the <screen-checks> menu(/highlight)"
     ],
     "maptracker kill-tracker": [
       "monster kills in completed maps will be logged",
@@ -646,7 +651,7 @@
     "mapinfo enable": [
       "provides a compact and customizable info-panel for map mods",
       "omni-clicking a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section of the settings menu(/underline)"
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> settings(/highlight)"
     ],
     "mapinfo <omni-key>": [
       "press the <omni-key> while hovering over maps/waystones to activate the panel",
@@ -655,7 +660,7 @@
     "mapinfo alt-key": [
       "hold <alt> while hovering over maps/waystones to activate the panel: the panel will close automatically once you release <alt>",
       "if you only want to access the in-game advanced tooltip, hold <ctrl> prior to holding <alt>",
-      "note: this setting might interfere with other 3rd-party tools(/underline)"
+      "this setting might interfere with other 3rd-party tools(/highlight)"
     ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
@@ -693,7 +698,7 @@
     ],
     "mapinfo reset tiers": [
       "long-click to reset every map mod tier to default (white, not crossed out)",
-      "(/underline)this affects every single mod, not just the pinned ones below"
+      "(/highlight)this affects every single mod, not just the pinned ones below"
     ],
     "alarm enable": [
       "timer-widget with alarm/countdown and stopwatch functionality",
@@ -757,6 +762,11 @@
     ],
     "sanctum cheatsheet": [
       "shows an additional panel that lists the different room types and their objectives, as well as special fountain characteristics"
+    ],
+    "sanctum relics": [
+      "provides an overlay for relic management",
+      "hold <tab> while the relic altar is open to open the overlay",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> settings(/highlight)"
     ],
     "screenchecks pixel-about": [
       "the script continually checks the screen for certain ui elements",
@@ -862,7 +872,7 @@
     "stash enable": [
       "stash feature that overlays price-tags onto currencies in specific stash tabs",
       "long-press the <omni-key> while hovering over an item in a tab to activate the feature",
-      "there needs to be at least one tab-folder somewhere in your stash (the overlay will be slightly offset otherwise)(/underline)"
+      "there needs to be at least one tab-folder somewhere in your stash (the overlay will be slightly offset otherwise)(/highlight)"
     ],
     "stash hotkey": [
       "this hotkey is exclusive to streaming clients, and pressing it will open an exclusive selection menu that lists the available tabs",
@@ -919,7 +929,7 @@
       "atlas feature that displays various information about maps on the atlas",
       "hold <tab> while hovering over maps on the atlas to activate the overlay",
       "scroll to adjust the image size",
-      "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section of the settings menu"
+      "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section of the settings menu(/highlight)"
     ],
     "statlas maptracker": [
       "the overlay will show stats collected via the map-tracker feature"
@@ -977,7 +987,7 @@
     ],
     "set name": [
       "optional: enter a name to create a permanent, reusable timer",
-      "un-named timers are lost when restarting the tool(/underline)"
+      "un-named timers are lost when restarting the tool(/highlight)"
     ],
     "set time": [
       "supported formats: hh:mm:ss, hh mm ss",
@@ -1176,7 +1186,7 @@
     ],
     "guide reset": [
       "long-click to load the default guide",
-      "(/underline)note: your progress and custom edits will be deleted"
+      "(/highlight)your progress and custom edits will be deleted"
     ],
     "preview": [
       "long-click to see a preview of this guide page"
@@ -1186,7 +1196,7 @@
     ],
     "save": [
       "long-click to save the changes to this guide slot",
-      "note: your current guide progress will be reset(/underline)"
+      "your current guide progress will be reset(/highlight)"
     ],
     "search": [
       "type in strings to search within the currently selected act",
@@ -1199,7 +1209,7 @@
       "select <skip> if you don't want to pick up certain gems (e.g. if you are already muling them with a different character)"
     ],
     "save-reset": [
-      "applying/reverting changes will also reset your guide progress(/underline)"
+      "applying/reverting changes will also reset your guide progress(/highlight)"
     ]
   },
   "leveltrackerschematics": {
@@ -1244,7 +1254,7 @@
     ],
     "apply mods": [
       "long-click to create and apply the new file",
-      "(/underline)note: the /itemfilter in-game command will be used, so make sure the chat box is closed and accessible"
+      "(/highlight)the /itemfilter in-game command will be used, so make sure the chat box is closed and accessible"
     ],
     "backgroundcolor": [
       "click to select the background color, right-click to reset to the previous color"
@@ -1287,7 +1297,7 @@
     ],
     "refresh": [
       "reload the folder's contents, the selected base filter, and the modded filter",
-      "(/underline)note: unsaved changes will be lost"
+      "(/highlight)unsaved changes will be lost"
     ],
     "revert": [
       "revert every modification in this group"
@@ -1462,8 +1472,9 @@
   "sanctumrelics": {
     "general": [
       "right-click relics to load them into the grid",
-      "note: always move the cursor to the top-left corner of the relic(/underline)",
-      "hold <alt> to temporarily hide boxes\npress <esc> to close the overlay: it will also close when clicking <confirm> in game"
+      "note: always move the cursor to the top-left corner of the relic(/highlight)",
+      "hold <alt> to temporarily hide boxes",
+      "press <esc> to close the overlay: it will also close when clicking <confirm> in game"
     ],
     "mods": [
       "click up to 2 mods to highlight corresponding relics",
@@ -1545,7 +1556,7 @@
       "one item will be randomly chosen as the final base and retains its influences, tags (e.g. corrupted, split), quality, implicits, enchants, anoints",
       "you can manipulate odds by crafting/editing mods",
       "influence-mods cannot be moved to bases that don't have the required influence,\nfractured mods cannot be moved from the original base and only add to the general affix pool there",
-      "(/underline)(/bold)note: mod-weighting hasn't been figured out yet, so results become less accurate the more non-exclusive mods are present in each affix-group (e.g. when combining random loot as opposed to target-crafting the inputs)"
+      "(/highlight)note: mod-weighting hasn't been figured out yet, so results become less accurate the more non-exclusive mods are present in each affix-group (e.g. when combining random loot as opposed to target-crafting the inputs)"
     ],
     "exclusive": [
       "whether or not a mod is \"exclusive\" (i.e. part of a specific group and therefore affected by restrictions)",
@@ -1559,7 +1570,7 @@
       "whether or not a mod is \"non-native, natural\" (i.e. restricted to specific bases)",
       "these mods can only be recombined if the final base meets specific requirements",
       "examples: influenced, attribute/defense-specific, and fractured mods",
-      "(/underline)note: loading new items into the panel will automatically reset/recheck if mods are nnn"
+      "(/highlight)loading new items into the panel will automatically reset/recheck whether mods are nnn"
     ]
   },
   "searchstrings": {

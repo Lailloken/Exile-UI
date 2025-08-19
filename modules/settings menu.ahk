@@ -55,8 +55,6 @@ Settings_actdecoder2(cHWND := "")
 		IniWrite, % (settings.actdecoder.generic := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\act-decoder.ini", settings, show generic layouts
 		If !vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
 			Actdecoder_ZoneLayouts(2)
-		If WinExist("ahk_id " vars.hwnd.leveltracker.main)
-			Leveltracker_Progress()
 	}
 	Else If InStr(check, "zonesopac_")
 	{
@@ -83,6 +81,9 @@ Settings_actdecoder2(cHWND := "")
 		GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_text"]
 	}
 	Else LLK_ToolTip("no action")
+
+	If InStr("enable, generic", check) && If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+		Leveltracker_Progress()
 }
 
 Settings_anoints()
@@ -2010,7 +2011,7 @@ Settings_leveltracker()
 	{
 		width := settings.general.fWidth * 6
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Edit, % "Section ys Right cBlack HWNDhwnd1 gSettings_leveltracker2 Limit w" width " h" settings.general.fHeight, % settings.leveltracker.hotkey_1
+		Gui, %GUI%: Add, Edit, % "Section ys x+0 Right cBlack HWNDhwnd1 gSettings_leveltracker2 Limit w" width " h" settings.general.fHeight, % settings.leveltracker.hotkey_1
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		Gui, %GUI%: Add, Text, % "ys x+0 Center BackgroundTrans Border w" settings.general.fWidth * 2, % "<"
 		Gui, %GUI%: Add, Text, % "ys x+0 Center BackgroundTrans Border wp", % ">"
@@ -2476,6 +2477,7 @@ Settings_leveltracker2(cHWND := "")
 		}
 		IniWrite, % settings.leveltracker.fSize, % "ini" vars.poe_version "\leveling tracker.ini", settings, font-size
 		LLK_FontDimensions(settings.leveltracker.fSize, height, width), settings.leveltracker.fHeight := height, settings.leveltracker.fWidth := width
+		LLK_FontDimensions(settings.leveltracker.fSize - 2, height, width), settings.leveltracker.fHeight2 := height, settings.leveltracker.fWidth2 := width
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker()
 		If WinExist("ahk_id "vars.hwnd.geartracker.main)
@@ -3364,11 +3366,10 @@ Settings_OCR2(cHWND)
 				Return
 			}
 
-			settings.features.ocr := LLK_ControlGet(cHWND)
-			IniWrite, % settings.features.ocr, ini\config.ini, Features, enable ocr
+			IniWrite, % (input := settings.features.ocr := LLK_ControlGet(cHWND)), ini\config.ini, Features, enable ocr
 			If !Blank(settings.OCR.hotkey)
 			{
-				Hotkey, IfWinActive, ahk_group poe_window
+				Hotkey, IfWinActive, ahk_group poe_ahk_window
 				Hotkey, % "*" (settings.OCR.hotkey_block ? "" : "~") . Hotkeys_Convert(settings.OCR.hotkey), OCR, % settings.features.OCR ? "On" : "Off"
 			}
 			If WinExist("ahk_id " vars.hwnd.ocr_tooltip.main)
@@ -3719,6 +3720,9 @@ Settings_sanctum()
 	If !settings.features.sanctum
 		Return
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_sanctum2 Checked" settings.sanctum.relics, % Lang_Trans("m_sanctum_relics")
+	vars.hwnd.settings.relics := vars.hwnd.help_tooltips["settings_sanctum relics"] := hwnd
+
 	If !vars.poe_version
 	{
 		Gui, %GUI%: Font, underline bold
@@ -3754,10 +3758,17 @@ Settings_sanctum2(cHWND := "")
 	}
 	Else If (check = "cheatsheet")
 	{
-		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "ini\sanctum.ini", settings, enable cheat-sheet
+		IniWrite, % (settings.sanctum.cheatsheet := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\sanctum.ini", settings, enable cheat-sheet
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)
 			Sanctum()
+	}
+	Else If (check = "relics")
+	{
+		input := LLK_ControlGet(cHWND)
+		IniWrite, % (settings.sanctum.relics := input), % "ini" vars.poe_version "\sanctum.ini", settings, enable relic management
+		If !input && WinExist("ahk_id " vars.hwnd.sanctum_relics.main)
+			Sanctum_Relics("close")
 	}
 	Else If InStr(check, "font_")
 	{
@@ -3769,7 +3780,7 @@ Settings_sanctum2(cHWND := "")
 			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.sanctum.fSize
 			Sleep 200
 		}
-		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "ini\sanctum.ini", settings, font-size
+		IniWrite, % settings.sanctum.fSize, % "ini" vars.poe_version "\sanctum.ini", settings, font-size
 		LLK_FontDimensions(settings.sanctum.fSize, fHeight, fWidth), settings.sanctum.fWidth := fWidth, settings.sanctum.fHeight := fHeight
 		vars.hwnd.sanctum.uptodate := 0
 		If WinExist("ahk_id " vars.hwnd.sanctum.second)

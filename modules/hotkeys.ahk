@@ -154,8 +154,6 @@ Hotkeys_ESC()
 		Anoints("close")
 	Else If vars.hwnd.sanctum_relics.main
 		Sanctum_Relics("close")
-	Else If WinActive("ahk_id "vars.hwnd.alarm.alarm_set)
-		Gui, alarm_set: Destroy
 	Else If vars.leveltracker.skilltree_schematics.GUI
 		Leveltracker_PobSkilltree("close")
 	Else If WinExist("ahk_id " vars.hwnd.lootfilter.main)
@@ -168,7 +166,7 @@ Hotkeys_ESC()
 		If !vars.recombination.item2.locked
 			vars.recombination.item2 := {}
 	}
-	Else If vars.hwnd.alarm.alarm_set && WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
+	Else If vars.hwnd.alarm.alarm_set.main && WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
 	{
 		Gui, alarm_set: Destroy
 		vars.hwnd.alarm.alarm_set := ""
@@ -333,7 +331,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.sanctum && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13") && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.sanctum && settings.sanctum.relics && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13") && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			active .= " sanctum_relics"
@@ -474,15 +472,16 @@ Hotkeys_Tab()
 		vars.maptracker.toggle := 0, LLK_Overlay(vars.hwnd.maptracker.main, "hide")
 	If InStr(active, " lab") && WinExist("ahk_id "vars.hwnd.lab.main)
 		LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
-	If vars.hwnd.alarm.alarm_set && WinExist("ahk_id " vars.hwnd.alarm.alarm_set)
-		WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set
-	Else If active && !settings.general.dev
+	;If vars.hwnd.alarm.alarm_set.main && WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
+	;	WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set.main
+	;Else If active && !settings.general.dev
+	If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
 }
 
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
-#If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main ;pre-defined context for hotkey command
+#If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main) ;pre-defined context for hotkey command
 #If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
 
@@ -550,9 +549,6 @@ SC039::Leveltracker_PobSkilltree("reset")
 *LButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 1)
 *RButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 2)
 *MButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 3, 1)
-
-#If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse2.x.1, vars.sanctum.relics.coords.mouse2.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse2.y.1, vars.sanctum.relics.coords.mouse2.y.2)
-~LButton::Sanctum_Relics("alt")
 
 #If vars.hwnd.sanctum_relics.main && LLK_IsBetween(vars.general.xMouse, vars.sanctum.relics.coords.mouse3.x.1, vars.sanctum.relics.coords.mouse3.x.2) && LLK_IsBetween(vars.general.yMouse, vars.sanctum.relics.coords.mouse3.y.1, vars.sanctum.relics.coords.mouse3.y.2)
 ~LButton::Sanctum_Relics("close")
@@ -677,6 +673,10 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *LButton::Alarm(1, vars.general.cMouse)
 *RButton::Alarm(2, vars.general.cMouse)
 
+#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.alarm.alarm_set.main) && vars.general.cMouse && InStr(vars.hwnd.alarm.alarm_set.start "," vars.hwnd.alarm.alarm_set.cancel, vars.general.cMouse)
+
+*LButton::Alarm("alarm_set", vars.general.cMouse)
+
 #If (vars.system.timeout = 0) && ((vars.general.wMouse = vars.hwnd.mapinfo.main) && !Blank(LLK_HasVal(vars.hwnd.mapinfo, vars.general.cMouse)) || (vars.general.wMouse = vars.hwnd.settings.main) && InStr(LLK_HasVal(vars.hwnd.settings, vars.general.cMouse), "mapmod_")) ;ranking map-mods
 
 *SC002::Mapinfo_Rank(1)
@@ -760,7 +760,7 @@ WheelDown::Cloneframes_SettingsApply(vars.general.cMouse, A_ThisHotkey)
 
 LButton::
 RButton::
-MButton::Cloneframes_Snap(A_ThisHotkey)
+MButton::Cloneframes_Snap(StrReplace(A_ThisHotkey, "~"))
 
 #If WinActive("ahk_id "vars.hwnd.snip.main) ;moving the snip-widget via arrow keys
 
@@ -796,14 +796,12 @@ SC039::Betrayal_Rank("Space")
 
 #If (vars.cheatsheets.active.type = "image") && vars.hwnd.cheatsheet.main && !vars.cheatsheets.tab && WinExist("ahk_id " vars.hwnd.cheatsheet.main) ;image-cheatsheet hotkeys
 
-Up::
-Down::
-Left::
-Right::
+WheelDown::
 SC03B::Cheatsheet_Image("", "F1")
+WheelUp::
 SC03C::Cheatsheet_Image("", "F2")
+MButton::
 SC03D::Cheatsheet_Image("", "F3")
-RButton::
 SC039::Cheatsheet_Image("", "space")
 SC002::Cheatsheet_Image("", 1)
 SC003::Cheatsheet_Image("", 2)
@@ -815,6 +813,11 @@ SC008::Cheatsheet_Image("", 7)
 SC009::Cheatsheet_Image("", 8)
 SC00A::Cheatsheet_Image("", 9)
 SC00B::Cheatsheet_Image("", 0)
+Up::
+Down::
+Left::
+Right::
+RButton::
 SC01E::
 SC030::
 SC02E::
@@ -840,9 +843,7 @@ SC02F::
 SC011::
 SC02D::
 SC02C::
-SC015::
-Cheatsheet_Image("", A_ThisHotkey)
-Return
+SC015::Cheatsheet_Image("", A_ThisHotkey)
 
 #IfWinActive ahk_group poe_window
 

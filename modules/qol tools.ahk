@@ -67,13 +67,18 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 
 	mode := (mode = "expired") ? mode : "", tick += 1
 
-	If (A_Gui = "alarm_set")
+	If (A_Gui = "alarm_set" || hotkey = "alarm_set")
 	{
+		If (hotkey = "alarm_set") && (LLK_HasVal(vars.hwnd.alarm.alarm_set, cHWND) = "cancel")
+		{
+			Hotkeys_ESC()
+			Return
+		}
 		time := A_Now, sections := [], units := ["seconds", "minutes", "hours"]
-		input := LLK_ControlGet(vars.hwnd.alarm.edit), input := !input ? 0 : input
+		input := LLK_ControlGet(vars.hwnd.alarm.alarm_set.edit), input := !input ? 0 : input
 		If Blank(vars.alarm.override)
 		{
-			input1 := LLK_ControlGet(vars.hwnd.alarm.edit1)
+			input1 := LLK_ControlGet(vars.hwnd.alarm.alarm_set.edit1)
 			Loop, Parse, input1, µ, % " |;,."
 				input1 := A_LoopField
 			If !Blank(input1) && (LLK_PatternMatch(input1, "", ["[", "]", "="]))
@@ -81,7 +86,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 		}
 		Else input1 := vars.alarm.override
 
-		WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.alarm.edit
+		WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.alarm.alarm_set.edit
 		Loop, Parse, % (input := StrReplace(input, " ", ":")), % ":"
 		{
 			If Blank(A_LoopField) || (A_Index > 3) || !IsNumber(A_LoopField)
@@ -145,7 +150,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 			Gui, alarm_set: Color, Black
 			Gui, alarm_set: Margin, 0, 0
 			Gui, alarm_set: Font, % "s" Max(6, settings.alarm.fSize * 0.7) " cWhite", % vars.system.font
-			vars.hwnd.alarm.alarm_set := alarm_set, LLK_PanelDimensions([Lang_Trans("global_name"), Lang_Trans("global_time")], Max(6, settings.alarm.fSize * 0.7), wText, hText)
+			vars.hwnd.alarm.alarm_set := {"main": alarm_set}, LLK_PanelDimensions([Lang_Trans("global_name"), Lang_Trans("global_time")], Max(6, settings.alarm.fSize * 0.7), wText, hText)
 
 			Gui, alarm_set: Add, Edit, % "r1 Hidden w" vars.alarm.wTimers
 			Gui, alarm_set: Add, Text, % "xp yp hp Section Right Border 0x200 w" wText, % Lang_Trans("global_time") " "
@@ -156,7 +161,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 				Gui, alarm_set: Add, Edit, % "ys x+-1 cBlack Center Limit HWNDhwnd1 r1 w" vars.alarm.wTimers
 				vars.alarm.override := ""
 			}
-			vars.hwnd.alarm.edit := vars.hwnd.help_tooltips["alarm_set time"] := hwnd, vars.hwnd.alarm.edit1 := vars.hwnd.help_tooltips["alarm_set name"] := hwnd1
+			vars.hwnd.alarm.alarm_set.edit := vars.hwnd.help_tooltips["alarm_set time"] := hwnd, vars.hwnd.alarm.alarm_set.edit1 := vars.hwnd.help_tooltips["alarm_set name"] := hwnd1
 			Gui, alarm_set: Add, Button, % "xp yp hp wp Hidden Default gAlarm cBlack", OK
 
 			If (cHWND = "start")
@@ -166,14 +171,15 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 			}
 			Else xPos := vars.alarm.xPanel + vars.alarm.wPanel//2 - wText, yPos := vars.alarm.yPanel
 
-			Gui, alarm_set: Add, Text, % "Section xs y+-1 Center Border gAlarm 0x200 w" Round((wText + vars.alarm.wTimers - 1) / 2), % Lang_Trans("global_start")
-			Gui, alarm_set: Add, Text, % "ys Center Border gHotkeys_ESC 0x200 w" Round((wText + vars.alarm.wTimers - 1) / 2) " x+" (Mod(wText + vars.alarm.wTimers - 1, 2) ? -1 : 0), % Lang_Trans("global_cancel")
+			Gui, alarm_set: Add, Text, % "Section xs y+-1 Center Border HWNDhwnd 0x200 w" Round((wText + vars.alarm.wTimers - 1) / 2), % Lang_Trans("global_start")
+			Gui, alarm_set: Add, Text, % "ys Center Border HWNDhwnd1 0x200 w" Round((wText + vars.alarm.wTimers - 1) / 2) " x+" (Mod(wText + vars.alarm.wTimers - 1, 2) ? -1 : 0), % Lang_Trans("global_cancel")
+			vars.hwnd.alarm.alarm_set.start := hwnd, vars.hwnd.alarm.alarm_set.cancel := hwnd1
 			Gui, alarm_set: Show, % "NA x10000 y10000"
 
 			WinGetPos, xWin, yWin, wWin, hWin, ahk_id %alarm_set%
 			xPos := (xPos < vars.monitor.x) ? vars.monitor.x : (xPos + wWin >= vars.monitor.x + vars.monitor.w) ? vars.monitor.x + vars.monitor.w - wWin : xPos
 			yPos := (yPos + hWin >= vars.monitor.y + vars.monitor.h) ? vars.monitor.y + vars.monitor.h - hWin : yPos
-			Gui, alarm_set: Show, % "x" xPos " y" yPos
+			Gui, alarm_set: Show, % "NA x" xPos " y" yPos
 			ControlFocus,, ahk_id %hwnd%
 			Return
 		}
@@ -257,7 +263,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 	WinSet, TransColor, % "Purple"
 	Gui, %GUI_name%: Margin, % 0, 0
 	Gui, %GUI_name%: Font, % "s" settings.alarm.fSize " c" settings.alarm.color, % vars.system.font
-	hwnd_old := vars.hwnd.alarm.main, alarm_set := vars.hwnd.alarm.alarm_set, vars.hwnd.alarm := {"main": alarm, "alarm_set": alarm_set}, orientation := settings.alarm.orientation
+	hwnd_old := vars.hwnd.alarm.main, vars.hwnd.alarm := {"main": alarm, "alarm_set": vars.hwnd.alarm.alarm_set.Clone()}, orientation := settings.alarm.orientation
 	LLK_PanelDimensions(["77:77:77"], settings.alarm.fSize, wTimers, hTimers), added := 0, section := (orientation = "horizontal" ? "ys x+" settings.alarm.fWidth//2 : "xs y+" settings.alarm.fWidth//2), section2 := (section = "ys") ? "xs y+" settings.alarm.fWidth//2 : "ys x+" settings.alarm.fWidth//2
 	vars.alarm.wTimers := wTimers
 
@@ -504,7 +510,7 @@ Lab(mode := "", override := 0)
 	If (mode = "link")
 	{
 		If GetKeyState(vars.hotkeys.tab, "P")
-			LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 0,,, "poelab")
+			LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 0,,, "poelab"), vars.alarm.toggle := 0, LLK_Overlay(vars.hwnd.alarm.main, "destroy")
 		KeyWait, % vars.hotkeys.tab
 		LLK_Overlay(vars.hwnd["tooltippoelab"], "destroy"), LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
 		Run, % "https://www.poelab.com/"

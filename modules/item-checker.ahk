@@ -987,7 +987,7 @@ Iteminfo_GUI()
 				Continue
 			}
 			dps_added += 1, style := (dps_added = 1) ? "xs Section" : "ys"
-			text := (item.dps.chaos = A_LoopField) ? Format("{:0.1f}", item.dps.chaos) : (item.dps.ele = A_LoopField) ? Format((item.dps.ele < 1000) ? "{:0.1f}" : "{:0.0f}", item.dps.ele) : Format("{:0.1f}", item.dps.phys) ;text for the cell
+			text := (item.dps.chaos = A_LoopField) ? Round(item.dps.chaos, 1) : (item.dps.ele = A_LoopField) ? Round(item.dps.ele, (item.dps.ele < 1000 ? 1 : 0)) : Round(item.dps.phys, (item.dps.phys < 1000 ? 1 : 0)) ;text for the cell
 			label := (item.dps.chaos = A_LoopField) ? "chaos" : (item.dps.ele = A_LoopField) ? "allres" : "phys" ;icon for the cell
 			If !filler
 			{
