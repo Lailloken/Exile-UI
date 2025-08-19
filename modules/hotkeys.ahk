@@ -796,14 +796,12 @@ SC039::Betrayal_Rank("Space")
 
 #If (vars.cheatsheets.active.type = "image") && vars.hwnd.cheatsheet.main && !vars.cheatsheets.tab && WinExist("ahk_id " vars.hwnd.cheatsheet.main) ;image-cheatsheet hotkeys
 
-Up::
-Down::
-Left::
-Right::
+WheelDown::
 SC03B::Cheatsheet_Image("", "F1")
+WheelUp::
 SC03C::Cheatsheet_Image("", "F2")
+MButton::
 SC03D::Cheatsheet_Image("", "F3")
-RButton::
 SC039::Cheatsheet_Image("", "space")
 SC002::Cheatsheet_Image("", 1)
 SC003::Cheatsheet_Image("", 2)
@@ -815,6 +813,11 @@ SC008::Cheatsheet_Image("", 7)
 SC009::Cheatsheet_Image("", 8)
 SC00A::Cheatsheet_Image("", 9)
 SC00B::Cheatsheet_Image("", 0)
+Up::
+Down::
+Left::
+Right::
+RButton::
 SC01E::
 SC030::
 SC02E::
@@ -840,9 +843,7 @@ SC02F::
 SC011::
 SC02D::
 SC02C::
-SC015::
-Cheatsheet_Image("", A_ThisHotkey)
-Return
+SC015::Cheatsheet_Image("", A_ThisHotkey)
 
 #IfWinActive ahk_group poe_window
 

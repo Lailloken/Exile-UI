@@ -124,7 +124,7 @@
     ],
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
-      "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu",
+      "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section of the settings menu(/highlight)",
       "while the syndicate board is on screen, hold the <omni-key> to activate the overlay"
     ],
     "betrayal ruthless": [
@@ -407,19 +407,19 @@
     ],
     "leveltracker geartracker": [
       "notifies you when new gear can be equipped (the guide button will show a green number)",
+      "requires your character-name in the <general> settings(/highlight)",
       "accessed by right-clicking the guide button in the toolbar",
-      "while the panel is open, omni-click items to add them to the list",
-      "you have to specify your character-name in the <general> section of the settings first"
+      "while the panel is open, omni-click items to add them to the list"
     ],
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
       "while hovering over a gem, hold the <omni-key> to show an overlay with gem setups/links",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> menu(/highlight)",
       "",
       "while the skill-tree is on screen, press <tab> to show overlays with skill-tree schematics",
-      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu"
+      "requires the <skilltree> image-check to be set up correctly in the <screen-checks> menu(/highlight)"
     ],
     "leveltracker skilltree clear": [
       "long-click to delete the skill-tree files used to render schematics: they will be re-downloaded the next time they are needed",
@@ -595,7 +595,7 @@
     ],
     "maptracker dialogue tracking": [
       "these mechanics can be tracked automatically via in-game dialogue",
-      "requires enabling <output dialogue to chat> at the bottom of the game's <ui> settings"
+      "requires enabling <output dialogue to chat> at the bottom of the game's <ui> settings(/highlight)"
     ],
     "maptracker screen tracking": [
       "these mechanics will be tracked by searching the screen for specific ui elements",
@@ -621,7 +621,7 @@
     "maptracker loot-tracker": [
       "items you ctrl-click into the stash will be logged",
       "ctrl-right-click will remove previously added items one by one (similar to ctrl-z in text editing)",
-      "requires the <stash> image-check to be set up correctly in the <screen-checks> menu"
+      "requires the <stash> image-check to be set up correctly in the <screen-checks> menu(/highlight)"
     ],
     "maptracker kill-tracker": [
       "monster kills in completed maps will be logged",
@@ -929,7 +929,7 @@
       "atlas feature that displays various information about maps on the atlas",
       "hold <tab> while hovering over maps on the atlas to activate the overlay",
       "scroll to adjust the image size",
-      "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section of the settings menu"
+      "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section of the settings menu(/highlight)"
     ],
     "statlas maptracker": [
       "the overlay will show stats collected via the map-tracker feature"

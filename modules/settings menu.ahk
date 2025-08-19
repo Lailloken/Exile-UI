@@ -3366,11 +3366,10 @@ Settings_OCR2(cHWND)
 				Return
 			}
 
-			settings.features.ocr := LLK_ControlGet(cHWND)
-			IniWrite, % settings.features.ocr, ini\config.ini, Features, enable ocr
+			IniWrite, % (input := settings.features.ocr := LLK_ControlGet(cHWND)), ini\config.ini, Features, enable ocr
 			If !Blank(settings.OCR.hotkey)
 			{
-				Hotkey, IfWinActive, ahk_group poe_window
+				Hotkey, IfWinActive, ahk_group poe_ahk_window
 				Hotkey, % "*" (settings.OCR.hotkey_block ? "" : "~") . Hotkeys_Convert(settings.OCR.hotkey), OCR, % settings.features.OCR ? "On" : "Off"
 			}
 			If WinExist("ahk_id " vars.hwnd.ocr_tooltip.main)
