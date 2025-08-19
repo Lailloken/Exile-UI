@@ -1,5 +1,13 @@
 [
   [
+	["1.59.2", 15902],
+	"august 19, 2025",
+	"fixes: clone-frames setup, act-tracker poe2 gem regex",
+	"act-tracker: added bullet-points to major lines in the guide, optionals marked with (+) bullet-points",
+	"act-tracker: major tweaks to poe2 guide, some re-routing",
+	"sanctum/sekhema planner: relic manager now auto-adjusts to the in-game relic altar"
+  ],
+  [
 	["1.59.1", 15901],
 	"august 8, 2025",
 	"act-tracker: improved routing to skip irrelevant gem-quests and reduce backtracking and npc interactions",
