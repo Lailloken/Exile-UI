@@ -1972,8 +1972,8 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 		If !longclick
 		{
-			regex := Trim(A_GuiControl, " |–"), regex := SubStr(regex, 1, InStr(regex, "(") - 2)
-			Clipboard := StrReplace(regex, " ", ".")
+			regex := Trim(A_GuiControl, " |–"), regex := SubStr(regex, 1, vars.poe_version ? InStr(regex, "(") - 2 : StrLen(regex))
+			Clipboard := "^" StrReplace(regex, " ", ".") . (!vars.poe_version && InStr(A_GuiControl, "|") ? ".support" : "") "$"
 			WinWaitActive, % "ahk_id " vars.hwnd.poe_client
 			SendInput, ^{f}^{v}
 		}
