@@ -2,6 +2,7 @@
   [
 	["1.59.2", 15902],
 	"august 19, 2025",
+	"hotfix 1: fixed regex strings in gem-setup overlay, anoint calculator now resets after modifying available stock",
 	"fixes: clone-frames setup, act-tracker poe2 gem regex",
 	"act-tracker: added bullet-points to major lines in the guide, optionals marked with (+) bullet-points",
 	"act-tracker: major tweaks to poe2 guide, some re-routing",
