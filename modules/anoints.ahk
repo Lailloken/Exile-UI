@@ -132,6 +132,8 @@ Anoints(cHWND := "")
 				For index, val in vars.anoints.stock
 					vars.anoints.stock[index] := 0, vars.anoints.stock_check := 0
 			Else Return
+
+			results0 := {}, results := []
 		}
 		Else If InStr(check, "collapse_")
 		{
@@ -214,12 +216,17 @@ Anoints(cHWND := "")
 		For index, stock in vars.anoints.stock
 			vars.anoints.stock_check += stock
 
-		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.search
-		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.reforge
-		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.rings
-		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset
-		GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset_bar
-		Return
+		If results.Count() || results0.Count()
+			results0 := {}, results := []
+		Else
+		{
+			GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.search
+			GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.reforge
+			GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.rings
+			GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset
+			GuiControl, % (vars.anoints.stock_check >= 3 ? "-" : "+") "Hidden", % vars.hwnd.anoints.stock_reset_bar
+			Return
+		}
 	}
 
 	If (vars.hwnd.anoints.main = 0)

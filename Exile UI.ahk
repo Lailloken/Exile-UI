@@ -375,7 +375,7 @@ Init_general()
 	local
 	global vars, settings
 
-	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"], new_version := 15805
+	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"]
 	If IsNumber(legacy_version) && (legacy_version < 15000) || FileExist("modules\alarm-timer.ahk") ;|| FileExist("modules\delve-helper.ahk")
 	{
 		MsgBox,, Script updated incorrectly, Updating from legacy to v1.50+ requires a clean installation.`nThe script will now exit.
@@ -438,9 +438,9 @@ Init_general()
 		Loop, Files, % "img\GUI\act-decoder\zones\*.png"
 			If !RegExMatch(A_LoopFileName, "i)(_y|y_)")
 				FileDelete, % A_LoopFileLongPath
-		IniWrite, % new_version, ini\config.ini, versions, ini
 	}
 
+	IniWrite, 15805, ini\config.ini, versions, ini
 	settings.general.character := ini.settings["active character"]
 	settings.general.build := !Blank(settings.general.character) ? ini.settings["active build"] : ""
 	settings.general.dev := !Blank(check := ini.settings["dev"]) ? check : 0
