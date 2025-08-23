@@ -2230,6 +2230,8 @@ Leveltracker_PobImport(b64, profile)
 				{
 					support := InStr(A_LoopField, "/supportgem")
 					name := SubStr(A_LoopField, InStr(A_LoopField, "namespec=""") + 10), name := SubStr(name, 1, InStr(name, """") - 1), name := StrReplace(StrReplace(name, "vaal "), "awakened ")
+					If InStr(name, ":")
+						name := SubStr(name, 1, InStr(name, ":") - 1)
 					If !Blank(name) && (!vars.poe_version && gems[name . (support && !InStr(name, "support") ? " support" : "")] || vars.poe_version && LLK_HasKey(gems, name,,,, 1))
 					{
 						group.gems.Push((support ? " |–" : "") . name)
