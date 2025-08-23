@@ -162,7 +162,7 @@ Omnikey2()
 		Return
 	}
 
-	If !Screenchecks_PixelSearch("gamescreen")
+	If vars.poe_version || !Screenchecks_PixelSearch("gamescreen")
 	{
 		Screenchecks_ImageSearch()
 		If settings.features.betrayal && vars.imagesearch.betrayal.check

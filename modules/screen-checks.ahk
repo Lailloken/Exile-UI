@@ -174,7 +174,7 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 	check := 0
 
 	For index, val in ["betrayal", "leveltracker", "maptracker"]
-		check += (val = "maptracker") ? settings.features.maptracker * settings.maptracker.loot : settings.features[val]
+		check += (val = "maptracker" ? settings.features.maptracker * settings.maptracker.loot : (val = "leveltracker" ? settings.features[val] * settings.leveltracker.pobmanual : settings.features[val]))
 	If !name && !check
 		Return
 
