@@ -43,9 +43,10 @@
 	Else
 	{
 		vars.imagesearch.search := ["skilltree", "atlas"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
-		vars.imagesearch.list := {"atlas": 1, "skilltree": 1} ;this object is parsed when listing image-checks in the settings menu
+		vars.imagesearch.list := {"atlas": 1, "exchange": 1, "skilltree": 1} ;this object is parsed when listing image-checks in the settings menu
 		vars.imagesearch.checks := {"skilltree": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
-								, "atlas": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}}
+		, "atlas": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
+		, "exchange": {"x": Round(vars.client.w/2 - vars.client.h/8), "y": Round(vars.client.h/9), "w": Round(vars.client.h * (17/72)), "h": Round(vars.client.h * 0.023)}}
 	}
 	vars.imagesearch.variation := 15
 

@@ -143,10 +143,10 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### [Vaal Street](https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street): currency exchange ratio-calculator, QoL, trade logging, and balance tracking
-**`currently Path of Exile 1 only`**
-| optional trade logging | ratio-calculator | optional balance tracking |
-|---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_003.jpg) |
+| | optional trade logging | ratio-calculator | optional balance tracking |
+|---|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_003.jpg) |
+| PoE2 | ✔️ | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_102.jpg) | ✔️ |
 <br>
 
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  

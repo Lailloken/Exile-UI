@@ -358,7 +358,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required when using the vaal street feature
-		exchange_chaos_div		=	"chaos/div;ratio required!"
+		exchange_chaos_div		=	"conversion;ratio required!"
 		exchange_7days			=	"past 7 days"
 
 

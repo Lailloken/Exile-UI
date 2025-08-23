@@ -3,8 +3,11 @@
 	local
 	global vars, settings, json
 
-	If !FileExist("ini" vars.poe_version "\exchange.ini")
-		IniWrite, % "", % "ini" vars.poe_version "\exchange.ini", settings
+	If FileExist("ini" vars.poe_version "\exchange.ini") ;delete file with incorrect/placeholder name
+		FileDelete, % "ini" vars.poe_version "\exchange.ini"
+
+	If !FileExist("ini" vars.poe_version "\vaal street.ini")
+		IniWrite, % "", % "ini" vars.poe_version "\vaal street.ini", settings
 
 	If !IsObject(vars.exchange)
 		vars.exchange := {"date": 0, "inventory": 0, "multiplier": 1, "ratio_lock": 0, "transactions": {}}, vars.pics.exchange := {}, vars.pics.exchange_trades := {}
@@ -17,6 +20,7 @@
 	LLK_FontDimensions(settings.exchange.fSize, font_height, font_width), settings.exchange.fWidth := font_width, settings.exchange.fHeight := font_height
 	settings.exchange.graphs := !Blank(check := ini.settings["show graphs"]) ? check : 0
 	settings.exchange.chaos_div := !Blank(check := ini.settings["chaos-div ratio"]) ? check : ""
+	settings.exchange.exalt_div := !Blank(check := ini.settings["exalt-div ratio"]) ? check : ""
 
 	If FileExist("ini" vars.poe_version "\vaal street log.ini")
 	{
@@ -176,11 +180,10 @@ Exchange(cHWND := "", hotkey := "")
 		}
 		Else Return
 	}
-	Else If (check = "chaos_div")
+	Else If RegexMatch(check, "i)(chaos|exalt)_div")
 	{
-		input := settings.exchange.chaos_div := LLK_ControlGet(cHWND)
-		IniWrite, % settings.exchange.chaos_div, % "ini" vars.poe_version "\vaal street.ini", settings, % "chaos-div ratio"
-		If !input && InStr(vars.exchange.selected_currency, "chaos")
+		IniWrite, % (input := settings.exchange[check] := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\vaal street.ini", settings, % StrReplace(check, "_", "-") " ratio"
+		If !input && InStr(check, SubStr(vars.exchange.selected_currency, 1, -1))
 		{
 			GuiControl,, % vars.hwnd.exchange[vars.exchange.selected_currency "_bar"], 0
 			vars.exchange.selected_currency := ""
@@ -210,11 +213,11 @@ Exchange(cHWND := "", hotkey := "")
 			GuiControl,, % vars.hwnd.exchange.edit1, % LLK_ControlGet(vars.hwnd.exchange.edit1)
 		Return
 	}
-	Else If RegExMatch(check, "i)chaos|divine")
+	Else If RegExMatch(check, "i)chaos|divine|exalt")
 	{
-		If InStr(check, "chaos") && !settings.exchange.chaos_div
+		If InStr(check, "chaos") && !settings.exchange.chaos_div || InStr(check, "exalt") && !settings.exchange.exalt_div
 		{
-			WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.exchange.chaos_div
+			WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.exchange[(InStr(check, "chaos") ? "chaos" : "exalt") "_div"]
 			LLK_ToolTip("<- " Lang_Trans("exchange_chaos_div"), 1.5, x + w, y,, "Red")
 			Return
 		}
@@ -232,8 +235,9 @@ Exchange(cHWND := "", hotkey := "")
 
 	wait := 1
 	toggle := !toggle, GUI_name := "exchange" toggle, wBoxes := vars.client.h * 0.069, hBoxes := vars.client.h/40, gBoxes := vars.client.h * 0.1
-	xOrder := vars.client.h * 0.0375, wOrder := vars.client.h * 0.1625, hOrder := xOrder, wUI := vars.client.h * 0.725
-	hIcons := Ceil(vars.client.h * 0.03611111)
+	xOrder := vars.client.h * 0.0375, wOrder := vars.client.h * 0.1625, hOrder := xOrder, wUI := vars.client.h * 0.725, hIcons := Ceil(vars.client.h * 0.03611111)
+	While Mod(hIcons, 2)
+		hIcons += 1
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_exchange", LLK-UI: vaal street
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 2 " cWhite", % vars.system.font
 	Gui, %GUI_name%: Margin, 0, 0
@@ -258,6 +262,7 @@ Exchange(cHWND := "", hotkey := "")
 
 	If !vars.pics.exchange.chaos
 		vars.pics.exchange.chaos := LLK_ImageCache("img\GUI\chaos" vars.poe_version ".png", hIcons - 2), vars.pics.exchange.divine := LLK_ImageCache("img\GUI\divine" vars.poe_version ".png", hIcons - 2)
+		, vars.pics.exchange.exalt := LLK_ImageCache("img\GUI\exalt" vars.poe_version ".png", hIcons - 2)
 
 	dates := []
 	For date, object in vars.exchange.transactions
@@ -323,13 +328,19 @@ Exchange(cHWND := "", hotkey := "")
 		}
 	}
 
-	xCalc := (transactions.Count() ? wUI/2 + wUI2 - hIcons * 2 : wUI/2 - hIcons * 2) - wRatio/2 - wEdits, vars.exchange.wTooltip := wUI
+	xCalc := (transactions.Count() ? wUI/2 + wUI2 - hIcons * (vars.poe_version ? 3 : 2) : wUI/2 - hIcons * (vars.poe_version ? 3 : 2)) - wRatio/2 - wEdits, vars.exchange.wTooltip := wUI
 	Gui, %GUI_name%: Add, Pic, % "Section x" xCalc " y0 BackgroundTrans Border HWNDhwnd gExchange", % "HBitmap:*" vars.pics.exchange.chaos
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd1", 0
 	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd2 gExchange", % "HBitmap:*" vars.pics.exchange.divine
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd3", 0
 	vars.hwnd.exchange.chaos1 := hwnd, vars.hwnd.exchange.chaos1_bar := hwnd1, vars.hwnd.exchange.divine1 := hwnd2, vars.hwnd.exchange.divine1_bar := hwnd3
 	vars.hwnd.help_tooltips["exchange_currency icons"] := hwnd1, vars.hwnd.help_tooltips["exchange_currency icons|"] := hwnd3
+	If vars.poe_version
+	{
+		Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd4 gExchange", % "HBitmap:*" vars.pics.exchange.exalt
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd5", 0
+		vars.hwnd.exchange.exalt1 := hwnd4, vars.hwnd.exchange.exalt1_bar := vars.hwnd.help_tooltips["exchange_currency icons||"] := hwnd5
+	}
 
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 2
 	Gui, %GUI_name%: Add, Edit, % "ys R1 Limit Center cBlack HWNDhwnd gExchange w" wEdits, 0
@@ -342,18 +353,30 @@ Exchange(cHWND := "", hotkey := "")
 	vars.hwnd.exchange.ratio_text2 := hwnd4, vars.hwnd.exchange.ratio2 := hwnd5
 	vars.hwnd.help_tooltips["exchange_edit fields"] := hwnd, vars.hwnd.help_tooltips["exchange_edit fields|"] := hwnd2, vars.hwnd.help_tooltips["exchange_ratio"] := hwnd3, vars.hwnd.help_tooltips["exchange_ratio 2"] := hwnd5
 
+	If vars.poe_version
+	{
+		Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd4 gExchange", % "HBitmap:*" vars.pics.exchange.exalt
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cGreen HWNDhwnd5", 0
+		vars.hwnd.exchange.exalt2 := hwnd4, vars.hwnd.exchange.exalt2_bar := vars.hwnd.help_tooltips["exchange_currency icons|||"] := hwnd5
+	}
 	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd gExchange", % "HBitmap:*" vars.pics.exchange.divine
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cFF8000 HWNDhwnd1", 0
 	Gui, %GUI_name%: Add, Pic, % "ys BackgroundTrans Border HWNDhwnd2 gExchange", % "HBitmap:*" vars.pics.exchange.chaos
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cFF8000 HWNDhwnd3", 0
 	vars.hwnd.exchange.chaos2 := hwnd2, vars.hwnd.exchange.chaos2_bar := hwnd3, vars.hwnd.exchange.divine2 := hwnd, vars.hwnd.exchange.divine2_bar := hwnd1
-	vars.hwnd.help_tooltips["exchange_currency icons||"] := hwnd1, vars.hwnd.help_tooltips["exchange_currency icons|||"] := hwnd3
+	vars.hwnd.help_tooltips["exchange_currency icons||||"] := hwnd1, vars.hwnd.help_tooltips["exchange_currency icons|||||"] := hwnd3
 
 	ControlGetPos, xChaos1, yChaos1, wChaos1, hChaos1,, % "ahk_id " vars.hwnd.exchange.chaos1
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize - 2
-	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 2, % settings.exchange.chaos_div
-	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
+	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 1.5, % settings.exchange.chaos_div
 	vars.hwnd.help_tooltips["exchange_chaos-div"] := vars.hwnd.exchange.chaos_div := hwnd
+	If vars.poe_version
+	{
+		Gui, %GUI_name%: Add, Edit, % "x+0 yp Number r1 gExchange HWNDhwnd1 cBlack Center w" hIcons * 1.5, % settings.exchange.exalt_div
+		vars.hwnd.help_tooltips["exchange_exalt-div"] := vars.hwnd.exchange.exalt_div := hwnd1
+	}
+	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
+	
 
 	Gui, %GUI_name%: Add, Text, % "Section Border Hidden x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 " HWNDhwnd w" wBoxes " h" hBoxes
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
@@ -445,7 +468,8 @@ Exchange2(hotkey)
 		If (selection := vars.exchange.selected_currency) && (LLK_ControlGet(vars.hwnd.exchange.edit1) * LLK_ControlGet(vars.hwnd.exchange.edit1))
 		{
 			date := LLK_FormatTime("YYYYMMDDHH24MI", "yyyy-MM-dd"), time := LLK_FormatTime("YYYYMMDDHH24MI", "HH.mm.ss")
-			amount := LLK_ControlGet(vars.hwnd.exchange["edit" (InStr(selection, "1") ? 1 : 2)]), amount := (InStr(selection, "chaos") ? Round(amount/settings.exchange.chaos_div, 2) : amount)
+			amount := LLK_ControlGet(vars.hwnd.exchange["edit" (InStr(selection, "1") ? 1 : 2)])
+			amount := (InStr(selection, "chaos") ? Round(amount/settings.exchange.chaos_div, 2) : (InStr(selection, "exalt") ? Round(amount/settings.exchange.exalt_div, 2) : amount))
 			If !IsObject(vars.exchange.transactions[date])
 				vars.exchange.transactions[date] := []
 			vars.exchange.transactions[date].Push({"amount": amount, "time": time, "type": (selection := StrReplace(selection, "chaos", "divine"))})

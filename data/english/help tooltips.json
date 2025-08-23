@@ -1107,6 +1107,9 @@
     "chaos-div": [
       "the current div-price in chaos (e.g. 210):\nthis value is used to convert chaos to divines when logging trades"
     ],
+    "exalt-div": [
+      "the current div-price in exalts (e.g. 210):\nthis value is used to convert exalt to divines when logging trades"
+    ],
     "currency icons": [
       "optional: click a currency icon to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
     ],
