@@ -249,9 +249,9 @@ Screenchecks_Info(name) ;holding the <info> button to view instructions
 	Gui, screencheck_info: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 	vars.hwnd.screencheck_info := {"main": screencheck_info}
 
-	If FileExist("img\GUI\screen-checks\"name . vars.poe_version ".jpg")
+	If FileExist("img\GUI\screen-checks\"name . (name = "exchange" ? "" : vars.poe_version) ".jpg")
 	{
-		pBitmap0 := Gdip_CreateBitmapFromFile("img\GUI\screen-checks\" name . vars.poe_version ".jpg"), pBitmap := Gdip_ResizeBitmap(pBitmap0, vars.settings.w - settings.general.fWidth - 1, 10000, 1, 7, 1), Gdip_DisposeImage(pBitmap0)
+		pBitmap0 := Gdip_CreateBitmapFromFile("img\GUI\screen-checks\" name . (name = "exchange" ? "" : vars.poe_version) ".jpg"), pBitmap := Gdip_ResizeBitmap(pBitmap0, vars.settings.w - settings.general.fWidth - 1, 10000, 1, 7, 1), Gdip_DisposeImage(pBitmap0)
 		hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), Gdip_DisposeImage(pBitmap)
 		Gui, screencheck_info: Add, Pic, % "Section w"vars.settings.w - settings.general.fWidth - 1 " h-1", HBitmap:%hBitmap%
 	}
