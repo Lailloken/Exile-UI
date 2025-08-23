@@ -1,10 +1,14 @@
 {
-	"timestamp": 0,
-	"messages": [
-		[
-			"2025-08-23 04:34:00",
-			"test test",
-      "d4 bad"
-		]
-	]
+  "timestamp": 0,
+  "messages": [
+    [
+      {
+        "priority": 0,
+        "stamp": "2025-08-23 10:15:00",
+        "topic": "added a news feed"
+      },
+      "this will only be used for important announcements (bugs, fixes, etc.)",
+      "a flashing icon will appear on the toolbar. click it to open this feed and mark everything as read"
+    ]
+  ]
 }

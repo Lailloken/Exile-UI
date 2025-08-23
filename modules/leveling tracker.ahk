@@ -486,7 +486,7 @@ Leveltracker(cHWND := "", hotkey := "")
 	Else
 	{
 		Leveltracker_Toggle("hide")
-		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, img\GUI\leveltracker0.png
+		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, % "HBitmap:*" vars.pics.toolbar.leveltracker0
 	}
 	;WinActivate, ahk_group poe_window
 }
@@ -2789,7 +2789,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && vars.log.act > 3 ? vars.log.act - 3 : vars.log.act) . (InStr(vars.log.areaID, "c_") ? "c" : "")
 
 	If (mode = "init")
-		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, img\GUI\leveltracker.png
+		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, % "HBitmap:*" vars.pics.toolbar.leveltracker
 
 	While !Leveltracker("condition", guide.progress + 1)
 		guide.progress += 1

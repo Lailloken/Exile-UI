@@ -28,7 +28,7 @@ OnExit("Exit")
 Menu, Tray, Tip, Exile UI
 Menu, Tray, Icon, img\GUI\tray.ico
 
-vars := {"general": {"runcheck": A_TickCount}, "logging": FileExist("data\log.txt"), "MainThread": 1}, LLK_Log("waiting for valid game-clients...")
+vars := {"general": {"runcheck": A_TickCount}, "logging": FileExist("data\log.txt"), "MainThread": 1, "news": {}}, LLK_Log("waiting for valid game-clients...")
 timeout := [LLK_IniRead("ini\config.ini", "settings", "kill script", 1), LLK_IniRead("ini\config.ini", "settings", "kill-timeout", 1)]
 While !WinExist("ahk_class POEWindowClass") && !WinExist("ahk_exe GeForceNOW.exe") ;wait for game-client window
 {
@@ -474,7 +474,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "toolbar": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -606,6 +606,7 @@ Loop()
 {
 	local
 	global vars, settings
+	static news_tick := 0
 
 	If !WinExist("ahk_group poe_window")
 		vars.client.closed := 1, vars.hwnd.poe_client := ""
@@ -641,6 +642,18 @@ Loop()
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)
+
+		If vars.news.unread && (WinExist("ahk_id " vars.hwnd.LLK_panel.main) || WinExist("ahk_id " vars.hwnd.settings.main))
+		{
+			news_tick += 1
+			If WinExist("ahk_id " vars.hwnd.LLK_panel.main)
+				GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : "Lime"), % vars.hwnd.LLK_panel.announcement_bar
+			If WinExist("ahk_id " vars.hwnd.settings.main)
+			{
+				GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.news
+				GuiControl, % "movedraw", % vars.hwnd.settings.news
+			}
+		}
 	}
 
 	If settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(vars.log.areaID, "i)labyrinth_|sanctum_|g3_10$") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
@@ -815,9 +828,11 @@ Loop_main()
 
 	If settings.general.hide_toolbar && (vars.general.inactive < 3) && WinActive("ahk_group poe_ahk_window")
 	{
-		If vars.general.wMouse && vars.hwnd.LLK_panel.main && !WinExist("ahk_id " vars.hwnd.LLK_panel.main) && LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2)
+		If vars.general.wMouse && vars.hwnd.LLK_panel.main && !WinExist("ahk_id " vars.hwnd.LLK_panel.main)
+		&& (LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2) || vars.news.unread)
 			LLK_Overlay(vars.hwnd.LLK_panel.main, "show")
-		Else If !vars.toolbar.drag && !GetKeyState(vars.hotkeys.tab, "P") && WinExist("ahk_id " vars.hwnd.LLK_panel.main) && !(LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2))
+		Else If !vars.toolbar.drag && !GetKeyState(vars.hotkeys.tab, "P") && WinExist("ahk_id " vars.hwnd.LLK_panel.main)
+		&& !(LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2)) && !vars.news.unread
 			LLK_Overlay(vars.hwnd.LLK_panel.main, "hide")
 	}
 
@@ -874,6 +889,31 @@ MouseHover()
 	MouseGetPos, xPos, yPos, win_hover, control_hover, 2
 	vars.general.xMouse := xPos, vars.general.yMouse := yPos
 	vars.general.wMouse := Blank(win_hover) ? 0 : win_hover, vars.general.cMouse := Blank(control_hover) ? 0 : control_hover
+}
+
+News(mode := "")
+{
+	local
+	global vars, settings, json
+
+	If (mode = "init")
+		vars.news.file := json.Load(LLK_FileRead("data\announcements.json", 1)), vars.news.last_read := LLK_IniRead("ini\config.ini", "versions", "announcement", 0)
+
+	If !settings.general.dev
+	{
+		Try string := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/announcements.json")
+		Try object := json.Load(string)
+	
+		If !Blank(object.timestamp) && (object.timestamp != vars.news.file.timestamp)
+		{
+			vars.news.file := json.Load(string)
+			file_new := FileOpen("data\announcements.json", "w", "UTF-8-RAW")
+			file_new.Write(string), file_new.Close()
+		}
+	}
+
+	If !vars.news.unread && (vars.news.file.timestamp != vars.news.last_read)
+		vars.news.unread := 1, Init_GUI()
 }
 
 Resolution_check()

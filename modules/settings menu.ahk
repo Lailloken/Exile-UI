@@ -1406,6 +1406,9 @@ Settings_general2(cHWND := "")
 					Sleep 150
 				}
 				IniWrite, % settings.gui.sToolbar, % "ini" vars.poe_version "\config.ini", UI, toolbar-size
+				For key, val in vars.pics.toolbar
+					DeleteObject(val)
+				vars.pics.toolbar := {}
 				Init_GUI("refresh")
 			}
 			Else LLK_ToolTip("no action")
@@ -3070,8 +3073,8 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas"], "sections2": []}
+			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
@@ -3127,7 +3130,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 				Continue
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
 			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
-			color := (val = "donations") ? " cCCCC00" : color
+			color := (val = "donations" ? " cCCCC00" : (val = "news" && vars.news.unread ? " cLime" : color))
 			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.2 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1) " "
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 BackgroundBlack cBlack", 100
 			vars.hwnd.settings[val] := hwnd, vars.hwnd.settings["background_"val] := hwnd1
@@ -3240,6 +3243,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_mapinfo()
 		Case "minor qol tools":
 			Settings_qol()
+		Case "news":
+			Settings_news()
 		Case "sanctum":
 			Settings_sanctum()
 		Case "screen-checks":
@@ -3267,6 +3272,52 @@ Settings_menuClose(activate := 1)
 	LLK_Overlay(vars.hwnd.settings.main, "destroy"), vars.settings.active := "", vars.hwnd.Delete("settings"), vars.settings.mapinfo_search := ""
 	If !settings.general.dev && activate
 		WinActivate, ahk_group poe_window
+}
+
+Settings_news()
+{
+	local
+	global vars, settings, db, json
+	static fSize, colors := [" cYellow", " cFF8000", " cRed"]
+
+	If (fSize != settings.general.fSize)
+	{
+		fSize := settings.general.fSize
+		For key, val in vars.pics.news
+			DeleteObject(val)
+		vars.pics.news := {"bullet": LLK_ImageCache("img\GUI\bullet_diamond.png",, settings.general.fHeight - 2)}
+	}
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := settings.general.fWidth//2, news := vars.news
+	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection, % Lang_Trans("m_news_recent")
+	For index, array in news.file.messages
+	{
+		timestamp := StrReplace(StrReplace(StrReplace(array.1.stamp, "-"), " "), ":"), topic := array.1.topic, color := colors[array.1.priority]
+		now := A_NowUTC, days := hours := 0
+		EnvSub, now, timestamp, minutes
+		While (now >= 1440)
+			now -= 1440, days += 1
+		While (now >= 60)
+			now -= 60, hours += 1
+
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "Section xs y+" margin * 2 . color, % Trim((days ? days "d, " : "") . (hours ? hours "h" : "") . (days ? "" : (hours ? ", " : "") . (now ? now "m" : "")), " ,") " ago: " topic
+		Gui, %GUI%: Font, norm
+
+		For index, line in array
+			If (index != 1)
+			{
+				Gui, %GUI%: Add, Pic, % "Section xs y+" margin, % "HBitmap:*" vars.pics.news.bullet
+				Gui, %GUI%: Add, Text, % "ys x+0 w" settings.general.fWidth * 35, % line
+			}
+	}
+
+	If vars.news.unread
+	{
+		IniWrite, % """" vars.news.file.timestamp """", % "ini\config.ini", % "versions", % "announcement"
+		vars.news.unread := 0, Init_GUI()
+	}
+	GuiControl, % "+cWhite", % vars.hwnd.settings.news
 }
 
 Settings_OCR()

@@ -280,6 +280,7 @@ Log_Loop(mode := 0)
 {
 	local
 	global vars, settings, db
+	static news_check
 
 	Critical
 	If settings.qol.alarm && !vars.alarm.drag
@@ -300,6 +301,9 @@ Log_Loop(mode := 0)
 			vars.log.file := FileOpen(vars.log.file_location, "a", "UTF-8")
 
 	guide := vars.leveltracker.guide ;short-cut variable
+	If !news_check || (A_TickCount >= news_check + 900000)
+		News(!news_check ? "init" : ""), news_check := A_TickCount
+
 	If !WinActive("ahk_group poe_ahk_window") || !vars.log.file_location || !WinExist("ahk_group poe_window") || !FileExist(vars.log.file_location)
 	{
 		If WinExist("ahk_id " vars.hwnd.maptracker.main)

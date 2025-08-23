@@ -262,3 +262,8 @@ Init_hotkeys(a := "", b := "", c := "", d := "")
 {
 	Return
 }
+
+News(mode := "")
+{
+	Return
+}

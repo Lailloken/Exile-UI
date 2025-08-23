@@ -68,6 +68,7 @@
 		ms_mapping tracker		=	"map-tracker"
 		ms_map-info			=	"map-info"
 		ms_minor qol tools		=	"minor qol tools"
+		ms_news				=	"announcements"
 		ms_sanctum			=	"sanctum planner"
 		ms_sanctum			=	"sekhema planner"
 		ms_screen-checks		=	"screen-checks"
@@ -1036,6 +1037,14 @@
 		m_mapinfo_reset			=	"reset tiers"
 
 
+
+;#####################################################
+;## settings menu: news / announcements
+;#####################################################
+
+
+;## these strings are displayed/required in the "announcements" section of the settings menu
+		m_news_recent			=	"most recent announcements:"
 
 ;#####################################################
 ;## settings menu: minor qol tools

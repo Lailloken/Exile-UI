@@ -137,8 +137,8 @@ Maptracker(cHWND := "", hotkey := "")
 	}
 	Else If (hotkey = 2)
 	{
-		GuiControl,, % vars.hwnd.LLK_panel.maptracker, % "img\GUI\maptracker" . (vars.maptracker.pause ? "" : "0") . ".png"
 		vars.maptracker.pause := vars.maptracker.pause ? 0 : 1
+		GuiControl,, % vars.hwnd.LLK_panel.maptracker, % "HBitmap:*" vars.pics.toolbar["maptracker" (vars.maptracker.pause ? "0" : "")]
 		Maptracker_GUI()
 		WinActivate, ahk_group poe_window
 	}

@@ -15,32 +15,46 @@
 	;While Mod(height, 2)
 	;	height += 1
 
-	Gui, LLK_panel: Add, Pic, % "Section h" height " w-1 Border HWNDhwnd", % "img\GUI\settings.png"
-	vars.hwnd.LLK_panel.settings := hwnd, style := (orientation = "horizontal") ? "ys" : "xs", style .= " " (orientation = "horizontal" ? " h" height " w" height : " w" height " h" height)
+	If !vars.pics.toolbar.settings
+		vars.pics.toolbar.settings := LLK_ImageCache("img\GUI\settings.png", height)
+	Gui, LLK_panel: Add, Pic, % "Section Border HWNDhwnd", % "HBitmap:*" vars.pics.toolbar.settings
+	vars.hwnd.LLK_panel.settings := hwnd, style := (orientation = "horizontal") ? "ys" : "xs"
 
 	;Gui, LLK_panel: Margin, % settings.general.fWidth/2, % settings.general.fWidth/2
-	Gui, LLK_panel: Add, Pic, % style " Section Border BackgroundTrans HWNDhwnd0 " (orientation = "horizontal" ? "h" height/2 - 1 " w-1" : "w" height/2 - 1 " h-1"), % "HBitmap:*" vars.pics.global.reload
+	Gui, LLK_panel: Add, Pic, % (orientation = "horizontal" ? "ys" : "xs") " Section Border BackgroundTrans HWNDhwnd0 h" height/2 - 1 " w-1", % "HBitmap:*" vars.pics.global.reload
 	Gui, LLK_panel: Add, Progress, % "xp yp wp hp BackgroundBlack cGreen Range0-500 HWNDhwnd01"
 	Gui, LLK_panel: Margin, 0, 0
-	Gui, LLK_panel: Add, Pic, % (orientation = "vertical" ? "ys" : "xs") " Border BackgroundTrans HWNDhwnd " (orientation = "horizontal" ? "h" height/2 - 1 " w-1" : "w" height/2 - 1 " h-1"), % "img\GUI\close.png"
+	Gui, LLK_panel: Add, Pic, % (orientation = "vertical" ? "ys" : "xs") " Border BackgroundTrans HWNDhwnd h" height/2 - 1 " w-1", % "HBitmap:*" vars.pics.global.close
 	Gui, LLK_panel: Add, Progress, % "xp yp wp hp BackgroundBlack cRed Range0-500 HWNDhwnd1"
 	vars.hwnd.LLK_panel.restart := hwnd0, vars.hwnd.LLK_panel["restart|"] := vars.hwnd.LLK_panel.restart_bar := hwnd01, vars.hwnd.LLK_panel.close := hwnd, vars.hwnd.LLK_panel["close|"] := vars.hwnd.LLK_panel.close_bar := hwnd1
 
 	Gui, LLK_panel: Margin, % margin, % margin
-	Loop, Parse, % "leveltracker, anoints, maptracker, notepad", `,, %A_Space%
+	Loop, Parse, % "leveltracker, anoints, maptracker, notepad, announcement", `,, %A_Space%
 	{
-		If (settings.features[A_LoopField] || settings.qol[A_LoopField])
+		If (settings.features[A_LoopField] || settings.qol[A_LoopField]) || (A_LoopField = "announcement") && vars.news.unread
 		{
 			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (A_LoopField = "anoints" ? vars.poe_version : "")
 			file := (A_LoopField = "maptracker" && vars.maptracker.pause) ? 0 : file
+			If !vars.pics.toolbar[A_LoopField . file]
+				vars.pics.toolbar[A_LoopField . file] := LLK_ImageCache("img\GUI\" A_LoopField . file ".png", height)
+			If RegExMatch(A_LoopField, "i)leveltracker|maptracker")
+				If !vars.pics.toolbar[A_LoopField . (file = "0" ? "" : "0")]
+					vars.pics.toolbar[A_LoopField . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\" A_LoopField . (file = "0" ? "" : "0") ".png", height)
+
 			If (A_LoopField = "leveltracker")
 			{
-				Gui, LLK_panel: Add, Text, % style " BackgroundTrans Center 0x200 HWNDhwnd0 cLime", % ""
-				Gui, LLK_panel: Add, Pic, % "xp yp wp hp Border BackgroundTrans HWNDhwnd", % "img\GUI\" A_LoopField . file ".png"
+				Gui, LLK_panel: Add, Text, % style " w" height " h" height " BackgroundTrans Center 0x200 HWNDhwnd0 cLime", % ""
+				Gui, LLK_panel: Add, Pic, % "xp yp Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.toolbar[A_LoopField . file]
 				vars.hwnd.LLK_panel.leveltracker_text := hwnd0, vars.leveltracker.gear_counter := 0
 			}
-			Else Gui, LLK_panel: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "img\GUI\" A_LoopField . file ".png"
+			Else Gui, LLK_panel: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.toolbar[A_LoopField . file]
 			added := 1, vars.hwnd.LLK_panel[A_LoopField] := hwnd
+
+			If (A_LoopField = "announcement")
+			{
+				Gui, LLK_panel: Add, Progress, % "Disabled BackgroundBlack xp yp wp hp Border BackgroundTrans HWNDhwnd", 0
+				vars.hwnd.LLK_panel.announcement_bar := hwnd
+			}
 		}
 	}
 	Gui, LLK_panel: Show, NA x10000 y10000
@@ -368,6 +382,8 @@ Gui_ToolbarButtons(cHWND, hotkey)
 		KeyWait, RButton
 		Anoints(vars.hwnd.anoints.main ? "close" : "")
 	}
+	Else If InStr(check, "announcement")
+		Settings_menu("news")
 }
 
 Gui_ToolbarHide()

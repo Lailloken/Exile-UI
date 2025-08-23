@@ -379,6 +379,7 @@ Hotkeys_Tab()
 			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_Hints()
 			Break
 		}
+
 	map := vars.mapinfo.active_map
 	While settings.features.mapinfo && settings.mapinfo.tabtoggle && map.name && GetKeyState(vars.hotkeys.tab, "P")
 	&& (LLK_HasVal(vars.mapinfo.categories, vars.log.areaname, 1) || (InStr(map.name, vars.log.areaname) || vars.poe_version && LLK_StringCompare(vars.log.areaID, ["map"])) || LLK_StringCompare(vars.log.areaID, ["hideout"]) || InStr(vars.log.areaID, "heisthub") || InStr(map.english, "invitation") && LLK_PatternMatch(vars.log.areaID, "", ["MavenHub", "PrimordialBoss"]))
