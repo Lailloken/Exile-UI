@@ -3314,7 +3314,7 @@ Settings_news()
 
 	If vars.news.unread
 	{
-		IniWrite, % """" vars.news.file.timestamp """", % "ini\config.ini", % "versions", % "announcement"
+		IniWrite, % """" (vars.news.last_read := vars.news.file.timestamp) """", % "ini\config.ini", % "versions", % "announcement"
 		vars.news.unread := 0, Init_GUI()
 	}
 	GuiControl, % "+cWhite", % vars.hwnd.settings.news
