@@ -1,5 +1,11 @@
 [
   [
+	["1.59.3", 15903],
+	"august 24, 2025",
+	"added a news/announcements feed with notifications: this is for important news regarding bugs, fixes, etc.",
+	"vaal street: added poe2 compatibility"
+  ],
+  [
 	["1.59.2", 15902],
 	"august 19, 2025",
 	"hotfix 1: fixed regex strings in gem-setup overlay, anoint calculator now resets after modifying available stock",
