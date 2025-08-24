@@ -331,8 +331,9 @@ Log_Loop(mode := 0)
 					vars.log.areaname := "" ;make it blank because there sometimes is a desync between it and areaID, i.e. they are parsed in two separate loop-ticks
 				Else vars.log.areaname := Log_Get(areaID, "areaname")
 		}
-		If settings.features.leveltracker && !LLK_HasVal(vars.leveltracker.guide.group1, Lang_Trans("ms_leveling tracker"), 1) && !RegexMatch(vars.log.areaID, "i)labyrinth_|g3_10$|sanctum_")
-		&& (!Blank(db.leveltracker.areaIDs[areaID]) && (areaID != vars.leveltracker.guide.target_area) || IsNumber(level) && (level0 != level)) && LLK_Overlay(vars.hwnd.leveltracker.main, "check") ;player has leveled up or moved to a different location: update overlay for exp-gain, and act clarifications
+		If settings.features.leveltracker && (WinExist("ahk_id " vars.hwnd.leveltracker.main) && (IsNumber(level) && (level0 != level) || !Blank(areaID))
+		|| LLK_Overlay(vars.hwnd.leveltracker.main, "check") && (RegexMatch(areaID, "i)^hideout") || db.leveltracker.areaIDs[areaID] && areaID != vars.leveltracker.guide.target_area)
+		&& !RegexMatch(vars.log.areaID, "i)labyrinth_|g3_10$|sanctum_") && !LLK_HasVal(vars.leveltracker.guide.group1, Lang_Trans("ms_leveling tracker"), 1))
 			Leveltracker_Progress()
 
 		If settings.features.actdecoder && vars.actdecoder.layouts_lock && !Blank(areaID) && (areaID != vars.actdecoder.current_zone)
