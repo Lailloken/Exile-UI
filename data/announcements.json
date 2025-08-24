@@ -1,14 +1,14 @@
 {
-  "timestamp": 1,
+  "timestamp": 0,
   "messages": [
     [
       {
         "priority": 0,
-        "stamp": "2025-08-23 10:15:00",
+        "stamp": "2025-08-24 13:30:00",
         "topic": "added a news feed"
       },
       "this will only be used for important announcements (bugs, fixes, etc.)",
-      "a flashing icon will appear on the toolbar. click it to open this feed and mark everything as read"
+      "when there's a new announcement, a flashing icon will appear on the toolbar. click it to open this feed and dismiss the notification"
     ]
   ]
 }
