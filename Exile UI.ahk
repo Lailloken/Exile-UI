@@ -51,8 +51,7 @@ If LLK_IniRead("ini\config.ini", "versions", "apply update")
 	UpdateCheck(2)
 	IniDelete, % "ini\config.ini", versions, apply update
 }
-Else If LLK_IniRead("ini\config.ini", "versions", "update auto-check")
-	LLK_Log("checking for updates"), UpdateCheck()
+
 Init_vars()
 Startup()
 Init_screenchecks(), LLK_Log("initialized screenchecks settings")
@@ -633,9 +632,9 @@ Loop()
 		}
 		vars.client.closed := 0
 
-		If settings.updater.update_check && (vars.update.1 = 0) && (A_TickCount - vars.general.startup >= vars.general.updatetick + 1200000)
+		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1200000)
 		{
-			UpdateCheck(1), vars.general.updatetick := A_TickCount - vars.general.startup
+			UpdateCheck(1), vars.general.updatetick := A_TickCount
 			If (vars.update.1 != 0)
 				Gui, LLK_Panel: Color, % (vars.update.1 < 0) ? "Maroon" : "Green"
 		}
@@ -829,10 +828,10 @@ Loop_main()
 	If settings.general.hide_toolbar && (vars.general.inactive < 3) && WinActive("ahk_group poe_ahk_window")
 	{
 		If vars.general.wMouse && vars.hwnd.LLK_panel.main && !WinExist("ahk_id " vars.hwnd.LLK_panel.main)
-		&& (LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2) || vars.news.unread)
+		&& (LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2) || vars.news.unread || vars.update.1 = 1)
 			LLK_Overlay(vars.hwnd.LLK_panel.main, "show")
 		Else If !vars.toolbar.drag && !GetKeyState(vars.hotkeys.tab, "P") && WinExist("ahk_id " vars.hwnd.LLK_panel.main)
-		&& !(LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2)) && !vars.news.unread
+		&& !(LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2)) && !vars.news.unread && (vars.update.1 != 1)
 			LLK_Overlay(vars.hwnd.LLK_panel.main, "hide")
 	}
 

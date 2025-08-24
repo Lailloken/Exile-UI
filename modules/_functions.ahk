@@ -574,7 +574,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	If versions_live.HasKey("hotfix")
 		versions_live._release.1 .= "." . (versions_live.hotfix < 10 ? "0" : "") . versions_live.hotfix
 	vars.updater := {"version": [versions_local._release.1, UpdateParseVersion(versions_local._release.1)], "latest": [versions_live._release.1, UpdateParseVersion(versions_live._release.1)]}
-	vars.updater.skip := LLK_IniRead("ini" vars.poe_version "\config.ini", "versions", "skip", 0)
+	vars.updater.skip := LLK_IniRead("ini\config.ini", "versions", "skip", 0)
 
 	Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
 	changelog_check := changelog_check ? Trim(changelog_check, " `r`n`t") : ""

@@ -4607,7 +4607,7 @@ Settings_updater()
 		vars.hwnd.help_tooltips["settings_update hotfix"] := hwnd
 	}
 
-	If !InStr(vars.updater.latest.1, ".") && IsNumber(vars.updater.latest.1) && (vars.updater.latest.1 > vars.updater.version.1) && (vars.updater.latest.1 != vars.updater.skip)
+	If IsNumber(vars.updater.latest.1) && (vars.updater.latest.1 > vars.updater.version.1) && (vars.updater.latest.1 != vars.updater.skip)
 	{
 		Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans gSettings_updater2 HWNDhwnd", % " " Lang_Trans("m_updater_skip") " "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled Border BackgroundBlack cRed range0-500 HWNDhwnd0", 0
