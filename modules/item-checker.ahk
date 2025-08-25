@@ -632,9 +632,9 @@ Iteminfo_Stats2()
 		Loop 2
 			phys%A_Index% := Round((phys%A_Index% / ((100 + phys_inc + phys_rune_inc)/100)) / ((100 + item.quality)/100))
 
-		item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)]}
+		item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * (1 + Max(20, item.quality)/100) * speed)]}
 		Loop, % Max(RegExMatch(item.class, "i)quarterstav|two.hand|bow") ? 2 : 1, item.sockets)
-			item.damage.phys.Push(Round((phys1 * (100 + (A_Index * 18) + phys_inc)/100 + phys2 * (100 + (A_Index * 18) + phys_inc)/100)/2 * 1.2 * speed))
+			item.damage.phys.Push(Round((phys1 * (100 + (A_Index * 18) + phys_inc)/100 + phys2 * (100 + (A_Index * 18) + phys_inc)/100)/2 * (1 + Max(20, item.quality)/100) * speed))
 
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
@@ -698,9 +698,9 @@ Iteminfo_Stats2()
 		item.defenses := {}
 		For index, def in defs
 		{
-			item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2)]
+			item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * (1 + Max(20, item.quality)/100))]
 			Loop, % Max(RegExMatch(item.class, "i)body.armour") ? 2 : 1, item.sockets)
-				item.defenses[def].Push(Round(defenses[def] * (%def%_inc + (100 + A_Index * 18))/100 * 1.2))
+				item.defenses[def].Push(Round(defenses[def] * (%def%_inc + (100 + A_Index * 18))/100 * (1 + Max(20, item.quality)/100)))
 		}
 	}
 
@@ -1834,36 +1834,6 @@ Iteminfo_GUI()
 	;///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	;////////////////////////////////////////// unique drop-tier and roll-health
 
-	If qual_scaling && !InStr(item.name, "morior")
-	{
-		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
-		sockets := Max(RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1, item.sockets)
-		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" Max(UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count(), 0) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
-		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2", "greater_iron3", "greater_iron4"]
-		{
-			If (outer > sockets + 1) || (outer = 2 && sockets = 4 && object.Count() > 1)
-				Continue
-			If !vars.pics.iteminfo[currency]
-				vars.pics.iteminfo[currency] := LLK_ImageCache("img\GUI\item info\" currency ".png",, UI.hSegment - 2)
-
-			Gui, %GUI_name%: Add, Picture, % "ys Border", % "HBitmap:*" vars.pics.iteminfo[currency]
-			If (item.type = "defense")
-			{
-				For index, def in ["armour", "evasion", "energy"]
-					If item.defenses[def]
-					{
-						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.defenses[def][outer]
-						Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" colors[def], 100
-					}
-			}
-			Else
-				For index, dmg in ["phys"]
-					If item.damage[dmg]
-						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.damage[dmg][outer]
-		}
-
-	}
-
 	If unique
 	{
 		If !IsObject(db.item_drops)
@@ -1901,6 +1871,35 @@ Iteminfo_GUI()
 		{
 			Gui, %GUI_name%: Add, Text, % "ys Border Center BackgroundTrans w" UI.wSegment " c" (color = "White" && roll_stats.Count() ? "Red" : "Black"), % roll_stats_average
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack HWNDhwnd_roll_percent_total_back c" (!roll_stats.Count() ? tColors[0] : color), 100
+		}
+	}
+
+	If qual_scaling && !RegExMatch(item.name, "i)morior|tabula") && (item.type = "attack" && item.damage.phys.1 || item.type = "defense")
+	{
+		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
+		sockets := Max(RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1, item.sockets)
+		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" Max(UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count(), 0) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
+		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2", "greater_iron3", "greater_iron4"]
+		{
+			If (outer > sockets + 1) || (outer = 2 && sockets = 4 && object.Count() > 1)
+				Continue
+			If !vars.pics.iteminfo[currency]
+				vars.pics.iteminfo[currency] := LLK_ImageCache("img\GUI\item info\" currency ".png",, UI.hSegment - 2)
+
+			Gui, %GUI_name%: Add, Picture, % "ys Border", % "HBitmap:*" vars.pics.iteminfo[currency]
+			If (item.type = "defense")
+			{
+				For index, def in ["armour", "evasion", "energy"]
+					If item.defenses[def]
+					{
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.defenses[def][outer]
+						Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" colors[def], 100
+					}
+			}
+			Else
+				For index, dmg in ["phys"]
+					If item.damage[dmg]
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.damage[dmg][outer]
 		}
 	}
 

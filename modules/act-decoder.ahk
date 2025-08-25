@@ -15,8 +15,6 @@
 		{
 			vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt)] := 1
 			vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
-			If vars.poe_version
-				vars.actdecoder.zone_layouts["c_" SubStr(A_LoopFileName, 1, check - 1)] := {}
 		}
 
 	settings.actdecoder := {}, ini := IniBatchRead("ini" vars.poe_version "\act-decoder.ini")
