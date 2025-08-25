@@ -21,12 +21,14 @@
 	{
 		IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, name
 		IniWrite, 0, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, time
-		Loop, % vars.poe_version ? 6 : 10
+		Loop, % vars.poe_version ? 7 : 10
 			IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, act %A_Index%
 	}
+	Else If vars.poe_version && !ini["current run" profile].HasKey("act 7")
+		IniWrite, % (ini["current run" profile]["act 7"] := ""), % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, act 7
 
 	If vars.poe_version
-		vars.leveltracker.acts := ["1", "2", "3", "1c", "2c", "3c"]
+		vars.leveltracker.acts := ["1", "2", "3", "4", "i1", "i2", "i3"]
 	If !vars.leveltracker.hints
 	{
 		vars.leveltracker.hints := {}
@@ -115,13 +117,14 @@
 	If !IsObject(vars.leveltracker.guide)
 		vars.leveltracker.guide := {}
 
-	vars.leveltracker.timer := {"name": ini["current run" profile].name, "current_split": !Blank(check := ini["current run" profile].time) ? check : 0, "current_act": 1, "total_time": 0, "pause": -1}, vars.leveltracker.timer.current_split0 := vars.leveltracker.timer.current_split
-	Loop, % vars.poe_version ? 7 : 11
+	vars.leveltracker.timer := {"name": ini["current run" profile].name, "current_split": !Blank(check := ini["current run" profile].time) ? check : 0, "current_act": 1, "total_time": 0, "pause": -1}
+	vars.leveltracker.timer.current_split0 := vars.leveltracker.timer.current_split
+	Loop, % vars.poe_version ? 8 : 11
 	{
 		vars.leveltracker.timer.current_act := A_Index
 		If Blank(check := ini["current run" profile]["act " A_Index])
 		{
-			If vars.poe_version && (A_Index = 7)
+			If vars.poe_version && (A_Index = 8)
 				vars.leveltracker.timer.current_act := 11
 			Break
 		}
@@ -1910,10 +1913,9 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				}
 				Else
 				{
-					text := LLK_StringRemove(StrReplace(StrReplace(part, "&&", "&"), "&", "&&"), "<,>,arena:,(hint)"), area := StrReplace(text, "areaid")
-					act := LLK_HasVal(areas, area,,,, 1), act := (vars.poe_version && act > 3 && act != 7 ? act - 3 : act) . (vars.poe_version && InStr(part, "areaidc_") ? Lang_Trans("lvltracker_format_act", 2) : "")
+					text := LLK_StringRemove(StrReplace(StrReplace(part, "&&", "&"), "&", "&&"), "<,>,arena:,(hint)"), area := StrReplace(text, "areaid"), act := LLK_HasVal(areas, area,,,, 1)
 					If InStr(text, "areaid") ;translate ID to location-name (and add potential act-clarification)
-						text := (!preview && ((act != vars.log.act) && !InStr(text, "labyrinth") || InStr(vars.log.areaID, "hideout")) ? (act = 11 || vars.poe_version && act = 7 ? Lang_Trans("lvltracker_format_epilogue") : Lang_Trans("lvltracker_format_act", 1) . act) " | " : "") . areaIDs[(area := StrReplace(text, "areaid"))][InStr(line, "img:waypoint") && areaIDs[area].mapname ? "mapname" : "name"]
+						text := (!preview && ((act != vars.log.act) && !InStr(text, "labyrinth") || InStr(vars.log.areaID, "hideout")) ? (act = 11 || vars.poe_version && act = 8 ? Lang_Trans("lvltracker_format_epilogue") : Lang_Trans("lvltracker_format_act", 1) . act) " | " : "") . areaIDs[(area := StrReplace(text, "areaid"))][InStr(line, "img:waypoint") && areaIDs[area].mapname ? "mapname" : "name"]
 					text := StrReplace(text, "_", " "), text := StrReplace(text, "(a11)", "(epilogue)")
 					If InStr(part, "(quest:")
 						replace := SubStr(text, InStr(text, "(quest:")), replace := SubStr(replace, 1, InStr(replace, ")")), item := StrReplace(SubStr(replace, InStr(replace, ":") + 1), ")"), text := StrReplace(text, replace, item)
@@ -2788,7 +2790,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	profile := settings.leveltracker.profile
 
 	If !vars.log.act || (vars.log.act = "c")
-		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && vars.log.act > 3 ? vars.log.act - 3 : vars.log.act) . (InStr(vars.log.areaID, "c_") ? "c" : "")
+		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && !vars.log.act && IsNumber(SubStr(vars.log.areaID, 2, 1)) ? SubStr(vars.log.areaID, 2, 1) : vars.log.act)
 
 	If (mode = "init")
 		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, % "HBitmap:*" vars.pics.toolbar.leveltracker
@@ -2869,8 +2871,8 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If settings.leveltracker.timer
 	{
 		Gui, %GUI_name_controls2%: Add, Text, % "Section Border 0x200 BackgroundTrans HWNDhwnd Center w" wPanels (timer.current_act = 11 ? " cLime" : (timer.pause = -1) ? " cGray" : ""), % FormatSeconds(timer.total_time + (timer.current_act = 11 ? 0 : timer.current_split), 0)
-		vars.hwnd.leveltracker.timer_total := hwnd, act := (timer.current_act = 11 ? (vars.poe_version ? 6 : 10) : timer.current_act), act := vars.poe_version ? vars.leveltracker.acts[act] : act
-		Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w" wButtons * 3, % "a" act
+		vars.hwnd.leveltracker.timer_total := hwnd, act := (timer.current_act = 11 ? (vars.poe_version ? 7 : 10) : timer.current_act), act := vars.poe_version ? vars.leveltracker.acts[act] : act
+		Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w" wButtons * 3, % (IsNumber(act) ? "a" : "") act
 		vars.hwnd.leveltracker.timer_button := hwnd
 		Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w" wPanels (timer.current_act = 11 ? " cLime" : (timer.pause = -1) ? " cGray" : ""), % FormatSeconds(timer.current_split, 0)
 		vars.hwnd.leveltracker.timer_act := hwnd
@@ -3261,16 +3263,15 @@ Leveltracker_Timer(mode := "")
 	If vars.hwnd.leveltracker.main && (timer.pause = 0) ;advance the timer
 	{
 		timer.current_split += (timer.current_act = 11) ? 0 : 1, timer.pause := (settings.leveltracker.pausetimer && InStr(vars.log.areaID, "hideout")) || (timer.current_act = 11) ? 1 : 0
-		If vars.log.act && (timer.current_act + 1 = (InStr(vars.log.act, "c") ? StrReplace(vars.log.act, "c") + 3 : vars.log.act)
-		|| vars.poe_version && vars.log.act = 11 && timer.current_act = 6) ;player enters the next act: save previous act's time, add it to total time, then reset it
+		If vars.log.act && (timer.current_act + 1 = vars.log.act) ;player enters the next act: save previous act's time, add it to total time, then reset it
 		{
 			IniWrite, % timer.current_split, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, % "act "timer.current_act
 			If InStr(timer.name, ",")
 				Leveltracker_TimerCSV()
-			timer.total_time += timer.current_split, timer.current_act += 1, timer.current_act := (vars.poe_version && timer.current_act = 7) ? 11 : timer.current_act
+			timer.total_time += timer.current_split, timer.current_act += 1, timer.current_act := (vars.poe_version && timer.current_act = 8) ? 11 : timer.current_act
 			timer.current_split := (timer.current_act = 11) ? timer.current_split : 0
-			act := (timer.current_act = 11 ? (vars.poe_version ? 6 : 10) : timer.current_act), act := vars.poe_version ? vars.leveltracker.acts[act] : act
-			GuiControl, Text, % vars.hwnd.leveltracker.timer_button, % "a" act
+			act := (timer.current_act = 11 ? (vars.poe_version ? 7 : 10) : timer.current_act), act := vars.poe_version ? vars.leveltracker.acts[act] : act
+			GuiControl, Text, % vars.hwnd.leveltracker.timer_button, % (IsNumber(act) ? "a" : "") act
 			IniWrite, % timer.current_split, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, time
 			If (timer.current_act = 11)
 				Leveltracker_Progress(1)

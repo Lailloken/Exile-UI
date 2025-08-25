@@ -417,7 +417,9 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 			If (areaID = "c_g2_9_2_" || areaID = "c_g3_16_") ;bugged PoE2 areaIDs
 				areaID := SubStr(areaID, 1, -1)
 			date_time := SubStr(loopfield, 1, InStr(loopfield, " ",,, 2) - 1)
-			act := LLK_HasVal(db.leveltracker.areas, areaID,,,, 1), act := (vars.poe_version && act > 3 ? act - 3 : act) . (vars.poe_version && InStr(areaID, "C_") ? "c" : "") ;store current act
+			act := LLK_HasVal(db.leveltracker.areas, areaID,,,, 1)
+			If vars.poe_version && !act && IsNumber(SubStr(areaID, 2, 1))
+				act := SubStr(areaID, 2, 1)
 			arealevel := parse := SubStr(loopfield, InStr(loopfield, "level ") + 6, InStr(loopfield, " area """) - InStr(loopfield, "level ") - 6)
 			If !vars.poe_version && (parse - 67 > 0)
 				areatier := (parse - 67 < 10 ? "0" : "") parse - 67
