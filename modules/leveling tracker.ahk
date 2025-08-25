@@ -747,7 +747,7 @@ Leveltracker_GuideEditor(cHWND)
 		{
 			vars.leveltracker_editor.act := 1, page := vars.leveltracker_editor.page := [1], vars.leveltracker_editor.guide := [], vars.leveltracker_editor.guide_last := []
 			ini := IniBatchRead("ini" vars.poe_version "\leveling guide" new_profile ".ini", "guide")
-			Loop, % vars.poe_version ? 6 : 10
+			Loop, % vars.poe_version ? 7 : 10
 				vars.leveltracker_editor.guide.Push(json.Load(ini.guide["act" A_Index])), vars.leveltracker_editor.guide_last.Push(json.Load(ini.guide["act" A_Index]))
 			vars.leveltracker_editor.guide_last_json := json.dump(vars.leveltracker_editor.guide), profile := new_profile
 		}
@@ -849,7 +849,7 @@ Leveltracker_GuideEditor(cHWND)
 				Return
 
 			targetProfile := (InStr(cHWND, "#") ? (IsNumber(SubStr(cHWND, 0)) ? SubStr(cHWND, 0) : "") : profile)
-			Loop, % vars.poe_version ? 6 : 10
+			Loop, % vars.poe_version ? 7 : 10
 			{
 				Loop, % (count := guide[(outer := A_Index)].Count()) ;remove blank pages
 				{
@@ -899,7 +899,7 @@ Leveltracker_GuideEditor(cHWND)
 			Else vars.leveltracker_editor.guide[act][control] := array.Clone()
 
 			modified := (vars.leveltracker_editor.guide_last_json != json.dump(vars.leveltracker_editor.guide))
-			GuiControl, % "+c" (!areaID && !(act = guide.Count() && control = guide[act].Count()) ? "Red" : (json.dump(guide_last[act][control]) != json.dump(guide[act][control]) ? "Blue" : "Black")), % cHWND
+			GuiControl, % "+c" (!areaID && !InStr(text, "act-tracker") && !(act = guide.Count() && control = guide[act].Count()) ? "Red" : (json.dump(guide_last[act][control]) != json.dump(guide[act][control]) ? "Blue" : "Black")), % cHWND
 			GuiControl, % "movedraw", % cHWND
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.save_text
 			GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.leveltracker_editor.save
@@ -1106,9 +1106,9 @@ Leveltracker_GuideEditor(cHWND)
 	vars.hwnd.leveltracker_editor["font_1minus"] := hwnd, vars.hwnd.leveltracker_editor["font_1reset"] := hwnd1, vars.hwnd.leveltracker_editor["font_1plus"] := hwnd2
 
 	Gui, %GUI_name%: Add, Text, % "ys x+" margin, % Lang_Trans("lvltracker_editor_acts") " "
-	For index, vAct in (vars.poe_version ? [1, 2, 3, 1, 2, 3] : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+	For index, vAct in (vars.poe_version ? [1, 2, 3, 4, "i", "ii", "iii"] : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 	{
-		Gui, %GUI_name%: Add, Text, % "ys Border Center BackgroundTrans gLeveltracker_GuideEditor HWNDhwnd" (index = 1 ? " x+0" : "") " w" settings.leveltracker.fWidth_editor * 2.5 (vars.poe_version && A_Index > 3 ? " cFF8000" : ""), % vAct
+		Gui, %GUI_name%: Add, Text, % "ys Border Center BackgroundTrans gLeveltracker_GuideEditor HWNDhwnd" (index = 1 ? " x+0" : "") " w" settings.leveltracker.fWidth_editor * 2.5 (vars.poe_version && A_Index > 4 ? " cFF8000" : ""), % vAct
 		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" (vars.leveltracker_editor.act = index ? "202060" : "Black"), 100
 		vars.hwnd.leveltracker_editor["act_" index] := hwnd
 	}
@@ -1377,7 +1377,7 @@ Leveltracker_Import(profile := "")
 		Return
 	}
 	Else
-		Loop, % vars.poe_version ? 6 : 10
+		Loop, % vars.poe_version ? 7 : 10
 			dump .= (!dump ? "" : "`n") "act" A_Index "=""" json.dump(object[A_Index]) """"
 
 	If FileExist("ini" vars.poe_version "\leveling guide" profile ".ini")
@@ -1412,7 +1412,7 @@ Leveltracker_Load(profile := "")
 	If !profile
 		vars.leveltracker.guide.progress := !Blank(check := ini.progress.pages) ? check : 0
 
-	Loop, % vars.poe_version ? 6 : 10
+	Loop, % vars.poe_version ? 7 : 10
 		For iPage, oPage in json.load(ini.guide["act" A_Index])
 			import.Push(oPage)
 	vars.leveltracker.guide.import := LLK_CloneObject(import)
@@ -3223,7 +3223,7 @@ Leveltracker_Timer(mode := "")
 				Leveltracker_ProgressReset(settings.leveltracker.profile)
 				IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, name
 				IniWrite, 0, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, time
-				Loop, % vars.poe_version ? 6 : 10
+				Loop, % vars.poe_version ? 7 : 10
 					IniWrite, % "", % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, act %A_Index%
 				vars.leveltracker.Delete("timer")
 				Init_leveltracker(), Leveltracker_Progress(1)

@@ -227,224 +227,26 @@
   ],
   [
     {
-      "id": "c_g1_1",
-      "name": "the riverbank"
-    },
-    {
-      "id": "c_g1_town",
-      "name": "clearfell encampment"
-    },
-    {
-      "id": "c_g1_2",
-      "name": "clearfell"
-    },
-    {
-      "id": "c_g1_3",
-      "name": "mud burrow"
-    },
-    {
-      "id": "c_g1_4",
-      "name": "the grelwood"
-    },
-    {
-      "id": "c_g1_5",
-      "name": "the red vale"
-    },
-    {
-      "id": "c_g1_6",
-      "name": "the grim tangle"
-    },
-    {
-      "id": "c_g1_7",
-      "name": "cemetery of the eternals"
-    },
-    {
-      "id": "c_g1_8",
-      "name": "mausoleum of the praetor"
-    },
-    {
-      "id": "c_g1_9",
-      "name": "tomb of the consort"
-    },
-    {
-      "id": "c_g1_10",
-      "name": "root hollow"
-    },
-    {
-      "id": "c_g1_11",
-      "name": "hunting grounds"
-    },
-    {
-      "id": "c_g1_12",
-      "name": "freythorn"
-    },
-    {
-      "id": "c_g1_13_1",
-      "name": "ogham farmlands"
-    },
-    {
-      "id": "c_g1_13_2",
-      "name": "ogham village"
-    },
-    {
-      "id": "c_g1_14",
-      "name": "the manor ramparts"
-    },
-    {
-      "id": "c_g1_15",
-      "name": "ogham manor"
+      "id": "g4_1",
+      "name": "a4 placeholder"
     }
   ],
   [
     {
-      "id": "c_g2_1",
-      "name": "vastiri outskirts"
-    },
-    {
-      "id": "c_g2_town",
-      "name": "the ardura caravan"
-    },
-    {
-      "id": "c_g2_2",
-      "name": "traitor's passage"
-    },
-    {
-      "id": "c_g2_3a",
-      "name": "the halani gates"
-    },
-    {
-      "id": "c_g2_3",
-      "name": "the halani gates"
-    },
-    {
-      "id": "c_g2_4_1",
-      "name": "keth"
-    },
-    {
-      "id": "c_g2_4_2",
-      "name": "the lost city"
-    },
-    {
-      "id": "c_g2_4_3",
-      "name": "buried shrines"
-    },
-    {
-      "id": "c_g2_5_1",
-      "name": "mastodon badlands"
-    },
-    {
-      "id": "c_g2_5_2",
-      "name": "the bone pits"
-    },
-    {
-      "id": "c_g2_6",
-      "name": "valley of the titans"
-    },
-    {
-      "id": "c_g2_7",
-      "name": "the titan grotto"
-    },
-    {
-      "id": "c_g2_8",
-      "name": "deshar"
-    },
-    {
-      "id": "c_g2_9_1",
-      "name": "path of mourning"
-    },
-    {
-      "id": "c_g2_9_2",
-      "name": "the spires of deshar"
-    },
-    {
-      "id": "c_g2_10_1",
-      "name": "mawdun quarry"
-    },
-    {
-      "id": "c_g2_10_2",
-      "name": "mawdun mine"
-    },
-    {
-      "id": "c_g2_12_1",
-      "name": "the dreadnought"
-    },
-    {
-      "id": "c_g2_12_2",
-      "name": "dreadnought vanguard"
+      "id": "g5_1",
+      "name": "i placeholder"
     }
   ],
   [
     {
-      "id": "c_g3_1",
-      "name": "sandswept marsh"
-    },
+      "id": "g6_1",
+      "name": "ii placeholder"
+    }
+  ],
+  [
     {
-      "id": "c_g3_town",
-      "name": "ziggurat encampment"
-    },
-    {
-      "id": "c_g3_2_1",
-      "name": "infested barrens"
-    },
-    {
-      "id": "c_g3_2_2",
-      "name": "the matlan waterways"
-    },
-    {
-      "id": "c_g3_4",
-      "name": "the venom crypts"
-    },
-    {
-      "id": "c_g3_3",
-      "name": "jungle ruins"
-    },
-    {
-      "id": "c_g3_5",
-      "name": "chimeral wetlands"
-    },
-    {
-      "id": "c_g3_6_1",
-      "name": "jiquani's machinarium"
-    },
-    {
-      "id": "c_g3_6_2",
-      "name": "jiquani's sanctum"
-    },
-    {
-      "id": "c_g3_7",
-      "name": "the azak bog"
-    },
-    {
-      "id": "c_g3_8",
-      "name": "the drowned city"
-    },
-    {
-      "id": "c_g3_9",
-      "name": "the molten vault"
-    },
-    {
-      "id": "c_g3_10_airlock",
-      "name": "the temple of chaos"
-    },
-    {
-      "id": "c_g3_11",
-      "name": "apex of filth"
-    },
-    {
-      "id": "c_g3_12",
-      "name": "temple of kopec"
-    },
-    {
-      "id": "c_g3_14",
-      "name": "utzaal"
-    },
-    {
-      "id": "c_g3_16",
-      "name": "aggorat"
-    },
-    {
-      "id": "c_g3_17",
-      "name": "the black chambers"
+      "id": "g7_1",
+      "name": "iii placeholder"
     }
   ],
   [
