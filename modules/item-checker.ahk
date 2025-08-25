@@ -525,7 +525,7 @@ Iteminfo_Stats2()
 	local
 	global vars, settings, db
 
-	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}, item.stats := {}, item.quality := 0
+	clip := vars.iteminfo.clipboard, item := vars.iteminfo.item, defenses := {}, item.stats := {}, item.quality := item.sockets := 0
 	Loop, Parse, clip, `n, `r ;get certain values and store them
 	{
 		If InStr(A_LoopField, Lang_Trans("items_quality"))
@@ -538,7 +538,9 @@ Iteminfo_Stats2()
 			defenses.energy := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
 		Else If InStr(A_LoopField, Lang_Trans("items_ward"))
 			defenses.ward := StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), " (augmented)")
-		Else If InStr(A_LoopField, Lang_Trans("items_requirements"))
+		Else If InStr(A_LoopField, Lang_Trans("items_sockets"))
+			item.sockets := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), item.sockets := StrLen(StrReplace(item.sockets, " "))
+		Else If InStr(A_LoopField, Lang_Trans("items_level"))
 			Break
 	}
 
@@ -630,12 +632,9 @@ Iteminfo_Stats2()
 		Loop 2
 			phys%A_Index% := Round((phys%A_Index% / ((100 + phys_inc + phys_rune_inc)/100)) / ((100 + item.quality)/100))
 
-		If RegExMatch(item.class, "i)quarterstav|two.hand|bow")
-			item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
-				, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)
-				, Round((phys1 * (150 + phys_inc)/100 + phys2 * (150 + phys_inc)/100)/2 * 1.2 * speed)]}
-		Else item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)
-				, Round((phys1 * (125 + phys_inc)/100 + phys2 * (125 + phys_inc)/100)/2 * 1.2 * speed)]}
+		item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * 1.2 * speed)]}
+		Loop, % Max(RegExMatch(item.class, "i)quarterstav|two.hand|bow") ? 2 : 1, item.sockets)
+			item.damage.phys.Push(Round((phys1 * (100 + (A_Index * 18) + phys_inc)/100 + phys2 * (100 + (A_Index * 18) + phys_inc)/100)/2 * 1.2 * speed))
 
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
 		item.dps0 := {"cdps": cdps, "pdps": pdps, "edps": edps0, "speed": speed, "dps": pdps + edps0 + cdps} ;secondary object for dps-comparison that uses a very rigid format (ini-format)
@@ -698,9 +697,11 @@ Iteminfo_Stats2()
 
 		item.defenses := {}
 		For index, def in defs
-			If RegExMatch(item.class, "i)body.armour")
-				item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2), Round(defenses[def] * (%def%_inc + 125)/100 * 1.2), Round(defenses[def] * (%def%_inc + 150)/100 * 1.2)]
-			Else item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2), Round(defenses[def] * (%def%_inc + 125)/100 * 1.2)]
+		{
+			item.defenses[def] := [Round(defenses[def] * (%def%_inc + 100)/100 * 1.2)]
+			Loop, % Max(RegExMatch(item.class, "i)body.armour") ? 2 : 1, item.sockets)
+				item.defenses[def].Push(Round(defenses[def] * (%def%_inc + (100 + A_Index * 18))/100 * 1.2))
+		}
 	}
 
 	If (item.quality >= 25)
@@ -1833,6 +1834,36 @@ Iteminfo_GUI()
 	;///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	;////////////////////////////////////////// unique drop-tier and roll-health
 
+	If qual_scaling && !InStr(item.name, "morior")
+	{
+		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
+		sockets := Max(RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1, item.sockets)
+		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" Max(UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count(), 0) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
+		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2", "greater_iron3", "greater_iron4"]
+		{
+			If (outer > sockets + 1) || (outer = 2 && sockets = 4 && object.Count() > 1)
+				Continue
+			If !vars.pics.iteminfo[currency]
+				vars.pics.iteminfo[currency] := LLK_ImageCache("img\GUI\item info\" currency ".png",, UI.hSegment - 2)
+
+			Gui, %GUI_name%: Add, Picture, % "ys Border", % "HBitmap:*" vars.pics.iteminfo[currency]
+			If (item.type = "defense")
+			{
+				For index, def in ["armour", "evasion", "energy"]
+					If item.defenses[def]
+					{
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.defenses[def][outer]
+						Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" colors[def], 100
+					}
+			}
+			Else
+				For index, dmg in ["phys"]
+					If item.damage[dmg]
+						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.damage[dmg][outer]
+		}
+
+	}
+
 	If unique
 	{
 		If !IsObject(db.item_drops)
@@ -1871,37 +1902,6 @@ Iteminfo_GUI()
 			Gui, %GUI_name%: Add, Text, % "ys Border Center BackgroundTrans w" UI.wSegment " c" (color = "White" && roll_stats.Count() ? "Red" : "Black"), % roll_stats_average
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack HWNDhwnd_roll_percent_total_back c" (!roll_stats.Count() ? tColors[0] : color), 100
 		}
-	}
-
-	If qual_scaling && !InStr(item.name, "morior")
-	{
-		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
-		sockets := RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1
-		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" (UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count()) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
-		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2"]
-		{
-			If (outer > sockets + 1)
-				Continue
-			If !vars.pics.iteminfo[currency]
-				vars.pics.iteminfo[currency] := LLK_ImageCache("img\GUI\item info\" currency ".png")
-
-			Gui, %GUI_name%: Add, Picture, % "ys hp-2 w-1 Border", % "HBitmap:*" vars.pics.iteminfo[currency]
-
-			If (item.type = "defense")
-			{
-				For index, def in ["armour", "evasion", "energy"]
-					If item.defenses[def]
-					{
-						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.defenses[def][outer]
-						Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" colors[def], 100
-					}
-			}
-			Else
-				For index, dmg in ["phys"]
-					If item.damage[dmg]
-						Gui, %GUI_name%: Add, Text, % "ys hp Border BackgroundTrans Center w" UI.wSegment, % item.damage[dmg][outer]
-		}
-
 	}
 
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000" ;show the GUI outside the monitor's area to get dimensions

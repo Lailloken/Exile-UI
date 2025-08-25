@@ -289,6 +289,7 @@
 
 		items_map_waystonechance	=	"Waystone Drop Chance:"					;## PoE2 only (whole block)
 		items_map_revives		=	"Revives Available:"
+		items_sockets			=	"Sockets:"
 
 
 		items_maptier			=	"Map Tier:"						;## PoE1 only (whole block)
