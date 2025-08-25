@@ -2818,7 +2818,7 @@ Iteminfo_ModRollCheck(mod, alt_mode := 0) ;parses a mod's text and returns an ar
 
 	Loop, Parse, % StrReplace(mod, "non-") " " ;parse the mod-text character by character (the added space is a workaround for languages with different format, e.g. Japanese: Accuracy +X, where parsing would end prematurely due to EoL)
 	{
-		If !LLK_IsType(A_LoopField, "number") && !InStr("(-).", A_LoopField) ;if current character is not a number or numeric sign
+		If !LLK_IsType(A_LoopField, "number") && !InStr("(-+).", A_LoopField) ;if current character is not a number or numeric sign
 		{
 			If parse ;if numbers have already been parsed from the string, push the number-string into the array and 'open a new slot'
 			{
@@ -2840,6 +2840,7 @@ Iteminfo_ModRollCheck(mod, alt_mode := 0) ;parses a mod's text and returns an ar
 		Else min := InStr(min, ")") ? SubStr(min, 1, InStr(min, "-") - 1) : min
 		current := InStr(val, "(") ? SubStr(val, 1, InStr(val, "(") - 1) : val ;declare the current roll
 		max := InStr(val, "(") ? StrReplace(val, current "(" min "-") : val , max := StrReplace(max, ")") ;declare the max-roll
+		min := StrReplace(min, "+"), current := StrReplace(current, "+"), max := StrReplace(max, "+")
 		If !IsNumber(min + current + max)
 			Return ["", "", ""]
 		sum_min += min, sum_current += current, sum_max += max ;if the mod as multiple ranges, sum up the values
