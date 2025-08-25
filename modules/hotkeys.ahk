@@ -97,9 +97,9 @@ Hotkeys_Alt()
 				If Mapinfo_Parse(1, vars.poe_version)
 					Mapinfo_GUI()
 			}
-			Else If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "Distilled\s.*|.*\sOil")
+			Else If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "Liquid\s.*|.*\sOil")
 				Anoints("stock")
-			Else If settings.features.anoints && RegExMatch(vars.omnikey.item.name, "Distilled\s.*|.*\sOil")
+			Else If settings.features.anoints && RegExMatch(vars.omnikey.item.name, "Liquid\s.*|.*\sOil")
 				Anoints()
 			Else If settings.features.iteminfo && !settings.iteminfo.omnikey
 				Iteminfo()
