@@ -264,7 +264,7 @@ Log_Get(log_text, data)
 				%data% := (A_Index = 1) ? "" : %data%, %data% .= (A_Index != 1 && (SubStr(%data%, 0) != " ") && RegExMatch(A_LoopField, "[A-Z]") ? " " : "") . A_LoopField
 
 			If !InStr(%data%, "savannah")
-				%data% := StrReplace(%data%, "savanna", "savannah")
+				%data% := StrReplace(%data%, "savanna", "savannah"), %data% := StrReplace(%data%, "abyss", "marrow")
 			If InStr(%data%, "citadel")
 				For index, val in ["stone", "iron", "copper"]
 					If InStr(%data%, val) && Lang_Trans("maps_" val "_citadel")

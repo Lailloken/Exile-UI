@@ -121,6 +121,10 @@
       "name": "lost towers",
       "boss": "chetza"
     },
+    "marrow": {
+      "name": "marrow",
+      "boss": "tor gul"
+    },
     "megalith": {
       "name": "the phaaryl megalith",
       "boss": "megalith bosses"

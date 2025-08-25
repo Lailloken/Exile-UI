@@ -1164,7 +1164,7 @@ Maptracker_LogsLoad()
 			If (key = "mapinfo") && (SubStr(val, 2, 1) = "m")
 				val := StrReplace(val, "m", "x",, 1)
 			If (key = "map") && !InStr(val, "savannah")
-				val := StrReplace(val, "savanna", "savannah"), val := StrReplace(val, "gothic city", "grimhaven")
+				val := StrReplace(val, "savanna", "savannah"), val := StrReplace(val, "gothic city", "grimhaven"), val := StrReplace(val, "abyss", "marrow")
 			If (key = "map") && InStr(val, " citadel") && !InStr(val, "the ")
 				For k, v in {"copper citadel": "the copper citadel", "iron citadel": "the iron citadel", "stone citadel": "the stone citadel"}
 					val := StrReplace(val, k, v)
