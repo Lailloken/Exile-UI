@@ -137,11 +137,8 @@
 
 
 ;## these strings are shown in the map-info panel
-		maps_stats_full			=	"mods#quantity#rarity#pack size#maps#scarabs#currency"		;## PoE1 only, map rolls/multipliers
-		maps_stats			=	"x#q#r#p#m#s#c"							;## PoE1 only, x = multiplication-sign, see above for the rest
-
-
-		maps_waystones			=	"waystones:"			;## PoE2 only, replaces <Waystone Drop Chance>
+		maps_stats_full			=	"mods#quantity#rarity#pack size#maps#scarabs#currency#waystones"		;## map rolls/multipliers
+		maps_stats			=	"x#q#r#p#m#s#c#w"							;## x = multiplication-sign, see above for the rest
 
 
 
@@ -295,7 +292,9 @@
 		items_maptier			=	"Map Tier:"						;## PoE1 only (whole block)
 		items_mapreward			=	"Reward:"						;## T17 valdo maps have specific rewards
 		items_mapreward_foil		=	"Foil "							;## also valdo rewards
-		items_mapquantity		=	"Item Quantity:"
+
+
+		items_mapquantity		=	"Item Quantity:"					;## PoE1 and PoE2
 		items_maprarity			=	"Item Rarity:"
 		items_mappacksize		=	"Monster Pack Size:"
 

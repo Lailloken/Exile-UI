@@ -2593,31 +2593,34 @@ Settings_mapinfo()
 			Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/(A_Index = 1 ? 2 : 4) " Center Border gSettings_mapinfo2 HWNDhwnd c"settings.mapinfo.eColor[A_Index], % " " A_Index " "
 			vars.hwnd.settings["colorlogbook_"A_Index] := vars.hwnd.help_tooltips["settings_mapinfo logbooks"handle1] := hwnd, handle1 .= "|"
 		}
+	}
 
-		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_mapinfo2 HWNDhwnd Checked" settings.mapinfo.roll_highlight, % Lang_Trans("m_mapinfo_roll_highlight")
-		vars.hwnd.settings.roll_highlight := vars.hwnd.help_tooltips["settings_mapinfo roll highlight"] := hwnd, handle := ""
-		ControlGetPos, xControl,,,,, ahk_id %hwnd%
-		If settings.mapinfo.roll_highlight
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_mapinfo2 HWNDhwnd Checked" settings.mapinfo.roll_highlight, % Lang_Trans("m_mapinfo_roll_highlight")
+	vars.hwnd.settings.roll_highlight := vars.hwnd.help_tooltips["settings_mapinfo roll highlight"] := hwnd, handle := ""
+	ControlGetPos, xControl,,,,, ahk_id %hwnd%
+	If settings.mapinfo.roll_highlight
+	{
+		Gui, %GUI%: Add, Text, % "ys Center BackgroundTrans HWNDhwnd1 Border c" settings.mapinfo.roll_colors.1 " x+" settings.general.fWidth / 4, % " 117" Lang_Trans("maps_stats", 2) " "
+		Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd11 Border BackgroundBlack c" settings.mapinfo.roll_colors.2, 100
+		Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans gSettings_mapinfo2 HWNDhwnd2 Border w" settings.general.fWidth, % " "
+		Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd21 Border BackgroundBlack c" settings.mapinfo.roll_colors.1, % 100
+		Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans gSettings_mapinfo2 HWNDhwnd3 Border w" settings.general.fWidth, % " "
+		Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd31 Border BackgroundBlack c" settings.mapinfo.roll_colors.2, % 100
+		Loop 3
+			vars.hwnd.help_tooltips["settings_mapinfo roll colors" handle] := hwnd%A_Index%1, handle .= "|"
+		vars.hwnd.settings.rollcolor_text := hwnd1, vars.hwnd.settings.rollcolor_back := hwnd11
+		vars.hwnd.settings.rollcolor_1 := hwnd2, vars.hwnd.settings.rollcolor_11 := hwnd21
+		vars.hwnd.settings.rollcolor_2 := hwnd3, vars.hwnd.settings.rollcolor_21 := hwnd31, dimensions := [], handle := ""
+		For index, val in ["quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"]
 		{
-			Gui, %GUI%: Add, Text, % "ys Center BackgroundTrans HWNDhwnd1 Border c" settings.mapinfo.roll_colors.1 " x+" settings.general.fWidth / 4, % " 117" Lang_Trans("maps_stats", 2) " "
-			Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd11 Border BackgroundBlack c" settings.mapinfo.roll_colors.2, 100
-			Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans gSettings_mapinfo2 HWNDhwnd2 Border w" settings.general.fWidth, % " "
-			Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd21 Border BackgroundBlack c" settings.mapinfo.roll_colors.1, % 100
-			Gui, %GUI%: Add, Text, % "ys x+-1 BackgroundTrans gSettings_mapinfo2 HWNDhwnd3 Border w" settings.general.fWidth, % " "
-			Gui, %GUI%: Add, Progress, % "xp yp wp hp HWNDhwnd31 Border BackgroundBlack c" settings.mapinfo.roll_colors.2, % 100
-			Loop 3
-				vars.hwnd.help_tooltips["settings_mapinfo roll colors" handle] := hwnd%A_Index%1, handle .= "|"
-			vars.hwnd.settings.rollcolor_text := hwnd1, vars.hwnd.settings.rollcolor_back := hwnd11
-			vars.hwnd.settings.rollcolor_1 := hwnd2, vars.hwnd.settings.rollcolor_11 := hwnd21
-			vars.hwnd.settings.rollcolor_2 := hwnd3, vars.hwnd.settings.rollcolor_21 := hwnd31, dimensions := [], handle := ""
-			Loop 6
-			{
-				Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs Section" : "ys x+" settings.general.fWidth//2) " Center HWNDhwnd Border w" settings.general.fWidth * 2, % Lang_Trans("maps_stats", A_Index + 1)
-				Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-				Gui, %GUI%: Add, Edit, % "ys x+-1 hp Right cBlack Number HWNDhwnd1 Limit3 gSettings_mapinfo2 w" settings.general.fWidth * 3, % settings.mapinfo.roll_requirements[Lang_Trans("maps_stats_full", A_Index + 1)]
-				Gui, %GUI%: Font, % "s" settings.general.fSize
-				vars.hwnd.help_tooltips["settings_mapinfo requirements" handle] := hwnd, vars.hwnd.help_tooltips["settings_mapinfo requirements|" handle] := vars.hwnd.settings["thresh_" Lang_Trans("maps_stats_full", A_Index + 1)] := hwnd1, handle .= "||"
-			}
+			If vars.poe_version && LLK_IsBetween(index, 4, 6) || !vars.poe_version && (index = 7)
+				Continue
+			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs Section" : "ys x+" settings.general.fWidth//2) " Center HWNDhwnd Border w" settings.general.fWidth * 2, % Lang_Trans("maps_stats", A_Index + 1)
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+			Gui, %GUI%: Add, Edit, % "ys x+-1 hp Right cBlack Number HWNDhwnd1 Limit3 gSettings_mapinfo2 w" settings.general.fWidth * 3, % settings.mapinfo.roll_requirements[val]
+			Gui, %GUI%: Font, % "s" settings.general.fSize
+			vars.hwnd.help_tooltips["settings_mapinfo requirements" vars.poe_version . handle] := hwnd
+			vars.hwnd.help_tooltips["settings_mapinfo requirements" vars.poe_version "|" handle] := vars.hwnd.settings["thresh_" val] := hwnd1, handle .= "||"
 		}
 	}
 

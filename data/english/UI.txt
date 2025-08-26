@@ -479,8 +479,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required when using the map-info feature
-		mapinfo_mod			=	"mods:"		;## as in map mod
-		mapinfo_rip			=	"rips:"		;## as in "rest in peace", used here as a replacement for revives on waystones
+		mapinfo_rip			=	"rips"		;## as in "rest in peace", used here to replace "revives available: x" with "x rips"
 
 
 

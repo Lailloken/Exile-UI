@@ -688,8 +688,12 @@
       "first button: text color\nsecond button: background color"
     ],
     "mapinfo requirements": [
-      "specify required/desired minimum values for each roll",
+      "specify desired minimum values for each roll",
       "quantity, rarity, pack size, maps, scarabs, currency"
+    ],
+    "mapinfo requirements 2": [
+      "specify desired minimum values for each roll",
+      "quantity, rarity, pack size, waystones"
     ],
     "mapinfo mod settings": [
       "below, you can customize the tiering of specific map mods",
