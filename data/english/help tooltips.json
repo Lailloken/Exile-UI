@@ -103,7 +103,8 @@
       "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
     ],
     "actdecoder generic": [
-      "disables sub-layout selections and only shows very basic layouts"
+      "disables sub-layout selections and only shows basic layouts",
+      "credits: layouts provided by the campaign codex discord"
     ],
     "actdecoder layouts opacity": [
       "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
@@ -481,7 +482,7 @@
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
-      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
       "(hint)__",
       "when handing in quests, (img:skip) means the npc has quests queued up",
       "(hint)__ these don't have relevant rewards and can be skipped",
@@ -495,11 +496,11 @@
       "each line has one or more steps you need to complete",
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
-      "(color:FF00FF)x_tasks: some lines have x sub-tasks you need to complete",
-      "(hint)__ they can be completed in random order or simultaneously (zone-dependent)",
+      "(color:FF00FF)2_tasks: some lines have x sub-tasks you need to complete",
+      "(hint)__ they can be completed in random order or at the same time (zone-dependent)",
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
-      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle",
+      "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
       "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
       "(hint)__",

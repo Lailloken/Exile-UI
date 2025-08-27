@@ -934,6 +934,7 @@ Leveltracker_GuideEditor(cHWND)
 			Gui, guidepreview_back: Show, % "NA x" vars.general.xMouse - wPreview0 " y" vars.general.yMouse - hPreview0 " w" wPreview0 " h" hPreview0
 			Gui, guidepreview_main: Show, % "NA x" vars.general.xMouse - wPreview0 " y" vars.general.yMouse - hPreview0 " w" wPreview0 " h" hPreview0
 			KeyWait, LButton
+			KeyWait, RButton
 			Gui, guidepreview_back: destroy
 			Gui, guidepreview_main: destroy
 			Return
