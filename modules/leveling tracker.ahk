@@ -1810,7 +1810,15 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	}
 
 	For index_raw, step in guide.group1
+	{
+		trace_optional := 0
+		While InStr(guide.group1[index_raw - trace_optional], "(hint)__")
+			trace_optional += 1
+
+		If !preview && !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+			Continue
 		bullets += (InStr(step, "(hint)") ? 0 : 1)
+	}
 	bullets := (bullets > 1 ? 1 : 0)
 
 	Loop 2 ;create guide panel twice to check its width and correct it if necessary
@@ -2883,7 +2891,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 
 	If vars.log.level
 		exp_info := vars.poe_version ? (RegExMatch(vars.log.areaID, "i)^hideout|_town$") ? "" : Lang_Trans("lvltracker_exp") " " (level_diff > 0 ? "+" : "") level_diff) : Leveltracker_Experience("", 1)
-	color := !vars.poe_version ? (!InStr(exp_info, "100%") ? "Red" : "Lime") : (Abs(level_diff) > 3 ? "Red" : Abs(level_diff) > 2 ? "FF8000" : "Lime")
+	color := !vars.poe_version ? (!InStr(exp_info, "100%") ? "Red" : "Lime") : (Abs(level_diff) > 5 ? "Red" : (Abs(level_diff) > 3 ? "FF8000" : (Abs(level_diff) > 2 ? "Yellow" : "Lime")))
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "?"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % ">"
