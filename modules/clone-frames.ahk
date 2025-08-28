@@ -253,7 +253,7 @@ Cloneframes_Show()
 				vars.hwnd.cloneframe_borders := {}
 			If !vars.hwnd.cloneframe_borders.main
 			{
-				Gui, cloneframe_border: New, -Caption +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs HWNDhwnd, LLK-UI: Clone-Frames Borders ;source-frame with two colored corners
+				Gui, cloneframe_border: New, -DPIScale -Caption +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs HWNDhwnd, LLK-UI: Clone-Frames Borders ;source-frame with two colored corners
 				Gui, cloneframe_border: Margin, 4, 4
 				Gui, cloneframe_border: Color, Silver
 				WinSet, TransColor, Black
@@ -272,7 +272,7 @@ Cloneframes_Show()
 				Gui, cloneframe_border: Add, Picture, x4 y4 HWNDhwnd, img\GUI\square_black.png
 				vars.hwnd.cloneframe_borders.trans := hwnd
 
-				Gui, cloneframe_border2: New, -Caption +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs HWNDhwnd ;GUI that highlights the top-left corner of the target-frame
+				Gui, cloneframe_border2: New, -DPIScale -Caption +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs HWNDhwnd ;GUI that highlights the top-left corner of the target-frame
 				Gui, cloneframe_border2: Margin, 4, 4
 				Gui, cloneframe_border2: Color, Black
 				WinSet, TransColor, Black
