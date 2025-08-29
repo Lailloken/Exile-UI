@@ -45,7 +45,7 @@
     ],
     [
       "optional: (img:support) <knight> in (img:checkpoint) (color:aaaaaa)haunted_treasure",
-      "find & kill (img:checkpoint) asinia",
+      "kill (img:checkpoint) asinia for (quest:key_piece)",
       "enter areaidg1_7 ;; cemetery of the eternals"
     ],
     [
@@ -53,7 +53,7 @@
       "enter (img:checkpoint) areaidg1_8 ;; mausoleum of the praetor"
     ],
     [
-      "find & kill (img:checkpoint) draven",
+      "kill (img:checkpoint) draven for (quest:key_piece)",
       "enter areaidg1_7 ;; cemetery of the eternals"
     ],
     [
@@ -145,7 +145,7 @@
       ],
       "lines": [
         "(img:quest_2) renly: (quest:salvage_bench)",
-        "(img:quest_2) leitis: (img:support)",
+        "(img:quest_2) leitis: (img:skill)",
         "(img:quest_2) hooded one: areaidg2_1 ;; vastiri outskirts"
       ]
     },
