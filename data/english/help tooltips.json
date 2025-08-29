@@ -1211,6 +1211,15 @@
       "pages with matching text will be highlighted green on the page-selection bar"
     ]
   },
+  "leveltrackergemcutting": {
+    "general": [
+      "hold <alt> to temporarily hide the overlay",
+      "select a skill set from the list on the left",
+      "click <all x gems> to start an in-game search: this will include every gem of the matching type within every socket group",
+      "below that, there's a list of all the socket groups from the selected skill set: it only includes groups where the <main gem> matches the uncut gem you initially clicked on (skill or spirit)",
+      "click a socket group to start an in-game search: this will include every gem from the group"
+    ]
+  },
   "leveltrackergems": {
     "general": [
       "adjust when and/or whether to pick up specific gems during the campaign",

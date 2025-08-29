@@ -39,7 +39,10 @@ DB_Load(database)
 			, "trees": {"supported": ["3_25", "3_25_alternate", "3_26"]}}
 		Else
 			db.leveltracker := {"areaIDs": {}, "areas": json.load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas 2.json") ? lang : "english") "\[leveltracker] areas 2.json"))
-			, "trees": {"supported": ["0_1", "0_2"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
+			, "trees": {"supported": ["0_2", "0_3"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
+
+		If db.leveltracker.gems.HasKey("renamed")
+			db.leveltracker.renamed_gems := LLK_CloneObject(db.leveltracker.gems.renamed), db.leveltracker.gems.Delete("renamed")
 
 		For iAct, aAct in db.leveltracker.areas
 			For iArea, oArea in aAct
@@ -47,9 +50,10 @@ DB_Load(database)
 					db.leveltracker.areaIDs[oArea.id] := oArea.map_name ? {"name": oArea.name, "mapname": oArea.map_name, "craft": oArea.crafting_recipe} : {"name": oArea.name, "craft": oArea.crafting_recipe}
 				Else db.leveltracker.areaIDs[oArea.id] := oArea.map_name ? {"name": oArea.name, "mapname": oArea.map_name} : {"name": oArea.name}
 
-		For gem in db.leveltracker.gems
-			If !RegExMatch(gem, "i)flask|quest")
-				db.leveltracker.gems[gem].quests["fallen from grace"] := {"vendor": []}
+		If !vars.poe_version
+			For gem in db.leveltracker.gems
+				If !RegExMatch(gem, "i)flask|quest")
+					db.leveltracker.gems[gem].quests["fallen from grace"] := {"vendor": []}
 	}
 	Else If (database = "maps")
 		db.maps := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\maps" vars.poe_version ".json") ? settings.general.lang_client : "english") "\maps" vars.poe_version ".json",, "65001"))

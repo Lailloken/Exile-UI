@@ -104,6 +104,9 @@
 	settings.leveltracker.pobtree_color2 := !Blank(check := ini.settings["pob-tree color unspec"]) ? (check = "800080" ? "810081" : check) : "FF0000"
 	settings.leveltracker.pobtree_opacity := !Blank(check := ini.settings["pob-tree opacity"]) ? check : 100
 
+	settings.leveltracker_gemcutting := {}
+	settings.leveltracker_gemcutting.fSize := !Blank(check := ini.gemcutting["font-size"]) ? check : settings.leveltracker.fSize
+
 	If settings.leveltracker.hotkeys
 	{
 		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main)
@@ -1959,6 +1962,170 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 		Gui, %name_back%: Show, NA x10000 y10000
 		WinGetPos, x, y, width, height, % "ahk_id " leveltracker_main
 	}
+}
+
+Leveltracker_PobGemCutting(cHWND := "")
+{
+	local
+	global vars, settings, db
+	static toggle := 0, profile0 := 0, skillset0 := 0, fSize := 0, stat_colors := ["d81c1c", "00bf40", "0077FF", "White"]
+
+	profile := settings.leveltracker.profile, pob := vars.leveltracker["pob" profile]
+	If !pob.gems.Count()
+	{
+		LLK_ToolTip(Lang_Trans("lvltracker_gemfail"), 1,,,, "Red")
+		Return
+	}
+	Else If (cHWND = "close")
+	{
+		LLK_Overlay(vars.hwnd.leveltracker_gemcutting.main, "destroy"), vars.hwnd.leveltracker_gemcutting := ""
+		Return
+	}
+	Else If (cHWND = "hide")
+	{
+		WinSet, TransColor, Purple 0, % "ahk_id " (hwnd := vars.hwnd.leveltracker_gemcutting.main)
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		vars.hwnd.leveltracker_gemcutting.main := ""
+		KeyWait, ALT
+		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+		vars.hwnd.leveltracker_gemcutting.main := hwnd
+		WinSet, TransColor, Purple 255, % "ahk_id " vars.hwnd.leveltracker_gemcutting.main
+		Return
+	}
+
+	If !IsObject(db.leveltracker)
+		DB_Load("leveltracker")
+
+	If !IsObject(vars.leveltracker_gemcutting)
+		vars.leveltracker_gemcutting := {"skillset": 1}
+
+	If cHWND
+		check := LLK_HasVal(vars.hwnd.leveltracker_gemcutting, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+
+	If InStr(check, "skillset_")
+		skillset := vars.leveltracker_gemcutting.skillset := control
+	Else If InStr(check, "skillgroup_")
+	{
+		Clipboard := "^(" vars.leveltracker_gemcutting.regex[control] ")$"
+		KeyWait, LButton
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+		SendInput, % "^{f}"
+		Sleep, 100
+		SendInput, % "^{a}^{v}{Enter}"
+		Return
+	}
+	Else If InStr(check, "font_")
+	{
+		fSize := settings.leveltracker_gemcutting.fSize
+		If (control = "reset")
+			settings.leveltracker_gemcutting.fSize := settings.leveltracker.fSize
+		Else settings.leveltracker_gemcutting.fSize += (control = "minus" && fSize > 6 ? -1 : (control = "plus" ? 1 : 0))
+
+		IniWrite, % settings.leveltracker_gemcutting.fSize, % "ini" vars.poe_version "\leveling tracker.ini", gemcutting, font-size
+	}
+	Else If check
+	{
+		LLK_ToolTip("no action")
+		Return
+	}
+
+	skillset := vars.leveltracker_gemcutting.skillset, fSize := settings.leveltracker_gemcutting.fSize
+	For index, val in ["skill", "support", "spirit"]
+		If InStr(vars.omnikey.item.name, val)
+			gem_type := val
+
+	If (profile0 != profile) || (skillset0 != skillset) || (fSize0 != fSize)
+	{
+		LLK_FontDimensions(settings.leveltracker_gemcutting.fSize, height, width), settings.leveltracker_gemcutting.fWidth := width, settings.leveltracker_gemcutting.fHeight := height
+		dimensions := ["all skill gems", "all support gems", "all spirit gems"], profile0 := profile, skillset0 := skillset
+		For index, group in pob.gems[vars.leveltracker_gemcutting.skillset].groups
+			For index1, gem in group.gems
+				gem_trimmed := Trim(gem, " |–"), renamed := db.leveltracker.renamed_gems[gem_trimmed], dimensions.Push(renamed ? StrReplace(gem, gem_trimmed, renamed) : gem)
+		LLK_PanelDimensions(dimensions, settings.leveltracker_gemcutting.fSize, width, height)
+		vars.leveltracker_gemcutting.wSelection := width, vars.leveltracker_gemcutting.regex := []
+	}
+
+	toggle := !toggle, GUI_name := "leveltracker_gemcutting" toggle, wSelection := vars.leveltracker_gemcutting.wSelection
+	Gui, %GUI_name%: New, -DPIScale +LastFound +AlwaysOnTop -Caption +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_gemcutting
+	Gui, %GUI_name%: Color, Purple
+	WinSet, TransColor, Purple
+	Gui, %GUI_name%: Margin, 0, 0
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker_gemcutting.fSize " cWhite", % vars.system.font
+	hwnd_old := vars.hwnd.leveltracker_gemcutting.main, vars.hwnd.leveltracker_gemcutting := {"main": leveltracker_gemcutting}
+	
+	Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans Border", % " " Lang_Trans("global_font") " "
+	Gui, %GUI_name%: Add, Text, % "ys Center BackgroundTrans gLeveltracker_PobGemCutting Border HWNDhwnd w" settings.leveltracker_gemcutting.fWidth*2, % "–"
+	vars.hwnd.leveltracker_gemcutting.font_minus := hwnd
+	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Center BackgroundTrans gLeveltracker_PobGemCutting Border HWNDhwnd w" settings.leveltracker_gemcutting.fWidth*3, % settings.leveltracker_gemcutting.fSize
+	vars.hwnd.leveltracker_gemcutting.font_reset := hwnd
+	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Center BackgroundTrans gLeveltracker_PobGemCutting Border HWNDhwnd w" settings.leveltracker_gemcutting.fWidth*2, % "+"
+	vars.hwnd.leveltracker_gemcutting.font_plus := hwnd
+
+	ControlGetPos, xLast,, wLast, hLast,, % "ahk_id " hwnd
+	Gui, %GUI_name%: Add, Progress, % "Disabled x0 y0 w" xLast + wLast " hp BackgroundBlack", 0
+
+	For index, set in pob.gems
+	{
+		Gui, %GUI_name%: Add, Text, % "Section xs y+-1 Border BackgroundTrans HWNDhwnd gLeveltracker_PobGemCutting w" width, % " " set.title
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border c404040 BackgroundBlack", % (index = vars.leveltracker_gemcutting.skillset ? 100 : 0)
+		vars.hwnd.leveltracker_gemcutting["skillset_" index] := hwnd
+		If (index = 1)
+		{
+			Gui, %GUI_name%: Add, Pic, % "ys x+-1 hp-2 w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
+			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack HWNDhwnd", 0
+			vars.hwnd.help_tooltips["leveltrackergemcutting_general"] := hwnd
+		}
+	}
+
+	If gem_type
+	{
+		Gui, %GUI_name%: Add, Text, % "Section xs y+" settings.leveltracker_gemcutting.fHeight//4 " Border Center BackgroundTrans HWNDhwnd gLeveltracker_PobGemCutting cYellow w" width, % "all " gem_type " gems"
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border c404040 BackgroundBlack", 0
+		vars.hwnd.leveltracker_gemcutting["skillgroup_0"] := hwnd
+	}
+
+	groups := {}
+	For index, group in pob.gems[skillset].groups
+	{
+		handle := "", gem := Trim(group.gems.1, " |–")
+		If (gem_type != "support") && !db.leveltracker.gems[gem_type].HasKey(gem) || (gem_type = "support") && !LLK_HasVal(group.gems, "|", 1)
+			If (group.gems.Count() > 1)
+				Continue
+
+		renamed := db.leveltracker.renamed_gems[gem]
+		While groups[(renamed ? renamed : gem) . handle]
+			handle .= "|"
+		groups[(renamed ? renamed : gem) . handle] := LLK_CloneObject(group)
+	}
+
+	For key, group in groups
+	{
+		regex := "", index := A_Index
+		For index1, gem in group.gems
+		{
+			gem_trimmed := Trim(gem, " |–")
+			type := LLK_HasKey(db.leveltracker.gems, gem_trimmed,,,, 1), color := (IsNumber(db.leveltracker.gems[type][gem_trimmed].2) ? stat_colors[db.leveltracker.gems[type][gem_trimmed].2] : "White")
+			renamed := db.leveltracker.renamed_gems[gem_trimmed]
+			Gui, %GUI_name%: Add, Text, % (index1 = 1 ? "y+" settings.leveltracker_gemcutting.fHeight//4 + 1 " " : "y+-" Ceil(settings.leveltracker_gemcutting.fHeight/5)) "xs x1 BackgroundTrans HWNDhwnd w" width - 2 " c" color, % " " (renamed ? StrReplace(gem, gem_trimmed, renamed) : gem)
+			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", 0
+			If (index1 = 1)
+				ControlGetPos, xFirst, yFirst,,,, % "ahk_id " hwnd
+			ControlGetPos, xLast, yLast,, hLast,, % "ahk_id " hwnd
+			regex .= (regex ? "|" : "") . StrReplace(renamed ? renamed : gem_trimmed, " ", ".")
+			If (type = gem_type)
+				regex_all .= (regex_all ? "|" : "") . StrReplace(renamed ? renamed : gem_trimmed, " ", ".")
+		}
+		vars.leveltracker_gemcutting.regex.Push(regex)
+		Gui, %GUI_name%: Add, Text, % "Section Border x0 HWNDhwnd gLeveltracker_PobGemCutting y" yFirst - 1 " w" width " h" (yLast + hLast) - yFirst + 2
+		vars.hwnd.leveltracker_gemcutting["skillgroup_" index] := hwnd
+	}
+	vars.leveltracker_gemcutting.regex.0 := regex_all
+
+	;Gui, %GUI_name%: Show, NA x10000 y10000
+	;WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " leveltracker_gemcutting
+	Gui, %GUI_name%: Show, % "NA x" vars.client.x + vars.client.w/2 - Ceil(vars.client.h * 0.535) - wSelection " y" vars.client.y + vars.client.h * 0.1125 - settings.leveltracker_gemcutting.fHeight
+	LLK_Overlay(leveltracker_gemcutting, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
 Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", regex := 0)

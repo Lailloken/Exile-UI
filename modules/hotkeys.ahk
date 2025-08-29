@@ -148,6 +148,8 @@ Hotkeys_ESC()
 		Notepad("save"), LLK_Overlay(vars.hwnd.notepad.main, "destroy"), vars.hwnd.notepad.main := ""
 	Else If vars.hwnd.exchange.main
 		Exchange("close")
+	Else If vars.hwnd.leveltracker_gemcutting.main
+		Leveltracker_PobGemCutting("close")
 	Else If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
 		LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := vars.leveltracker.gemlinks.drag := ""
 	Else If vars.hwnd.anoints.main
@@ -488,6 +490,9 @@ Hotkeys_Tab()
 
 #If vars.hwnd.exchange.main && WinExist("ahk_id " vars.hwnd.exchange.main)
 ~SC0038::Exchange("hide")
+
+#If vars.hwnd.leveltracker_gemcutting.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemcutting.main)
+~SC0038::Leveltracker_PobGemCutting("hide")
 
 #If vars.hwnd.exchange.main && (vars.general.wMouse = vars.hwnd.exchange.main)
 *WheelUp::Exchange("hotkey", "WheelUp")

@@ -397,7 +397,8 @@
 		lvltracker_deleteall		=	"del all"
 
 
-		lvltracker_gemnotes		=	"not included in pob"
+		lvltracker_gemnotes		=	"not included in PoB"
+		lvltracker_gemfail		=	"no gems in PoB"
 		lvltracker_gemregex		=	"regex copied"
 		lvltracker_gemregex		=	"regex failed"
 

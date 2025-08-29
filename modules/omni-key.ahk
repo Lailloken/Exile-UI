@@ -81,7 +81,8 @@
 				If !settings.leveltracker.gemlinksToggle
 					LLK_Overlay(vars.hwnd.leveltracker_gemlinks.main, "destroy"), vars.hwnd.leveltracker_gemlinks.main := ""
 			Case "gemregex":
-				Leveltracker_PobGemLinks(vars.omnikey.item.name,,,, 1)
+				Leveltracker_PobGemCutting()
+				SendInput, {RButton}
 			Case "geartracker":
 				Geartracker_Add()
 			Case "legion":
