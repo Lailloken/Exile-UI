@@ -1,5 +1,13 @@
 [
   [
+	["1.59.4", 15904],
+	"august 29, 2025",
+	"act-tracker: guide updated to 0.3, ends after a3 doryani fight",
+	"act-tracker: added new gem-cutting overlay",
+	"item-info + map-info updated to 0.3",
+	"glhf"
+  ],
+  [
 	["1.59.3", 15903],
 	"august 24, 2025",
 	"added a news/announcements feed with notifications: this is for important news regarding bugs, fixes, etc.",

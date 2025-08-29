@@ -3,12 +3,16 @@
   "messages": [
     [
       {
-        "priority": 0,
-        "stamp": "2025-08-24 13:30:00",
-        "topic": "added a news feed"
+        "priority": 2,
+        "stamp": "2025-08-29 19:00:00",
+        "topic": "league-start checklist"
       },
-      "this will only be used for important announcements (bugs, fixes, etc.)",
-      "when there's a new announcement, a flashing icon will appear on the toolbar. click it to open this feed and dismiss the notification"
+      "update to v1.59.4 to make sure most of the stuff is working correctly for 0.3",
+      "!!!reset!!! your guide-slot by long-clicking the <reset> button in order to get the latest guide version",
+      "if you previously edited the guide, you have to reset via the editor",
+      "as of writing this, the pob update hasn't shipped yet. once that is out, i'll implement support for the tree. the tree will auto-download when importing new builds",
+      "gem-features (overlays, regex) should work as long as you're using a build with 0.2 gems",
+      "good luck, have fun"
     ]
   ]
 }
