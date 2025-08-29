@@ -1,12 +1,13 @@
 {
-  "timestamp": "2025-08-29 19:00:00",
+  "timestamp": "2025-08-29 19:05:00",
   "messages": [
     [
       {
         "priority": 2,
-        "stamp": "2025-08-29 19:00:00",
+        "stamp": "2025-08-29 19:05:00",
         "topic": "league-start checklist"
       },
+      "EDIT: if features aren't activating correctly, you'll probably have to recalibrate the screen-checks",
       "update to v1.59.4 to make sure most of the stuff is working correctly for 0.3",
       "!!!reset!!! your guide-slot by long-clicking the <reset> button in order to get the latest guide version",
       "if you previously edited the guide, you have to reset via the editor",
