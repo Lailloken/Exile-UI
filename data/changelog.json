@@ -1,5 +1,13 @@
 [
   [
+	["1.59.5", 15905],
+	"september 3, 2025",
+	"act-tracker: initial support for act 4 and interludes (requires guide-slot reset)",
+	"act-tracker: added support for 0.3 gems",
+	"item-info: updated item bases and mods",
+	"map-tracker & statlas: added support for newly-added maps"
+  ],
+  [
 	["1.59.4", 15904],
 	"august 29, 2025",
 	"act-tracker: guide updated to 0.3, ends after a3 doryani fight",
