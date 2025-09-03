@@ -2415,7 +2415,7 @@ Leveltracker_PobImport(b64, profile)
 					title := "default"
 				If RegExMatch(A_LoopField, "<Skill.*/>")
 					Continue
-				If InStr(A_LoopField, "<skill ") && !InStr(A_LoopField, "label=""""")
+				If InStr(A_LoopField, "<skill ") && InStr(A_LoopField, "label=") && !InStr(A_LoopField, "label=""""")
 					group.label := SubStr(A_LoopField, InStr(A_LoopField, "label=""") + 7), group.label := Leveltracker_PobRemoveTags(SubStr(group.label, 1, InStr(group.label, """") - 1))
 				If InStr(A_LoopField, "<Gem ")
 				{
