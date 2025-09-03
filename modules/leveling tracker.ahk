@@ -2433,6 +2433,8 @@ Leveltracker_PobImport(b64, profile)
 							searchstrings_gems[attribute][support ? 2 : 1][name0] := 1
 						}
 					}
+					Else If settings.general.dev
+						MsgBox, % "unknown gem: " name
 				}
 				If InStr(A_LoopField, "</skill>")
 				{
