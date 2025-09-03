@@ -235,7 +235,7 @@ type	=	monsters
 text	=	poison chance: %
 ID	=	037
 
-[Monsters have # chance to Bleed on Hit]
+[Monsters have # chance to inflict Bleeding on Hit]
 type	=	monsters
 text	=	bleed chance: %
 ID	=	038
@@ -265,7 +265,7 @@ type	=	monsters
 text	=	inc stun: +%
 ID	=	043
 
-[Monsters have # increased Freeze Buildup|Monsters have # increased Ignite Chance|Monsters have # increased Shock Chance]
+[Monsters have # increased Freeze Buildup|Monsters inflict # increased Flammability Magnitude|Monsters have # increased Shock Chance]
 type	=	monsters
 text	=	freeze/ignite/shock: +%
 ID	=	044
@@ -280,18 +280,18 @@ type	=	monsters
 text	=	area of effect: +%
 ID	=	046
 
-[Area is Cursed with Enfeeble]
-type	=	area
+[Players are periodically Cursed with Enfeeble]
+type	=	player
 text	=	enfeeble
 ID	=	047
 
-[Area is Cursed with Temporal Chains]
-type	=	area
+[Players are periodically Cursed with Temporal Chains]
+type	=	player
 text	=	temp chains
 ID	=	048
 
-[Area is Cursed with Elemental Weakness]
-type	=	area
+[Players are periodically Cursed with Elemental Weakness]
+type	=	player
 text	=	ele weakness
 ID	=	049
 
