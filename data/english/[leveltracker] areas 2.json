@@ -84,7 +84,7 @@
     },
     {
       "id": "g2_3a",
-      "name": "the halani gates"
+      "name": "the halani gates (blocked)"
     },
     {
       "id": "g2_3",
@@ -227,26 +227,178 @@
   ],
   [
     {
-      "id": "g4_1",
-      "name": "a4 placeholder"
+      "id": "g4_town",
+      "name": "kingsmarch"
+    },
+    {
+      "id": "g4_1_1",
+      "name": "isle of kin"
+    },
+    {
+      "id": "g4_1_2",
+      "name": "volcanic warrens"
+    },
+    {
+      "id": "g4_2_1",
+      "name": "kedge bay"
+    },
+    {
+      "id": "g4_2_2",
+      "name": "journey's end"
+    },
+    {
+      "id": "g4_3_1",
+      "name": "whakapanu island"
+    },
+    {
+      "id": "g4_3_2",
+      "name": "singing caverns"
+    },
+    {
+      "id": "g4_4_1",
+      "name": "eye of hinekora"
+    },
+    {
+      "id": "g4_4_2",
+      "name": "halls of the dead"
+    },
+    {
+      "id": "g4_4_3",
+      "name": "trial of the ancestors"
+    },
+    {
+      "id": "g4_5_1",
+      "name": "abandoned prison"
+    },
+    {
+      "id": "g4_5_2",
+      "name": "solitary confinement"
+    },
+    {
+      "id": "g4_7",
+      "name": "shrike island"
+    },
+    {
+      "id": "g4_8a",
+      "name": "arastas"
+    },
+    {
+      "id": "g4_8b",
+      "name": "arastas (hostile)"
+    },
+    {
+      "id": "g4_10",
+      "name": "the excavation"
+    },
+    {
+      "id": "g4_11_1a",
+      "name": "ngakanu"
+    },
+    {
+      "id": "g4_11_1b",
+      "name": "ngakanu (hostile)"
+    },
+    {
+      "id": "g4_11_2",
+      "name": "heart of the tribe"
+    },
+    {
+      "id": "g4_13",
+      "name": "plunder's point"
     }
   ],
   [
     {
-      "id": "g5_1",
-      "name": "i placeholder"
+      "id": "p1_town",
+      "name": "the refuge"
+    },
+    {
+      "id": "p1_1",
+      "name": "scorched farmlands"
+    },
+    {
+      "id": "p1_2",
+      "name": "stones of serle"
+    },
+    {
+      "id": "p1_3",
+      "name": "the blackwood"
+    },
+    {
+      "id": "p1_4",
+      "name": "holten"
+    },
+    {
+      "id": "p1_5",
+      "name": "wolvenhold"
+    },
+    {
+      "id": "p1_6",
+      "name": "holten estate"
     }
   ],
   [
     {
-      "id": "g6_1",
-      "name": "ii placeholder"
+      "id": "p2_town",
+      "name": "the khari bazaar"
+    },
+    {
+      "id": "p2_1",
+      "name": "the khari crossing"
+    },
+    {
+      "id": "p2_2",
+      "name": "pools of khatal"
+    },
+    {
+      "id": "p2_3",
+      "name": "sel khari sanctuary"
+    },
+    {
+      "id": "p2_5",
+      "name": "the galai gates"
+    },
+    {
+      "id": "p2_6",
+      "name": "qimah"
+    },
+    {
+      "id": "p2_7",
+      "name": "qimah reservoir"
     }
   ],
   [
     {
-      "id": "g7_1",
-      "name": "iii placeholder"
+      "id": "p3_town",
+      "name": "the glade"
+    },
+    {
+      "id": "p3_1",
+      "name": "ashen forest"
+    },
+    {
+      "id": "p3_2",
+      "name": "kriar village"
+    },
+    {
+      "id": "p3_3",
+      "name": "glacial tarn"
+    },
+    {
+      "id": "p3_4",
+      "name": "howling caves"
+    },
+    {
+      "id": "p3_5",
+      "name": "kriar peaks"
+    },
+    {
+      "id": "p3_6",
+      "name": "etched ravine"
+    },
+    {
+      "id": "p3_7",
+      "name": "the cuachic vault"
     }
   ],
   [

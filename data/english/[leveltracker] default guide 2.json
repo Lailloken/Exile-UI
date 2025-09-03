@@ -456,7 +456,7 @@
     [
       "(img:quest_2) doryani: (color:aaaaaa)cut-scene",
       "(img:quest_2) doryani",
-      "(img:quest_2) alva: areaidg4_town (img:town) ;; kingsmarch"
+      "(img:quest_2) alva: (color:aaaaaa)travel_to areaidg4_town (img:town) ;; kingsmarch"
     ]
   ],
   [
@@ -466,29 +466,22 @@
       "(img:quest_2) makoru: areaidg4_1_1 ;; isle of kin"
     ],
     [
-      "optional: (img:jeweller) in (img:checkpoint) (color:aaaaaa)delving_site (edge)",
-      "optional: (img:checkpoint) (color:aaaaaa)voltaxic_spire (zone buff)",
-      "(hint)__ (15% res, ms, 30% dmg as light)",
-      "optional: (img:skill) (img:support) in (img:checkpoint) (color:aaaaaa)beast_pen",
+      "optional: (img:jeweller) in (img:checkpoint) (color:aaaaaa)delve_site on (img:7) edge",
+      "optional: (img:skill) (img:support) in (img:checkpoint) (color:aaaaaa)beast_pen || (quest:map): (img:checkpoint) (color:aaaaaa)sailor",
       "find & kill (img:checkpoint) blind_beast",
-      "(img:checkpoint) (color:aaaaaa)flayed_sailor: (quest:map_piece)",
-      "find & enter areaidg4_1_2 ;; volcanic warrens"
+      "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
     ],
     [
-      "kill (img:checkpoint) krutog || (img:quest_2) matiki",
-      "(color:aaaaaa)return_to_ship: areaidg4_1_1 ;; isle of kin"
-    ],
-    [
-      "(img:quest_2) matiki",
-      "(img:quest_2) makoru: (quest:map_piece)",
-      "sail to areaidg4_4_1 ;; eye of hinekora"
+      "optional: <ring> in (img:checkpoint) (color:aaaaaa)volcanic_nest",
+      "find & kill (img:checkpoint) krutog",
+      "(img:quest_2) matiki || (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out",
+      "(img:quest_2) matiki || (img:quest_2) makoru: areaidg4_4_1 ;; eye of hinekora"
     ],
     [
       "(img:quest_2) matiki || (img:quest_2) (color:aaaaaa)well_of_passing",
-      "complete the 3 tests",
       "optional: (img:spirit) behind (color:aaaaaa)waterfall",
-      "find (img:checkpoint) (color:aaaaaa)silent_hall, (img:quest_2) (color:aaaaaa)pay_respects",
-      "find & enter areaidg4_4_2 ;; halls of the dead"
+      "find (img:checkpoint) (color:aaaaaa)silent_hall: (img:quest_2) pay respects",
+      "enter areaidg4_4_2 ;; halls of the dead"
     ],
     [
       "complete 3 (img:checkpoint) (color:aaaaaa)tests for (quest:tattoos)",
@@ -498,86 +491,64 @@
     ],
     [
       "(img:quest_2) navali: (quest:tattoo_of_hinekora)",
-      "(color:aaaaaa)return_to_ship: areaidg4_4_1 ;; eye of hinekora",
-      "sail to areaidg4_7 ;; shrike island"
+      "(img:quest_2) makoru: areaidg4_5_1 ;; abandoned prison",
+      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
     ],
     [
-      "(img:checkpoint) (color:aaaaaa)corpse_nest: (quest:map_piece)",
-      "kill (img:checkpoint) scourge_of_the_skies",
-      "(img:quest_2) hooded_one || (color:aaaaaa)return_to_ship",
-      "sail to areaidg4_3_1 ;; whakapanu island"
-    ],
-    [
-      "optional: (img:support) in (img:checkpoint) (color:aaaaaa)crabshell_cavern (side area)",
-      "follow edge for (color:ff00ff)2_tasks:",
-      "(hint)__ kill (img:checkpoint) great_white_one for (quest:shark_fin)",
-      "(color:aaaaaa)petrified_pirate: (quest:map_piece)",
-      "find & enter areaidg4_3_2 ;; singing caverns"
-    ],
-    [
-      "optional: find (quest:pearl) in (img:checkpoint) (color:aaaaaa)beckoning_clam",
-      "(hint)__ (img:quest_2) rog: <all-res_amulet>",
-      "kill (img:checkpoint) diamora",
-      "(color:aaaaaa)return_to_ship: areaidg4_2_1 ;; kedge bay"
-    ],
-    [
-      "(img:checkpoint) (color:aaaaaa)dead_man's_chest: (quest:map_piece)",
-      "optional: (img:jeweller) in (img:checkpoint) (color:aaaaaa)abandoned_ship",
-      "enter areaidg4_2_2 ;; journey's end"
-    ],
-    [
-      "(img:quest_2) tujen",
-      "kill cpt_hartlin for (quest:verisium)",
-      "(img:portal) areaidg4_town (img:town) ;; kingsmarch"
-    ],
-    [
-      "(img:quest_2) dannig: (quest:verisium_spikes)",
-      "(img:waypoint) to areaidg4_2_2 ;; journey's end"
-    ],
-    [
-      "(img:quest_2) freya || break the seal",
-      "complete the delirium encounter",
-      "(img:portal) areaidg4_town (img:town) ;; kingsmarch"
-    ],
-    [
-      "(img:quest_2) tujen: (img:skill)",
-      "sail to areaidg4_5_1 ;; abandoned prison"
-    ],
-    [
-      "loot (quest:chapel_key) || find (img:checkpoint) (color:aaaaaa)chapel",
-      "(hint)__ statue_of_the_goddess: (quest:flask_recovery)",
-      "find & enter areaidg4_5_2 ;; solitary confinement"
+      "loot (quest:chapel_key)",
+      "find (img:checkpoint) (color:aaaaaa)chapel, activate (quest:statue)",
+      "enter (img:checkpoint) areaidg4_5_2 ;; solitary confinement"
     ],
     [
       "optional: (img:skill) in (img:checkpoint) (color:aaaaaa)warden's_chamber",
-      "kill (img:checkpoint) the_prisoner",
-      "(img:portal) to areaidg4_town (img:town) ;; kingsmarch"
+      "kill (img:checkpoint) the_prisoner || (img:quest_2) hooded one",
+      "(img:quest_2) makoru: areaidg4_3_1 ;; whakapanu island",
+      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
     ],
     [
-      "(img:quest_2) makoru",
-      "sail to areaidg4_8b ;; arastas (small)"
+      "optional: (img:support) in (img:checkpoint) (color:aaaaaa)crabshell_cave || (quest:map): (img:checkpoint) (color:aaaaaa)pirate",
+      "optional: (img:skill) / (img:spirit) / (img:support): kill (img:checkpoint) great_white for (quest:fin)",
+      "find & enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
     ],
     [
-      "(img:quest_2) lorandis || fight your way out",
+      "optional: <all-res_amu>: find (quest:pearl) in (img:checkpoint) (color:aaaaaa)clam",
+      "kill (img:checkpoint) diamora || (img:quest_2) hooded one",
+      "(img:quest_2) makoru: areaidg4_7 ;; shrike island",
+      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
+    ],
+    [
+      "optional: (quest:map_piece): (img:checkpoint) (color:aaaaaa)corpse_nest",
+      "kill (img:checkpoint) scourge || (img:quest_2) hooded_one",
+      "(img:portal) to areaidg4_town ;; kingsmarch"
+    ],
+    [
+      "optional: (img:quest_2) rog: <all-res_amu> for (quest:pearl)",
+      "side-content in areaidg4_2_1 : ;; kedge bay",
+      "(hint)__ (color:aaaaaa)liq._emotions || (quest:map_piece) || (img:skill)",
+      "optional: (img:quest_2) makoru: (quest:map), areaidg4_13 ;; plunder's point",
+      "(img:quest_2) makoru: areaidg4_8b ;; arastas (hostile)"
+    ],
+    [
+      "follow (img:quest_2) lorandis || go outside",
       "optional: 3 exalts & regals in (img:checkpoint) (color:aaaaaa)bells",
       "kill torvian || enter areaidg4_10 ;; the excavation"
     ],
     [
-      "find & kill (img:checkpoint) benedictus",
-      "enter (color:aaaaaa)excavated_site || (img:quest_2) hooded one",
-      "(img:portal) to areaidg4_town (img:town) ;; kingsmarch"
+      "kill (img:checkpoint) benedictus || enter the site",
+      "(img:quest_2) hooded one || (img:portal) to areaidg4_town ;; kingsmarch"
     ],
     [
-      "(img:quest_2) rhodri: sail to areaidg4_11_1b ;; ngakanu"
+      "(img:quest_2) rhodri: (color:aaaaaa)sail_to areaidg4_11_1b ;; ngakanu"
     ],
     [
+      "greater (img:jeweller) (?): abyss encounter",
       "optional: (img:skill) / (img:spirit) / (img:support) for (quest:shark_fin)",
       "(hint)__ (img:quest_2) kaimana in (img:checkpoint) (color:aaaaaa)medicine_circle",
-      "enter areaidg4_11_2 ;; heart of the tribe"
+      "enter (img:checkpoint) areaidg4_11_2 ;; heart of the tribe"
     ],
     [
-      "defeat (color:ff8111)tavakai || (img:quest_2) tavakai",
-      "(img:portal) to areaidg4_town (img:town) ;; kingsmarch"
+      "defeat (color:ff8111)tavakai",
+      "(img:quest_2) tavakai || (img:portal) to areaidg4_town ;; kingsmarch"
     ],
     [
       "(img:quest_2) hooded one: (color:aaaaaa)travel_to_ogham",
@@ -590,28 +561,28 @@
       "enter areaidp1_1 ;; scorched farmlands"
     ],
     [
-      "optional: (img:skill) in front of (img:checkpoint) (color:aaaaaa)hut",
+      "optional: (img:skill) near (img:checkpoint) (color:aaaaaa)hut along the road",
       "kill heldra_&_isolde || find (img:waypoint)",
       "enter (img:checkpoint) areaidp1_2 ;; stones of serle"
     ],
     [
-      "activate (img:checkpoint) (color:aaaaaa)megaliths to kill siora",
+      "activate (img:checkpoint) (color:aaaaaa)megaliths || kill siora",
       "(img:waypoint) to areaidp1_1 ;; scorched farmlands"
     ],
     [
       "enter (img:checkpoint) areaidp1_3 ;; the blackwood"
     ],
     [
+      "optional: omens in (color:aaaaaa)omen_altars",
       "find & enter (img:checkpoint) areaidp1_4 ;; holten"
     ],
     [
+      "optional: (img:checkpoint) (color:aaaaaa)rune_trader near water",
       "(img:in-out) (img:arena) areaidp1_6 for (img:waypoint) ;; holten estate",
-      "optional: (color:aaaaaa)rune_trader near (img:checkpoint) along water",
-      "enter (img:checkpoint) areaidp1_5 ;; wolvenhold"
+      "find & enter (img:checkpoint) areaidp1_5 ;; wolvenhold"
     ],
     [
-      "find & kill (img:checkpoint) oswin",
-      "(img:portal) to areaidp1_town (img:town) ;; the refuge"
+      "kill (img:checkpoint) oswin || (img:portal) to areaidp1_town ;; the refuge"
     ],
     [
       "(img:waypoint) to areaidp1_6 ;; holten estate"
@@ -629,30 +600,43 @@
   [
     [
       "(img:quest_2) asala || (img:quest_2) zarka",
-      "enter areaidp2_1 ;; the khari crossing"
+      "go (img:3), enter areaidp2_1 ;; the khari crossing"
     ],
     [
-      "follow edge for (color:ff00ff)4_tasks:",
-      "(hint)__ find (img:checkpoint) (color:aaaaaa)skullmaw_stairway",
-      "(hint)__ kill (img:checkpoint) anundr_&_akthi",
-      "(hint)__ (img:in-out) areaidp2_5 for (img:waypoint) ;; the galai gates",
-      "(hint)__ (img:in-out) areaidp2_2 ;; pools of khatal",
-      "optional: <ring/caster> trader near (img:checkpoint)",
+      "go (img:2), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
+      "go (img:1), kill (img:checkpoint) anundr_&_akthi",
       "(img:portal) to areaidp2_town (img:town) ;; the khari bazaar"
     ],
     [
       "(img:quest_2) risu: (quest:book_of_specialization)",
+      "go (img:5), enter areaidp2_1 ;; the khari crossing"
+    ],
+    [
+      "go (img:6), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
+      "go (img:6), enter (img:checkpoint) areaidp2_2 ;; pools of khatal"
+    ],
+    [
+      "(img:waypoint) to areaidp2_town (img:town) ;; the khari bazaar"
+    ],
+    [
+      "go (img:7), enter areaidp2_1 ;; the khari crossing"
+    ],
+    [
+      "go (img:7), (img:in-out) (img:arena) areaidp2_5 for (img:waypoint) ;; the galai gates",
+      "go (img:1), enter (img:arena) skullmaw_stairway",
+      "find (quest:gift), (img:portal) to areaidp2_town ;; the khari bazaar"
+    ],
+    [
       "(img:waypoint) to areaidp2_2 ;; pools of khatal"
     ],
     [
       "enter (img:checkpoint) areaidp2_3 ;; sel khari sanctuary"
     ],
     [
-      "optional: pick 2: <ring,_amulet,_jewel>",
-      "(hint)__ loot & insert (quest:2_baryas) (side edges)",
-      "optional: (img:spirit) & (img:support) in chests near (img:checkpoint) (?)",
-      "kill (img:checkpoint) elzarah || (img:quest_2) asala",
-      "(img:portal) to areaidp2_town (img:town) ;; the khari bazaar"
+      "optional: <ring,_amu,_jewel>: loot (quest:2_baryas)",
+      "(hint)__ insert into pedestals (side edges)",
+      "find & kill (img:checkpoint) elzarah",
+      "(img:quest_2) asala || (img:portal) to areaidp2_town ;; the khari bazaar"
     ],
     [
       "(img:waypoint) to areaidp2_5 ;; the galai gates"
@@ -666,9 +650,9 @@
       "(img:quest_2) jado || enter areaidp2_7 ;; qimah reservoir"
     ],
     [
-      "optional: 2 regals: loot (quest:2_vials) for (img:checkpoint) (color:aaaaaa)2_wells",
-      "kill (img:checkpoint) azmadi || (img:quest_2) grand barya",
-      "(img:portal) to areaidp2_town (img:town) ;; the khari bazaar"
+      "optional: currency: loot (quest:2_vials) for (img:checkpoint) (color:aaaaaa)2_wells",
+      "find & kill (img:checkpoint) azmadi",
+      "(img:quest_2) grand barya || (img:portal) to areaidp2_town ;; the khari bazaar"
     ],
     [
       "(img:quest_2) hooded one: (color:aaaaaa)travel_to_mount_kriar",
@@ -681,19 +665,18 @@
       "enter areaidp3_1 ;; ashen forest"
     ],
     [
-      "optional: (img:skill) in (img:checkpoint) (color:aaaaaa)ancient_monument (edge)",
+      "optional: (img:skill) in (img:checkpoint) (color:aaaaaa)ancient_monument",
       "enter areaidp3_2 ;; kriar village"
     ],
     [
-      "kill (img:checkpoint) lythara for (quest:gembloom_skull)",
-      "enter areaidp3_3 ;; glacial tarn"
+      "kill (img:checkpoint) lythara || enter areaidp3_3 ;; glacial tarn"
     ],
     [
-      "kill (img:checkpoint) rakkar || (img:in-out) areaidp3_5 for (img:waypoint) ;; kriar peaks",
+      "kill (img:checkpoint) rakkar || (img:in-out) (img:arena) areaidp3_5 for (img:waypoint) ;; kriar peaks",
       "find & enter (img:checkpoint) areaidp3_4 ;; howling caves"
     ],
     [
-      "find & kill (img:checkpoint) the_yeti for (quest:tusks)",
+      "kill (img:checkpoint) the_yeti for (quest:tusks)",
       "(img:portal) to areaidp3_town (img:town) ;; the glade"
     ],
     [

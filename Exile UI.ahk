@@ -913,7 +913,7 @@ News(mode := "")
 	now := A_NowUTC, timestamp := StrReplace(StrReplace(StrReplace(vars.news.file.timestamp, " "), ":"), "-")
 	EnvSub, now, timestamp, Days
 
-	If !vars.news.unread && (IsNumber(now) && now < 7) && (vars.news.file.timestamp != vars.news.last_read)
+	If !vars.news.unread && (IsNumber(now) && now < 7) && vars.news.file.timestamp && (vars.news.file.timestamp != vars.news.last_read)
 		vars.news.unread := 1, Init_GUI()
 }
 

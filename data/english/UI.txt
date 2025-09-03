@@ -435,7 +435,8 @@
 
 
 		lvltracker_format_kill		=	"kill"						;## the string that follows this word will automatically be highlighted as a unique boss
-		lvltracker_format_act		=	"a"						;## abbreviation for "act": used when the guide leads to a location in a different act (e.g. "enter a1 | clearfell encampment")
+		lvltracker_format_act		=	"a"						;## abbreviation: used when the guide leads to a location in a different act (e.g. "enter a1 | clearfell encampment")
+		lvltracker_format_interlude	=	"int "						;## abbreviation: used when the guide leads to a location in a different act (e.g. "enter i1 | the refuge")
 		lvltracker_format_epilogue	=	"epilogue"
 		lvltracker_format_optional	=	"optional:"					;## in guides, lines with optional tasks/steps should start with this string because there is a setting to hide these lines
 

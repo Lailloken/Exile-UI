@@ -532,7 +532,7 @@
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
       "they will be marked with a plus-sign in the guide(/highlight)",
-      "examples: artificer's orbs, gems, jewelry, flasks"
+      "examples: jeweller's/artificer's orbs, gems, jewelry, flasks, a4 treasure map"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
