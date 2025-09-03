@@ -131,7 +131,7 @@ Statlas_GUI(mode := "")
 
 	wPics := vars.client.h * settings.statlas.zoom
 	If !vars.pics.statlas[map.1]
-		vars.pics.statlas[map.1] := LLK_ImageCache("img\GUI\statlas\" map.1 ".jpg", wPics)
+		vars.pics.statlas[map.1] := LLK_ImageCache("img\GUI\statlas\" StrReplace(StrReplace(map.1, "unique"), "uberboss_") ".jpg", wPics)
 	If (filecheck := FileExist("img\GUI\statlas\" boss ".jpg")) && !vars.pics.statlas[boss]
 		vars.pics.statlas[boss] := LLK_ImageCache("img\GUI\statlas\" boss ".jpg", wPics)
 

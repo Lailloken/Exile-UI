@@ -107,7 +107,7 @@
 
 
 		maps_hideout			=	"hideout"			;## PoE2 only (whole block), claimable hideout on the atlas (separate key/value pair in case more hideouts are added in the future)
-		maps_limestone_hideout		=	"lime hideout"
+		maps_limestone_hideout		=	"limestone hideout"
 		maps_felled_hideout		=	"felled hideout"
 		maps_canal_hideout		=	"canal hideout"
 		maps_shrine_hideout		=	"shrine hideout"
@@ -115,24 +115,8 @@
 ;## PoE2 only (whole block): atlas-related strings
 		maps_seer			=	"nameless seer"			;## unique maps on the atlas
 		maps_vaults			=	"vaults of kamasa"
-		maps_wildwood			=	"the viridian wildwood"
-		maps_selenite			=	"the silent cave"
-		maps_castaway			=	"castaway"
-		maps_paradise			=	"untainted paradise"
-		maps_megalith			=	"the phaaryl megalith"
-		maps_lake			=	"the fractured lake"
 
 		maps_voidreliquary		=	"the reliquary vault"		;## accessible via reliquary keys
-
-		maps_losttowers			=	"lost towers"			;## the five tower-maps
-		maps_alpineridge		=	"alpine ridge"
-		maps_bluff			=	"bluff"
-		maps_sinkingspire		=	"sinking spire"
-		maps_mesa			=	"mesa"
-		maps_copper_citadel		=	"copper citadel"		;## the tree citadel-maps
-		maps_stone_citadel		=	"stone citadel"
-		maps_iron_citadel		=	"iron citadel"
-
 		maps_biome			=	"biome:"			;## each map on the atlas belongs to a biome
 
 
