@@ -157,7 +157,10 @@ Statlas_GUI(mode := "")
 			stats[timeframe].total_runs += runs.Count()
 			For iMaprun, vMaprun in runs
 			{
-				If InStr(vMaprun.map, map.2) && (vMaprun.tier >= settings.statlas.tier)
+				mapname := (InStr(vMaprun.map, ":") ? SubStr(vMaprun.map, InStr(vMaprun.map, ":") + 2) : vMaprun.map)
+				While (pCheck := InStr(mapname, "("))
+					remove := SubStr(mapname, pCheck), remove := SubStr(remove, 1, InStr(remove, ")")), mapname := StrReplace(mapname, remove), mapname := Trim(mapname, " ")
+				If (mapname = map.2) && (vMaprun.tier >= settings.statlas.tier)
 				{
 					stats[timeframe].run += vMaprun.run, stats[timeframe].runs += 1
 					If vMaprun.kills
