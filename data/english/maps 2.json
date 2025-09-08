@@ -22,7 +22,7 @@
     },
     "azmerianranges": {
       "name": "azmerian ranges",
-      "boss": "king in the mists + brambleghast"
+      "boss": "morwyn"
     },
     "backwash": {
       "name": "backwash",
@@ -51,7 +51,8 @@
       "name": "caldera"
     },
     "canyon": {
-      "name": "canyon"
+      "name": "canyon",
+      "boss": "vornas"
     },
     "caverncity": {
       "name": "sacred reservoir"
@@ -96,7 +97,8 @@
       "name": "digsite"
     },
     "flotsam": {
-      "name": "flotsam"
+      "name": "flotsam",
+      "boss": "torrek"
     },
     "forge": {
       "name": "forge",
@@ -164,7 +166,7 @@
       "boss": "jamanra"
     },
     "ornatechambers": {
-      "name": "ornatechambers"
+      "name": "ornate chambers"
     },
     "outlands": {
       "name": "outlands"
