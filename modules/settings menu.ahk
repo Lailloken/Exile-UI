@@ -1208,6 +1208,13 @@ Settings_general()
 		vars.hwnd.settings.custom_resolution := hwnd, vars.hwnd.help_tooltips["settings_force resolution|||"] := hwnd
 		Gui, %GUI%: Font, % "s"settings.general.fsize
 
+		If (vars.client.fullscreen = "true")
+		{
+			Gui, %GUI%: Add, Text, % "ys hp BackgroundTrans Border HWNDhwnd gSettings_general2 x+"settings.general.fwidth/2, % " " Lang_Trans("global_reset") " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Vertical HWNDhwnd1 BackgroundBlack cRed Border Range0-500", 0
+			vars.hwnd.settings.reset_resolution := hwnd, vars.hwnd.settings.reset_resolution_bar := vars.hwnd.help_tooltips["settings_reset resolution"] := hwnd1
+		}
+
 		WinGetPos,,, wCheck, hCheck, ahk_group poe_window
 		If !vars.general.safe_mode && (wCheck < vars.monitor.w || hCheck < vars.monitor.h)
 		{
@@ -1318,6 +1325,14 @@ Settings_general2(cHWND := "")
 		Case "custom_resolution":
 			GuiControl, -Hidden, % vars.hwnd.settings.apply
 			GuiControl, movedraw, % vars.hwnd.settings.apply
+		Case "reset_resolution":
+			If LLK_Progress(vars.hwnd.settings.reset_resolution_bar, "LButton")
+			{
+				IniWrite, % vars.monitor.h, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
+				IniWrite, % vars.monitor.w, % "ini" vars.poe_version "\config.ini", Settings, custom-width
+				Reload
+				ExitApp
+			}
 		Case "apply":
 			width := (LLK_ControlGet(vars.hwnd.settings.custom_width) > vars.monitor.w) ? vars.monitor.w : LLK_ControlGet(vars.hwnd.settings.custom_width)
 			height := LLK_ControlGet(vars.hwnd.settings.custom_resolution)
