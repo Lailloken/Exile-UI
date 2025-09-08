@@ -490,6 +490,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required when using the map-tracker feature
+		maptracker_idle			=	"not tracking"
 		maptracker_kills		=	"press the omni-key to;start the kill-tracker"
 		maptracker_kills		=	"kill-count updated"
 		maptracker_check		=	"double-check;map content!"
@@ -512,6 +513,7 @@
 		maptracker_map			=	"map"
 		maptracker_tier			=	"t/l"			;## (map) tier / (area) level
 		maptracker_tier			=	"tier/level"		;## as in map-tier / area-level
+		maptracker_tier			=	"t"
 		maptracker_run			=	"run"			;## refers to run-time (how long it took to finish the map)
 		maptracker_e-exp		=	"e-exp"			;## effective exp (after penalties)
 		maptracker_deaths		=	"deaths"

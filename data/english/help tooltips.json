@@ -509,7 +509,7 @@
       "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold tab to see an image",
       "(hint)__",
-      "(img:in-out) (img:arena) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
+      "(img:in-out2) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
       "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)",
@@ -591,6 +591,10 @@
     "maptracker side-content": [
       "side-areas you enter and the time spent inside will be logged",
       "examples: abyssal depths, lab trials, vaal areas, starfall crater"
+    ],
+    "maptracker side-content 2": [
+      "side-areas you enter and the time spent inside will be logged",
+      "example: abyssal depths"
     ],
     "maptracker hide": [
       "hides the panel instead of just graying it out whenever tracking is paused (by right-clicking the button in the toolbar)",

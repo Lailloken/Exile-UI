@@ -1130,7 +1130,7 @@ Settings_general()
 	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
 	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
 
-	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth " ys gSettings_general2 Center HWNDhwnd w"settings.general.fWidth*2, % Lang_Trans("m_general_toolbar")
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth " ys gSettings_general2 Center HWNDhwnd", % Lang_Trans("m_general_toolbar")
 	vars.hwnd.help_tooltips["settings_font-size||||"] := hwnd
 	Gui, %GUI%: Add, Text, % "ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
 	vars.hwnd.settings.toolbar_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||||"] := hwnd
@@ -2851,12 +2851,9 @@ Settings_maptracker()
 	vars.hwnd.settings.mapinfo := hwnd, vars.hwnd.help_tooltips["settings_maptracker mapinfo"] := hwnd
 	Gui, %GUI%: Add, Checkbox, % "ys gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.notes, % Lang_Trans("m_maptracker_notes")
 	vars.hwnd.settings.notes := vars.hwnd.help_tooltips["settings_maptracker notes"] := hwnd
-	If !vars.poe_version
-	{
-		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.sidecontent, % Lang_Trans("m_maptracker_sidearea")
-		vars.hwnd.settings.sidecontent := vars.hwnd.help_tooltips["settings_maptracker side-content"] := hwnd, style := "ys"
-	}
-	Else style := "xs"
+
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.sidecontent, % Lang_Trans("m_maptracker_sidearea")
+	vars.hwnd.settings.sidecontent := vars.hwnd.help_tooltips["settings_maptracker side-content" vars.poe_version] := hwnd, style := "ys"
 
 	Gui, %GUI%: Add, Checkbox, % style " gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.rename, % Lang_Trans("m_maptracker_rename")
 	vars.hwnd.settings.rename := vars.hwnd.help_tooltips["settings_maptracker rename" vars.poe_version] := hwnd

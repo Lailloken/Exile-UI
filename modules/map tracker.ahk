@@ -22,7 +22,7 @@
 	settings.maptracker.fSize2 := !Blank(check := ini.settings["font-size2"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.maptracker.fSize2, height, width), settings.maptracker.fWidth2 := width, settings.maptracker.fHeight2 := height
 	settings.maptracker.rename := !Blank(check := ini.settings["rename boss maps"]) ? check : 1
-	settings.maptracker.sidecontent := !Blank(check := ini.settings["track side-areas"]) ? check : 0
+	settings.maptracker.sidecontent := !Blank(check := ini.settings["track side-areas"]) ? check : 1
 	settings.maptracker.character := !Blank(check := ini.settings["log character info"]) ? check : 0
 	settings.maptracker.mechanics := !Blank(check := ini.settings["track league mechanics"]) ? check : 0
 	settings.maptracker.page_entries := !Blank(check := ini.settings["entries per page"]) ? check : 0
@@ -149,8 +149,8 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	local
 	global vars, settings
 
-	mode_check := ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"]
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0})
+	mode_check := (vars.poe_version ? ["abyss_depths"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -528,7 +528,7 @@ Maptracker_GUI(mode := 0)
 
 	Gui, %GUI_name%: Add, Progress, % "x0 y0 BackgroundWhite HWNDhwnd w" settings.maptracker.fWidth * 0.6 " h" settings.maptracker.fWidth * 0.6, 0
 	vars.hwnd.maptracker.drag := hwnd, tier := !SubStr(vars.maptracker.map.tier, 1, 1) ? SubStr(vars.maptracker.map.tier, 2) : vars.maptracker.map.tier
-	Gui, %GUI_name%: Add, Text, % "Section x0 y0 0x200 h" Ceil(settings.maptracker.fHeight * 1.25) " BackgroundTrans HWNDhwnd" (vars.maptracker.pause ? " c"settings.maptracker.colors.date_unselected : ""), % Blank(vars.maptracker.map.name) ? " not tracking " : " t" tier " " (InStr(vars.maptracker.map.name, ":") ? SubStr(vars.maptracker.map.name, InStr(vars.maptracker.map.name, ":") + 2) : vars.maptracker.map.name) . (vars.maptracker.map.time ? " " FormatSeconds(vars.maptracker.map.time, 0) : "") " "
+	Gui, %GUI_name%: Add, Text, % "Section x0 y0 0x200 h" Ceil(settings.maptracker.fHeight * 1.25) " BackgroundTrans HWNDhwnd" (vars.maptracker.pause ? " c"settings.maptracker.colors.date_unselected : ""), % Blank(vars.maptracker.map.name) ? " " Lang_Trans("maptracker_idle") " " : " " Lang_Trans("maptracker_tier", 3) tier " " (InStr(vars.maptracker.map.name, ":") ? SubStr(vars.maptracker.map.name, InStr(vars.maptracker.map.name, ":") + 2) : vars.maptracker.map.name) . (vars.maptracker.map.time ? " " FormatSeconds(vars.maptracker.map.time, 0) : "") " "
 	vars.hwnd.maptracker.save := hwnd
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled Vertical Range0-500 BackgroundBlack cGreen HWNDhwnd", 0
 	vars.hwnd.maptracker.delbar := hwnd, count := 0
@@ -556,8 +556,9 @@ Maptracker_GUI(mode := 0)
 
 	For index, content in vars.maptracker.map.content
 	{
+		append := (vars.poe_version && content = "abyssal depths" ? " 2" : "")
 		If !vars.pics.maptracker["content_" content]
-			vars.pics.maptracker["content_" content] := LLK_ImageCache("img\GUI\mapping tracker\" content ".png")
+			vars.pics.maptracker["content_" content] := LLK_ImageCache("img\GUI\mapping tracker\" content . append ".png")
 		Gui, %GUI_name%: Add, Pic, % "ys" (!spacing ? " x+0" : "") " hp w-1 BackgroundTrans", % "HBitmap:*" vars.pics.maptracker["content_" content]
 		spacing := 1
 	}
@@ -1164,7 +1165,8 @@ Maptracker_LogsLoad()
 			If (key = "mapinfo") && (SubStr(val, 2, 1) = "m")
 				val := StrReplace(val, "m", "x",, 1)
 			If (key = "map") && !InStr(val, "savannah")
-				For original, replacement in {"savanna": "savannah", "gothic city": "grimhaven", "abyss": "marrow", "the phaaryl megalith": "the ezomyte megaliths", "vaal factory": "the assembly", "vaal foundry": "molten vault"}
+				For original, replacement in {"savanna": "savannah", "gothic city": "grimhaven", "abyss": "marrow", "the phaaryl megalith": "the ezomyte megaliths", "vaal factory": "the assembly", "vaal foundry": "molten vault"
+				, "ornatechambers": "ornate chambers"}
 					val := StrReplace(val, original, replacement)
 			If (key = "map") && InStr(val, " citadel") && !InStr(val, "the ")
 				For k, v in {"copper citadel": "the copper citadel", "iron citadel": "the iron citadel", "stone citadel": "the stone citadel"}
@@ -1866,7 +1868,7 @@ Maptracker_Timer()
 			Maptracker_Save(), new := 1
 
 		vars.maptracker.map.portals += vars.maptracker.hideout && !new ? 1 : 0 ;entering through a portal from hideout? -> increase portal-count
-		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal depths": "abyssleague", "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
+		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal depths": (vars.poe_version ? "abyss_depths" : "abyssleague"), "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
 
 		If Maptracker_Check(1)
 			For key, val in side_areas
