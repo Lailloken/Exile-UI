@@ -743,8 +743,8 @@ Leveltracker_GuideEditor(cHWND)
 
 	If !icons
 		If vars.poe_version
-			icons := [0, 1, 2, 3, 4, 5, 6, 7, "checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out", "ring", "artificer", "jeweller", "skill", "spirit", "support"]
-		Else icons := [0, 1, 2, 3, 4, 5, 6, 7, "waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out"]
+			icons := [0, 1, 2, 3, 4, 5, 6, 7, "checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out2", "ring", "artificer", "jeweller", "skill", "spirit", "support"]
+		Else icons := [0, 1, 2, 3, 4, 5, 6, 7, "waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out2"]
 
 	If !vars.leveltracker_editor.act
 		vars.leveltracker_editor := {"act": 1, "default_guide": json.load(LLK_FileRead("data\" settings.general.lang "\[leveltracker] default guide" vars.poe_version ".json")), "page": [1]}
@@ -1944,7 +1944,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					text := StrReplace(text, "_", " "), text := StrReplace(text, "(a11)", "(epilogue)")
 					If InStr(part, "(quest:")
 						replace := SubStr(text, InStr(text, "(quest:")), replace := SubStr(replace, 1, InStr(replace, ")")), item := StrReplace(SubStr(replace, InStr(replace, ":") + 1), ")"), text := StrReplace(text, replace, item)
-					If (text_parts[index - 1] = "(img:arena)")
+					If RegExMatch(text_parts[index - 1], "i)img\:(arena|in-out2)")
 						color := "AAAAAA"
 					Else color := InStr(part, "areaid") ? "FEC076" : kill && !InStr("everything, it", part) || InStr(part, "arena:") ? "FF8111" : InStr(part, "<") ? "FFDB1F" : InStr(part, "(quest:") ? "Lime" : InStr(part, "trial") || InStr(part, "_lab") ? "569777" : "White"
 					If InStr(part, "(color:")

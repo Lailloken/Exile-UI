@@ -14,7 +14,7 @@
       "kill (img:checkpoint) beira || enter (img:checkpoint) areaidg1_4 ;; the grelwood"
     ],
     [
-      "(color:ff00ff)2_tasks: find (img:waypoint) || (img:in-out) (img:arena) areaidg1_6 for (img:waypoint) ;; the grim tangle",
+      "(color:ff00ff)2_tasks: find (img:waypoint) || (img:in-out2) areaidg1_6 for (img:waypoint) ;; the grim tangle",
       "(hint)__ diamond-shaped zone: find (img:checkpoint) / (img:waypoint) for orientation",
       "optional: (img:skill) arena:brambleghast || (img:support) <witch> & flasks in (img:checkpoint) (color:aaaaaa)hut",
       "enter (img:checkpoint) areaidg1_5 (often near arena:brambleghast) ;; the red vale"
@@ -63,7 +63,7 @@
     ],
     [
       "follow edge for (color:ff00ff)2_tasks:",
-      "(hint)__ kill (img:checkpoint) crowbell || (img:in-out) (img:arena) farmlands for (img:waypoint)",
+      "(hint)__ kill (img:checkpoint) crowbell || (img:in-out2) farmlands for (img:waypoint)",
       "optional: (img:support) (color:aaaaaa)dryadic_ritual || (img:skill) (color:aaaaaa)ritual_altar",
       "follow edge to (img:checkpoint) areaidg1_12 ;; freythorn"
     ],
@@ -309,7 +309,7 @@
     ],
     [
       "get (img:waypoint) || (color:ff00ff)2_tasks along edge:",
-      "(hint)__ (img:in-out) (img:arena) side-zone_1 for (img:waypoint)",
+      "(hint)__ (img:in-out2) side-zone_1 for (img:waypoint)",
       "(hint)__ enter (img:arena) side-zone_2 for (img:waypoint)",
       "(img:waypoint) -travel to areaidg3_3 ;; jungle ruins"
     ],
@@ -317,11 +317,11 @@
       "enter areaidg3_4 ;; the venom crypts"
     ],
     [
-      "find (quest:corpse) for (quest:snake_venom)",
+      "find (img:checkpoint) (quest:corpse) for (quest:snake_venom)",
       "(img:portal) to areaidg3_town (img:town) ;; ziggurat encampment"
     ],
     [
-      "(img:quest_2) servi: (color:aaaaaa)permanent_buff",
+      "(img:quest_2) servi: (color:aaaaaa)permanent_buff & (img:artificer)",
       "(hint)__ (color:ff0000)final_choice:_cannot_be_changed_later",
       "(img:waypoint) to areaidg3_7 ;; the azak bog"
     ],
@@ -386,7 +386,7 @@
         "yes"
       ],
       "lines": [
-        "(img:in-out) (img:arena) areaidg3_9 for (img:waypoint) ;; the molten vault",
+        "(img:in-out2) areaidg3_9 for (img:waypoint) ;; the molten vault",
         "enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
@@ -444,9 +444,10 @@
     ],
     [
       "(quest:heart)? kill (color:aaaaaa)goliaths || find the plaza and (img:checkpoint)",
-      "find (img:checkpoint) (color:aaaaaa)blood_sacrifice (map), sacrifice (quest:heart)",
-      "(hint)__ usually (img:1), but direct path is often blocked",
-      "enter (img:checkpoint) areaidg3_17 (usually (img:7) .) ;; the black chambers"
+      "find (color:aaaaaa)blood_sacrifice (map), sacrifice (quest:heart)",
+      "(hint)__ exactly (img:0) of the (img:checkpoint): direct path often blocked",
+      "enter (img:checkpoint) areaidg3_17 ;; the black chambers",
+      "(hint)__ exactly (img:6) or (img:2) of (color:aaaaaa)blood_sacrifice"
     ],
     [
       "find & kill doryani",
@@ -466,7 +467,7 @@
       "(img:quest_2) makoru: areaidg4_1_1 ;; isle of kin"
     ],
     [
-      "optional: (img:jeweller) in (img:checkpoint) (color:aaaaaa)delve_site on (img:7) edge",
+      "optional: (img:jeweller) in (img:checkpoint) (color:aaaaaa)delve_site (edge)",
       "optional: (img:skill) (img:support) in (img:checkpoint) (color:aaaaaa)beast_pen || (quest:map): (img:checkpoint) (color:aaaaaa)sailor",
       "find & kill (img:checkpoint) blind_beast",
       "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
@@ -478,10 +479,10 @@
       "(img:quest_2) matiki || (img:quest_2) makoru: areaidg4_4_1 ;; eye of hinekora"
     ],
     [
-      "(img:quest_2) matiki || (img:quest_2) (color:aaaaaa)well_of_passing",
-      "optional: (img:spirit) behind (color:aaaaaa)waterfall",
-      "find (img:checkpoint) (color:aaaaaa)silent_hall: (img:quest_2) pay respects",
-      "enter areaidg4_4_2 ;; halls of the dead"
+      "(img:quest_2) matiki || (img:quest_2) (color:aaaaaa)well || complete 3 tests",
+      "(hint)__ (img:spirit): (color:aaaaaa)waterfall between 2nd and 3rd test",
+      "(img:quest_2) (color:aaaaaa)respects in (img:checkpoint) (color:aaaaaa)silent_hall (side area)",
+      "enter (img:checkpoint) areaidg4_4_2 ;; halls of the dead"
     ],
     [
       "complete 3 (img:checkpoint) (color:aaaaaa)tests for (quest:tattoos)",
@@ -491,8 +492,8 @@
     ],
     [
       "(img:quest_2) navali: (quest:tattoo_of_hinekora)",
-      "(img:quest_2) makoru: areaidg4_5_1 ;; abandoned prison",
-      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
+      "(color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out",
+      "(img:quest_2) makoru: areaidg4_5_1 ;; abandoned prison"
     ],
     [
       "loot (quest:chapel_key)",
@@ -500,21 +501,21 @@
       "enter (img:checkpoint) areaidg4_5_2 ;; solitary confinement"
     ],
     [
-      "optional: (img:skill) in (img:checkpoint) (color:aaaaaa)warden's_chamber",
       "kill (img:checkpoint) the_prisoner || (img:quest_2) hooded one",
-      "(img:quest_2) makoru: areaidg4_3_1 ;; whakapanu island",
-      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
+      "(color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out",
+      "(img:quest_2) makoru: areaidg4_3_1 ;; whakapanu island"
     ],
     [
       "optional: (img:support) in (img:checkpoint) (color:aaaaaa)crabshell_cave || (quest:map): (img:checkpoint) (color:aaaaaa)pirate",
       "optional: (img:skill) / (img:spirit) / (img:support): kill (img:checkpoint) great_white for (quest:fin)",
+      "(hint)__ hand in: (img:quest_2) kaimana in areaidg4_11_1a ;; ngakanu",
       "find & enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
     ],
     [
       "optional: <all-res_amu>: find (quest:pearl) in (img:checkpoint) (color:aaaaaa)clam",
       "kill (img:checkpoint) diamora || (img:quest_2) hooded one",
-      "(img:quest_2) makoru: areaidg4_7 ;; shrike island",
-      "(hint)__ (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out"
+      "(color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out",
+      "(img:quest_2) makoru: areaidg4_7 ;; shrike island"
     ],
     [
       "optional: (quest:map_piece): (img:checkpoint) (color:aaaaaa)corpse_nest",
@@ -542,8 +543,6 @@
     ],
     [
       "greater (img:jeweller) (?): abyss encounter",
-      "optional: (img:skill) / (img:spirit) / (img:support) for (quest:shark_fin)",
-      "(hint)__ (img:quest_2) kaimana in (img:checkpoint) (color:aaaaaa)medicine_circle",
       "enter (img:checkpoint) areaidg4_11_2 ;; heart of the tribe"
     ],
     [
@@ -561,15 +560,16 @@
       "enter areaidp1_1 ;; scorched farmlands"
     ],
     [
-      "optional: (img:skill) near (img:checkpoint) (color:aaaaaa)hut along the road",
-      "kill heldra_&_isolde || find (img:waypoint)",
-      "enter (img:checkpoint) areaidp1_2 ;; stones of serle"
+      "optional: (img:skill) (color:aaaaaa)corpse along the road",
+      "get (img:checkpoint) next to (color:aaaaaa)wall_of_darkness",
+      "kill witches, enter (img:checkpoint) areaidp1_2 ;; stones of serle"
     ],
     [
       "activate (img:checkpoint) (color:aaaaaa)megaliths || kill siora",
-      "(img:waypoint) to areaidp1_1 ;; scorched farmlands"
+      "(img:quest_2) una || enter (img:checkpoint) areaidp1_1 ;; scorched farmlands"
     ],
     [
+      "(img:checkpoint) to the (color:aaaaaa)wall_of_darkness",
       "enter (img:checkpoint) areaidp1_3 ;; the blackwood"
     ],
     [
@@ -578,14 +578,12 @@
     ],
     [
       "optional: (img:checkpoint) (color:aaaaaa)rune_trader near water",
-      "(img:in-out) (img:arena) areaidp1_6 for (img:waypoint) ;; holten estate",
+      "(img:in-out2) areaidp1_6 for (img:waypoint) ;; holten estate",
       "find & enter (img:checkpoint) areaidp1_5 ;; wolvenhold"
     ],
     [
-      "kill (img:checkpoint) oswin || (img:portal) to areaidp1_town ;; the refuge"
-    ],
-    [
-      "(img:waypoint) to areaidp1_6 ;; holten estate"
+      "kill (img:checkpoint) oswin for (quest:ledger)",
+      "(img:checkpoint) to start || (img:waypoint) to areaidp1_6 ;; holten estate"
     ],
     [
       "kill elswyth_&_thane",
@@ -600,7 +598,7 @@
   [
     [
       "(img:quest_2) asala || (img:quest_2) zarka",
-      "go (img:3), enter areaidp2_1 ;; the khari crossing"
+      "go (img:3) to areaidp2_1 ;; the khari crossing"
     ],
     [
       "go (img:2), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
@@ -609,7 +607,7 @@
     ],
     [
       "(img:quest_2) risu: (quest:book_of_specialization)",
-      "go (img:5), enter areaidp2_1 ;; the khari crossing"
+      "go (img:5) to areaidp2_1 ;; the khari crossing"
     ],
     [
       "go (img:6), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
@@ -619,12 +617,12 @@
       "(img:waypoint) to areaidp2_town (img:town) ;; the khari bazaar"
     ],
     [
-      "go (img:7), enter areaidp2_1 ;; the khari crossing"
+      "go (img:7) to areaidp2_1 ;; the khari crossing"
     ],
     [
-      "go (img:7), (img:in-out) (img:arena) areaidp2_5 for (img:waypoint) ;; the galai gates",
-      "go (img:1), enter (img:arena) skullmaw_stairway",
-      "find (quest:gift), (img:portal) to areaidp2_town ;; the khari bazaar"
+      "go (img:0), find (img:checkpoint) (color:aaaaaa)torbik",
+      "go (img:1), (img:in-out2) skullmaw_stairway for (quest:gift)",
+      "(img:checkpoint) to (color:aaaaaa)torbik, go (img:6) to (img:checkpoint) areaidp2_5 ;; the galai gates"
     ],
     [
       "(img:waypoint) to areaidp2_2 ;; pools of khatal"
@@ -647,12 +645,12 @@
     [
       "find (img:checkpoint) (color:aaaaaa)7_pillars (side area)",
       "(hint)__ buff can be changed any time",
-      "(img:quest_2) jado || enter areaidp2_7 ;; qimah reservoir"
+      "(img:quest_2) jado || enter (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
       "optional: currency: loot (quest:2_vials) for (img:checkpoint) (color:aaaaaa)2_wells",
-      "find & kill (img:checkpoint) azmadi",
-      "(img:quest_2) grand barya || (img:portal) to areaidp2_town ;; the khari bazaar"
+      "kill (img:checkpoint) azmadi || (img:quest_2) grand barya",
+      "(img:quest_2) jado || (img:portal) to areaidp2_town ;; the khari bazaar"
     ],
     [
       "(img:quest_2) hooded one: (color:aaaaaa)travel_to_mount_kriar",
@@ -669,10 +667,11 @@
       "enter areaidp3_2 ;; kriar village"
     ],
     [
-      "kill (img:checkpoint) lythara || enter areaidp3_3 ;; glacial tarn"
+      "kill (img:checkpoint) lythara for (quest:gem._skull)",
+      "enter areaidp3_3 ;; glacial tarn"
     ],
     [
-      "kill (img:checkpoint) rakkar || (img:in-out) (img:arena) areaidp3_5 for (img:waypoint) ;; kriar peaks",
+      "kill (img:checkpoint) rakkar || (img:in-out2) areaidp3_5 for (img:waypoint) ;; kriar peaks",
       "find & enter (img:checkpoint) areaidp3_4 ;; howling caves"
     ],
     [
