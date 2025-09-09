@@ -149,8 +149,8 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	local
 	global vars, settings
 
-	mode_check := (vars.poe_version ? ["abyss_depths"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0})
+	mode_check := (vars.poe_version ? ["abyss_depths", "abyss_boss"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0, "abyss_boss": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -857,7 +857,7 @@ Maptracker_Logs(mode := "")
 						Loop, Parse, % content[header], `;, %A_Space%
 						{
 							If !vars.pics.maptracker["content_" A_LoopField]
-								vars.pics.maptracker["content_" A_LoopField] := LLK_ImageCache("img\GUI\mapping tracker\" A_LoopField ".png")
+								vars.pics.maptracker["content_" A_LoopField] := LLK_ImageCache("img\GUI\mapping tracker\" A_LoopField (A_LoopField = "abyssal depths" ? vars.poe_version : "") ".png")
 							Gui, %GUI_name%: Add, Pic, % (A_Index = 1 ? "xp+"settings.maptracker.fWidth2/4 + 1 " yp+" 1 + settings.maptracker.fHeight2 * 0.1 " h" settings.maptracker.fHeight2 * 1.3 : "x+"settings.maptracker.fWidth2/4 " yp hp") " w-1 HWNDicon gMaptracker_LogsFilter BackgroundTrans", % "HBitmap:*" vars.pics.maptracker["content_" A_LoopField]
 							vars.hwnd.maptracker_logs["content_" A_LoopField . icon_handle] := icon, icon_handle .= "|"
 						}
@@ -1868,7 +1868,7 @@ Maptracker_Timer()
 			Maptracker_Save(), new := 1
 
 		vars.maptracker.map.portals += vars.maptracker.hideout && !new ? 1 : 0 ;entering through a portal from hideout? -> increase portal-count
-		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal depths": (vars.poe_version ? "abyss_depths" : "abyssleague"), "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
+		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal boss": "abyss_boss", "abyssal depths": (vars.poe_version ? "abyss_depths" : "abyssleague"), "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
 
 		If Maptracker_Check(1)
 			For key, val in side_areas
