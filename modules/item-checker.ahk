@@ -1491,13 +1491,13 @@ Iteminfo_GUI()
 			divider := 1
 		}
 
-		check_rolls := []
+		check_rolls := [], minimum_rolls := [], maximum_rolls := []
 		Loop, Parse, mod, `n
-			check_rolls.Push(Iteminfo_ModRollCheck(A_LoopField, 1))
+			check_rolls.Push(Iteminfo_ModRollCheck(A_LoopField, 1)), minimum_rolls.Push(["?", "?"]), maximum_rolls.Push(["?", "?"])
 
 		If vars.poe_version && !unique
 		{
-			tier_override := ""
+			tier_override := max_tier := ""
 			If !IsObject(db.item_mods)
 				DB_Load("item_mods")
 
@@ -1517,24 +1517,22 @@ Iteminfo_GUI()
 							}
 
 							tier_override := (count := oModName.Count()) + 1 - iTier
-							If (settings.iteminfo.roll_range != 3)
+							max_tier := max
+							While IsNumber(oModName[max_tier + 1].2) && (item.ilvl >= oModName[max_tier + 1].2)
+								max_tier += 1
+
+							If (settings.iteminfo.roll_range = 2)
 							{
 								minimum_rolls := oModName.1.3.Clone()
 								maximum_rolls := oModName[count].3.Clone()
 							}
-							Else
+							Else If (settings.iteminfo.roll_range = 3)
 							{
-								max_tier := 0
-								Loop, % oModName.Count() + 1
-									If IsNumber(oModName[oModName.Count() + 1 - A_Index].2) && (item.ilvl >= oModName[oModName.Count() + 1 - A_Index].2)
-									{
-										max_tier := A_Index
-										Break
-									}
 								minimum_rolls := oModName.1.3.Clone()
-								maximum_rolls := oModName[oModName.Count() + 1 - max_tier].3.Clone()
+								maximum_rolls := oModName[max_tier].3.Clone()
 							}
 
+							max_tier := count + 1 - max_tier
 							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
 								ilvl := oModName[iTier].2
 							Break 2
@@ -1549,13 +1547,14 @@ Iteminfo_GUI()
 							modMinRoll := modMaxRoll := roll.1
 						Else modMinRoll := roll.1, modMaxRoll := roll.2
 
-						If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
+						regex := StrReplace(oModName[iTier].5[i], " ", ".")
+						If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll && RegExMatch(mod, "i)" regex))
 							Continue 2
 					}
 
 					max_tier0 := max
 					For i, tag in oModName[iTier].4
-						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
+						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag) || (tag = "unrestricted")
 						{
 							While LLK_HasVal(oModName[max + 1].4, tag)
 								max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
@@ -1597,6 +1596,8 @@ Iteminfo_GUI()
 							}
 							Break
 						}
+					If RegexMatch(kModName, "i)^(abyss|essence)")
+						max_tier := 0
 				}
 
 			If (tier_override != "conflict")
@@ -1609,13 +1610,14 @@ Iteminfo_GUI()
 								modMinRoll := modMaxRoll := roll.1
 							Else modMinRoll := roll.1, modMaxRoll := roll.2
 
-							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
+							regex := StrReplace(oModName[iTier].5[i], " ", ".")
+							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll && RegExMatch(mod, "i)" regex))
 								Continue 2
 						}
 
 						max_tier0 := max
 						For i, tag in oModName[iTier].4
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag)
+							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag) || (tag = "unrestricted")
 							{
 								While LLK_HasVal(oModName[max + 1].4, tag)
 									max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
@@ -1657,6 +1659,8 @@ Iteminfo_GUI()
 								}
 								Break
 							}
+						If RegexMatch(kModName, "i)^(abyss|essence)")
+							max_tier := 0
 					}
 			tier_override := tier_override ? tier_override : "conflict"
 		}
@@ -1664,7 +1668,7 @@ Iteminfo_GUI()
 		highlights := "", color_t := "Black" ;track (un)desired highlighting for every part of hybrid mods
 		Loop, Parse, mod, `n ;parse mod-text line by line
 		{
-			text_check := StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.roll_range = 1 || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
+			text_check := StrReplace(StrReplace(StrReplace(A_LoopField, " (desecrated)"), " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.roll_range = 1 || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
 				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
@@ -1770,7 +1774,7 @@ Iteminfo_GUI()
 			Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 
 			affixinfo := settings.iteminfo.affixinfo
-			label := Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) ? Iteminfo_ModgroupCheck(name, !vars.poe_version ? 1 : 0) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
+			label := Iteminfo_ModgroupCheck(name) ? Iteminfo_ModgroupCheck(name) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
 			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
 
@@ -1784,7 +1788,7 @@ Iteminfo_GUI()
 			If (width < UI.wSegment) && (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ;divide tier-cell if necessary (to add icon/ilvl)
 			{
 				If !vars.pics.iteminfo[label]
-					vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png")
+					vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label (RegExMatch(label, "i)abyss|essence") ? vars.poe_version : "") ".png")
 
 				If (height <= UI.hSegment) ;if the mod is single-line, enforce standardized height for the cell
 				{
@@ -2085,13 +2089,16 @@ Iteminfo_Compare(string, item_type := "") ;takes a string with item-stats and re
 Iteminfo_ModgroupCheck(name, mode := 0) ;check the affix-name to determine if the mods belongs to a certain mod-group
 {
 	local
-	global settings
+	global vars, settings
 
 	If (settings.general.lang_client != "english")
 		Return
-	parse := "bestiary,delve,incursion,syndicate"
-	If mode
-		parse .= ",shaper,elder,crusader,redeemer,hunter,warlord,essence"
+
+	If !vars.poe_version
+		parse := "bestiary,delve,incursion,syndicate,shaper,elder,crusader,redeemer,hunter,warlord,essence"
+	Else parse := "abyss,essence"
+
+	abyss := ["veiled", "amanamu", "kurgal", "ulaman", "lightless"]
 	bestiary := ["saqawal", "farrul", "craiceann", "fenumus"]
 	delve := ["subterranean", "of the underground"]
 	incursion := ["Citaqualotl", "Guatelitzi", "Matatl", "Tacati", "Topotante", "Xopec"]
@@ -2809,7 +2816,7 @@ Iteminfo_ModRollCheck(mod, alt_mode := 0) ;parses a mod's text and returns an ar
 {
 	local
 
-	mod := StrReplace(StrReplace(mod, " (crafted)"), " (fractured)")
+	mod := StrReplace(StrReplace(StrReplace(mod, " (desecrated)"), " (crafted)"), " (fractured)")
 	rolls := [], sum_min := 0, sum_current := 0, sum_max := 0
 
 	If !InStr(mod, "(") && !alt_mode
