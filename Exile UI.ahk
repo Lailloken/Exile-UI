@@ -449,6 +449,7 @@ Init_general()
 	settings.general.warning_ultrawide := !Blank(check := ini.versions["ultrawide warning"]) ? check : 0
 	settings.general.hide_toolbar := !Blank(check := ini.UI["hide toolbar"]) ? check : 0
 	settings.general.ClientFiller := !settings.general.FillerAvailable ? 0 : !Blank(check := ini.settings["client background filler"]) ? check : 0
+	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
 
 	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
 	If (settings.general.fSize < 6)

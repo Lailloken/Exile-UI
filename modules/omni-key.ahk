@@ -21,7 +21,7 @@
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
 	}
 
-	If (vars.general.input_method.1 = 2) || Screenchecks_PixelSearch("inventory")
+	If (settings.general.input_method = 2) || Screenchecks_PixelSearch("inventory")
 	{
 		If WinExist("ahk_id " vars.hwnd.maptrackernotes_edit.main)
 		{
@@ -421,7 +421,7 @@ Omni_ContextMenu()
 	MouseGetPos, mouseX, mouseY
 	Gui, omni_context: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.omni_context.main
-	If (vars.general.input_method.1 = 2)
+	If (settings.general.input_method = 2)
 	{
 		xTarget := vars.monitor.x + vars.client.xc + vars.client.h * 0.174 - w
 		yTarget := vars.monitor.y + vars.client.yc + vars.client.h * 0.104 - h//2

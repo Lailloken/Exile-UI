@@ -1905,7 +1905,7 @@ Iteminfo_GUI()
 
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000" ;show the GUI outside the monitor's area to get dimensions
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.iteminfo.main
-	If (vars.general.input_method.1 = 2)
+	If (settings.general.input_method = 2)
 	{
 		xPos := vars.monitor.x + vars.client.xc + vars.client.h * 0.174 - w
 		yPos := vars.monitor.y + vars.client.yc + vars.client.h * 0.104 - h//2

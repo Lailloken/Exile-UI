@@ -43,6 +43,14 @@
     "generic color double1": [
       "background color: click to open the color-palette, right click to reset"
     ],
+    "input method 1": [
+      "default mode, full compatibility"
+    ],
+    "input method 2": [
+      "optional mode, (very) limited compatibility: a few features have modified behavior to remain functional in controller mode",
+      "examples:\nitem-info, omni-key context menu",
+      "controller support is low-priority and based on individual requests(/highlight)"
+    ],
     "active character": [
       "optional: enter the name of your current character",
       "this enables level tracking and e-exp calculations"

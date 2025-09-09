@@ -186,6 +186,7 @@
 		global_apply			=	"apply changes"
 		global_global			=	"global"
 		global_controller		=	"controller"		;## gamepad
+		global_keyboard			=	"keyboard"
 		global_multithreading		=	"multi-threaded"	;## i.e. using multiple CPU cores/threads
 		global_multithreading		=	"single-threaded"
 		global_ignore			=	"ignore"
@@ -780,6 +781,7 @@
 		m_general_admin			=	"restart script as admin"
 		m_general_toolbar		=	"toolbar-size:"
 		m_general_hidetoolbar		=	"hide the toolbar when not in use"
+		m_general_input			=	"input method:"
 
 
 

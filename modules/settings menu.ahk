@@ -1148,7 +1148,7 @@ Settings_general()
 		Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_general_client", 2)
 		Gui, %GUI%: Font, norm
 
-		Gui, %GUI%: Add, Text, % "ys cLime", % "path of exile " (vars.poe_version ? 2 : 1) . (vars.general.input_method.1 = 2 ? " (" Lang_Trans("global_controller") ")" : "")
+		Gui, %GUI%: Add, Text, % "ys cLime", % "path of exile " (vars.poe_version ? 2 : 1)
 		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_general_language", 2) " "
 		Gui, %GUI%: Add, Text, % "ys x+0 c" (settings.general.lang_client = "unknown" ? "Red" : "Lime"), % (settings.general.lang_client = "unknown") ? Lang_Trans("m_general_language", 3) : settings.general.lang_client
 
@@ -1178,6 +1178,13 @@ Settings_general()
 		Gui, %GUI%: Add, Pic, % "ys x+0 hp w-1 Border gSettings_general2 HWNDhwnd2", % "HBitmap:*" vars.pics.global.folder
 		vars.hwnd.settings.logfile := hwnd, vars.hwnd.settings.logfile_bar := vars.hwnd.help_tooltips["settings_logfile"] := hwnd1
 		vars.hwnd.settings.logfolder := vars.hwnd.help_tooltips["settings_logfolder"] := hwnd2
+
+		Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_general_input") " "
+		For index, val in ["keyboard", "controller"]
+		{
+			Gui, %GUI%: Add, Radio, % "ys HWNDhwnd gSettings_general2" (settings.general.input_method = index ? " Checked" : ""), % Lang_Trans("global_" val)
+			vars.hwnd.settings["inputmethod_" index] := vars.hwnd.help_tooltips["settings_input method " index] := hwnd
+		}
 
 		Gui, %GUI%: Font, bold underline
 		Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_general_client")
@@ -1426,6 +1433,8 @@ Settings_general2(cHWND := "")
 				vars.pics.toolbar := {}
 				Init_GUI("refresh")
 			}
+			Else If InStr(check, "inputmethod_")
+				IniWrite, % (settings.general.input_method := control), % "ini" vars.poe_version "\config.ini", settings, input method
 			Else LLK_ToolTip("no action")
 	}
 }
