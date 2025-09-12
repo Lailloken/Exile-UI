@@ -29,7 +29,8 @@
       "boss": "queen of filth"
     },
     "bastille": {
-      "name": "bastille"
+      "name": "bastille",
+      "boss": "oswin"
     },
     "bloodwood": {
       "name": "bloodwood",
@@ -94,7 +95,8 @@
       "name": "epitaph"
     },
     "excavation": {
-      "name": "digsite"
+      "name": "digsite",
+      "boss": "benedictus"
     },
     "flotsam": {
       "name": "flotsam",
@@ -186,7 +188,8 @@
       "name": "razed fields"
     },
     "riverhold": {
-      "name": "riverhold"
+      "name": "riverhold",
+      "boss": "siora"
     },
     "riverside": {
       "name": "riverside",
@@ -199,7 +202,8 @@
       "name": "rugosa"
     },
     "rupture": {
-      "name": "rupture"
+      "name": "rupture",
+      "boss": "silverfist"
     },
     "rustbowl": {
       "name": "rustbowl",
