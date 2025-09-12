@@ -93,6 +93,14 @@
 	settings.leveltracker.hotkeys := !Blank(check := ini.settings["enable page hotkeys"]) ? check : vars.client.stream
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
 	settings.leveltracker.hotkey_2 := !Blank(check := ini.settings["hotkey 2"]) ? check : "F4"
+	settings.leveltracker.tree_hotkey := tree_hotkey := !Blank(check := ini.settings["tree hotkey"]) ? check : ""
+
+	tree_hotkey := (!GetKeyVK(tree_hotkey) ? "" : tree_hotkey)
+	If !Blank(tree_hotkey)
+	{
+		Hotkey, If, vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
+		Hotkey, % "~" Hotkeys_Convert(tree_hotkey), Hotkeys_ESC, On
+	}
 
 	settings.leveltracker.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize, font_height, font_width), settings.leveltracker.fHeight := font_height, settings.leveltracker.fWidth := font_width
@@ -121,7 +129,7 @@
 
 	If settings.leveltracker.hotkeys
 	{
-		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+		Hotkey, If, vars.hwnd.leveltracker.main && WinActive("ahk_group poe_ahk_window") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_1), Leveltracker_Hotkeys, On
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_2), Leveltracker_Hotkeys, On
 	}
@@ -1336,7 +1344,7 @@ Leveltracker_Hotkeys(mode := "")
 		hotkey := (A_Index = 1) ? A_ThisHotkey : hotkey, hotkey := StrReplace(hotkey, A_LoopField)
 	If (mode = "refresh")
 	{
-		Hotkey, If, WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+		Hotkey, If, vars.hwnd.leveltracker.main && WinActive("ahk_group poe_ahk_window") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_01), Leveltracker_Hotkeys, Off
 		Hotkey, % Hotkeys_Convert(settings.leveltracker.hotkey_02), Leveltracker_Hotkeys, Off
 		If settings.leveltracker.hotkeys
@@ -2927,7 +2935,6 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 	vars.hwnd.skilltree_schematics.color_1 := hwnd, vars.hwnd.skilltree_schematics.color_1bar := vars.hwnd.help_tooltips["leveltrackerschematics_color spec"] := hwnd01
 	vars.hwnd.skilltree_schematics.color_2 := hwnd2, vars.hwnd.skilltree_schematics.color_2bar := vars.hwnd.help_tooltips["leveltrackerschematics_color unspec"] := hwnd21
 	vars.hwnd.help_tooltips["leveltrackerschematics_how-to"] := hwnd1, vars.hwnd.skilltree_schematics.opacity := vars.hwnd.help_tooltips["leveltrackerschematics_opacity"] := hwnd3
-	ControlFocus,, % "ahk_id " hwnd
 
 	Gui, %GUI_name%: Show, % "NA x" vars.client.x " y" vars.client.y
 	LLK_Overlay(hwnd_skilltree_schematics_info, "show",, GUI_name), LLK_Overlay(hwnd_skilltree_schematics, "show",, "skilltree_schematics"), LLK_Overlay(hwnd_old, "destroy")

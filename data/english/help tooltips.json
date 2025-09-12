@@ -460,6 +460,10 @@
       "opens the folder with overlay images",
       "if you want to edit the images yourself, you can move them to this folder manually"
     ],
+    "leveltracker tree hotkey": [
+      "optional: if you close the in-game passive tree by pressing its hotkey again or the <close all ui> hotkey, you can specify it here",
+      "whenever you press that hotkey to close the in-game tree, the tree overlay will also close"
+    ],
     "leveltracker profile create": [
       "click to add a guide slot"
     ],
@@ -1259,7 +1263,7 @@
       "press <q> or <e> to switch between individual skill-trees",
       "hold <w> to show an overview of the whole tree",
       "hold number-keys <1> through <4> to show the individual ascendancy-trees",
-      "press <space> to move the tree's starting point (white/yellow circle) to the cursor's position",
+      "l-click: drag in-game tree || r-click: drag overlay\n(both can be dragged simultaneously)\nm-click: snap white/yellow circle to cursor",
       "hold <alt> to temporarily hide the overlay"
     ],
     "opacity": [

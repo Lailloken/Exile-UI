@@ -473,7 +473,8 @@
       "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
     ],
     [
-      "optional: <ring> in (img:checkpoint) (color:aaaaaa)volcanic_nest",
+      "optional: (color:ff0000)f / (color:ffff00)l (img:ring) (10% qual) in (img:checkpoint) (color:aaaaaa)volc._nest",
+      "(hint)__ element based on (color:ff8111)boss you kill (color:ffffff)last",
       "find & kill (img:checkpoint) krutog",
       "(img:quest_2) matiki || (color:aaaaaa)return_to_ship (color:ff00ff)or (img:portal) out",
       "(img:quest_2) matiki || (img:quest_2) makoru: areaidg4_4_1 ;; eye of hinekora"
@@ -542,7 +543,7 @@
       "(img:quest_2) rhodri: (color:aaaaaa)sail_to areaidg4_11_1b ;; ngakanu"
     ],
     [
-      "greater (img:jeweller) (?): abyss encounter",
+      "greater (img:jeweller): abyss encounter",
       "enter (img:checkpoint) areaidg4_11_2 ;; heart of the tribe"
     ],
     [
@@ -601,7 +602,8 @@
       "go (img:3) to areaidp2_1 ;; the khari crossing"
     ],
     [
-      "go (img:2), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
+      "activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
+      "(hint)__ usually (img:3) or (img:2) of (img:arena) entrance",
       "go (img:1), kill (img:checkpoint) anundr_&_akthi",
       "(img:portal) to areaidp2_town (img:town) ;; the khari bazaar"
     ],
@@ -610,8 +612,10 @@
       "go (img:5) to areaidp2_1 ;; the khari crossing"
     ],
     [
-      "go (img:6), activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
-      "go (img:6), enter (img:checkpoint) areaidp2_2 ;; pools of khatal"
+      "activate (img:checkpoint) (color:aaaaaa)wayfinder's_seal",
+      "(hint)__ follow the arrow under you",
+      "enter (img:checkpoint) areaidp2_2 ;; pools of khatal",
+      "(hint)__ follow the arrow under you"
     ],
     [
       "(img:waypoint) to areaidp2_town (img:town) ;; the khari bazaar"
@@ -620,9 +624,10 @@
       "go (img:7) to areaidp2_1 ;; the khari crossing"
     ],
     [
-      "go (img:0), find (img:checkpoint) (color:aaaaaa)torbik",
+      "go (img:0), find (img:checkpoint) (color:aaaaaa)merchant_torbik",
       "go (img:1), (img:in-out2) skullmaw_stairway for (quest:gift)",
-      "(img:checkpoint) to (color:aaaaaa)torbik, go (img:6) to (img:checkpoint) areaidp2_5 ;; the galai gates"
+      "find & enter (img:checkpoint) areaidp2_5 ;; the galai gates",
+      "(hint)__ usually (img:7) or (img:6) of (img:checkpoint) (color:aaaaaa)merchant_torbik"
     ],
     [
       "(img:waypoint) to areaidp2_2 ;; pools of khatal"

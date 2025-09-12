@@ -52,7 +52,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ## Main Features
-\* = based on a user-request
+**`click the links to open the feature's wiki-page`**
 <br>
 
 ### [Clone-frames](https://github.com/Lailloken/Lailloken-UI/wiki/Clone-frames): "interface-customization" by cloning & projecting screen areas  

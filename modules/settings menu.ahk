@@ -2177,6 +2177,16 @@ Settings_leveltracker()
 			Gui, %GUI%: Add, Text, % "ys x+" margin " gSettings_leveltracker2 Border HWNDhwnd", % " " Lang_Trans("global_imgfolder") " "
 			vars.hwnd.settings.folder := vars.hwnd.help_tooltips["settings_leveltracker folder"] := hwnd
 		}
+		Else
+		{
+			Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_lvltracker_treehotkey")
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+			Gui, %GUI%: Add, Edit, % "ys hp gSettings_leveltracker2 cBlack HWNDhwnd w" settings.general.fWidth * 10, % settings.leveltracker.tree_hotkey
+			vars.hwnd.settings.tree_hotkey := vars.hwnd.help_tooltips["settings_leveltracker tree hotkey"] := hwnd
+			Gui, %GUI%: Font, % "s" settings.general.fSize
+			Gui, %GUI%: Add, Text, % "ys hp Border cRed gSettings_leveltracker2 Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
+			vars.hwnd.settings.tree_hotkey_save := hwnd1
+		}
 	}
 
 	Gui, %GUI%: Font, underline bold
@@ -2271,6 +2281,31 @@ Settings_leveltracker2(cHWND := "")
 		IniWrite, % (settings.leveltracker.hotkeys := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\leveling tracker.ini", settings, enable page hotkeys
 		settings.leveltracker.hotkey_01 := settings.leveltracker.hotkey_1, settings.leveltracker.hotkey_02 := settings.leveltracker.hotkey_2
 		Leveltracker_Hotkeys("refresh"), Settings_menu("leveling tracker")
+	}
+	Else If (check = "tree_hotkey")
+	{
+		input := LLK_ControlGet(cHWND)
+		If Blank(input) && !Blank(settings.leveltracker.tree_hotkey) || (input != settings.leveltracker.tree_hotkey)
+			GuiControl, % "-Hidden", % vars.hwnd.settings.tree_hotkey_save
+		Else GuiControl, % "+Hidden", % vars.hwnd.settings.tree_hotkey_save
+		GuiControl, % "movedraw", % vars.hwnd.settings.tree_hotkey_save
+	}
+	Else If (check = "tree_hotkey_save")
+	{
+		input := LLK_ControlGet(vars.hwnd.settings.tree_hotkey)
+		If !GetKeyVK(input) && !Blank(input)
+		{
+			LLK_ToolTip(Lang_Trans("m_hotkeys_error"),,,,, "Red")
+			Return
+		}
+		Hotkey, If, vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
+		If !Blank(settings.leveltracker.tree_hotkey)
+			Hotkey, % "~" Hotkeys_Convert(settings.leveltracker.tree_hotkey), Hotkeys_ESC, Off
+		If !Blank(input)
+			Hotkey, % "~" Hotkeys_Convert(input), Hotkeys_ESC, On
+		IniWrite, % """" (settings.leveltracker.tree_hotkey := input) """", % "ini" vars.poe_version "\leveling tracker.ini", settings, tree hotkey
+		GuiControl, % "+Hidden", % vars.hwnd.settings.tree_hotkey_save
+		GuiControl, % "movedraw", % vars.hwnd.settings.tree_hotkey_save
 	}
 	Else If InStr(check, "hotkey_")
 	{

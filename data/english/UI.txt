@@ -994,11 +994,12 @@
 		m_lvltracker_incompatible	=	"incompatible guide-data,;update required"
 		m_lvltracker_treeclear		=	"delete data"
 		m_lvltracker_leaguestart	=	"league-start"
-		m_lvltracker_optionals		=	"optionals"		;## refers to optional loot, quests, etc.
+		m_lvltracker_optionals		=	"optionals"			;## refers to optional loot, quests, etc.
 		m_lvltracker_bandit		=	"bandit"
 		m_lvltracker_bandits		=	"alira"
 		m_lvltracker_bandits		=	"kraityn"
 		m_lvltracker_bandits		=	"oak"
+		m_lvltracker_treehotkey		=	"hotkey to close trees:"	;## optional setting for users who don't close the in-game tree with ESC
 
 
 

@@ -187,7 +187,8 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 ;dummy-hotkeys #############################################################
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
 #If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
-#If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main) ;pre-defined context for hotkey command
+#If vars.hwnd.leveltracker.main && WinActive("ahk_group poe_ahk_window") && WinExist("ahk_id " vars.hwnd.leveltracker.main) ;pre-defined context for hotkey command
+#If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
 #If vars.hwnd.stash.main && WinExist("ahk_id " vars.hwnd.stash.main) && InStr(vars.stash.hover, "tab_")
 #If vars.hwnd.stash.main && WinExist("ahk_id " vars.hwnd.stash.main) && IsObject(vars.stash.regex)

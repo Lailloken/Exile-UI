@@ -482,11 +482,13 @@ Hotkeys_Tab()
 		WinActivate, ahk_group poe_window
 }
 
-#If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1) ;pre-defined context for hotkey command
-#If WinExist("ahk_id "vars.hwnd.horizons.main) ;pre-defined context for hotkey command
-#If WinActive("ahk_group poe_ahk_window") && vars.hwnd.leveltracker.main && WinExist("ahk_id " vars.hwnd.leveltracker.main) ;pre-defined context for hotkey command
+;pre-defined contexts for hotkey command
+#If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1)
+#If WinExist("ahk_id "vars.hwnd.horizons.main)
+#If vars.hwnd.leveltracker.main && WinActive("ahk_group poe_ahk_window") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 #If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
-#If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client) ;pre-defined context for hotkey command
+#If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
+#If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
 
 #If vars.hwnd.exchange.main && WinExist("ahk_id " vars.hwnd.exchange.main)
 ~SC0038::Exchange("hide")
@@ -543,7 +545,7 @@ SC010::Leveltracker_PobSkilltree("prev")
 SC012::Leveltracker_PobSkilltree("next")
 SC011::Leveltracker_PobSkilltree("overview")
 SC038::Leveltracker_PobSkilltree("hide")
-SC039::Leveltracker_PobSkilltree("reset")
+MButton::Leveltracker_PobSkilltree("reset")
 
 #If settings.features.sanctum && vars.sanctum.active && WinExist("ahk_id " vars.hwnd.sanctum.second) && !vars.sanctum.lock ;last condition needed to make the space-key usable again after initial lock
 *SC039::Sanctum("lock")
