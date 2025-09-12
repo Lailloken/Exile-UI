@@ -1,0 +1,1357 @@
+{
+  "currency1": [
+    [
+      49,
+      204,
+      "orb of transmutation"
+    ],
+    [
+      0,
+      0,
+      "greater orb of transmutation"
+    ],
+    [
+      0,
+      0,
+      "perfect orb of transmutation"
+    ],
+    [
+      319,
+      0,
+      "orb of alchemy"
+    ],
+    [
+      409,
+      0,
+      "vaal orb"
+    ],
+    [
+      499,
+      0,
+      "orb of annulment"
+    ],
+    [
+      607,
+      0,
+      "lesser jeweller's orb"
+    ],
+    [
+      0,
+      0,
+      "greater jeweller's orb"
+    ],
+    [
+      0,
+      0,
+      "perfect jeweller's orb"
+    ],
+    [
+      49,
+      294,
+      "orb of augmentation"
+    ],
+    [
+      0,
+      0,
+      "greater orb of augmentation"
+    ],
+    [
+      0,
+      0,
+      "perfect orb of augmentation"
+    ],
+    [
+      319,
+      0,
+      "orb of chance"
+    ],
+    [
+      409,
+      0,
+      "fracturing orb"
+    ],
+    [
+      499,
+      0,
+      "divine orb"
+    ],
+    [
+      769,
+      0,
+      "artificer's orb"
+    ],
+    [
+      49,
+      384,
+      "regal orb"
+    ],
+    [
+      0,
+      0,
+      "greater regal orb"
+    ],
+    [
+      0,
+      0,
+      "perfect regal orb"
+    ],
+    [
+      364,
+      0,
+      "mirror of kalandra"
+    ],
+    [
+      454,
+      0,
+      "hinekora's lock"
+    ],
+    [
+      589,
+      411,
+      "arcanist's etcher"
+    ],
+    [
+      679,
+      0,
+      "armourer's scrap"
+    ],
+    [
+      769,
+      0,
+      "blacksmith's whetstone"
+    ],
+    [
+      49,
+      474,
+      "exalted orb"
+    ],
+    [
+      0,
+      0,
+      "greater exalted orb"
+    ],
+    [
+      0,
+      0,
+      "perfect exalted orb"
+    ],
+    [
+      679,
+      501,
+      "glassblower's bauble"
+    ],
+    [
+      769,
+      501,
+      "gemcutter's prism"
+    ],
+    [
+      49,
+      564,
+      "chaos orb"
+    ],
+    [
+      0,
+      0,
+      "greater chaos orb"
+    ],
+    [
+      0,
+      0,
+      "perfect chaos orb"
+    ],
+    [
+      769,
+      618,
+      "scroll of wisdom"
+    ]
+  ],
+  "delirium": [
+    [
+      407,
+      237,
+      "simulacrum splinter"
+    ],
+    [
+      223,
+      409,
+      "diluted liquid ire"
+    ],
+    [
+      0,
+      0,
+      "diluted liquid guilt"
+    ],
+    [
+      0,
+      0,
+      "diluted liquid greed"
+    ],
+    [
+      0,
+      0,
+      "liquid paranoia"
+    ],
+    [
+      0,
+      0,
+      "liquid envy"
+    ],
+    [
+      223,
+      505,
+      "liquid disgust"
+    ],
+    [
+      0,
+      0,
+      "liquid despair"
+    ],
+    [
+      0,
+      0,
+      "concentrated liquid fear"
+    ],
+    [
+      0,
+      0,
+      "concentrated liquid suffering"
+    ],
+    [
+      0,
+      0,
+      "concentrated liquid isolation"
+    ]
+  ],
+  "essences": [
+    [
+      64,
+      197,
+      "lesser essence of the body"
+    ],
+    [
+      0,
+      0,
+      "essence of the body"
+    ],
+    [
+      0,
+      0,
+      "greater essence of the body"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of the body"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of command"
+    ],
+    [
+      0,
+      0,
+      "essence of command"
+    ],
+    [
+      0,
+      0,
+      "greater essence of command"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of command"
+    ],
+    [
+      64,
+      278,
+      "lesser essence of the mind"
+    ],
+    [
+      0,
+      0,
+      "essence of the mind"
+    ],
+    [
+      0,
+      0,
+      "greater essence of the mind"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of the mind"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of abrasion"
+    ],
+    [
+      0,
+      0,
+      "essence of abrasion"
+    ],
+    [
+      0,
+      0,
+      "greater essence of abrasion"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of abrasion"
+    ],
+    [
+      64,
+      359,
+      "lesser essence of enhancement"
+    ],
+    [
+      0,
+      0,
+      "essence of enhancement"
+    ],
+    [
+      0,
+      0,
+      "greater essence of enhancement"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of enhancement"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of sorcery"
+    ],
+    [
+      0,
+      0,
+      "essence of sorcery"
+    ],
+    [
+      0,
+      0,
+      "greater essence of sorcery"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of sorcery"
+    ],
+    [
+      64,
+      440,
+      "lesser essence of flames"
+    ],
+    [
+      0,
+      0,
+      "essence of flames"
+    ],
+    [
+      0,
+      0,
+      "greater essence of flames"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of flames"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of haste"
+    ],
+    [
+      0,
+      0,
+      "essence of haste"
+    ],
+    [
+      0,
+      0,
+      "greater essence of haste"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of haste"
+    ],
+    [
+      64,
+      521,
+      "lesser essence of insulation"
+    ],
+    [
+      0,
+      0,
+      "essence of insulation"
+    ],
+    [
+      0,
+      0,
+      "greater essence of insulation"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of insulation"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of alacrity"
+    ],
+    [
+      0,
+      0,
+      "essence of alacrity"
+    ],
+    [
+      0,
+      0,
+      "greater essence of alacrity"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of alacrity"
+    ],
+    [
+      64,
+      602,
+      "lesser essence of ice"
+    ],
+    [
+      0,
+      0,
+      "essence of ice"
+    ],
+    [
+      0,
+      0,
+      "greater essence of ice"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of ice"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of seeking"
+    ],
+    [
+      0,
+      0,
+      "essence of seeking"
+    ],
+    [
+      0,
+      0,
+      "greater essence of seeking"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of seeking"
+    ],
+    [
+      64,
+      683,
+      "lesser essence of thawing"
+    ],
+    [
+      0,
+      0,
+      "essence of thawing"
+    ],
+    [
+      0,
+      0,
+      "greater essence of thawing"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of thawing"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of battle"
+    ],
+    [
+      0,
+      0,
+      "essence of battle"
+    ],
+    [
+      0,
+      0,
+      "greater essence of battle"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of battle"
+    ],
+    [
+      64,
+      764,
+      "lesser essence of electricity"
+    ],
+    [
+      0,
+      0,
+      "essence of electricity"
+    ],
+    [
+      0,
+      0,
+      "greater essence of electricity"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of electricity"
+    ],
+    [
+      379,
+      0,
+      "essence of hysteria"
+    ],
+    [
+      0,
+      0,
+      "essence of horror"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of the infinite"
+    ],
+    [
+      0,
+      0,
+      "essence of the infinite"
+    ],
+    [
+      0,
+      0,
+      "greater essence of the infinite"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of the infinite"
+    ],
+    [
+      64,
+      845,
+      "lesser essence of grounding"
+    ],
+    [
+      0,
+      0,
+      "essence of grounding"
+    ],
+    [
+      0,
+      0,
+      "greater essence of grounding"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of grounding"
+    ],
+    [
+      379,
+      0,
+      "essence of delirium"
+    ],
+    [
+      0,
+      0,
+      "essence of insanity"
+    ],
+    [
+      545,
+      0,
+      "lesser essence of opulence"
+    ],
+    [
+      0,
+      0,
+      "essence of opulence"
+    ],
+    [
+      0,
+      0,
+      "greater essence of opulence"
+    ],
+    [
+      765,
+      0,
+      "perfect essence of opulence"
+    ],
+    [
+      64,
+      926,
+      "lesser essence of ruin"
+    ],
+    [
+      0,
+      0,
+      "essence of ruin"
+    ],
+    [
+      0,
+      0,
+      "greater essence of ruin"
+    ],
+    [
+      285,
+      0,
+      "perfect essence of ruin"
+    ],
+    [
+      413,
+      0,
+      "essence of the abyss"
+    ]
+  ],
+  "ritual": [
+    [
+      409,
+      204,
+      "petition splinter"
+    ],
+    [
+      251,
+      339,
+      "omen of homogenising coronation"
+    ],
+    [
+      368,
+      0,
+      "omen of gambling"
+    ],
+    [
+      0,
+      0,
+      "omen of bartering"
+    ],
+    [
+      566,
+      0,
+      "omen of corruption"
+    ],
+    [
+      148,
+      456,
+      "omen of sinistral exaltation"
+    ],
+    [
+      0,
+      0,
+      "omen of dextral exaltation"
+    ],
+    [
+      0,
+      0,
+      "omen of greater exaltation"
+    ],
+    [
+      427,
+      0,
+      "omen of sinistral erasure"
+    ],
+    [
+      0,
+      0,
+      "omen of dextral erasure"
+    ],
+    [
+      0,
+      0,
+      "omen of whittling"
+    ],
+    [
+      188,
+      537,
+      "omen of homogenising exaltation"
+    ],
+    [
+      0,
+      0,
+      "omen of catalysing exaltation"
+    ],
+    [
+      427,
+      537,
+      "omen of chaotic rarity"
+    ],
+    [
+      0,
+      0,
+      "omen of chaotic quantity"
+    ],
+    [
+      0,
+      0,
+      "omen of chaotic monsters"
+    ],
+    [
+      170,
+      654,
+      "omen of sinistral annulment"
+    ],
+    [
+      0,
+      0,
+      "omen of dextral annulment"
+    ],
+    [
+      368,
+      0,
+      "omen of chance"
+    ],
+    [
+      0,
+      0,
+      "omen of the ancients"
+    ],
+    [
+      566,
+      0,
+      "omen of the blessed"
+    ],
+    [
+      0,
+      0,
+      "omen of sanctification"
+    ],
+    [
+      170,
+      771,
+      "omen of dextral crystallisation"
+    ],
+    [
+      0,
+      0,
+      "omen of sinistral crystallisation"
+    ],
+    [
+      566,
+      0,
+      "omen of recombination"
+    ],
+    [
+      148,
+      906,
+      "omen of resurgence"
+    ],
+    [
+      0,
+      0,
+      "omen of amelioration"
+    ],
+    [
+      0,
+      0,
+      "omen of refreshment"
+    ],
+    [
+      427,
+      0,
+      "omen of the hunt"
+    ],
+    [
+      0,
+      0,
+      "omen of answered prayers"
+    ],
+    [
+      0,
+      0,
+      "omen of secret compartments"
+    ],
+    [
+      0,
+      0,
+      "omen of reinforcements"
+    ]
+  ],
+  "socketables": [
+    [
+      58,
+      194,
+      "lesser desert rune"
+    ],
+    [
+      0,
+      0,
+      "desert rune"
+    ],
+    [
+      0,
+      0,
+      "greater desert rune"
+    ],
+    [
+      256,
+      0,
+      "lesser glacial rune"
+    ],
+    [
+      0,
+      0,
+      "glacial rune"
+    ],
+    [
+      0,
+      0,
+      "greater glacial rune"
+    ],
+    [
+      454,
+      0,
+      "lesser storm rune"
+    ],
+    [
+      0,
+      0,
+      "storm rune"
+    ],
+    [
+      0,
+      0,
+      "greater storm rune"
+    ],
+    [
+      652,
+      0,
+      "lesser iron rune"
+    ],
+    [
+      0,
+      0,
+      "iron rune"
+    ],
+    [
+      0,
+      0,
+      "greater iron rune"
+    ],
+    [
+      58,
+      266,
+      "lesser body rune"
+    ],
+    [
+      0,
+      0,
+      "body rune"
+    ],
+    [
+      0,
+      0,
+      "greater body rune"
+    ],
+    [
+      256,
+      0,
+      "lesser mind rune"
+    ],
+    [
+      0,
+      0,
+      "mind rune"
+    ],
+    [
+      0,
+      0,
+      "greater mind rune"
+    ],
+    [
+      454,
+      0,
+      "lesser rebirth rune"
+    ],
+    [
+      0,
+      0,
+      "rebirth rune"
+    ],
+    [
+      0,
+      0,
+      "greater rebirth rune"
+    ],
+    [
+      652,
+      0,
+      "lesser inspiration rune"
+    ],
+    [
+      0,
+      0,
+      "inspiration rune"
+    ],
+    [
+      0,
+      0,
+      "greater inspiration rune"
+    ],
+    [
+      58,
+      338,
+      "lesser robust rune"
+    ],
+    [
+      0,
+      0,
+      "robust rune"
+    ],
+    [
+      0,
+      0,
+      "greater robust rune"
+    ],
+    [
+      256,
+      0,
+      "lesser adept rune"
+    ],
+    [
+      0,
+      0,
+      "adept rune"
+    ],
+    [
+      0,
+      0,
+      "greater adept rune"
+    ],
+    [
+      454,
+      0,
+      "lesser resolve rune"
+    ],
+    [
+      0,
+      0,
+      "resolve rune"
+    ],
+    [
+      0,
+      0,
+      "greater resolve rune"
+    ],
+    [
+      652,
+      0,
+      "lesser vision rune"
+    ],
+    [
+      0,
+      0,
+      "vision rune"
+    ],
+    [
+      0,
+      0,
+      "greater vision rune"
+    ],
+    [
+      58,
+      410,
+      "lesser stone rune"
+    ],
+    [
+      0,
+      0,
+      "stone rune"
+    ],
+    [
+      0,
+      0,
+      "greater stone rune"
+    ],
+    [
+      562,
+      0,
+      "greater rune of leadership"
+    ],
+    [
+      634,
+      0,
+      "greater rune of tithing"
+    ],
+    [
+      706,
+      0,
+      "greater rune of alacrity"
+    ],
+    [
+      778,
+      0,
+      "greater rune of nobility"
+    ],
+    [
+      58,
+      482,
+      "farrul's rune of the hunt"
+    ],
+    [
+      130,
+      0,
+      "thane myrk's rune of summer"
+    ],
+    [
+      202,
+      0,
+      "lady hestra's rune of winter"
+    ],
+    [
+      274,
+      0,
+      "thane leld's rune of spring"
+    ],
+    [
+      346,
+      0,
+      "fenumus' rune of agony"
+    ],
+    [
+      418,
+      0,
+      "thane girt's rune of wildness"
+    ],
+    [
+      490,
+      0,
+      "hedgewitch assandra's rune of wisdom"
+    ],
+    [
+      562,
+      0,
+      "saqawal's rune of the sky"
+    ],
+    [
+      634,
+      0,
+      "the greatwolf's rune of willpower"
+    ],
+    [
+      706,
+      0,
+      "craiceann's rune of recovery"
+    ],
+    [
+      778,
+      0,
+      "craiceann's rune of warding"
+    ],
+    [
+      94,
+      554,
+      "countess seske's rune of archery"
+    ],
+    [
+      166,
+      0,
+      "saqawal's rune of erosion"
+    ],
+    [
+      238,
+      0,
+      "saqawal's rune of memory"
+    ],
+    [
+      310,
+      0,
+      "the greatwolf's rune of claws"
+    ],
+    [
+      382,
+      0,
+      "courtesan mannan's rune of cruelty"
+    ],
+    [
+      454,
+      0,
+      "thane grannell's rune of mastery"
+    ],
+    [
+      526,
+      0,
+      "fenumus' rune of spinning"
+    ],
+    [
+      598,
+      0,
+      "fenumus' rune of draining"
+    ],
+    [
+      670,
+      0,
+      "farrul's rune of grace"
+    ],
+    [
+      742,
+      0,
+      "farrul's rune of the chase"
+    ],
+    [
+      58,
+      635,
+      "soul core of topotante"
+    ],
+    [
+      130,
+      0,
+      "soul core of tacati"
+    ],
+    [
+      202,
+      0,
+      "soul core of opiloti"
+    ],
+    [
+      274,
+      0,
+      "soul core of jiquani"
+    ],
+    [
+      346,
+      0,
+      "soul core of zalatl"
+    ],
+    [
+      418,
+      0,
+      "soul core of citaqualotl"
+    ],
+    [
+      490,
+      0,
+      "soul core of puhuarte"
+    ],
+    [
+      562,
+      0,
+      "soul core of tzamoto"
+    ],
+    [
+      634,
+      0,
+      "soul core of xopec"
+    ],
+    [
+      706,
+      0,
+      "soul core of quipolatl"
+    ],
+    [
+      778,
+      0,
+      "soul core of ticaba"
+    ],
+    [
+      58,
+      707,
+      "soul core of atmohua"
+    ],
+    [
+      130,
+      0,
+      "soul core of cholotl"
+    ],
+    [
+      202,
+      0,
+      "soul core of zantipi"
+    ],
+    [
+      274,
+      0,
+      "soul core of azcapa"
+    ],
+    [
+      562,
+      0,
+      "atmohua's soul core of retreat"
+    ],
+    [
+      634,
+      0,
+      "hayoxi's soul core of heatproofing"
+    ],
+    [
+      706,
+      0,
+      "zalatl's soul core of insulation"
+    ],
+    [
+      778,
+      0,
+      "topotante's soul core of dampening"
+    ],
+    [
+      58,
+      780,
+      "opiloti's soul core of assault"
+    ],
+    [
+      130,
+      0,
+      "guatelitzi's soul core of endurance"
+    ],
+    [
+      202,
+      0,
+      "xopec's soul core of power"
+    ],
+    [
+      274,
+      0,
+      "xipocado's soul core of dominion"
+    ],
+    [
+      346,
+      0,
+      "citaqualotl's soul core of foulness"
+    ],
+    [
+      418,
+      0,
+      "cholotl's soul core of war"
+    ],
+    [
+      490,
+      0,
+      "tacati's soul core of affliction"
+    ],
+    [
+      562,
+      0,
+      "quipolatl's soul core of flow"
+    ],
+    [
+      634,
+      0,
+      "tzamoto's soul core of ferocity"
+    ],
+    [
+      706,
+      0,
+      "uromoti's soul core of attenuation"
+    ],
+    [
+      778,
+      0,
+      "estazunti's soul core of convalescence"
+    ],
+    [
+      58,
+      860,
+      "serpent talisman"
+    ],
+    [
+      130,
+      0,
+      "primate talisman"
+    ],
+    [
+      202,
+      0,
+      "owl talisman"
+    ],
+    [
+      274,
+      0,
+      "cat talisman"
+    ],
+    [
+      346,
+      0,
+      "wolf talisman"
+    ],
+    [
+      418,
+      0,
+      "stag talisman"
+    ],
+    [
+      490,
+      0,
+      "boar talisman"
+    ],
+    [
+      562,
+      0,
+      "bear talisman"
+    ],
+    [
+      634,
+      0,
+      "ox talisman"
+    ],
+    [
+      706,
+      0,
+      "rabbit talisman"
+    ],
+    [
+      778,
+      0,
+      "fox talisman"
+    ],
+    [
+      202,
+      932,
+      "talisman of thruldana"
+    ],
+    [
+      274,
+      0,
+      "talisman of maxarius"
+    ],
+    [
+      346,
+      0,
+      "talisman of eeshta"
+    ],
+    [
+      418,
+      0,
+      "talisman of egrin"
+    ],
+    [
+      490,
+      0,
+      "talisman of ralakesh"
+    ],
+    [
+      562,
+      0,
+      "talisman of sirrius"
+    ],
+    [
+      634,
+      0,
+      "talisman of grold"
+    ]
+  ]
+}

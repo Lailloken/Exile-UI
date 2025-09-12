@@ -468,7 +468,7 @@ Init_general()
 	settings.features.maptracker := !Blank(check := ini.features["enable map tracker"]) ? check : 0
 	settings.features.mapinfo := (settings.general.lang_client != "unknown") && !Blank(check := ini.features["enable map-info panel"]) ? check : 0
 	settings.features.OCR := !vars.poe_version && !Blank(check := ini.features["enable ocr"]) ? check : 0
-	settings.features.stash := !vars.poe_version && !Blank(check := ini.features["enable stash-ninja"]) ? check : 0
+	settings.features.stash := !Blank(check := ini.features["enable stash-ninja"]) ? check : 0
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.features.exchange := !Blank(check := ini.features["enable vaal street"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}

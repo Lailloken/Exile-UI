@@ -3133,7 +3133,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	{
 		If !vars.poe_version
 			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "sanctum", "statlas", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "stash-ninja", "sanctum", "statlas", "exchange"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
@@ -3965,7 +3965,7 @@ Settings_screenchecks()
 			Continue
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-info"handle] := hwnd
-		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd"(!FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
+		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (!FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-calibration"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (Blank(vars.imagesearch[key].x1) ? " cRed" : ""), % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["tImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-test"handle] := hwnd, handle .= "|"
@@ -4080,7 +4080,7 @@ Settings_ScreenChecksValid()
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (vars.poe_version || !settings.features.maptracker || !settings.maptracker.loot))
 		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
 			Continue
-		valid *= FileExist("img\Recognition ("vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") && !Blank(vars.imagesearch[key].x1) ? 1 : 0
+		valid *= FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") && !Blank(vars.imagesearch[key].x1) ? 1 : 0
 	}
 
 	If valid
@@ -4110,7 +4110,7 @@ Settings_searchstrings()
 		}
 		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
 
-		color := !var.enable ? "Gray" : !FileExist("img\Recognition ("vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " string ".bmp") ? "Red" : "White", style := !var.enable ? "" : " gSettings_searchstrings2"
+		color := !var.enable ? "Gray" : !FileExist("img\Recognition (" vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " string ".bmp") ? "Red" : "White", style := !var.enable ? "" : " gSettings_searchstrings2"
 		Gui, %GUI%: Add, Text, % "Section xs Border HWNDhwnd c"color style, % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cal_"string] := vars.hwnd.help_tooltips["settings_searchstrings calibrate"handle] := hwnd
 
@@ -4247,7 +4247,9 @@ Settings_stash()
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Stash‐Ninja">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_stash2 y+" vars.settings.spacing " Checked" settings.features.stash, % Lang_Trans("m_stash_enable")
-	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_stash enable"] := hwnd
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_stash enable" vars.poe_version] := hwnd
+	If vars.poe_version
+		Gui, %GUI%: Add, Text, % "Section xs cFF8000 w" settings.general.fWidth * 35, % "poe.ninja 2 is still under active development, so any changes made there might negatively impact this feature"
 
 	If !settings.features.stash
 		Return
@@ -4273,21 +4275,24 @@ Settings_stash()
 		vars.hwnd.settings.hotkey := vars.hwnd.help_tooltips["settings_stash hotkey"] := hwnd
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
-	Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd4 gSettings_stash2 Checked" settings.stash.bulk_trade, % Lang_Trans("m_stash_bulk")
-	If settings.stash.bulk_trade
+	If !vars.poe_version
 	{
-		Gui, %GUI%: Add, Text, % "xs+" settings.general.fWidth * 3 " Section HWNDhwnd3", % Lang_Trans("m_stash_mintrade")
-		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Edit, % "ys cBlack Number HWNDhwnd2 gSettings_stash2 Limit hp Right w" settings.general.fWidth * 3, % settings.stash.min_trade
-		Gui, %GUI%: Font, % "s" settings.general.fSize
-		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd00 gSettings_stash2 Checked" settings.stash.autoprofiles, % Lang_Trans("m_stash_profiles")
-		vars.hwnd.settings.min_trade := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade"] := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade|"] := hwnd3
-		vars.hwnd.settings.autoprofiles := vars.hwnd.help_tooltips["settings_stash autoprofiles"] := hwnd00
+		Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
+		Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd4 gSettings_stash2 Checked" settings.stash.bulk_trade, % Lang_Trans("m_stash_bulk")
+		If settings.stash.bulk_trade
+		{
+			Gui, %GUI%: Add, Text, % "xs+" settings.general.fWidth * 3 " Section HWNDhwnd3", % Lang_Trans("m_stash_mintrade")
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+			Gui, %GUI%: Add, Edit, % "ys cBlack Number HWNDhwnd2 gSettings_stash2 Limit hp Right w" settings.general.fWidth * 3, % settings.stash.min_trade
+			Gui, %GUI%: Font, % "s" settings.general.fSize
+			Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd00 gSettings_stash2 Checked" settings.stash.autoprofiles, % Lang_Trans("m_stash_profiles")
+			vars.hwnd.settings.min_trade := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade"] := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade|"] := hwnd3
+			vars.hwnd.settings.autoprofiles := vars.hwnd.help_tooltips["settings_stash autoprofiles"] := hwnd00
+		}
+		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
+		vars.hwnd.settings.bulk_trade := vars.hwnd.help_tooltips["settings_stash bulk"] := hwnd4
 	}
-	vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
-	vars.hwnd.settings.bulk_trade := vars.hwnd.help_tooltips["settings_stash bulk"] := hwnd4
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
@@ -4297,6 +4302,8 @@ Settings_stash()
 	colors := settings.stash.colors.Clone()
 	Loop 3
 	{
+		If InStr(vars.poe_version, A_Index)
+			Continue
 		color1 := colors[A_Index * 2 - 1], color2 := colors[A_Index * 2]
 		Gui, %GUI%: Add, Text, % "ys Border Center HWNDhwndtext BackgroundTrans c" color1, % " 69.42 "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border BackgroundBlack HWNDhwndback c" color2, 100
@@ -4378,7 +4385,7 @@ Settings_stash2(cHWND)
 
 	If (check = "enable")
 	{
-		IniWrite, % (settings.features.stash := LLK_ControlGet(cHWND)), ini\config.ini, features, enable stash-ninja
+		IniWrite, % (settings.features.stash := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable stash-ninja
 		If !settings.features.stash
 			Stash_Close()
 		Settings_menu("stash-ninja")
@@ -4400,7 +4407,7 @@ Settings_stash2(cHWND)
 		If (hwnd = vars.hwnd.settings.min_trade)
 		{
 			input := LLK_ControlGet(vars.hwnd.settings.min_trade)
-			IniWrite, % (settings.stash.min_trade := !input ? "" : input), ini\stash-ninja.ini, settings, minimum trade value
+			IniWrite, % (settings.stash.min_trade := !input ? "" : input), % "ini" vars.poe_version "\stash-ninja.ini", settings, minimum trade value
 			Init_stash("bulk_trade"), Settings_menu("stash-ninja"), in_progress := 0
 			Return
 		}
@@ -4419,7 +4426,7 @@ Settings_stash2(cHWND)
 				Hotkey, IfWinActive, ahk_group poe_window
 				Hotkey, % "~" Hotkeys_Convert(settings.stash.hotkey), Stash_Selection, Off
 				Hotkey, % "~" Hotkeys_Convert(settings.stash.hotkey := input0), Stash_Selection, On
-				IniWrite, % """" input0 """", ini\stash-ninja.ini, settings, hotkey
+				IniWrite, % """" input0 """", % "ini" vars.poe_version "\stash-ninja.ini", settings, hotkey
 				GuiControl, +cBlack, % vars.hwnd.settings.hotkey
 				GuiControl, movedraw, % vars.hwnd.settings.hotkey
 			}
@@ -4429,25 +4436,27 @@ Settings_stash2(cHWND)
 	}
 	Else If InStr(check, "enable_")
 	{
-		IniWrite, % (settings.stash[control].enable := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, % control, enable
+		IniWrite, % (settings.stash[control].enable := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", % control, enable
+		If !settings.stash[control].enable && WinExist("ahk_id " vars.hwnd.stash.main)
+			Stash_Close()
 		Settings_menu("stash-ninja")
 	}
 	Else If InStr(check, "league_")
 	{
 		GuiControl, +cWhite, % vars.hwnd.settings["league_" settings.stash.league]
 		GuiControl, movedraw, % vars.hwnd.settings["league_" settings.stash.league]
-		IniWrite, % (settings.stash.league := control), ini\stash-ninja.ini, settings, league
+		IniWrite, % (settings.stash.league := control), % "ini" vars.poe_version "\stash-ninja.ini", settings, league
 		GuiControl, +cLime, % cHWND
 		GuiControl, movedraw, % cHWND
 		Stash_PriceFetch("flush")
 	}
 	Else If (check = "history")
-		IniWrite, % (settings.stash.history := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, settings, enable price history
+		IniWrite, % (settings.stash.history := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, enable price history
 	Else If (check = "exalt")
-		IniWrite, % (settings.stash.show_exalt := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, settings, show exalt conversion
+		IniWrite, % (settings.stash.show_exalt := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, show exalt conversion
 	Else If (check = "bulk_trade")
 	{
-		IniWrite, % (settings.stash.bulk_trade := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, settings, show bulk-sale suggestions
+		IniWrite, % (settings.stash.bulk_trade := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, show bulk-sale suggestions
 		If !settings.stash.bulk_trade && WinExist("ahk_id " vars.hwnd.stash_picker.main)
 			Stash_PricePicker("destroy"), vars.stash.enter := 0
 		Init_stash("bulk_trade"), Settings_menu("stash-ninja")
@@ -4459,7 +4468,7 @@ Settings_stash2(cHWND)
 	}
 	Else If (check = "autoprofiles")
 	{
-		IniWrite, % (settings.stash.autoprofiles := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, settings, enable trade-value profiles
+		IniWrite, % (settings.stash.autoprofiles := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, enable trade-value profiles
 		Init_stash("bulk_trade"), Settings_menu("stash-ninja")
 	}
 	Else If InStr(check, "font_")
@@ -4477,7 +4486,7 @@ Settings_stash2(cHWND)
 			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.stash.fSize
 			Sleep 150
 		}
-		IniWrite, % settings.stash.fSize, ini\stash-ninja.ini, settings, font-size
+		IniWrite, % settings.stash.fSize, % "ini" vars.poe_version "\stash-ninja.ini", settings, font-size
 		Init_stash("font")
 	}
 	Else If InStr(check, "color_")
@@ -4491,7 +4500,7 @@ Settings_stash2(cHWND)
 		GuiControl, % "+c" color, % vars.hwnd.settings["color_" control "_panel"]
 		GuiControl, % "+c" color, % vars.hwnd.settings["color_" control "_text"]
 		GuiControl, % "movedraw", % vars.hwnd.settings["color_" control "_text"]
-		IniWrite, % (settings.stash.colors[control] := color), ini\stash-ninja.ini, UI, % (InStr("135", control) ? "text" : "background") " color" (control > 2 ? Ceil(control/2) : "")
+		IniWrite, % (settings.stash.colors[control] := color), % "ini" vars.poe_version "\stash-ninja.ini", UI, % (InStr("135", control) ? "text" : "background") " color" (control > 2 ? Ceil(control/2) : "")
 	}
 	Else If InStr(check, "gap")
 	{
@@ -4501,18 +4510,20 @@ Settings_stash2(cHWND)
 			Return
 		}
 		settings.stash[control].gap += InStr(check, "-") ? -1 : 1
-		IniWrite, % settings.stash[control].gap, ini\stash-ninja.ini, % control, gap
+		IniWrite, % settings.stash[control].gap, % "ini" vars.poe_version "\stash-ninja.ini", % control, gap
 		Init_stash("gap")
 	}
 	Else If InStr(check, "infolder_")
 	{
-		groups := [["fragments", "scarabs", "breach"], ["currency1", "currency2"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]], gCheck := LLK_HasVal(groups, control,,,, 1)
+		groups := (vars.poe_version ? [["currency1"], ["delirium"], ["essences"]] : [["fragments", "scarabs", "breach"], ["currency1", "currency2"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]])
+		gCheck := LLK_HasVal(groups, control,,,, 1)
+
 		For index, tab in groups[gCheck]
-			IniWrite, % (settings.stash[tab].in_folder := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, % tab, tab is in folder
+			IniWrite, % (settings.stash[tab].in_folder := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", % tab, tab is in folder
 		Init_stash(1)
 	}
 	Else If InStr(check, "bookmarking")
-		IniWrite, % (settings.stash[vars.stash.active].bookmarking := LLK_ControlGet(cHWND)), ini\stash-ninja.ini, % vars.stash.active, bookmarking
+		IniWrite, % (settings.stash[vars.stash.active].bookmarking := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", % vars.stash.active, bookmarking
 	Else If InStr(check, "limits")
 	{
 		types := {"bot": 1, "top": 2, "cur": 3}
@@ -4541,7 +4552,7 @@ Settings_stash2(cHWND)
 			While InStr(settings.stash[tab].limits[lIndex][lType], ".") && InStr(".0", SubStr(settings.stash[tab].limits[lIndex][lType], 0))
 				input := settings.stash[tab].limits0[lIndex][lType] := settings.stash[tab].limits[lIndex][lType] := SubStr(settings.stash[tab].limits[lIndex][lType], 1, -1)
 		}
-		IniWrite, % input, ini\stash-ninja.ini, % tab, % "limit " lIndex " " SubStr(check, 8, 3)
+		IniWrite, % input, % "ini" vars.poe_version "\stash-ninja.ini", % tab, % "limit " lIndex " " SubStr(check, 8, 3)
 	}
 	Else If InStr(check, "test")
 		Stash(vars.settings.selected_stash, 1)

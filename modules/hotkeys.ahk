@@ -582,10 +582,12 @@ MButton::Stash_PricePicker("reset")
 *SC004::Stash_Hotkeys(3)
 *SC005::Stash_Hotkeys(4)
 *SC006::Stash_Hotkeys(5)
-SC039::Stash_Hotkeys("Space")
-SC038::Stash_Hotkeys("LAlt")
 ~+LButton::Stash_Hotkeys("LButton")
 ~RButton::Stash_Hotkeys("RButton")
+
+#If vars.hwnd.stash.main && vars.stash.hover && !InStr(vars.stash.hover, "tab_") && WinActive("ahk_id " vars.hwnd.poe_client) && WinExist("ahk_id " vars.hwnd.stash.main)
+SC039::Stash_Hotkeys("Space")
+SC038::Stash_Hotkeys("LAlt")
 
 #If WinActive("ahk_id " vars.hwnd.poe_client) && vars.stash.enter
 ~*SC01C::vars.stash.enter := 0, Stash_PricePicker("destroy")

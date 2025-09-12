@@ -896,9 +896,13 @@
       "this is what bookmarked price tags look like"
     ],
     "stash enable": [
-      "stash feature that overlays price-tags onto currencies in specific stash tabs",
+      "stash feature that overlays price-tags onto items in specific stash tabs",
       "long-press the <omni-key> while hovering over an item in a tab to activate the feature",
       "there needs to be at least one tab-folder somewhere in your stash (the overlay will be slightly offset otherwise)(/highlight)"
+    ],
+    "stash enable 2": [
+      "stash feature that overlays poe.ninja price-tags onto items in specific stash tabs",
+      "long-press the <omni-key> while hovering over an item in a tab to activate the feature"
     ],
     "stash hotkey": [
       "this hotkey is exclusive to streaming clients, and pressing it will open an exclusive selection menu that lists the available tabs",
