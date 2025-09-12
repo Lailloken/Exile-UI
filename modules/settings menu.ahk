@@ -4515,7 +4515,7 @@ Settings_stash2(cHWND)
 	}
 	Else If InStr(check, "infolder_")
 	{
-		groups := (vars.poe_version ? [["currency1"], ["delirium"], ["essences"]] : [["fragments", "scarabs", "breach"], ["currency1", "currency2"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]])
+		groups := (vars.poe_version ? [["currency1"], ["delirium"], ["essences"], ["ritual"], ["socketables"]] : [["fragments", "scarabs", "breach"], ["currency1", "currency2"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]])
 		gCheck := LLK_HasVal(groups, control,,,, 1)
 
 		For index, tab in groups[gCheck]

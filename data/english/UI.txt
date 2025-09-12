@@ -1116,6 +1116,8 @@
 		m_stash_fragments		=	"fragment"
 		m_stash_scarabs			=	"scarab"
 		m_stash_ultimatum		=	"ultimatum"
+		m_stash_ritual			=	"ritual"
+		m_stash_socketables		=	"socketables"
 		m_stash_leagues			=	"league:"
 		m_stash_tabs			=	"stash tab configuration:"
 		m_stash_limits			=	"price-range profiles:"

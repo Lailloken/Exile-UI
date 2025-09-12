@@ -121,7 +121,6 @@
 			vars.stash[tab][name] := {"coords": [xCoord, yCoord], "exchange": array1.4, "prices": prices, "source": source, "trend": trend}
 		}
 	}
-	vars.stash.currency1["chaos orb"].prices := [1, 1/(vars.poe_version ? vars.stash.currency1["exalted orb"].prices.1 : vars.stash.exalt), 1/(vars.poe_version ? vars.stash.currency1["divine orb"].prices.1 : vars.stash.divine)]
 	If (refresh = "bulk_trade") && WinExist("ahk_id " vars.hwnd.stash.main)
 		Stash("refresh")
 }
@@ -154,6 +153,8 @@ Stash(mode, test := 0)
 			}
 		}
 	}
+
+	vars.stash.currency1["chaos orb"].prices := [1, 1/(vars.poe_version ? vars.stash.currency1["exalted orb"].prices.1 : vars.stash.exalt), 1/(vars.poe_version ? vars.stash.currency1["divine orb"].prices.1 : vars.stash.divine)]
 	If !Blank(check)
 		vars.tooltip[vars.hwnd["tooltipstashprices"]] := A_TickCount
 
@@ -284,7 +285,7 @@ Stash(mode, test := 0)
 
 			If !vars.pics.stashninja[currencies[limit.3]]
 				For index, currency in currencies
-					vars.pics.stashninja[currency] := LLK_ImageCache("img\GUI\" currency . vars.poe_version ".png")
+					vars.pics.stashninja[currency] := LLK_ImageCache("img\GUI\" currency . (currency != "percent" ? vars.poe_version : "") ".png")
 			Gui, %GUI_name%: Add, Pic, % "xp y" y " BackgroundTrans w" w - 2 " h-1 Border", % "HBitmap:*" vars.pics.stashninja[currencies[limit.3]]
 			Gui, %GUI_name%: Add, Progress, % "BackgroundBlack Disabled cBlack xp yp wp hp Border", 100
 			added += 1
