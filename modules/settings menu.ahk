@@ -4491,7 +4491,7 @@ Settings_stash2(cHWND)
 	}
 	Else If InStr(check, "color_")
 	{
-		color := (vars.system.click = 1) ? RGB_Picker(settings.stash.colors[control]) : (InStr("135", control) ? "000000" : (control = 2) ? "00FF00" : (control = 4) ? "FF8000" : "00FFFF")
+		color := (vars.system.click = 1) ? RGB_Picker(settings.stash.colors[control]) : (InStr("135", control) ? "000000" : (control = 2) ? "00CC00" : (control = 4) ? "FF8000" : "00CCCC")
 		If Blank(color)
 		{
 			in_progress := 0

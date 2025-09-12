@@ -29,9 +29,9 @@
 		settings.stash.retry := !Blank(check := ini.settings["retry"]) && (check > A_Now) ? check : 0
 		settings.stash.index_stock := !Blank(check := ini.settings["show stock in index"]) ? check : 1
 		settings.stash.rate_limits := {"timestamp": ""}
-		settings.stash.colors := [!Blank(check := ini.UI["text color"]) ? check : "FFFFFF", !Blank(check1 := ini.UI["background color"]) ? check1 : "0066CC"
+		settings.stash.colors := [!Blank(check := ini.UI["text color"]) ? check : "000000", !Blank(check1 := ini.UI["background color"]) ? check1 : "00CC00"
 							, !Blank(check2 := ini.UI["text color2"]) ? check2 : "000000", !Blank(check3 := ini.UI["background color2"]) ? check3 : "FF8000"
-							, !Blank(check4 := ini.UI["text color3"]) ? check4 : "000000", !Blank(check5 := ini.UI["background color3"]) ? check5 : "00FFFF"]
+							, !Blank(check4 := ini.UI["text color3"]) ? check4 : "000000", !Blank(check5 := ini.UI["background color3"]) ? check5 : "00CCCC"]
 		settings.stash.cBars := ["404060", "C16100", "606060"]
 
 		If vars.client.stream
@@ -421,7 +421,7 @@ Stash_PriceFetch(tab)
 		If !(SubStr(prices, 1, 1) . SubStr(prices, 0) = "{}")
 			Return 0
 		prices := Json.Load(prices)
-		If !(tab = "socketables" && A_Index > 1)
+		If (A_Index = 1)
 			ini_dump := "timestamp=" A_Now "`nleague=" settings.stash.league
 		If !vars.poe_version && !prices.lines.Count() || vars.poe_version && !prices.items.Count()
 			Return 0
