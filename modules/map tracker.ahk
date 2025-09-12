@@ -1837,7 +1837,7 @@ Maptracker_Timer()
 	If (A_TimeIdle >= 10000) ;pause tracking when AFK for longer than 10 seconds
 		Return
 
-	If vars.poe_version && vars.maptracker.map.died && (vars.maptracker.map.seed != vars.log.areaseed)
+	If vars.poe_version && vars.maptracker.map.died && (vars.maptracker.map.seed != vars.log.areaseed) && !Maptracker_Check(1)
 		vars.maptracker.map.seed := vars.log.areaseed, vars.maptracker.map.died := 0
 
 	If !IsObject(vars.maptracker.map) ;entering the very first map
@@ -1864,6 +1864,7 @@ Maptracker_Timer()
 				}
 			vars.maptracker.map.name := !vars.maptracker.map.name ? vars.log.areaname : vars.maptracker.map.name
 		}
+
 		If !Maptracker_Check(1) && (vars.maptracker.map.id != vars.log.areaID || !InStr(vars.log.areaID, "sanctum") && vars.maptracker.map.seed != vars.log.areaseed) ;entering a new map
 			Maptracker_Save(), new := 1
 
