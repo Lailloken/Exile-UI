@@ -10,7 +10,7 @@
 		IniWrite, % "", % "ini" vars.poe_version "\stash-ninja.ini", settings
 
 	If !dLimits
-		dLimits := (vars.poe_version ? [[1, "", 3], [10, "", 1], [10, "", 2], [5, "", 2], ["", "", 2]] : [[0.5, "", 3], [0.25, 0.5, 3], [10, 30, 1], [1, 10, 1], ["", 1, 1]])
+		dLimits := (vars.poe_version ? [[1, "", 3], [10, "", 1], [5, "", 1], [10, "", 2], [5, "", 2]] : [[0.5, "", 3], [0.25, 0.5, 3], [10, 30, 1], [1, 10, 1], ["", 1, 1]])
 
 	If IsObject(settings.stash)
 		backup := settings.stash.Clone()
@@ -112,7 +112,7 @@
 			Else name0 := name := array1.3 (tab = "delve" && !InStr(array1.3, "resonator") ? " fossil" : "")
 
 			exception1 := LLK_PatternMatch(name, "", ["potent", "powerful", "prime"]) ? 1 : 0, exception2 := LLK_PatternMatch(name, "", ["prime"]) ? 1 : 0
-			xCoord := array1.1 ? Floor((array1.1 / 1440) * vars.client.h) : xCoord + (exception2 ? vars.client.h * (1/12) : dBox) + gap * (tab = "scarabs" && index > 105 ? 2 : 1)
+			xCoord := array1.1 ? Floor(Format("{:.10f}", array1.1 / 1440) * vars.client.h) : xCoord + (exception2 ? vars.client.h * (1/12) : dBox) + gap * (tab = "scarabs" && index > 105 ? 2 : 1)
 			yCoord := array1.2 ? Floor(((array1.2 + (in_folder ? 47 : 0)) / 1440) * vars.client.h) : yCoord
 			tab0 := (!vars.poe_version && (check := LLK_HasVal(exceptions, name,,,, 1))) ? check : (tab = "breach") ? "fragments" : InStr(tab, "currency") || (tab = "ultimatum") ? "currency" : tab
 			prices := IsObject(vars.stash[tab][name].prices) ? vars.stash[tab][name].prices.Clone() : StrSplit(!Blank(check := ini[tab0][name]) ? check : "0, 0, 0", ",", A_Space, 3)
@@ -400,6 +400,7 @@ Stash_PriceFetch(tab)
 	If (tab = "flush") ; when changing leagues, flush prices first to avoid old prices carrying over
 	{
 		For tab, tab_object in vars.stash
+		{
 			For item, item_object in tab_object
 			{
 				If item_object.HasKey("prices")
@@ -407,6 +408,9 @@ Stash_PriceFetch(tab)
 				If item_object.HasKey("source")
 					vars.stash[tab][item].source := ["ninja", [], []]
 			}
+			If tab_object.HasKey("league")
+				vars.stash[tab].league := ""
+		}
 		Return
 	}
 
