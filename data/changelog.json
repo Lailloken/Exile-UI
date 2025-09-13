@@ -1,5 +1,13 @@
 [
   [
+	["1.59.7", 15907, 1],
+	"september 13, 2025",
+	"act-tracker: alignment hotkey for pob-tree overlay moved from <space> to <middle mouse>(/highlight)",
+	"act-tracker: added an optional hotkey to close in-game tree and tree overlay simultaneously",
+	"map-tracker: fixed a tracking bug when dying in a map, then entering abyssal depths",
+	"stash-ninja: added PoE2 compatibility (poe.ninja 2 is still under development, which may impact this feature)(/highlight)"
+  ],
+  [
 	["1.59.6", 15906],
 	"september 9, 2025",
 	"act-tracker: poe2 guide improvements (requires guide-slot reset)",
