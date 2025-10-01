@@ -1171,6 +1171,9 @@ Maptracker_LogsLoad()
 			If (key = "map") && InStr(val, " citadel") && !InStr(val, "the ")
 				For k, v in {"copper citadel": "the copper citadel", "iron citadel": "the iron citadel", "stone citadel": "the stone citadel"}
 					val := StrReplace(val, k, v)
+			If (key = "map") && RegExMatch(val, "i)[a-zA-Z]\:[a-zA-Z]")
+				val := StrReplace(val, ":", ": ")
+
 			Loop, Parse, val, `;, %A_Space% ;parse side-content info
 			{
 				If !A_LoopField || (key != "content")
@@ -1691,7 +1694,7 @@ Maptracker_Reminder()
 	local
 	global vars, settings
 
-	ignore := ["vaal area", "abyssal depths", "lab trial", "maven", "harvest", "delirium", "starfall crater", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor"]
+	ignore := ["vaal area", "abyssal depths", "abyssal boss", "lab trial", "maven", "harvest", "delirium", "starfall crater", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor"]
 
 	For index, mechanic in vars.maptracker.map.content
 	{

@@ -247,7 +247,7 @@ Log_Get(log_text, data)
 
 			%data% := StrReplace(SubStr(log_text, 4), "_noboss"), map_name := db.maps.maps[%data%].name
 			If InStr(%data%, "uberboss_")
-				%data% := (settings.maptracker.rename ? Lang_Trans("maps_boss") ":" : "") . (map_name ? map_name : StrReplace(%data%, "uberboss_")) . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
+				%data% := (settings.maptracker.rename ? Lang_Trans("maps_boss") ": " : "") . (map_name ? map_name : StrReplace(%data%, "uberboss_")) . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
 			Else If LLK_StringCompare(%data%, ["unique"])
 			{
 				For key, val in unique_maps
