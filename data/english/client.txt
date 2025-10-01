@@ -224,7 +224,7 @@
 		log_expedition			=	"Tujen, the Haggler:"
 
 ;## -----------------------------------------------------------------------------------
-		log_expedition 2		=	"Dannig:"			;## PoE2 only, where only the names are displayed
+		log_expedition 2		=	"Dannig, Warrior Skald:"			;## PoE2 only
 		log_expedition 2		=	"Gwennen:"
 		log_expedition 2		=	"Rog:"
 		log_expedition 2		=	"Tujen:"
