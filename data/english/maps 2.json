@@ -49,14 +49,16 @@
       "boss": "rootdredge"
     },
     "caldera": {
-      "name": "caldera"
+      "name": "caldera",
+      "boss": "blind beast"
     },
     "canyon": {
       "name": "canyon",
       "boss": "vornas"
     },
     "caverncity": {
-      "name": "sacred reservoir"
+      "name": "sacred reservoir",
+      "boss": "azmadi"
     },
     "cenotes": {
       "name": "cenotes"
@@ -66,7 +68,8 @@
       "boss": "hask"
     },
     "cliffside": {
-      "name": "cliffside"
+      "name": "cliffside",
+      "boss": "torvian"
     },
     "creek": {
       "name": "creek",
@@ -92,7 +95,8 @@
       "boss": "lord of the pit"
     },
     "epitaph": {
-      "name": "epitaph"
+      "name": "epitaph",
+      "boss": "asinia"
     },
     "excavation": {
       "name": "digsite",
@@ -112,7 +116,7 @@
     },
     "frozenfalls": {
       "name": "frozen falls",
-      "boss": "beira"
+      "boss": "rakkar"
     },
     "grimhaven": {
       "name": "grimhaven",
@@ -130,7 +134,8 @@
       "name": "hive"
     },
     "icecave": {
-      "name": "ice cave"
+      "name": "ice cave",
+      "boss": "yeti"
     },
     "inferno": {
       "name": "inferno"
@@ -168,7 +173,8 @@
       "boss": "jamanra"
     },
     "ornatechambers": {
-      "name": "ornate chambers"
+      "name": "ornate chambers",
+      "boss": "elzarah"
     },
     "outlands": {
       "name": "outlands"
@@ -185,7 +191,8 @@
       "boss": "zicoatl"
     },
     "razedfields": {
-      "name": "razed fields"
+      "name": "razed fields",
+      "boss": "beira + ignagduk"
     },
     "riverhold": {
       "name": "riverhold",
@@ -199,7 +206,8 @@
       "name": "rockpools"
     },
     "rugosa": {
-      "name": "rugosa"
+      "name": "rugosa",
+      "boss": "diamora"
     },
     "rupture": {
       "name": "rupture",
@@ -210,7 +218,8 @@
       "boss": "rust king"
     },
     "sandspit": {
-      "name": "sandspit"
+      "name": "sandspit",
+      "boss": "great white one"
     },
     "savanna": {
       "name": "savannah",
@@ -221,7 +230,8 @@
       "boss": "rotten druid"
     },
     "sevenwaters": {
-      "name": "confluence"
+      "name": "confluence",
+      "boss": "kabala"
     },
     "sinkhole": {
       "name": "sinkhole"
@@ -234,7 +244,8 @@
       "boss": "brambleghast"
     },
     "spring_": {
-      "name": "spring"
+      "name": "spring",
+      "boss": "kabala"
     },
     "steamingsprings": {
       "name": "steaming springs",
@@ -244,7 +255,8 @@
       "name": "steppe"
     },
     "stronghold": {
-      "name": "stronghold"
+      "name": "stronghold",
+      "boss": "the prisoner"
     },
     "sulphuriccaverns": {
       "name": "sulphuric caverns",
@@ -274,7 +286,8 @@
       "boss": "geonor"
     },
     "uberboss_jadecitadel": {
-      "name": "the jade isles"
+      "name": "the jade isles",
+      "boss": "tavakai"
     },
     "uberboss_stonecitadel": {
       "name": "the stone citadel",
@@ -314,7 +327,8 @@
       "boss": "mektul"
     },
     "vaalvault": {
-      "name": "sealed vault"
+      "name": "sealed vault",
+      "boss": "zelina + zolin"
     },
     "vaalvillage": {
       "name": "vaal village"
