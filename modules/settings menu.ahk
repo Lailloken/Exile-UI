@@ -716,12 +716,16 @@ Settings_cloneframes()
 		If (cloneframe = "settings_cloneframe")
 			Continue
 		Gui, %GUI%: Add, Text, % "xs Section Border Center gSettings_cloneframes2 HWNDhwnd w" width1, % Lang_Trans("global_edit")
-		handle .= "|", vars.hwnd.settings["edit_"cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes edit"handle] := hwnd
+		vars.hwnd.settings["edit_" cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes edit" handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys hp x+-1 Border gSettings_cloneframes2 BackgroundTrans Center HWNDhwnd0 w" settings.general.fWidth*2, % "x"
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack range0-500 cRed HWNDhwnd", 0
-		vars.hwnd.settings["delbar_"cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes delete"handle] := hwnd, vars.hwnd.settings["del_"cloneframe] := hwnd0
-		Gui, %GUI%: Add, Checkbox, % "ys gSettings_cloneframes2 hp -Wrap HWNDhwnd Checked"val.enable " c"(val.enable ? "White" : "Gray") " w" Max(wMax, wHeader) - width1 - settings.general.fWidth*2.85, % cloneframe
-		vars.hwnd.settings["enable_"cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes toggle"handle] := hwnd
+		vars.hwnd.settings["delbar_" cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes delete" handle] := hwnd, vars.hwnd.settings["del_" cloneframe] := hwnd0
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+		Gui, %GUI%: Add, Edit, % "ys x+-1 wp hp gSettings_cloneframes2 cBlack Center Limit1 Number HWNDhwnd", % val.group
+		vars.hwnd.settings["group_" cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes groups" handle] := hwnd
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		Gui, %GUI%: Add, Checkbox, % "ys gSettings_cloneframes2 hp -Wrap HWNDhwnd Checked"val.enable " c"(val.enable ? "White" : "Gray") " w" Max(wMax, wHeader) - width1 - settings.general.fWidth*4.85, % cloneframe
+		vars.hwnd.settings["enable_"cloneframe] := vars.hwnd.help_tooltips["settings_cloneframes toggle" handle] := hwnd, handle .= "|"
 		ControlGetPos, xLast, yLast, wLast, hLast,, % "ahk_id " hwnd
 	}
 
@@ -840,7 +844,12 @@ Settings_cloneframes2(cHWND)
 	Else If (check = "add")
 		Cloneframes_SettingsAdd()
 	Else If InStr(check, "edit_")
+	{
 		Cloneframes_SettingsRefresh(control)
+		For key, hwnd in vars.hwnd.settings
+			If InStr(key, "group_")
+				GuiControl, Disable, % hwnd
+	}
 	Else If InStr(check, "del_")
 	{
 		If vars.cloneframes.editing
@@ -854,6 +863,11 @@ Settings_cloneframes2(cHWND)
 			Settings_menu("clone-frames"), Cloneframes_Thread()
 		}
 		Else Return
+	}
+	Else If InStr(check, "group_")
+	{
+		IniWrite, % (vars.cloneframes.list[control].group := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\clone frames.ini", % control, group
+		Cloneframes_Thread()
 	}
 	Else If InStr(check, "enable_")
 	{

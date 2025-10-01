@@ -221,6 +221,10 @@
     "cloneframes delete": [
       "long-click to delete this clone-frame"
     ],
+    "cloneframes groups": [
+      "optional: you can assign frames to groups 0-9",
+      "when editing a frame's opacity or target coordinate (yellow), the whole group will be edited accordingly"
+    ],
     "cloneframes toggle": [
       "enable/disable this clone-frame"
     ],

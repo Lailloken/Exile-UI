@@ -163,7 +163,8 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 	{
 		vars.cloneframes.wait := 1
 		If RegExMatch(string, "\{.*\}")
-			vars.cloneframes.list[editing] := json.load(SubStr(string, InStr(string, "=") + 1))
+			For key, val in json.load(SubStr(string, InStr(string, "=") + 1))
+				vars.cloneframes.list[key] := val.Clone()
 		Else vars.cloneframes.editing := SubStr(string, InStr(string, "=") + 1)
 		vars.cloneframes.wait := 0
 	}

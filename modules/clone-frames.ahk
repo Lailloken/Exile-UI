@@ -51,6 +51,7 @@
 		vars.cloneframes.list[key].xScale := !Blank(check := ini[key]["scaling x-axis"]) ? check : 100
 		vars.cloneframes.list[key].yScale := !Blank(check := ini[key]["scaling y-axis"]) ? check : 100
 		vars.cloneframes.list[key].opacity := !Blank(check := ini[key]["opacity"]) ? check : 5
+		vars.cloneframes.list[key].group := !Blank(check := ini[key].group) ? check : (key = "settings_cloneframe" ? 99 : "")
 	}
 	vars.cloneframes.enabled -= 1, vars.cloneframes.list.settings_cloneframe.enable := 0 ;set the dummy entry to disabled
 }
@@ -181,16 +182,20 @@ Cloneframes_SettingsSave()
 	local
 	global vars, settings
 
-	name := vars.cloneframes.editing
-	IniWrite, % vars.cloneframes.list[name].xSource, % "ini" vars.poe_version "\clone frames.ini", % name, source x-coordinate
-	IniWrite, % vars.cloneframes.list[name].ySource, % "ini" vars.poe_version "\clone frames.ini", % name, source y-coordinate
-	IniWrite, % vars.cloneframes.list[name].xTarget, % "ini" vars.poe_version "\clone frames.ini", % name, target x-coordinate
-	IniWrite, % vars.cloneframes.list[name].yTarget, % "ini" vars.poe_version "\clone frames.ini", % name, target y-coordinate
-	IniWrite, % vars.cloneframes.list[name].width, % "ini" vars.poe_version "\clone frames.ini", % name, frame-width
-	IniWrite, % vars.cloneframes.list[name].height, % "ini" vars.poe_version "\clone frames.ini", % name, frame-height
-	IniWrite, % vars.cloneframes.list[name].xScale, % "ini" vars.poe_version "\clone frames.ini", % name, scaling x-axis
-	IniWrite, % vars.cloneframes.list[name].yScale, % "ini" vars.poe_version "\clone frames.ini", % name, scaling y-axis
-	IniWrite, % vars.cloneframes.list[name].opacity, % "ini" vars.poe_version "\clone frames.ini", % name, opacity
+	name := vars.cloneframes.editing, group := vars.cloneframes.list[name].group
+	For key, val in vars.cloneframes.list
+		If (key = name) || !Blank(group) && (val.group = group)
+		{
+			IniWrite, % vars.cloneframes.list[key].xSource, % "ini" vars.poe_version "\clone frames.ini", % key, source x-coordinate
+			IniWrite, % vars.cloneframes.list[key].ySource, % "ini" vars.poe_version "\clone frames.ini", % key, source y-coordinate
+			IniWrite, % vars.cloneframes.list[key].xTarget, % "ini" vars.poe_version "\clone frames.ini", % key, target x-coordinate
+			IniWrite, % vars.cloneframes.list[key].yTarget, % "ini" vars.poe_version "\clone frames.ini", % key, target y-coordinate
+			IniWrite, % vars.cloneframes.list[key].width, % "ini" vars.poe_version "\clone frames.ini", % key, frame-width
+			IniWrite, % vars.cloneframes.list[key].height, % "ini" vars.poe_version "\clone frames.ini", % key, frame-height
+			IniWrite, % vars.cloneframes.list[key].xScale, % "ini" vars.poe_version "\clone frames.ini", % key, scaling x-axis
+			IniWrite, % vars.cloneframes.list[key].yScale, % "ini" vars.poe_version "\clone frames.ini", % key, scaling y-axis
+			IniWrite, % vars.cloneframes.list[key].opacity, % "ini" vars.poe_version "\clone frames.ini", % key, opacity
+		}
 
 	Cloneframes_SettingsRefresh()
 }
@@ -203,8 +208,9 @@ Cloneframes_SettingsApply(cHWND, hotkey := "")
 
 	If Blank(vars.cloneframes.editing)
 		Return
-	check := LLK_HasVal(vars.cloneframes.scroll, cHWND), editing := vars.cloneframes.editing
+	check := LLK_HasVal(vars.cloneframes.scroll, cHWND), editing := vars.cloneframes.editing, group := vars.cloneframes.list[editing].group
 
+	original_value := vars.cloneframes.list[editing][check]
 	value := InStr(hotkey, "wheel") ? vars.cloneframes.list[editing][check] + (hotkey = "WheelUp" ? 1 : -1) : LLK_ControlGet(cHWND), value := Blank(value) ? 0 : value
 	If (check = "opacity")
 		value := (value > 5) ? 5 : (value < 1) ? 1 : value, vars.cloneframes.list[editing][check] := value
@@ -213,11 +219,30 @@ Cloneframes_SettingsApply(cHWND, hotkey := "")
 	If InStr(check, "scale")
 		value := (value < 20) ? 20 : value
 	If InStr(hotkey, "wheel")
+	{
 		GuiControl,, % vars.hwnd.settings[check], % value
+		If (check != "opacity")
+			Return
+	}
 	Else vars.cloneframes.list[editing][check] := value
 
+	If !Blank(group)
+		For key, val in vars.cloneframes.list
+			If (val.group = group) && (key != editing)
+				If (check = "opacity")
+					vars.cloneframes.list[key].opacity := value
+				Else If InStr(check, "target")
+					vars.cloneframes.list[key][check] -= (original_value - value)
+
 	If vars.general.MultiThreading
-		StringSend("clone-edit=" json.dump(vars.cloneframes.list[editing]))
+	{
+		object := {(editing): vars.cloneframes.list[editing].Clone()}
+		If !Blank(group)
+			For key, val in vars.cloneframes.list
+				If (val.group = group) && (key != editing)
+					object[key] := val.Clone()
+		StringSend("clone-edit=" json.dump(object))
+	}
 }
 
 Cloneframes_Show()
