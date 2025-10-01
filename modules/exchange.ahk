@@ -527,7 +527,8 @@ Exchange2(hotkey)
 	{
 		Clipboard := LLK_ControlGet(vars.hwnd.exchange["edit" (box = "amount1" ? 1 : 2)])
 		ClipWait, 0.1
-		SendInput, ^{a}^{v}{Enter}
+		If IsNumber(Clipboard)
+			SendInput, % "^{a}" Clipboard
 		Sleep 100
 		Clipboard := ""
 	}
