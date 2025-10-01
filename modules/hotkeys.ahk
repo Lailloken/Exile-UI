@@ -218,7 +218,8 @@ Hotkeys_ESC()
 	Else If WinExist("ahk_id "vars.hwnd.maptracker_logs.main)
 	{
 		LLK_Overlay(vars.hwnd.maptracker_logs.main, "hide")
-		WinActivate, ahk_group poe_window
+		If !settings.general.dev
+			WinActivate, ahk_group poe_window
 	}
 	Else If WinExist("ahk_id "vars.hwnd.geartracker.main)
 		Geartracker_GUI("toggle")

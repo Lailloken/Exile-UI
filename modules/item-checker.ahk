@@ -187,7 +187,7 @@ Iteminfo(refresh := 0) ; refresh: 1 to refresh it normally, 2 for clipboard pars
 			If InStr(A_LoopField, Lang_Trans("items_rarity"), 1)
 				item.rarity := StrReplace(A_LoopField, Lang_Trans("items_rarity") " ")
 			If (A_Index = 3) || !item.class && (A_Index = 2)
-				item.name := StrReplace(StrReplace(A_LoopField, "superior "), "synthesised ") ;remove 'superior' and 'synthesised' from the name
+				item.name := StrReplace(StrReplace(StrReplace(A_LoopField, "exceptional "), "superior "), "synthesised ") ;remove 'superior' and 'synthesised' from the name
 			If (A_Index = 4) || !item.class && (A_Index = 3)
 				item.itembase := StrReplace(A_LoopField, "synthesised ") ;remove 'synthesised' from the base-type
 		}
@@ -485,7 +485,7 @@ Iteminfo_Stats()
 		If phys_dmg
 		{
 			Loop, Parse, phys_dmg, % "-"
-				phys%A_Index% := A_LoopField
+				phys%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			pdps := Format("{:0.2f}", ((phys1+phys2)/2)*speed)
 		}
 		If ele_dmg
@@ -493,18 +493,18 @@ Iteminfo_Stats()
 			edps2 := 0
 			edps3 := 0
 			Loop, Parse, ele_dmg1, % "-"
-				ele_dmg1_%A_Index% := A_LoopField
+				ele_dmg1_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			edps1 := ((ele_dmg1_1+ele_dmg1_2)/2)*speed
 			If ele_dmg2
 			{
 				Loop, Parse, ele_dmg2, % "-"
-					ele_dmg2_%A_Index% := A_LoopField
+					ele_dmg2_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 				edps2 := ((ele_dmg2_1+ele_dmg2_2)/2)*speed
 			}
 			If ele_dmg3
 			{
 				Loop, Parse, ele_dmg3, % "-"
-					ele_dmg3_%A_Index% := A_LoopField
+					ele_dmg3_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 				edps3 := ((ele_dmg3_1+ele_dmg3_2)/2)*speed
 			}
 			edps0 := Format("{:0.2f}", edps1 + edps2 + edps3)
@@ -512,7 +512,7 @@ Iteminfo_Stats()
 		If chaos_dmg
 		{
 			Loop, Parse, chaos_dmg, % "-"
-				chaos_dmg%A_Index% := A_LoopField
+				chaos_dmg%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			cdps := Format("{:0.2f}", ((chaos_dmg1+chaos_dmg2)/2)*speed)
 		}
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
@@ -556,7 +556,7 @@ Iteminfo_Stats2()
 	{
 		phys_dmg := pdps := ele_count := ele_dmg := ele_dmg1 := ele_dmg2 := ele_dmg3 := edps0 := chaos_dmg := cdps := speed := 0, phys_inc := phys_rune_inc := 0
 		For index, stat in ["phys", "crit", "speed", "dps"]
-			If (check := db.item_bases[item.class][item.itembase][stat])
+			If !Blank(check := db.item_bases[item.class][item.itembase][stat])
 				item.stats[stat] := {"relative": check}
 
 		Loop, Parse, clip, `n, `r
@@ -598,7 +598,7 @@ Iteminfo_Stats2()
 		If phys_dmg
 		{
 			Loop, Parse, phys_dmg, % "-"
-				phys%A_Index% := A_LoopField
+				phys%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			pdps := Format("{:0.2f}", ((phys1 + phys2)/2) * speed)
 		}
 		If ele_dmg
@@ -606,18 +606,18 @@ Iteminfo_Stats2()
 			edps2 := 0
 			edps3 := 0
 			Loop, Parse, ele_dmg1, % "-"
-				ele_dmg1_%A_Index% := A_LoopField
+				ele_dmg1_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			edps1 := ((ele_dmg1_1+ele_dmg1_2)/2)*speed
 			If ele_dmg2
 			{
 				Loop, Parse, ele_dmg2, % "-"
-					ele_dmg2_%A_Index% := A_LoopField
+					ele_dmg2_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 				edps2 := ((ele_dmg2_1+ele_dmg2_2)/2)*speed
 			}
 			If ele_dmg3
 			{
 				Loop, Parse, ele_dmg3, % "-"
-					ele_dmg3_%A_Index% := A_LoopField
+					ele_dmg3_%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 				edps3 := ((ele_dmg3_1+ele_dmg3_2)/2)*speed
 			}
 			edps0 := Format("{:0.2f}", edps1 + edps2 + edps3)
@@ -625,7 +625,7 @@ Iteminfo_Stats2()
 		If chaos_dmg
 		{
 			Loop, Parse, chaos_dmg, % "-"
-				chaos_dmg%A_Index% := A_LoopField
+				chaos_dmg%A_Index% := StrReplace(StrReplace(StrReplace(A_LoopField, " "), "."), ",")
 			cdps := Format("{:0.2f}", ((chaos_dmg1+chaos_dmg2)/2)*speed)
 		}
 
