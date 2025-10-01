@@ -1337,6 +1337,7 @@ Settings_general2(cHWND := "")
 			{
 				IniWrite, % vars.monitor.h, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
 				IniWrite, % vars.monitor.w, % "ini" vars.poe_version "\config.ini", Settings, custom-width
+				IniWrite, % vars.settings.active, % "ini" vars.poe_version "\config.ini", Versions, reload settings
 				Reload
 				ExitApp
 			}
