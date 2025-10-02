@@ -1497,20 +1497,20 @@ Iteminfo_GUI()
 
 		If vars.poe_version && !unique
 		{
-			tier_override := max_tier := ""
+			tier_override := max_tier := "", item_tags := db.item_bases[item.class][item.itembase].tags
 			If !IsObject(db.item_mods)
 				DB_Load("item_mods")
 
 			For kClass, oClass in db.item_mods ;check for clear-cut cases first, e.g. charms, flasks, etc.
 				If InStr(item.class, kClass)
 					For kModName, oModName in oClass
-						If (iTier := max := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
+						If (iTier := max := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].text.Count() = check_rolls.Count())
 						{
-							For i, roll in oModName[iTier].3
+							For i, roll in oModName[iTier].text
 							{
-								If (roll.Count() = 1)
-									modMinRoll := modMaxRoll := roll.1
-								Else modMinRoll := roll.1, modMaxRoll := roll.2
+								If (roll.2.Count() = 1)
+									modMinRoll := modMaxRoll := roll.2.1
+								Else modMinRoll := roll.2.1, modMaxRoll := roll.2.2
 
 								If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll)
 									Continue 2
@@ -1518,75 +1518,103 @@ Iteminfo_GUI()
 
 							tier_override := (count := oModName.Count()) + 1 - iTier
 							max_tier := max
-							While IsNumber(oModName[max_tier + 1].2) && (item.ilvl >= oModName[max_tier + 1].2)
+							While IsNumber(oModName[max_tier + 1].level) && (item.ilvl >= oModName[max_tier + 1].level)
 								max_tier += 1
 
 							If (settings.iteminfo.roll_range = 2)
 							{
-								minimum_rolls := oModName.1.3.Clone()
-								maximum_rolls := oModName[count].3.Clone()
+								minimum_rolls := oModName.1.text.Clone()
+								maximum_rolls := oModName[count].text.Clone()
 							}
 							Else If (settings.iteminfo.roll_range = 3)
 							{
-								minimum_rolls := oModName.1.3.Clone()
-								maximum_rolls := oModName[max_tier].3.Clone()
+								minimum_rolls := oModName.1.text.Clone()
+								maximum_rolls := oModName[max_tier].text.Clone()
 							}
 
 							max_tier := count + 1 - max_tier
-							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-								ilvl := oModName[iTier].2
+							If (item.class != "jewels") && IsNumber(oModName[iTier].level)
+								ilvl := oModName[iTier].level
 							Break 2
 						}
 
 			For kModName, oModName in db.item_mods.universal ;check universal mod-list next
-				If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
+				If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].text.Count() = check_rolls.Count())
 				{
-					For i, roll in oModName[iTier].3
+					For i, roll in oModName[iTier].text
 					{
-						If (roll.Count() = 1)
-							modMinRoll := modMaxRoll := roll.1
-						Else modMinRoll := roll.1, modMaxRoll := roll.2
+						If (roll.2.Count() = 1)
+							modMinRoll := modMaxRoll := roll.2.1
+						Else modMinRoll := roll.2.1, modMaxRoll := roll.2.2
 
-						regex := StrReplace(oModName[iTier].5[i], " ", ".")
+						regex := StrReplace(roll.1, " ", ".")
 						If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll && RegExMatch(mod, "i)" regex))
 							Continue 2
 					}
 
 					max_tier0 := max
-					For i, tag in oModName[iTier].4
-						If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag) || (tag = "unrestricted")
-						{
-							While LLK_HasVal(oModName[max + 1].4, tag)
-								max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
-							While oModName[max + 1]
-							{
-								For i, tag0 in oModName[max + 1].4
-									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
-									{
-										max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
-										Continue 2
-									}
-								Break
-							}
+					If oModName[iTier].weights.unrestricted || Iteminfo_WeightCheck(oModName[iTier].weights, item_tags)
+					{
+						While IsObject(oModName[max + 1].weights)
+							If Iteminfo_WeightCheck(oModName[max + 1].weights, item_tags)
+								max_tier0 += IsNumber(oModName[max + 1].level) && (item.ilvl >= oModName[max + 1].level) ? 1 : 0, max += 1
+							Else Break
 
-							While LLK_HasVal(oModName[min - 1].4, tag)
+						While IsObject(oModName[min - 1].weights)
+							If Iteminfo_WeightCheck(oModName[min - 1].weights, item_tags)
 								min -= 1
-							While oModName[min - 1]
-							{
-								For i, tag0 in oModName[min - 1].4
-									If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
-									{
-										min -= 1
-										Continue 2
-									}
-								Break
-							}
+							Else Break
 
-							minimum_rolls := oModName[min].3.Clone()
-							maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].3.Clone()
+						minimum_rolls := oModName[min].text.Clone()
+						maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].text.Clone()
 
-							If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-								ilvl := oModName[iTier].2
+						If (item.class != "jewels") && IsNumber(oModName[iTier].level)
+							ilvl := oModName[iTier].level
+						If tier_override
+							tier_override := "conflict", ilvl := "??", max_tier := 0
+						Else
+						{
+							tier_override := max + 1 - iTier
+							max_tier := max + 1 - max_tier0
+						}
+					}
+					If RegexMatch(kModName, "i)^(abyss|essence)")
+						max_tier := 0
+				}
+
+			If (tier_override != "conflict")
+				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
+					If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].text.Count() = check_rolls.Count())
+					{
+						For i, roll in oModName[iTier].text
+						{
+							If (roll.2.Count() = 1)
+								modMinRoll := modMaxRoll := roll.2.1
+							Else modMinRoll := roll.2.1, modMaxRoll := roll.2.2
+
+							regex := StrReplace(roll.1, " ", ".")
+							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll && RegExMatch(mod, "i)" regex))
+								Continue 2
+						}
+
+						max_tier0 := max
+						If oModName[iTier].weights.unrestricted || Iteminfo_WeightCheck(oModName[iTier].weights, item_tags)
+						{
+							While IsObject(oModName[max + 1].weights)
+								If Iteminfo_WeightCheck(oModName[max + 1].weights, item_tags)
+									max_tier0 += IsNumber(oModName[max + 1].level) && (item.ilvl >= oModName[max + 1].level) ? 1 : 0, max += 1
+								Else Break
+
+							While IsObject(oModName[min - 1].weights)
+								If Iteminfo_WeightCheck(oModName[min - 1].weights, item_tags)
+									min -= 1
+								Else Break
+
+							minimum_rolls := oModName[min].text.Clone()
+							maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].text.Clone()
+
+							If (item.class != "jewels") && IsNumber(oModName[iTier].level)
+								ilvl := oModName[iTier].level
 							If tier_override
 								tier_override := "conflict", ilvl := "??", max_tier := 0
 							Else
@@ -1594,71 +1622,7 @@ Iteminfo_GUI()
 								tier_override := max + 1 - iTier
 								max_tier := max + 1 - max_tier0
 							}
-							Break
 						}
-					If RegexMatch(kModName, "i)^(abyss|essence)")
-						max_tier := 0
-				}
-
-			If (tier_override != "conflict")
-				For kModName, oModName in db.item_mods.exclusive ;check exclusive mod-list last
-					If (iTier := max := min := LLK_HasVal(oModName, name,,,, 1)) && (oModName[iTier].3.Count() = check_rolls.Count())
-					{
-						For i, roll in oModName[iTier].3
-						{
-							If (roll.Count() = 1)
-								modMinRoll := modMaxRoll := roll.1
-							Else modMinRoll := roll.1, modMaxRoll := roll.2
-
-							regex := StrReplace(oModName[iTier].5[i], " ", ".")
-							If !(Min(check_rolls[i].1, check_rolls[i].3) = modMinRoll && Max(check_rolls[i].1, check_rolls[i].3) = modMaxRoll && RegExMatch(mod, "i)" regex))
-								Continue 2
-						}
-
-						max_tier0 := max
-						For i, tag in oModName[iTier].4
-							If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag) || (tag = "unrestricted")
-							{
-								While LLK_HasVal(oModName[max + 1].4, tag)
-									max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
-								While oModName[max + 1]
-								{
-									For i, tag0 in oModName[max + 1].4
-										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
-										{
-											max_tier0 += IsNumber(oModName[max + 1].2) && (item.ilvl >= oModName[max + 1].2) ? 1 : 0, max += 1
-											Continue 2
-										}
-									Break
-								}
-
-								While LLK_HasVal(oModName[min - 1].4, tag)
-									min -= 1
-								While oModName[min - 1]
-								{
-									For i, tag0 in oModName[min - 1].4
-										If LLK_HasVal(db.item_bases[item.class][item.itembase].tags, tag0)
-										{
-											min -= 1
-											Continue 2
-										}
-									Break
-								}
-
-								minimum_rolls := oModName[min].3.Clone()
-								maximum_rolls := oModName[(settings.iteminfo.roll_range = 3 && max_tier0) ? max_tier0 : max].3.Clone()
-
-								If (item.class != "jewels") && IsNumber(oModName[iTier].2)
-									ilvl := oModName[iTier].2
-								If tier_override
-									tier_override := "conflict", ilvl := "??", max_tier := 0
-								Else
-								{
-									tier_override := max + 1 - iTier
-									max_tier := max + 1 - max_tier0
-								}
-								Break
-							}
 						If RegexMatch(kModName, "i)^(abyss|essence)")
 							max_tier := 0
 					}
@@ -1675,7 +1639,7 @@ Iteminfo_GUI()
 			rolls_val := Abs(rolls.2 - rolls.1), rolls_max := Abs(rolls.3 - rolls.1), valid_rolls := (!IsNumber(rolls.1 + rolls.2 + rolls.3) || !InStr(text_check, "(")) ? 0 : 1
 			If unique && !valid_rolls ;for uniques, skip mod-parts that don't have a roll
 				Continue
-			min_roll := minimum_rolls[A_Index].1, max_roll := maximum_rolls[A_Index][maximum_rolls[A_Index].2 ? 2 : 1]
+			min_roll := minimum_rolls[A_Index].2.1, max_roll := maximum_rolls[A_Index].2[maximum_rolls[A_Index].2.2 ? 2 : 1]
 
 			If vars.poe_version && !unique && Lang_Match(text_check, vars.lang.mods_damage_flat, 0)
 			{
@@ -2917,4 +2881,20 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 	KeyWait, Shift
 	vars.general.shift_trigger := 0
 	Iteminfo_Close(), LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
+}
+
+Iteminfo_WeightCheck(mod_weights, item_tags)
+{
+	local
+
+	check := 0
+	For tag, weight in mod_weights
+		If (tag = "default" && mod_weights.Count() != 1)
+			Continue
+		Else If LLK_HasVal(item_tags, tag)
+			If !weight
+				Return 0
+			Else check += 1
+
+	Return check
 }
