@@ -361,7 +361,8 @@ Omni_ContextMenu()
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd1" style, % "poe.db: " Lang_Trans("system_poedb_lang", 2)
 					ControlGetPos,,, w3,,, % "ahk_id " hwnd1
 				}
-				If !item.unid && (settings.general.lang_client = "english") && !Blank(LLK_HasVal(db.item_bases._classes, item.class)) && !LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil"])
+				If !item.unid && (settings.general.lang_client = "english") && !LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil"])
+				&& (vars.poe_version && db.item_bases[item.class] || !vars.poe_version && !Blank(LLK_HasVal(db.item_bases._classes, item.class)))
 				{
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd2" style, % "craft of exile"
 					ControlGetPos,,, w4,,, % "ahk_id " hwnd2
@@ -480,7 +481,7 @@ Omni_ContextMenuPick(cHWND)
 		}
 	}
 	Else If (check = "craftofexile")
-		Run, https://www.craftofexile.com/
+		Run, % "https://www.craftofexile.com/?game=poe" (vars.poe_version ? "2" : "1")
 	Else If (check = "seed")
 		Legion_Parse(), Legion_GUI()
 	Else If (check = "vilsol")
