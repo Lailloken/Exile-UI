@@ -222,8 +222,9 @@
       "long-click to delete this clone-frame"
     ],
     "cloneframes groups": [
-      "optional: you can assign frames to groups 0-9",
-      "when editing a frame's opacity or target coordinate (yellow), the whole group will be edited accordingly"
+      "optional: you can assign frames to groups 0 to 9",
+      "when editing a frame's opacity or target coordinate (yellow), the whole group will be edited accordingly",
+      "hold <shift> while editing to ignore group settings and only edit the currently-selected frame(/highlight)"
     ],
     "cloneframes toggle": [
       "enable/disable this clone-frame"
@@ -305,7 +306,7 @@
     "iteminfo reset": [
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
     ],
-    "iteminfo <omni-key>": [
+    "iteminfo omni-key": [
       "hold the <omni-key> while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
       "click into the game or press <esc> to close it"
     ],
@@ -336,7 +337,7 @@
     ],
     "iteminfo shift-click": [
       "automatically refreshes/activates the tooltip when applying currency to items via shift-click",
-      "you have to hold <shift> first, right click currency, and then click items"
+      "you have to hold <shift> first, right click currency, and then click items(/highlight)"
     ],
     "iteminfo league-start": [
       "adds a section where the item's stats are compared to your current gear",

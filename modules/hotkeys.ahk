@@ -764,14 +764,14 @@ RButton::Iteminfo_GearParse(LLK_HasVal(vars.hwnd.iteminfo_comparison, vars.gener
 
 #If vars.cloneframes.editing && vars.general.cMouse && !Blank(LLK_HasVal(vars.cloneframes.scroll, vars.general.cMouse))
 
-WheelUp::
-WheelDown::Cloneframes_SettingsApply(vars.general.cMouse, A_ThisHotkey)
+*WheelUp::
+*WheelDown::Cloneframes_SettingsApply(vars.general.cMouse, A_ThisHotkey)
 
 #If (vars.general.wMouse != vars.hwnd.settings.main) && WinExist("LLK-UI: Clone-Frames Borders") ;moving clone-frame borders via clicks
 
-LButton::
-RButton::
-MButton::Cloneframes_Snap(StrReplace(A_ThisHotkey, "~"))
+*LButton::
+*RButton::
+*MButton::Cloneframes_Snap(LTrim(A_ThisHotkey, "~*"))
 
 #If WinActive("ahk_id "vars.hwnd.snip.main) ;moving the snip-widget via arrow keys
 

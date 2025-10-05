@@ -211,7 +211,7 @@ Cloneframes_SettingsApply(cHWND, hotkey := "")
 	check := LLK_HasVal(vars.cloneframes.scroll, cHWND), editing := vars.cloneframes.editing, group := vars.cloneframes.list[editing].group
 
 	original_value := vars.cloneframes.list[editing][check]
-	value := InStr(hotkey, "wheel") ? vars.cloneframes.list[editing][check] + (hotkey = "WheelUp" ? 1 : -1) : LLK_ControlGet(cHWND), value := Blank(value) ? 0 : value
+	value := InStr(hotkey, "wheel") ? vars.cloneframes.list[editing][check] + (InStr(hotkey, "WheelUp") ? 1 : -1) : LLK_ControlGet(cHWND), value := Blank(value) ? 0 : value
 	If (check = "opacity")
 		value := (value > 5) ? 5 : (value < 1) ? 1 : value, vars.cloneframes.list[editing][check] := value
 	If InStr("width, height", check)
@@ -226,7 +226,7 @@ Cloneframes_SettingsApply(cHWND, hotkey := "")
 	}
 	Else vars.cloneframes.list[editing][check] := value
 
-	If !Blank(group)
+	If !Blank(group) && !GetKeyState("Shift", "P")
 		For key, val in vars.cloneframes.list
 			If (val.group = group) && (key != editing)
 				If (check = "opacity")
