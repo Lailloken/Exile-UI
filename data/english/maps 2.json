@@ -88,7 +88,8 @@
       "boss": "rotten druid"
     },
     "derelictmansion": {
-      "name": "derelict mansion"
+      "name": "derelict mansion",
+      "boss": "elswyth + wulfric"
     },
     "deserted": {
       "name": "deserted",
@@ -131,7 +132,8 @@
       "boss": "tor gul"
     },
     "hive": {
-      "name": "hive"
+      "name": "hive",
+      "boss": "rotten druid"
     },
     "icecave": {
       "name": "ice cave",
@@ -180,7 +182,8 @@
       "name": "outlands"
     },
     "overgrown": {
-      "name": "overgrown"
+      "name": "overgrown",
+      "boss": "zicoatl"
     },
     "penitentiary": {
       "name": "penitentiary",
@@ -234,10 +237,12 @@
       "boss": "kabala"
     },
     "sinkhole": {
-      "name": "sinkhole"
+      "name": "sinkhole",
+      "boss": "yama"
     },
     "slick": {
-      "name": "slick"
+      "name": "slick",
+      "boss": "rudja"
     },
     "spiderwoods": {
       "name": "spider woods",
@@ -252,7 +257,8 @@
       "boss": "kabala"
     },
     "steppe": {
-      "name": "steppe"
+      "name": "steppe",
+      "boss": "rust king"
     },
     "stronghold": {
       "name": "stronghold",
@@ -275,7 +281,8 @@
       "boss": "blackjaw2"
     },
     "trenches": {
-      "name": "trenches"
+      "name": "trenches",
+      "boss": "devourer"
     },
     "uberboss_coppercitadel": {
       "name": "the copper citadel",
