@@ -65,7 +65,7 @@
 		wSnip := vars.sanctum.wSnip := Round(vars.client.h * (5/6)), hSnip := vars.sanctum.hSnip := Round(vars.client.h * 0.5)
 		vars.sanctum.xSnip := Round(vars.client.w//2 - wSnip/2), vars.sanctum.ySnip := Round(vars.client.h * (5/24))
 		vars.sanctum.wBox := vars.sanctum.hBox :=  Round(vars.client.h * (1/15))
-		vars.sanctum.radius := vars.sanctum.radius2 := Round(hSnip/35), vars.sanctum.gap := Round(hSnip/24)
+		vars.sanctum.radius := vars.sanctum.radius2 := Round(hSnip/40), vars.sanctum.gap := Round(hSnip/24)
 		vars.sanctum.relics.items := {"urn relic": [1, 2], "seal relic": [2, 1], "amphora relic": [1, 3], "tapestry relic": [3, 1], "vase relic": [1, 4], "coffer relic": [2, 2], "incense relic": [4, 1]}
 	}
 	vars.sanctum.columns := [], vars.sanctum.rows := [], vars.sanctum.column1 := []
