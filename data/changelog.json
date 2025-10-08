@@ -1,5 +1,15 @@
 [
   [
+	["1.59.8", 15908],
+	"september 8, 2025",
+	"clone-frames: added grouping functionality (editing multiple frames at once)",
+	"clone-frames: enabled the <infopanel> auto-toggle to hide frames when fullscreen in-game menus are open",
+	"item-info: fixed base-stats for expectional items, fixed roll-ranges on global/ilvl scale",
+	"omni-key: added <craft of exile> link to the context-menu",
+	"sanctum/sekhema planner: improved scanning for crowded pathing",
+	"vaal street: fixed ratio-calculator pasting"
+  ],
+  [
 	["1.59.7", 15907, 1],
 	"september 13, 2025",
 	"act-tracker: alignment hotkey for pob-tree overlay moved from <space> to <middle mouse>(/highlight)",
