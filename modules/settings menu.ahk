@@ -857,7 +857,7 @@ Settings_cloneframes2(cHWND)
 		If LLK_Progress(vars.hwnd.settings["delbar_"control], "LButton", cHWND)
 		{
 			IniDelete, % "ini" vars.poe_version "\clone frames.ini", % control
-			Settings_menu("clone-frames"), Cloneframes_Thread()
+			Settings_menu("clone-frames"), Cloneframes_Thread(), Settings_ScreenChecksValid()
 		}
 		Else Return
 	}
@@ -885,7 +885,7 @@ Settings_cloneframes2(cHWND)
 	Else If (check = "toggle")
 	{
 		IniWrite, % LLK_ControlGet(cHWND), % "ini" vars.poe_version "\clone frames.ini", settings, toggle
-		Settings_menu("clone-frames"), Cloneframes_Thread()
+		Settings_menu("clone-frames"), Cloneframes_Thread(), Settings_ScreenChecksValid()
 	}
 	Else If InStr(check, "inventory_")
 	{
@@ -914,7 +914,7 @@ Settings_cloneframes2(cHWND)
 	Else LLK_ToolTip("no action")
 
 	If InStr(check, "inventory_") || InStr(check, "gamescreen_")
-		Init_cloneframes(), Cloneframes_Thread()
+		Init_cloneframes(), Cloneframes_Thread(), Settings_ScreenChecksValid()
 }
 
 Settings_donations()

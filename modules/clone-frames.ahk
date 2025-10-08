@@ -123,7 +123,7 @@ Cloneframes_SettingsAdd()
 
 	IniDelete, % "ini" vars.poe_version "\clone frames.ini", % name
 	IniWrite, 1, % "ini" vars.poe_version "\clone frames.ini", % name, enable
-	Cloneframes_Thread(), Settings_menu("clone-frames")
+	Cloneframes_Thread(), Settings_menu("clone-frames"), Settings_ScreenChecksValid()
 }
 
 Cloneframes_SettingsRefresh(name := "")
