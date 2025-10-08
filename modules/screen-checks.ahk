@@ -17,11 +17,11 @@
 	}
 	Else settings.general.oGamescreen := 0
 
-	vars.pixelsearch := {}, parse := LLK_IniRead("data\Resolutions.ini", vars.client.h "p", "gamescreen coordinates" vars.poe_version)
-	If InStr(parse, ",")
-		vars.pixelsearch.gamescreen := {"x1": SubStr(parse, 1, InStr(parse, ",") - 1), "y1": SubStr(parse, InStr(parse, ",") + 1)}
+	vars.pixelsearch := {}, coords := LLK_IniRead("data\Resolutions.ini", vars.client.h "p", "gamescreen coordinates" vars.poe_version), coords := StrSplit(coords, ",", " ", 2)
+	If (coords.Count() = 2)
+		vars.pixelsearch.gamescreen := {"x1": coords.1, "y1": coords.2}
 	Else If vars.poe_version
-		vars.pixelsearch.gamescreen := {"x1": 1, "y1": 1}
+		vars.pixelsearch.gamescreen := {"x1": vars.client.x + vars.client.w - 1 - Round(vars.client.h/15), "y1": vars.client.y - 1 + Round(vars.client.h/24), "x2": vars.client.x + vars.client.w - 1, "y2": vars.client.y - 1 + Round(vars.client.h/24) + Round(vars.client.h/60)}
 
 	ini := IniBatchRead("ini" vars.poe_version "\screen checks (" vars.client.h "p).ini")
 	vars.pixelsearch.gamescreen.color1 := ini.gamescreen["color 1"]
@@ -256,7 +256,7 @@ Screenchecks_Info(name) ;holding the <info> button to view instructions
 		Gui, screencheck_info: Add, Pic, % "Section w"vars.settings.w - settings.general.fWidth - 1 " h-1", HBitmap:%hBitmap%
 	}
 
-	For index, text in vars.help.screenchecks[name]
+	For index, text in vars.help.screenchecks[name . (RegExMatch(name, "i)gamescreen") ? vars.poe_version : "")]
 	{
 		font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font
 		text := StrReplace(StrReplace(text, "(/bold)"), "(/underline)")
@@ -277,7 +277,7 @@ Screenchecks_PixelRecalibrate(name) ;recalibrating a pixel-check
 	local
 	global vars, settings, json
 
-	object := {}
+	object := {}, result := 1
 	Switch name
 	{
 		Case "gamescreen":
@@ -287,12 +287,53 @@ Screenchecks_PixelRecalibrate(name) ;recalibrating a pixel-check
 	}
 	Loop %loopcount%
 	{
-		PixelGetColor, parse, % vars.client.x + vars.client.w - 1 - vars.pixelsearch[name]["x" A_Index], % vars.client.y + vars.pixelsearch[name]["y" A_Index], RGB
-		vars.pixelsearch[name]["color" A_Index] := parse, object["color" A_Index] := parse
-		IniWrite, % parse, % "ini" vars.poe_version "\screen checks ("vars.client.h "p).ini", %name%, color %A_Index%
+		PixelGetColor, color, % vars.client.x + vars.client.w - 1 - vars.pixelsearch[name]["x" A_Index], % vars.client.y + vars.pixelsearch[name]["y" A_Index], RGB
+		IniWrite, % (vars.pixelsearch[name]["color" A_Index] := object["color" A_Index] := (color ? color : "")), % "ini" vars.poe_version "\screen checks ("vars.client.h "p).ini", %name%, color %A_Index%
+		result *= (color ? 1 : 0)
 	}
 	If vars.general.MultiThreading
 		StringSend("pixel-" name "=" json.dump(object))
+	Return result
+}
+
+Screenchecks_PixelRecalibrate2(name)
+{
+	local
+	global vars, settings, json
+
+	Gui, pixel_crosshair: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x20 +E0x02000000 +E0x00080000 HWNDcrosshair
+	Gui, pixel_crosshair: Color, Aqua
+	Gui, pixel_crosshair: Margin, 0, 0
+	Gui, pixel_crosshair: Add, Text, % "BackgroundTrans w1 h1"
+
+	Gui, pixel_zoom: New, -Caption +E0x80000 +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs HWNDzoom
+	Gui, pixel_zoom: Show, NA
+
+	object := {}
+	While GetKeyState("LButton", "P")
+	{
+		pBitmap := Gdip_BitmapFromScreen(vars.general.xMouse - 5 "|" vars.general.yMouse - 11 "|" 11 "|" 11)
+		hbmBitmap := CreateDIBSection(88, 88), hdcBitmap := CreateCompatibleDC(), obmBitmap := SelectObject(hdcBitmap, hbmBitmap), gBitmap := Gdip_GraphicsFromHDC(hdcBitmap)
+		Gdip_SetInterpolationMode(gBitmap, 5)
+		Gdip_DrawImage(gBitmap, pBitmap, 0, 0, 88, 88, 0, 0, 11, 11)
+		UpdateLayeredWindow(zoom, hdcBitmap, vars.general.xMouse - 100, vars.general.yMouse - 44, 88, 88)
+		Gdip_DisposeImage(pBitmap)
+		SelectObject(hdcBitmap, obmBitmap)
+		DeleteObject(hbmBitmap)
+		DeleteDC(hdcBitmap)
+		Gdip_DeleteGraphics(gBitmap)
+
+		Gui, pixel_crosshair: Show, % "NA x" vars.general.xMouse " y" vars.general.yMouse - 5
+		Sleep 50
+	}
+	Gui, pixel_crosshair: Destroy
+	Gui, pixel_zoom: Destroy
+	PixelGetColor, color, vars.general.xMouse, vars.general.yMouse - 5, RGB
+	IniWrite, % (vars.pixelsearch[name].color1 := object["color1"] := (color ? color : "")), % "ini" vars.poe_version "\screen checks (" vars.client.h "p).ini", % name, color 1
+
+	If vars.general.MultiThreading
+		StringSend("pixel-" name "=" json.dump(object))
+	Return color
 }
 
 Screenchecks_PixelSearch(name) ;performing pixel-checks
@@ -300,7 +341,7 @@ Screenchecks_PixelSearch(name) ;performing pixel-checks
 	local
 	global vars, settings
 
-	pixel_check := 1
+	pixel_check := 1, pixels := vars.pixelsearch
 	Switch name
 	{
 		Case "gamescreen":
@@ -311,17 +352,20 @@ Screenchecks_PixelSearch(name) ;performing pixel-checks
 
 	Loop %loopcount%
 	{
-		If (vars.pixelsearch[name]["color" A_Index] = "ERROR") || Blank(vars.pixelsearch[name]["color" A_Index])
+		If (pixels[name]["color" A_Index] = "ERROR") || !pixels[name]["color" A_Index]
 		{
 			pixel_check := 0
-			break
+			Break
 		}
 
-		PixelSearch, x, y, vars.client.x + vars.client.w - 1 - vars.pixelsearch[name]["x" A_Index], vars.client.y + vars.pixelsearch[name]["y" A_Index], vars.client.x + vars.client.w - 1 - vars.pixelsearch[name]["x" A_Index]
-		, vars.client.y + vars.pixelsearch[name]["y" A_Index], % vars.pixelsearch[name]["color" A_Index], % vars.pixelsearch.variation, Fast RGB
+		If vars.poe_version && (name = "gamescreen")
+			PixelSearch, x, y, % pixels.gamescreen.x1, % pixels.gamescreen.y1, % pixels.gamescreen.x2, % pixels.gamescreen.y2, % pixels.gamescreen.color1, % pixels.variation, Fast RGB
+		Else PixelSearch, x, y, % vars.client.x + vars.client.w - 1 - pixels[name]["x" A_Index], % vars.client.y + pixels[name]["y" A_Index], % vars.client.x + vars.client.w - 1 - pixels[name]["x" A_Index]
+		, % vars.client.y + pixels[name]["y" A_Index], % pixels[name]["color" A_Index], % pixels.variation, Fast RGB
+
 		pixel_check -= ErrorLevel
 		If (pixel_check < 1)
-			break
+			Break
 	}
 	Return pixel_check
 }

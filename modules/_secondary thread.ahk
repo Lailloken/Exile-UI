@@ -121,7 +121,7 @@ Loop()
 
 	If !vars.pixelsearch.wait
 		For pixel in vars.pixelsearch.list
-			If !vars.poe_version && (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active)
+			If (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active)
 				vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
 			Else vars.pixels[pixel] := 0
 

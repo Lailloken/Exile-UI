@@ -756,20 +756,17 @@ Settings_cloneframes()
 	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
-	If !vars.poe_version
+	Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w1 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
+	Gui, %GUI%: Add, Text, % "Section ys Center w" wHeader2max, % Lang_Trans("m_screen_gamescreen")
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
 	{
-		Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w1 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
-		Gui, %GUI%: Add, Text, % "Section ys Center w" wHeader2max, % Lang_Trans("m_screen_gamescreen")
-		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
-		{
-			If (key = "settings_cloneframe")
-				Continue
-			Gui, %GUI%: Add, DDL, % "xs wp hp r3 AltSubmit HWNDhwnd gSettings_cloneframes2 Choose" val.gamescreen + 1, % Lang_Trans("global_ignore") "|" Lang_Trans("global_hide") "|" Lang_Trans("global_show")
-			handle .= "|", vars.hwnd.settings["gamescreen_" key] := vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd
-		}
-		Gui, %GUI%: Font, % "s" settings.general.fSize
+		If (key = "settings_cloneframe")
+			Continue
+		Gui, %GUI%: Add, DDL, % "xs wp hp r3 AltSubmit HWNDhwnd gSettings_cloneframes2 Choose" val.gamescreen + 1, % Lang_Trans("global_ignore") "|" Lang_Trans("global_hide") "|" Lang_Trans("global_show")
+		handle .= "|", vars.hwnd.settings["gamescreen_" key] := vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd
 	}
+	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
 	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLast + hLast + settings.general.fWidth/2, % Lang_Trans("m_clone_town")
@@ -3934,11 +3931,11 @@ Settings_screenchecks()
 
 	For key in vars.pixelsearch.list
 	{
-		If vars.poe_version && (key = "gamescreen")
+		If (key = "gamescreen" && vars.poe_version && !vars.cloneframes.gamescreen)
 			Continue
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks pixel-info"handle] := hwnd
-		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd"(Blank(vars.pixelsearch[key].color1) ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
+		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd"(!vars.pixelsearch[key].color1 ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cPixel_"key] := vars.hwnd.help_tooltips["settings_screenchecks pixel-calibration"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["tPixel_"key] := vars.hwnd.help_tooltips["settings_screenchecks pixel-test"handle] := hwnd, handle .= "|"
@@ -4031,8 +4028,23 @@ Settings_screenchecks2(cHWND := "")
 							LLK_ToolTip(Lang_Trans("global_positive"),,,,, "lime")
 						Else LLK_ToolTip(Lang_Trans("global_negative"),,,,, "red")
 					Case "c":
-						Screenchecks_PixelRecalibrate(control)
-						LLK_ToolTip(Lang_Trans("global_success"),,,,, "lime"), Settings_ScreenChecksValid()
+						start := A_TickCount
+						While vars.poe_version && (control = "gamescreen") && !longpress && GetKeyState("LButton", "P")
+							If (A_TickCount >= start + 250)
+								longpress := 1
+
+						If vars.poe_version && (control = "gamescreen")
+						{
+							If longpress
+								result := Screenchecks_PixelRecalibrate2(control)
+							Else
+							{
+								LLK_ToolTip(Lang_Trans("m_screen_instructions"), 2,,,, "Red")
+								Return
+							}
+						}
+						Else result := Screenchecks_PixelRecalibrate(control)
+						LLK_ToolTip(Lang_Trans("global_" (result ? "success" : "fail")),,,,, (result ? "lime" : "red")), Settings_ScreenChecksValid()
 						GuiControl, +cWhite, % cHWND
 						GuiControl, movedraw, % cHWND
 				}
@@ -4086,7 +4098,7 @@ Settings_ScreenChecksValid()
 
 	valid := 1
 	For key, val in vars.pixelsearch.list
-		If vars.poe_version && (key = "gamescreen")
+		If vars.poe_version && (key = "gamescreen") && !vars.cloneframes.gamescreen
 			Continue
 		Else valid *= vars.pixelsearch[key].color1 ? 1 : 0
 

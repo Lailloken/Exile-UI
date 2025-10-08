@@ -890,7 +890,7 @@
 		m_clone_scale			=	"scale:"
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders		=	"invalid frame borders"
-		m_clone_town			=	"clone-frames are disabled in hideouts/towns"
+		m_clone_town			=	"clone-frames are hidden in hideouts/towns"
 
 
 
@@ -1086,7 +1086,7 @@
 		m_screen_pixel			=	"list of active pixel-checks:"
 		m_screen_image			=	"list of active image-checks:"
 		m_screen_gamescreen		=	"infopanel"					;## refers to the small panel in the top-right corner that shows area-name, server, league, etc.
-
+		m_screen_instructions		=	"read the instructions on;the <info> button!"
 
 
 ;#####################################################

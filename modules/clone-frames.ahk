@@ -7,7 +7,7 @@
 		IniWrite, % "", % "ini" vars.poe_version "\clone frames.ini", settings
 
 	settings.cloneframes := {}, ini := IniBatchRead("ini" vars.poe_version "\clone frames.ini")
-	settings.cloneframes.gamescreen := vars.poe_version ? 0 : !Blank(check := ini.settings["gamescreen toggle"]) ? check : (!Blank(check1 := ini.settings["enable pixel-check"]) ? (check1 ? 2 : check1) : 0)
+	settings.cloneframes.gamescreen := !Blank(check := ini.settings["gamescreen toggle"]) ? check : (!Blank(check1 := ini.settings["enable pixel-check"]) ? (check1 ? 2 : check1) : 0)
 	settings.cloneframes.inventory := !Blank(check := ini.settings["inventory toggle"]) ? check : (!Blank(check1 := ini.settings["hide in inventory"]) ? check1 : 1)
 	settings.cloneframes.speed := speed := !Blank(check := ini.settings["performance"]) ? check : 2
 	settings.cloneframes.toggle := !Blank(check := ini.settings.toggle) ? check : 1
@@ -28,10 +28,10 @@
 	{
 		If (key = "settings")
 			key := "settings_cloneframe" ;dummy entry for clone-frame creation
-		vars.cloneframes.list[key] := {"enable": !Blank(check := ini[key].enable) ? check : 1, "gamescreen": !Blank(check1 := ini[key]["gamescreen toggle"]) ? check1 : settings.cloneframes.gamescreen
-		, "inventory": !Blank(check3 := ini[key]["inventory toggle"]) ? check3 : settings.cloneframes.inventory}
+		vars.cloneframes.list[key] := {"enable": !Blank(check := ini[key].enable) ? check : 1, "gamescreen": !Blank(check1 := ini[key]["gamescreen toggle"]) ? check1 : (key = "settings_cloneframe" ? 0 : settings.cloneframes.gamescreen)
+		, "inventory": !Blank(check3 := ini[key]["inventory toggle"]) ? check3 : (key = "settings_cloneframe" ? 0 : settings.cloneframes.inventory)}
 
-		If (settings.cloneframes.toggle = 1)
+		If (settings.cloneframes.toggle = 1 && key != "settings_cloneframe")
 			vars.cloneframes.list[key].gamescreen := settings.cloneframes.gamescreen, vars.cloneframes.list[key].inventory := settings.cloneframes.inventory
 
 		If !vars.general.MultiThreading

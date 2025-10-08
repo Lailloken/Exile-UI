@@ -201,7 +201,8 @@
     "cloneframes toggle-info": [
       "clone-frames can be toggled on/off automatically to avoid blocking in-game content",
       "global: settings will apply to every clone-frame\ncustom: each frame can have its own settings",
-      "below, you can choose how clone-frames behave when certain in-game interfaces are on screen"
+      "below, you can choose how clone-frames behave when certain in-game interfaces are on screen",
+      "requires additional setup in the <screen-checks> section(/highlight)"
     ],
     "cloneframes toggle-modes": [
       "ignore: clone-frames will ignore what is on screen and will never toggle",
@@ -1553,12 +1554,23 @@
     ],
     "gamescreen": [
       "(/bold)(/underline)explanation:",
-      "-> this check is used to determine whether you are controlling your character or accessing a menu",
+      "-> this check is used to (loosely) determine whether a full-screen ui is on screen",
       "(/bold)(/underline)instructions:",
       "-> close every in-game menu: atlas, inventory, etc.",
       "-> the minimap has to be in the center",
-      "-> the info-panel (img) has to be fully visible",
+      "-> the infopanel (img) has to be fully visible",
       "-> click <cal>",
+      "-> follow the instructions in <test>"
+    ],
+    "gamescreen 2": [
+      "(/bold)(/underline)explanation:",
+      "-> this check is used to (loosely) determine whether a full-screen ui is on screen",
+      "(/bold)(/underline)instructions:",
+      "-> close every in-game menu: atlas, inventory, etc.",
+      "-> the minimap has to be in the center",
+      "-> the infopanel (img) has to be fully visible",
+      "-> long-click <cal>: a 'crosshair' and zoom-widget will follow the cursor",
+      "-> drag the 'crosshair' onto a letter in the infopanel (as shown on the img)",
       "-> follow the instructions in <test>"
     ],
     "inventory": [

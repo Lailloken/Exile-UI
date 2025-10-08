@@ -692,7 +692,7 @@ Loop_main()
 	}
 	Else If !Mod(tick, 4)
 	{
-		If !vars.poe_version && vars.cloneframes.enabled && vars.cloneframes.gamescreen
+		If vars.cloneframes.enabled && vars.cloneframes.gamescreen
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")
 		Else vars.pixels.gamescreen := 0
 
