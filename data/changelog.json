@@ -1,7 +1,7 @@
 [
   [
 	["1.59.8", 15908],
-	"september 8, 2025",
+	"october 8, 2025",
 	"clone-frames: added grouping functionality (editing multiple frames at once)",
 	"clone-frames: enabled the <infopanel> auto-toggle to hide frames when fullscreen in-game menus are open",
 	"item-info: fixed base-stats for expectional items, fixed roll-ranges on global/ilvl scale",
