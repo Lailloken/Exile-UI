@@ -559,7 +559,7 @@ Leveltracker_Fade()
 	If (vars.leveltracker.last + settings.leveltracker.fadetime <= A_TickCount) && WinExist("ahk_id "vars.hwnd.leveltracker.main)
 	&& !(settings.leveltracker.fade_hover && LLK_IsBetween(vars.general.xMouse, vars.leveltracker.coords.x1, vars.leveltracker.coords.x2) && LLK_IsBetween(vars.general.yMouse, vars.leveltracker.coords.y1, vars.leveltracker.coords.y2))
 	&& !vars.leveltracker.overlays && !InStr(vars.log.areaID, "_town")
-		vars.leveltracker.fade := 1, Leveltracker_Toggle("hide")
+		vars.leveltracker.fade := 1, Leveltracker_Toggle("hide", 0)
 	Else If vars.hwnd.leveltracker.main && !WinExist("ahk_id "vars.hwnd.leveltracker.main)
 	&& ((settings.leveltracker.fade_hover && LLK_IsBetween(vars.general.xMouse, vars.leveltracker.coords.x1, vars.leveltracker.coords.x2) && LLK_IsBetween(vars.general.yMouse, vars.leveltracker.coords.y1, vars.leveltracker.coords.y2)
 	&& !GetKeyState(settings.hotkeys.movekey, "P")) || vars.leveltracker.overlays || InStr(vars.log.areaID, "_town"))
@@ -3501,11 +3501,12 @@ Leveltracker_TimerCSV()
 	csv .= append
 }
 
-Leveltracker_Toggle(mode)
+Leveltracker_Toggle(mode, toggle := 1)
 {
 	local
 	global vars
 
 	LLK_Overlay(vars.hwnd.leveltracker.main, mode), LLK_Overlay(vars.hwnd.leveltracker.background, mode), LLK_Overlay(vars.hwnd.leveltracker.controls2, mode), LLK_Overlay(vars.hwnd.leveltracker.controls1, mode)
-	vars.leveltracker.toggle := (mode = "show" ? 1 : 0)
+	If toggle
+		vars.leveltracker.toggle := (mode = "show" ? 1 : 0)
 }
