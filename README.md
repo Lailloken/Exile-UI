@@ -1,5 +1,6 @@
 ## About:
-A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, emphasizing ease-of-use, minimalist design, low hotkey requirements, and seamless integration into the game-client. **`This project is not affiliated with or endorsed by Grinding Gear Games (GGG) in any way`**. Formerly Lailloken UI.  
+A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, emphasizing ease-of-use, minimalist design, low hotkey requirements, and seamless integration into the game-client. Formerly Lailloken UI.  
+**`This project is not affiliated with or endorsed by Grinding Gear Games (GGG) in any way`**.
 <br>
 
 ## Download & Setup
@@ -11,10 +12,10 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 |---|---|---|
 <br>
 
-## Context: What is this project?
+### Context: What is this project?
 <details><summary>show</summary>
 
-- this is a fun-project (by a self-taught hobby-coder) that contains various UI/QoL features
+- this is a fun-project by a self-taught hobby-coder that contains various UI/QoL features
 
   - I implement ideas that I think are fun/interesting to work on and figure out (even if they're not necessarily useful to everyone, or even myself)
 
@@ -26,9 +27,8 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 
 - I view this as a personal toolkit rather than a product, so certain aspects may seem rough around the edges (or simply unconventional) when compared to other PoE-related projects
 </details>
-<br>
 
-## Transparency Notice / Things you should know
+### Transparency Notice / Things you should know
 <details><summary>show</summary>
 
 - **things this tool does**
@@ -56,65 +56,68 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### [Clone-frames](https://github.com/Lailloken/Lailloken-UI/wiki/Clone-frames): "interface-customization" by cloning & projecting screen areas  
-| | example: rage meter | example: cooldowns / charges | example: flask status |
-|---|---|---|---|
-| PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_002.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_003.jpg) |
-| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_101.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_102.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_103.jpg) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| examples:<br>rage meter,<br>cooldowns,<br>charges | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/cloneframes_101.jpg) |
 <br>
 
 ### [Item-info](https://github.com/Lailloken/Lailloken-UI/wiki/Item-info): compact & customizable tooltip to determine loot quality at a glance  
-| | example: rare | example: unique| example: anointed |
-|---|---|---|---|
-| PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_001.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_002.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_003.png) |
-| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_101.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_102.png) | |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| example:<br>rare | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_001.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_101.png) |
+| example:<br>unique | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_002.png) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/iteminfo_102.png) |
 <br>
 
 ### [Act-Tracker](https://github.com/Lailloken/Lailloken-UI/wiki/Act%E2%80%90Tracker): campaign-related QoL features  
-| | \*automated campaign-guide overlay | quick-access PoB skilltree overlays | quick-access PoB gem setups |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_003.jpg) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_101.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_103.jpg) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| automated<br>guide | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_101.png) |
+| PoB tree<br>overlays | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_102.jpg) |
+| gem-setup<br>overlays | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/leveltracker_103.jpg) |
 <br>
 
 ### [Act-Decoder](https://github.com/Lailloken/Exile-UI/wiki/Act%E2%80%90Decoder): campaign layout overlay  
-| | layout selection<br>based on indicators | advanced layouts | simple fallback |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| layout<br>indicators | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_101.jpg) |
+| full<br>layouts | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) |
+| simple<br>fallback | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
 <br>
 
 ### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja/bulk-exchange price-overlay & sale management
-| customizable price-tags and profiles | conversion rates & optional price history | (bulk-)sale management & bulk-exchange listings |
+| | Path of Exile | Path of Exile 2 |
 |---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_003.jpg) |
+| customizable<br>price-tags<br>& profiles | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_101.jpg) |
+| conversions<br>& price history | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_102.jpg) |
 <br>
 
 ### \*[Map-Tracker](https://github.com/Lailloken/Lailloken-UI/wiki/Map%E2%80%90Tracker): collect, save, view, and export mapping-related data for statistical analysis
 | | in-game log viewer |
 |---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/maptracker_001.png) |
+| PoE | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/maptracker_001.png) |
 | PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/maptracker_101.png) |
 <br>
 
 ### Overhauled [map-info panel](https://github.com/Lailloken/Lailloken-UI/wiki/Map-info-panel): streamlined & customizable map-mod tooltip and panel
-| | tooltip for rolling maps | re-check mods on demand in maps | search/pin mods for quick access when switching builds |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_003.png) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_101.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_102.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_103.png) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| tooltip | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_101.png) |
+| panel | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/mapinfo_102.png) |
 <br>
 
 ### [Sanctum/Sekhema Planner](https://github.com/Lailloken/Lailloken-UI/wiki/Sanctum-and-Sekhema-Planner): floor scanner & interactive planner/analysis overlay
-| | potential reach for every room | available pathing to "desired" rooms | how to avoid bad rooms & which rooms will be blocked off |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| potential<br>reach | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_101.jpg) |
+| available<br>pathing | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_102.jpg) |
+| how to<br>avoid&nbsp;bad<br>rooms | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/sanctum_103.jpg) |
 <br>
 
 ### [Enchant Finder](https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder): quick-access enchant calculator for blight oils and distilled emotions
-| | streamlined import of materials | flexible searching/filtering via regex or keywords |
+| | Path of Exile | Path of Exile 2 |
 |---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_002.jpg) |
-| PoE2 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_101.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_102.jpg) |
+| easy import<br>of materials | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_101.jpg) |
+| flexible filter:<br>regex/keywords | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_102.jpg) |
 <br>
 
 ### [Recombination Simulator](https://github.com/Lailloken/Lailloken-UI/wiki/Recombination-Simulator): in-game overlay that simulates outcomes in a few clicks
@@ -124,9 +127,11 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### [Context-menu](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features) for items: single-hotkey access to features and popular 3rd-party websites  
-| PoE1 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_002.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_003.jpg) |
-|---|---|---|---|
-| PoE2 | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_101.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_102.jpg) | |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| example:<br>gear | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_001.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_101.jpg) |
+| examples:<br>cluster jewel,<br>fragments | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_002.jpg) | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_102.jpg) |
+| example:<br>timeless jewel | ![img](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/contextmenu_003.jpg) | |
 <br>
 
 ### [Statlas](https://github.com/Lailloken/Exile-UI/wiki/Statlas): quick-access atlas overlay for map layouts, bosses, and statistics
@@ -136,29 +141,30 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### [Search-strings](https://github.com/Lailloken/Lailloken-UI/wiki/Search-strings): customizable, single-hotkey menu for every individual in-game search  
-| | built-in: beast-crafting | example: Gwennen | example: vendor |
-|---|---|---|---|
-| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_003.jpg) |
-| PoE2 | | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_102.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_103.jpg) |
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| built-in:<br>beast-crafting | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_001.jpg) | |
+| example:<br>Gwennen | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_102.jpg) |
+| example:<br>vendors | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_103.jpg) |
 <br>
 
 ### [Vaal Street](https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street): currency exchange ratio-calculator, QoL, trade logging, and balance tracking
 | | optional trade logging | ratio-calculator | optional balance tracking |
 |---|---|---|---|
 | PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_003.jpg) |
-| PoE2 | ✔️ | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_102.jpg) | ✔️ |
+| PoE2 | <p align="center">✔️</p> | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_102.jpg) | <p align="center">✔️</p> |
 <br>
 
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  
 | essence tooltip to check the next tier's stats | orb of horizons tooltips | countdown & stopwatch |
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
-||| **Path of Exile 2 compatible** |
+||| <p align="center">**Path of Exile 2 compatible**</p> |
 
 | in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs | map-event notifications |
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_006.png) |
-| **Path of Exile 2 compatible** |||
+| <p align="center">**Path of Exile 2 compatible**</p> |||
 <br>
 
 ### [Seed-explorer](https://github.com/Lailloken/Lailloken-UI/wiki/Seed-explorer): in-client UI to quickly test a legion jewel in every socket
@@ -194,9 +200,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### Acknowledgements
-- `item-info` uses a custom version of [Path of Building's](https://github.com/PathOfBuildingCommunity/PathOfBuilding) datamined resources
-
-- several features use data provided by poedb
+- various features use data derived from [Path of Building](https://github.com/PathOfBuildingCommunity/PathOfBuilding), [poe ladder](https://poeladder.com/), and [poedb](https://poedb.tw/us/)
 
 - `act-tracker` has a default guide and PoB-import features that were originally derived from [exile-leveling](https://github.com/HeartofPhos/exile-leveling)
 
