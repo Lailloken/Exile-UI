@@ -509,7 +509,7 @@ Sanctum_Relics(cHWND := "")
 	coords := vars.sanctum.relics.coords, spacing := settings.sanctum.gridspacing, grid := vars.sanctum.relics.grid, items := vars.sanctum.relics.items, fWidth := settings.sanctum.fWidth
 	search := vars.sanctum.relics.search, inventory := vars.sanctum.relics.inventory := vars.pixels.inventory
 
-	Gui, %GUI_name%: New, % "-Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_relics"
+	Gui, %GUI_name%: New, % "-Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_relics", LLK-UI: relic manager
 	Gui, %GUI_name%: Font, % "cWhite s" settings.sanctum.fSize, % vars.system.font
 	Gui, %GUI_name%: Color, Purple
 	WinSet, TransColor, Purple

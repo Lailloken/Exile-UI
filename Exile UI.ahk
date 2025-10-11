@@ -696,7 +696,7 @@ Loop_main()
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")
 		Else vars.pixels.gamescreen := 0
 
-		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.iteminfo.compare || vars.hwnd.exchange.main
+		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.iteminfo.compare || vars.hwnd.exchange.main || vars.hwnd.sanctum_relics.main
 			vars.pixels.inventory := Screenchecks_PixelSearch("inventory")
 		Else vars.pixels.inventory := 0
 	}

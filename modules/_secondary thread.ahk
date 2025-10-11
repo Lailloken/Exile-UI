@@ -100,6 +100,10 @@ Loop()
 		vars.sanctum.active := 1
 	Else vars.sanctum.active := 0
 
+	If WinExist("LLK-UI: relic manager")
+		vars.sanctum.active_relics := 1
+	Else vars.sanctum.active_relics := 0
+
 	If WinExist("LLK-UI: Settings Menu (")
 	{
 		WinGetTitle, title, % "LLK-UI: Settings Menu ("
@@ -121,7 +125,7 @@ Loop()
 
 	If !vars.pixelsearch.wait
 		For pixel in vars.pixelsearch.list
-			If (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active)
+			If (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active || vars.sanctum.active_relics)
 				vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
 			Else vars.pixels[pixel] := 0
 
