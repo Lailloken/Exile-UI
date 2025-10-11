@@ -196,7 +196,7 @@ Geartracker(mode := "")
 			WinWaitActive, ahk_group poe_window
 			SendInput, ^{f}
 			Sleep 100
-			SendInput, ^{v}{Enter}
+			SendInput, {DEL}^{v}{Enter}
 			Return
 		}
 		Else If (vars.system.click = 2) && LLK_Progress(vars.hwnd.geartracker["delbar_"control], "RButton")
@@ -2033,7 +2033,7 @@ Leveltracker_PobGemCutting(cHWND := "")
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
 		SendInput, % "^{f}"
 		Sleep, 100
-		SendInput, % "^{a}^{v}{Enter}"
+		SendInput, % "{DEL}^{v}{Enter}"
 		Return
 	}
 	Else If InStr(check, "font_")
@@ -2174,7 +2174,9 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 			regex := Trim(A_GuiControl, " |–"), regex := SubStr(regex, 1, vars.poe_version ? InStr(regex, "(") - 2 : StrLen(regex))
 			Clipboard := "^" StrReplace(regex, " ", ".") . (!vars.poe_version && InStr(A_GuiControl, "|") ? ".support" : "") "$"
 			WinWaitActive, % "ahk_id " vars.hwnd.poe_client
-			SendInput, ^{f}^{v}
+			SendInput, ^{f}
+			Sleep 100
+			SendInput, {DEL}^{v}
 		}
 		Return
 	}

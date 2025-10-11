@@ -109,7 +109,9 @@ Legion(cHWND := "")
 					}
 				Clipboard := SubStr(regex_string, 1, -1) ")"
 			}
-			SendInput, ^{f}^{v}{Enter}
+			SendInput, ^{f}
+			Sleep 100
+			SendInput, {DEL}^{v}{Enter}
 		}
 		Else If (vars.system.click = 2)
 		{

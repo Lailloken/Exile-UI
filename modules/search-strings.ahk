@@ -98,7 +98,7 @@ String_ContextMenu(name := "")
 			vars.searchstrings.clipboard := vars.searchstrings.list[name].strings[string].1, Clipboard := StrReplace(vars.searchstrings.list[name].strings[string].1, ";")
 		SendInput, ^{f}
 		Sleep, 100
-		SendInput, ^{v}{Enter}
+		SendInput, {DEL}^{v}{Enter}
 
 		If (name != "exile-leveling") && (vars.searchstrings.list[name].strings[string].2 = "") && !InStr(vars.searchstrings.list[name].strings[string].1, ";") || (name = "exile-leveling" && Blank(vars.leveltracker.string.2))
 			Return
@@ -342,7 +342,7 @@ String_Scroll(hotkey)
 	Else Clipboard := (active.1 = "exile-leveling") ? vars.leveltracker.string[active.3] : vars.searchstrings.list[active.1].strings[active.2][active.3]
 	SendInput, ^{f}
 	Sleep, 100
-	SendInput, ^{v}{Enter}
+	SendInput, {DEL}^{v}{Enter}
 }
 
 String_Search(name)

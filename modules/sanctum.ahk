@@ -479,7 +479,7 @@ Sanctum_Relics(cHWND := "")
 				Clipboard := Trim(StrReplace(regex, " ", "."), " .*")
 				SendInput, ^{f}
 				Sleep 100
-				SendInput, ^{v}{Enter}
+				SendInput, {DEL}^{v}{Enter}
 				Return
 			}
 		}

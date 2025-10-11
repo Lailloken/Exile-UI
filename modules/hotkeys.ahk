@@ -281,7 +281,7 @@ Hotkeys_Tab()
 			Clipboard := """note:"""
 			SendInput, ^{f}
 			Sleep 100
-			SendInput, ^{v}{ENTER}
+			SendInput, {DEL}^{v}{ENTER}
 		}
 		Else
 		{
