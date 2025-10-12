@@ -796,9 +796,8 @@
       "shows an additional panel that lists the different room types and their objectives, as well as special fountain characteristics"
     ],
     "sanctum relics": [
-      "provides an overlay for relic management",
-      "hold <tab> while the relic altar is open to open the overlay",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> settings(/highlight)"
+      "provides an overlay for relic management:\nsummarizes and groups relic effects, and provides search/highlight functionality",
+      "while the relic altar is open, hover over a relic and hold the <omni-key> to open the overlay"
     ],
     "screenchecks pixel-about": [
       "the script continually checks the screen for certain ui elements",

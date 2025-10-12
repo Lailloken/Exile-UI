@@ -126,6 +126,8 @@
 				Anoints()
 			Case "anoints_stock":
 				Anoints("stock")
+			Case "relics":
+				Sanctum_Relics()
 		}
 	}
 	Else If Blank(vars.omnikey.hotkey2) || !Blank(vars.omnikey.hotkey2) && !InStr(A_ThisHotkey, vars.omnikey.hotkey2) ;prevent item-only omni-key from executing non-item features
@@ -257,6 +259,11 @@ Omni_Context(mode := 0, alt := 0)
 			Return "gemnotes"
 	If settings.features.leveltracker && LLK_PatternMatch(item.name, "", [Lang_Trans("items_uncut_gem", 1), Lang_Trans("items_uncut_gem", 2), Lang_Trans("items_uncut_gem", 3)],,, 0)
 		Return "gemregex"
+
+	If settings.features.sanctum && settings.sanctum.relics && (item.class = Lang_Trans("items_relics")) && RegExMatch(vars.log.areaID, "i)sanctumfoyer_fellshrine|g2_13")
+		While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
+			If (A_TickCount >= vars.omnikey.start + 200)
+				Return "relics"
 
 	If !vars.poe_version && !settings.features.stash && (item.name = "Orb of Horizons")
 		While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")

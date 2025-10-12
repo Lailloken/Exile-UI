@@ -349,6 +349,7 @@
 
 
 		items_class			=	"Item Class:"			;## PoE1 and PoE2, important: every string in the following lines has to match the one in the "Item Class: XYZ" line in the clipboard-info
+		items_relics			=	"Relics"			;## Sanctum/Sekhema Relics
 		items_gem			=	"Support Gems"			;## PoE2 only
 		items_map fragments		=	"Map Fragments"			;## PoE1 only (rest of block)
 		items_heist brooches		=	"Heist Brooches"
