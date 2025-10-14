@@ -523,8 +523,8 @@ WheelDown::Leveltracker_GuideEditor(A_ThisHotkey)
 LButton::Stash_Hotkeys("regex")
 
 #If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemlinks.main)
-SC010::Leveltracker_PobGemLinks("hotkey1")
-SC012::Leveltracker_PobGemLinks("hotkey2")
+WheelUp::Leveltracker_PobGemLinks("hotkey1")
+WheelDown::Leveltracker_PobGemLinks("hotkey2")
 
 #If vars.leveltracker.skilltree_schematics.GUI && WinExist("ahk_id " vars.hwnd.skilltree_schematics.main)
 && !(vars.general.cMouse && InStr(vars.hwnd.skilltree_schematics.color_1bar "," vars.hwnd.skilltree_schematics.color_2bar, vars.general.cMouse))

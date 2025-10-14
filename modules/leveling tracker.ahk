@@ -2290,7 +2290,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		{
 			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version || InStr(gem, "support") ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
 			gem_lookup := InStr(gem_lookup, "(") ? SubStr(gem_lookup, 1, InStr(gem_lookup, "(") - 2) : gem_lookup
-			style := (index = 1 && link = 1) ? (orientation = "left" || check.Count() = 1 ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-1")
+			style := (index = 1 && link = 1) ? (orientation = "left" || check.Count() = 1 ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-" Floor(settings.leveltracker.fHeight/5))
 			color := vars.poe_version ? stat_colors[db.leveltracker.gems[LLK_HasKey(db.leveltracker.gems, gem_lookup,,,, 1)][gem_lookup].2] : stat_colors[db.leveltracker.gems[gem_lookup].attribute]
 
 			Gui, %GUI_name%: Add, Text, % style " Section BackgroundTrans HWNDhwnd w" wLinks " h" hLinks - 2 " c" color . (settings.leveltracker.gemlinksToggle ? " gLeveltracker_PobGemLinks" : ""), % " " gem

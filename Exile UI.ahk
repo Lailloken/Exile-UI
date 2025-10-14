@@ -696,7 +696,7 @@ Loop_main()
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")
 		Else vars.pixels.gamescreen := 0
 
-		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.iteminfo.compare || vars.hwnd.exchange.main || vars.hwnd.sanctum_relics.main
+		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.features.iteminfo * settings.iteminfo.compare || vars.hwnd.exchange.main || vars.hwnd.sanctum_relics.main
 			vars.pixels.inventory := Screenchecks_PixelSearch("inventory")
 		Else vars.pixels.inventory := 0
 	}
@@ -710,10 +710,6 @@ Loop_main()
 		vars.cloneframes.editing := ""
 		Cloneframes_Thread(), Init_cloneframes()
 	}
-
-	If !vars.general.drag && vars.hwnd.leveltracker_gemlinks.main && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.leveltracker_gemlinks.main)
-	&& vars.general.cMouse && (check := LLK_HasVal(vars.hwnd.leveltracker_gemlinks, vars.general.cMouse)) && (vars.leveltracker.gemlinks.hover != SubStr(check, 0))
-		Leveltracker_PobGemLinks("", SubStr(check, 0))
 
 	If vars.hwnd.exchange.main && (vars.pixels.inventory != vars.exchange.inventory) && WinActive("ahk_id " vars.hwnd.poe_client)
 		Exchange()
