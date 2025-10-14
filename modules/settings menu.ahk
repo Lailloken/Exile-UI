@@ -487,10 +487,10 @@ Settings_cheatsheets()
 	Gui, %GUI%: Font, % "norm"
 
 	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("m_cheat_modifier")
-	Loop, Parse, % "alt, ctrl, shift", `,, %A_Space%
+	For index, val in ["alt", "ctrl"]
 	{
-		Gui, %GUI%: Add, Radio, % "ys x+" (A_Index = 1 ? settings.general.fWidth/2 : 0) " hp HWNDhwnd gSettings_cheatsheets2 checked"(settings.cheatsheets.modifier = A_LoopField ? 1 : 0), % Lang_Trans("m_cheat_modifier", A_Index + 1)
-		handle .= "|", vars.hwnd.settings["modifier_"A_LoopField] := hwnd, vars.hwnd.help_tooltips["settings_cheatsheets modifier-key"] := hwnd0, vars.hwnd.help_tooltips["settings_cheatsheets modifier-key"handle] := hwnd
+		Gui, %GUI%: Add, Radio, % "ys x+" (A_Index = 1 ? settings.general.fWidth/2 : 0) " hp HWNDhwnd gSettings_cheatsheets2 checked"(settings.cheatsheets.modifier = val ? 1 : 0), % Lang_Trans("global_" val)
+		handle .= "|", vars.hwnd.settings["modifier_" val] := hwnd, vars.hwnd.help_tooltips["settings_cheatsheets modifier-key"] := hwnd0, vars.hwnd.help_tooltips["settings_cheatsheets modifier-key"handle] := hwnd
 	}
 
 	If vars.cheatsheets.count_advanced

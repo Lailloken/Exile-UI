@@ -799,11 +799,8 @@ SC039::Betrayal_Rank("Space")
 
 #If (vars.cheatsheets.active.type = "image") && vars.hwnd.cheatsheet.main && !vars.cheatsheets.tab && WinExist("ahk_id " vars.hwnd.cheatsheet.main) ;image-cheatsheet hotkeys
 
-WheelDown::
 SC03B::Cheatsheet_Image("", "F1")
-WheelUp::
 SC03C::Cheatsheet_Image("", "F2")
-MButton::
 SC03D::Cheatsheet_Image("", "F3")
 SC039::Cheatsheet_Image("", "space")
 SC002::Cheatsheet_Image("", 1)
@@ -820,7 +817,8 @@ Up::
 Down::
 Left::
 Right::
-RButton::
+WheelUp::
+WheelDown::
 SC01E::
 SC030::
 SC02E::

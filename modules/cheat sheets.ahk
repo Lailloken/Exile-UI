@@ -11,7 +11,7 @@
 	LLK_FontDimensions(settings.cheatsheets.fSize, font_height, font_width), settings.cheatsheets.fHeight := font_height, settings.cheatsheets.fWidth := font_width
 	settings.cheatsheets.dColors := ["Lime", "Yellow", "Red", "Aqua"]
 	settings.cheatsheets.colors := [], settings.cheatsheets.colors[0] := "White"
-	settings.cheatsheets.modifiers := ["alt", "ctrl", "shift"]
+	settings.cheatsheets.modifiers := ["alt", "ctrl"]
 	settings.cheatsheets.modifier := !Blank(check := ini.settings["modifier-key"]) ? check : "alt"
 	If Blank(LLK_HasVal(settings.cheatsheets.modifiers, settings.cheatsheets.modifier)) ;force alt if modifier-key is an unexpected key
 		settings.cheatsheets.modifier := "alt"
@@ -398,8 +398,8 @@ Cheatsheet_Close()
 	local
 	global vars, settings
 
-	vars.cheatsheets.active := ""
 	LLK_Overlay(vars.hwnd.cheatsheet.main, "hide")
+	vars.cheatsheets.active := vars.hwnd.cheatsheet.main := ""
 }
 
 Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay is modified (resized, moved, images added, etc.) by specific hotkeys
@@ -407,9 +407,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 	local
 	global vars, settings
 
-	ignore := ["Up", "Down", "Left", "Right", "F1", "F2", "F3", "RButton", "Space", vars.hotkeys.tab]
+	ignore := ["Up", "Down", "Left", "Right", "F1", "F2", "F3", "Space", "WheelUp", "WheelDown", vars.hotkeys.tab]
 	hotkey0 := Hotkeys_RemoveModifiers(hotkey), hotkey := GetKeyName(hotkey0)
-
 	If !name
 		name := vars.cheatsheets.active.name
 	Loop, Files, % "cheat-sheets" vars.poe_version "\"name "\[*"
@@ -422,7 +421,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		LLK_ToolTip(Lang_Trans("cheat_nofiles"), 2,,,, "red")
 		vars.cheatsheets[name].include := []
 		cheatsheets_loaded_images := ""
-		KeyWait, % hotkey0
+		If !InStr(hotkey0, "wheel")
+			KeyWait, % hotkey0
 		Return
 	}
 
@@ -449,31 +449,26 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 			vars.cheatsheets.list[name].scale /= (hotkey = "F3") ? vars.cheatsheets.list[name].scale : 1
 			IniWrite, % Format("{:0.1f}", vars.cheatsheets.list[name].scale), % "cheat-sheets" vars.poe_version "\" name "\info.ini", UI, scale
 		}
-		Else If (hotkey = "RButton")
+		Else If InStr(hotkey, "wheel")
 		{
 			WinGetPos, x, y,,, % "ahk_id "vars.hwnd.cheatsheet.main
 			If has_00
 			{
 				LLK_ToolTip(Lang_Trans("cheat_flip") "`n" Lang_Trans("cheat_flip", 2), 2, x, y,, "Yellow")
-				KeyWait, % hotkey0
+				If !InStr(hotkey0, "wheel")
+					KeyWait, % hotkey0
 				Return
 			}
 			If !IsNumber(vars.cheatsheets[name].include.1)
 			{
 				LLK_ToolTip(Lang_Trans("cheat_flip") "`n" Lang_Trans("cheat_flip", 3), 2, x, y,, "Yellow")
-				KeyWait, % hotkey0
+				If !InStr(hotkey0, "wheel")
+					KeyWait, % hotkey0
 				Return
 			}
 			start := A_TickCount, key := 1, index := 1
-			While GetKeyState("RButton", "P")
-			{
-				If (A_TickCount >= start + 300)
-				{
-					key := (vars.cheatsheets[name].include.1 > 1) ? -1 : 0
-					index := key
-					Break
-				}
-			}
+			If InStr(hotkey, "up")
+				key := (vars.cheatsheets[name].include.1 > 1) ? -1 : 0, index := key
 
 			While !FileExist("cheat-sheets" vars.poe_version "\" name "\[" vars.cheatsheets[name].include.1 + index "]*") && !FileExist("cheat-sheets" vars.poe_version "\" name "\[0" vars.cheatsheets[name].include.1 + index "]*")
 			{
@@ -491,7 +486,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		{
 			If !has_00
 			{
-				KeyWait, % hotkey0
+				If !InStr(hotkey0, "wheel")
+					KeyWait, % hotkey0
 				Return
 			}
 			vars.cheatsheets[name].include0 := []
@@ -537,7 +533,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 	If hotkey && (!Blank(LLK_HasVal(vars.cheatsheets[name].include, hotkey)) || !FileExist("cheat-sheets" vars.poe_version "\"name "\["hotkey "]*.*") && !FileExist("cheat-sheets" vars.poe_version "\"name "\*] "hotkey ".*") ;cont
 	&& !FileExist("cheat-sheets" vars.poe_version "\"name "\[0"hotkey "]*.*"))
 	{
-		KeyWait, % hotkey0
+		If !InStr(hotkey0, "wheel")
+			KeyWait, % hotkey0
 		Return
 	}
 	Else If LLK_IsType(hotkey, "alnum") && has_00
@@ -545,7 +542,7 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 	Else If LLK_IsType(hotkey, "alnum") && !has_00
 		vars.cheatsheets[name].include := [(hotkey < 10) ? "0" hotkey : hotkey]
 
-	Gui, cheatsheet: New, -DPIScale -Caption +E0x20 +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd
+	Gui, cheatsheet: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd
 	Gui, cheatsheet: Color, Black
 	Gui, cheatsheet: Margin, 0, 0
 	WinSet, Transparent, 255
@@ -579,7 +576,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		}
 		If !file
 		{
-			KeyWait, % hotkey0
+			If !InStr(hotkey0, "wheel")
+				KeyWait, % hotkey0
 			Return
 		}
 
@@ -590,7 +588,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		If (pBitmap <= 0)
 		{
 			MsgBox, % Lang_Trans("cheat_loaderror") " " file
-			KeyWait, % hotkey0
+			If !InStr(hotkey0, "wheel")
+				KeyWait, % hotkey0
 			Return
 		}
 		Gdip_GetImageDimensions(pBitmap, width, height)
@@ -618,7 +617,7 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 
 		hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap)
 		If (index = "00")
-			Gui, cheatsheet: Add, Picture, % "Section BackgroundTrans", HBitmap:*%hbmBitmap%
+			Gui, cheatsheet: Add, Picture, % "Section xs BackgroundTrans", HBitmap:*%hbmBitmap%
 		Else Gui, cheatsheet: Add, Picture, % style " Section BackgroundTrans", HBitmap:*%hbmBitmap%
 		added += 1
 		DeleteObject(hbmBitmap), Gdip_DisposeImage(pBitmap)
@@ -626,6 +625,10 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 
 	If added
 	{
+		;If (vars.cheatsheets.list[name].pos.2 = 1)
+		Gui, cheatsheet: Add, Pic, % "x0 y0 h" settings.general.fHeight " w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+		vars.hwnd.help_tooltips["cheatsheet_image general"] := hwnd
+
 		Gui, cheatsheet: Show, NA x10000 y10000
 		WinGetPos,,, width, height, % "ahk_id " vars.hwnd.cheatsheet.main
 		style := ""
@@ -651,7 +654,8 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		LLK_Overlay(vars.hwnd.cheatsheet.main, "show",, "cheatsheet")
 		vars.cheatsheets.active.type := "image"
 	}
-	KeyWait, % hotkey0
+	If !InStr(hotkey0, "wheel")
+		KeyWait, % hotkey0
 }
 
 Cheatsheet_Info(name)
@@ -770,8 +774,8 @@ Cheatsheet_Menu(name, refresh := 0) ;refresh = 0 will flush data stored in vars.
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize
 	Gui, %GUI_name%: Add, Text, % "Section xs cSilver Center HWNDhwnd0", % Lang_Trans("global_activation")
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize - 4
-	LLK_PanelDimensions([Lang_Trans("cheat_hold"), Lang_Trans("global_toggle")], settings.general.fSize - 4, width, height,,, 1)
-	Gui, %GUI_name%: Add, DDL, % "ys w" width + settings.general.fWidth " hp r2 gCheatsheet_Menu2 AltSubmit HWNDhwnd", % StrReplace(Lang_Trans("cheat_hold") "|" Lang_Trans("global_toggle") "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].activation) "|", Lang_Trans("cheat_" vars.cheatsheets.list[name].activation) "||")
+	LLK_PanelDimensions([Lang_Trans("global_hold"), Lang_Trans("global_toggle")], settings.general.fSize - 4, width, height,,, 1)
+	Gui, %GUI_name%: Add, DDL, % "ys w" width + settings.general.fWidth " hp r2 gCheatsheet_Menu2 AltSubmit HWNDhwnd", % StrReplace(Lang_Trans("global_hold") "|" Lang_Trans("global_toggle") "|", Lang_Trans("global_" vars.cheatsheets.list[name].activation) "|", Lang_Trans("global_" vars.cheatsheets.list[name].activation) "||")
 	vars.hwnd.help_tooltips["cheatsheets_menu activation"] := hwnd0, vars.hwnd.cheatsheet_menu.activation := vars.hwnd.help_tooltips["cheatsheets_menu activation|"] := hwnd
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize
 
