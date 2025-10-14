@@ -43,7 +43,7 @@
 	LLK_FontDimensions(settings.mapinfo.fSize, font_height, font_width), settings.mapinfo.fHeight := font_height, settings.mapinfo.fWidth := font_width
 	settings.mapinfo.trigger := !Blank(check := ini.settings["enable shift-clicking"]) ? check : 0
 	settings.mapinfo.tabtoggle := !Blank(check := ini.settings["show panel while holding tab"]) ? check : 0
-	settings.mapinfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
+	settings.mapinfo.activation := !Blank(check := ini.settings.activation) ? check : "toggle"
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "00FF00", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "000000"]
 	For index, val in ["quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"]

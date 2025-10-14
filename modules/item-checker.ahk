@@ -16,7 +16,7 @@
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
 	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
-	settings.iteminfo.omnikey := !Blank(check := ini.settings["omni-key activation"]) ? check : 1
+	settings.iteminfo.activation := !Blank(check := ini.settings.activation) ? check : "toggle"
 	;settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
 	settings.iteminfo.roll_range := !Blank(check := ini.settings["roll range"]) ? check : ((check1 := ini.settings["tier bars"]) ? check1 : 1)
 	settings.iteminfo.qual_scaling := !Blank(check := ini.settings["quality scaling"]) ? check : 0
