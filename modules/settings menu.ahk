@@ -3891,6 +3891,7 @@ Settings_sanctum2(cHWND := "")
 		IniWrite, % (settings.sanctum.relics := input), % "ini" vars.poe_version "\sanctum.ini", settings, enable relic management
 		If !input && WinExist("ahk_id " vars.hwnd.sanctum_relics.main)
 			Sanctum_Relics("close")
+		Settings_ScreenChecksValid()
 	}
 	Else If InStr(check, "font_")
 	{
@@ -3923,16 +3924,17 @@ Settings_screenchecks()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
 	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Screen-checks">wiki page</a>
-	Gui, %GUI%: Font, % "underline bold"
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_screen_pixel")
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	Gui, %GUI%: Font, % "norm"
-	vars.hwnd.help_tooltips["settings_screenchecks pixel-about"] := hwnd
 
-	For key in vars.pixelsearch.list
+	For key in (active_pixel := Settings_ScreenChecksValid("pixel").1)
 	{
-		If (key = "gamescreen" && vars.poe_version && !vars.cloneframes.gamescreen)
-			Continue
+		If !header_pixel
+		{
+			Gui, %GUI%: Font, % "underline bold"
+			Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_screen_pixel")
+			Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+			Gui, %GUI%: Font, % "norm"
+			vars.hwnd.help_tooltips["settings_screenchecks pixel-about"] := hwnd, header_pixel := 1
+		}
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks pixel-info"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd"(!vars.pixelsearch[key].color1 ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
@@ -3941,9 +3943,8 @@ Settings_screenchecks()
 		vars.hwnd.settings["tPixel_"key] := vars.hwnd.help_tooltips["settings_screenchecks pixel-test"handle] := hwnd, handle .= "|"
 		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((key = "inventory" ? "global_" : "m_screen_") key)
 	}
-	Gui, %GUI%: Font, norm
 
-	If vars.client.stream
+	If vars.client.stream && active_pixel.Count()
 	{
 		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_variance") ":"
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
@@ -3953,49 +3954,43 @@ Settings_screenchecks()
 		vars.hwnd.help_tooltips["settings_screenchecks variance"] := hwnd1, vars.hwnd.settings.variance_pixel := hwnd
 	}
 
-	count := 0
-	For key in vars.imagesearch.list
+	For key in (active_image := Settings_ScreenChecksValid("image").1)
 	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
-			Continue
-		count += 1
-	}
-	If !count
-		Return
-
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_screen_image")
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	Gui, %GUI%: Font, norm
-	vars.hwnd.help_tooltips["settings_screenchecks image-about"] := hwnd, handle := ""
-
-	For key in vars.imagesearch.list
-	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
-			Continue
+		If !header_image
+		{
+			Gui, %GUI%: Font, bold underline
+			Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_screen_image")
+			Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+			Gui, %GUI%: Font, norm
+			vars.hwnd.help_tooltips["settings_screenchecks image-about"] := hwnd, handle := "", header_image := 1
+		}
 		Gui, %GUI%: Add, Text, % "xs Section border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_info") " "
 		vars.hwnd.settings["info_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-info"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (!FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? " cRed" : ""), % " " Lang_Trans("global_calibrate") " "
 		vars.hwnd.settings["cImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-calibration"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (Blank(vars.imagesearch[key].x1) ? " cRed" : ""), % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["tImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-test"handle] := hwnd, handle .= "|"
-		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((key = "betrayal" ? "mechanic_" : "global_") key)
+		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((key = "sanctum" ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
 	}
-	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "xs Section Center Border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_imgfolder") " "
-	vars.hwnd.settings.folder := vars.hwnd.help_tooltips["settings_screenchecks folder"] := hwnd
 
-	If vars.client.stream
+	If active_image.Count()
 	{
-		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_variance") ":"
-		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Edit, % "ys hp Number Limit3 r1 cBlack gSettings_screenchecks2 HWNDhwnd w" settings.general.fWidth * 3, % vars.imagesearch.variation
-		Gui, %GUI%: Font, % "s" settings.general.fSize
-		Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd1", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_screenchecks variance|"] := hwnd1, vars.hwnd.settings.variance_image := hwnd
+		Gui, %GUI%: Font, norm
+		Gui, %GUI%: Add, Text, % "xs Section Center Border gSettings_screenchecks2 HWNDhwnd", % " " Lang_Trans("global_imgfolder") " "
+		vars.hwnd.settings.folder := vars.hwnd.help_tooltips["settings_screenchecks folder"] := hwnd
+
+		If vars.client.stream
+		{
+			Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_variance") ":"
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+			Gui, %GUI%: Add, Edit, % "ys hp Number Limit3 r1 cBlack gSettings_screenchecks2 HWNDhwnd w" settings.general.fWidth * 3, % vars.imagesearch.variation
+			Gui, %GUI%: Font, % "s" settings.general.fSize
+			Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd1", % "HBitmap:*" vars.pics.global.help
+			vars.hwnd.help_tooltips["settings_screenchecks variance|"] := hwnd1, vars.hwnd.settings.variance_image := hwnd
+		}
 	}
+	Else If !(active_pixel.Count() + active_image.Count())
+		Gui, %GUI%: Add, Text, % "Section xs cLime y+" vars.settings.spacing " w" settings.general.fWidth * 30, % Lang_Trans("m_screen_inactive")
 }
 
 Settings_screenchecks2(cHWND := "")
@@ -4091,28 +4086,32 @@ Settings_screenchecks2(cHWND := "")
 	}
 }
 
-Settings_ScreenChecksValid()
+Settings_ScreenChecksValid(type := "")
 {
 	local
 	global vars, settings
 
-	valid := 1
+	valid := 1, active_pixel := {}, active_image := {}
 	For key, val in vars.pixelsearch.list
-		If vars.poe_version && (key = "gamescreen") && !vars.cloneframes.gamescreen
+		If (key = "gamescreen") && !vars.cloneframes.gamescreen
+		|| (key = "inventory") && !(vars.cloneframes.inventory || settings.features.iteminfo * (settings.iteminfo.compare + settings.iteminfo.trigger) || settings.features.exchange || settings.features.sanctum * settings.sanctum.relics || settings.features.mapinfo * settings.mapinfo.trigger)
 			Continue
-		Else valid *= vars.pixelsearch[key].color1 ? 1 : 0
+		Else valid *= vars.pixelsearch[key].color1 ? 1 : 0, active_pixel[key] := 1
+
+	If (type = "pixel")
+		Return [active_pixel, valid]
 
 	For key, val in vars.imagesearch.list
-	{
-		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && (vars.poe_version || !settings.features.maptracker || !settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange") && !settings.features[key]
+		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
+		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key]
 			Continue
-		valid *= FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") && !Blank(vars.imagesearch[key].x1) ? 1 : 0
-	}
+		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 
-	If valid
-		GuiControl, % vars.hwnd.settings.main ": +cWhite", % vars.hwnd.settings["screen-checks"]
-	Else GuiControl, % vars.hwnd.settings.main ": +cRed", % vars.hwnd.settings["screen-checks"]
+	If (type = "image")
+		Return [active_image, valid]
+
+	color := (!(active_pixel.Count() + active_image.Count()) ? "Gray" : (!valid ? "Red" : "White"))
+	GuiControl, % vars.hwnd.settings.main ": +c" color, % vars.hwnd.settings["screen-checks"]
 	GuiControl, % vars.hwnd.settings.main ": movedraw", % vars.hwnd.settings["screen-checks"]
 }
 
