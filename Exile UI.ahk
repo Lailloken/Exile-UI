@@ -785,7 +785,9 @@ Loop_main()
 			Else StringSend("wait=1") ;Cloneframes_Thread(0, 1)
 		}
 	}
-	Iteminfo_Overlays()
+
+	If (settings.features.iteminfo * settings.iteminfo.compare)
+		Iteminfo_Overlays()
 
 	If vars.client.stream && !vars.general.drag && !WinExist("LLK-UI: notepad reminder") && !WinExist("LLK-UI: alarm set") && !WinExist("ahk_id " vars.hwnd.betrayal_setup.main) && WinActive("ahk_group poe_ahk_window") && vars.general.wMouse && LLK_HasVal(vars.hwnd, vars.general.wMouse,,,, 1) && !WinActive("ahk_id " vars.general.wMouse)
 		WinActivate, % "ahk_id " vars.general.wMouse

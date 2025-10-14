@@ -10,7 +10,7 @@
 #Persistent
 
 vars := {"general": {}, "hwnd": {}, "log": {}, "pixels": {}, "sanctum": {}, "settings": {}, "exchange": {}}
-settings := {"general": {}, "iteminfo": {}}
+settings := {"features": {}, "general": {}, "iteminfo": {}}
 If !(vars.general.Gdip := Gdip_Startup(1))
 	ExitApp
 
@@ -36,6 +36,7 @@ Gui, comms_window: Show, NA x10000 y10000
 vars.poe_version := CheckClient()
 SetTimer, Loop, 200
 Cloneframes_Thread2(1, LLK_IniRead("ini" vars.poe_version "\clone frames.ini", "settings", "performance", 2))
+settings.features.iteminfo := LLK_IniRead("ini" vars.poe_version "\config.ini", "features", "enable item-info")
 settings.iteminfo.compare := LLK_IniRead("ini" vars.poe_version "\item-checker.ini", "settings", "enable gear-tracking")
 Return
 
@@ -183,6 +184,8 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 	}
 	Else If InStr(string, "iteminfo-compare=")
 		settings.iteminfo.compare := SubStr(string, InStr(string, "=") + 1)
+	Else If InStr(string, "iteminfo=")
+		settings.features.iteminfo := SubStr(string, InStr(string, "=") + 1)
 	;ToolTip, %A_ScriptName%`nReceived the following string:`n%string%`n%A_TickCount%, 0, 0
 
 	If InStr(string, """client"":")

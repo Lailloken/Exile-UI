@@ -1830,6 +1830,8 @@ Settings_iteminfo2(cHWND)
 		If WinExist("ahk_id " vars.hwnd.iteminfo.main)
 			LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
 		Settings_menu("item-info")
+		If vars.general.MultiThreading
+			StringSend("iteminfo=" settings.iteminfo.compare)
 		Return
 	}
 	Else If InStr(check, "profile_")
