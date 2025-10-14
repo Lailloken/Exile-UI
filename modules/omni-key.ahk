@@ -409,7 +409,7 @@ Omni_ContextMenu()
 				}
 				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
-				If RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
+				If settings.features.anoint && RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
 
 				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talisman" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
