@@ -240,11 +240,10 @@ Omni_Context(mode := 0, alt := 0)
 		While (!settings.features.stash || GetKeyState("ALT", "P")) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")) && InStr(item.name, "Essence of ", 1) || (item.name = "remnant of corruption")
 			If (A_TickCount >= vars.omnikey.start + 200)
 				Return "essences"
-	If vars.hwnd.anoints.main && LLK_StringCompare(item.name, ["Distilled "])
+
+	If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "^(Diluted|Liquid|Concentrated)\s.*|.*\sOil$")
 		Return "anoints_stock"
-	While vars.poe_version && LLK_StringCompare(item.name, ["Distilled "]) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P"))
-		If (A_TickCount >= vars.omnikey.start + 200)
-			Return "anoints"
+
 	If settings.features.lootfilter && !vars.general.shift_trigger && (item.name || item.itembase) && (WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState("Shift", "P"))
 		Return "lootfilter"
 	If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
@@ -351,10 +350,12 @@ Omni_ContextMenu()
 			}
 
 			If (item.rarity != Lang_Trans("items_unique")) && !Blank(item.class)
-			&& (settings.general.lang_client = "english" && !InStr(item.class, "currency") || (LLK_HasVal(db.item_bases._classes, item.class) || vars.poe_version && (vars.omnikey.poedb[item.class] || item.class = "socketable")) || LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "]))
+			&& (settings.general.lang_client = "english" && !InStr(item.class, "currency") || (LLK_HasVal(db.item_bases._classes, item.class) || vars.poe_version && (vars.omnikey.poedb[item.class] || item.class = "socketable")) || LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])) || RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s")
 			{
 				If !Blank(LLK_HasVal(db.item_bases._classes, item.class))
 					class := db.item_bases._classes[LLK_HasVal(db.item_bases._classes, item.class)]
+				Else If RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s")
+					class := "Liquid emotion"
 				Else If LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])
 					class := LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])
 				Else If (settings.general.lang_client = "english") || vars.poe_version
@@ -376,8 +377,11 @@ Omni_ContextMenu()
 				}
 				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
+				If RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
+					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
+
 				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talisman" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
-				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3
+				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3, vars.hwnd.omni_context.anoints := hwnd4
 				width := (Max(w, w1, w2) > width) ? Max(w, w1, w2) : width
 			}
 
@@ -507,6 +511,8 @@ Omni_ContextMenuPick(cHWND)
 	}
 	Else If (check = "recombination")
 		Recombination()
+	Else If (check = "anoints")
+		Anoints()
 	Gui, omni_context: Destroy
 }
 

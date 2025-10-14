@@ -30,8 +30,9 @@
 
 	Gui, LLK_panel: Margin, % margin, % margin
 	Loop, Parse, % "leveltracker, anoints, maptracker, notepad, announcement", `,, %A_Space%
-	{
-		If (settings.features[A_LoopField] || settings.qol[A_LoopField]) || (A_LoopField = "announcement") && vars.news.unread
+		If (A_LoopField = "anoints") && !vars.client.stream
+			Continue
+		Else If (settings.features[A_LoopField] || settings.qol[A_LoopField]) || (A_LoopField = "announcement") && vars.news.unread
 		{
 			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (A_LoopField = "anoints" ? vars.poe_version : "")
 			file := (A_LoopField = "maptracker" && vars.maptracker.pause) ? 0 : file
@@ -56,7 +57,6 @@
 				vars.hwnd.LLK_panel.announcement_bar := hwnd
 			}
 		}
-	}
 	Gui, LLK_panel: Show, NA x10000 y10000
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.LLK_panel.main
 
