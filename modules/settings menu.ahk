@@ -878,7 +878,7 @@ Settings_cloneframes2(cHWND)
 		GuiControl, % "+c"(LLK_ControlGet(cHWND) ? "White" : "Gray"), % cHWND
 		GuiControl, movedraw, % cHWND
 		IniWrite, % vars.cloneframes.list[control].enable, % "ini" vars.poe_version "\clone frames.ini", % control, enable
-		Init_cloneframes(), Cloneframes_Thread()
+		Init_cloneframes(), Cloneframes_Thread(), Settings_ScreenChecksValid()
 		GuiControl, % "+c" (!vars.cloneframes.enabled ? "Gray" : "White"), % vars.hwnd.settings["clone-frames"]
 		GuiControl, % "movedraw", % vars.hwnd.settings["clone-frames"]
 	}
@@ -1477,65 +1477,79 @@ Settings_hotkeys()
 			Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 xp+" settings.general.fWidth * 1.5, % Lang_Trans("m_hotkeys_descriptions", 2)
 			Gui, %GUI%: font, % "s"settings.general.fSize - 4
 			Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp gSettings_hotkeys2 w"settings.general.fWidth*10 " HWNDhwnd cBlack", % settings.hotkeys.item_descriptions
-			vars.hwnd.help_tooltips["settings_hotkeys altkey"] := hwnd0, vars.hwnd.settings.item_descriptions := vars.hwnd.help_tooltips["settings_hotkeys altkey|"] := hwnd
+			vars.hwnd.help_tooltips["settings_hotkeys formatting"] := hwnd0, vars.hwnd.settings.item_descriptions := vars.hwnd.help_tooltips["settings_hotkeys formatting|"] := hwnd
 			Gui, %GUI%: font, % "s"settings.general.fSize
 		}
-		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.rebound_c " x" x_anchor, % Lang_Trans("m_hotkeys_ckey")
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.rebound_c " x" x_anchor . (settings.hotkeys.rebound_c ? " cAqua" : ""), % Lang_Trans("m_hotkeys_ckey")
 		vars.hwnd.settings.rebound_c := hwnd
 	}
 
-	If settings.features.leveltracker
+	If (settings.features.leveltracker * settings.leveltracker.fade * settings.leveltracker.fade_hover)
 	{
-		Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 x" x_anchor, % Lang_Trans("m_hotkeys_movekey")
+		Gui, %GUI%: Add, Text, % "xs Section x" x_anchor, % Lang_Trans("m_hotkeys_movekey")
 		Gui, %GUI%: font, % "s"settings.general.fSize - 4
 		Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp gSettings_hotkeys2 w"settings.general.fWidth*10 " HWNDhwnd cBlack", % settings.hotkeys.movekey
-		vars.hwnd.help_tooltips["settings_hotkeys movekey"] := hwnd0, vars.hwnd.settings.movekey := hwnd, vars.hwnd.help_tooltips["settings_hotkeys movekey|"] := hwnd
+		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd1", % "HBitmap:*" vars.pics.global.help
+		vars.hwnd.settings.movekey := vars.hwnd.help_tooltips["settings_hotkeys formatting||"] := hwnd, vars.hwnd.help_tooltips["settings_hotkeys movekey"] := hwnd1
 		Gui, %GUI%: font, % "s"settings.general.fSize
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " x" x_anchor, % Lang_Trans("m_hotkeys_omnikey")
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	vars.hwnd.help_tooltips["settings_hotkeys omnikey-info"] := hwnd
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " x" x_anchor, % Lang_Trans("m_hotkeys_settings", 2)
 	Gui, %GUI%: Font, norm
 
-	LLK_PanelDimensions([Lang_Trans("m_hotkeys_omnikey", 2), settings.hotkeys.rebound_c ? Lang_Trans("m_hotkeys_omnikey", 3) : ""], settings.general.fSize, wText, hText,,, 0)
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 w" wText, % Lang_Trans("m_hotkeys_omnikey", 2)
-	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys hp cBlack HWNDhwnd gSettings_hotkeys2 x+" settings.general.fWidth/2 " w"settings.general.fWidth*10, % (settings.hotkeys.omnikey = "MButton") ? "" : settings.hotkeys.omnikey
-	vars.hwnd.help_tooltips["settings_hotkeys omnikey"] := hwnd0, vars.hwnd.settings.omnikey := vars.hwnd.help_tooltips["settings_hotkeys omnikey|"] := hwnd
-	ControlGetPos, x, y,,,, % "ahk_id "hwnd
-	Gui, %GUI%: Font, % "s"settings.general.fSize
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_hotkeys_omnikey_new", settings.hotkeys.rebound_c ? 2 : 1)
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_hotkeys omnikey-info"] := hwnd
+
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "Section xs hp cBlack HWNDhwnd gSettings_hotkeys2 w"settings.general.fWidth*10, % settings.hotkeys.omnikey
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "ys HWNDhwnd1 cFF8000", % Lang_Trans("m_hotkeys_keyblock", 2)
+	vars.hwnd.settings.omnikey := vars.hwnd.help_tooltips["settings_hotkeys formatting|||"] := hwnd, vars.hwnd.help_tooltips["settings_hotkeys omniblock"] := hwnd1
+	ControlGetPos, xEdit,, wEdit,,, % "ahk_id " hwnd
+	;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
 
 	If settings.hotkeys.rebound_c
 	{
-		Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 w" wText, % Lang_Trans("m_hotkeys_omnikey", 3)
+		Gui, %GUI%: Add, Text, % "Section xs y+" settings.general.fWidth * 1.25 . (settings.hotkeys.rebound_c ? " cAqua" : ""), % Lang_Trans("m_hotkeys_omnikey_new", 3)
+		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+		vars.hwnd.help_tooltips["settings_hotkeys omnikey2"] := hwnd
+
 		Gui, %GUI%: font, % "s"settings.general.fSize - 4
-		Gui, %GUI%: Add, Edit, % "yp x+" settings.general.fWidth/2 " hp cBlack HWNDhwnd gSettings_hotkeys2 w"settings.general.fWidth*10, % settings.hotkeys.omnikey2
-		vars.hwnd.help_tooltips["settings_hotkeys omnikey2"] := hwnd0, vars.hwnd.settings.omnikey2 := vars.hwnd.help_tooltips["settings_hotkeys omnikey2|"] := hwnd
+		Gui, %GUI%: Add, Edit, % "Section xs hp cBlack HWNDhwnd gSettings_hotkeys2 w"settings.general.fWidth*10, % settings.hotkeys.omnikey2
+		vars.hwnd.settings.omnikey2 := vars.hwnd.help_tooltips["settings_hotkeys formatting||||"] := hwnd
 		Gui, %GUI%: font, % "s"settings.general.fSize
+		Gui, %GUI%: Add, Text, % "ys HWNDhwnd cFF8000", % Lang_Trans("m_hotkeys_keyblock", 2)
+		vars.hwnd.help_tooltips["settings_hotkeys omniblock|"] := hwnd
+		;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked"settings.hotkeys.omniblock, % Lang_Trans("m_hotkeys_keyblock")
-	vars.hwnd.settings.omniblock := hwnd, vars.hwnd.help_tooltips["settings_hotkeys omniblock"] := hwnd
-	;Gui, %GUI%: Add, Hotkey, % "ys hp Disabled gSettings_hotkeys2 HWNDhwnd x+"settings.general.fWidth/2 " cBlack w"settings.general.fWidth* 6, % (settings.hotkeys.omnikey = "MButton") ? "" : settings.hotkeys.omnikey
-	;vars.hwnd.settings.omnikey := hwnd
+	Gui, %GUI%: Add, Text, % "Section xs y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_widget")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_hotkeys tab"] := hwnd
 
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_hotkeys_misc")
-	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("m_hotkeys_tab")
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys hp cBlack HWNDhwnd gSettings_hotkeys2 x+"settings.general.fWidth/2 " w"settings.general.fWidth*10, % (settings.hotkeys.tab = "TAB") ? "" : settings.hotkeys.tab
-	vars.hwnd.help_tooltips["settings_hotkeys tab"] := hwnd0, vars.hwnd.settings.tab := hwnd, vars.hwnd.help_tooltips["settings_hotkeys tab|"] := hwnd
+	Gui, %GUI%: Add, Edit, % "Section xs hp cBlack HWNDhwnd gSettings_hotkeys2 w"settings.general.fWidth*10, % settings.hotkeys.tab
+	vars.hwnd.settings.tab := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked"settings.hotkeys.tabblock, % Lang_Trans("m_hotkeys_keyblock")
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 cAqua", % Lang_Trans("m_hotkeys_emergency") " win + "
-	vars.hwnd.help_tooltips["settings_hotkeys restart"] := hwnd0, vars.hwnd.settings.tabblock := hwnd, vars.hwnd.help_tooltips["settings_hotkeys omniblock|"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "ys hp HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.tabblock . (settings.hotkeys.tabblock ? " cFF8000" : ""), % Lang_Trans("m_hotkeys_keyblock")
+	vars.hwnd.settings.tabblock := vars.hwnd.help_tooltips["settings_hotkeys omniblock||"] := hwnd
+	;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
+
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_emergency")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_hotkeys restart"] := hwnd
+	For index, val in ["ctrl", "alt"]
+	{
+		Gui, %GUI%: Add, Checkbox, % (index = 1 ? "Section xs" : "ys x+0") " HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys["emergencykey_" val], % Lang_Trans("global_" val)
+		vars.hwnd.settings["emergencykey_" val] := vars.hwnd.help_tooltips["settings_hotkeys modifiers" handle] := hwnd, handle .= "|"
+	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys x+0 hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 6, % settings.hotkeys.emergencykey
-	vars.hwnd.settings.emergencykey := hwnd
+	Gui, %GUI%: Add, Edit, % "ys x+0 hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.emergencykey
+	vars.hwnd.settings.emergencykey := vars.hwnd.help_tooltips["settings_hotkeys formatting||||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize + 4
+
 	Gui, %GUI%: Add, Text, % "xs Border gSettings_hotkeys2 Hidden cRed Section HWNDhwnd y+"vars.settings.spacing, % " " Lang_Trans("global_restart") " "
 	Gui, %GUI%: Add, Text, % "xp yp wp hp BackgroundTrans", % ""
 	vars.hwnd.settings.apply := hwnd
@@ -1552,7 +1566,13 @@ Settings_hotkeys2(cHWND)
 		check := A_GuiControl
 
 	settings.hotkeys.item_descriptions := LLK_ControlGet(vars.hwnd.settings.item_descriptions)
+
+	settings.hotkeys.omnikey := LLK_ControlGet(vars.hwnd.settings.omnikey)
 	settings.hotkeys.omnikey2 := LLK_ControlGet(vars.hwnd.settings.omnikey2)
+	settings.hotkeys.tab := LLK_ControlGet(vars.hwnd.settings.tab), settings.hotkeys.tabblock := LLK_ControlGet(vars.hwnd.settings.tabblock)
+	settings.hotkeys.emergencykey := LLK_ControlGet(vars.hwnd.settings.emergencykey)
+	settings.hotkeys.emergencykey_ctrl := LLK_ControlGet(vars.hwnd.settings.emergencykey_ctrl), settings.hotkeys.emergencykey_alt := LLK_ControlGet(vars.hwnd.settings.emergencykey_alt)
+
 	Switch check
 	{
 		Case "rebound_alt":
@@ -1561,38 +1581,10 @@ Settings_hotkeys2(cHWND)
 		Case "rebound_c":
 			settings.hotkeys.rebound_c := LLK_ControlGet(cHWND)
 			Settings_menu("hotkeys", 1)
-		Case "emergencykey":
-			input := LLK_ControlGet(cHWND)
-			GuiControl, % "+c" (input != settings.hotkeys.emergencykey ? "Red" : "Black"), % cHWND
+		Case "tabblock":
+			GuiControl, % "+c" (LLK_ControlGet(cHWND) ? "FF8000" : "White"), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "apply":
-			Loop, Parse, % "item_descriptions, omnikey, omnikey2, tab, emergencykey", `,, % A_Space
-			{
-				If (A_LoopField != "item_descriptions")
-				{
-					If !vars.hwnd.settings[A_LoopField]
-						Continue
-					hotkey := LLK_ControlGet(vars.hwnd.settings[A_LoopField])
-					If (StrLen(hotkey) != 1)
-						Loop, Parse, % "+!^#"
-							hotkey := StrReplace(hotkey, A_LoopField)
-
-					If !Blank(LLK_ControlGet(vars.hwnd.settings[A_LoopField])) && (!GetKeyVK(hotkey) || (hotkey = ""))
-					{
-						WinGetPos, x, y, w,, % "ahk_id "vars.hwnd.settings[A_LoopField]
-						LLK_ToolTip(Lang_Trans("m_hotkeys_error"),, x + w, y,, "red")
-						Return
-					}
-				}
-
-				If (A_LoopField != "emergencykey") && keycheck.HasKey(hotkey)
-				{
-					LLK_ToolTip(Lang_Trans("m_hotkeys_error", 2), 1.5,,,, "red")
-					Return
-				}
-				If (A_LoopField != "emergencykey") && !Blank(hotkey)
-					keycheck[hotkey] := 1
-			}
 			If LLK_ControlGet(vars.hwnd.settings.rebound_alt) && !LLK_ControlGet(vars.hwnd.settings.item_descriptions)
 			{
 				WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " vars.hwnd.settings.item_descriptions
@@ -1605,16 +1597,43 @@ Settings_hotkeys2(cHWND)
 				LLK_ToolTip(Lang_Trans("m_hotkeys_error", 4), 3, xControl + wControl, yControl,, "red")
 				Return
 			}
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.rebound_alt), % "ini" vars.poe_version "\hotkeys.ini", settings, advanced item-info rebound
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.item_descriptions), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, item-descriptions key
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.rebound_c), % "ini" vars.poe_version "\hotkeys.ini", settings, c-key rebound
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.omnikey), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, omni-hotkey
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.omniblock), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, block omnikey's native function
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.omnikey2), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, omni-hotkey2
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.tab), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, tab replacement
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.tabblock), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, block tab-key's native function
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.movekey), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, move-key
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.emergencykey), % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency hotkey
+			For index, val in ["item_descriptions", "omnikey", "omnikey2", "tab", "emergencykey", "movekey"]
+			{
+				If !vars.hwnd.settings[val]
+					Continue
+				hotkey := LLK_ControlGet(vars.hwnd.settings[val])
+
+				If !GetKeyVK(hotkey) || Blank(hotkey)
+				{
+					WinGetPos, x, y, w,, % "ahk_id "vars.hwnd.settings[val]
+					LLK_ToolTip(Lang_Trans("m_hotkeys_error"),, x + w, y,, "red")
+					Return
+				}
+
+				If keycheck[(LLK_ControlGet(vars.hwnd.settings[val "_ctrl"]) ? "^" : "") . (LLK_ControlGet(vars.hwnd.settings[val "_alt"]) ? "!" : "") . hotkey]
+				{
+					LLK_ToolTip(Lang_Trans("m_hotkeys_error", 2), 1.5,,,, "red")
+					Return
+				}
+				keycheck[(LLK_ControlGet(vars.hwnd.settings[val "_ctrl"]) ? "^" : "") . (LLK_ControlGet(vars.hwnd.settings[val "_alt"]) ? "!" : "") . hotkey] := 1
+			}
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.rebound_alt) """", % "ini" vars.poe_version "\hotkeys.ini", settings, advanced item-info rebound
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.item_descriptions) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, item-descriptions key
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.rebound_c) """", % "ini" vars.poe_version "\hotkeys.ini", settings, c-key rebound
+
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.omnikey) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, omni-hotkey
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.omnikey2) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, omni-hotkey2
+
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.tab) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, tab replacement
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.tabblock) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, block tab-key's native function
+
+			If vars.hwnd.settings.movekey
+				IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.movekey) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, move-key
+
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency hotkey
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey_ctrl) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency key ctrl
+			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey_alt) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency key alt
+
 			IniWrite, hotkeys, % "ini" vars.poe_version "\config.ini", versions, reload settings
 			KeyWait, LButton
 			Reload
@@ -1676,12 +1695,12 @@ Settings_iteminfo()
 	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2 Checked" settings.iteminfo.omnikey, % "omni"
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2 Checked" !settings.iteminfo.omnikey, % "alt"
-	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_iteminfo omni-key"] := hwnd1
-	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_iteminfo alt-key"] := hwnd2
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_iteminfo2" (settings.iteminfo.activation = "toggle" ? " Checked" : ""), % Lang_Trans("global_toggle")
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_iteminfo2" (settings.iteminfo.activation = "hold" ? " Checked" : ""), % Lang_Trans("global_hold")
+	vars.hwnd.settings.activation_toggle := vars.hwnd.help_tooltips["settings_iteminfo toggle"] := hwnd1
+	vars.hwnd.settings.activation_hold := vars.hwnd.help_tooltips["settings_iteminfo hold"] := hwnd2
 
-	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.trigger, % Lang_Trans("m_iteminfo_shift")
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_iteminfo2 HWNDhwnd Checked"settings.iteminfo.trigger, % Lang_Trans("global_shiftclick")
 	vars.hwnd.settings.trigger := hwnd, vars.hwnd.help_tooltips["settings_iteminfo shift-click"] := hwnd
 
 	If vars.poe_version
@@ -1755,7 +1774,7 @@ Settings_iteminfo()
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/(A_Index = 1 ? 2 : 4) " w"settings.general.fWidth*3 " cBlack Center Border BackgroundTrans gSettings_iteminfo2 HWNDhwnd", % (A_Index = 1) ? Lang_Trans("m_iteminfo_fractured") : (A_Index = 2) ? "#" : parse
 		vars.hwnd.help_tooltips["settings_iteminfo item-tier"] := hwnd0, vars.hwnd.settings["tier_"parse] := hwnd, handle := (A_Index = 1) ? "|" : handle "|"
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp BackgroundBlack HWNDhwnd Disabled c"settings.iteminfo.colors_tier[parse], 100
-		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier" vars.poe_version . handle] := hwnd
+		vars.hwnd.settings["tierbar_"parse] := vars.hwnd.help_tooltips["settings_iteminfo item-tier" handle] := hwnd
 	}
 
 	If (settings.iteminfo.affixinfo = 2)
@@ -1853,8 +1872,8 @@ Settings_iteminfo2(cHWND)
 		}
 		Else Return
 	}
-	Else If InStr("omni_key,alt_key", check)
-		IniWrite, % (settings.iteminfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\item-checker.ini", Settings, omni-key activation
+	Else If InStr(check, "activation_")
+		IniWrite, % (settings.iteminfo.activation := control), % "ini" vars.poe_version "\item-checker.ini", Settings, activation
 	Else If InStr(check, "font_")
 	{
 		While GetKeyState("LButton", "P")
@@ -2626,14 +2645,13 @@ Settings_mapinfo()
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_activation")
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_mapinfo2 Checked" settings.mapinfo.omnikey, % "omni-key"
-	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_mapinfo2 Checked" !settings.mapinfo.omnikey, % "alt"
-	vars.hwnd.settings.omni_key := vars.hwnd.help_tooltips["settings_mapinfo omni-key"] := hwnd1
-	vars.hwnd.settings.alt_key := vars.hwnd.help_tooltips["settings_mapinfo alt-key"] := hwnd2
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd1 gSettings_mapinfo2" (settings.mapinfo.activation = "toggle" ? " Checked" : ""), % Lang_Trans("global_toggle")
+	Gui, %Gui%: Add, Radio, % "ys HWNDhwnd2 gSettings_mapinfo2" (settings.mapinfo.activation = "hold" ? " Checked" : ""), % Lang_Trans("global_hold")
+	vars.hwnd.settings.activation_toggle := vars.hwnd.help_tooltips["settings_mapinfo toggle"] := hwnd1
+	vars.hwnd.settings.activation_hold := vars.hwnd.help_tooltips["settings_mapinfo hold" vars.poe_version] := hwnd2
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_mapinfo2 HWNDhwnd Checked"settings.mapinfo.trigger, % Lang_Trans("m_mapinfo_shift")
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_mapinfo2 HWNDhwnd Checked"settings.mapinfo.trigger, % Lang_Trans("global_shiftclick")
 	vars.hwnd.settings.shiftclick := vars.hwnd.help_tooltips["settings_mapinfo shift-click"] := hwnd
-	ControlGetPos, x, y, w, h,, ahk_id %hwnd%
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_mapinfo2 HWNDhwnd Checked"settings.mapinfo.tabtoggle, % Lang_Trans("m_mapinfo_tab")
 	vars.hwnd.settings.tabtoggle := vars.hwnd.help_tooltips["settings_mapinfo tab"] := hwnd
 
@@ -2729,7 +2747,7 @@ Settings_mapinfo()
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden Default HWNDhwnd1 gSettings_mapinfo2", OK
 	ControlGetPos, x1, y1, w1, h1,, ahk_id %hwnd%
 	Gui, %GUI%: Font, % "norm s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys cBlack HWNDhwnd2 gSettings_mapinfo2 w" w - w1 - settings.general.fWidth, % vars.settings.mapinfo_search
+	Gui, %GUI%: Add, Edit, % "ys cBlack HWNDhwnd2 gSettings_mapinfo2 w" (settings.general.fWidth * 30) - w1 - settings.general.fWidth, % vars.settings.mapinfo_search
 	vars.hwnd.settings.modsearch := vars.hwnd.help_tooltips["settings_mapinfo modsearch"] := hwnd2, vars.hwnd.settings.modsearch_ok := hwnd1
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
@@ -2777,10 +2795,10 @@ Settings_mapinfo2(cHWND)
 			IniWrite, % settings.features.mapinfo, % "ini" vars.poe_version "\config.ini", features, enable map-info panel
 			Settings_menu("map-info")
 			LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
-		Case "omni_key":
-			IniWrite, % (settings.mapinfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\map info.ini", settings, omni-key activation
-		Case "alt_key":
-			IniWrite, % (settings.mapinfo.omnikey := LLK_ControlGet(vars.hwnd.settings.omni_key)), % "ini" vars.poe_version "\map info.ini", settings, omni-key activation
+		Case "activation_toggle":
+			IniWrite, % (settings.mapinfo.activation := "toggle"), % "ini" vars.poe_version "\map info.ini", settings, activation
+		Case "activation_hold":
+			IniWrite, % (settings.mapinfo.activation := "hold"), % "ini" vars.poe_version "\map info.ini", settings, activation
 		Case "shiftclick":
 			settings.mapinfo.trigger := LLK_ControlGet(cHWND), Settings_ScreenChecksValid()
 			IniWrite, % settings.mapinfo.trigger, % "ini" vars.poe_version "\map info.ini", settings, enable shift-clicking
@@ -3242,6 +3260,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	vars.settings.active0 := section
 	Settings_ScreenChecksValid() ;check if 'screen-checks' section needs to be highlighted red
 
+	Gui, %GUI_name%: Add, Text, % "BackgroundTrans x" vars.settings.x_anchor " y" vars.settings.ySelection " w" settings.general.fWidth * 30 " h1"
 	Settings_menu2(section, mode)
 	Gui, %GUI_name%: Margin, % vars.settings.xMargin, -1
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
@@ -3618,7 +3637,6 @@ Settings_qol()
 	Gui, %GUI%: Add, Text, % "xs HWNDhwnd1 y+"vars.settings.spacing " Section", % Lang_Trans("m_qol_alarm")
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Checkbox, % "ys x+"settings.general.fWidth " gSettings_qol2 HWNDhwnd Checked"settings.qol.alarm, % Lang_Trans("global_enable")
-	Gui, %GUI%: Add, Text, % "ys wp BackgroundTrans"
 	vars.hwnd.help_tooltips["settings_alarm enable"] := hwnd1, vars.hwnd.settings.enable_alarm := vars.hwnd.help_tooltips["settings_alarm enable|"] := hwnd
 
 	If settings.qol.alarm

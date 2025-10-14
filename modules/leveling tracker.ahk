@@ -3259,7 +3259,7 @@ Leveltracker_Skilltree(index := 0)
 		If !Blank(A_Gui)
 			KeyWait, LButton
 		Omni_Release()
-		LLK_Overlay(leveltracker_skilltree, "destroy"), LLK_Overlay(leveltracker_skilltree_labs, "destroy")
+		LLK_Overlay(leveltracker_skilltree, "destroy"), LLK_Overlay(leveltracker_skilltree_labs, "destroy"), vars.hwnd.leveltracker_skilltree.main := ""
 	}
 	Else LLK_ToolTip(Lang_Trans("lvltracker_noimages"), 1.5,,,, "red")
 	vars.hwnd.Delete("leveltracker_skilltree")
@@ -3274,30 +3274,19 @@ Leveltracker_SkilltreeHover()
 	KeyWait, RButton
 	While GetKeyState(vars.omnikey.hotkey, "P")
 	{
-		KeyWait, RButton, D T0.1
-		If !ErrorLevel
+		If !Blank(vars.leveltracker.skilltree.active1) && ((check := vars.leveltracker.skilltree.active1) != vars.leveltracker.skilltree.active)
 		{
-			start := A_TickCount
-			While GetKeyState("RButton", "P")
-			{
-				If (A_TickCount >= start + 300)
-				{
-					check := skilltree.active - 1, check := (check < 10 ? "0" : "") check
-					Break
-				}
-			}
-			If Blank(check)
-				check := skilltree.active + 1, check := (check < 10 ? "0" : "") check
+			check := (check < 10 ? "0" : "") . check
 			If !FileExist("img\GUI\skill-tree" settings.leveltracker.profile (vars.poe_version ? "\PoE 2" : "") "\["check "]*")
 			{
 				WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.leveltracker_skilltree.main
 				LLK_ToolTip(Lang_Trans("lvltracker_endreached"),, x, y,, "yellow")
-				KeyWait, RButton
-				check := ""
+				check := vars.leveltracker.skilltree.active1 := ""
 				Continue
 			}
 			Else Break
 		}
+		Else check := ""
 
 		If WinExist("ahk_id " vars.hwnd.leveltracker_skilltree.labs) && WinExist("ahk_id " vars.hwnd.leveltracker_skilltree.lab) && (vars.general.wMouse != Gui_Dummy(vars.hwnd.leveltracker_skilltree.labs))
 			LLK_Overlay(vars.hwnd.leveltracker_skilltree.lab, "destroy")
@@ -3307,12 +3296,12 @@ Leveltracker_SkilltreeHover()
 			Leveltracker_SkilltreeLab(HWNDcheck)
 			lab_active := HWNDcheck
 		}
+		Sleep 250
 	}
-	LLK_Overlay(vars.hwnd.leveltracker_skilltree.lab, "destroy")
+	LLK_Overlay(vars.hwnd.leveltracker_skilltree.lab, "destroy"), vars.leveltracker.skilltree.active1 := ""
 	If !Blank(check)
 	{
-		skilltree.active := check
-		IniWrite, % skilltree.active, % "ini" vars.poe_version "\leveling tracker.ini", settings, % "last skilltree-image" settings.leveltracker.profile
+		IniWrite, % (skilltree.active := check), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "last skilltree-image" settings.leveltracker.profile
 		SetTimer, Leveltracker_Skilltree, -100
 		Return 0
 	}

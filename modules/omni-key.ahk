@@ -21,24 +21,21 @@
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
 	}
 
-	If (settings.general.input_method = 2) || Screenchecks_PixelSearch("inventory")
+	If WinExist("ahk_id " vars.hwnd.maptrackernotes_edit.main)
 	{
-		If WinExist("ahk_id " vars.hwnd.maptrackernotes_edit.main)
-		{
-			Maptracker_NoteAdd(), Omni_Release()
-			Return
-		}
-
-		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
-			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-		Else SendInput, !^{c}
-
-		ClipWait, 0.1
-		If vars.poe_version && !settings.general.dev
-			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
-				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
-			Else SendInput, {ALT up}
+		Maptracker_NoteAdd(), Omni_Release()
+		Return
 	}
+
+	If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+		SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
+	Else SendInput, !^{c}
+
+	ClipWait, 0.1
+	If vars.poe_version && !settings.general.dev
+		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
+			SendInput, % "{" settings.hotkeys.item_descriptions " up}"
+		Else SendInput, {ALT up}
 
 	If Clipboard
 	{
@@ -130,7 +127,7 @@
 				Sanctum_Relics()
 		}
 	}
-	Else If Blank(vars.omnikey.hotkey2) || !Blank(vars.omnikey.hotkey2) && !InStr(A_ThisHotkey, vars.omnikey.hotkey2) ;prevent item-only omni-key from executing non-item features
+	Else If Blank(vars.omnikey.hotkey2) || !Blank(vars.omnikey.hotkey2) && !InStr(A_ThisHotkey, Hotkeys_Convert(vars.omnikey.hotkey2)) ;prevent item-only omni-key from executing non-item features
 		Omnikey2()
 	Omni_Release()
 }
@@ -165,53 +162,78 @@ Omnikey2()
 		Return
 	}
 
-	If vars.poe_version || !Screenchecks_PixelSearch("gamescreen")
+	Screenchecks_ImageSearch()
+	If settings.features.betrayal && vars.imagesearch.betrayal.check
+		Betrayal(), active := 1
+	Else If settings.features.leveltracker && vars.imagesearch.skilltree.check
 	{
-		Screenchecks_ImageSearch()
-		If settings.features.betrayal && vars.imagesearch.betrayal.check
-		{
-			Betrayal(), Omni_Release()
-			Return
-		}
-
-		If settings.features.leveltracker && settings.leveltracker.pobmanual && vars.imagesearch.skilltree.check
-		{
+		If settings.leveltracker.pobmanual
 			Leveltracker_Skilltree()
-			Omni_Release()
-			Return
-		}
+		Else
+			If !vars.leveltracker.skilltree_schematics.GUI
+				Leveltracker_PobSkilltree()
+			Else Leveltracker_PobSkilltree("close")
+		active := 1
+	}
+	Else If settings.features.sanctum && InStr(vars.log.areaID, "sanctum") && !InStr(vars.log.areaID, "fellshrine") && vars.imagesearch.sanctum.check
+		vars.sanctum.lock := 0, Sanctum(), active := 1
+	Else If settings.features.exchange && vars.imagesearch.exchange.check
+	{
+		If !vars.hwnd.exchange.main
+			Exchange()
+		Else Exchange("close")
+		active := 1
+	}
+	Else If settings.features.statlas && vars.imagesearch.atlas.check
+	{
+		If !WinExist("statlas debug") && Statlas()
+			Statlas_GUI()
+		Else If !WinExist("statlas debug")
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
 
-		If (InStr(vars.log.areaID, "_town") || LLK_StringCompare(vars.log.areaID, ["hideout"]) || (vars.log.areaID = "1_3_17_1") || vars.client.stream) && vars.leveltracker.toggle && (guide.gemList.Count() || guide.itemList.Count())
+		Omni_Release(), active := 1
+		Gui, statlas_comms: Destroy
+		LLK_Overlay(vars.hwnd.statlas.main, "destroy"), vars.hwnd.statlas.main := ""
+		If (settings.statlas.tier0 != settings.statlas.tier)
+			IniWrite, % (settings.statlas.tier0 := settings.statlas.tier), % "ini" vars.poe_version "\statlas.ini", settings, filter tier
+		If (settings.statlas.zoom0 != settings.statlas.zoom)
+			IniWrite, % (settings.statlas.zoom0 := settings.statlas.zoom), % "ini" vars.poe_version "\statlas.ini", settings, zoom
+	}
+	Else If (InStr(vars.log.areaID, "_town") || LLK_StringCompare(vars.log.areaID, ["hideout"]) || (vars.log.areaID = "1_3_17_1") || vars.client.stream) && vars.leveltracker.toggle && (guide.gemList.Count() || guide.itemList.Count())
+	{
+		start := A_TickCount
+		While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
 		{
-			start := A_TickCount
-			While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
+			If (A_TickCount >= start + 200)
 			{
-				If (A_TickCount >= start + 100)
-				{
-					String_ContextMenu("exile-leveling")
-					Omni_Release()
-					Return
-				}
+				String_ContextMenu("exile-leveling"), active := 1
+				Break
 			}
 		}
+	}
 
-		If !stash && vars.searchstrings.enabled
+	If active
+	{
+		Omni_Release()
+		Return
+	}
+
+	If !stash && vars.searchstrings.enabled
+	{
+		If WinExist("ahk_id "vars.hwnd.searchstrings_menu.main)
+			String_MenuSave()
+		vars.searchstrings.pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
+		For string, val in vars.searchstrings.list
 		{
-			If WinExist("ahk_id "vars.hwnd.searchstrings_menu.main)
-				String_MenuSave()
-			vars.searchstrings.pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
-			For string, val in vars.searchstrings.list
+			If !val.enable
+				Continue
+			If String_Search(string)
 			{
-				If !val.enable
-					Continue
-				If String_Search(string)
-				{
-					String_ContextMenu(string)
-					Break
-				}
+				String_ContextMenu(string)
+				Break
 			}
-			Gdip_DisposeImage(vars.searchstrings.pHaystack)
 		}
+		Gdip_DisposeImage(vars.searchstrings.pHaystack)
 	}
 	Omni_Release()
 }
@@ -225,9 +247,19 @@ Omni_Release()
 	KeyWait, % vars.omnikey.hotkey2
 	If IsObject(vars.omnikey)
 		vars.omnikey.last := "", vars.omnikey.last2 := ""
+	If (vars.omnikey.hotkey = "capslock")
+		SetCapsLockState, Off
+	Else SendInput, % "{" settings.hotkeys.omnikey " UP}"
+
+	If (settings.iteminfo.activation = "hold") && WinExist("ahk_id " vars.hwnd.iteminfo.main)
+		LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
+	If (settings.mapinfo.activation = "hold") && WinExist("ahk_id " vars.hwnd.mapinfo.main)
+		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
+	If (settings.features.sanctum) && !vars.sanctum.lock && !vars.sanctum.scanning && WinExist("ahk_id " vars.hwnd.sanctum.main)
+		Sanctum("close")
 }
 
-Omni_Context(mode := 0, alt := 0)
+Omni_Context(mode := 0)
 {
 	local
 	global vars, settings
@@ -272,7 +304,7 @@ Omni_Context(mode := 0, alt := 0)
 	|| vars.poe_version && LLK_PatternMatch(item.name "`n" item.itembase, "", [Lang_Trans("items_waystone")]))
 	&& (item.rarity != Lang_Trans("items_unique"))
 	{
-		While !vars.poe_version && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")) && LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map"])
+		While !vars.poe_version && (settings.mapinfo.activation = "toggle" || GetKeyState("Alt", "P")) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")) && LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map"])
 			If (A_TickCount >= vars.omnikey.start + 200)
 			{
 				If LLK_PatternMatch(vars.omnikey.clipboard, "", ["Maze of the Minotaur", "Forge of the Phoenix", "Lair of the Hydra", "Pit of the Chimera"])
@@ -284,10 +316,10 @@ Omni_Context(mode := 0, alt := 0)
 		If InStr(clip, Lang_Trans("items_mapreward"))
 			Return "context_menu"
 
-		If (settings.mapinfo.omnikey || settings.mapinfo.trigger && vars.general.shift_trigger || alt) && settings.features.mapinfo
+		If settings.features.mapinfo
 			Return "mapinfo"
 	}
-	If settings.features.stash && !GetKeyState("ALT", "P")
+	If settings.features.stash
 	{
 		check := LLK_HasKey(vars.stash, item.name,,,, 1), start := A_TickCount
 		While check && (Blank(item.itembase) || item.name = item.itembase) && (GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P"))
@@ -298,7 +330,7 @@ Omni_Context(mode := 0, alt := 0)
 			}
 	}
 
-	If settings.features.iteminfo && settings.iteminfo.omnikey
+	If settings.features.iteminfo
 	{
 		If WinExist("ahk_id " vars.hwnd.iteminfo.main)
 			Return "iteminfo"

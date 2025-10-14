@@ -64,6 +64,7 @@ Return
 #Include modules\seed-explorer.ahk
 #Include modules\settings menu.ahk
 #Include modules\stash-ninja.ahk
+#Include modules\statlas.ahk
 
 Cloneframes_Thread2(wParam, lParam)
 {
@@ -125,7 +126,7 @@ Loop()
 
 	If !vars.pixelsearch.wait
 		For pixel in vars.pixelsearch.list
-			If (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.iteminfo.compare || vars.exchange.active || vars.sanctum.active_relics)
+			If (pixel = "gamescreen") && vars.cloneframes.gamescreen || (pixel = "inventory") && (vars.cloneframes.inventory || settings.features.iteminfo * settings.iteminfo.compare || vars.exchange.active || vars.sanctum.active_relics)
 				vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
 			Else vars.pixels[pixel] := 0
 

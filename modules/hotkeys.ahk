@@ -16,19 +16,19 @@
 		settings.hotkeys.rebound_alt := 0
 	settings.hotkeys.rebound_c := !Blank(check := ini.settings["c-key rebound"]) ? check : 0
 	settings.hotkeys.movekey := !Blank(check := ini.hotkeys["move-key"]) ? check : "lbutton"
-	settings.hotkeys.omniblock := !Blank(check := ini.hotkeys["block omnikey's native function"]) ? check : 0
-	settings.hotkeys.omnikey := vars.omnikey.hotkey := !Blank(check := ini.hotkeys["omni-hotkey"]) ? check : "MButton"
+	settings.hotkeys.omnikey := vars.omnikey.hotkey := !Blank(check := ini.hotkeys["omni-hotkey"]) ? check : "capslock"
 	settings.hotkeys.omnikey2 := vars.omnikey.hotkey2 := !Blank(check := ini.hotkeys["omni-hotkey2"]) ? check : ""
 	settings.hotkeys.emergencykey := !Blank(check := ini.hotkeys["emergency hotkey"]) ? check : "space"
+	settings.hotkeys.emergencykey_ctrl := !Blank(check := ini.hotkeys["emergency key ctrl"]) ? check : 1
+	settings.hotkeys.emergencykey_alt := !Blank(check := ini.hotkeys["emergency key alt"]) ? check : 1
 
 	Hotkey, If,
-	Hotkey, % "LWin & " Hotkeys_Convert(settings.hotkeys.emergencykey), LLK_Restart, On
-	Hotkey, % "RWin & " Hotkeys_Convert(settings.hotkeys.emergencykey), LLK_Restart, On
+	Hotkey, % (settings.hotkeys.emergencykey_ctrl ? "^" : "") . (settings.hotkeys.emergencykey_alt ? "!" : "") . Hotkeys_Convert(settings.hotkeys.emergencykey), LLK_Restart, On
 
 	If !settings.hotkeys.omnikey2
 		settings.hotkeys.rebound_c := 0
 	settings.hotkeys.tab := vars.hotkeys.tab := !Blank(check := ini.hotkeys["tab replacement"]) ? check : "tab"
-	settings.hotkeys.tabblock := (settings.hotkeys.tab = "capslock") ? 1 : !Blank(check := ini.hotkeys["block tab-key's native function"]) ? check : 0
+	settings.hotkeys.tabblock := !Blank(check := ini.hotkeys["block tab-key's native function"]) ? check : 0
 
 	If (StrLen(vars.hotkeys.tab) > 1)
 		Loop, Parse, % "!+#^"
@@ -39,11 +39,11 @@
 
 	Hotkey, IfWinActive, ahk_group poe_ahk_window
 	If !settings.hotkeys.rebound_c
-		Hotkey, % (!settings.hotkeys.omniblock ? "*~" : "*") . Hotkeys_Convert(settings.hotkeys.omnikey), Omnikey, On
+		Hotkey, % "*" Hotkeys_Convert(settings.hotkeys.omnikey), Omnikey, On
 	Else
 	{
-		Hotkey, % (!settings.hotkeys.omniblock ? "*~" : "*") . Hotkeys_Convert(settings.hotkeys.omnikey2), Omnikey, On
-		Hotkey, % (!settings.hotkeys.omniblock ? "*~" : "*") . Hotkeys_Convert(settings.hotkeys.omnikey), Omnikey2, On
+		Hotkey, % "*" Hotkeys_Convert(settings.hotkeys.omnikey2), Omnikey, On
+		Hotkey, % "*" Hotkeys_Convert(settings.hotkeys.omnikey), Omnikey2, On
 	}
 
 	For index, val in ["", 2]
@@ -63,56 +63,6 @@
 
 	If vars.client.stream
 		Return
-
-	Hotkey, If, (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
-	Hotkey, % (settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions) ? "*~" Hotkeys_Convert(settings.hotkeys.item_descriptions) : "*~" Hotkeys_Convert("ALT"), Hotkeys_Alt, On
-}
-
-Hotkeys_Alt()
-{
-	local
-	global vars, settings
-
-	start := A_TickCount
-	While !longpress && !GetKeyState("TAB", "P") && (GetKeyState("ALT", "P") || settings.hotkeys.rebound_alt && GetKeyState(settings.hotkeys.item_descriptions, "P"))
-	{
-		If (A_TickCount >= start + 150)
-			longpress := 1
-		Sleep 10
-	}
-
-	If !(GetKeyState("Ctrl", "P") || GetKeyState("Shift", "P")) && longpress && (vars.general.MultiThreading && vars.pixels.inventory || !vars.general.MultiThreading && Screenchecks_PixelSearch("inventory"))
-	{
-		Clipboard := ""
-		If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
-			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-		Else SendInput, !^{c}
-		ClipWait, 0.1
-
-		If Clipboard
-		{
-			vars.omnikey.item := {}, Omni_ItemInfo(), item := vars.omnikey.item
-			If settings.features.mapinfo && !settings.mapinfo.omnikey && (Omni_Context(0, 1) = "mapinfo") ;RegExMatch(item.name . item.itembase, "i)\smap$|waystone")
-			{
-				If Mapinfo_Parse(1, vars.poe_version)
-					Mapinfo_GUI()
-			}
-			Else If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "Liquid\s.*|.*\sOil")
-				Anoints("stock")
-			Else If settings.features.anoints && RegExMatch(vars.omnikey.item.name, "Liquid\s.*|.*\sOil")
-				Anoints()
-			Else If settings.features.iteminfo && !settings.iteminfo.omnikey
-				Iteminfo()
-		}
-	}
-	KeyWait, ALT
-	If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
-		KeyWait, % settings.hotkeys.item_descriptions
-
-	If !settings.iteminfo.omnikey
-		LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
-	If !settings.mapinfo.omnikey
-		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 }
 
 Hotkeys_Convert(key)
@@ -294,34 +244,6 @@ Hotkeys_Tab()
 		Return
 	}
 
-	If settings.features.statlas && LLK_StringCompare(vars.log.areaID, ["hideout"]) && Screenchecks_ImageSearch("atlas")
-		While GetKeyState(vars.hotkeys.tab, "P")
-			If (A_TickCount >= start + 200)
-			{
-				If !WinExist("statlas debug") && Statlas()
-					Statlas_GUI()
-				Else If !WinExist("statlas debug")
-					LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
-
-				KeyWait, % vars.hotkeys.tab
-				Gui, statlas_comms: Destroy
-				LLK_Overlay(vars.hwnd.statlas.main, "destroy"), vars.hwnd.statlas.main := ""
-				If (settings.statlas.tier0 != settings.statlas.tier)
-					IniWrite, % (settings.statlas.tier0 := settings.statlas.tier), % "ini" vars.poe_version "\statlas.ini", settings, filter tier
-				If (settings.statlas.zoom0 != settings.statlas.zoom)
-					IniWrite, % (settings.statlas.zoom0 := settings.statlas.zoom), % "ini" vars.poe_version "\statlas.ini", settings, zoom
-				Return
-			}
-
-	If settings.features.exchange && !vars.hwnd.exchange.main && LLK_StringCompare(vars.log.areaID, ["hideout"]) && Screenchecks_ImageSearch("exchange")
-			While GetKeyState(vars.hotkeys.tab, "P")
-				If (A_TickCount >= start + 200)
-				{
-					Exchange()
-					KeyWait, % vars.hotkeys.tab
-					Return
-				}
-
 	While settings.qol.notepad && vars.hwnd.notepad_widgets.Count() && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
@@ -331,15 +253,6 @@ Hotkeys_Tab()
 				Gui, % Gui_Name(val) ": -E0x20"
 				WinSet, Transparent, Off, % "ahk_id "val
 			}
-			Break
-		}
-
-	While settings.features.sanctum && InStr(vars.log.areaID, "sanctum") && !InStr(vars.log.areaID, "fellshrine") && GetKeyState(vars.hotkeys.tab, "P")
-		If (A_TickCount >= start + 200)
-		{
-			active .= " sanctum", vars.sanctum.lock := 0
-			If !WinExist("ahk_id " vars.hwnd.sanctum.second)
-				Sanctum()
 			Break
 		}
 
@@ -400,15 +313,6 @@ Hotkeys_Tab()
 			Break
 		}
 
-	If !active && settings.features.leveltracker && !settings.leveltracker.pobmanual && !Screenchecks_PixelSearch("gamescreen") && Screenchecks_ImageSearch("skilltree") && !(settings.general.dev && WinActive("ahk_exe Code.exe"))
-	&& !GetKeyState("ALT", "P")
-	{
-		If !vars.leveltracker.skilltree_schematics.GUI
-			Leveltracker_PobSkilltree()
-		Else Leveltracker_PobSkilltree("close")
-		Return
-	}
-
 	If !settings.hotkeys.tabblock && !active
 	{
 		SendInput, % "{" vars.hotkeys.tab " DOWN}"
@@ -419,8 +323,6 @@ Hotkeys_Tab()
 
 	If longpress
 		Leveltracker_PobSkilltree("close")
-	If InStr(active, "sanctum") && !vars.sanctum.lock && !vars.sanctum.scanning
-		Sanctum("close")
 	If InStr(active, "LLK-panel") && settings.general.hide_toolbar
 		LLK_Overlay(vars.hwnd.LLK_panel.main, "hide")
 	If InStr(active, "alarm")
@@ -479,9 +381,13 @@ Hotkeys_Tab()
 #If settings.maptracker.kills && settings.features.maptracker && (vars.maptracker.refresh_kills = 1)
 #If WinExist("ahk_id "vars.hwnd.horizons.main)
 #If vars.hwnd.leveltracker.main && WinActive("ahk_group poe_ahk_window") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
-#If (settings.features.iteminfo && !settings.iteminfo.omnikey || settings.features.mapinfo && !settings.mapinfo.omnikey || settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
+#If (settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
+
+#If vars.hwnd.leveltracker_skilltree.main && Blank(vars.leveltracker.skilltree.active1) && WinExist("ahk_id " vars.hwnd.leveltracker_skilltree.main)
+WheelUp::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.active - 1
+WheelDown::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.active + 1
 
 #If vars.hwnd.exchange.main && WinExist("ahk_id " vars.hwnd.exchange.main)
 ~SC0038::Exchange("hide")

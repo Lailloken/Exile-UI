@@ -178,7 +178,8 @@
 		global_cancel			=	"cancel"
 		global_downloading		=	"downloading..."
 		global_search			=	"search:"
-		global_toggle			=	"toggle"
+		global_toggle			=	"toggle"		;## pressing a hotkey opens a feature
+		global_hold			=	"hold"			;## feature stays open while holding a hotkey, then closes on release
 		global_hide			=	"hide"
 		global_unhide			=	"unhide"
 		global_revert			=	"revert"
@@ -223,6 +224,10 @@
 		global_gem			=	"gem"
 		global_gem			=	"gems"
 		global_act			=	"act"
+		global_ctrl			=	"ctrl"			;## modifier-keys
+		global_alt			=	"alt"
+		global_shift			=	"shift"
+		global_shiftclick		=	"shift-click"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -331,7 +336,6 @@
 		cheat_check			=	"screen-check:"
 		cheat_static			=	"static"
 		cheat_dynamic			=	"dynamic"
-		cheat_hold			=	"hold"
 		cheat_manage			=	"manage image-files:"
 		cheat_title			=	"window title:"
 		cheat_launch			=	"if the window is not found,;launch this app instead:"
@@ -748,7 +752,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "general" section of the settings menu
-		m_general_settings		=	"script settings:"
+		m_general_settings		=	"tool settings:"
 		m_general_kill			=	"exit x minutes after closing the game:"
 		m_general_browser		=	"browser features"
 		m_general_capslock		=	"capslock-toggling"		;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
@@ -857,9 +861,6 @@
 		m_cheat_enable			=	"enable the cheat-sheet toolkit"
 		m_cheat_hotkeys			=	"hotkey settings:"
 		m_cheat_modifier		=	"omni-key modifier:"			;## as in modifier-key (ALT, CTRL, etc.)
-		m_cheat_modifier		=	"alt"
-		m_cheat_modifier		=	"ctrl"
-		m_cheat_modifier		=	"shift"
 		m_cheat_advance			=	"advanced cheat-sheets"
 		m_cheat_create			=	"create new cheat-sheet:"
 		m_cheat_images			=	"images"
@@ -910,17 +911,19 @@
 
 ;## these strings are displayed/required in the "hotkeys" section of the settings menu
 		m_hotkeys_settings		=	"in-game keybind settings:"
+		m_hotkeys_settings		=	"tool keybind settings:"
 		m_hotkeys_descriptions		=	"<show advanced item descriptions>;is not bound to the alt-key"		;## in-game setting, usually on ALT
 		m_hotkeys_descriptions		=	"instead, it is bound to:"
 		m_hotkeys_ckey			=	"the c-key is used for something;other than <character screen>"		;## in-game setting, on C by default
 		m_hotkeys_movekey		=	"move-key:"								;## i.e. the key used to move the character, default l-mouse
-		m_hotkeys_omnikey		=	"omni-key settings:"
-		m_hotkeys_omnikey		=	"replace m-mouse with:"
-		m_hotkeys_omnikey		=	"omni-key 2 (for items):"
-		m_hotkeys_keyblock		=	"block native functions"							;## native as in what it usually does: CapsLock-key toggles capslock-state, windows-key opens start-menu
-		m_hotkeys_misc			=	"miscellaneous keys:"
-		m_hotkeys_tab			=	"replace tab-key with:"
-		m_hotkeys_emergency		=	"emergency restart:"							;## there's a hotkey to force-restart the script in case of crash/hang
+		m_hotkeys_omnikey_new		=	"omni-key:"
+		m_hotkeys_omnikey_new		=	"omni-key (general):"
+		m_hotkeys_omnikey_new		=	"omni-key 2 (for items):"
+		m_hotkeys_keyblock		=	"block the keypress"							;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu
+		m_hotkeys_keyblock		=	"keypress is blocked"							;## same as above, but as a note instead of option
+		m_hotkeys_widget		=	"widget-key:"
+		m_hotkeys_emergency		=	"force-restart:"							;## hotkey to force-restart the script in case of crash/hang
+		m_hotkeys_winkey		=	"win-key"								;## Windows-key
 		m_hotkeys_error			=	"invalid hotkey"
 		m_hotkeys_error			=	"duplicate keybinds detected"
 		m_hotkeys_error			=	"alt-key is rebound, but no;alternative key is set up"			;## if certain tickboxes are ticked, the user has to provide an alternative hotkey
@@ -941,7 +944,6 @@
 		m_iteminfo_undesired		=	"undesired"
 		m_iteminfo_undesired		=	"(un)desired:"
 		m_iteminfo_modbars		=	"roll-range:"
-		m_iteminfo_shift		=	"shift-click"
 		m_iteminfo_hiderange		=	"hide affix roll-range"
 		m_iteminfo_league		=	"enable league-start mode"
 		m_iteminfo_base			=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg
@@ -1031,8 +1033,7 @@
 
 ;## these strings are displayed/required in the "map-info" section of the settings menu
 		m_mapinfo_enable		=	"enable the map-info panel"
-		m_mapinfo_shift			=	"shift-clicking activates the panel"
-		m_mapinfo_tab			=	"show panel while holding tab"
+		m_mapinfo_tab			=	"show panel while holding the widget-key"
 		m_mapinfo_textcolors		=	"text-colors:"
 		m_mapinfo_header		=	"header"					;## as in line at the top of a section/paragraph
 		m_mapinfo_logbook		=	"logbook-colors:"
@@ -1083,10 +1084,13 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "screen-checks" section of the settings menu
-		m_screen_pixel			=	"list of active pixel-checks:"
-		m_screen_image			=	"list of active image-checks:"
-		m_screen_gamescreen		=	"infopanel"					;## refers to the small panel in the top-right corner that shows area-name, server, league, etc.
+		m_screen_pixel			=	"list of required pixel-checks:"
+		m_screen_image			=	"list of required image-checks:"
+		m_screen_inactive		=	"the features that are currently enabled do not require any further setup"
+		m_screen_gamescreen		=	"infopanel"									;## refers to the small panel in the top-right corner that shows area-name, server, league, etc.
 		m_screen_instructions		=	"read the instructions on;the <info> button!"
+		m_screen_sanctum		=	"sanctum floor map"
+		m_screen_sanctum		=	"sekhema floor map"
 
 
 ;#####################################################
