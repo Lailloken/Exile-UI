@@ -1102,7 +1102,7 @@ Cheatsheet_Menu2(cHWND) ;function to handle inputs within the 'cheatsheet_menu' 
 		MouseGetPos, xMouse, yMouse
 		While GetKeyState("LButton", "P")
 		{
-			LLK_Drag(wWin, hWin, xPos, yPos, 1, A_Gui,, xMouse - xWin, yMouse - yWin)
+			LLK_Drag(wWin, hWin, xPos, yPos, 1, A_Gui,, xMouse - xWin, yMouse - yWin, 1)
 			Sleep 1
 		}
 		vars.general.drag := 0
