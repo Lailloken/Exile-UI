@@ -323,10 +323,11 @@ Betrayal_Search(hotkey)
 			FileDelete, % "img\Recognition (" vars.client.h "p)\Betrayal\"parse ".bmp"
 	}
 
-	Betrayal_Prioview()
+	Betrayal_Prioview(), vars.betrayal.rbutton := 0
 
 	While GetKeyState(hotkey, "P")
 	{
+		Sleep 100
 		If vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.betrayal_prioview, vars.general.cMouse))
 			hover := [LLK_HasVal(vars.hwnd.betrayal_prioview, vars.general.cMouse), "betrayal_prioview"]
 		Else If vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.betrayal_info, vars.general.cMouse))
@@ -336,8 +337,7 @@ Betrayal_Search(hotkey)
 		If (SubStr(hover.1, 0, 1) = "_") ;exclusion-rule to avoid interaction with division text-panels (the ones which display the rewards)
 			hover := ""
 
-		KeyWait, RButton, D T0.1
-		If !ErrorLevel && hover
+		If vars.betrayal.rbutton && hover
 		{
 			;object := StrReplace(hover.2, "_") ;HWND-objects can be derived from the GUI-name by removing the underscore (GUI: this_name, Object: vars.hwnd.thisname)
 			If LLK_Progress(vars.hwnd[hover.2][hover.1], "RButton", vars.hwnd[hover.2][hover.1])

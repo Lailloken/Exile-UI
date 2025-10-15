@@ -385,6 +385,10 @@ Hotkeys_Tab()
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
 
+#If vars.hwnd.betrayal_prioview.main && WinExist("ahk_id " vars.hwnd.betrayal_prioview.main) || vars.betrayal.rbutton
+RButton::vars.betrayal.rbutton := 1
+RButton UP::vars.betrayal.rbutton := 0
+
 #If vars.hwnd.leveltracker_skilltree.main && Blank(vars.leveltracker.skilltree.active1) && WinExist("ahk_id " vars.hwnd.leveltracker_skilltree.main)
 WheelUp::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.active - 1
 WheelDown::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.active + 1
