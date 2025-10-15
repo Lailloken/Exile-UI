@@ -1831,7 +1831,7 @@ Settings_iteminfo2(cHWND)
 			LLK_Overlay(vars.hwnd.iteminfo.main, "destroy")
 		Settings_menu("item-info")
 		If vars.general.MultiThreading
-			StringSend("iteminfo=" settings.iteminfo.compare)
+			StringSend("iteminfo=" settings.features.iteminfo)
 		Return
 	}
 	Else If InStr(check, "profile_")

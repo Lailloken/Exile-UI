@@ -996,13 +996,13 @@ Iteminfo_GUI()
 				style := "ys", filler := 1
 			}
 			If !vars.pics.iteminfo[label]
-				vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png")
-			Gui, %GUI_name%: Add, Picture, % style " Border BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo[label] ;icon for the dmg-type
+				vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png",, UI.hSegment - 2)
+			Gui, %GUI_name%: Add, Picture, % style " Border BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo[label] ;icon for the dmg-type
 			Gui, %GUI_name%: Add, Text, % "ys Center Border w"UI.wSegment " h"UI.hSegment, % text ;dmg-text
 		}
 		If !vars.pics.iteminfo.damage
-			vars.pics.iteminfo.damage := LLK_ImageCache("img\GUI\item info\damage.png")
-		Gui, %GUI_name%: Add, Picture, % "ys Border Center BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo.damage ;total-dps icon
+			vars.pics.iteminfo.damage := LLK_ImageCache("img\GUI\item info\damage.png",, UI.hSegment - 2)
+		Gui, %GUI_name%: Add, Picture, % "ys Border Center BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo.damage ;total-dps icon
 		Gui, %GUI_name%: Add, Text, % "ys Center Border w"UI.wSegment " h"UI.hSegment, % (item.dps.total < 1000) ? Format("{:0.1f}", item.dps.total) : Format("{:0.0f}", item.dps.total) ;total-dps text
 	}
 
@@ -1236,8 +1236,8 @@ Iteminfo_GUI()
 					If (item.anoint = "")
 					{
 						If !vars.pics.iteminfo[label]
-							vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png")
-						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo[label]
+							vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label ".png",, UI.hSegment-2)
+						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo[label]
 						;Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
 					}
 
@@ -1268,8 +1268,8 @@ Iteminfo_GUI()
 					If !vars.poe_version && (item.type = "defense") ;add the cells for the base-percentile roll
 					{
 						If !vars.pics.iteminfo.defense
-							vars.pics.iteminfo.defense := LLK_ImageCache("img\GUI\item info\defense.png")
-						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo.defense
+							vars.pics.iteminfo.defense := LLK_ImageCache("img\GUI\item info\defense.png",, UI.hSegment - 2)
+						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo.defense
 						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
 						color := (item.base_percent >= 99) ? settings.iteminfo.colors_tier.1 : "404040", color1 := (color != "404040") ? "Black" : "White" ;highlight base-% bar green if >= 99
 						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " w"UI.wSegment " Border Center BackgroundTrans c"color1, % item.base_percent "%"
@@ -1279,8 +1279,8 @@ Iteminfo_GUI()
 					If (item.rarity != Lang_Trans("items_unique"))
 					{
 						If !vars.pics.iteminfo.ilvl
-							vars.pics.iteminfo.ilvl := LLK_ImageCache("img\GUI\item info\ilvl.png")
-						Gui, %GUI_name%: Add, Picture, % "ys Border Center BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo.ilvl
+							vars.pics.iteminfo.ilvl := LLK_ImageCache("img\GUI\item info\ilvl.png",, UI.hSegment - 2)
+						Gui, %GUI_name%: Add, Picture, % "ys Border Center BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo.ilvl
 						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack", 0
 						color := !vars.poe_version && (item.ilvl >= item.ilvl_max) || vars.poe_version && (item.ilvl = 84) ? settings.iteminfo.colors_tier.1 : "404040", color1 := (color != "404040") ? "Black" : "White" ;highlight ilvl bar green if ilvl >= 86
 						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " w"UI.wSegment " Border Center BackgroundTrans c"color1, % (item.ilvl = 100) || vars.poe_version ? item.ilvl : item.ilvl "/" item.ilvl_max
@@ -1364,17 +1364,17 @@ Iteminfo_GUI()
 		If type ;implicit has a suitable icon
 		{
 			If !vars.pics.iteminfo[type]
-				vars.pics.iteminfo[type] := LLK_ImageCache("img\GUI\item info\" type ".png")
+				vars.pics.iteminfo[type] := LLK_ImageCache("img\GUI\item info\" type ".png",, UI.hSegment - 2)
 
 			If (height <= UI.hSegment) ;if cell is single-line height, add regular cell
-				Gui, %GUI_name%: Add, Picture, % "ys h"UI.hSegment-2 " w-1 Border BackgroundTrans HWNDhwnd", % (type != "") ? "HBitmap:*" vars.pics.iteminfo[type] : ""
+				Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans HWNDhwnd", % (type != "") ? "HBitmap:*" vars.pics.iteminfo[type] : ""
 			Else ;if cell is multi-line height, add taller cell and place icon in the middle
 			{
 				Gui, %GUI_name%: Add, Text, % "ys wp hp Border BackgroundTrans HWNDhwnd", ;dummy text-cell with a border (can't use icon-border for this case)
-				Gui, %GUI_name%: Add, Picture, % "xp+1 yp+"height/2 - UI.hSegment/2 + 1 " BackgroundTrans h"UI.hSegment-2 " w-1", % (type != "") ? "HBitmap:*" vars.pics.iteminfo[type] : ""
+				Gui, %GUI_name%: Add, Picture, % "xp+1 yp+"height/2 - UI.hSegment/2 + 1 " BackgroundTrans", % (type != "") ? "HBitmap:*" vars.pics.iteminfo[type] : ""
 			}
 			ControlGetPos, x, y,,,, % "ahk_id " hwnd ;manually get coordinates of the appropriate control (can't use xp yp in the second case above)
-			Gui, %GUI_name%: Add, Progress, % "x"x-1 " y"y-1 " w"UI.wSegment/2 " h"height " Disabled Border BackgroundBlack c"color, 100
+			Gui, %GUI_name%: Add, Progress, % "x"x-1 " y"y-1 " w"UI.wSegment/2 " h"height " Disabled Border BackgroundBlack cBlack", 100
 		}
 	}
 	If item.implicits.Count()
@@ -1752,7 +1752,7 @@ Iteminfo_GUI()
 			If (width < UI.wSegment) && (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ;divide tier-cell if necessary (to add icon/ilvl)
 			{
 				If !vars.pics.iteminfo[label]
-					vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label (RegExMatch(label, "i)abyss|essence") ? vars.poe_version : "") ".png")
+					vars.pics.iteminfo[label] := LLK_ImageCache("img\GUI\item info\" label (RegExMatch(label, "i)abyss|essence") ? vars.poe_version : "") ".png",, UI.hSegment - 2)
 
 				If (height <= UI.hSegment) ;if the mod is single-line, enforce standardized height for the cell
 				{
@@ -1760,7 +1760,7 @@ Iteminfo_GUI()
 						Gui, %GUI_name%: Add, Text, % "ys h"UI.hSegment " wp Border Center BackgroundTrans HWNDhwnd c" ;cont
 						. (ilvl >= settings.iteminfo.ilevels.1 && (settings.iteminfo.colors_ilvl.1 = "ffffff") ? "Red" : "Black"), % ilvl ;add ilvl-cell
 					Else If (label && affixinfo = 1)
-						Gui, %GUI_name%: Add, Picture, % "ys h"UI.hSegment-2 " w-1 Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
+						Gui, %GUI_name%: Add, Picture, % "ys Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
 					Else If (affixinfo = 3 && max_tier)
 						Gui, %GUI_name%: Add, Text, % "ys h" UI.hSegment " wp Border Center BackgroundTrans HWNDhwnd", % max_tier
 				}
@@ -1772,7 +1772,7 @@ Iteminfo_GUI()
 					Else If (label && affixinfo = 1)
 					{
 						Gui, %GUI_name%: Add, Text, % "x+0 wp hp Border BackgroundTrans HWNDhwnd", ;add dummy text-panel with borders (can't use icon's borders for taller cells)
-						Gui, %GUI_name%: Add, Picture, % "xp+1 yp+"height/2 - UI.hSegment/2 + 1 " BackgroundTrans h"UI.hSegment-2 " w-1", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
+						Gui, %GUI_name%: Add, Picture, % "xp+1 yp+"height/2 - UI.hSegment/2 + 1 " BackgroundTrans", % "HBitmap:*" vars.pics.iteminfo[label] ;add icon-cell
 					}
 					Else If (affixinfo = 3 && max_tier)
 						Gui, %GUI_name%: Add, Text, % "x+0 wp hp 0x200 Border Center BackgroundTrans HWNDhwnd", % max_tier
