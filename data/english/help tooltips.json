@@ -287,8 +287,7 @@
     "iteminfo enable": [
       "provides a customizable item tooltip which adds glance value to loot you pick up",
       "hold down the <omni-key> while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
-      "click into the game or press <esc> to close it",
-      "requires the <inventory> screen-check to be set up correctly(/highlight)"
+      "click into the game or press <esc> to close it"
     ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
@@ -332,7 +331,8 @@
     ],
     "iteminfo league-start": [
       "adds a section where the item's stats are compared to your current gear",
-      "this section replaces the base-stats section"
+      "hover over gear slots in the inventory and long-click the refresh buttons to load the info from equipped items, or long-right-click to clear the slot",
+      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "iteminfo affix-info icon": [
       "the last column will show an icon for the mod-group of an affix (if available)"
@@ -663,8 +663,7 @@
     ],
     "mapinfo enable": [
       "provides a compact and customizable info-panel for map mods",
-      "omni-clicking a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them",
-      "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section(/highlight)"
+      "omni-clicking a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them"
     ],
     "mapinfo toggle": [
       "press the <omni-key> while hovering over maps/waystones to activate the panel",
@@ -780,7 +779,8 @@
     "sanctum enable": [
       "analyzes rooms and connections on the floor map and provides tools for highlighting and planning",
       "while you're in the sanctum/trial and the floor plan is on screen, hold down the <omni-key> to show the overlay",
-      "the overlay will hide when you release the key: press <space> to lock the overlay so it doesn't automatically hide"
+      "the overlay will hide when you release the key: press <space> to lock the overlay so it doesn't automatically hide",
+      "requires the <sanctum/sekhema floor map> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "sanctum cheatsheet": [
       "shows an additional panel that lists the different room types and their objectives, as well as special fountain characteristics"
@@ -837,12 +837,6 @@
     ],
     "searchstrings about": [
       "search-strings are grouped into use-cases, e.g. gwennen, harvest, vendor",
-      "when pressing the <omni-key>, the tool detects the right use-case and displays a list with entries to choose from",
-      "this detection requires manual image calibration for each use-case",
-      "some use-cases (e.g. bestiary index) don't automatically hide the league-info panel in the top-right corner, so you have to open the inventory before pressing the <omni-key>"
-    ],
-    "searchstrings about 2": [
-      "search-strings are grouped into use-cases, e.g. gem cutting, stash, vendor",
       "when pressing the <omni-key>, the tool detects the right use-case and displays a list with entries to choose from",
       "this detection requires manual image calibration for each use-case"
     ],
@@ -1581,7 +1575,7 @@
     ],
     "skilltree": [
       "(/bold)(/underline)instructions:",
-      "-> open the skilltree",
+      "-> open the skilltree: the plaque at the top (img) has to be fully visible",
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ],

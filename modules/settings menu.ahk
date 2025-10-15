@@ -769,7 +769,7 @@ Settings_cloneframes()
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLast + hLast + settings.general.fWidth/2, % Lang_Trans("m_clone_town")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLast + hLast + settings.general.fWidth/2 " w" settings.general.fWidth * 30, % Lang_Trans("m_clone_town")
 	Gui, %GUI%: Font, % "cWhite norm s" settings.general.fSize
 
 	LLK_PanelDimensions([Lang_Trans("global_coordinates"), Lang_Trans("global_width") "/" Lang_Trans("global_height")], settings.general.fSize, width, height)
@@ -4154,7 +4154,7 @@ Settings_searchstrings()
 			Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
 			Gui, %GUI%: Font, norm
 		}
-		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
+		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69, var := vars.searchstrings.list[string] ;short-cut variable
 
 		color := !var.enable ? "Gray" : !FileExist("img\Recognition (" vars.client.h "p)\GUI\[search-strings" vars.poe_version "] " string ".bmp") ? "Red" : "White", style := !var.enable ? "" : " gSettings_searchstrings2"
 		Gui, %GUI%: Add, Text, % "Section xs Border HWNDhwnd c"color style, % " " Lang_Trans("global_calibrate") " "
@@ -4189,7 +4189,7 @@ Settings_searchstrings()
 	If !vars.searchstrings.list.Count()
 	{
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd69", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_searchstrings about" vars.poe_version] := hwnd69
+		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69
 	}
 	vars.hwnd.settings.name := vars.hwnd.help_tooltips["settings_searchstrings add|"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
