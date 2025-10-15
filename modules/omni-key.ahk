@@ -409,7 +409,7 @@ Omni_ContextMenu()
 				}
 				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
-				If settings.features.anoint && RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
+				If settings.features.anoints && RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
 
 				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talisman" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
@@ -603,6 +603,11 @@ Omni_ItemInfo()
 			item.tier := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2)
 
 		If InStr(A_LoopField, Lang_Trans("items_stack"))
-			item.stack := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), item.stack := SubStr(item.stack, 1, InStr(item.stack, "/") - 1)
+		{
+			stack := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), stack := SubStr(stack, 1, InStr(stack, "/") - 1), item.stack := ""
+			Loop, Parse, stack
+				If IsNumber(A_LoopField)
+					item.stack .= A_LoopField
+		}
 	}
 }
