@@ -176,13 +176,22 @@ Geartracker(mode := "")
 	Else If (check = "clear")
 	{
 		If LLK_Progress(vars.hwnd.geartracker.delbar_clear, "LButton")
-		{
 			Loop, % vars.leveltracker.gear_ready
 			{
 				IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gear", % vars.leveltracker.gear[A_Index]
 				IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gems", % vars.leveltracker.gear[A_Index]
 				vars.leveltracker.gear.Delete(A_Index)
 			}
+		Else Return
+	}
+	Else If (check = "clear_gems")
+	{
+		If LLK_Progress(vars.hwnd.geartracker.delbar_gems, "LButton")
+		{
+			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gems"
+			Loop, % (count := vars.leveltracker.gear.Count())
+				If InStr(vars.leveltracker.gear[count - (A_Index - 1)], "gem:")
+					vars.leveltracker.gear.RemoveAt(count - (A_Index - 1))
 		}
 		Else Return
 	}
@@ -208,6 +217,7 @@ Geartracker(mode := "")
 		Else Return
 	}
 	Else LLK_ToolTip("no action")
+
 	Geartracker_GUI()
 }
 
@@ -267,10 +277,11 @@ Geartracker_GUI(mode := "")
 		;If !Blank(settings.general.character)
 			For index, item in vars.leveltracker.gear
 			{
+				gems += (InStr(item, "gem:") ? 1 : 0)
 				If vars.leveltracker.gearfilter && (SubStr(item, 2, 2) > vars.log.level + 5)
 					Continue
 				color := (SubStr(item, 2, 2) <= vars.log.level) ? " cLime" : ""
-				count += color ? 1 : 0
+				count += (color ? 1 : 0)
 				If (y + h >= vars.client.h*0.85)
 				{
 					If !ellipsis
@@ -292,15 +303,23 @@ Geartracker_GUI(mode := "")
 		If count
 		{
 			Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize - 2
-			Gui, %GUI_name%: Add, Text, % "x"x0 + w0 " y"y0 " h"h0 " Border BackgroundTrans gGeartracker HWNDhwnd cLime", % " clear "
-			vars.hwnd.geartracker["clear"] := hwnd
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack cRed Disabled HWNDhwnd range0-500", 0
-			vars.hwnd.geartracker["delbar_clear"] := hwnd
+			Gui, %GUI_name%: Add, Text, % "Section xs Border BackgroundTrans gGeartracker HWNDhwnd cLime", % " " Lang_Trans("lvltracker_clearequip") " "
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack cRed Vertical Disabled HWNDhwnd1 range0-500", 0
+			vars.hwnd.geartracker["clear"] := hwnd, vars.hwnd.geartracker["delbar_clear"] := vars.hwnd.help_tooltips["geartracker_clear highlighted"] := hwnd1
+		}
+		If gems
+		{
+			Gui, %GUI_name%: Add, Text, % "Section " (count ? "ys" : "xs") " Border BackgroundTrans gGeartracker HWNDhwnd", % " " Lang_Trans("lvltracker_cleargems") " "
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack cRed Vertical Disabled HWNDhwnd1 range0-500", 0
+			vars.hwnd.geartracker["clear_gems"] := hwnd, vars.hwnd.geartracker["delbar_gems"] := vars.hwnd.help_tooltips["geartracker_clear gems"] := hwnd1
 		}
 		Gui, %GUI_name%: Show, % "NA x10000 y10000"
 		WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.geartracker.main
 		Gui, %GUI_name%: Show, % (mode = "refresh" ? "Hide" : "NA") " x" vars.monitor.x + vars.client.xc - w//2 " y" vars.monitor.y + vars.client.yc - h / 2
 		LLK_Overlay(vars.hwnd.geartracker.main, (mode = "refresh") ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+
+		If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+			Leveltracker_Progress()
 	}
 }
 
@@ -330,7 +349,12 @@ Leveltracker(cHWND := "", hotkey := "")
 	If InStr(check, "dummy")
 		Return
 
-	If InStr("+-", cHWND) || check || InStr(A_Gui, "settings_menu")
+	If (check = "gear_ready")
+	{
+		Geartracker("toggle")
+		Return
+	}
+	Else If InStr("+-", cHWND) || check || InStr(A_Gui, "settings_menu")
 	{
 		yTooltip := vars.leveltracker.coords.y1 - settings.general.fHeight + 1, yTooltip := (yTooltip < vars.monitor.y) ? vars.leveltracker.coords.y2 - 1 : yTooltip
 		guide := vars.leveltracker.guide
@@ -483,15 +507,9 @@ Leveltracker(cHWND := "", hotkey := "")
 		Else Leveltracker_Progress(1)
 	}
 
-	If !InStr(vars.hwnd.LLK_panel.leveltracker ", " vars.hwnd.LLK_panel.leveltracker_text, cHWND) || InStr(A_Gui, "settings_menu")
+	If !InStr(vars.hwnd.radial.leveltracker ", " vars.hwnd.radial.leveltracker_text, cHWND) || InStr(A_Gui, "settings_menu")
 		Return
 
-	If (hotkey = 2)
-	{
-		If settings.leveltracker.geartracker
-			Geartracker("toggle")
-		Return
-	}
 	If settings.leveltracker.geartracker && Blank(vars.leveltracker.gear_ready)
 		Geartracker_GUI("refresh")
 
@@ -509,11 +527,7 @@ Leveltracker(cHWND := "", hotkey := "")
 	}
 	Else If !WinExist("ahk_id " vars.hwnd.leveltracker.main) && !vars.leveltracker.toggle
 		Leveltracker_Progress("init")
-	Else
-	{
-		Leveltracker_Toggle("hide")
-		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, % "HBitmap:*" vars.pics.toolbar.leveltracker0
-	}
+	Else Leveltracker_Toggle("hide")
 	;WinActivate, ahk_group poe_window
 }
 
@@ -1819,7 +1833,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info" vars.poe_version].Clone()}) : vars.leveltracker.guide
 	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
 	exp := Leveltracker_Experience("", 1), exp := (InStr(exp, "100%") && InStr(exp, "|") ? StrReplace(exp, "100%") : exp)
-	LLK_PanelDimensions([vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : " " exp " "], settings.leveltracker.fSize, wExp, hExp)
+	LLK_PanelDimensions([(vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : " " exp " "), (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : "")], settings.leveltracker.fSize, wExp, hExp)
 	wButtons := Round(settings.leveltracker.fWidth*2)
 	While Mod(wButtons, 2)
 		wButtons += 1
@@ -2427,7 +2441,7 @@ Leveltracker_PobImport(b64, profile)
 					Continue
 				If InStr(A_LoopField, "<skill ") && InStr(A_LoopField, "label=") && !InStr(A_LoopField, "label=""""")
 					group.label := SubStr(A_LoopField, InStr(A_LoopField, "label=""") + 7), group.label := Leveltracker_PobRemoveTags(SubStr(group.label, 1, InStr(group.label, """") - 1))
-				If InStr(A_LoopField, "<Gem ")
+				If InStr(A_LoopField, "<Gem ") && !InStr(A_LoopField, "namespec=""""")
 				{
 					support := InStr(A_LoopField, "/supportgem")
 					name := SubStr(A_LoopField, InStr(A_LoopField, "namespec=""") + 10), name := SubStr(name, 1, InStr(name, """") - 1), name := StrReplace(StrReplace(name, "vaal "), "awakened ")
@@ -2444,7 +2458,7 @@ Leveltracker_PobImport(b64, profile)
 						}
 					}
 					Else If settings.general.dev
-						MsgBox, % "unknown gem: " name
+						MsgBox, % "unknown gem: " name "`n" A_LoopField
 				}
 				If InStr(A_LoopField, "</skill>")
 				{
@@ -2992,9 +3006,6 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If !vars.log.act || (vars.log.act = "c")
 		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && !vars.log.act && IsNumber(SubStr(vars.log.areaID, 2, 1)) ? SubStr(vars.log.areaID, 2, 1) : vars.log.act)
 
-	If (mode = "init")
-		GuiControl,, % vars.hwnd.LLK_panel.leveltracker, % "HBitmap:*" vars.pics.toolbar.leveltracker
-
 	While !Leveltracker("condition", guide.progress + 1)
 		guide.progress += 1
 
@@ -3052,7 +3063,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	}
 	Gui, %GUI_name_controls1%: Add, Progress, % "Section " (settings.leveltracker.timer ? "xs y+-1" : "") " BackgroundWhite HWNDhwnd0 w" settings.leveltracker.fWidth * 0.6 " h" settings.leveltracker.fWidth * 0.6, 0
 	Gui, %GUI_name_controls1%: Add, Text, % "Section xp yp 0x200 Border BackgroundTrans HWNDhwnd Center w" wPanels, % ""
-	vars.hwnd.leveltracker.drag := hwnd0, vars.hwnd.leveltracker.dummy1 := hwnd
+	vars.hwnd.leveltracker.drag := hwnd0, vars.hwnd.leveltracker[settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? "gear_ready" : "dummy1"] := hwnd
 	Gui, %GUI_name_controls1%: Add, Text, % "ys hp 0x200 Border HWNDhwnd Center w"wButtons, % ""
 	vars.hwnd.leveltracker["-"] := hwnd
 	Gui, %GUI_name_controls1%: Add, Text, % "ys hp 0x200 Border HWNDhwnd Center w"wButtons, % ""
@@ -3077,7 +3088,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 		Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w" wPanels (timer.current_act = 11 ? " cLime" : (timer.pause = -1) ? " cGray" : ""), % FormatSeconds(timer.current_split, 0)
 		vars.hwnd.leveltracker.timer_act := hwnd
 	}
-	Gui, %GUI_name_controls2%: Add, Text, % "Section xs " (settings.leveltracker.timer ? "xs y+-1" : "") " Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels, % ""
+	Gui, %GUI_name_controls2%: Add, Text, % "Section xs " (settings.leveltracker.timer ? "xs y+-1" : "") " Border 0x200 BackgroundTrans HWNDhwnd cLime Center w"wPanels, % (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : "")
 	level_diff := vars.log.level - vars.log.arealevel
 
 	If vars.log.level

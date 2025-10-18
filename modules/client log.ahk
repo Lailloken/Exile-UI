@@ -327,6 +327,9 @@ Log_Loop(mode := 0)
 					vars.log.areaname := "" ;make it blank because there sometimes is a desync between it and areaID, i.e. they are parsed in two separate loop-ticks
 				Else vars.log.areaname := Log_Get(areaID, "areaname")
 		}
+		If (settings.features.leveltracker * settings.leveltracker.geartracker) && IsNumber(level) && (level0 != level)
+			Geartracker_GUI(WinExist("ahk_id " vars.hwnd.geartracker.main) ? "" : "refresh")
+
 		If settings.features.leveltracker && (WinExist("ahk_id " vars.hwnd.leveltracker.main) && (IsNumber(level) && (level0 != level) || !Blank(areaID) && areaID != vars.leveltracker.guide.target_area)
 		|| LLK_Overlay(vars.hwnd.leveltracker.main, "check") && (RegexMatch(areaID, "i)^hideout") || db.leveltracker.areaIDs[areaID] && areaID != vars.leveltracker.guide.target_area)
 		&& !RegexMatch(vars.log.areaID, "i)labyrinth_|g3_10$|sanctum_") && !LLK_HasVal(vars.leveltracker.guide.group1, Lang_Trans("ms_leveling tracker"), 1))
@@ -385,18 +388,6 @@ Log_Loop(mode := 0)
 
 	Maptracker_Timer()
 	Leveltracker_Timer()
-
-	If !vars.poe_version
-		If settings.leveltracker.geartracker && vars.leveltracker.gear_ready && (vars.leveltracker.gear_ready != vars.leveltracker.gear_counter)
-		{
-			GuiControl, Text, % vars.hwnd.LLK_panel.leveltracker_text, % vars.leveltracker.gear_ready
-			vars.leveltracker.gear_counter := vars.leveltracker.gear_ready
-		}
-		Else If (!vars.leveltracker.gear_ready || !settings.leveltracker.geartracker) && vars.leveltracker.gear_counter
-		{
-			GuiControl, Text, % vars.hwnd.LLK_panel.leveltracker_text, % ""
-			vars.leveltracker.gear_counter := 0
-		}
 }
 
 Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel, ByRef areatier, ByRef act, ByRef level, ByRef date_time, ByRef character_class)
@@ -468,9 +459,6 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 				level0 := SubStr(level0, parse), level0 := SubStr(level0, InStr(level0, " ") + 1), character_class := LLK_StringCase(SubStr(level0, 1, InStr(level0, " ") - 1))
 				vars.log.character_last := loopfield
 			}
-
-			If settings.leveltracker.geartracker && vars.hwnd.geartracker.main
-				Geartracker_GUI("refresh")
 		}
 
 		If settings.features.maptracker && (vars.log.areaID = vars.maptracker.map.id) && (Lang_Match(loopfield, vars.lang.log_slain) || Lang_Match(loopfield, vars.lang.log_suicide))
