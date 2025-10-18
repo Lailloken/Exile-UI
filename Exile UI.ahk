@@ -895,7 +895,7 @@ News(mode := "")
 	global vars, settings, json
 
 	If (mode = "init")
-		vars.news.file := json.Load(LLK_FileRead("data\announcements.json", 1)), vars.news.last_read := LLK_IniRead("ini\config.ini", "versions", "announcement", 0)
+		vars.news.file := json.Load(LLK_FileRead("data\announcements.json")), vars.news.last_read := LLK_IniRead("ini\config.ini", "versions", "announcement", 0)
 
 	If !settings.general.dev
 	{
@@ -904,7 +904,7 @@ News(mode := "")
 	
 		If !Blank(object.timestamp) && (object.timestamp != vars.news.file.timestamp)
 		{
-			vars.news.file := json.Load(string)
+			vars.news.file := json.Load(LLK_StringCase(string))
 			file_new := FileOpen("data\announcements.json", "w", "UTF-8-RAW")
 			file_new.Write(string), file_new.Close()
 		}

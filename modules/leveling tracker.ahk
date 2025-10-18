@@ -282,7 +282,7 @@ Geartracker_GUI(mode := "")
 					Continue
 				color := (SubStr(item, 2, 2) <= vars.log.level) ? " cLime" : ""
 				count += (color ? 1 : 0)
-				If (y + h >= vars.client.h*0.85)
+				If (y + h >= vars.client.h*0.75)
 				{
 					If !ellipsis
 					{

@@ -277,7 +277,7 @@
     ],
     "hotkeys omnikey2": [
       "due to an in-game inconsistency, having the c-key rebound requires a secondary <omni-key> for items",
-      "whenever a feature requires you to omni-click an item, you will have to use this secondary one"
+      "whenever a feature requires you to press the <omni-key> over an item, you will have to use this secondary one"
     ],
     "hotkeys omniblock": [
       "while the game-client or tool is focused, the keypress will only be registered by the tool and not the rest of the system",
@@ -291,9 +291,7 @@
       "if the tool stops responding, use this hotkey to restart it"
     ],
     "iteminfo enable": [
-      "provides a customizable item tooltip which adds glance value to loot you pick up",
-      "hold down the <omni-key> while hovering over items to activate it: if already active, simple omni-clicks will activate/refresh it again",
-      "click into the game or press <esc> to close it"
+      "provides a customizable item tooltip which adds glance value to loot you pick up"
     ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
@@ -303,7 +301,7 @@
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
     ],
     "iteminfo toggle": [
-      "hold down the <omni-key> while hovering over items to activate the tooltip: if already active, simple omni-clicks will activate/refresh it again",
+      "hold down the <omni-key> while hovering over items to activate the tooltip: if already active, normal <omni-key> presses over items will activate/refresh it again",
       "click into the game or press <esc> to close it"
     ],
     "iteminfo hold": [
@@ -392,7 +390,8 @@
       "it will be available once a language-pack for the current language has been installed"
     ],
     "leveltracker enable": [
-      "provides an automated campaign guide-overlay and several qol features"
+      "provides an automated campaign guide-overlay and several qol features",
+      "adds a button to the menu-widget with which to toggle the guide overlay"
     ],
     "leveltracker timer": [
       "adds a timer between guide text and navigation buttons that records your act times and stores them in csv-files",
@@ -417,9 +416,9 @@
       "includes level recommendations for some areas or boss fights"
     ],
     "leveltracker geartracker": [
-      "notifies you when new gear/gems can be equipped (the guide overlay will show <gear rdy>)",
+      "notifies you when you meet gear or gem requirements after lvl-ups:\nthe guide overlay will display <gear rdy>",
       "requires your character-name in the <general> settings(/highlight)",
-      "accessed by right-clicking the guide button in the menu-widget"
+      "accessed by right-clicking the act-tracker button in the menu-widget, or clicking <gear rdy> in the guide overlay"
     ],
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
@@ -667,7 +666,7 @@
     ],
     "mapinfo enable": [
       "provides a compact and customizable info-panel for map mods",
-      "omni-clicking a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them"
+      "pressing the <omni-key> over a map opens the panel:\n- press 1-4 while hovering mods to apply colors\n- press <space> while hovering mods to ignore\n- right-click mods to reset them"
     ],
     "mapinfo toggle": [
       "press the <omni-key> while hovering over maps/waystones to activate the panel",
@@ -1472,7 +1471,7 @@
   "maptrackernotes": {
     "help": [
       "type in custom notes and press <enter>: include \"X#\" before the note to limit it to X runs",
-      "omni-click items to add them to the notes:\nmap-device items are highlighted yellow and limited to 4",
+      "press the <omni-key> over items to add them to the notes:\nmap-device items are highlighted yellow and limited to 4",
       "long-click a note to remove it, or the header to clear everything"
     ]
   },

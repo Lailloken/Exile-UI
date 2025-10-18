@@ -4017,7 +4017,7 @@ Settings_screenchecks()
 		}
 	}
 	Else If !(active_pixel.Count() + active_image.Count())
-		Gui, %GUI%: Add, Text, % "Section xs cLime y+" vars.settings.spacing " w" settings.general.fWidth * 30, % Lang_Trans("m_screen_inactive")
+		Gui, %GUI%: Add, Text, % "Section xs cLime y+" vars.settings.spacing " w" settings.general.fWidth * 35, % Lang_Trans("m_screen_inactive")
 }
 
 Settings_screenchecks2(cHWND := "")

@@ -266,7 +266,7 @@ Gui_RadialMenu(selection := "", longpress := 0)
 
 		style := (InStr("147", index) ? "Section" : "") . (InStr("47", index) ? " xs" : (index = 1 ? "" : " ys"))
 		If !val	
-			Gui, %GUI%: Add, Text, % style " w" height + 2 " h" height + 2 " BackgroundTrans" (selection.Count() = 2 ? "" : " Hidden") " HWNDhwnd"
+			Gui, %GUI%: Add, Progress, % style " w" height + 2 " h" height + 2 " Disabled BackgroundTrans Hidden Border HWNDhwnd"
 		Else
 		{
 			Gui, %GUI%: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.radial[img . file]
@@ -362,7 +362,11 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 
 		Case "leveltracker":
 			If !longpress
-				Leveltracker(cHWND, hotkey)
+			{
+				If (hotkey = 1)
+					Leveltracker(cHWND, hotkey)
+				Else Geartracker("toggle")
+			}
 			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "leveltracker", 6: (settings.leveltracker.geartracker ? "geartracker" : "")}, 1)
 
 			Switch vars.radial.hover_select
