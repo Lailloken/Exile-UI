@@ -443,11 +443,12 @@ Omni_ContextMenu()
 
 			If !item.unid && (item.itembase = "Timeless Jewel") && InStr(vars.omnikey.clipboard, Lang_Trans("items_uniquemod"))
 			{
-				Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "seed-explorer"
-				ControlGetPos,,, w9,,, % "ahk_id " hwnd
+				;Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "seed-explorer"
+				;ControlGetPos,,, w9,,, % "ahk_id " hwnd
 				Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd1" style, % "vilsol's calculator"
 				ControlGetPos,,, w10,,, % "ahk_id " hwnd
-				vars.hwnd.omni_context.seed := hwnd, vars.hwnd.omni_context.vilsol := hwnd1
+				;vars.hwnd.omni_context.seed := hwnd
+				vars.hwnd.omni_context.vilsol := hwnd1
 			}
 
 			If !item.unid && item.sockets && !vars.poe_version

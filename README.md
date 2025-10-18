@@ -167,12 +167,6 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | <p align="center">**Path of Exile 2 compatible**</p> |||
 <br>
 
-### [Seed-explorer](https://github.com/Lailloken/Lailloken-UI/wiki/Seed-explorer): in-client UI to quickly test a legion jewel in every socket
-| full view | skilltree & socket-selection | jewel/socket info, transformation results |
-|---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/seedexplorer_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/seedexplorer_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/seedexplorer_002.png) |
-<br>
-
 ### [Cheat-sheet Overlay Toolkit](https://github.com/Lailloken/Lailloken-UI/wiki/Cheat-sheet-Overlay-Toolkit): create customizable, context-sensitive overlays
 **`Path of Exile 2 compatible`**  
 | image overlay | app "overlay" | custom/advanced overlay |
@@ -225,3 +219,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | [Necropolis Lantern Highlighting](https://github.com/Lailloken/Lailloken-UI/wiki/Necropolis) | [Overlayke: Kalandra Planner/Preview Overlay](https://github.com/Lailloken/Lailloken-UI/wiki/%5BArchive%5D-Retired-Features#overlayke-lake-of-kalandra-plannerpreview-overlay) | [Sanctum-room tooltip overlays](https://github.com/Lailloken/Lailloken-UI/releases/tag/v1.29.4-hotfix2) |
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/necropolis_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/legacy_004.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/legacy_005.jpg) |
+
+| [Seed-explorer](https://github.com/Lailloken/Lailloken-UI/wiki/Seed-explorer): in-client UI to quickly test a legion jewel in every socket |
+|---|
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/seedexplorer_001.jpg) |
