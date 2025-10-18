@@ -1,92 +1,4 @@
-﻿Init_GUI(mode := "")
-{
-	local
-	global vars, settings
-
-	update := vars.update, settings.gui := {"oToolbar": LLK_IniRead("ini" vars.poe_version "\config.ini", "UI", "toolbar-orientation", "horizontal"), "sToolbar": LLK_IniRead("ini" vars.poe_version "\config.ini", "UI", "toolbar-size", Round(vars.monitor.h / 72))}, orientation := settings.gui.oToolbar, size := settings.gui.sToolbar, hide := settings.general.hide_toolbar, margin := settings.general.fWidth/6
-	Gui, LLK_panel: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd +E0x02000000 +E0x00080000
-	Gui, LLK_panel: Color, % !IsNumber(update.1) || (update.1 = 0) ? "Black" : (update.1 > 0) ? "Green" : "Maroon"
-	Gui, LLK_panel: Margin, % margin, % margin
-	Gui, LLK_panel: Font, % "s" size " cWhite Bold", % vars.system.font
-	vars.hwnd.LLK_panel := {"main": hwnd}, height := 2 * size
-
-	;Gui, LLK_panel: Add, Text, Center BackgroundTrans Hidden HWNDhwnd, % "LLK`nUI"
-	;ControlGetPos,,,, height,, ahk_id %hwnd%
-	;While Mod(height, 2)
-	;	height += 1
-
-	If !vars.pics.toolbar.settings
-		vars.pics.toolbar.settings := LLK_ImageCache("img\GUI\settings.png", height)
-	Gui, LLK_panel: Add, Pic, % "Section Border HWNDhwnd", % "HBitmap:*" vars.pics.toolbar.settings
-	vars.hwnd.LLK_panel.settings := hwnd, style := (orientation = "horizontal") ? "ys" : "xs"
-
-	;Gui, LLK_panel: Margin, % settings.general.fWidth/2, % settings.general.fWidth/2
-	Gui, LLK_panel: Add, Pic, % (orientation = "horizontal" ? "ys" : "xs") " Section Border BackgroundTrans HWNDhwnd0 h" height/2 - 1 " w-1", % "HBitmap:*" vars.pics.global.reload
-	Gui, LLK_panel: Add, Progress, % "xp yp wp hp BackgroundBlack cGreen Range0-500 HWNDhwnd01"
-	Gui, LLK_panel: Margin, 0, 0
-	Gui, LLK_panel: Add, Pic, % (orientation = "vertical" ? "ys" : "xs") " Border BackgroundTrans HWNDhwnd h" height/2 - 1 " w-1", % "HBitmap:*" vars.pics.global.close
-	Gui, LLK_panel: Add, Progress, % "xp yp wp hp BackgroundBlack cRed Range0-500 HWNDhwnd1"
-	vars.hwnd.LLK_panel.restart := hwnd0, vars.hwnd.LLK_panel["restart|"] := vars.hwnd.LLK_panel.restart_bar := hwnd01, vars.hwnd.LLK_panel.close := hwnd, vars.hwnd.LLK_panel["close|"] := vars.hwnd.LLK_panel.close_bar := hwnd1
-
-	Gui, LLK_panel: Margin, % margin, % margin
-	Loop, Parse, % "leveltracker, anoints, maptracker, notepad, announcement", `,, %A_Space%
-		If (A_LoopField = "anoints") && !vars.client.stream
-			Continue
-		Else If (settings.features[A_LoopField] || settings.qol[A_LoopField]) || (A_LoopField = "announcement") && vars.news.unread
-		{
-			file := (A_LoopField = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (A_LoopField = "anoints" ? vars.poe_version : "")
-			file := (A_LoopField = "maptracker" && vars.maptracker.pause) ? 0 : file
-			If !vars.pics.toolbar[A_LoopField . file]
-				vars.pics.toolbar[A_LoopField . file] := LLK_ImageCache("img\GUI\" A_LoopField . file ".png", height)
-			If RegExMatch(A_LoopField, "i)leveltracker|maptracker")
-				If !vars.pics.toolbar[A_LoopField . (file = "0" ? "" : "0")]
-					vars.pics.toolbar[A_LoopField . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\" A_LoopField . (file = "0" ? "" : "0") ".png", height)
-
-			If (A_LoopField = "leveltracker")
-			{
-				Gui, LLK_panel: Add, Text, % style " w" height " h" height " BackgroundTrans Center 0x200 HWNDhwnd0 cLime", % ""
-				Gui, LLK_panel: Add, Pic, % "xp yp Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.toolbar[A_LoopField . file]
-				vars.hwnd.LLK_panel.leveltracker_text := hwnd0, vars.leveltracker.gear_counter := 0
-			}
-			Else Gui, LLK_panel: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.toolbar[A_LoopField . file]
-			added := 1, vars.hwnd.LLK_panel[A_LoopField] := hwnd
-
-			If (A_LoopField = "announcement")
-			{
-				Gui, LLK_panel: Add, Progress, % "Disabled BackgroundBlack xp yp wp hp Border BackgroundTrans HWNDhwnd", 0
-				vars.hwnd.LLK_panel.announcement_bar := hwnd
-			}
-		}
-	Gui, LLK_panel: Show, NA x10000 y10000
-	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.LLK_panel.main
-
-	If (w + h < 20) ;there's some weird instance where GUI-creation can fail, leading to the toolbar being 1x1 pixels in size
-	{
-		Init_GUI(mode)
-		Return
-	}
-
-	xPos := (settings.general.xButton >= vars.monitor.w / 2) ? settings.general.xButton - w + 1 : settings.general.xButton ;apply right-alignment if applicable (i.e. if button is on the right half of monitor)
-	xPos := (xPos + (w - 1) > vars.monitor.w - 1) ? vars.monitor.w - 1 - w : xPos ;correct the coordinates if panel ends up out of monitor-bounds
-
-	yPos := (settings.general.yButton >= vars.monitor.h / 2) ? settings.general.yButton - h + 1 : settings.general.yButton ;apply top-alignment if applicable (i.e. if button is on the top half of monitor)
-	yPos := (yPos + (h - 1) > vars.monitor.h - 1) ? vars.monitor.h - 1 - h : yPos ;correct the coordinates if panel ends up out of monitor-bounds
-
-	Gui, LLK_panel: Show, % (hide ? "hide" : "NA") " x"vars.monitor.x + xPos " y"vars.monitor.y + yPos
-	LLK_Overlay(vars.hwnd.LLK_panel.main, hide ? "hide" : "show",, "LLK_panel"), vars.toolbar := {"x": vars.monitor.x + xPos, "y": vars.monitor.y + yPos, "x2": vars.monitor.x + xPos + w, "y2": vars.monitor.y + yPos + h}
-
-	If (mode = "refresh") || GetKeyState(vars.hotkeys.tab, "P")
-	{
-		LLK_Overlay(vars.hwnd.LLK_panel.main, "show")
-		If hide && !GetKeyState(vars.hotkeys.tab, "P")
-		{
-			vars.toolbar.drag := 1
-			SetTimer, Gui_ToolbarHide, -1000
-		}
-	}
-}
-
-Gui_CheckBounds(ByRef xPos, ByRef yPos, width, height)
+﻿Gui_CheckBounds(ByRef xPos, ByRef yPos, width, height)
 {
 	local
 	global vars, settings
@@ -184,7 +96,7 @@ Gui_HelpToolTip(HWND_key)
 	HWND_key := StrReplace(HWND_key, "|"), check := SubStr(HWND_key, 1, InStr(HWND_key, "_") - 1), control := SubStr(HWND_key, InStr(HWND_key, "_") + 1)
 	If (check = "donation")
 		check := "settings", donation := 1
-	HWND_checks := {"cheatsheet": 0, "cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0, "leveltrackergems": "leveltracker_gempickups", "leveltrackergemcutting": "leveltracker_gemcutting"}
+	HWND_checks := {"cheatsheet": 0, "cheatsheets": "cheatsheet_menu", "maptracker": "maptracker_logs", "maptrackernotes": "maptrackernotes_edit", "notepad": 0, "leveltracker": "leveltracker_screencap", "leveltrackereditor": "leveltracker_editor", "leveltrackerschematics": "skilltree_schematics", "actdecoder": 0, "lootfilter": 0, "snip": 0, "lab": 0, "searchstrings": "searchstrings_menu", "statlas": 0, "updater": "update_notification", "geartracker": 0, "seed-explorer": "legion", "radial": 0, "recombination": 0, "sanctum": 0, "sanctumrelics": "sanctum_relics", "anoints": 0, "exchange": 0, "alarm": 0, "leveltrackergems": "leveltracker_gempickups", "leveltrackergemcutting": "leveltracker_gemcutting"}
 
 	If (check = "alarm") && InStr(HWND_key, "set ")
 		WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " vars.hwnd.alarm.alarm_set.main
@@ -212,6 +124,8 @@ Gui_HelpToolTip(HWND_key)
 		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
 	Else If (check = "alarm" || check = "leveltrackerschematics")
 		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
+	Else If (check = "radial")
+		tooltip_width := wWin * 2
 
 	If !tooltip_width
 		Return
@@ -283,6 +197,8 @@ Gui_HelpToolTip(HWND_key)
 		xPos := vars.client.x + vars.client.w/2 - tooltip_width/2
 	Else If (check = "leveltrackergemcutting")
 		xPos := (control = "general" ? xControl : xControl + wControl), yPos := (control = "general" ? y + h : y)
+	Else If (check = "radial")
+		xPos := xWin + wWin/2 - tooltip_width/2
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1
@@ -303,98 +219,221 @@ Gui_Name(GuiHWND)
 			Return val.name
 }
 
-Gui_ToolbarButtons(cHWND, hotkey)
+Gui_RadialMenu(selection := "", longpress := 0)
+{
+	local
+	global vars, settings
+	static toggle := 0, order := [4, 6, 2, 8, 1, 3, 7, 9], sMenu
+
+	If !selection.Count()
+	{
+		selection := {5: "settings"}, added := 1
+		For index, feature in ["leveltracker", "maptracker", "notepad", "anoints"]
+			If (feature = "anoints" && !vars.client.stream)
+				Continue
+			Else If settings.features[feature] || settings.qol[feature]
+				selection[order[added]] := feature, added += 1
+	}
+	height := 2 * (settings.general.sMenu + 6), toggle := !toggle, GUI := "radial_menu" toggle
+	If !vars.radial
+		vars.radial := {}
+	vars.radial.click_select := (longpress ? vars.radial.click_select : ""), vars.radial.wait := 1
+
+	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow HWNDradial_menu +E0x02000000 +E0x00080000
+	Gui, %GUI%: Color, Purple
+	WinSet, TransColor, Purple 255
+	Gui, %GUI%: Margin, % (margin := Round(height/6)), % margin
+	Gui, %GUI%: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
+	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := []
+
+	Loop 9
+	{
+		index := A_Index, val := selection[index]
+		If val
+		{
+			click := vars.radial.click_select
+			If click && (click != "settings") && (val = "settings")
+				img := "settings_bg"
+			Else img := (val = "close" && click = "notepad" ? "notepad_close" : (val = "close" && click = "leveltracker" ? "leveltracker_close" : val))
+			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (val = "anoints" ? vars.poe_version : "")
+			file := (val = "maptracker" && vars.maptracker.pause) ? 0 : file
+			If !vars.pics.radial[img . file]
+				vars.pics.radial[img . file] := LLK_ImageCache("img\GUI\radial menu\" img . file ".png", height)
+			If RegExMatch(val, "i)(leveltracker|maptracker)$")
+				If !vars.pics.radial[img . (file = "0" ? "" : "0")]
+					vars.pics.radial[img . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\radial menu\" img . (file = "0" ? "" : "0") ".png", height)
+		}
+
+		style := (InStr("147", index) ? "Section" : "") . (InStr("47", index) ? " xs" : (index = 1 ? "" : " ys"))
+		If !val	
+			Gui, %GUI%: Add, Text, % style " w" height + 2 " h" height + 2 " BackgroundTrans" (selection.Count() = 2 ? "" : " Hidden") " HWNDhwnd"
+		Else
+		{
+			Gui, %GUI%: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.radial[img . file]
+			If (val = "settings") && (!vars.radial.click_select || vars.radial.click_select = "settings")
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" (vars.update.1 ? (vars.update.1 > 0 ? "Lime" : "Red") : "Black"), 100
+		}
+
+		If val
+		{
+			vars.hwnd.radial[val] := vars.hwnd.radial.indexed[index] := hwnd
+			entry := (!Blank(check0 := vars.radial.click_select) ? check0 " " val : val)
+
+			If check0 && (check0 != "settings") && (val = "settings")
+				vars.hwnd.help_tooltips["radial_settings sub-menu" handle] := hwnd, handle .= "|"
+			Else If vars.help.radial[entry].Count() || vars.help2.radial[entry].Count()
+				vars.hwnd.help_tooltips["radial_" entry] := hwnd
+		}
+		Else vars.hwnd.radial.indexed[index] := hwnd
+		ControlGetPos, xPos, yPos,,,, ahk_id %hwnd%
+		positions[index] := [xPos, yPos]
+	}
+
+	If settings.general.animations
+		Loop 9
+			ControlMove,, % positions[5].1 + (positions[A_Index].1 - positions.5.1) / 2, positions.5.2 + (positions[A_Index].2 - positions.5.2) / 2,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
+
+	If !longpress
+		xPos := vars.general.xMouse - 2 * margin - 1.5 * height, yPos := vars.general.yMouse - 2 * margin - 1.5 * height
+	Else xPos := vars.radial.selection.x - 2 * margin - height, yPos := vars.radial.selection.y - 2 * margin - height
+
+	Gui_CheckBounds(xPos, yPos, 4 * margin + 3 * height, 4 * margin + 3 * height)
+	Gui, %GUI%: Show, % "NA x" xPos " y" yPos
+	LLK_Overlay(radial_menu, "show",, GUI), LLK_Overlay(hwnd_old, "destroy")
+	WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " radial_menu
+	vars.radial.window := {"x1": xWin, "y1": yWin, "x2": xWin + wWin, "y2": yWin + hWin}
+
+	SetControlDelay, 0
+	If settings.general.animations
+		Loop, % (count := positions.5.1 - positions.4.1)
+		{
+			outer := A_Index
+			If (A_Index < count * 0.75)
+				Continue
+			Loop, % 9
+				If (A_Index != 5) && vars.hwnd.radial.indexed[A_Index]
+				{
+					xPos := positions.5.1 + (InStr("147", A_Index) ? -outer : (InStr("369", A_Index) ? outer : 0))
+					yPos := positions.5.2 + (InStr("123", A_Index) ? -outer : (InStr("789", A_Index) ? outer : 0))
+					ControlMove,, % xPos, % yPos,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
+				}
+		}
+	vars.radial.wait := 0
+
+	If longpress
+	{
+		KeyWait, LButton
+		vars.radial.hover_select := LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+	}
+	Else vars.radial.hover_select := ""
+}
+
+Gui_RadialMenu2(cHWND := "", hotkey := 1)
 {
 	local
 	global vars, settings
 
-	start := A_TickCount, check := LLK_HasVal(vars.hwnd.LLK_panel, cHWND)
-	If (check = "settings")
-	{
-		vars.toolbar.drag := 1
-		While (check = "settings") && GetKeyState("LButton", "P") ;dragging the toolbar
+	check := LLK_HasVal(vars.hwnd.radial, cHWND), control := SubStr(check, InStr(check, "_") + 1), start := A_TickCount
+	While GetKeyState("LButton", "P") && !longpress
+		If (A_TickCount >= start + 200)
 		{
-			If (A_TickCount >= start + 250)
-			{
-				WinGetPos,,, width, height, % "ahk_id " vars.hwnd.LLK_panel.main
-				While GetKeyState("LButton", "P")
-				{
-					LLK_Drag(width, height, xPos, yPos,, "LLK_panel")
-					Sleep 1
-				}
-				KeyWait, LButton
-				IniWrite, % xPos, % "ini" vars.poe_version "\config.ini", UI, button xcoord
-				IniWrite, % yPos, % "ini" vars.poe_version "\config.ini", UI, button ycoord
-				settings.general.xButton := xPos, settings.general.yButton := yPos, vars.general.drag := 0
-				Init_GUI()
-				WinActivate, ahk_group poe_window
-				vars.toolbar.drag := 0
-				Return
-			}
+			WinGetPos, xSelection, ySelection, wSelection, hSelection, % "ahk_id " cHWND
+			longpress := 1, vars.radial.click_select := check, vars.radial.selection := {"x": xSelection - 2, "y": ySelection - 2}
 		}
-		vars.toolbar.drag := 0
 
-		If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main) || WinExist("ahk_id " vars.hwnd.leveltracker_editor.main) || WinExist("ahk_id " vars.hwnd.leveltracker_gempickups.main)
-			LLK_ToolTip(Lang_Trans("global_configwindow"), 2,,,, "yellow")
-		Else If (hotkey = 2)
-		{
-			KeyWait, RButton
-			settings.gui.oToolbar := (settings.gui.oToolbar = "horizontal") ? "vertical" : "horizontal"
-			IniWrite, % settings.gui.oToolbar, % "ini" vars.poe_version "\config.ini", UI, toolbar-orientation
-			Init_GUI("refresh")
-		}
-		Else If WinExist("ahk_id "vars.hwnd.settings.main)
-			Settings_menuClose()
-		Else Settings_menu(vars.settings.active_last ? vars.settings.active_last : "general",, 0)
-	}
-	Else If InStr(check, "restart")
+	Switch check
 	{
-		If LLK_Progress(vars.hwnd.LLK_panel.restart_bar, "LButton")
-		{
-			If GetKeyState(vars.hotkeys.tab, "P")
-			{
-				LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 10000)
-				KeyWait, % vars.hotkeys.tab
-			}
-			KeyWait, LButton
-			Reload
-			ExitApp
-		}
-	}
-	Else If InStr(check, "close")
-	{
-		If LLK_Progress(vars.hwnd.LLK_panel.close_bar, "LButton")
-		{
-			If GetKeyState(vars.hotkeys.tab, "P")
-			{
-				LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 10000)
-				KeyWait, % vars.hotkeys.tab
-			}
-			ExitApp
-		}
-	}
-	Else If InStr(check, "leveltracker")
-		Leveltracker(cHWND, hotkey)
-	Else If (check = "maptracker")
-		Maptracker(cHWND, hotkey)
-	Else If (check = "notepad")
-		Notepad(cHWND, hotkey)
-	Else If (check = "anoints")
-	{
-		KeyWait, LButton
-		KeyWait, RButton
-		Anoints(vars.hwnd.anoints.main ? "close" : "")
-	}
-	Else If InStr(check, "announcement")
-		Settings_menu("news")
-}
+		Default:
+			LLK_ToolTip("no action")
 
-Gui_ToolbarHide()
-{
-	local
-	global vars
+		Case "anoints":
+			If !longpress
+				Anoints()
+			Else Gui_RadialMenu({2: "settings", 5: "anoints"}, 1)
 
-	LLK_Overlay(vars.hwnd.LLK_panel.main, "hide"), vars.toolbar.drag := 0
+			Switch vars.radial.hover_select
+			{
+				Case "anoints":
+					Anoints()
+				Case "settings":
+					Settings_menu("anoints")
+			}
+
+		Case "leveltracker":
+			If !longpress
+				Leveltracker(cHWND, hotkey)
+			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "leveltracker", 6: (settings.leveltracker.geartracker ? "geartracker" : "")}, 1)
+
+			Switch vars.radial.hover_select
+			{
+				Case "close":
+					Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker := ""
+				Case "geartracker":
+					Geartracker("toggle")
+				Case "leveltracker":
+					Leveltracker(vars.general.cMouse, 1)
+				Case "settings":
+					Settings_menu("leveling tracker")
+			}
+
+		Case "maptracker":
+			If !longpress
+				Maptracker("", hotkey)
+			Else Gui_RadialMenu({2: "settings", 5: "maptracker", 6: (vars.maptracker.pause ? "resume" : "pause")}, 1)
+
+			Switch
+			{
+				Case vars.radial.hover_select && InStr("pause, resume", vars.radial.hover_select):
+					Maptracker("", 2)
+				Case (vars.radial.hover_select = "settings"):
+					Settings_menu("mapping tracker")
+				Case (vars.radial.hover_select = "maptracker"):
+					Maptracker("", 1)
+			}
+
+		Case "notepad":
+			If !longpress
+				Notepad(hotkey = 1 ? "open" : "quick")
+			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "notepad", 6: "quick-note"}, 1)
+
+			Switch vars.radial.hover_select
+			{
+				Case "close":
+					For key, hwnd in vars.hwnd.notepad_widgets
+						LLK_Overlay(hwnd, "destroy")
+					vars.hwnd.notepad_widgets := {}, vars.notepad_widgets := {}
+				Case "notepad":
+					Notepad("open")
+				Case "quick-note":
+					Notepad("quick")
+				Case "settings":
+					Settings_menu("minor qol tools")
+			}
+
+		Case "settings":
+			If !longpress
+			{
+				If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main)
+				|| WinExist("ahk_id " vars.hwnd.leveltracker_editor.main) || WinExist("ahk_id " vars.hwnd.leveltracker_gempickups.main)
+					LLK_ToolTip(Lang_Trans("global_configwindow"), 2,,,, "yellow")
+				Else If WinExist("ahk_id "vars.hwnd.settings.main)
+					Settings_menuClose()
+				Else Settings_menu()
+			}
+			Else Gui_RadialMenu({2: "restart", 5: "settings", 8: "close"}, 1)
+
+			Switch vars.radial.hover_select
+			{
+				Case "close":
+					ExitApp
+				Case "restart":
+					LLK_Restart()
+				Case "settings":
+					Settings_menu()
+			}
+	}
+	LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 }
 
 LLK_ControlGet(cHWND, GUI_name := "", subcommand := "")

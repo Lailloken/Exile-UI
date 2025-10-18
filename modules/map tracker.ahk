@@ -131,16 +131,11 @@ Maptracker(cHWND := "", hotkey := "")
 		Else LLK_Overlay(vars.hwnd.maptracker_logs.main, "show")
 	}
 	Else If (hotkey = 1) && WinExist("ahk_id " vars.hwnd.maptracker_logs.main)
-	{
 		LLK_Overlay(vars.hwnd.maptracker_logs.main, "hide")
-		WinActivate, ahk_group poe_window
-	}
 	Else If (hotkey = 2)
 	{
 		vars.maptracker.pause := vars.maptracker.pause ? 0 : 1
-		GuiControl,, % vars.hwnd.LLK_panel.maptracker, % "HBitmap:*" vars.pics.toolbar["maptracker" (vars.maptracker.pause ? "0" : "")]
 		Maptracker_GUI()
-		WinActivate, ahk_group poe_window
 	}
 }
 

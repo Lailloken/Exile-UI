@@ -86,6 +86,22 @@ Hotkeys_ESC()
 	local
 	global vars, settings
 
+	If vars.hwnd.radial.main && WinExist("ahk_id " vars.hwnd.radial.main)
+	{
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+		KeyWait, ESC
+		Return
+	}
+	start := A_TickCount
+	While GetKeyState("ESC", "P")
+		If (A_TickCount >= start + 250)
+		{
+			Gui_RadialMenu()
+			KeyWait, ESC
+			Return
+		}
+		Else Sleep 25
+
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
 	Else If WinExist("Exile UI: RGB-Picker")
@@ -222,28 +238,6 @@ Hotkeys_Tab()
 	static stash_toggle := 0
 
 	start := A_TickCount
-	If WinExist("ahk_id " vars.hwnd.stash.main) && !WinActive("ahk_id " vars.hwnd.settings.main)
-	{
-		WinActivate, % "ahk_id " vars.hwnd.poe_client
-		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
-		If !stash_toggle
-		{
-			Clipboard := """note:"""
-			SendInput, ^{f}
-			Sleep 100
-			SendInput, {DEL}^{v}{ENTER}
-		}
-		Else
-		{
-			SendInput, ^{f}
-			Sleep 100
-			SendInput, {DEL}{ENTER}
-		}
-		stash_toggle := !stash_toggle
-		KeyWait, % vars.hotkeys.tab
-		Return
-	}
-
 	While settings.qol.notepad && vars.hwnd.notepad_widgets.Count() && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
@@ -253,14 +247,6 @@ Hotkeys_Tab()
 				Gui, % Gui_Name(val) ": -E0x20"
 				WinSet, Transparent, Off, % "ahk_id "val
 			}
-			Break
-		}
-
-	While settings.general.hide_toolbar && GetKeyState(vars.hotkeys.tab, "P")
-		If (A_TickCount >= start + 200)
-		{
-			active .= " LLK-panel"
-			LLK_Overlay(vars.hwnd.LLK_panel.main, "show")
 			Break
 		}
 
@@ -323,8 +309,6 @@ Hotkeys_Tab()
 
 	If longpress
 		Leveltracker_PobSkilltree("close")
-	If InStr(active, "LLK-panel") && settings.general.hide_toolbar
-		LLK_Overlay(vars.hwnd.LLK_panel.main, "hide")
 	If InStr(active, "alarm")
 	{
 		vars.alarm.toggle := 0
@@ -370,9 +354,7 @@ Hotkeys_Tab()
 		vars.maptracker.toggle := 0, LLK_Overlay(vars.hwnd.maptracker.main, "hide")
 	If InStr(active, " lab") && WinExist("ahk_id "vars.hwnd.lab.main)
 		LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
-	;If vars.hwnd.alarm.alarm_set.main && WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
-	;	WinActivate, % "ahk_id " vars.hwnd.alarm.alarm_set.main
-	;Else If active && !settings.general.dev
+
 	If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
 }
@@ -384,6 +366,10 @@ Hotkeys_Tab()
 #If (settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
+
+#If vars.hwnd.radial.main && vars.general.cMouse && LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
+LButton::Gui_RadialMenu2(vars.general.cMouse)
+RButton::Gui_RadialMenu2(vars.general.cMouse, 2)
 
 #If vars.hwnd.betrayal_prioview.main && WinExist("ahk_id " vars.hwnd.betrayal_prioview.main) || vars.betrayal.rbutton
 RButton::vars.betrayal.rbutton := 1
@@ -549,11 +535,6 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 
 #If vars.hwnd.notepad.main && (vars.general.cMouse = vars.hwnd.notepad.note) && WinActive("ahk_id " vars.hwnd.notepad.main)
 *RButton::Notepad("color")
-
-#If (vars.system.timeout = 0) && vars.general.wMouse && (vars.general.wMouse = vars.hwnd.LLK_panel.main)
-
-*LButton::Gui_ToolbarButtons(vars.general.cMouse, 1)
-*RButton::Gui_ToolbarButtons(vars.general.cMouse, 2)
 
 #If (vars.system.timeout = 0) && vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse)) ;hovering a notepad-widget and dragging or deleting it
 

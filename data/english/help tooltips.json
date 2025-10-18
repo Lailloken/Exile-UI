@@ -28,11 +28,11 @@
     "lang unknown": [
       "the client's language couldn't be detected from reading its config-file"
     ],
-    "toolbar hide": [
-      "permanently hides the toolbar until you hold down the <widget-key> or hover the cursor over its previous position"
-    ],
     "font-size": [
       "– and + can be held down, the middle button resets the size"
+    ],
+    "animations": [
+      "disable animations/transitions used in some menus and interfaces"
     ],
     "generic color": [
       "click to open the color-palette, right click to reset"
@@ -74,11 +74,11 @@
     ],
     "logfile": [
       "the size and load-time of the game's client.txt log-file: excessively large log-files may negatively impact the game's and tool's performance",
-      "if you have issues with the game or log-related features, long-click this label to clean the log-file by moving its contents into a separate, cumulative backup-file"
+      "if you have issues with the game or log-related features, click the folder button on the right to open the game's log folder"
     ],
     "logfolder": [
-      "open the game's log folder",
-      "the client.txt log-file can only be modified after closing the game"
+      "open the game's log folder to manually delete the log file: if you use tools that require the log-file, make a backup of the file first",
+      "the client.txt log-file can only be modified after closing the game(/highlight)"
     ],
     "force resolution": [
       "you can force the client to run with a custom resolution not available by default",
@@ -113,11 +113,16 @@
     "actdecoder enable": [
       "provides an interactive zone-layout overlay for campaign areas",
       "hold down the <widget-key> while in a supported campaign area to activate the overlay",
-      "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
+      "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)",
+      "'advanced' layouts derived from cyclondefinitiv's guide (poe 1) and the campaign codex discord (poe 2)"
     ],
     "actdecoder generic": [
       "disables sub-layout selections and only shows basic layouts",
-      "credits: layouts provided by the campaign codex discord"
+      "credits: layouts provided by lolcohol and the campaign codex discord"
+    ],
+    "actdecoder generic 2": [
+      "disables sub-layout selections and only shows basic layouts",
+      "credits: layouts created by engineering eternity, compiled by u/_treb"
     ],
     "actdecoder layouts opacity": [
       "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
@@ -137,7 +142,8 @@
     "betrayal enable": [
       "provides an interactive cheat sheet overlay for the betrayal league mechanic",
       "requires the <betrayal> image-check to be set up correctly in the <screen-checks> section(/highlight)",
-      "while the syndicate board is on screen, hold down the <omni-key> to activate the overlay"
+      "while the syndicate board is on screen, hold down the <omni-key> to activate the overlay",
+      "refer to the wiki-page for more information"
     ],
     "betrayal ruthless": [
       "show ruthless rewards and use separate highlighting instead"
@@ -411,17 +417,16 @@
       "includes level recommendations for some areas or boss fights"
     ],
     "leveltracker geartracker": [
-      "notifies you when new gear can be equipped (the guide button will show a green number)",
+      "notifies you when new gear/gems can be equipped (the guide overlay will show <gear rdy>)",
       "requires your character-name in the <general> settings(/highlight)",
-      "accessed by right-clicking the guide button in the toolbar",
-      "while the panel is open, omni-click items to add them to the list"
+      "accessed by right-clicking the guide button in the menu-widget"
     ],
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
       "while hovering over a gem, hold down the <omni-key> to show an overlay with gem setups/links",
-      "you can switch between socket groups by scrolling the mouse wheel",
+      "you can switch between skill sets by scrolling the mouse wheel",
       "",
       "while the skill-tree is on screen, press the <omni-key> to show overlays with skill-tree schematics",
       "requires the <skilltree> image-check to be set up correctly in the <screen-checks> section(/highlight)"
@@ -472,7 +477,7 @@
     "leveltracker guide info": [
       "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
-      "credits: default guide originally derived from exile-leveling by heartofphos"
+      "credits:\n- default guide originally derived from exile-leveling by heartofphos\n- contains several act optimizations based on cyclondefinitiv's guide"
     ],
     "leveltracker gems": [
       "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
@@ -600,8 +605,7 @@
       "example: abyssal depths"
     ],
     "maptracker hide": [
-      "hides the panel instead of just graying it out whenever tracking is paused (by right-clicking the button in the toolbar)",
-      "check the toolbar-button to see the state of the tracker (it's also grayed out when paused)"
+      "hides the panel instead of just graying it out whenever tracking is paused (by right-clicking the button in the menu-widget)"
     ],
     "maptracker mechanics": [
       "logs certain mechanics you encounter while mapping"
@@ -642,12 +646,12 @@
       "refreshing kills only has to be done if you have finished the map and won't go back in"
     ],
     "maptracker mapinfo": [
-      "map-mods from the map-info panel will be logged\n(separate feature, has to be enabled and used)",
+      "map-mods from the <map-info> feature will be logged\n(separate feature, has to be enabled and actively used)",
       "this also includes information such as:\nelder guardians, conquerors, type of maven invitation, blight(-ravaged), contract/blueprint"
     ],
     "maptracker notes": [
       "adds an icon to the tracker panel to log custom notes for individual map runs",
-      "also enables you easily log items with a single click, e.g. map-device items used, special drops found in a run, etc."
+      "also enables you to easily log items with a single click, e.g. map-device items used, special drops found in a run, etc."
     ],
     "maptracker color unselected": [
       "used for highlighted cells in the log-viewer, and for non-league dates in the date selection",
@@ -737,7 +741,7 @@
     ],
     "notepad enable": [
       "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes",
-      "adds a button to the main toolbar: click it to toggle the notepad, right-click it to create a single-use sticky note"
+      "adds a button to the menu-widget: click it to toggle the notepad, right-click it to create a single-use sticky note"
     ],
     "notepad default color": [
       "specify the default colors for widgets of new tabs",
@@ -955,7 +959,7 @@
     ],
     "update check": [
       "checks for updates on tool launch and in the background while running",
-      "if there is an update available, the main toolbar will turn green"
+      "the menu-widget will blink if there is an update available"
     ],
     "update hotfix": [
       "a hotfix release is available, you can download it below",
@@ -1053,7 +1057,7 @@
     "menu screencheck": [
       "refers to the position of the ui element that activates this sheet",
       "static: always stays in the same position, e.g. stash/inventory plaque",
-      "dynamic: can move around slightly, e.g. parts of the syndicate board"
+      "dynamic: can move around slightly"
     ],
     "menu activation": [
       "how long the sheet stays on screen after activation",
@@ -1157,7 +1161,13 @@
     "about": [
       "click items on the list to highlight them in in-game searches",
       "long-right-click an item to remove it from the list",
-      "long-click the <clear> button to remove every highlighted item"
+      "press the <omni-key> on items to add them to the list"
+    ],
+    "clear highlighted": [
+      "long-click to remove every highlighted item from the list"
+    ],
+    "clear gems": [
+      "long-click to remove every gem from the list"
     ]
   },
   "lab": {
@@ -1522,13 +1532,13 @@
   "screenchecks": {
     "atlas": [
       "(/bold)(/underline)instructions:",
-      "-> open the atlas",
+      "-> open the atlas: the plaque at the top (img) has to be fully visible",
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ],
     "betrayal": [
       "(/bold)(/underline)instructions:",
-      "-> open the syndicate board and make sure the x-button is fully visible",
+      "-> open the syndicate board: the x-button (img) has to be fully visible",
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ],
@@ -1589,6 +1599,38 @@
   "statlas": {
     "tier": [
       "scroll the mouse-wheel to adjust this filter"
+    ]
+  },
+  "radial": {
+    "leveltracker close": [
+      "close the guide overlay:\nthe overlay will stay closed until toggled on again"
+    ],
+    "leveltracker geartracker": [
+      "geartracker:\nnotifies you when you meet gear or gem requirements after lvl-ups"
+    ],
+    "leveltracker leveltracker": [
+      "toggle the guide overlay:\nthe overlay will stay closed until lvl-up or zone transition"
+    ],
+    "maptracker pause": [
+      "pause map tracking"
+    ],
+    "maptracker resume": [
+      "resume map tracking"
+    ],
+    "notepad close": [
+      "close all text widgets"
+    ],
+    "notepad quick-note": [
+      "quick-note:\ncreate a single-use widget"
+    ],
+    "settings close": [
+      "close exile ui"
+    ],
+    "settings restart": [
+      "restart exile ui"
+    ],
+    "settings sub-menu": [
+      "open the settings for this feature"
     ]
   },
   "recombination": {

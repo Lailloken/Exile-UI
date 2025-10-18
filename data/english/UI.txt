@@ -413,6 +413,9 @@
 		lvltracker_gearadd		=	"item already;equippable"
 		lvltracker_gearadd		=	"item doesn't have;any requirements"
 		lvltracker_gear5levels		=	"only show the next 5 levels"
+		lvltracker_gearready		=	"gear rdy"					;## needs to be as short as possible
+		lvltracker_clearequip		=	"clear: equippable"				;## button to clear a list of gear that is equippable (lvl-requirements are met)
+		lvltracker_cleargems		=	"clear: gems"
 
 
 		lvltracker_endreached		=	"can't go further"
@@ -783,8 +786,8 @@
 		m_general_permissions		=	"script write-permissions test:"
 		m_general_start			=	"start test"
 		m_general_admin			=	"restart script as admin"
-		m_general_toolbar		=	"toolbar-size:"
-		m_general_hidetoolbar		=	"hide the toolbar when not in use"
+		m_general_menuwidget		=	"menu-widget size:"
+		m_general_animations		=	"disable ui animations"
 		m_general_input			=	"input method:"
 
 

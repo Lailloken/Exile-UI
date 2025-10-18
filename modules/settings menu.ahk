@@ -18,7 +18,7 @@
 
 	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
-	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic"] := hwnd
+	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic" vars.poe_version] := hwnd
 
 	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
 	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd
@@ -132,7 +132,6 @@ Settings_anoints2(cHWND)
 	If (check = "enable")
 	{
 		IniWrite, % (settings.features.anoints := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable enchant finder
-		Init_GUI()
 		Settings_menu("anoints")
 	}
 	Else If (check = "update")
@@ -1116,6 +1115,27 @@ Settings_general()
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd", % Lang_Trans("global_font")
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.settings.font_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd", % " " settings.general.fSize " "
+	vars.hwnd.settings.font_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth " ys gSettings_general2 Center HWNDhwnd", % Lang_Trans("m_general_menuwidget")
+	vars.hwnd.help_tooltips["settings_font-size||||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.settings.toolbar_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||||"] := hwnd
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd", % " " settings.general.sMenu " "
+	vars.hwnd.settings.toolbar_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||||||"] := hwnd
+	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.toolbar_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||||||"] := hwnd
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_general2 Checked" !settings.general.animations, % Lang_Trans("m_general_animations")
+	vars.hwnd.settings.animations := vars.hwnd.help_tooltips["settings_animations"] := hwnd
+
 	Loop, Files, data\*, R
 		If (A_LoopFileName = "client.txt")
 			parse := StrReplace(StrReplace(A_LoopFilePath, "data\"), "\client.txt"), check .= parse "|"
@@ -1131,27 +1151,6 @@ Settings_general()
 		Gui, %GUI%: Add, Text, % "ys HWNDhwnd Border x+"settings.general.fWidth, % " " Lang_Trans("global_credits") " "
 		vars.hwnd.help_tooltips["settings_lang language"] := vars.hwnd.settings.language := hwnd0, vars.hwnd.help_tooltips["settings_lang translators"] := hwnd, vars.hwnd.help_tooltips["settings_lang language|"] := hwnd00
 	}
-
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd", % Lang_Trans("global_font")
-	vars.hwnd.help_tooltips["settings_font-size"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
-	vars.hwnd.settings.font_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
-	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd", % " " settings.general.fSize " "
-	vars.hwnd.settings.font_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
-	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
-	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
-
-	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth " ys gSettings_general2 Center HWNDhwnd", % Lang_Trans("m_general_toolbar")
-	vars.hwnd.help_tooltips["settings_font-size||||"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
-	vars.hwnd.settings.toolbar_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||||"] := hwnd
-	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd", % " " settings.gui.sToolbar " "
-	vars.hwnd.settings.toolbar_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||||||"] := hwnd
-	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_general2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
-	vars.hwnd.settings.toolbar_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||||||"] := hwnd
-
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_general2 Checked" settings.general.hide_toolbar, % Lang_Trans("m_general_hidetoolbar")
-	vars.hwnd.settings.toolbar_hide := vars.hwnd.help_tooltips["settings_toolbar hide"] := hwnd
 
 	If !vars.client.stream
 	{
@@ -1182,7 +1181,7 @@ Settings_general()
 
 		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_general_logfile")
 		red := Min(255, Max(0, vars.log.file_size - 100)), green := 255 - red, rgb := (red < 10 ? "0" : "") . Format("{:X}", red) . (green < 10 ? "0" : "") . Format("{:X}", green) "00"
-		Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0 BackgroundTrans gSettings_general2 c" rgb, % " " Max(0, Round((500-vars.log.file_size)/500*100)) "% (" vars.log.file_size " mb / " vars.log.access_time " ms) "
+		Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0 BackgroundTrans c" rgb, % " " vars.log.file_size " mb / " vars.log.access_time " ms "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack cRed Vertical Range0-500 HWNDhwnd1", 0
 		If !vars.pics.global.folder
 			vars.pics.global.folder := LLK_ImageCache("img\GUI\folder.png")
@@ -1325,6 +1324,8 @@ Settings_general2(cHWND := "")
 			KeyWait, LButton
 			Reload
 			ExitApp
+		Case "animations":
+			IniWrite, % (settings.general.animations := !LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", settings, animations
 		Case "language":
 			IniWrite, % LLK_ControlGet(vars.hwnd.settings.language), % "ini" vars.poe_version "\config.ini", settings, language
 			IniWrite, % vars.settings.active, % "ini" vars.poe_version "\config.ini", Versions, reload settings
@@ -1417,33 +1418,24 @@ Settings_general2(cHWND := "")
 				LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fheight := font_height, settings.general.fwidth := font_width
 				LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fheight2 := font_height, settings.general.fwidth2 := font_width
 				IniWrite, % settings.general.fSize, % "ini" vars.poe_version "\config.ini", Settings, font-size
-				Init_GUI()
 				Settings_menu("general")
 			}
 			Else If InStr(check, "toolbar_")
 			{
-				If (control = "hide")
-				{
-					settings.general.hide_toolbar := LLK_ControlGet(cHWND)
-					IniWrite, % settings.general.hide_toolbar, % "ini" vars.poe_version "\config.ini", UI, hide toolbar
-					Init_GUI()
-					Return
-				}
 				While GetKeyState("LButton", "P")
 				{
 					If (control = "minus")
-						settings.gui.sToolbar -= (settings.gui.sToolbar > Round((vars.monitor.h / 72) / 2)) ? 1 : 0
+						settings.general.sMenu -= (settings.general.sMenu > 10) ? 1 : 0
 					Else If (control = "reset")
-						settings.gui.sToolbar := Round(vars.monitor.h / 72)
-					Else settings.gui.sToolbar += 1
-					GuiControl, text, % vars.hwnd.settings.toolbar_reset, % settings.gui.sToolbar
+						settings.general.sMenu := Max(settings.general.fSize, 10)
+					Else settings.general.sMenu += 1
+					GuiControl, text, % vars.hwnd.settings.toolbar_reset, % settings.general.sMenu
 					Sleep 150
 				}
-				IniWrite, % settings.gui.sToolbar, % "ini" vars.poe_version "\config.ini", UI, toolbar-size
-				For key, val in vars.pics.toolbar
-					DeleteObject(val)
-				vars.pics.toolbar := {}
-				Init_GUI("refresh")
+				IniWrite, % settings.general.sMenu, % "ini" vars.poe_version "\config.ini", Settings, menu-widget size
+				For key, hwnd in vars.pics.radial
+					DeleteObject(hwnd)
+				vars.pics.radial := {}
 			}
 			Else If InStr(check, "inputmethod_")
 				IniWrite, % (settings.general.input_method := control), % "ini" vars.poe_version "\config.ini", settings, input method
@@ -2217,7 +2209,7 @@ Settings_leveltracker()
 			Gui, %GUI%: Add, Edit, % "ys hp gSettings_leveltracker2 cBlack HWNDhwnd w" settings.general.fWidth * 10, % settings.leveltracker.tree_hotkey
 			vars.hwnd.settings.tree_hotkey := vars.hwnd.help_tooltips["settings_leveltracker tree hotkey"] := hwnd
 			Gui, %GUI%: Font, % "s" settings.general.fSize
-			Gui, %GUI%: Add, Text, % "ys hp Border cRed gSettings_leveltracker2 Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
+			Gui, %GUI%: Add, Text, % "ys hp Border cRed 0x200 gSettings_leveltracker2 Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
 			vars.hwnd.settings.tree_hotkey_save := hwnd1
 		}
 	}
@@ -2261,7 +2253,10 @@ Settings_leveltracker2(cHWND := "")
 		vars.leveltracker := "", vars.hwnd.Delete("leveltracker"), vars.hwnd.Delete("geartracker")
 		If settings.features.leveltracker
 			Init_leveltracker()
-		Settings_menu("leveling tracker"), Init_GUI()
+		Settings_menu("leveling tracker")
+
+		If WinExist("ahk_id " vars.hwnd.radial.main)
+			LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 	}
 	Else If (check = "timer")
 	{
@@ -2826,9 +2821,6 @@ Settings_mapinfo2(cHWND)
 				Init_mapinfo(), Settings_menu("map-info")
 			}
 			Else Return
-		Case "roll_highlight":
-			IniWrite, % (settings.mapinfo.roll_highlight := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\map info.ini", settings, highlight map rolls
-			Settings_menu("map-info")
 		Default:
 			If InStr(check, "font_")
 			{
@@ -2842,6 +2834,11 @@ Settings_mapinfo2(cHWND)
 				}
 				IniWrite, % settings.mapinfo.fSize, % "ini" vars.poe_version "\map info.ini", settings, font-size
 				LLK_FontDimensions(settings.mapinfo.fSize, height, width), settings.mapinfo.fWidth := width, settings.mapinfo.fHeight := height
+			}
+			Else If (check = "roll_highlight")
+			{
+				IniWrite, % (settings.mapinfo.roll_highlight := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\map info.ini", settings, highlight map rolls
+				Settings_menu("map-info")
 			}
 			Else If InStr(check, "thresh_")
 			{
@@ -2886,6 +2883,7 @@ Settings_mapinfo2(cHWND)
 				Return
 			}
 			Else LLK_ToolTip("no action")
+
 			If WinExist("ahk_id "vars.hwnd.mapinfo.main)
 				Mapinfo_Parse(0, vars.poe_version), Mapinfo_GUI(GetKeyState(vars.hotkeys.tab, "P") ? 2 : 0)
 	}
@@ -3028,7 +3026,10 @@ Settings_maptracker2(cHWND)
 			IniWrite, % settings.features.maptracker, % "ini" vars.poe_version "\config.ini", features, enable map tracker
 			If !settings.features.maptracker
 				vars.maptracker.Delete("map"), LLK_Overlay(vars.hwnd.maptracker.main, "destroy")
-			Init_GUI(), Settings_menu("mapping tracker")
+			Settings_menu("mapping tracker")
+
+			If WinExist("ahk_id " vars.hwnd.radial.main)
+				LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 		Case "hide":
 			settings.maptracker.hide := LLK_ControlGet(cHWND)
 			IniWrite, % settings.maptracker.hide, % "ini" vars.poe_version "\map tracker.ini", settings, hide panel when paused
@@ -3152,7 +3153,7 @@ Settings_maptracker2(cHWND)
 	}
 }
 
-Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually calling this function to refresh the window
+Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when manually calling this function to refresh the window
 {
 	local
 	global vars, settings
@@ -3160,6 +3161,9 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 
 	If vars.settings.wait
 		Return
+
+	If !section
+		section := (vars.settings.active_last ? vars.settings.active_last : "general")
 
 	If !IsObject(vars.settings)
 	{
@@ -3262,7 +3266,7 @@ Settings_menu(section, mode := 0, NA := 1) ;mode parameter is used when manually
 	vars.settings.active0 := section
 	Settings_ScreenChecksValid() ;check if 'screen-checks' section needs to be highlighted red
 
-	Gui, %GUI_name%: Add, Text, % "BackgroundTrans x" vars.settings.x_anchor " y" vars.settings.ySelection " w" settings.general.fWidth * 30 " h1"
+	Gui, %GUI_name%: Add, Text, % "BackgroundTrans x" vars.settings.x_anchor " y" vars.settings.ySelection " w" settings.general.fWidth * 35 " h1"
 	Settings_menu2(section, mode)
 	Gui, %GUI_name%: Margin, % vars.settings.xMargin, -1
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
@@ -3407,7 +3411,10 @@ Settings_news()
 	If vars.news.unread
 	{
 		IniWrite, % """" (vars.news.last_read := vars.news.file.timestamp) """", % "ini\config.ini", % "versions", % "announcement"
-		vars.news.unread := 0, Init_GUI()
+		vars.news.unread := 0
+
+		If WinExist("ahk_id " vars.hwnd.radial.main)
+			LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 	}
 	GuiControl, % "+cWhite", % vars.hwnd.settings.news
 }
@@ -3763,8 +3770,8 @@ Settings_qol2(cHWND)
 		IniWrite, % settings.qol[control], % "ini" vars.poe_version "\qol tools.ini", features, % control
 		If (control = "alarm") && !settings.qol.alarm
 			vars.alarm.timestamp := "", LLK_Overlay(vars.hwnd.alarm.main, "destroy")
-		If (control = "notepad")
-			Init_GUI()
+		If (control = "notepad") && WinExist("ahk_id " vars.hwnd.radial.main)
+			LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 		If (control = "notepad") && !settings.qol.notepad
 		{
 			LLK_Overlay(vars.hwnd.notepad.main, "destroy"), vars.hwnd.notepad.main := ""
@@ -4863,7 +4870,6 @@ Settings_updater2(cHWND := "")
 			KeyWait, LButton
 			vars.updater.skip := vars.updater.latest.1, vars.update := [0]
 			IniWrite, % vars.updater.latest.1, ini\config.ini, versions, skip
-			Gui, LLK_panel: Color, Black
 			Settings_menu("updater")
 		}
 	}

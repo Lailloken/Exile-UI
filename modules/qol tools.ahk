@@ -839,7 +839,7 @@ Notepad(cHWND := "", hotkey := "", color := 0)
 		WinActivate, ahk_group poe_window
 		Return
 	}
-	Else If (cHWND = vars.hwnd.LLK_panel.notepad && (hotkey = 2 || vars.system.click = 2)) && !WinExist("ahk_id " vars.hwnd.notepad.main)
+	Else If (cHWND = "quick")
 	{
 		If !WinExist("ahk_id " vars.hwnd.notepad_widgets.notepad_reminder_feature)
 		{
@@ -864,7 +864,7 @@ Notepad(cHWND := "", hotkey := "", color := 0)
 		WinActivate, ahk_group poe_window
 		Return
 	}
-	Else If (check = "winx") || (cHWND = vars.hwnd.LLK_panel.notepad) && WinExist("ahk_id " vars.hwnd.notepad.main)
+	Else If (check = "winx") || (cHWND = "open") && WinExist("ahk_id " vars.hwnd.notepad.main)
 	{
 		KeyWait, LButton
 		Notepad("save"), LLK_Overlay(vars.hwnd.notepad.main, "destroy"), vars.hwnd.notepad.main := ""
@@ -1007,7 +1007,7 @@ Notepad(cHWND := "", hotkey := "", color := 0)
 	yPos := Blank(vars.notepad.y) ? vars.monitor.y + vars.client.yc - h/2 : (vars.notepad.y + h > vars.monitor.y + vars.monitor.h) ? vars.monitor.y + vars.monitor.h - h : vars.notepad.y
 	Gui_CheckBounds(xPos, yPos, w, h)
 	Gui, %GUI_name%: Show, % "NA x" xPos " y" yPos
-	LLK_Overlay(notepad, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+	LLK_Overlay(notepad, "show", 0, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	If refresh_widget
 		Notepad_Widget(control)
 }

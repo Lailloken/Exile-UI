@@ -28,7 +28,7 @@ OnExit("Exit")
 Menu, Tray, Tip, Exile UI
 Menu, Tray, Icon, img\GUI\tray.ico
 
-vars := {"general": {"runcheck": A_TickCount}, "logging": FileExist("data\log.txt"), "MainThread": 1, "news": {}}, LLK_Log("waiting for valid game-clients...")
+vars := {"general": {"runcheck": A_TickCount}, "logging": FileExist("data\log.txt"), "MainThread": 1, "news": {}, "update": [0]}, LLK_Log("waiting for valid game-clients...")
 timeout := [LLK_IniRead("ini\config.ini", "settings", "kill script", 1), LLK_IniRead("ini\config.ini", "settings", "kill-timeout", 1)]
 While !WinExist("ahk_class POEWindowClass") && !WinExist("ahk_exe GeForceNOW.exe") ;wait for game-client window
 {
@@ -93,7 +93,6 @@ Else
 }
 LLK_Log("client is focused")
 
-Init_GUI(), LLK_Log("GUIs initialized")
 SetTimer, Log_Loop, 1000
 
 If (check := LLK_IniRead("ini" vars.poe_version "\config.ini", "versions", "reload settings"))
@@ -444,10 +443,7 @@ Init_general()
 	settings.general.build := !Blank(settings.general.character) ? ini.settings["active build"] : ""
 	settings.general.dev := !Blank(check := ini.settings["dev"]) ? check : 0
 	settings.general.dev_env := settings.general.dev * (!Blank(check := ini.settings["dev env"]) ? check : 0)
-	settings.general.xButton := !Blank(check := ini.UI["button xcoord"]) ? check : 0
-	settings.general.yButton := !Blank(check := ini.UI["button ycoord"]) ? check : 0
 	settings.general.warning_ultrawide := !Blank(check := ini.versions["ultrawide warning"]) ? check : 0
-	settings.general.hide_toolbar := !Blank(check := ini.UI["hide toolbar"]) ? check : 0
 	settings.general.ClientFiller := !settings.general.FillerAvailable ? 0 : !Blank(check := ini.settings["client background filler"]) ? check : 0
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
 
@@ -456,6 +452,9 @@ Init_general()
 		settings.general.fSize := 6
 	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
 	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
+
+	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
+	settings.general.animations := !Blank(check := ini.settings.animations) ? check : 1
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
@@ -474,7 +473,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "toolbar": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -629,29 +628,33 @@ Loop()
 				WinWaitActive, ahk_group poe_window
 				Sleep, 4000
 			}
-			Init_client(), Init_Lang(), Init_GUI(), Init_screenchecks()
+			Init_client(), Init_Lang(), Init_screenchecks()
 		}
 		vars.client.closed := 0
 
 		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1200000)
-		{
 			UpdateCheck(1), vars.general.updatetick := A_TickCount
-			If (vars.update.1 != 0)
-				Gui, LLK_Panel: Color, % (vars.update.1 < 0) ? "Maroon" : "Green"
-		}
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)
 
-		If vars.news.unread && (WinExist("ahk_id " vars.hwnd.LLK_panel.main) || WinExist("ahk_id " vars.hwnd.settings.main))
+		If (vars.news.unread || vars.update.1) && (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main))
 		{
 			news_tick += 1
-			If WinExist("ahk_id " vars.hwnd.LLK_panel.main)
-				GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : "Lime"), % vars.hwnd.LLK_panel.announcement_bar
+			If (Blank(vars.radial.click_select) || vars.radial.click_select = "settings") && WinExist("ahk_id " vars.hwnd.radial.main)
+				GuiControl, % "+c" (Mod(news_tick, 2) ? "Black" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.radial.settings
 			If WinExist("ahk_id " vars.hwnd.settings.main)
 			{
-				GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.news
-				GuiControl, % "movedraw", % vars.hwnd.settings.news
+				If vars.news.unread
+				{
+					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.news
+					GuiControl, % "movedraw", % vars.hwnd.settings.news
+				}
+				If vars.update.1
+				{
+					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.updater
+					GuiControl, % "movedraw", % vars.hwnd.settings.updater
+				}
 			}
 		}
 	}
@@ -675,6 +678,10 @@ Loop_main()
 	MouseHover()
 	If Mod(tick, 2)
 		Return
+
+	If !Mod(tick, 10) && !vars.radial.wait && vars.hwnd.radial.main && !vars.radial.click_select && WinExist("ahk_id " vars.hwnd.radial.main)
+	&& !(LLK_IsBetween(vars.general.xMouse, vars.radial.window.x1, vars.radial.window.x2) && LLK_IsBetween(vars.general.yMouse, vars.radial.window.y1, vars.radial.window.y2))
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 
 	If vars.general.MultiThreading
 	{
@@ -789,7 +796,7 @@ Loop_main()
 	If (settings.features.iteminfo * settings.iteminfo.compare)
 		Iteminfo_Overlays()
 
-	If vars.client.stream && !vars.general.drag && !WinExist("LLK-UI: notepad reminder") && !WinExist("LLK-UI: alarm set") && !WinExist("ahk_id " vars.hwnd.betrayal_setup.main) && WinActive("ahk_group poe_ahk_window") && vars.general.wMouse && LLK_HasVal(vars.hwnd, vars.general.wMouse,,,, 1) && !WinActive("ahk_id " vars.general.wMouse)
+	If vars.client.stream && !vars.radial.wait && !vars.general.drag && !WinExist("LLK-UI: notepad reminder") && !WinExist("LLK-UI: alarm set") && !WinExist("ahk_id " vars.hwnd.betrayal_setup.main) && WinActive("ahk_group poe_ahk_window") && vars.general.wMouse && LLK_HasVal(vars.hwnd, vars.general.wMouse,,,, 1) && !WinActive("ahk_id " vars.general.wMouse)
 		WinActivate, % "ahk_id " vars.general.wMouse
 
 	If !vars.general.drag && (vars.general.wMouse != vars.hwnd.settings.main) && vars.hwnd.stash.main && !vars.stash.wait && !vars.stash.enter && (vars.stash.GUI || WinExist("ahk_id " vars.hwnd.stash.main)) && WinActive("ahk_group poe_ahk_window") && LLK_IsBetween(vars.general.xMouse, vars.client.x, vars.client.x + vars.stash.width) && LLK_IsBetween(vars.general.yMouse, vars.client.y, vars.client.y + vars.client.h)
@@ -824,21 +831,11 @@ Loop_main()
 	Else If WinActive("ahk_group poe_ahk_window") && vars.stash.hover && !vars.stash.enter && !LLK_IsBetween(vars.general.xMouse, vars.client.x, vars.client.x + vars.stash.width)
 		vars.stash.hover := "", Stash("refresh")
 
-	If settings.general.hide_toolbar && (vars.general.inactive < 3) && WinActive("ahk_group poe_ahk_window")
-	{
-		If vars.general.wMouse && vars.hwnd.LLK_panel.main && !WinExist("ahk_id " vars.hwnd.LLK_panel.main)
-		&& (LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2) || vars.news.unread || vars.update.1 = 1)
-			LLK_Overlay(vars.hwnd.LLK_panel.main, "show")
-		Else If !vars.toolbar.drag && !GetKeyState(vars.hotkeys.tab, "P") && WinExist("ahk_id " vars.hwnd.LLK_panel.main)
-		&& !(LLK_IsBetween(vars.general.xMouse, vars.toolbar.x, vars.toolbar.x2) && LLK_IsBetween(vars.general.yMouse, vars.toolbar.y, vars.toolbar.y2)) && !vars.news.unread && (vars.update.1 != 1)
-			LLK_Overlay(vars.hwnd.LLK_panel.main, "hide")
-	}
-
 	If vars.general.cMouse
 		check_help := LLK_HasVal(vars.hwnd.help_tooltips, vars.general.cMouse), check := (SubStr(check_help, 1, InStr(check_help, "_") - 1)), control := StrReplace(SubStr(check_help, InStr(check_help, "_") + 1), "|"), database := IsObject(vars.help[check][control]) ? vars.help : vars.help2
 
 	tick_helptooltips += 1
-	If !Mod(tick_helptooltips, 3) || check_help
+	If !vars.radial.wait && (!Mod(tick_helptooltips, 3) || check_help)
 	{
 		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || InStr(control, "update changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip") || check = "leveltrackergems" && InStr(control, "gem ")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
 			Gui_HelpToolTip(check_help)
@@ -877,6 +874,9 @@ Loop_main()
 		If !vars.general.MultiThreading
 			Cloneframes_Check()
 	}
+
+	If (tick = 10)
+		tick := 0
 }
 
 MouseHover()
@@ -913,7 +913,7 @@ News(mode := "")
 	EnvSub, now, timestamp, Days
 
 	If !vars.news.unread && (IsNumber(now) && now < 7) && vars.news.file.timestamp && (vars.news.file.timestamp != vars.news.last_read)
-		vars.news.unread := 1, Init_GUI()
+		vars.news.unread := 1
 }
 
 Resolution_check()
