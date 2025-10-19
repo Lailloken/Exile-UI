@@ -113,16 +113,15 @@
     "actdecoder enable": [
       "provides an interactive zone-layout overlay for campaign areas",
       "hold down the <widget-key> while in a supported campaign area to activate the overlay",
-      "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)",
-      "'advanced' layouts derived from cyclondefinitiv's guide (poe 1) and the campaign codex discord (poe 2)"
+      "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
     ],
     "actdecoder generic": [
       "disables sub-layout selections and only shows basic layouts",
-      "credits: layouts provided by lolcohol and the campaign codex discord"
+      "credits: layouts created by engineering eternity, compiled by u/_treb"
     ],
     "actdecoder generic 2": [
       "disables sub-layout selections and only shows basic layouts",
-      "credits: layouts created by engineering eternity, compiled by u/_treb"
+      "credits: layouts provided by lolcohol and the campaign codex discord"
     ],
     "actdecoder layouts opacity": [
       "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
@@ -301,11 +300,11 @@
       "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
     ],
     "iteminfo toggle": [
-      "hold down the <omni-key> while hovering over items to activate the tooltip: if already active, normal <omni-key> presses over items will activate/refresh it again",
+      "long-press the <omni-key> over items to activate the tooltip: if already active, normal <omni-key> presses over items will activate/refresh it again",
       "click into the game or press <esc> to close it"
     ],
     "iteminfo hold": [
-      "hold down the <omni-key> while hovering over items to activate the tooltip",
+      "long-press the <omni-key> over items to activate the tooltip",
       "the tooltip will close automatically once you release the key"
     ],
     "iteminfo modrolls": [
@@ -416,15 +415,15 @@
       "includes level recommendations for some areas or boss fights"
     ],
     "leveltracker geartracker": [
-      "notifies you when you meet gear or gem requirements after lvl-ups:\nthe guide overlay will display <gear rdy>",
+      "notifies you when you meet gear or gem requirements after lvl-ups (mainly a twink feature):\nthe guide overlay will display <gear rdy>",
       "requires your character-name in the <general> settings(/highlight)",
-      "accessed by right-clicking the act-tracker button in the menu-widget, or clicking <gear rdy> in the guide overlay"
+      "accessed by right-clicking the act-tracker button in the menu-widget or clicking <gear rdy> in the guide overlay"
     ],
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
     "leveltracker skilltree-info": [
-      "while hovering over a gem, hold down the <omni-key> to show an overlay with gem setups/links",
+      "long-press the <omni-key> over a gem to show gem setups/links",
       "you can switch between skill sets by scrolling the mouse wheel",
       "",
       "while the skill-tree is on screen, press the <omni-key> to show overlays with skill-tree schematics",
@@ -464,7 +463,7 @@
     ],
     "leveltracker profile select": [
       "click to activate this guide slot",
-      "hold down right-click to delete this guide slot"
+      "long-right-click to delete this guide slot"
     ],
     "leveltracker import": [
       "imports pobb.in-links, pob-codes or custom guides from clipboard into this guide slot",
@@ -499,7 +498,7 @@
       "when handing in quests, (img:skip) means the npc has quests queued up",
       "(hint)__ these don't have relevant rewards and can be skipped",
       "(hint)__",
-      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold down tab to see more info",
+      "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold down the widget-key to see more info",
       "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)"
@@ -514,7 +513,7 @@
       "optional: lines marked with a plus-sign show optional steps",
       "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
       "(hint)__",
-      "if text is (color:00FFFF)highlighted_like_this, hold down tab to see an image",
+      "if text is (color:00FFFF)highlighted_like_this, hold down the widget-key to see an image",
       "(hint)__",
       "(img:in-out2) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
       "(hint)__",
@@ -673,17 +672,17 @@
       "click into the game or press <esc> to close it"
     ],
     "mapinfo hold": [
-      "hold down the <omni-key> while hovering over maps/waystones to activate the panel",
+      "long-press the <omni-key> over maps/waystones to activate the panel",
       "the panel will close automatically once you release the key",
-      "the horizons tooltip will instead be activated by holding down <alt> + <omni-key>(/highlight)"
+      "the horizons tooltip will instead be activated by long-pressing <alt> + <omni-key>(/highlight)"
     ],
     "mapinfo hold 2": [
-      "hold down the <omni-key> while hovering over maps/waystones to activate the panel",
+      "long-press the <omni-key> over maps/waystones to activate the panel",
       "the panel will close automatically once you release the key"
     ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
-      "you have to hold down <shift> first, right click currency, and then click a map",
+      "you have to long-press <shift> first, right click currency, and then click a map",
       "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "mapinfo tab": [
@@ -790,7 +789,7 @@
     ],
     "sanctum relics": [
       "provides an overlay for relic management:\nsummarizes and groups relic effects, and provides search/highlight functionality",
-      "while the relic altar is open, hover over a relic and hold down the <omni-key> to open the overlay",
+      "while the relic altar is open, long-press the <omni-key> over a relic to open the overlay",
       "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "screenchecks pixel-about": [
@@ -945,7 +944,7 @@
     ],
     "statlas enable": [
       "atlas feature that displays various information about maps on the atlas",
-      "hold down the <omni-key> while hovering over maps on the atlas to activate the overlay",
+      "long-press the <omni-key> over maps on the atlas to activate the overlay",
       "scroll to adjust the image size",
       "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
@@ -998,7 +997,7 @@
       "drag to reposition the whole widget"
     ],
     "name": [
-      "hold down right-click to permanently remove this timer"
+      "long-right-click to permanently remove this timer"
     ],
     "orientation": [
       "toggle between horizontal and vertical layout"
@@ -1049,7 +1048,7 @@
       "scroll to switch between images",
       "f1: zoom out, f2: zoom in, f3: reset zoom",
       "arrow keys: move the overlay",
-      "segmented image sheets:\nspace: clear selection\nhold down the widget-key: show the whole sheet"
+      "segmented image sheets:\nspace: clear selection\nlong-press the <widget-key>: show the whole sheet"
     ]
   },
   "cheatsheets": {
@@ -1146,7 +1145,7 @@
     ],
     "logs": [
       "click a date to view trades from that day",
-      "hold down right-click on a date or trade to delete it"
+      "long-right-click on a date or trade to delete it"
     ],
     "ratio": [
       "scroll to adjust both values according to the ratio (hold down shift to adjust by 10x)",
@@ -1363,7 +1362,7 @@
       "the current search-filter will affect the available dates"
     ],
     "logviewer date help": [
-      "general: click a button to show runs within that period, hold down <del> while hovering to delete those runs",
+      "general: click a button to show runs within that period, long-press <del> while hovering to delete those runs",
       "years: click a year to show its breakdown below, double-click to load the whole year"
     ],
     "logviewer export": [
@@ -1383,7 +1382,7 @@
       "supported inputs:\n\"xyz\" (search), \"!abc\" (exclude), \"xyz !abc\" (search xyz, exclude abc)"
     ],
     "logviewer header map": [
-      "long-click a map name to edit it, hold down right-click to delete the run",
+      "long-click a map name to edit it, long-right-click to delete the run",
       "map names are clickable for searching:\nclick to paste \"<name>\" into the search, r-click to paste \"!<name>\", double-(r-)click to search immediately"
     ],
     "logviewer search tier": [
@@ -1483,7 +1482,7 @@
       "background color: click to open the color-palette, right-click to reset"
     ],
     "widget": [
-      "click to select tab, drag to create a widget, hold down right-click to delete"
+      "click to select tab, drag to create a widget, long-right-click to delete"
     ],
     "widget help": [
       "widgets are inactive (unclickable) unless the <widget-key> is held down",
@@ -1713,7 +1712,7 @@
     "about": [
       "resize and place this widget over an area you want to screencap",
       "use arrow keys to move/resize the widget by 1 pixel",
-      "hold doen <alt> to resize instead of moving,\nhold down <ctrl> to move/resize by 10 pixels",
+      "hold down <alt> to resize instead of moving,\nhold down <ctrl> to move/resize by 10 pixels",
       "click <snip> on a specific slot to save the image into it"
     ]
   }

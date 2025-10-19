@@ -34,6 +34,14 @@
 	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd1 w" settings.general.fWidth * 3, % settings.actdecoder.sLayouts1
 	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth / 4 " Center Border HWNDhwnd2 gSettings_actdecoder2 w" settings.general.fWidth * 2, % "+"
 	vars.hwnd.settings["zoneszoom_minus"] := hwnd, vars.hwnd.settings["zoneszoom_text"] := hwnd1, vars.hwnd.settings["zoneszoom_plus"] := hwnd2
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_credits") ":"
+	Gui, %GUI%: Font, norm
+
+	If !vars.poe_version
+		Gui, %GUI%: Add, Link, % "ys", <a href="https://www.definitivguide.com/">cyclondefinitiv's guide</a>
+	Else Gui, %GUI%: Add, Text, % "ys", % "poe 2 campaign codex discord"
 }
 
 Settings_actdecoder2(cHWND := "")
