@@ -365,7 +365,8 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 			{
 				If (hotkey = 1)
 					Leveltracker(cHWND, hotkey)
-				Else Geartracker("toggle")
+				Else If (hotkey = 2) && settings.leveltracker.geartracker
+					Geartracker("toggle")
 			}
 			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "leveltracker", 6: (settings.leveltracker.geartracker ? "geartracker" : "")}, 1)
 
