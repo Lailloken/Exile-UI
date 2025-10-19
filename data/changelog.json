@@ -1,5 +1,14 @@
 [
   [
+	["1.60.0", 16000, 1],
+	"october 19, 2025",
+	"contains major hotkey and ui changes: better read the full release notes(/highlight)",
+	"omni-key: now on <capslock> by default, and a blocked/exclusive key (only registered by the tool)",
+	"<tab> key is now the <widget-key>, and some features/activations were moved to the <omni-key> instead",
+	"replaced the settings/icons toolbar with a dynamic 'radial' menu: long-press <esc> to access it",
+	"various minor fixes, disabled seed-explorer feature (3rd-party data no longer maintained)"
+  ],
+  [
 	["1.59.8", 15908],
 	"october 8, 2025",
 	"clone-frames: added grouping functionality (editing multiple frames at once)",
