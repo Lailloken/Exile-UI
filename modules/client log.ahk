@@ -322,7 +322,7 @@ Log_Loop(mode := 0)
 			Else If (A_LoopField = "areaID") && vars.general.MultiThreading
 				StringSend("areaID=" %A_LoopField%)
 			vars.log[A_LoopField] := %A_LoopField%
-			If (A_Index = 1)
+			If (A_LoopField = "areaID")
 				If !vars.poe_version
 					vars.log.areaname := "" ;make it blank because there sometimes is a desync between it and areaID, i.e. they are parsed in two separate loop-ticks
 				Else vars.log.areaname := Log_Get(areaID, "areaname")
@@ -334,6 +334,9 @@ Log_Loop(mode := 0)
 		|| LLK_Overlay(vars.hwnd.leveltracker.main, "check") && (RegexMatch(areaID, "i)^hideout") || db.leveltracker.areaIDs[areaID] && areaID != vars.leveltracker.guide.target_area)
 		&& !RegexMatch(vars.log.areaID, "i)labyrinth_|g3_10$|sanctum_") && !LLK_HasVal(vars.leveltracker.guide.group1, Lang_Trans("ms_leveling tracker"), 1))
 			Leveltracker_Progress()
+
+		If !Blank(areaID) && settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(areaID, "i)labyrinth_|sanctum_|g3_10$") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+			Leveltracker_Toggle("hide")
 
 		If settings.features.actdecoder && vars.actdecoder.layouts_lock && !Blank(areaID) && (areaID != vars.actdecoder.current_zone)
 			Actdecoder_ZoneLayouts(2)
