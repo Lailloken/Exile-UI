@@ -659,9 +659,6 @@ Loop()
 		}
 	}
 
-	If settings.features.leveltracker && WinActive("ahk_id " vars.hwnd.poe_client) && RegExMatch(vars.log.areaID, "i)labyrinth_|sanctum_|g3_10$") && WinExist("ahk_id " vars.hwnd.leveltracker.main)
-		Leveltracker_Toggle("hide")
-
 	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill[2]* 60000) && settings.general.kill[1]
 		ExitApp
 }

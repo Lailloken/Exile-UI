@@ -419,10 +419,7 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 		Case "settings":
 			If !longpress
 			{
-				If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main)
-				|| WinExist("ahk_id " vars.hwnd.leveltracker_editor.main) || WinExist("ahk_id " vars.hwnd.leveltracker_gempickups.main)
-					LLK_ToolTip(Lang_Trans("global_configwindow"), 2,,,, "yellow")
-				Else If WinExist("ahk_id "vars.hwnd.settings.main)
+				If WinExist("ahk_id "vars.hwnd.settings.main)
 					Settings_menuClose()
 				Else Settings_menu()
 			}

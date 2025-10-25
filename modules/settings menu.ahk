@@ -40,7 +40,14 @@
 	Gui, %GUI%: Font, norm
 
 	If !vars.poe_version
-		Gui, %GUI%: Add, Link, % "ys", <a href="https://www.definitivguide.com/">cyclondefinitiv's guide</a>
+	{
+		Gui, %GUI%: Add, Link, % "ys", <a href="https://www.definitivguide.com/">advanced layout guide</a>
+		Gui, %GUI%: Add, Text, % "Section xs", % "by CyclonDefinitiv ("
+		Gui, %GUI%: Add, Link, % "ys x+0", <a href="https://www.youtube.com/@CyclonDefinitiv">youtube</a>
+		Gui, %GUI%: Add, Text, % "ys x+0", % " / "
+		Gui, %GUI%: Add, Link, % "ys x+0", <a href="https://www.twitch.tv/cyclondefinitiv">twitch</a>
+		Gui, %GUI%: Add, Text, % "ys x+0", % ")"
+	}
 	Else Gui, %GUI%: Add, Text, % "ys", % "poe 2 campaign codex discord"
 }
 
@@ -3169,6 +3176,12 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 
 	If vars.settings.wait
 		Return
+	Else If WinExist("ahk_id " vars.hwnd.cheatsheet_menu.main) || WinExist("ahk_id " vars.hwnd.searchstrings_menu.main) || WinExist("ahk_id "vars.hwnd.leveltracker_screencap.main)
+	|| WinExist("ahk_id " vars.hwnd.leveltracker_editor.main) || WinExist("ahk_id " vars.hwnd.leveltracker_gempickups.main)
+	{
+		LLK_ToolTip(Lang_Trans("global_configwindow"), 2,,,, "yellow")
+		Return
+	}
 
 	If !section
 		section := (vars.settings.active_last ? vars.settings.active_last : "general")
