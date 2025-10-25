@@ -575,7 +575,7 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		FileRemoveDir, % "img\GUI\leveling tracker\zones 2\", 1
 	}
 
-	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken", "between_2_pillars_nearby"]
+	For index, val in ["6) wall", "encampment_entrance", "petrified_soldiers", "access_with_nearby_switch", "follow_the_single_wagon", "road_opposite_the", "touching_the_road", "pillars_near_the", "same_direction_as_the", "for_the_broken", "between_2_pillars_nearby", "side_of_road_opposite_the", "single_wagon_at_the_fork", "up_to_the_broken", "single_flower-pot_at_the_fork"]
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
 
