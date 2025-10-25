@@ -2,7 +2,7 @@
   [
     {
       "id": "1_1_1",
-      "name": "The Twilight Strand"
+      "name": "Twilight Strand"
     },
     {
       "id": "1_1_town",
@@ -14,23 +14,23 @@
     },
     {
       "id": "1_1_2a",
-      "name": "The Tidal Island"
+      "name": "Tidal Island"
     },
     {
       "id": "1_1_3",
-      "name": "The Mud Flats"
+      "name": "Mud Flats"
     },
     {
       "id": "1_1_3a",
-      "name": "The Fetid Pool"
+      "name": "Fetid Pool"
     },
     {
       "id": "1_1_4_1",
-      "name": "The Submerged Passage"
+      "name": "Submerged Passage"
     },
     {
       "id": "1_1_4_0",
-      "name": "The Flooded Depths"
+      "name": "Flooded Depths"
     },
     {
       "id": "1_1_5",
@@ -42,12 +42,12 @@
     },
     {
       "id": "1_1_7_1",
-      "name": "The Lower Prison",
+      "name": "Lower Prison",
       "map_name": "The Prison"
     },
     {
       "id": "1_1_7_2",
-      "name": "The Upper Prison"
+      "name": "Upper Prison"
     },
     {
       "id": "1_1_8",
@@ -55,34 +55,34 @@
     },
     {
       "id": "1_1_9",
-      "name": "The Ship Graveyard"
+      "name": "Ship Graveyard"
     },
     {
       "id": "1_1_9a",
-      "name": "The Ship Graveyard Cave"
+      "name": "Ship Graveyard Cave"
     },
     {
       "id": "1_1_11_1",
-      "name": "The Cavern of Wrath",
+      "name": "Cavern of Wrath",
       "map_name": "Merveil's Caverns"
     },
     {
       "id": "1_1_11_2",
-      "name": "The Cavern of Anger"
+      "name": "Cavern of Anger"
     }
   ],
   [
     {
       "id": "1_2_1",
-      "name": "The Southern Forest"
+      "name": "Southern Forest"
     },
     {
       "id": "1_2_town",
-      "name": "The Forest Encampment"
+      "name": "Forest Encampment"
     },
     {
       "id": "1_2_2",
-      "name": "The Old Fields"
+      "name": "Old Fields"
     },
     {
       "id": "1_2_2a",
@@ -94,29 +94,29 @@
     },
     {
       "id": "1_2_4",
-      "name": "The Broken Bridge"
+      "name": "Broken Bridge"
     },
     {
       "id": "1_2_6_1",
-      "name": "The Chamber of Sins Level 1",
-      "map_name": "The Chamber of Sins"
+      "name": "Chamber of Sins Level 1",
+      "map_name": "Chamber of Sins"
     },
     {
       "id": "1_2_6_2",
-      "name": "The Chamber of Sins Level 2"
+      "name": "Chamber of Sins Level 2"
     },
     {
       "id": "1_2_15",
-      "name": "The Fellshrine Ruins"
+      "name": "Fellshrine Ruins"
     },
     {
       "id": "1_2_5_1",
-      "name": "The Crypt Level 1",
+      "name": "Crypt Level 1",
       "map_name": "The Crypt"
     },
     {
       "id": "1_2_5_2",
-      "name": "The Crypt Level 2"
+      "name": "Crypt Level 2"
     },
     {
       "id": "1_2_7",
@@ -124,19 +124,19 @@
     },
     {
       "id": "1_2_8",
-      "name": "The Northern Forest"
+      "name": "Northern Forest"
     },
     {
       "id": "1_2_9",
-      "name": "The Western Forest"
+      "name": "Western Forest"
     },
     {
       "id": "1_2_10",
-      "name": "The Weaver's Chambers"
+      "name": "Weaver's Chambers"
     },
     {
       "id": "1_2_11",
-      "name": "The Vaal Ruins"
+      "name": "Vaal Ruins"
     },
     {
       "id": "1_2_12",
@@ -144,7 +144,7 @@
     },
     {
       "id": "1_2_13",
-      "name": "The Dread Thicket"
+      "name": "Dread Thicket"
     },
     {
       "id": "1_2_14_2",
@@ -153,19 +153,19 @@
     },
     {
       "id": "1_2_14_3",
-      "name": "The Ancient Pyramid",
+      "name": "Ancient Pyramid",
       "crafting_recipe": "Spell Damage I"
     }
   ],
   [
     {
       "id": "1_3_1",
-      "name": "The City of Sarn",
+      "name": "City of Sarn",
       "crafting_recipe": "Movement Speed I"
     },
     {
       "id": "1_3_town",
-      "name": "The Sarn Encampment"
+      "name": "Sarn Encampment"
     },
     {
       "id": "1_3_2",
@@ -196,11 +196,11 @@
     },
     {
       "id": "1_3_8_1",
-      "name": "The Solaris Temple Level 1"
+      "name": "Solaris Temple Level 1"
     },
     {
       "id": "1_3_8_2",
-      "name": "The Solaris Temple Level 2",
+      "name": "Solaris Temple Level 2",
       "crafting_recipe": "Fire Damage I"
     },
     {
@@ -209,21 +209,21 @@
     },
     {
       "id": "1_3_13",
-      "name": "The Ebony Barracks"
+      "name": "Ebony Barracks"
     },
     {
       "id": "1_3_14_1",
-      "name": "The Lunaris Temple Level 1",
-      "map_name": "The Lunaris Temple"
+      "name": "Lunaris Temple Level 1",
+      "map_name": "Lunaris Temple"
     },
     {
       "id": "1_3_14_2",
-      "name": "The Lunaris Temple Level 2",
+      "name": "Lunaris Temple Level 2",
       "crafting_recipe": "Lightning Damage I"
     },
     {
       "id": "1_3_15",
-      "name": "The Imperial Gardens",
+      "name": "Imperial Gardens",
       "crafting_recipe": "All Attributes I"
     },
     {
@@ -237,11 +237,11 @@
     },
     {
       "id": "1_3_18_1",
-      "name": "The Sceptre of God"
+      "name": "Sceptre of God"
     },
     {
       "id": "1_3_18_2",
-      "name": "The Upper Sceptre of God"
+      "name": "Upper Sceptre of God"
     },
     {
       "id": "Labyrinth_Airlock",
@@ -259,7 +259,7 @@
     },
     {
       "id": "1_4_2",
-      "name": "The Dried Lake",
+      "name": "Dried Lake",
       "crafting_recipe": "Attack, Cast and Warcry Speed I"
     },
     {
@@ -273,7 +273,7 @@
     },
     {
       "id": "1_4_3_3",
-      "name": "The Crystal Veins",
+      "name": "Crystal Veins",
       "crafting_recipe": "Cold Damage I"
     },
     {
@@ -291,16 +291,16 @@
     },
     {
       "id": "1_4_5_2",
-      "name": "The Grand Arena",
+      "name": "Grand Arena",
       "crafting_recipe": "Socket Numbers - 2 to 4 Sockets"
     },
     {
       "id": "1_4_6_1",
-      "name": "The Belly of the Beast Level 1"
+      "name": "Belly of the Beast Level 1"
     },
     {
       "id": "1_4_6_2",
-      "name": "The Belly of the Beast Level 2",
+      "name": "Belly of the Beast Level 2",
       "crafting_recipe": "Elemental Resistances II"
     },
     {
@@ -320,7 +320,7 @@
   [
     {
       "id": "1_5_1",
-      "name": "The Slave Pens"
+      "name": "Slave Pens"
     },
     {
       "id": "1_5_town",
@@ -328,7 +328,7 @@
     },
     {
       "id": "1_5_2",
-      "name": "The Control Blocks"
+      "name": "Control Blocks"
     },
     {
       "id": "1_5_3",
@@ -336,20 +336,20 @@
     },
     {
       "id": "1_5_4",
-      "name": "The Templar Courts"
+      "name": "Templar Courts"
     },
     {
       "id": "1_5_5",
-      "name": "The Chamber of Innocence",
+      "name": "Chamber of Innocence",
       "crafting_recipe": "Movement Speed and Exerted Attacks II"
     },
     {
       "id": "1_5_4b",
-      "name": "The Torched Courts"
+      "name": "Torched Courts"
     },
     {
       "id": "1_5_3b",
-      "name": "The Ruined Square"
+      "name": "Ruined Square"
     },
     {
       "id": "1_5_6",
@@ -363,7 +363,7 @@
     },
     {
       "id": "1_5_8",
-      "name": "The Cathedral Rooftop"
+      "name": "Cathedral Rooftop"
     }
   ],
   [
@@ -373,7 +373,7 @@
     },
     {
       "id": "2_6_1",
-      "name": "The Twilight Strand"
+      "name": "Twilight Strand"
     },
     {
       "id": "2_6_2",
@@ -381,15 +381,15 @@
     },
     {
       "id": "2_6_3",
-      "name": "The Tidal Island"
+      "name": "Tidal Island"
     },
     {
       "id": "2_6_4",
-      "name": "The Mud Flats"
+      "name": "Mud Flats"
     },
     {
       "id": "2_6_5",
-      "name": "The Karui Fortress",
+      "name": "Karui Fortress",
       "crafting_recipe": "Defences II"
     },
     {
@@ -398,7 +398,7 @@
     },
     {
       "id": "2_6_7_1",
-      "name": "The Lower Prison",
+      "name": "Lower Prison",
       "map_name": "The Prison",
       "crafting_recipe": "Double Resistances I"
     },
@@ -413,7 +413,7 @@
     },
     {
       "id": "2_6_9",
-      "name": "The Western Forest",
+      "name": "Western Forest",
       "crafting_recipe": "Attributes II"
     },
     {
@@ -426,11 +426,11 @@
     },
     {
       "id": "2_6_12",
-      "name": "The Southern Forest"
+      "name": "Southern Forest"
     },
     {
       "id": "2_6_13",
-      "name": "The Cavern of Anger"
+      "name": "Cavern of Anger"
     },
     {
       "id": "2_6_14",
@@ -439,17 +439,17 @@
     },
     {
       "id": "2_6_15",
-      "name": "The Brine King's Reef"
+      "name": "Brine King's Reef"
     }
   ],
   [
     {
       "id": "2_7_town",
-      "name": "The Bridge Encampment"
+      "name": "Bridge Encampment"
     },
     {
       "id": "2_7_1",
-      "name": "The Broken Bridge"
+      "name": "Broken Bridge"
     },
     {
       "id": "2_7_2",
@@ -457,7 +457,7 @@
     },
     {
       "id": "2_7_3",
-      "name": "The Fellshrine Ruins"
+      "name": "Fellshrine Ruins"
     },
     {
       "id": "2_7_4",
@@ -466,13 +466,13 @@
     },
     {
       "id": "2_7_5_1",
-      "name": "The Chamber of Sins Level 1",
-      "map_name": "The Chamber of Sins",
+      "name": "Chamber of Sins Level 1",
+      "map_name": "Chamber of Sins",
       "crafting_recipe": "Lightning Damage II"
     },
     {
       "id": "2_7_5_2",
-      "name": "The Chamber of Sins Level 2",
+      "name": "Chamber of Sins Level 2",
       "crafting_recipe": "Mana Regen I"
     },
     {
@@ -485,15 +485,15 @@
     },
     {
       "id": "2_7_7",
-      "name": "The Ashen Fields"
+      "name": "Ashen Fields"
     },
     {
       "id": "2_7_8",
-      "name": "The Northern Forest"
+      "name": "Northern Forest"
     },
     {
       "id": "2_7_9",
-      "name": "The Dread Thicket",
+      "name": "Dread Thicket",
       "crafting_recipe": "Fire Damage II"
     },
     {
@@ -503,15 +503,15 @@
     },
     {
       "id": "2_7_11",
-      "name": "The Vaal City"
+      "name": "Vaal City"
     },
     {
       "id": "2_7_12_1",
-      "name": "The Temple of Decay Level 1"
+      "name": "Temple of Decay Level 1"
     },
     {
       "id": "2_7_12_2",
-      "name": "The Temple of Decay Level 2",
+      "name": "Temple of Decay Level 2",
       "crafting_recipe": "Chaos Damage I"
     },
     {
@@ -522,46 +522,46 @@
   [
     {
       "id": "2_8_1",
-      "name": "The Sarn Ramparts"
+      "name": "Sarn Ramparts"
     },
     {
       "id": "2_8_town",
-      "name": "The Sarn Encampment"
+      "name": "Sarn Encampment"
     },
     {
       "id": "2_8_2_1",
-      "name": "The Toxic Conduits"
+      "name": "Toxic Conduits"
     },
     {
       "id": "2_8_2_2",
       "name": "Doedre's Cesspool",
-      "map_name": "The Toxic Conduits",
+      "map_name": "Toxic Conduits",
       "crafting_recipe": "Elemental Resistances III"
     },
     {
       "id": "2_8_3",
-      "name": "The Grand Promenade"
+      "name": "Grand Promenade"
     },
     {
       "id": "2_8_5",
-      "name": "The Bath House",
+      "name": "Bath House",
       "crafting_recipe": "Flask Duration I"
     },
     {
       "id": "2_8_4",
-      "name": "The High Gardens"
+      "name": "High Gardens"
     },
     {
       "id": "2_8_6",
-      "name": "The Lunaris Concourse"
+      "name": "Lunaris Concourse"
     },
     {
       "id": "2_8_7_1_",
-      "name": "The Lunaris Temple Level 1"
+      "name": "Lunaris Temple Level 1"
     },
     {
       "id": "2_8_7_2",
-      "name": "The Lunaris Temple Level 2",
+      "name": "Lunaris Temple Level 2",
       "crafting_recipe": "Minions I"
     },
     {
@@ -570,38 +570,38 @@
     },
     {
       "id": "2_8_9",
-      "name": "The Grain Gate"
+      "name": "Grain Gate"
     },
     {
       "id": "2_8_10",
-      "name": "The Imperial Fields"
+      "name": "Imperial Fields"
     },
     {
       "id": "2_8_11",
-      "name": "The Solaris Concourse"
+      "name": "Solaris Concourse"
     },
     {
       "id": "2_8_12_1",
-      "name": "The Solaris Temple Level 1"
+      "name": "Solaris Temple Level 1"
     },
     {
       "id": "2_8_12_2",
-      "name": "The Solaris Temple Level 2",
+      "name": "Solaris Temple Level 2",
       "crafting_recipe": "Traps and Mines I"
     },
     {
       "id": "2_8_13",
-      "name": "The Harbour Bridge"
+      "name": "Harbour Bridge"
     },
     {
       "id": "2_8_14",
-      "name": "The Hidden Underbelly"
+      "name": "Hidden Underbelly"
     }
   ],
   [
     {
       "id": "2_9_1",
-      "name": "The Blood Aqueduct"
+      "name": "Blood Aqueduct"
     },
     {
       "id": "2_9_town",
@@ -613,7 +613,7 @@
     },
     {
       "id": "2_9_3",
-      "name": "The Vastiri Desert",
+      "name": "Vastiri Desert",
       "crafting_recipe": "Attack and Cast Speed II"
     },
     {
@@ -626,7 +626,7 @@
     },
     {
       "id": "2_9_6",
-      "name": "The Boiling Lake",
+      "name": "Boiling Lake",
       "crafting_recipe": "Spell Damage III"
     },
     {
@@ -646,11 +646,11 @@
     },
     {
       "id": "2_9_10_1",
-      "name": "The Belly of the Beast"
+      "name": "Belly of the Beast"
     },
     {
       "id": "2_9_10_2",
-      "name": "The Rotting Core"
+      "name": "Rotting Core"
     }
   ],
   [
@@ -660,11 +660,11 @@
     },
     {
       "id": "2_10_1",
-      "name": "The Cathedral Rooftop"
+      "name": "Cathedral Rooftop"
     },
     {
       "id": "2_10_2",
-      "name": "The Ravaged Square"
+      "name": "Ravaged Square"
     },
     {
       "id": "2_10_8",
@@ -672,7 +672,7 @@
     },
     {
       "id": "2_10_7",
-      "name": "The Control Blocks"
+      "name": "Control Blocks"
     },
     {
       "id": "2_10_9",
@@ -681,11 +681,11 @@
     },
     {
       "id": "2_10_3",
-      "name": "The Torched Courts"
+      "name": "Torched Courts"
     },
     {
       "id": "2_10_4",
-      "name": "The Desecrated Chambers",
+      "name": "Desecrated Chambers",
       "crafting_recipe": "Accuracy II"
     },
     {
@@ -694,7 +694,7 @@
     },
     {
       "id": "2_10_6",
-      "name": "The Feeding Trough",
+      "name": "Feeding Trough",
       "crafting_recipe": "Life and Mana III"
     },
     {
