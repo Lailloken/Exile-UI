@@ -492,6 +492,9 @@
       "each line has one or more steps you need to complete",
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
+      "(color:FF00FF)x_tasks/find_x: some lines have x sub-tasks you need to complete",
+      "(hint)__ they can be completed in random order or at the same time (zone-dependent)",
+      "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
       "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
       "(hint)__",
@@ -500,6 +503,8 @@
       "(hint)__",
       "if there's a (img:craft) or (color:00FFFF)this_highlighting, hold down the widget-key to see more info",
       "(hint)__",
+      "(img:in-out2) zone-name for x: this means \"enter (color:CC99FF)zone to get x, then leave again\"",
+      "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)"
     ],
@@ -507,7 +512,7 @@
       "each line has one or more steps you need to complete",
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
-      "(color:FF00FF)2_tasks: some lines have x sub-tasks you need to complete",
+      "(color:FF00FF)x_tasks/find_x: some lines have x sub-tasks you need to complete",
       "(hint)__ they can be completed in random order or at the same time (zone-dependent)",
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
@@ -515,7 +520,7 @@
       "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold down the widget-key to see an image",
       "(hint)__",
-      "(img:in-out2) (color:AAAAAA)zone-name for x: this means \"enter (color:AAAAAA)zone to get x, then leave again\"",
+      "(img:in-out2) zone-name for x: this means \"enter (color:CC99FF)zone to get x, then leave again\"",
       "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
       "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)",
@@ -536,9 +541,8 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker optionals": [
-      "choose whether optional loot/quests/encounters should be shown or not",
-      "they will be marked with a plus-sign in the guide(/highlight)",
-      "examples: strongboxes, gear quests"
+      "whether optional loot/quests/encounters should be included\nexamples: strongboxes, gear/flask quests, vendor recipes",
+      "they will be marked with a plus-sign in the guide(/highlight)"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
