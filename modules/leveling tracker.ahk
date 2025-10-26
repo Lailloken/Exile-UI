@@ -1322,7 +1322,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: New, -DPIScale +LastFound +AlwaysOnTop -Caption +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDleveltracker_hints
 	Gui, leveltracker_hints: Color, Black
 	Gui, leveltracker_hints: Margin, -1, -1
-	Gui, leveltracker_hints: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
+	Gui, leveltracker_hints: Font, % "s"settings.general.fSize " cWhite", % vars.system.font
 
 	If pic && !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"]))
 	{
@@ -1335,9 +1335,9 @@ Leveltracker_Hints()
 	{
 		If !vars.pics.leveltracker.craft
 			vars.pics.leveltracker.craft := LLK_ImageCache("img\GUI\leveling tracker\craft.png")
-		Gui, leveltracker_hints: Add, Pic, % (pic ? "Section xs y+-1 " : "") "Border h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.leveltracker.craft
-		Gui, leveltracker_hints: Add, Text, % "ys x+-1 Center Border w" vars.leveltracker.coords.w - settings.general.fHeight*2, % craft
-		Gui, leveltracker_hints: Add, Pic, % "ys x+-1 Border h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.leveltracker.craft
+		Gui, leveltracker_hints: Add, Pic, % (pic ? "Section xs y+-1 " : "") "Border h" settings.general.fHeight - 2 " w-1", % "HBitmap:*" vars.pics.leveltracker.craft
+		Gui, leveltracker_hints: Add, Text, % "ys x+-1 Center Border w" vars.leveltracker.coords.w - settings.general.fHeight*2 + 4, % craft
+		Gui, leveltracker_hints: Add, Pic, % "ys x+-1 Border h" settings.general.fHeight - 2 " w-1", % "HBitmap:*" vars.pics.leveltracker.craft
 	}
 
 	Gui, leveltracker_hints: Show, NA x10000 y10000
@@ -1937,7 +1937,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If buy_prompt && !hardcoded_buy
 			{
 				Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.bullet_diamond
-				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (highlight: hold omni-key)"
+				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (hold omni-key)"
 				buy_prompt := 0
 			}
 
