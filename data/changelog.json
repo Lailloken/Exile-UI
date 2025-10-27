@@ -1,5 +1,12 @@
 [
   [
+	["1.60.1", 16001, 1],
+	"october 27, 2025",
+	"contains major guide changes: better read the full release notes(/highlight)",
+	"guide formatting changes: more compact, better quest rewards and hints",
+	"guide routing changes: generally more consistent, fewer detours, added a8 hidden underbelly"
+  ],
+  [
 	["1.60.0", 16000, 1],
 	"october 19, 2025",
 	"contains major hotkey and ui changes: better read the full release notes(/highlight)",
