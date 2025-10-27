@@ -43,7 +43,7 @@
         "kill hailrake for (quest:med._chest) (lvl:4)",
         "(hint)__ follow wall (img:6) / (img:5). if there's a",
         "(hint)__ ledge, follow wall (img:2) / (img:3) instead",
-        "(color:cc99ff)relog: areaid1_1_town (img:town) ;; lioneye's watch"
+        "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
       ]
     },
     {
@@ -73,7 +73,7 @@
         "no"
       ],
       "lines": [
-        "(color:ff00ff)buy_gems in (color:fec076)h/o || (img:waypoint) to (color:fec076)subm._passage || lilly: <mercy_mission>, <breaking_some_eggs1>, <breaking_some_eggs2> ;; only shows with imported pob",
+        "(color:ff00ff)buy_gems in (img:hideout) || (img:waypoint) to (color:fec076)subm._passage || lilly: <mercy_mission>, <breaking_some_eggs1>, <breaking_some_eggs2> ;; only shows with imported pob",
         "find bridge or (img:arena) fl._depths, place (img:portal)",
         "cross the bridge || enter areaid1_1_5 ;; the ledge"
       ]
@@ -96,7 +96,7 @@
     [
       "find & kill dweller (essence)",
       "(hint)__ (img:arena) start & arena:dweller : opposite corners",
-      "(color:cc99ff)relog: areaid1_1_town (img:town) ;; lioneye's watch"
+      "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
     ],
     [
       "tarkleigh: <book>",
@@ -127,7 +127,7 @@
       "optional: find chemist's strongbox",
       "(hint)__ can drop quicksilver flask",
       "kill brutus (lvl:8-10)",
-      "(color:cc99ff)relog: areaid1_1_town (img:town) ;; lioneye's watch"
+      "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
     ],
     [
       "tarkleigh: <the_caged_brute2>",
@@ -153,7 +153,7 @@
     ],
     [
       "kill fairgraves",
-      "(color:cc99ff)relog: areaid1_1_town (img:town) ;; lioneye's watch"
+      "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
     ],
     [
       "bestel: <book>",
@@ -201,7 +201,7 @@
         "kill fidelitas || take (img:quest) (quest:gem) (lvl:14-15)",
         "(hint)_ - (color:cc99ff)long_corridor leads to arena",
         "(hint)_ - (img:arena) start & (color:cc99ff)corridor: opposite corners",
-        "(color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+        "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
       ]
     },
     {
@@ -213,7 +213,7 @@
         "kill fidelitas || take (img:quest) (quest:gem) (lvl:14-15)",
         "(hint)_ - (color:cc99ff)long_corridor leads to arena",
         "(hint)_ - (img:arena) start & (color:cc99ff)corridor: opposite corners",
-        "(color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+        "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
       ]
     },
     [
@@ -249,7 +249,7 @@
     [
       "find (img:quest) (quest:altar), take (quest:golden_hand)",
       "(hint)__ (img:arena) start & (quest:altar): opposite corners",
-      "(color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+      "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
     ],
     [
       "yeena: <book>",
@@ -309,7 +309,7 @@
         "optional: jewelry chest + 3 rogue exiles",
         "(hint)__ follow road to (img:waypoint), look for ruins",
         "follow road, kill kraityn for (quest:amulet)",
-        "(color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+        "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
       ]
     },
     {
@@ -389,7 +389,7 @@
         "go (img:4) to torch on the road",
         "follow side path: kill alira for (quest:amulet)",
         "follow main road: kill arteri for (quest:emblem)",
-        "click (img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+        "click (img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
       ]
     },
     {
@@ -403,7 +403,7 @@
         "go (img:4) to torch on the road",
         "follow side path: help (color:ff8111)alira for (quest:apex)",
         "follow main road: kill arteri for (quest:emblem)",
-        "click (img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town (img:town) ;; the forest encampment"
+        "click (img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
       ]
     },
     {
@@ -465,7 +465,7 @@
         "optional: jewelry chest + 3 rogue exiles",
         "(hint)__ follow road to (img:waypoint), look for ruins",
         "follow road, help (color:ff8111)kraityn for (quest:apex)",
-        "(color:cc99ff)relog: areaid1_1_town (img:town) ;; lioneye's watch"
+        "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
       ]
     },
     {
@@ -647,7 +647,7 @@
       "lines": [
         "find & kill piety || take (img:quest) (quest:bracelet)",
         "(hint)__ (img:lab) & (color:ff8111)piety: often in adjacent corners1",
-        "(color:cc99ff)relog: areaid1_3_town (img:town) ;; the sarn encampment"
+        "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
       ]
     },
     [
@@ -692,7 +692,7 @@
       "lines": [
         "complete the (img:lab) trial || get (img:craft)",
         "(hint)__ (img:arena) start & (img:lab): adjacent corners1",
-        "(color:cc99ff)relog: areaid1_3_town (img:town) ;; the sarn encampment"
+        "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
       ]
     },
     {
@@ -793,7 +793,7 @@
         "find & kill piety for (quest:key) (lvl:27)",
         "(hint)_ - follow: (color:cc99ff)3_stairs_up, then single wagon.",
         "(hint)_ - (color:cc99ff)2_large_gates (l-shape or line) lead to (img:arena)",
-        "(color:cc99ff)relog: areaid1_3_town (img:town) ;; the sarn encampment"
+        "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
       ]
     },
     {
@@ -805,7 +805,7 @@
         "find & kill piety for (quest:key) (lvl:27)",
         "(hint)_ - follow: (color:cc99ff)3_stairs_up, then single wagon.",
         "(hint)_ - (color:cc99ff)2_large_gates (l-shape or line) lead to (img:arena)",
-        "get (img:craft) || (color:cc99ff)relog: areaid1_3_town (img:town) ;; the sarn encampment"
+        "get (img:craft) || (color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
       ]
     },
     {
@@ -827,7 +827,7 @@
       "lines": [
         "maramoa: <sever_the_right_hand>",
         "grigor: <piety's_pets>",
-        "(color:ff00ff)buy_gems in (color:fec076)hideout (library gems) || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
+        "(color:ff00ff)buy_gems in (img:hideout) (library gems) || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
         "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
       ]
     },
@@ -840,7 +840,7 @@
         "yes"
       ],
       "lines": [
-        "follow road for (img:waypoint)",
+        "follow road, get (img:waypoint)",
         "go far (img:0) for (img:lab) trial",
         "(hint)__ may require far (img:1) detour",
         "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
@@ -1037,7 +1037,7 @@
     [
       "kill doedre,_maligaro,_shav",
       "(img:quest) piety || kill malachai (lvl:34)",
-      "(img:portal) to areaid1_4_town (img:town) ;; highgate"
+      "(img:portal) to areaid1_4_town ;; highgate"
     ],
     [
       "dialla: <the_eternal_nightmare>",
@@ -1167,7 +1167,7 @@
         "no"
       ],
       "lines": [
-        "(color:ff00ff)buy_gems in (color:fec076)your_hideout || lilly: <fallen_from_grace>  ;; only shows with imported pob",
+        "(color:ff00ff)buy_gems in (img:hideout) || lilly: <fallen_from_grace>  ;; only shows with imported pob",
         "(img:waypoint) to areaid2_6_town (img:town) || lilly: <fallen_from_grace>  ;; only shows with imported pob ;; lioneye's watch",
         "enter areaid2_6_2 ;; the coast"
       ]
@@ -1195,7 +1195,7 @@
         "activate the (img:waypoint)",
         "optional: (img:quest) <belt>: (img:waypoint) to areaid2_6_2 ;; the coast",
         "(hint)__ find (img:quest) (quest:script) in (img:arena) areaid2_6_3 ;; tidal island",
-        "(img:portal) to areaid2_6_town (img:town) ;; lioneye's watch"
+        "(img:portal) to areaid2_6_town ;; lioneye's watch"
       ]
     },
     {
@@ -1214,7 +1214,7 @@
       ],
       "lines": [
         "kill everything",
-        "(color:cc99ff)relog: areaid2_6_town (img:town) ;; lioneye's watch"
+        "(color:cc99ff)relog: areaid2_6_town ;; lioneye's watch"
       ]
     },
     {
@@ -1295,7 +1295,7 @@
     [
       "follow (img:6) edge, kill ryslatha",
       "(hint)__ rarely, the (img:arena) arena can be (img:1)",
-      "(img:portal) to areaid2_6_town (img:town) ;; lioneye's watch"
+      "(img:portal) to areaid2_6_town ;; lioneye's watch"
     ],
     [
       "(img:waypoint) to areaid2_6_8 ;; prisoner's gate"
@@ -1639,7 +1639,7 @@
       "(hint)_ - if lost, follow channel upstream"
     ],
     [
-      "follow (img:0) edge for (img:waypoint)",
+      "follow (img:0) edge, get (img:waypoint)",
       "(img:waypoint) to areaid2_8_town (img:town) ;; sarn encampment"
     ],
     [
@@ -1735,7 +1735,7 @@
         "kill dusk for (quest:moon_orb)",
         "(hint)_ - follow: (color:cc99ff)3_stairs_up, then single flower-pot",
         "(hint)_ - (color:cc99ff)2_large_gates (roughly in line) lead to (img:arena)",
-        "get (img:craft) || (img:portal) to areaid2_8_town (img:town) ;; sarn encampment"
+        "get (img:craft) || (img:portal) to areaid2_8_town ;; sarn encampment"
       ]
     },
     {
@@ -1747,7 +1747,7 @@
         "kill dusk for (quest:moon_orb)",
         "(hint)_ - follow: (color:cc99ff)3_stairs_up, then single flower-pot",
         "(hint)_ - (color:cc99ff)2_large_gates (roughly in line) lead to (img:arena)",
-        "(img:portal) to areaid2_8_town (img:town) ;; sarn encampment"
+        "(img:portal) to areaid2_8_town ;; sarn encampment"
       ]
     },
     [
@@ -1789,7 +1789,7 @@
       ],
       "lines": [
         "go (img:1), kill basilisk for (quest:acid)",
-        "get (img:craft) || (color:cc99ff)relog: areaid2_9_town (img:town) ;; highgate"
+        "get (img:craft) || (color:cc99ff)relog: areaid2_9_town ;; highgate"
       ]
     },
     {
@@ -1799,7 +1799,7 @@
       ],
       "lines": [
         "go (img:1), kill basilisk for (quest:acid)",
-        "(color:cc99ff)relog: areaid2_9_town (img:town) ;; highgate"
+        "(color:cc99ff)relog: areaid2_9_town ;; highgate"
       ]
     },
     [
@@ -1859,7 +1859,7 @@
         "pick (img:0) exit: go (img:7), then (img:1)",
         "(hint)__ (img:craft): tracks end in a grate",
         "kill adus for (img:quest) (quest:powder)",
-        "(color:cc99ff)relog: areaid2_9_town (img:town) ;; highgate"
+        "(color:cc99ff)relog: areaid2_9_town ;; highgate"
       ]
     },
     {
@@ -1870,7 +1870,7 @@
       "lines": [
         "pick (img:0) exit: go (img:7), then (img:1)",
         "kill adus for (img:quest) (quest:powder)",
-        "(color:cc99ff)relog: areaid2_9_town (img:town) ;; highgate"
+        "(color:cc99ff)relog: areaid2_9_town ;; highgate"
       ]
     },
     [
@@ -1988,7 +1988,7 @@
         "follow edge, complete (img:lab) trial",
         "(hint)_ - zone is (rotated) 8-shape",
         "(hint)_ - (img:lab) is (img:0) of (img:quest) (quest:elixir) (opt: <2_respecs>)",
-        "(color:cc99ff)relog: areaid2_10_town (img:town) ;; oriath docks"
+        "(color:cc99ff)relog: areaid2_10_town ;; oriath docks"
       ]
     },
     {
