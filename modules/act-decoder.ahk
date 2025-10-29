@@ -159,7 +159,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	Gui, %GUI_name%: Add, Pic, % "Section Border BackgroundTrans HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden"), % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Progress, % "Disabled HWNDhwnd1 xp yp wp hp BackgroundBlack" (vars.actdecoder.tab ? "" : " Hidden"), 0
-	vars.hwnd.actdecoder.helppanel := hwnd, vars.hwnd.actdecoder.helppanel_bar := vars.hwnd.help_tooltips["actdecoder_help panel"] := hwnd1
+	vars.hwnd.actdecoder.helppanel := hwnd, vars.hwnd.actdecoder.helppanel_bar := vars.hwnd.help_tooltips["actdecoder_help panel" vars.poe_version] := hwnd1
 
 	If !vars.pics.zone_layouts.drag
 		vars.pics.zone_layouts.drag := LLK_ImageCache("img\GUI\drag.png")
