@@ -1,5 +1,12 @@
 [
   [
+	["1.60.2", 16002],
+	"october 30, 2025",
+	"act-tracker: custom layout images are not supported anymore in this version (will try to come up with something tomorrow)(/highlight)",
+	"act-tracker: added hotkeys for layout selection while moving your character",
+	"act-tracker: added/updated layouts up to A3 sewers"
+  ],
+  [
 	["1.60.1", 16001, 1],
 	"october 27, 2025",
 	"contains major guide changes: better read the full release notes(/highlight)",
