@@ -93,11 +93,12 @@ Hotkeys_ESC()
 		Return
 	}
 	start := A_TickCount
-	While GetKeyState("ESC", "P")
+	While GetKeyState("ESC", "P") || GetKeyState("SC001", "P")
 		If (A_TickCount >= start + 250)
 		{
 			Gui_RadialMenu()
 			KeyWait, ESC
+			KeyWait, SC001
 			Return
 		}
 		Else Sleep 25
@@ -367,6 +368,17 @@ Hotkeys_Tab()
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
 
+#If vars.actdecoder.tab
+*SC002::
+*SC003::
+*SC004::
+*SC005::
+*SC006::
+*SC007::
+*SC010::
+*SC011::
+*SC012::Actdecoder_ZoneLayouts(A_ThisHotkey)
+
 #If vars.hwnd.radial.main && vars.general.cMouse && LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
 LButton::Gui_RadialMenu2(vars.general.cMouse)
 RButton::Gui_RadialMenu2(vars.general.cMouse, 2)
@@ -380,10 +392,10 @@ WheelUp::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.acti
 WheelDown::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.active + 1
 
 #If vars.hwnd.exchange.main && WinExist("ahk_id " vars.hwnd.exchange.main)
-~SC0038::Exchange("hide")
+~SC038::Exchange("hide")
 
 #If vars.hwnd.leveltracker_gemcutting.main && WinExist("ahk_id " vars.hwnd.leveltracker_gemcutting.main)
-~SC0038::Leveltracker_PobGemCutting("hide")
+~SC038::Leveltracker_PobGemCutting("hide")
 
 #If vars.hwnd.exchange.main && (vars.general.wMouse = vars.hwnd.exchange.main)
 *WheelUp::Exchange("hotkey", "WheelUp")
@@ -392,7 +404,7 @@ WheelDown::vars.leveltracker.skilltree.active1 := vars.leveltracker.skilltree.ac
 #If vars.hwnd.exchange.main && Exchange_coords() && WinExist("ahk_id " vars.hwnd.exchange.main) && (WinActive("ahk_id " vars.hwnd.exchange.main) || WinActive("ahk_id " vars.hwnd.poe_client))
 ~LButton::Exchange2("LButton")
 ~RButton::Exchange2("RButton")
-SC0039::Exchange2("Space")
+SC039::Exchange2("Space")
 
 #If vars.hwnd.anoints.main && (vars.general.wMouse = vars.hwnd.anoints.main) && IsNumber(SubStr(LLK_HasVal(vars.hwnd.anoints, vars.general.cMouse), 1, 1))
 WheelUp::Anoints("stock+")
@@ -433,14 +445,14 @@ SC005::Leveltracker_PobSkilltree("ascendancy 4")
 SC010::Leveltracker_PobSkilltree("prev")
 SC012::Leveltracker_PobSkilltree("next")
 SC011::Leveltracker_PobSkilltree("overview")
-SC038::Leveltracker_PobSkilltree("hide")
+~SC038::Leveltracker_PobSkilltree("hide")
 MButton::Leveltracker_PobSkilltree("reset")
 
 #If settings.features.sanctum && vars.sanctum.active && WinExist("ahk_id " vars.hwnd.sanctum.second) && !vars.sanctum.lock ;last condition needed to make the space-key usable again after initial lock
 *SC039::Sanctum("lock")
 
 #If settings.features.sanctum && vars.sanctum.active && WinExist("ahk_id " vars.hwnd.sanctum.second)
-*SC038::Sanctum("trans")
+*~SC038::Sanctum("trans")
 
 #If settings.features.sanctum && vars.sanctum.active && WinExist("ahk_id " vars.hwnd.sanctum.main) && (vars.general.wMouse = vars.hwnd.sanctum.main) && vars.general.cMouse && (check := LLK_HasVal(vars.hwnd.sanctum, vars.general.cMouse))
 *LButton::Sanctum_Mark(SubStr(check, InStr(check, "_") + 1), 1)

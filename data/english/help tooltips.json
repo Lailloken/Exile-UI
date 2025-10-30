@@ -967,7 +967,7 @@
     "update versions": [
       "the list below shows the available versions to switch between or reinstall",
       "each line represents a major version and has buttons to select the minor version",
-      "versions with important changes are highlighted in orange",
+      "versions with important changes are highlighted in orange(/highlight)",
       "hover over a button to see a summarized changelog, click it to prepare the download"
     ],
     "update full changelog": [
@@ -1285,7 +1285,19 @@
     ],
     "help panel": [
       "general:\n- scroll to zoom, hold down m-mouse for info\n- press space to (un)lock the overlay",
-      "zone-layout images:\n- if border is white, click to pick sub-layout\n- r-click to discard/hide images or sub-layouts\n(important: only 2 sub-layouts will be shown at a time)",
+      "if images have a white border, that means you have to find specific identifiers on the minimap from which the whole layout can be deduced",
+      "click images or press the corresponding number-key to select them",
+      "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
+      "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
+      "press <q>, <w>, or <e> to revert all modifications"
+    ],
+    "help panel 2": [
+      "general:\n- scroll to zoom, hold down m-mouse for info\n- press space to (un)lock the overlay",
+      "if images have a white border, that means you have to find specific identifiers on the minimap from which the whole layout can be deduced",
+      "click images or press the corresponding number-key to select them",
+      "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
+      "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
+      "press <q>, <w>, or <e> to revert all modifications",
       "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ],
     "reset": [

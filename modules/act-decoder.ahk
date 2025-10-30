@@ -1,14 +1,27 @@
 ﻿Init_actdecoder()
 {
 	local
-	global vars, settings
+	global vars, settings, json
 
 	If !FileExist("ini" vars.poe_version "\act-decoder.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\act-decoder.ini", settings
 
 	If !IsObject(vars.actdecoder)
+	{
 		vars.actdecoder := {}
+		Try vars.actdecoder.file_list := json.Load(LLK_FileRead("img\GUI\act-decoder\file-list" vars.poe_version ".json"))
+	}
 	vars.actdecoder.zone_layouts := {}, vars.actdecoder.files := {}
+
+	If vars.actdecoder.file_list.Count()
+		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
+			If !vars.actdecoder.file_list[A_LoopFileName]
+				If settings.general.dev
+					outdated := 1
+				Else FileDelete, % A_LoopFilePath
+
+	If outdated
+		MsgBox, % "file-list outdated"
 
 	Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
 		If (check := InStr(A_LoopFileName, " "))
@@ -27,6 +40,19 @@
 	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
 }
 
+Actdecoder_ImageSelect(pic)
+{
+	local
+	global vars, settings
+
+	vars.actdecoder.zone_layouts[vars.log.areaID] := {"exclude": vars.actdecoder.zone_layouts[vars.log.areaID].exclude, "subzone": pic, (pic): vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()}
+	Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " pic "_*"
+	{
+		file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
+		vars.actdecoder.zone_layouts[vars.log.areaID][file] := vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()
+	}
+}
+
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 {
 	local
@@ -35,6 +61,37 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If !settings.features.actdecoder
 		Return
+
+	If InStr(mode, "SC00")
+	{
+		hotkey := SubStr(mode, 0) - 1, subzone := vars.actdecoder.zone_layouts[vars.log.areaID].subzone, target := vars.actdecoder.loaded[hotkey]
+		If !InStr(target, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " target "_*")
+			Actdecoder_ImageSelect(target), check := 1
+		Else If (vars.actdecoder.zone_layouts[vars.log.areaID].subzone || InStr(vars.actdecoder.loaded.1, "y")) && vars.actdecoder.loaded[hotkey] && !InStr(vars.actdecoder.loaded[hotkey], "x") && (vars.actdecoder.loaded.Count() >= hotkey)
+		{
+			For index, val in vars.actdecoder.loaded
+				If (index != hotkey)
+					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val, check := 1
+		}
+		Else If !vars.actdecoder.zone_layouts[vars.log.areaID].subzone && !InStr(vars.actdecoder.loaded.1, "y") && (!InStr(vars.actdecoder.loaded[hotkey], "x") || hotkey = 3)
+		{
+			If (hotkey = 3)
+			{
+				For index, val in vars.actdecoder.loaded
+					If (index < 3)
+						vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val, check := 1
+			}
+			Else If vars.actdecoder.loaded[hotkey]
+				vars.actdecoder.zone_layouts[vars.log.areaID].subzone := vars.actdecoder.loaded[hotkey], check := 1
+		}
+		If !check
+			Return
+	}
+	Else If InStr(mode, "SC0")
+		vars.actdecoder.zone_layouts[vars.log.areaID] := {}
+
+	If InStr(mode, "SC0")
+		KeyWait, % SubStr(mode, InStr(mode, "SC"))
 
 	If cHWND
 	{
@@ -104,14 +161,14 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Else vars.actdecoder.zone_layouts[vars.log.areaID][control].Push(flip)
 			}
 		}
-		Else If (click = 1) && !InStr(check, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, "c_") " " pic "_*")
+		Else If (click = 1) && !InStr(check, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " pic "_*")
+			Actdecoder_ImageSelect(pic)
+		Else If (click = 1) && !InStr(check, " x") && (vars.actdecoder.loaded.Count() != 1)
 		{
-			vars.actdecoder.zone_layouts[vars.log.areaID] := {"exclude": vars.actdecoder.zone_layouts[vars.log.areaID].exclude, "subzone": pic, (pic): vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()}
-			Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " " pic "_*"
-			{
-				file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
-				vars.actdecoder.zone_layouts[vars.log.areaID][file] := vars.actdecoder.zone_layouts[vars.log.areaID][pic].Clone()
-			}
+			control := SubStr(check, InStr(check, " ") + 1)
+			For index, val in vars.actdecoder.loaded
+				If (control != val)
+					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val
 		}
 		Else If InStr(check, "imagereset_")
 		{
@@ -148,7 +205,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		vars.actdecoder.current_zone := vars.log.areaID
 	toggle := !toggle, GUI_name := "actdecoder_zones" toggle
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDactdecoder_zones" (mode = 2 ? " +E0x20" : "")
-	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
+	Gui, %GUI_name%: Font, % "s" settings.general.fSize + 4 " Bold cWhite", % vars.system.font
 	Gui, %GUI_name%: Color, % "Green"
 	If (mode = 2)
 		WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25)
@@ -184,14 +241,17 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		vars.hwnd.actdecoder.reset := hwnd, vars.hwnd.actdecoder.reset_bar := vars.hwnd.help_tooltips["actdecoder_reset"] := hwnd1
 	}
 
-	subzone := vars.actdecoder.zone_layouts[vars.log.areaID].subzone, pic_count := ypic_count := pic_count0 := 0
+	subzone := vars.actdecoder.zone_layouts[vars.log.areaID].subzone, pic_count := ypic_count := pic_count0 := 0, vars.actdecoder.loaded := [], deep := 0
+	While InStr(subzone, "_",,, deep + 1)
+		deep += 1
+
 	For outer in [1, 2]
 	{
 		count := 0, pic_count := (alignment = "vertical") && vars.actdecoder.tab ? Min(4, pic_count) : pic_count
 		exclude := vars.actdecoder.zone_layouts[vars.log.areaID].exclude
 		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		{
-			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x)_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
+			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x(_x){" deep "})_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
 			|| (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
 			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
@@ -230,11 +290,15 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 			new_width := (vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1) ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1)
 			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.5)) : new_width
-			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width, 10000, 1, 7, 1)
+			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width * (InStr(A_LoopFileName, "x") ? 0.66 : 1), 10000, 1, 7, 1)
 			Gdip_DisposeBitmap(pBitmap)
 			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
-			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd" (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % "HBitmap:" hbmBitmap
+
+			Gui, %GUI_name%: Add, Text, % (mode = 2 || InStr(file, "x") || pic_count = 1 && (subzone || InStr(file, "y")) ? "Hidden " : "") "BackgroundTrans Center w" settings.general.fHeight (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % (InStr(file, "x") ? "" : count)
+			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd xp yp", % "HBitmap:" hbmBitmap
 			vars.hwnd.actdecoder[vars.log.areaID " " file] := hwnd, DeleteObject(hbmBitmap)
+			vars.actdecoder.loaded.Push(file)
+
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 
