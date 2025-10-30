@@ -18,8 +18,7 @@
 	{
 		settings.stash := {"indexes": 15}, ini := IniBatchRead("ini" vars.poe_version "\stash-ninja.ini")
 		settings.stash.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
-		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"], ["abyss", "Rise of the Abyssal"], ["hc abyss", "HC Rise of the Abyssal"]]
-			: [["standard", "Standard"], ["mercenaries", "Mercenaries"], ["hc mercenaries", "Hardcore Mercenaries"]])
+		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"], ["abyss", "Rise of the Abyssal"], ["hc abyss", "HC Rise of the Abyssal"]] : [["standard", "Standard"]])
 		settings.stash.league := !Blank(check := ini.settings["league"]) && LLK_HasVal(settings.stash.leagues, check,,,, 1) ? check : settings.stash.leagues.1.2
 		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : (vars.poe_version ? 0 : 1)
 		settings.stash.show_exalt := !Blank(check := ini.settings["show exalt conversion"]) ? check : (vars.poe_version ? 1 : 0)
