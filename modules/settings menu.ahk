@@ -4353,6 +4353,7 @@ Settings_stash()
 	{
 		Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
 		Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
+		/*
 		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd4 gSettings_stash2 Checked" settings.stash.bulk_trade, % Lang_Trans("m_stash_bulk")
 		If settings.stash.bulk_trade
 		{
@@ -4364,8 +4365,9 @@ Settings_stash()
 			vars.hwnd.settings.min_trade := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade"] := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade|"] := hwnd3
 			vars.hwnd.settings.autoprofiles := vars.hwnd.help_tooltips["settings_stash autoprofiles"] := hwnd00
 		}
-		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 		vars.hwnd.settings.bulk_trade := vars.hwnd.help_tooltips["settings_stash bulk"] := hwnd4
+		*/
+		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 	}
 
 	Gui, %GUI%: Font, bold underline
@@ -4473,7 +4475,7 @@ Settings_stash2(cHWND)
 	{
 		ControlGetFocus, hwnd, % "ahk_id " vars.hwnd.settings.main
 		ControlGet, hwnd, HWND,, % hwnd
-		If !InStr(vars.hwnd.settings.hotkey "," vars.hwnd.settings.min_trade, hwnd)
+		If !InStr(vars.hwnd.settings.hotkey, hwnd)
 		{
 			in_progress := 0
 			Return
