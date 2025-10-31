@@ -1,19 +1,17 @@
 {
-  "timestamp": "2025-08-29 19:05:00",
+  "timestamp": "2025-10-31 14:00:00",
   "messages": [
     [
       {
         "priority": 2,
-        "stamp": "2025-08-29 19:05:00",
-        "topic": "league-start checklist"
+        "stamp": "2025-10-31 14:00:00",
+        "topic": "league-start info"
       },
-      "EDIT: if features aren't activating correctly, you'll probably have to recalibrate the screen-checks",
-      "update to v1.59.4 to make sure most of the stuff is working correctly for 0.3",
-      "!!!reset!!! your guide-slot by long-clicking the <reset> button in order to get the latest guide version",
-      "if you previously edited the guide, you have to reset via the editor",
-      "as of writing this, the pob update hasn't shipped yet. once that is out, i'll implement support for the tree. the tree will auto-download when importing new builds",
-      "gem-features (overlays, regex) should work as long as you're using a build with 0.2 gems",
-      "good luck, have fun"
+      "v1.60.3 for the 3.27 league will be released during game-server downtime",
+      "it will include support for new pob trees, gems, bases, and more",
+      "you'll be able to set up your guide and pob while waiting for the queue to open",
+      "as with every league-start patch: if features don't activate correctly, you'll have to recalibrate their screen-checks",
+      "good luck, have fun!"
     ]
   ]
 }
