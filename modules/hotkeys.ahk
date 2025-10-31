@@ -17,6 +17,9 @@
 	settings.hotkeys.rebound_c := !Blank(check := ini.settings["c-key rebound"]) ? check : 0
 	settings.hotkeys.movekey := !Blank(check := ini.hotkeys["move-key"]) ? check : "lbutton"
 	settings.hotkeys.omnikey := vars.omnikey.hotkey := !Blank(check := ini.hotkeys["omni-hotkey"]) ? check : "capslock"
+	If (Hotkeys_Convert(settings.hotkeys.omnikey) = "SC00")
+		settings.hotkeys.omnikey := vars.omnikey.hotkey := "F1"
+
 	settings.hotkeys.omnikey2 := vars.omnikey.hotkey2 := !Blank(check := ini.hotkeys["omni-hotkey2"]) ? check : ""
 	settings.hotkeys.emergencykey := !Blank(check := ini.hotkeys["emergency hotkey"]) ? check : "space"
 	settings.hotkeys.emergencykey_ctrl := !Blank(check := ini.hotkeys["emergency key ctrl"]) ? check : 1
