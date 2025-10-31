@@ -1,5 +1,13 @@
 [
   [
+	["1.60.3", 16003],
+	"october 31, 2025",
+	"act-tracker: added support for 3.27 passive trees and gems",
+	"hotkeys: added an alternative key to access the menu-widget (F2 by default, can be rebound or disabled)",
+	"item-info: added support for 3.27 item bases",
+	"horizons tooltip: updated atlas data to 3.27"
+  ],
+  [
 	["1.60.2", 16002],
 	"october 30, 2025",
 	"act-tracker: custom layout images are not supported anymore in this version and will be deleted (will try to come up with a solution tomorrow)(/highlight)",
