@@ -23,7 +23,7 @@
 Maven's Invitation: The Feared		=	The Feared
 Maven's Invitation: The Forgotten	=	The Forgotten
 Maven's Invitation: The Formed		=	The Formed
-Maven's Invitation: The Hidden		=	The Hidden
+Maven's Invitation: The Remembered		=	The Remembered
 Maven's Invitation: The Twisted		=	The Twisted
 Maven's Invitation: The Elderslayers	=	The Elderslayers
 Maven's Invitation: The Atlas		=	Atlas Invitation

@@ -2211,6 +2211,8 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		vars.leveltracker.gemlinks := {}
 
 	hotkey := InStr(gem_name, "hotkey") ? SubStr(gem_name, 0) : "", omnikey := !gem_name || InStr(gem_name, "hotkey") ? 0 : 1
+	If InStr(gem_name, " of ") && LLK_HasVal(pob.gems, SubStr(gem_name, 1, InStr(gem_name, " of ") - 1),,,, 1)
+		gem_name := SubStr(gem_name, 1, InStr(gem_name, " of ") - 1)
 	If gem_name && !hotkey
 		last_gem := gem_name
 	Else gem_name := last_gem
@@ -2383,7 +2385,7 @@ Leveltracker_PobImport(b64, profile)
 		Loop, Parse, tree, `n, `r
 			If InStr(A_LoopField, "<spec")
 			{
-				ascendancy := SubStr(A_LoopField, InStr(A_LoopField, "ascendclassid=""") + 15), ascendancy := SubStr(ascendancy, 1, InStr(ascendancy, """") - 1)
+				ascendancy := SubStr(A_LoopField, InStr(A_LoopField, " ascendclassid=""") + 16), ascendancy := SubStr(ascendancy, 1, InStr(ascendancy, """") - 1)
 				If ascendancy && !LLK_HasVal(ascendancies, classes[class][ascendancy])
 					ascendancies.Push(classes[class][ascendancy])
 
@@ -2450,6 +2452,9 @@ Leveltracker_PobImport(b64, profile)
 					name := SubStr(A_LoopField, InStr(A_LoopField, "namespec=""") + 10), name := SubStr(name, 1, InStr(name, """") - 1), name := StrReplace(StrReplace(name, "vaal "), "awakened ")
 					If InStr(name, ":")
 						name := SubStr(name, 1, InStr(name, ":") - 1)
+					If !support && InStr(name, " of ") && gems[SubStr(name, 1, InStr(name, " of ") - 1)]
+						name := SubStr(name, 1, InStr(name, " of ") - 1)
+
 					If !Blank(name) && (!vars.poe_version && gems[name . (support && !InStr(name, "support") ? " support" : "")] || vars.poe_version && LLK_HasKey(gems, name,,,, 1))
 					{
 						group.gems.Push((support ? " |–" : "") . name)
@@ -2689,7 +2694,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 		{
 			ascendant_points := 0
 			For iNode, vNode in vTree.nodes
-				If tree.nodes[vNode].ascendancyname
+				If tree.nodes[vNode].ascendancyname && !tree.nodes[vNode].isBloodline
 					If tree.nodes[vNode].isascendancystart
 						ascendancy_points.InsertAt(1, vNode)
 					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption || tree.nodes[vNode].isfreeallocate ? 1 : 0

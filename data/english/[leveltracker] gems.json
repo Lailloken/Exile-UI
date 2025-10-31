@@ -1679,6 +1679,23 @@
       }
     }
   },
+  "conflagration": {
+    "attribute": 2,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "ranger"
+        ],
+        "vendor": [
+          "ranger"
+        ]
+      }
+    }
+  },
   "consecrated path": {
     "attribute": 1,
     "level": 28,
@@ -1775,7 +1792,7 @@
     }
   },
   "convocation": {
-    "attribute": 3,
+    "attribute": 0,
     "level": 31,
     "quests": {
       "a fixture of fate": {
@@ -4613,6 +4630,61 @@
       }
     }
   },
+  "kinetic fussilade": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "the siren's cadence": {
+        "vendor": [
+          "scion",
+          "shadow",
+          "witch"
+        ]
+      }
+    }
+  },
+  "kinetic instability support": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sharp and cruel": {
+        "quest": [
+          "witch"
+        ],
+        "vendor": [
+          "scion",
+          "shadow",
+          "witch"
+        ]
+      }
+    }
+  },
+  "kinetic rain": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "witch"
+        ],
+        "vendor": [
+          "scion",
+          "shadow",
+          "templar",
+          "witch"
+        ]
+      }
+    }
+  },
   "knockback support": {
     "attribute": 1,
     "level": 8,
@@ -4935,6 +5007,25 @@
         "vendor": [
           "scion",
           "shadow",
+          "templar",
+          "witch"
+        ]
+      }
+    }
+  },
+  "living lightning support": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sharp and cruel": {
+        "quest": [
+          "witch"
+        ],
+        "vendor": [
+          "scion",
           "templar",
           "witch"
         ]
@@ -6681,6 +6772,26 @@
       }
     }
   },
+  "somatic shell": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "witch"
+        ],
+        "vendor": [
+          "scion",
+          "shadow",
+          "templar",
+          "witch"
+        ]
+      }
+    }
+  },
   "soul link": {
     "attribute": 3,
     "level": 34,
@@ -7548,6 +7659,27 @@
       }
     }
   },
+  "thunderstorm": {
+    "attribute": 2,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "duelist",
+          "ranger"
+        ],
+        "vendor": [
+          "duelist",
+          "ranger",
+          "scion",
+          "shadow"
+        ]
+      }
+    }
+  },
   "tornado": {
     "attribute": 2,
     "level": 34,
@@ -8098,6 +8230,25 @@
       }
     }
   },
+  "wall of force": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "intruders in black": {
+        "quest": [
+          "witch"
+        ],
+        "vendor": [
+          "scion",
+          "shadow",
+          "witch"
+        ]
+      }
+    }
+  },
   "war banner": {
     "attribute": 1,
     "level": 4,
@@ -8197,6 +8348,19 @@
           "scion",
           "shadow"
         ]
+      }
+    }
+  },
+  "windburst support": {
+    "attribute": 2,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "quest": [
+          "duelist",
+          "ranger"
+        ],
+        "vendor": []
       }
     }
   },

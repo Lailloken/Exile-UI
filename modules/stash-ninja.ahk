@@ -22,9 +22,9 @@
 		settings.stash.league := !Blank(check := ini.settings["league"]) && LLK_HasVal(settings.stash.leagues, check,,,, 1) ? check : settings.stash.leagues.1.2
 		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : (vars.poe_version ? 0 : 1)
 		settings.stash.show_exalt := !Blank(check := ini.settings["show exalt conversion"]) ? check : (vars.poe_version ? 1 : 0)
-		settings.stash.bulk_trade := !Blank(check := ini.settings["show bulk-sale suggestions"]) ? check : 0
-		settings.stash.min_trade := !Blank(check := ini.settings["minimum trade value"]) ? check : ""
-		settings.stash.autoprofiles := !Blank(check := ini.settings["enable trade-value profiles"]) ? check : 0
+		settings.stash.bulk_trade := 0 ;!Blank(check := ini.settings["show bulk-sale suggestions"]) ? check : 0
+		settings.stash.min_trade := 0 ;!Blank(check := ini.settings["minimum trade value"]) ? check : ""
+		settings.stash.autoprofiles := 0 ;!Blank(check := ini.settings["enable trade-value profiles"]) ? check : 0
 		settings.stash.retry := !Blank(check := ini.settings["retry"]) && (check > A_Now) ? check : 0
 		settings.stash.index_stock := !Blank(check := ini.settings["show stock in index"]) ? check : 1
 		settings.stash.rate_limits := {"timestamp": ""}
