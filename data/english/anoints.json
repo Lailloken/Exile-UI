@@ -1,5 +1,5 @@
 {
-  "_timestamp": "2025-06-13, 18:13 (utc)",
+  "_timestamp": "2025-10-31, 13:30 (utc)",
   "amulets": {
     "Acrimony": {
       "recipe": "1, 10, 10",
@@ -27,7 +27,7 @@
     "Adaptive Steel": {
       "recipe": "14, 10, 10",
       "stats": [
-        "5% chance to Defend with double your Armour for each\ntime you've been Hit by an enemy Recently, up to 30%"
+        "5% chance to Defend with 200% of Armour for each\ntime you've been Hit by an enemy Recently, up to 30%"
       ]
     },
     "Adder's Touch": {
@@ -1538,8 +1538,8 @@
     "Gravepact": {
       "recipe": "6, 10, 10",
       "stats": [
-        "30% increased Minion Accuracy",
-        "Minions have 6% chance to deal Double Damage"
+        "+7% to Chaos Resistance",
+        "Minions have 8% chance to deal Double Damage"
       ]
     },
     "Growth and Decay": {
