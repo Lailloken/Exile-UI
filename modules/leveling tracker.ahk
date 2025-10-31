@@ -2383,7 +2383,7 @@ Leveltracker_PobImport(b64, profile)
 		Loop, Parse, tree, `n, `r
 			If InStr(A_LoopField, "<spec")
 			{
-				ascendancy := SubStr(A_LoopField, InStr(A_LoopField, "ascendclassid=""") + 15), ascendancy := SubStr(ascendancy, 1, InStr(ascendancy, """") - 1)
+				ascendancy := SubStr(A_LoopField, InStr(A_LoopField, " ascendclassid=""") + 16), ascendancy := SubStr(ascendancy, 1, InStr(ascendancy, """") - 1)
 				If ascendancy && !LLK_HasVal(ascendancies, classes[class][ascendancy])
 					ascendancies.Push(classes[class][ascendancy])
 
@@ -2689,7 +2689,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 		{
 			ascendant_points := 0
 			For iNode, vNode in vTree.nodes
-				If tree.nodes[vNode].ascendancyname
+				If tree.nodes[vNode].ascendancyname && !tree.nodes[vNode].isBloodline
 					If tree.nodes[vNode].isascendancystart
 						ascendancy_points.InsertAt(1, vNode)
 					Else ascendancy_points.Push(vNode), ascendant_points += tree.nodes[vNode].ismultiplechoiceoption || tree.nodes[vNode].isfreeallocate ? 1 : 0
