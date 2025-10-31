@@ -289,6 +289,11 @@
     "hotkeys restart": [
       "if the tool stops responding, use this hotkey to restart it"
     ],
+    "hotkeys menu-widget alternative": [
+      "if holding down <esc> doesn't open the menu-widget, you can use this alternative key instead",
+      "unlike <esc>, this key doesn't need to be held down",
+      "leave it blank if you don't want to have an alternative key"
+    ],
     "iteminfo enable": [
       "provides a customizable item tooltip which adds glance value to loot you pick up"
     ],

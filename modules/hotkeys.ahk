@@ -24,6 +24,7 @@
 	settings.hotkeys.emergencykey := !Blank(check := ini.hotkeys["emergency hotkey"]) ? check : "space"
 	settings.hotkeys.emergencykey_ctrl := !Blank(check := ini.hotkeys["emergency key ctrl"]) ? check : 1
 	settings.hotkeys.emergencykey_alt := !Blank(check := ini.hotkeys["emergency key alt"]) ? check : 1
+	settings.hotkeys.menuwidget := !Blank(check := ini.hotkeys["menu-widget alternative"]) ? (check = "blank" ? "" : check) : "F2" 
 
 	Hotkey, If,
 	Hotkey, % (settings.hotkeys.emergencykey_ctrl ? "^" : "") . (settings.hotkeys.emergencykey_alt ? "!" : "") . Hotkeys_Convert(settings.hotkeys.emergencykey), LLK_Restart, On
@@ -48,6 +49,9 @@
 		Hotkey, % "*" Hotkeys_Convert(settings.hotkeys.omnikey2), Omnikey, On
 		Hotkey, % "*" Hotkeys_Convert(settings.hotkeys.omnikey), Omnikey2, On
 	}
+
+	If !Blank(settings.hotkeys.menuwidget)
+		Hotkey, % "~" Hotkeys_Convert(settings.hotkeys.menuwidget), Gui_RadialMenu, On
 
 	For index, val in ["", 2]
 		If (StrLen(vars.omnikey["hotkey" val]) > 1)

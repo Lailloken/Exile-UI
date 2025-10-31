@@ -1555,6 +1555,14 @@ Settings_hotkeys()
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	Gui, %GUI%: Add, Edit, % "ys x+0 hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.emergencykey
 	vars.hwnd.settings.emergencykey := vars.hwnd.help_tooltips["settings_hotkeys formatting||||||"] := hwnd
+	Gui, %GUI%: Font, % "s"settings.general.fSize
+
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_menuwidget")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_hotkeys menu-widget alternative"] := hwnd
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "Section xs hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.menuwidget
+	vars.hwnd.settings.menuwidget := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize + 4
 
 	Gui, %GUI%: Add, Text, % "xs Border gSettings_hotkeys2 Hidden cRed Section HWNDhwnd y+"vars.settings.spacing, % " " Lang_Trans("global_restart") " "
@@ -1604,13 +1612,13 @@ Settings_hotkeys2(cHWND)
 				LLK_ToolTip(Lang_Trans("m_hotkeys_error", 4), 3, xControl + wControl, yControl,, "red")
 				Return
 			}
-			For index, val in ["item_descriptions", "omnikey", "omnikey2", "tab", "emergencykey", "movekey"]
+			For index, val in ["item_descriptions", "omnikey", "omnikey2", "tab", "emergencykey", "movekey", "menuwidget"]
 			{
 				If !vars.hwnd.settings[val]
 					Continue
 				hotkey := LLK_ControlGet(vars.hwnd.settings[val])
 
-				If !GetKeyVK(hotkey) || Blank(hotkey)
+				If !GetKeyVK(hotkey) && !(Blank(hotkey) && val = "menuwidget") || Blank(hotkey) && (val != "menuwidget")
 				{
 					WinGetPos, x, y, w,, % "ahk_id "vars.hwnd.settings[val]
 					LLK_ToolTip(Lang_Trans("m_hotkeys_error"),, x + w, y,, "red")
@@ -1622,7 +1630,8 @@ Settings_hotkeys2(cHWND)
 					LLK_ToolTip(Lang_Trans("m_hotkeys_error", 2), 1.5,,,, "red")
 					Return
 				}
-				keycheck[(LLK_ControlGet(vars.hwnd.settings[val "_ctrl"]) ? "^" : "") . (LLK_ControlGet(vars.hwnd.settings[val "_alt"]) ? "!" : "") . hotkey] := 1
+				If !Blank(hotkey)
+					keycheck[(LLK_ControlGet(vars.hwnd.settings[val "_ctrl"]) ? "^" : "") . (LLK_ControlGet(vars.hwnd.settings[val "_alt"]) ? "!" : "") . hotkey] := 1
 			}
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.rebound_alt) """", % "ini" vars.poe_version "\hotkeys.ini", settings, advanced item-info rebound
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.item_descriptions) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, item-descriptions key
@@ -1640,6 +1649,8 @@ Settings_hotkeys2(cHWND)
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency hotkey
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey_ctrl) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency key ctrl
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.emergencykey_alt) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, emergency key alt
+
+			IniWrite, % """" ((menuwidget := LLK_ControlGet(vars.hwnd.settings.menuwidget)) = "" ? "blank" : menuwidget) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, menu-widget alternative
 
 			IniWrite, hotkeys, % "ini" vars.poe_version "\config.ini", versions, reload settings
 			KeyWait, LButton

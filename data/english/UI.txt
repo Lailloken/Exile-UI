@@ -927,6 +927,7 @@
 		m_hotkeys_widget		=	"widget-key:"
 		m_hotkeys_emergency		=	"force-restart:"							;## hotkey to force-restart the script in case of crash/hang
 		m_hotkeys_winkey		=	"win-key"								;## Windows-key
+		m_hotkeys_menuwidget		=	"menu-widget (alt. key):"
 		m_hotkeys_error			=	"invalid hotkey"
 		m_hotkeys_error			=	"duplicate keybinds detected"
 		m_hotkeys_error			=	"alt-key is rebound, but no;alternative key is set up"			;## if certain tickboxes are ticked, the user has to provide an alternative hotkey

@@ -327,6 +327,9 @@ Gui_RadialMenu(selection := "", longpress := 0)
 		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 	}
 	Else vars.radial.hover_select := ""
+
+	If settings.hotkeys.menuwidget
+		KeyWait, % settings.hotkeys.menuwidget
 }
 
 Gui_RadialMenu2(cHWND := "", hotkey := 1)
