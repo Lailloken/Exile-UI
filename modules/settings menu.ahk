@@ -4363,7 +4363,7 @@ Settings_stash()
 	If !vars.poe_version
 	{
 		Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
-		Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
+		;Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
 		/*
 		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd4 gSettings_stash2 Checked" settings.stash.bulk_trade, % Lang_Trans("m_stash_bulk")
 		If settings.stash.bulk_trade
@@ -4378,7 +4378,7 @@ Settings_stash()
 		}
 		vars.hwnd.settings.bulk_trade := vars.hwnd.help_tooltips["settings_stash bulk"] := hwnd4
 		*/
-		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
+		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd ;, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 	}
 
 	Gui, %GUI%: Font, bold underline
@@ -4389,7 +4389,7 @@ Settings_stash()
 	colors := settings.stash.colors.Clone()
 	Loop 3
 	{
-		If InStr(vars.poe_version, A_Index)
+		If (A_Index = 2)
 			Continue
 		color1 := colors[A_Index * 2 - 1], color2 := colors[A_Index * 2]
 		Gui, %GUI%: Add, Text, % "ys Border Center HWNDhwndtext BackgroundTrans c" color1, % " 69.42 "
@@ -4439,7 +4439,7 @@ Settings_stash()
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_stash_limits")
 	Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4 " cBlack"
-	vars.hwnd.help_tooltips["settings_stash limits"] := hwnd, currencies := ["c", "e", "d", "%"]
+	vars.hwnd.help_tooltips["settings_stash limits" vars.poe_version] := hwnd, currencies := ["c", "e", "d", "%"]
 	Loop 5
 	{
 		style := (A_Index != 5) && settings.stash.bulk_trade && settings.stash.min_trade && settings.stash.autoprofiles ? " Disabled" : ""
@@ -4623,7 +4623,7 @@ Settings_stash2(cHWND)
 		{
 			lTop := settings.stash[tab].limits[lIndex].2, lBot := settings.stash[tab].limits[lIndex].1
 			If (lType < 3) && !IsNumber(input) || (lType = 1 && !Blank(lTop) && input > lTop) || (lType = 2 && !Blank(lBot) && input < lBot)
-			|| (lType = 3) && !InStr("ced%", input)
+			|| (lType = 3) && !InStr("c" (vars.poe_version ? "e" : "") "d%", input)
 				valid := 0
 			Else valid := 1
 			GuiControl, % "+c" (!valid ? "Red" : "Black"), % cHWND

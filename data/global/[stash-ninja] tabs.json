@@ -1,4 +1,80 @@
 {
+  "betrayal": [
+    [
+      "32",
+      "186",
+      "tab_fragments"
+    ],
+    [
+      "199",
+      "0",
+      "tab_scarabs"
+    ],
+    [
+      "366",
+      "0",
+      "tab_breach"
+    ],
+    [
+      "534",
+      "0",
+      "tab_betrayal"
+    ],
+    [
+      "409",
+      "359",
+      "syndicate medallion",
+      "syndicate-medallion"
+    ],
+    [
+      "272",
+      "538",
+      "allflame ember of resplendence",
+      "allflame-ember-of-resplendence"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of kulemak",
+      "allflame-ember-of-kulemak"
+    ],
+    [
+      "453",
+      "0",
+      "allflame ember of the ethereal",
+      "allflame-ember-of-the-ethereal"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of propagation",
+      "allflame-ember-of-propagation"
+    ],
+    [
+      "272",
+      "646",
+      "allflame ember of the gilded",
+      "allflame-ember-of-the-gilded"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of flesh",
+      "allflame-ember-of-flesh"
+    ],
+    [
+      "453",
+      "0",
+      "allflame ember of the wildwood",
+      "allflame-ember-of-the-wildwood"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of toads",
+      "allflame-ember-of-toads"
+    ]
+  ],
   "blight": [
     [
       "65",
@@ -105,19 +181,24 @@
   ],
   "breach": [
     [
-      "38",
-      "192",
+      "32",
+      "186",
       "tab_fragments"
     ],
     [
-      "248",
+      "199",
       "0",
       "tab_scarabs"
     ],
     [
-      "457",
+      "366",
       "0",
       "tab_breach"
+    ],
+    [
+      "534",
+      "0",
+      "tab_betrayal"
     ],
     [
       "226",
@@ -1766,19 +1847,24 @@
   ],
   "fragments": [
     [
-      "38",
-      "192",
+      "32",
+      "186",
       "tab_fragments"
     ],
     [
-      "248",
+      "199",
       "0",
       "tab_scarabs"
     ],
     [
-      "457",
+      "366",
       "0",
       "tab_breach"
+    ],
+    [
+      "534",
+      "0",
+      "tab_betrayal"
     ],
     [
       "124",
@@ -2105,13 +2191,13 @@
       "fragment-of-emptiness"
     ],
     [
-      "170",
+      "47",
       "926",
       "awakening fragment",
       "awakening-fragment"
     ],
     [
-      "252",
+      "0",
       "0",
       "cosmic fragment",
       "cosmic-fragment"
@@ -2135,33 +2221,56 @@
       "decaying-fragment"
     ],
     [
-      "0",
+      "455",
       "0",
       "devouring fragment",
       "devouring-fragment"
     ],
     [
-      "660",
+      "0",
       "0",
       "synthesising fragment",
       "synthesising-fragment"
+    ],
+    [
+      "0",
+      "0",
+      "lonely fragment",
+      "lonely-fragment"
+    ],
+    [
+      "0",
+      "0",
+      "traumatic fragment",
+      "traumatic-fragment"
+    ],
+    [
+      "0",
+      "0",
+      "reverent fragment",
+      "reverent-fragment"
     ]
   ],
   "scarabs": [
     [
-      "38",
-      "192",
+      "32",
+      "186",
       "tab_fragments"
     ],
     [
-      "248",
+      "199",
       "0",
       "tab_scarabs"
     ],
     [
-      "457",
+      "366",
       "0",
       "tab_breach"
+    ],
+    [
+      "534",
+      "0",
+      "tab_betrayal"
     ],
     [
       "183",

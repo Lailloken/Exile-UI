@@ -944,6 +944,12 @@
     ],
     "stash limits": [
       "you can configure up to 5 price-range profiles for each individual tab",
+      "input-box structure:\nprofile # | max value\nunit: c, d, % | min value     ",
+      "leaving min/max price blank will treat them as unlimited, leaving the unit blank will disable the profile entirely",
+      "while the overlay is on screen, press number-keys 1 to 5 to switch between profiles"
+    ],
+    "stash limits 2": [
+      "you can configure up to 5 price-range profiles for each individual tab",
       "input-box structure:\nprofile # | max value\nunit: c, e, d, % | min value        ",
       "leaving min/max price blank will treat them as unlimited, leaving the unit blank will disable the profile entirely",
       "while the overlay is on screen, press number-keys 1 to 5 to switch between profiles"

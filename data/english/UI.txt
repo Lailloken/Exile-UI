@@ -1122,6 +1122,7 @@
 		m_stash_delve			=	"delve"
 		m_stash_essences		=	"essence"
 		m_stash_fragments		=	"fragment"
+		m_stash_betrayal		=	"betrayal"
 		m_stash_scarabs			=	"scarab"
 		m_stash_ultimatum		=	"ultimatum"
 		m_stash_ritual			=	"ritual"
