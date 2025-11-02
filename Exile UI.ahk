@@ -891,9 +891,9 @@ News(mode := "")
 	local
 	global vars, settings, json
 
-	If (mode = "init")
+	If !IsObject(vars.news.file)
 		vars.news.file := json.Load(LLK_FileRead("data\announcements.json")), vars.news.last_read := LLK_IniRead("ini\config.ini", "versions", "announcement", 0)
-
+	vars.news.wait := 1
 	If !settings.general.dev
 	{
 		Try string := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/announcements.json")
@@ -911,6 +911,7 @@ News(mode := "")
 
 	If !vars.news.unread && (IsNumber(now) && now < 7) && vars.news.file.timestamp && (vars.news.file.timestamp != vars.news.last_read)
 		vars.news.unread := 1
+	vars.news.wait := 0
 }
 
 Resolution_check()

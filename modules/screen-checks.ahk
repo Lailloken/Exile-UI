@@ -286,12 +286,11 @@ Screenchecks_PixelRecalibrate(name) ;recalibrating a pixel-check
 	Loop %loopcount%
 	{
 		PixelGetColor, color, % vars.client.x + vars.client.w - 1 - vars.pixelsearch[name]["x" A_Index], % vars.client.y + vars.pixelsearch[name]["y" A_Index], RGB
-		IniWrite, % (vars.pixelsearch[name]["color" A_Index] := object["color" A_Index] := (color ? color : "")), % "ini" vars.poe_version "\screen checks ("vars.client.h "p).ini", %name%, color %A_Index%
-		result *= (color ? 1 : 0)
+		IniWrite, % """" (vars.pixelsearch[name]["color" A_Index] := object["color" A_Index] := color) """", % "ini" vars.poe_version "\screen checks ("vars.client.h "p).ini", %name%, color %A_Index%
 	}
 	If vars.general.MultiThreading
 		StringSend("pixel-" name "=" json.dump(object))
-	Return result
+	Return 1
 }
 
 Screenchecks_PixelRecalibrate2(name)
@@ -350,7 +349,7 @@ Screenchecks_PixelSearch(name) ;performing pixel-checks
 
 	Loop %loopcount%
 	{
-		If (pixels[name]["color" A_Index] = "ERROR") || !pixels[name]["color" A_Index]
+		If (pixels[name]["color" A_Index] = "ERROR") || Blank(pixels[name]["color" A_Index])
 		{
 			pixel_check := 0
 			Break
