@@ -1,5 +1,15 @@
 [
   [
+	["1.60.4", 16004],
+	"november 3, 2025",
+	"stash-ninja: now uses poe.ninja's currency exchange api, added support for 3.27 tabs and keepers leagues",
+	"act-tracker: fixed a typo in kinetic fusillade, which caused this gem to be skipped on import",
+	"act-tracker: fixed a mix-up of npc names in act 10 (bannon & weylam)",
+	"item-info: temporarily disabled ilvl affix-info due to significant database changes",
+	"item-info: updated base-item values to 3.27, added support for grafts",
+	"fixed inventory pixel-check and vaal street tooltips on 4k setups"
+  ],
+  [
 	["1.60.3", 16003],
 	"october 31, 2025",
 	"act-tracker: added support for 3.27 passive trees and gems",
