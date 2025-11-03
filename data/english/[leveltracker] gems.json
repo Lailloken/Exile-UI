@@ -1681,7 +1681,7 @@
   },
   "conflagration": {
     "attribute": 2,
-    "level": 0,
+    "level": 28,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -4630,9 +4630,9 @@
       }
     }
   },
-  "kinetic fussilade": {
+  "kinetic fusillade": {
     "attribute": 3,
-    "level": 0,
+    "level": 12,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -4648,7 +4648,7 @@
   },
   "kinetic instability support": {
     "attribute": 3,
-    "level": 0,
+    "level": 18,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -4667,7 +4667,7 @@
   },
   "kinetic rain": {
     "attribute": 3,
-    "level": 0,
+    "level": 28,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -5015,7 +5015,7 @@
   },
   "living lightning support": {
     "attribute": 3,
-    "level": 0,
+    "level": 18,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -6774,7 +6774,7 @@
   },
   "somatic shell": {
     "attribute": 3,
-    "level": 0,
+    "level": 28,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -7661,7 +7661,7 @@
   },
   "thunderstorm": {
     "attribute": 2,
-    "level": 0,
+    "level": 28,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -8232,7 +8232,7 @@
   },
   "wall of force": {
     "attribute": 3,
-    "level": 0,
+    "level": 16,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -8353,7 +8353,7 @@
   },
   "windburst support": {
     "attribute": 2,
-    "level": 0,
+    "level": 31,
     "quests": {
       "a fixture of fate": {
         "quest": [
