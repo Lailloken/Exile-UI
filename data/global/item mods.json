@@ -3833,42 +3833,6 @@
       ],
       "type": "Prefix"
     },
-    "AbyssFlatMinionAccuracy1": {
-      "affix": "of Suggestion",
-      "level": "1",
-      "tags": [
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "AbyssFlatMinionAccuracy2_": {
-      "affix": "of Instruction",
-      "level": "52",
-      "tags": [
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "AbyssFlatMinionAccuracy3": {
-      "affix": "of Command",
-      "level": "78",
-      "tags": [
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
     "AbyssFlatMinionLifeRegenerationJewel1": {
       "affix": "Fuelling",
       "level": "1",
@@ -6488,7 +6452,8 @@
         "amulet"
       ],
       "texts": [
-        "% increased Vaal Skill Effect Duration"
+        "Vaal Skills have ",
+        "% increased Skill Effect Duration"
       ],
       "type": "Suffix"
     },
@@ -9616,15 +9581,15 @@
         "250"
       ]
     },
-    "LifeLeechPermyriadJewel": {
-      "affix": "Hungering",
+    "LifeLeechPermyriadSuffixJewel": {
+      "affix": "of Hungering",
       "tags": [
         "default"
       ],
       "texts": [
         "% of Physical Attack Damage Leeched as Life"
       ],
-      "type": "Prefix",
+      "type": "Suffix",
       "weights": [
         "500"
       ]
@@ -9757,15 +9722,15 @@
         "500"
       ]
     },
-    "ManaLeechPermyriadJewel": {
-      "affix": "Thirsting",
+    "ManaLeechPermyriadSuffixJewel": {
+      "affix": "of Thirsting",
       "tags": [
         "default"
       ],
       "texts": [
         "% of Physical Attack Damage Leeched as Mana"
       ],
-      "type": "Prefix",
+      "type": "Suffix",
       "weights": [
         "500"
       ]
@@ -9905,19 +9870,6 @@
       "type": "Prefix",
       "weights": [
         "250"
-      ]
-    },
-    "MinionAccuracyRatingJewel": {
-      "affix": "of Training",
-      "tags": [
-        "default"
-      ],
-      "texts": [
-        "% increased Minion Accuracy Rating"
-      ],
-      "type": "Suffix",
-      "weights": [
-        "350"
       ]
     },
     "MinionDamageJewel": {
@@ -24263,7 +24215,7 @@
         "wand"
       ],
       "texts": [
-        "10% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -24275,7 +24227,7 @@
         "wand"
       ],
       "texts": [
-        "15% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -24287,7 +24239,7 @@
         "wand"
       ],
       "texts": [
-        "20% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -24571,7 +24523,7 @@
         "wand"
       ],
       "texts": [
-        "10% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -24583,7 +24535,7 @@
         "wand"
       ],
       "texts": [
-        "15% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -24595,7 +24547,7 @@
         "wand"
       ],
       "texts": [
-        "20% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -24804,7 +24756,7 @@
         "wand"
       ],
       "texts": [
-        "10% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
@@ -24816,7 +24768,7 @@
         "wand"
       ],
       "texts": [
-        "15% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
@@ -24828,7 +24780,7 @@
         "wand"
       ],
       "texts": [
-        "20% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
@@ -25144,8 +25096,8 @@
       ],
       "type": "Prefix"
     },
-    "ChaosDamageLifeLeechInfluence1_": {
-      "affix": "Hunter's",
+    "ChaosDamageLifeLeechSuffixInfluence1_": {
+      "affix": "of the Hunt",
       "level": "68",
       "tags": [
         "amulet_basilisk"
@@ -25153,7 +25105,7 @@
       "texts": [
         "% of Chaos Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "ChaosDamageOverTimeMultiplier1_": {
       "affix": "of Waning",
@@ -25344,7 +25296,6 @@
       "affix": "of the Lost",
       "level": "16",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25360,7 +25311,6 @@
       "affix": "of Banishment",
       "level": "30",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25376,7 +25326,6 @@
       "affix": "of Eviction",
       "level": "44",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25392,7 +25341,6 @@
       "affix": "of Expulsion",
       "level": "56",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25408,7 +25356,6 @@
       "affix": "of Exile",
       "level": "65",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25424,7 +25371,6 @@
       "affix": "of Bameth",
       "level": "81",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -25469,8 +25415,8 @@
       ],
       "type": "Suffix"
     },
-    "ColdDamageESLeechInfluence1__": {
-      "affix": "Redeemer's",
+    "ColdDamageESLeechSuffixInfluence1": {
+      "affix": "of Redemption",
       "level": "68",
       "tags": [
         "amulet_eyrie"
@@ -25478,7 +25424,7 @@
       "texts": [
         "% of Cold Damage Leeched as Energy Shield"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "ColdDamageInfluence1": {
       "affix": "Redeemer's",
@@ -25513,8 +25459,8 @@
       ],
       "type": "Prefix"
     },
-    "ColdDamageLifeLeechInfluence1": {
-      "affix": "Redeemer's",
+    "ColdDamageLifeLeechSuffixInfluence1": {
+      "affix": "of Redemption",
       "level": "68",
       "tags": [
         "amulet_eyrie"
@@ -25522,10 +25468,10 @@
       "texts": [
         "% of Cold Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "ColdDamageLifeLeechUber1_": {
-      "affix": "The Shaper's",
+    "ColdDamageLifeLeechSuffixUber1_": {
+      "affix": "of Shaping",
       "level": "68",
       "tags": [
         "amulet_shaper"
@@ -25533,7 +25479,7 @@
       "texts": [
         "% of Cold Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "ColdDamageOverTimeMultiplier1": {
       "affix": "of the Inclement",
@@ -25708,7 +25654,6 @@
       "level": "12",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -25723,7 +25668,6 @@
       "level": "24",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -25738,7 +25682,6 @@
       "level": "36",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -25753,7 +25696,6 @@
       "level": "50",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -25768,7 +25710,6 @@
       "level": "64",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "amulet"
       ],
@@ -25782,8 +25723,73 @@
       "level": "76",
       "tags": [
         "wand",
-        "staff",
         "sceptre"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand1": {
+      "affix": "of Snow",
+      "level": "12",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand2": {
+      "affix": "of Sleet",
+      "level": "24",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand3": {
+      "affix": "of Ice",
+      "level": "36",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand4": {
+      "affix": "of Rime",
+      "level": "50",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand5": {
+      "affix": "of Floe",
+      "level": "64",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Cold Damage"
+      ],
+      "type": "Suffix"
+    },
+    "ColdDamagePercentTwoHand6": {
+      "affix": "of Glaciation",
+      "level": "76",
+      "tags": [
+        "staff"
       ],
       "texts": [
         "% increased Cold Damage"
@@ -26077,7 +26083,6 @@
       "affix": "of the Inuit",
       "level": "1",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26093,7 +26098,6 @@
       "affix": "of the Seal",
       "level": "14",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26109,7 +26113,6 @@
       "affix": "of the Penguin",
       "level": "26",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26125,7 +26128,6 @@
       "affix": "of the Yeti",
       "level": "38",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26141,7 +26143,6 @@
       "affix": "of the Walrus",
       "level": "50",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26157,7 +26158,6 @@
       "affix": "of the Polar Bear",
       "level": "60",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26173,7 +26173,6 @@
       "affix": "of the Ice",
       "level": "72",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -26189,7 +26188,6 @@
       "affix": "of Haast",
       "level": "84",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -28176,7 +28174,8 @@
         "amulet"
       ],
       "texts": [
-        "% increased Vaal Skill Effect Duration"
+        "Vaal Skills have ",
+        "% increased Skill Effect Duration"
       ],
       "type": "Suffix"
     },
@@ -31280,8 +31279,8 @@
       ],
       "type": "Prefix"
     },
-    "FireDamageESLeechInfluence1": {
-      "affix": "Warlord's",
+    "FireDamageESLeechSuffixInfluence1": {
+      "affix": "of the Conquest",
       "level": "68",
       "tags": [
         "amulet_adjudicator"
@@ -31289,7 +31288,7 @@
       "texts": [
         "% of Fire Damage Leeched as Energy Shield"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "FireDamageInfluence1_": {
       "affix": "Warlord's",
@@ -31324,8 +31323,8 @@
       ],
       "type": "Prefix"
     },
-    "FireDamageLifeLeechInfluence1": {
-      "affix": "Warlord's",
+    "FireDamageLifeLeechSuffixInfluence1": {
+      "affix": "of the Conquest",
       "level": "68",
       "tags": [
         "amulet_adjudicator"
@@ -31333,10 +31332,10 @@
       "texts": [
         "% of Fire Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "FireDamageLifeLeechUber1": {
-      "affix": "The Elder's",
+    "FireDamageLifeLeechSuffixUber1": {
+      "affix": "of the Elder",
       "level": "68",
       "tags": [
         "amulet_elder"
@@ -31344,7 +31343,7 @@
       "texts": [
         "% of Fire Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "FireDamageOverTimeMultiplier1": {
       "affix": "of the Earnest",
@@ -31536,7 +31535,6 @@
       "level": "8",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -31551,7 +31549,6 @@
       "level": "22",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -31566,7 +31563,6 @@
       "level": "36",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -31581,7 +31577,6 @@
       "level": "50",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -31596,7 +31591,6 @@
       "level": "64",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "amulet"
       ],
@@ -31610,8 +31604,73 @@
       "level": "76",
       "tags": [
         "wand",
-        "staff",
         "sceptre"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand1": {
+      "affix": "of Embers",
+      "level": "8",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand2": {
+      "affix": "of Coals",
+      "level": "22",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand3": {
+      "affix": "of Cinders",
+      "level": "36",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand4": {
+      "affix": "of Flames",
+      "level": "50",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand5": {
+      "affix": "of Immolation",
+      "level": "64",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Fire Damage"
+      ],
+      "type": "Suffix"
+    },
+    "FireDamagePercentTwoHand6": {
+      "affix": "of Ashes",
+      "level": "76",
+      "tags": [
+        "staff"
       ],
       "texts": [
         "% increased Fire Damage"
@@ -31905,7 +31964,6 @@
       "affix": "of the Whelpling",
       "level": "1",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -31921,7 +31979,6 @@
       "affix": "of the Salamander",
       "level": "12",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -31937,7 +31994,6 @@
       "affix": "of the Drake",
       "level": "24",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -31953,7 +32009,6 @@
       "affix": "of the Kiln",
       "level": "36",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -31969,7 +32024,6 @@
       "affix": "of the Furnace",
       "level": "48",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -31985,7 +32039,6 @@
       "affix": "of the Volcano",
       "level": "60",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -32001,7 +32054,6 @@
       "affix": "of the Magma",
       "level": "72",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -32017,7 +32069,6 @@
       "affix": "of Tzteosh",
       "level": "84",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -35036,8 +35087,8 @@
       ],
       "type": "Prefix"
     },
-    "IncreasedLifeLeechRateInfluence1": {
-      "affix": "Crusader's",
+    "IncreasedLifeLeechRateSuffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "68",
       "tags": [
         "ring_crusader"
@@ -35045,10 +35096,10 @@
       "texts": [
         "% increased total Recovery per second from Life Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "IncreasedLifeLeechRateInfluence2": {
-      "affix": "Crusader's",
+    "IncreasedLifeLeechRateSuffixInfluence2": {
+      "affix": "of the Crusade",
       "level": "75",
       "tags": [
         "ring_crusader"
@@ -35056,10 +35107,10 @@
       "texts": [
         "% increased total Recovery per second from Life Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "IncreasedLifeLeechRateInfluence3": {
-      "affix": "Crusader's",
+    "IncreasedLifeLeechRateSuffixInfluence3": {
+      "affix": "of the Crusade",
       "level": "80",
       "tags": [
         "ring_crusader"
@@ -35067,7 +35118,7 @@
       "texts": [
         "% increased total Recovery per second from Life Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "IncreasedMana1": {
       "affix": "Beryl",
@@ -36176,6 +36227,54 @@
       ],
       "type": "Suffix"
     },
+    "LifeGainedFromEnemyDeath4": {
+      "affix": "of Conquest",
+      "level": "52",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Life per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainedFromEnemyDeath5": {
+      "affix": "of Feat",
+      "level": "66",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Life per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainedFromEnemyDeath6": {
+      "affix": "of Masterstroke",
+      "level": "81",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Life per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
     "LifeGainedOnSpellHitInfluence1": {
       "affix": "Crusader's",
       "level": "68",
@@ -36302,7 +36401,8 @@
         "weapon"
       ],
       "texts": [
-        "Grants 2 Life per Enemy Hit"
+        "Grants ",
+        " Life per Enemy Hit"
       ],
       "type": "Suffix"
     },
@@ -36313,7 +36413,8 @@
         "weapon"
       ],
       "texts": [
-        "Grants 3 Life per Enemy Hit"
+        "Grants ",
+        " Life per Enemy Hit"
       ],
       "type": "Suffix"
     },
@@ -36324,7 +36425,8 @@
         "weapon"
       ],
       "texts": [
-        "Grants 4 Life per Enemy Hit"
+        "Grants ",
+        " Life per Enemy Hit"
       ],
       "type": "Suffix"
     },
@@ -36335,7 +36437,56 @@
         "weapon"
       ],
       "texts": [
-        "Grants 5 Life per Enemy Hit"
+        "Grants ",
+        " Life per Enemy Hit"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainPerTargetLocal5": {
+      "affix": "of Regenesis",
+      "level": "50",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "Grants ",
+        " Life per Enemy Hit"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainPerTargetLocal6": {
+      "affix": "of Renewal",
+      "level": "60",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "Grants ",
+        " Life per Enemy Hit"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainPerTargetLocal7": {
+      "affix": "of Recuperation",
+      "level": "70",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "Grants ",
+        " Life per Enemy Hit"
+      ],
+      "type": "Suffix"
+    },
+    "LifeGainPerTargetLocal8": {
+      "affix": "of Revitalization",
+      "level": "80",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "Grants ",
+        " Life per Enemy Hit"
       ],
       "type": "Suffix"
     },
@@ -36363,8 +36514,41 @@
       ],
       "type": "Prefix"
     },
-    "LifeLeechPermyriad1": {
-      "affix": "Remora's",
+    "LifeLeechPermyriadLocalSuffix1": {
+      "affix": "of the Remora",
+      "level": "20",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "% of Physical Attack Damage Leeched as Life"
+      ],
+      "type": "Suffix"
+    },
+    "LifeLeechPermyriadLocalSuffix2": {
+      "affix": "of the Lamprey",
+      "level": "45",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "% of Physical Attack Damage Leeched as Life"
+      ],
+      "type": "Suffix"
+    },
+    "LifeLeechPermyriadLocalSuffix3": {
+      "affix": "of the Vampire",
+      "level": "70",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "% of Physical Attack Damage Leeched as Life"
+      ],
+      "type": "Suffix"
+    },
+    "LifeLeechPermyriadSuffix1": {
+      "affix": "of the Remora",
       "level": "50",
       "tags": [
         "ring",
@@ -36375,10 +36559,10 @@
       "texts": [
         "% of Physical Attack Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "LifeLeechPermyriad2": {
-      "affix": "Lamprey's",
+    "LifeLeechPermyriadSuffix2": {
+      "affix": "of the Lamprey",
       "level": "60",
       "tags": [
         "amulet"
@@ -36386,10 +36570,10 @@
       "texts": [
         "% of Physical Attack Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "LifeLeechPermyriad3": {
-      "affix": "Vampire's",
+    "LifeLeechPermyriadSuffix3": {
+      "affix": "of the Vampire",
       "level": "70",
       "tags": [
         "amulet"
@@ -36397,40 +36581,7 @@
       "texts": [
         "% of Physical Attack Damage Leeched as Life"
       ],
-      "type": "Prefix"
-    },
-    "LifeLeechPermyriadLocal1": {
-      "affix": "Remora's",
-      "level": "50",
-      "tags": [
-        "weapon"
-      ],
-      "texts": [
-        "% of Physical Attack Damage Leeched as Life"
-      ],
-      "type": "Prefix"
-    },
-    "LifeLeechPermyriadLocal2": {
-      "affix": "Lamprey's",
-      "level": "60",
-      "tags": [
-        "weapon"
-      ],
-      "texts": [
-        "% of Physical Attack Damage Leeched as Life"
-      ],
-      "type": "Prefix"
-    },
-    "LifeLeechPermyriadLocal3": {
-      "affix": "Vampire's",
-      "level": "70",
-      "tags": [
-        "weapon"
-      ],
-      "texts": [
-        "% of Physical Attack Damage Leeched as Life"
-      ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "LifeOnKillPercentInfluence1_": {
       "affix": "of the Conquest",
@@ -36725,8 +36876,8 @@
       ],
       "type": "Suffix"
     },
-    "LightningDamageESLeechInfluence1_": {
-      "affix": "Crusader's",
+    "LightningDamageESLeechSufffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "68",
       "tags": [
         "amulet_crusader"
@@ -36734,7 +36885,7 @@
       "texts": [
         "% of Lightning Damage Leeched as Energy Shield"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "LightningDamageInfluence1__": {
       "affix": "Crusader's",
@@ -36769,8 +36920,8 @@
       ],
       "type": "Prefix"
     },
-    "LightningDamageLifeLeechInfluence1": {
-      "affix": "Crusader's",
+    "LightningDamageLifeLeechSuffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "68",
       "tags": [
         "amulet_crusader"
@@ -36778,10 +36929,10 @@
       "texts": [
         "% of Lightning Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "LightningDamageLifeLeechUber1": {
-      "affix": "The Shaper's",
+    "LightningDamageLifeLeechSuffixUber1": {
+      "affix": "of Shaping",
       "level": "68",
       "tags": [
         "amulet_shaper"
@@ -36789,14 +36940,13 @@
       "texts": [
         "% of Lightning Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "LightningDamagePercent1": {
       "affix": "of Sparks",
       "level": "10",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -36811,7 +36961,6 @@
       "level": "23",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -36826,7 +36975,6 @@
       "level": "36",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -36841,7 +36989,6 @@
       "level": "50",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "ring",
         "amulet"
@@ -36856,7 +37003,6 @@
       "level": "64",
       "tags": [
         "wand",
-        "staff",
         "sceptre",
         "amulet"
       ],
@@ -36870,8 +37016,73 @@
       "level": "76",
       "tags": [
         "wand",
-        "staff",
         "sceptre"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand1": {
+      "affix": "of Sparks",
+      "level": "10",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand2": {
+      "affix": "of Static",
+      "level": "23",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand3": {
+      "affix": "of Electricity",
+      "level": "36",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand4": {
+      "affix": "of Voltage",
+      "level": "50",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand5": {
+      "affix": "of Discharge",
+      "level": "64",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Lightning Damage"
+      ],
+      "type": "Suffix"
+    },
+    "LightningDamagePercentTwoHand6": {
+      "affix": "of Arcing",
+      "level": "76",
+      "tags": [
+        "staff"
       ],
       "texts": [
         "% increased Lightning Damage"
@@ -37168,7 +37379,6 @@
       "affix": "of the Cloud",
       "level": "1",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37184,7 +37394,6 @@
       "affix": "of the Squall",
       "level": "13",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37200,7 +37409,6 @@
       "affix": "of the Storm",
       "level": "25",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37216,7 +37424,6 @@
       "affix": "of the Thunderhead",
       "level": "37",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37232,7 +37439,6 @@
       "affix": "of the Tempest",
       "level": "49",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37248,7 +37454,6 @@
       "affix": "of the Maelstrom",
       "level": "60",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37264,7 +37469,6 @@
       "affix": "of the Lightning",
       "level": "72",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -37280,7 +37484,6 @@
       "affix": "of Ephij",
       "level": "84",
       "tags": [
-        "weapon",
         "armour",
         "ring",
         "amulet",
@@ -44596,7 +44799,8 @@
         "quiver"
       ],
       "texts": [
-        "Gain 1 Mana per Enemy Killed"
+        "Gain ",
+        " Mana per Enemy Killed"
       ],
       "type": "Suffix"
     },
@@ -44619,6 +44823,54 @@
     "ManaGainedFromEnemyDeath3": {
       "affix": "of Consumption",
       "level": "40",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Mana per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
+    "ManaGainedFromEnemyDeath4": {
+      "affix": "of Diffusion",
+      "level": "52",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Mana per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
+    "ManaGainedFromEnemyDeath5": {
+      "affix": "of Permeation",
+      "level": "66",
+      "tags": [
+        "weapon",
+        "ring",
+        "amulet",
+        "gloves",
+        "quiver"
+      ],
+      "texts": [
+        "Gain ",
+        " Mana per Enemy Killed"
+      ],
+      "type": "Suffix"
+    },
+    "ManaGainedFromEnemyDeath6": {
+      "affix": "of Retention",
+      "level": "81",
       "tags": [
         "weapon",
         "ring",
@@ -44681,8 +44933,19 @@
       ],
       "type": "Prefix"
     },
-    "ManaLeechPermyriad1": {
-      "affix": "Thirsty",
+    "ManaLeechPermyriadLocalSuffix1": {
+      "affix": "of Thirst",
+      "level": "50",
+      "tags": [
+        "weapon"
+      ],
+      "texts": [
+        "% of Physical Attack Damage Leeched as Mana"
+      ],
+      "type": "Suffix"
+    },
+    "ManaLeechPermyriadSuffix1": {
+      "affix": "of Thirst",
       "level": "50",
       "tags": [
         "ring",
@@ -44693,10 +44956,10 @@
       "texts": [
         "% of Physical Attack Damage Leeched as Mana"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "ManaLeechPermyriad2": {
-      "affix": "Parched",
+    "ManaLeechPermyriadSuffix2": {
+      "affix": "of Parching",
       "level": "70",
       "tags": [
         "amulet"
@@ -44704,18 +44967,7 @@
       "texts": [
         "% of Physical Attack Damage Leeched as Mana"
       ],
-      "type": "Prefix"
-    },
-    "ManaLeechPermyriadLocal1": {
-      "affix": "Thirsty",
-      "level": "50",
-      "tags": [
-        "weapon"
-      ],
-      "texts": [
-        "% of Physical Attack Damage Leeched as Mana"
-      ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "ManaOnKillPercentInfluence1": {
       "affix": "of Redemption",
@@ -44814,7 +45066,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44834,7 +45085,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44854,7 +45104,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44874,7 +45123,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44894,7 +45142,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44914,7 +45161,6 @@
         "ring",
         "amulet",
         "focus",
-        "staff",
         "sceptre",
         "wand",
         "claw",
@@ -44943,6 +45189,72 @@
       "level": "75",
       "tags": [
         "helmet_adjudicator"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand1": {
+      "affix": "of Excitement",
+      "level": "2",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand2": {
+      "affix": "of Joy",
+      "level": "18",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand3": {
+      "affix": "of Elation",
+      "level": "29",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand4": {
+      "affix": "of Bliss",
+      "level": "42",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand5": {
+      "affix": "of Euphoria",
+      "level": "55",
+      "tags": [
+        "staff"
+      ],
+      "texts": [
+        "% increased Mana Regeneration Rate"
+      ],
+      "type": "Suffix"
+    },
+    "ManaRegenerationTwoHand6": {
+      "affix": "of Nirvana",
+      "level": "79",
+      "tags": [
+        "staff"
       ],
       "texts": [
         "% increased Mana Regeneration Rate"
@@ -45164,8 +45476,8 @@
       ],
       "type": "Suffix"
     },
-    "MaximumEnergyShieldLeechRateHighInfluence1": {
-      "affix": "Crusader's",
+    "MaximumEnergyShieldLeechRateHighSuffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "68",
       "tags": [
         "amulet_crusader"
@@ -45173,10 +45485,10 @@
       "texts": [
         "% increased Maximum total Energy Shield Recovery per second from Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "MaximumEnergyShieldLeechRateInfluence1": {
-      "affix": "Crusader's",
+    "MaximumEnergyShieldLeechRateSuffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "75",
       "tags": [
         "gloves_crusader"
@@ -45184,7 +45496,7 @@
       "texts": [
         "15% increased Maximum total Energy Shield Recovery per second from Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "MaximumEnergyShieldOnKillPercentUber1": {
       "affix": "of Shaping",
@@ -45379,8 +45691,8 @@
       ],
       "type": "Prefix"
     },
-    "MaximumLifeLeechRateHighInfluence1": {
-      "affix": "Crusader's",
+    "MaximumLifeLeechRateHighSuffixInfluence1": {
+      "affix": "of the Crusade",
       "level": "68",
       "tags": [
         "amulet_crusader"
@@ -45388,7 +45700,7 @@
       "texts": [
         "% increased Maximum total Life Recovery per second from Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "MaximumLifeLeechRateInfluence1": {
       "affix": "Crusader's",
@@ -45401,8 +45713,8 @@
       ],
       "type": "Prefix"
     },
-    "MaximumLifeLeechRateUpdatedUber1": {
-      "affix": "The Elder's",
+    "MaximumLifeLeechRateUpdatedSuffixUber1": {
+      "affix": "of the Elder",
       "level": "68",
       "tags": [
         "amulet_elder"
@@ -45410,7 +45722,7 @@
       "texts": [
         "% increased Maximum total Life Recovery per second from Leech"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "MaximumLifeOnKillPercentUber1": {
       "affix": "of the Elder",
@@ -46015,78 +46327,6 @@
       ],
       "texts": [
         "+2 to Minimum Power Charges"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon1_": {
-      "affix": "of the Instructor",
-      "level": "1",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon2": {
-      "affix": "of the Tutor",
-      "level": "20",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon3": {
-      "affix": "of the Commander",
-      "level": "40",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon4": {
-      "affix": "of the Magnate",
-      "level": "60",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon5": {
-      "affix": "of the Ruler",
-      "level": "75",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
-      ],
-      "type": "Suffix"
-    },
-    "MinionAccuracyRatingWeapon6": {
-      "affix": "of the Monarch",
-      "level": "85",
-      "tags": [
-        "weapon_can_roll_minion_modifiers"
-      ],
-      "texts": [
-        "Minions have ",
-        " to Accuracy Rating"
       ],
       "type": "Suffix"
     },
@@ -49303,8 +49543,8 @@
       ],
       "type": "Suffix"
     },
-    "PhysicalDamageLifeLeechInfluence1": {
-      "affix": "Hunter's",
+    "PhysicalDamageLifeLeechSuffixInfluence1": {
+      "affix": "of the Hunt",
       "level": "68",
       "tags": [
         "amulet_basilisk"
@@ -49312,10 +49552,10 @@
       "texts": [
         "% of Physical Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
-    "PhysicalDamageLifeLeechUber1": {
-      "affix": "The Elder's",
+    "PhysicalDamageLifeLeechSuffixUber1": {
+      "affix": "of the Elder",
       "level": "68",
       "tags": [
         "amulet_elder"
@@ -49323,7 +49563,7 @@
       "texts": [
         "% of Physical Damage Leeched as Life"
       ],
-      "type": "Prefix"
+      "type": "Suffix"
     },
     "PhysicalDamageOverTimeMultiplier1__": {
       "affix": "of Seeping",
@@ -54207,7 +54447,8 @@
         "amulet_eyrie"
       ],
       "texts": [
-        "Prevent +2% of Suppressed Spell Damage"
+        "Prevent ",
+        "% of Suppressed Spell Damage"
       ],
       "type": "Suffix"
     },
@@ -55617,7 +55858,7 @@
         "staff"
       ],
       "texts": [
-        "20% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -55628,7 +55869,7 @@
         "staff"
       ],
       "texts": [
-        "25% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -55639,7 +55880,7 @@
         "staff"
       ],
       "texts": [
-        "30% chance to Freeze"
+        "% chance to Freeze"
       ],
       "type": "Suffix"
     },
@@ -55650,7 +55891,7 @@
         "staff"
       ],
       "texts": [
-        "20% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -55661,7 +55902,7 @@
         "staff"
       ],
       "texts": [
-        "25% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -55672,7 +55913,7 @@
         "staff"
       ],
       "texts": [
-        "30% chance to Ignite"
+        "% chance to Ignite"
       ],
       "type": "Suffix"
     },
@@ -55683,7 +55924,7 @@
         "staff"
       ],
       "texts": [
-        "20% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
@@ -55694,7 +55935,7 @@
         "staff"
       ],
       "texts": [
-        "25% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
@@ -55705,7 +55946,7 @@
         "staff"
       ],
       "texts": [
-        "30% chance to Shock"
+        "% chance to Shock"
       ],
       "type": "Suffix"
     },
