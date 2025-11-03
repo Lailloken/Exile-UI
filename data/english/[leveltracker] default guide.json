@@ -718,7 +718,7 @@
     },
     [
       "(color:cc99ff)if_you're_below_lvl_23,_catch_up",
-      "go (img:7) for (img:waypoint) _|| go (img:5) for (img:quest) (quest:spool)",
+      "go (img:7) / (img:6) for (img:waypoint) _|| go (img:5) for (img:quest) (quest:spool)",
       "go (img:7) / (img:0) to areaid1_3_9 (lvl:24) ;; the docks"
     ],
     [
