@@ -121,7 +121,7 @@ Gui_HelpToolTip(HWND_key)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
 	If (check = "exchange")
-		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1
+		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1, yWin := y + h
 	Else If (check = "alarm" || check = "leveltrackerschematics")
 		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
 	Else If (check = "radial")
@@ -191,7 +191,9 @@ Gui_HelpToolTip(HWND_key)
 		yPos := vars.lootfilter.yPos - height, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos
 	Else If (check = "statlas")
 		yPos := yWin + hWin
-	Else If (check = "exchange" || check = "alarm")
+	Else If (check = "exchange")
+		yPos := yWin
+	Else If (check = "alarm")
 		yPos := yWin - height + 1
 	Else If (check = "leveltrackerschematics")
 		xPos := vars.client.x + vars.client.w/2 - tooltip_width/2
