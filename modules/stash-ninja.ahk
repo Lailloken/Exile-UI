@@ -134,7 +134,7 @@ Stash(mode, test := 0)
 	{
 		If vars.poe_version && (A_Index != 1)
 			Continue
-		tab := (RegExMatch(mode, "i)currency|ultimatum") ? "currency" : (mode = "refresh") ? (InStr(vars.stash.active, "currency") ? "currency" : vars.stash.active) : mode)
+		tab := (RegExMatch(mode, "i)currency|ultimatum") ? "currency" : (mode = "refresh") ? (RegExMatch(vars.stash.active, "i)currency|ultimatum") ? "currency" : vars.stash.active) : mode)
 		tab := (tab = "breach" || A_Index = 2) ? "fragments" : tab, now := A_Now, timestamp := vars.stash[tab].timestamp, league := vars.stash[tab].league
 		EnvSub, now, timestamp, Minutes
 		If (league != settings.stash.league) || Blank(timestamp) || Blank(now) || (now >= 61)
