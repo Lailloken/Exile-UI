@@ -1448,9 +1448,9 @@ Settings_general2(cHWND := "")
 					Sleep 150
 				}
 				IniWrite, % settings.general.sMenu, % "ini" vars.poe_version "\config.ini", Settings, menu-widget size
-				For key, hwnd in vars.pics.radial
-					DeleteObject(hwnd)
-				vars.pics.radial := {}
+				For key, hbm in vars.pics.radial.menu
+					DeleteObject(hbm)
+				vars.pics.radial.menu := {}
 			}
 			Else If InStr(check, "inputmethod_")
 				IniWrite, % (settings.general.input_method := control), % "ini" vars.poe_version "\config.ini", settings, input method
@@ -1544,6 +1544,14 @@ Settings_hotkeys()
 	vars.hwnd.settings.tabblock := vars.hwnd.help_tooltips["settings_hotkeys omniblock||"] := hwnd
 	;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
 
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_menuwidget")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_hotkeys menu-widget alternative"] := hwnd
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "Section xs hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.menuwidget
+	vars.hwnd.settings.menuwidget := vars.hwnd.help_tooltips["settings_hotkeys formatting||||||"] := hwnd
+	Gui, %GUI%: Font, % "s"settings.general.fSize
+
 	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_emergency")
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_hotkeys restart"] := hwnd
@@ -1554,21 +1562,13 @@ Settings_hotkeys()
 	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	Gui, %GUI%: Add, Edit, % "ys x+0 hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.emergencykey
-	vars.hwnd.settings.emergencykey := vars.hwnd.help_tooltips["settings_hotkeys formatting||||||"] := hwnd
-	Gui, %GUI%: Font, % "s"settings.general.fSize
-
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_menuwidget")
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	vars.hwnd.help_tooltips["settings_hotkeys menu-widget alternative"] := hwnd
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "Section xs hp HWNDhwnd gSettings_hotkeys2 cBlack w" settings.general.fWidth * 10, % settings.hotkeys.menuwidget
-	vars.hwnd.settings.menuwidget := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||||"] := hwnd
-	Gui, %GUI%: Font, % "s"settings.general.fSize + 4
+	vars.hwnd.settings.emergencykey := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||||"] := hwnd
+	Gui, %GUI%: Font, % "s" settings.general.fSize + 4
 
 	Gui, %GUI%: Add, Text, % "xs Border gSettings_hotkeys2 Hidden cRed Section HWNDhwnd y+"vars.settings.spacing, % " " Lang_Trans("global_restart") " "
 	Gui, %GUI%: Add, Text, % "xp yp wp hp BackgroundTrans", % ""
 	vars.hwnd.settings.apply := hwnd
-	Gui, %GUI%: Font, % "s"settings.general.fSize
+	Gui, %GUI%: Font, % "s" settings.general.fSize
 }
 
 Settings_hotkeys2(cHWND)
@@ -2643,6 +2643,187 @@ Settings_lootfilter2(cHWND := "")
 	}
 }
 
+Settings_macros()
+{
+	local
+	global vars, settings
+	static sMenu
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros">wiki page</a>
+	Gui, %GUI%: Add, Link, % "ys x+"settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
+	Gui, %GUI%: Add, Link, % "ys x+"settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/Hotkeys.htm">ahk: formatting</a>
+	Gui, %GUI%: Add, Link, % "Section xs", % "<a href=""https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"">poe.wiki: chat commands</a>"
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs Center y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd", % Lang_Trans("m_general_menuwidget")
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys gSettings_macros2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.settings.widget_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_macros2 Border Center HWNDhwnd", % " " settings.macros.sMenu " "
+	vars.hwnd.settings.widget_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_macros2 Border Center HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.widget_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_macros2 Checked" !settings.macros.animations, % Lang_Trans("m_general_animations")
+	vars.hwnd.settings.animations := vars.hwnd.help_tooltips["settings_macros animations"] := hwnd
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("m_macros_fasttravel")
+	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["settings_macros fast-travel"] := hwnd
+
+	If (settings.macros.sMenu != sMenu)
+	{
+		For key, hbm in vars.pics.settings_macros
+			DeleteObject(hbm)
+		vars.pics.settings_macros := {}, sMenu := settings.macros.sMenu
+	}
+
+	height := (settings.macros.sMenu + 6) * 2
+	For index, travel in vars.macros.fasttravels
+	{
+		If !vars.pics.settings_macros[travel]
+			vars.pics.settings_macros[travel] := LLK_ImageCache("img\GUI\radial menu\" travel ".png",, height)
+		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs" : "ys") " HWNDhwnd1 BackgroundTrans Border gSettings_macros2 w" height + 4 " h" height + 4 
+		Gui, %GUI%: Add, Pic, % "xp+2 yp+2 HWNDhwnd", % "HBitmap:*" vars.pics.settings_macros[travel]
+		Gui, %GUI%: Add, Progress, % "xp-2 yp-2 w" height + 4 " h" height + 4 " HWNDhwnd2 Border Background" (settings.macros[travel] ? "Lime" : "Black") " cBlack", 100
+		vars.hwnd.help_tooltips["settings_macros " travel] := hwnd, vars.hwnd.settings["fasttravel_" travel] := hwnd1, vars.hwnd.settings["fasttravel_" travel "_bar"] := hwnd2
+	}
+
+	Gui, %GUI%: Add, Text, % "Section xs ", % Lang_Trans("global_hotkey")
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "HWNDhwnd gSettings_macros2 cBlack ys w" settings.general.fWidth * 10, % settings.macros.hotkey_fasttravel
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "ys hp Border cRed gSettings_macros2 Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
+	vars.hwnd.settings.hotkey_fasttravel := vars.hwnd.help_tooltips["settings_macros hotkeys"] := hwnd, vars.hwnd.settings["hotkeysave_fasttravel"] := hwnd1
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("m_macros_custom")
+	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Add, Text, % "ys Border gSettings_macros2 cRed Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
+	vars.hwnd.help_tooltips["settings_macros custom"] := hwnd, vars.hwnd.settings.custommacros_save := hwnd1
+
+	Loop 9
+	{
+		Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd0 Border BackgroundTrans gSettings_macros2", % " " A_Index - 1 " "
+		enabled := (settings.macros["enable_" A_Index - 1] && (!Blank(settings.macros["label_" A_Index - 1]) || A_Index = 1) && !Blank(settings.macros["command_" A_Index - 1]) ? 1 : 0)
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd01 cBlack Background" (enabled ? "Lime" : "Black"), 100
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+		Gui, %GUI%: Add, Edit, % "ys hp cBlack HWNDhwnd Limit3 gSettings_macros2 w" settings.general.fWidth * 4 (A_Index = 1 ? " Disabled" : ""), % settings.macros["label_" A_Index - 1]
+		Gui, %GUI%: Add, Edit, % "ys hp cBlack HWNDhwnd1 gSettings_macros2 w" settings.general.fWidth * 25, % settings.macros["command_" A_Index - 1]
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.settings["enable_" A_Index - 1] := hwnd0, vars.hwnd.settings["enable_" A_Index - 1 "_bar"] := hwnd01
+		vars.hwnd.help_tooltips["settings_macros label" handle] := vars.hwnd.settings["label_" A_Index - 1] := hwnd
+		vars.hwnd.help_tooltips["settings_macros command" handle] := vars.hwnd.settings["command_" A_Index - 1] := hwnd1, handle .= "|"
+	}
+
+	Gui, %GUI%: Add, Text, % "Section xs ", % Lang_Trans("global_hotkey")
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "HWNDhwnd gSettings_macros2 cBlack ys w" settings.general.fWidth * 10, % settings.macros.hotkey_custommacros
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "ys hp Border cRed gSettings_macros2 Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
+	vars.hwnd.settings.hotkey_custommacros := vars.hwnd.help_tooltips["settings_macros hotkeys|"] := hwnd, vars.hwnd.settings["hotkeysave_custommacros"] := hwnd1
+}
+
+Settings_macros2(cHWND)
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	Switch
+	{
+		Case InStr(check, "widget_"):
+			While GetKeyState("LButton", "P")
+			{
+				If (control = "minus")
+					settings.macros.sMenu -= (settings.macros.sMenu > 10 ? 1 : 0)
+				Else If (control = "reset")
+					settings.macros.sMenu := Max(settings.general.fSize, 10)
+				Else settings.macros.sMenu += 1
+				GuiControl, Text, % vars.hwnd.settings.widget_reset, % settings.macros.sMenu
+				Sleep 150
+			}
+			IniWrite, % settings.macros.sMenu, % "ini" vars.poe_version "\chat macros.ini", settings, menu-widget size
+			For key, hbm in vars.pics.radial.macros
+				DeleteObject(hbm)
+			vars.pics.radial.macros := {}, Settings_menu("macros")
+
+		Case (check = "animations"):
+			IniWrite, % (settings.macros.animations := !settings.macros.animations), % "ini" vars.poe_version, settings, animations
+
+		Case InStr(check, "fasttravel_"):
+			IniWrite, % (settings.macros[control] := !settings.macros[control]), % "ini" vars.poe_version "\chat macros.ini", settings, % "enable " control
+			GuiControl, % "+Background" (settings.macros[control] ? "Lime" : "Black"), % vars.hwnd.settings["fasttravel_" control "_bar"]
+
+		Case InStr(check, "hotkey_"):
+			input := LLK_ControlGet(cHWND)
+			GuiControl, % (input != settings.macros["hotkey_" control] ? "-" : "+") "Hidden", % vars.hwnd.settings["hotkeysave_" control]
+
+		Case InStr(check, "hotkeysave_"):
+			input := LLK_ControlGet(vars.hwnd.settings["hotkey_" control])
+			If Blank(input) || GetKeyVK(input)
+			{
+				Hotkey, IfWinActive, ahk_group poe_ahk_window
+				If !Blank(settings.macros["hotkey_" control])
+					Hotkey, % Hotkeys_Convert(settings.macros["hotkey_" control]), % "Macro_" control, Off
+				If !Blank(input)
+					Hotkey, % Hotkeys_Convert(input), % "Macro_" control, On
+				IniWrite, % """" (settings.macros["hotkey_" control] := input) """", % "ini" vars.poe_version "\chat macros.ini", settings, % control " hotkey"
+				GuiControl, +Hidden, % vars.hwnd.settings["hotkeysave_" control]
+			}
+			Else LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5,,,, "Red")
+
+		Case InStr(check, "enable_"):
+			If Blank(LLK_ControlGet(vars.hwnd.settings["label_" control])) && (control != 0) || Blank(LLK_ControlGet(vars.hwnd.settings["command_" control]))
+				Return
+			SoundBeep
+			IniWrite, % (settings.macros["enable_" control] := !settings.macros["enable_" control]), % "ini" vars.poe_version "\chat macros.ini", macros, % "enable " control
+			GuiControl, % "+Background" (settings.macros["enable_" control] ? "Lime" : "Black"), % vars.hwnd.settings["enable_" control "_bar"]
+
+		Case InStr(check, "command_"):
+			input := LLK_ControlGet(cHWND)
+			GuiControl, % "+c" (input != settings.macros["command_" control] ? "Red" : "Black"), % cHWND
+			GuiControl, % "movedraw", % cHWND
+
+		Case InStr(check, "label_"):
+			input := LLK_ControlGet(cHWND)
+			GuiControl, % "+c" (input != settings.macros["label_" control] ? "Red" : "Black"), % cHWND
+			GuiControl, % "movedraw", % cHWND
+
+		Case (check = "custommacros_save"):
+			KeyWait, LButton
+			Loop 9
+			{
+				label := LLK_ControlGet(vars.hwnd.settings["label_" A_Index - 1]), command := LLK_ControlGet(vars.hwnd.settings["command_" A_Index - 1])
+				If !Blank(label) && Blank(command) || Blank(label) && !Blank(command) && (A_Index != 1)
+				{
+					WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " vars.hwnd.settings[(Blank(label) ? "label" : "command") "_" A_Index - 1]
+					LLK_ToolTip(Lang_Trans("global_errorname"), 2, xControl, yControl + hControl,, "Red")
+					Return
+				}
+				If (label != settings.macros["label_" A_Index - 1])
+					IniWrite, % """" (settings.macros["label_" A_Index - 1] := label) . (Blank(label) ? "blank" : "") """", % "ini" vars.poe_version "\chat macros.ini", macros, % "label " A_Index - 1
+				If (command != settings.macros["command_" A_Index - 1])
+					IniWrite, % """" (settings.macros["command_" A_Index - 1] := command) . (Blank(command) ? "blank" : "") """", % "ini" vars.poe_version "\chat macros.ini", macros, % "command " A_Index - 1
+			}
+			Settings_menu("macros")
+	}
+
+	If InStr(check, "command_") || InStr(check, "label_")
+	{
+		Loop 9
+			If (LLK_ControlGet(vars.hwnd.settings["label_" A_Index - 1]) != settings.macros["label_" A_Index - 1]) || (LLK_ControlGet(vars.hwnd.settings["command_" A_Index - 1]) != settings.macros["command_" A_Index - 1])
+				modified := 1
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.custommacros_save
+	}
+}
+
 Settings_mapinfo()
 {
 	local
@@ -3200,8 +3381,8 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "stash-ninja", "sanctum", "statlas", "exchange"], "sections2": []}
+			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "macros", "cheat-sheets", "clone-frames", "anoints", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "stash-ninja", "sanctum", "statlas", "exchange"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
@@ -3365,6 +3546,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_iteminfo()
 		Case "leveling tracker":
 			Settings_leveltracker()
+		Case "macros":
+			Settings_macros()
 		Case "mapping tracker":
 			Settings_maptracker()
 		Case "map-info":

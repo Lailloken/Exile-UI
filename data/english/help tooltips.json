@@ -583,6 +583,51 @@
       "provides an interface to modify your lootfilter and apply changes on the fly",
       "shift-omni-click items to access it"
     ],
+    "macros animations": [
+      "disable menu-widget animations"
+    ],
+    "macros fast-travel": [
+      "commands are bound to a single hotkey",
+      "tap: use the hideout command\nhold: open menu-widget with commands(/highlight)",
+      "click the icons below to enable/disable commands"
+    ],
+    "macros custom": [
+      "commands are bound to a single hotkey",
+      "tap: use command 0 on the list\nhold: open menu-widget with commands(/highlight)",
+      "to disable commands, either click the number-labels or leave the fields blank"
+    ],
+    "macros hotkeys": [
+      "for special keys, check the links above to find proper names and formatting",
+      "leave it blank to disable this feature"
+    ],
+    "macros label": [
+      "for custom macros, the menu-widget will display a text-label instead of an icon",
+      "enter an text-label of up to 3 characters"
+    ],
+    "macros command": [
+      "enter the chat command you want to use"
+    ],
+    "macros kingsmarch": [
+      "kingsmarch"
+    ],
+    "macros monastery": [
+      "monastery of the keepers"
+    ],
+    "macros menagerie": [
+      "menagerie"
+    ],
+    "macros heist": [
+      "rogue harbor"
+    ],
+    "macros sanctum": [
+      "the forbidden sanctum"
+    ],
+    "macros delve": [
+      "mine encampment"
+    ],
+    "macros guild": [
+      "guild hideout"
+    ],
     "maptracker enable": [
       "provides automated tracking of your map runs, and a log viewer with export tools",
       "tracks map-times, deaths, portals, loot, kills, and certain types of side-content"

@@ -53,6 +53,7 @@ Return
 #Include modules\languages.ahk
 #Include modules\leveling tracker.ahk
 #Include modules\lootfilter.ahk
+#Include modules\macros.ahk
 #Include modules\map-info.ahk
 #Include modules\map tracker.ahk
 #Include modules\ocr.ahk

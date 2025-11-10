@@ -17,7 +17,7 @@
 	settings.hotkeys.rebound_c := !Blank(check := ini.settings["c-key rebound"]) ? check : 0
 	settings.hotkeys.movekey := !Blank(check := ini.hotkeys["move-key"]) ? check : "lbutton"
 	settings.hotkeys.omnikey := vars.omnikey.hotkey := !Blank(check := ini.hotkeys["omni-hotkey"]) ? check : "capslock"
-	If (Hotkeys_Convert(settings.hotkeys.omnikey) = "SC00")
+	If !Hotkeys_Convert(settings.hotkeys.omnikey)
 		settings.hotkeys.omnikey := vars.omnikey.hotkey := "F1"
 
 	settings.hotkeys.omnikey2 := vars.omnikey.hotkey2 := !Blank(check := ini.hotkeys["omni-hotkey2"]) ? check : ""
@@ -51,7 +51,7 @@
 	}
 
 	If !Blank(settings.hotkeys.menuwidget)
-		Hotkey, % "~" Hotkeys_Convert(settings.hotkeys.menuwidget), Gui_RadialMenu, On
+		Hotkey, % "~" Hotkeys_Convert(settings.hotkeys.menuwidget), Gui_MenuWidget, On
 
 	For index, val in ["", 2]
 		If (StrLen(vars.omnikey["hotkey" val]) > 1)
@@ -85,7 +85,9 @@ Hotkeys_Convert(key)
 	For index, exception in exceptions
 		If InStr(key, exception)
 			Return append . key
-	Return append "SC0" Format("{:X}", GetKeySC(key))
+
+	If GetKeySC(key)
+		Return append "SC0" Format("{:X}", GetKeySC(key))
 }
 
 Hotkeys_ESC()
@@ -95,7 +97,8 @@ Hotkeys_ESC()
 
 	If vars.hwnd.radial.main && WinExist("ahk_id " vars.hwnd.radial.main)
 	{
-		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+		If (A_TickCount >= vars.radial.last + 250)
+			LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 		KeyWait, ESC
 		Return
 	}
@@ -103,7 +106,7 @@ Hotkeys_ESC()
 	While GetKeyState("ESC", "P") || GetKeyState("SC001", "P")
 		If (A_TickCount >= start + 250)
 		{
-			Gui_RadialMenu()
+			Gui_MenuWidget()
 			KeyWait, ESC
 			KeyWait, SC001
 			Return

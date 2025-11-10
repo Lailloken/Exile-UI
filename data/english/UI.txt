@@ -65,6 +65,7 @@
 		ms_hotkeys			=	"hotkeys"
 		ms_item-info			=	"item-info"
 		ms_leveling tracker		=	"act-tracker"
+		ms_macros			=	"chat macros"
 		ms_mapping tracker		=	"map-tracker"
 		ms_map-info			=	"map-info"
 		ms_minor qol tools		=	"minor qol tools"
@@ -1006,6 +1007,16 @@
 		m_lvltracker_bandits		=	"kraityn"
 		m_lvltracker_bandits		=	"oak"
 		m_lvltracker_treehotkey		=	"hotkey to close trees:"	;## optional setting for users who don't close the in-game tree with ESC
+
+
+
+;#####################################################
+;## settings menu: chat macros
+;#####################################################
+
+;## these strings are displayed/required in the "chat macros" section of the settings menu
+		m_macros_fasttravel		=	"fast-travel macros:"
+		m_macros_custom			=	"custom macros:"
 
 
 

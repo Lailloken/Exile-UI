@@ -65,6 +65,7 @@ If WinExist("ahk_exe GeForceNOW.exe")
 	Init_geforce(), LLK_Log("initialized geforce now settings")
 Init_iteminfo(), LLK_Log("initialized item-info settings")
 Init_legion(), LLK_Log("initialized seed-explorer settings")
+Init_macros(), LLK_Log("initialized chat-macro settings")
 Init_mapinfo(), LLK_Log("initialized map-info settings")
 Init_OCR(), LLK_Log("initialized ocr settings")
 Init_searchstrings(), LLK_Log("initialized search-strings settings")
@@ -124,6 +125,7 @@ Return
 #Include modules\languages.ahk
 #Include modules\leveling tracker.ahk
 #Include modules\lootfilter.ahk
+#Include modules\macros.ahk
 #Include modules\map-info.ahk
 #Include modules\map tracker.ahk
 #Include modules\ocr.ahk
@@ -473,7 +475,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 }
 
 Init_vars()
@@ -500,7 +502,7 @@ Init_vars()
 	vars.lang := {}, vars.lang2 := {}
 	vars.log := {} ;store data related to the game's log here
 	vars.mapinfo := {}
-	vars.hwnd := {"help_tooltips": {}}
+	vars.hwnd := {"help_tooltips": {}}, vars.radial := {"last": 0, "order": [4, 6, 2, 8, 1, 3, 7, 9]}
 	vars.help := Json.Load(LLK_FileRead("data\english\help tooltips.json",, "65001"))
 	vars.pixels := {}
 	vars.recombination := {"classes": ["shield", "sword", "quiver", "bow", "claw", "dagger", "mace", "ring", "amulet", "helmet", "glove", "boot", "belt", "wand", "staves", "axe", "sceptre", "body"]}

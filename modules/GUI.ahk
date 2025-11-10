@@ -211,143 +211,31 @@ Gui_HelpToolTip(HWND_key)
 	LLK_Overlay(tooltip, (width < 10) ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
-Gui_Name(GuiHWND)
-{
-	local
-	global vars
-
-	For index, val in vars.GUI
-		If !Blank(LLK_HasVal(val, GuiHWND))
-			Return val.name
-}
-
-Gui_RadialMenu(selection := "", longpress := 0)
+Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 {
 	local
 	global vars, settings
-	static toggle := 0, order := [4, 6, 2, 8, 1, 3, 7, 9], sMenu
 
-	If !selection.Count()
+	If !IsObject(mode)
 	{
 		selection := {5: "settings"}, added := 1
 		For index, feature in ["leveltracker", "maptracker", "notepad", "anoints"]
-			If (feature = "anoints" && !vars.client.stream)
+			If !settings.general.dev && (feature = "anoints" && !vars.client.stream)
 				Continue
 			Else If settings.features[feature] || settings.qol[feature]
-				selection[order[added]] := feature, added += 1
+				selection[vars.radial.order[added]] := feature, added += 1
+
+		vars.radial.active := "menu", Gui_RadialMenu(selection)
+		If !Blank(settings.hotkeys.menuwidget)
+		{
+			KeyWait, % settings.hotkeys.menuwidget
+			KeyWait, % Hotkeys_Convert(settings.hotkeys.menuwidget)
+		}
+		Return
 	}
-	height := 2 * (settings.general.sMenu + 6), toggle := !toggle, GUI := "radial_menu" toggle
-	If !vars.radial
-		vars.radial := {}
-	vars.radial.click_select := (longpress ? vars.radial.click_select : ""), vars.radial.wait := 1
-
-	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow HWNDradial_menu +E0x02000000 +E0x00080000
-	Gui, %GUI%: Color, Purple
-	WinSet, TransColor, Purple 255
-	Gui, %GUI%: Margin, % (margin := Round(height/6)), % margin
-	Gui, %GUI%: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
-	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := []
-
-	Loop 9
-	{
-		index := A_Index, val := selection[index]
-		If val
-		{
-			click := vars.radial.click_select
-			If click && (click != "settings") && (val = "settings")
-				img := "settings_bg"
-			Else img := (val = "close" && click = "notepad" ? "notepad_close" : (val = "close" && click = "leveltracker" ? "leveltracker_close" : val))
-			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (val = "anoints" ? vars.poe_version : "")
-			file := (val = "maptracker" && vars.maptracker.pause) ? 0 : file
-			If !vars.pics.radial[img . file]
-				vars.pics.radial[img . file] := LLK_ImageCache("img\GUI\radial menu\" img . file ".png", height)
-			If RegExMatch(val, "i)(leveltracker|maptracker)$")
-				If !vars.pics.radial[img . (file = "0" ? "" : "0")]
-					vars.pics.radial[img . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\radial menu\" img . (file = "0" ? "" : "0") ".png", height)
-		}
-
-		style := (InStr("147", index) ? "Section" : "") . (InStr("47", index) ? " xs" : (index = 1 ? "" : " ys"))
-		If !val	
-			Gui, %GUI%: Add, Progress, % style " w" height + 2 " h" height + 2 " Disabled BackgroundTrans Hidden Border HWNDhwnd"
-		Else
-		{
-			Gui, %GUI%: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.radial[img . file]
-			If (val = "settings") && (!vars.radial.click_select || vars.radial.click_select = "settings")
-				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" (vars.update.1 ? (vars.update.1 > 0 ? "Lime" : "Red") : "Black"), 100
-		}
-
-		If val
-		{
-			vars.hwnd.radial[val] := vars.hwnd.radial.indexed[index] := hwnd
-			entry := (!Blank(check0 := vars.radial.click_select) ? check0 " " val : val)
-
-			If check0 && (check0 != "settings") && (val = "settings")
-				vars.hwnd.help_tooltips["radial_settings sub-menu" handle] := hwnd, handle .= "|"
-			Else If vars.help.radial[entry].Count() || vars.help2.radial[entry].Count()
-				vars.hwnd.help_tooltips["radial_" entry] := hwnd
-		}
-		Else vars.hwnd.radial.indexed[index] := hwnd
-		ControlGetPos, xPos, yPos,,,, ahk_id %hwnd%
-		positions[index] := [xPos, yPos]
-	}
-
-	If settings.general.animations
-		Loop 9
-			ControlMove,, % positions[5].1 + (positions[A_Index].1 - positions.5.1) / 2, positions.5.2 + (positions[A_Index].2 - positions.5.2) / 2,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
-
-	If !longpress
-		xPos := vars.general.xMouse - 2 * margin - 1.5 * height, yPos := vars.general.yMouse - 2 * margin - 1.5 * height
-	Else xPos := vars.radial.selection.x - 2 * margin - height, yPos := vars.radial.selection.y - 2 * margin - height
-
-	Gui_CheckBounds(xPos, yPos, 4 * margin + 3 * height, 4 * margin + 3 * height)
-	Gui, %GUI%: Show, % "NA x" xPos " y" yPos
-	LLK_Overlay(radial_menu, "show",, GUI), LLK_Overlay(hwnd_old, "destroy")
-	WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " radial_menu
-	vars.radial.window := {"x1": xWin, "y1": yWin, "x2": xWin + wWin, "y2": yWin + hWin}
-
-	SetControlDelay, 0
-	If settings.general.animations
-		Loop, % (count := positions.5.1 - positions.4.1)
-		{
-			outer := A_Index
-			If (A_Index < count * 0.75)
-				Continue
-			Loop, % 9
-				If (A_Index != 5) && vars.hwnd.radial.indexed[A_Index]
-				{
-					xPos := positions.5.1 + (InStr("147", A_Index) ? -outer : (InStr("369", A_Index) ? outer : 0))
-					yPos := positions.5.2 + (InStr("123", A_Index) ? -outer : (InStr("789", A_Index) ? outer : 0))
-					ControlMove,, % xPos, % yPos,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
-				}
-		}
-	vars.radial.wait := 0
-
-	If longpress
-	{
-		KeyWait, LButton
-		vars.radial.hover_select := LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
-		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
-	}
-	Else vars.radial.hover_select := ""
-
-	If settings.hotkeys.menuwidget
-		KeyWait, % settings.hotkeys.menuwidget
-}
-
-Gui_RadialMenu2(cHWND := "", hotkey := 1)
-{
-	local
-	global vars, settings
-
-	check := LLK_HasVal(vars.hwnd.radial, cHWND), control := SubStr(check, InStr(check, "_") + 1), start := A_TickCount
-	While GetKeyState("LButton", "P") && !longpress
-		If (A_TickCount >= start + 200)
-		{
-			WinGetPos, xSelection, ySelection, wSelection, hSelection, % "ahk_id " cHWND
-			longpress := 1, vars.radial.click_select := check, vars.radial.selection := {"x": xSelection - 2, "y": ySelection - 2}
-		}
-
-	Switch check
+	
+	longpress := mode.longpress
+	Switch mode.check
 	{
 		Default:
 			LLK_ToolTip("no action")
@@ -355,9 +243,7 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 		Case "anoints":
 			If !longpress
 				Anoints()
-			Else Gui_RadialMenu({2: "settings", 5: "anoints"}, 1)
-
-			Switch vars.radial.hover_select
+			Else Switch Gui_RadialMenu({2: "settings", 5: "anoints"}, "LButton")
 			{
 				Case "anoints":
 					Anoints()
@@ -373,9 +259,7 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 				Else If (hotkey = 2) && settings.leveltracker.geartracker
 					Geartracker("toggle")
 			}
-			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "leveltracker", 6: (settings.leveltracker.geartracker ? "geartracker" : "")}, 1)
-
-			Switch vars.radial.hover_select
+			Else Switch Gui_RadialMenu({2: "settings", 4: "close", 5: "leveltracker", 6: (settings.leveltracker.geartracker ? "geartracker" : "")}, "LButton")
 			{
 				Case "close":
 					Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker := ""
@@ -390,24 +274,22 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 		Case "maptracker":
 			If !longpress
 				Maptracker("", hotkey)
-			Else Gui_RadialMenu({2: "settings", 5: "maptracker", 6: (vars.maptracker.pause ? "resume" : "pause")}, 1)
-
-			Switch
+			Else Switch Gui_RadialMenu({2: "settings", 5: "maptracker", 6: (vars.maptracker.pause ? "resume" : "pause")}, "LButton")
 			{
-				Case vars.radial.hover_select && InStr("pause, resume", vars.radial.hover_select):
+				Case "pause":
 					Maptracker("", 2)
-				Case (vars.radial.hover_select = "settings"):
+				Case "resume":
+					Maptracker("", 2)
+				Case "settings":
 					Settings_menu("mapping tracker")
-				Case (vars.radial.hover_select = "maptracker"):
+				Case "maptracker":
 					Maptracker("", 1)
 			}
 
 		Case "notepad":
 			If !longpress
 				Notepad(hotkey = 1 ? "open" : "quick")
-			Else Gui_RadialMenu({2: "settings", 4: "close", 5: "notepad", 6: "quick-note"}, 1)
-
-			Switch vars.radial.hover_select
+			Else Switch Gui_RadialMenu({2: "settings", 4: "close", 5: "notepad", 6: "quick-note"}, "LButton")
 			{
 				Case "close":
 					For key, hwnd in vars.hwnd.notepad_widgets
@@ -428,9 +310,7 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 					Settings_menuClose()
 				Else Settings_menu()
 			}
-			Else Gui_RadialMenu({2: "restart", 5: "settings", 8: "close"}, 1)
-
-			Switch vars.radial.hover_select
+			Else Switch Gui_RadialMenu({2: "restart", 5: "settings", 8: "close"}, "LButton")
 			{
 				Case "close":
 					ExitApp
@@ -440,7 +320,164 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 					Settings_menu()
 			}
 	}
-	LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+}
+
+Gui_Name(GuiHWND)
+{
+	local
+	global vars
+
+	For index, val in vars.GUI
+		If !Blank(LLK_HasVal(val, GuiHWND))
+			Return val.name
+}
+
+Gui_RadialMenu(selection := "", longpress := 0)
+{
+	local
+	global vars, settings
+	static toggle := 0
+
+	active := (vars.radial.active = "menu" ? "menu" : "macros"), height := 2 * (settings[(active = "menu" ? "general" : "macros")].sMenu + 6), toggle := !toggle, GUI := "radial_menu" toggle
+	vars.radial.click_select := (longpress ? vars.radial.click_select : ""), vars.radial.wait := 1
+
+	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow HWNDradial_menu +E0x02000000 +E0x00080000
+	Gui, %GUI%: Color, Purple
+	WinSet, TransColor, Purple
+	Gui, %GUI%: Margin, % (margin := Round(height/6)), % margin
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
+	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := []
+
+	Loop 9
+	{
+		index := A_Index, val := selection[index]
+		If val && !IsNumber(val)
+		{
+			click := vars.radial.click_select
+			If (click && (click != "settings") || InStr("fasttravel, custommacros", vars.radial.active)) && (val = "settings")
+				img := "settings_bg"
+			Else img := (val = "close" && click = "notepad" ? "notepad_close" : (val = "close" && click = "leveltracker" ? "leveltracker_close" : val))
+			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (val = "anoints" ? vars.poe_version : "")
+			file := (val = "maptracker" && vars.maptracker.pause) ? 0 : file
+			If !vars.pics.radial[active][img . file]
+				vars.pics.radial[active][img . file] := LLK_ImageCache("img\GUI\radial menu\" img . file ".png", height)
+			If !vars.pics.radial[active].square_black
+				vars.pics.radial[active].square_black := LLK_ImageCache("img\GUI\square_black.png", height)
+			If RegExMatch(val, "i)(leveltracker|maptracker)$")
+				If !vars.pics.radial[active][img . (file = "0" ? "" : "0")]
+					vars.pics.radial[active][img . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\radial menu\" img . (file = "0" ? "" : "0") ".png", height)
+		}
+
+		style := (InStr("147", index) ? "Section" : "") . (InStr("47", index) ? " xs" : (index = 1 ? "" : " ys"))
+		If !val
+			Gui, %GUI%: Add, Progress, % style " w" height + 2 " h" height + 2 " Disabled BackgroundTrans Hidden Border HWNDhwnd"
+		Else If (val != "settings" && vars.radial.active = "custommacros")
+		{
+			Gui, %GUI%: Add, Text, % style " w" height + 2 " h" height + 2 " Center 0x200 BackgroundTrans Border HWNDhwnd0", % settings.macros["label_" val]
+			Gui, %GUI%: Add, Pic, % "xp yp Border HWNDhwnd", % "HBitmap:*" vars.pics.radial[active].square_black
+		}
+		Else
+		{
+			Gui, %GUI%: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.radial[active][img . file]
+			If (vars.radial.active = "menu" && val = "settings") && (!vars.radial.click_select || vars.radial.click_select = "settings")
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" (vars.update.1 ? (vars.update.1 > 0 ? "Lime" : "Red") : "Black"), 100
+		}
+
+		If val
+		{
+			vars.hwnd.radial[val] := vars.hwnd.radial.indexed[index] := hwnd
+			If (vars.radial.active = "custommacros")
+				vars.hwnd.radial.indexed[index "_text"] := hwnd0
+			entry := (!Blank(check0 := vars.radial.click_select) ? check0 " " val : val)
+
+			If check0 && (check0 != "settings") && (val = "settings")
+				vars.hwnd.help_tooltips["radial_settings sub-menu" handle] := hwnd, handle .= "|"
+			Else If vars.help.radial[entry].Count() || vars.help2.radial[entry].Count()
+				vars.hwnd.help_tooltips["radial_" entry] := hwnd
+		}
+		Else vars.hwnd.radial.indexed[index] := hwnd
+		ControlGetPos, xPos, yPos,,,, ahk_id %hwnd%
+		positions[index] := [xPos, yPos]
+	}
+
+	If (vars.radial.active = "menu") && settings.general.animations || InStr("fasttravel, custommacros", vars.radial.active) && settings.macros.animations
+		Loop 9
+		{
+			ControlMove,, % positions[5].1 + (positions[A_Index].1 - positions.5.1) / 2, positions.5.2 + (positions[A_Index].2 - positions.5.2) / 2,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
+			If (vars.radial.active = "custommacros")
+				GuiControl, +Hidden, % vars.hwnd.radial.indexed[A_Index "_text"]
+		}
+
+	If !longpress
+		xPos := vars.general.xMouse - 2 * margin - 1.5 * height, yPos := vars.general.yMouse - 2 * margin - 1.5 * height
+	Else xPos := vars.radial.selection.x - 2 * margin - height, yPos := vars.radial.selection.y - 2 * margin - height
+
+	Gui_CheckBounds(xPos, yPos, 4 * margin + 3 * height, 4 * margin + 3 * height)
+	Gui, %GUI%: Show, % "NA x" xPos " y" yPos
+	LLK_Overlay(radial_menu, "show",, GUI), LLK_Overlay(hwnd_old, "destroy")
+	WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " radial_menu
+	vars.radial.window := {"x1": xWin, "y1": yWin, "x2": xWin + wWin, "y2": yWin + hWin}
+
+	SetControlDelay, 0
+	If (vars.radial.active = "menu") && settings.general.animations || InStr("fasttravel, custommacros", vars.radial.active) && settings.macros.animations
+	{
+		Loop, % (count := positions.5.1 - positions.4.1)
+		{
+			outer := A_Index
+			If (A_Index < count * 0.75)
+				Continue
+			Loop, % 9
+				If (A_Index != 5) && vars.hwnd.radial.indexed[A_Index]
+				{
+					xPos := positions.5.1 + (InStr("147", A_Index) ? -outer : (InStr("369", A_Index) ? outer : 0))
+					yPos := positions.5.2 + (InStr("123", A_Index) ? -outer : (InStr("789", A_Index) ? outer : 0))
+					ControlMove,, % xPos, % yPos,,, % "ahk_id " vars.hwnd.radial.indexed[A_Index]
+				}
+		}
+		If (vars.radial.active = "custommacros")
+			Loop 9
+				GuiControl, -Hidden, % vars.hwnd.radial.indexed[A_Index "_text"]
+	}
+	vars.radial.wait := 0, vars.radial.last := A_TickCount
+
+	If longpress
+	{
+		KeyWait, % longpress
+		val := LLK_HasVal(vars.hwnd.radial, vars.general.cMouse), LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+		Return val
+	}
+	Else vars.radial.hover_select := ""
+
+	If settings.hotkeys.menuwidget
+		KeyWait, % settings.hotkeys.menuwidget
+}
+
+Gui_RadialMenu2(cHWND := "", hotkey := 1)
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.radial, cHWND), control := SubStr(check, InStr(check, "_") + 1), start := A_TickCount
+	While GetKeyState("LButton", "P") && !longpress
+		If (A_TickCount >= start + 200)
+		{
+			WinGetPos, xSelection, ySelection, wSelection, hSelection, % "ahk_id " cHWND
+			longpress := 1, vars.radial.click_select := check, vars.radial.selection := {"x": xSelection - 2, "y": ySelection - 2}
+		}
+		Else Sleep 25
+
+	If !longpress
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+
+	If !Blank(check)
+		If (vars.radial.active = "menu")
+			Gui_MenuWidget(cHWND, {"longpress": longpress, "check": check}, hotkey)
+		Else If (vars.radial.active = "fasttravel")
+			Macro_FastTravel(cHWND, {"longpress": longpress, "check": check}, hotkey)
+		Else Macro_CustomMacros(cHWND, {"longpress": longpress, "check": check}, hotkey)
+
+	If longpress
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 }
 
 LLK_ControlGet(cHWND, GUI_name := "", subcommand := "")
