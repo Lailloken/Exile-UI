@@ -45,12 +45,12 @@ Macro_CustomMacros(cHWND := "", mode := "", hotkey := 1)
 	global vars, settings
 
 	If (A_TickCount < vars.radial.last + 250)
+	{
+		KeyWait, % settings.macros.hotkey_custommacros
 		Return
-	start := A_TickCount
-	While !longpress && (GetKeyState(settings.macros.hotkey_custommacros, "P") || GetKeyState(Hotkeys_Convert(settings.macros.hotkey_custommacros), "P"))
-		If (A_TickCount >= start + 250)
-			longpress := 1
-		Else Sleep 25
+	}
+	KeyWait, % settings.macros.hotkey_custommacros, T0.25
+	longpress := ErrorLevel
 
 	If !IsObject(mode) && !longpress
 		mode := (settings.macros.enable_0 ? {"check": 0} : "")
@@ -69,11 +69,11 @@ Macro_CustomMacros(cHWND := "", mode := "", hotkey := 1)
 		Return
 	}
 
+	KeyWait, LButton
 	If (mode.check = "settings")
 		Settings_menu("macros")
 	Else If !Blank(mode.check)
 	{
-		KeyWait, LButton
 		Clipboard := settings.macros["command_" mode.check]
 		ClipWait, 0.1
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
@@ -89,12 +89,12 @@ Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
 	global vars, settings
 
 	If (A_TickCount < vars.radial.last + 250)
+	{
+		KeyWait, % settings.macros.hotkey_fasttravel
 		Return
-	start := A_TickCount
-	While !longpress && (GetKeyState(settings.macros.hotkey_fasttravel, "P") || GetKeyState(Hotkeys_Convert(settings.macros.hotkey_fasttravel), "P"))
-		If (A_TickCount >= start + 250)
-			longpress := 1
-		Else Sleep 25
+	}
+	KeyWait, % settings.macros.hotkey_fasttravel, T0.25
+	longpress := ErrorLevel
 
 	If !IsObject(mode) && !longpress
 		mode := {"check": "hideout"}
@@ -113,11 +113,11 @@ Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
 		Return
 	}
 
+	KeyWait, LButton
 	If (mode.check = "settings")
 		Settings_menu("macros")
 	Else If mode.check
 	{
-		KeyWait, LButton
 		Clipboard := "/" mode.check
 		ClipWait, 0.1
 		WinActivate, % "ahk_id " vars.hwnd.poe_client

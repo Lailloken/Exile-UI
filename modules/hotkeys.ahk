@@ -102,16 +102,14 @@ Hotkeys_ESC()
 		KeyWait, ESC
 		Return
 	}
-	start := A_TickCount
-	While GetKeyState("ESC", "P") || GetKeyState("SC001", "P")
-		If (A_TickCount >= start + 250)
-		{
-			Gui_MenuWidget()
-			KeyWait, ESC
-			KeyWait, SC001
-			Return
-		}
-		Else Sleep 25
+	KeyWait, ESC, T0.25
+	If ErrorLevel
+	{
+		Gui_MenuWidget()
+		KeyWait, ESC
+		KeyWait, SC001
+		Return
+	}
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""

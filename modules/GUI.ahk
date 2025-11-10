@@ -458,13 +458,12 @@ Gui_RadialMenu2(cHWND := "", hotkey := 1)
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.radial, cHWND), control := SubStr(check, InStr(check, "_") + 1), start := A_TickCount
-	While GetKeyState("LButton", "P") && !longpress
-		If (A_TickCount >= start + 200)
-		{
-			WinGetPos, xSelection, ySelection, wSelection, hSelection, % "ahk_id " cHWND
-			longpress := 1, vars.radial.click_select := check, vars.radial.selection := {"x": xSelection - 2, "y": ySelection - 2}
-		}
-		Else Sleep 25
+	KeyWait, LButton, T0.25
+	If ErrorLevel
+	{
+		WinGetPos, xSelection, ySelection, wSelection, hSelection, % "ahk_id " cHWND
+		longpress := 1, vars.radial.click_select := check, vars.radial.selection := {"x": xSelection - 2, "y": ySelection - 2}
+	}
 
 	If !longpress
 		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""

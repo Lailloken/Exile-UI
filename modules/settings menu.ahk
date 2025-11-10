@@ -2718,7 +2718,8 @@ Settings_macros()
 		Gui, %GUI%: Add, Edit, % "ys hp cBlack HWNDhwnd1 gSettings_macros2 w" settings.general.fWidth * 25, % settings.macros["command_" A_Index - 1]
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		vars.hwnd.settings["enable_" A_Index - 1] := hwnd0, vars.hwnd.settings["enable_" A_Index - 1 "_bar"] := hwnd01
-		vars.hwnd.help_tooltips["settings_macros label" handle] := vars.hwnd.settings["label_" A_Index - 1] := hwnd
+		If (A_Index != 1)
+			vars.hwnd.help_tooltips["settings_macros label" handle] := vars.hwnd.settings["label_" A_Index - 1] := hwnd
 		vars.hwnd.help_tooltips["settings_macros command" handle] := vars.hwnd.settings["command_" A_Index - 1] := hwnd1, handle .= "|"
 	}
 
@@ -2775,7 +2776,7 @@ Settings_macros2(cHWND)
 				If !Blank(input)
 					Hotkey, % Hotkeys_Convert(input), % "Macro_" control, On
 				IniWrite, % """" (settings.macros["hotkey_" control] := input) """", % "ini" vars.poe_version "\chat macros.ini", settings, % control " hotkey"
-				GuiControl, +Hidden, % vars.hwnd.settings["hotkeysave_" control]
+				Settings_menu("macros")
 			}
 			Else LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5,,,, "Red")
 
@@ -3439,6 +3440,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
 			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
 			color := (val = "donations" ? " cCCCC00" : (val = "news" && vars.news.unread ? " cLime" : color))
+			color := (val = "macros" ? (!Blank(settings.macros.hotkey_fasttravel) || !Blank(settings.macros.hotkey_custommacros) ? " cWhite" : " cGray") : color)
 			Gui, %GUI_name%: Add, Text, % "Section xs y+-1 wp BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 h" settings.general.fHeight*1.2 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1) " "
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 BackgroundBlack cBlack", 100
 			vars.hwnd.settings[val] := hwnd, vars.hwnd.settings["background_"val] := hwnd1
