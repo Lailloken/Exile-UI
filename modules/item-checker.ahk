@@ -1809,8 +1809,8 @@ Iteminfo_GUI()
 
 		;If roll_stats.Count()
 		;	Gui, %GUI_name%: Add, Progress, % "xs w" UI.wSegment*UI.segments " Disabled h" UI.hDivider " BackgroundWhite",
-		If db.item_drops[item.name]
-			drop_tier := (StrLen(db.item_drops[item.name]) > 2) ? Lang_Trans("iteminfo_drop_" db.item_drops[item.name]) : db.item_drops[item.name]
+		If db.item_drops[StrReplace(item.name, "foulborn ")]
+			drop_tier := (StrLen(db.item_drops[StrReplace(item.name, "foulborn ")]) > 2) ? Lang_Trans("iteminfo_drop_" db.item_drops[StrReplace(item.name, "foulborn ")]) : db.item_drops[StrReplace(item.name, "foulborn ")]
 		Else drop_tier := Lang_Trans("iteminfo_drop_unknown")
 		segments := 1, sFiller := UI.segments - (roll_stats.Count() > 1 ? 1 : 0)
 		LLK_PanelDimensions([LLK_StringCase(drop_tier " " Lang_Trans("items_unique"))], settings.iteminfo.fSize, wDrop, hDrop,,, 1)
