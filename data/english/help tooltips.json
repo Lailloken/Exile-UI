@@ -602,7 +602,7 @@
     ],
     "macros label": [
       "for custom macros, the menu-widget will display a text-label instead of an icon",
-      "enter an text-label of up to 3 characters"
+      "enter a text-label of up to 3 characters"
     ],
     "macros command": [
       "enter the chat command you want to use"
@@ -1012,36 +1012,36 @@
       "the atlas notable <local knowledge> provides loot-drop bonuses for different biomes",
       "if enabled, the overlay will show the bonuses for the map you're hovering over"
     ],
-    "update check": [
+    "updater check": [
       "checks for updates on tool launch and in the background while running",
       "the menu-widget will blink if there is an update available"
     ],
-    "update hotfix": [
+    "updater hotfix": [
       "a hotfix release is available, you can download it below",
       "the versions listed below always include the newest hotfixes, even if the number is not specifically marked"
     ],
-    "update versions": [
+    "updater versions": [
       "the list below shows the available versions to switch between or reinstall",
       "each line represents a major version and has buttons to select the minor version",
       "versions with important changes are highlighted in orange(/highlight)",
       "hover over a button to see a summarized changelog, click it to prepare the download"
     ],
-    "update full changelog": [
+    "updater full changelog": [
       "opens the github page with the detailed changelog of the selected version"
     ],
-    "update restart": [
+    "updater restart": [
       "click to update and restart\nNOTE: active overlays and unsaved data will be lost"
     ],
-    "update manual": [
+    "updater manual": [
       "downloads a zip-file with the complete release, then opens it and the tool-folder",
       "the zip contains one folder: do not extract it! open it instead",
       "extract what's inside into the tool-folder that will open in a separate window"
     ],
-    "update github": [
+    "updater github": [
       "opens your browser and downloads the newest version",
       "also opens the tool folder in a separate window"
     ],
-    "update skip": [
+    "updater skip": [
       "long-click to skip this version and no longer receive notifications",
       "notifications will start showing again with the next version"
     ]

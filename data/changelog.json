@@ -13,27 +13,26 @@
 	"act-tracker: added support for 3.27 passive trees and gems",
 	"hotkeys: added an alternative key to access the menu-widget (F2 by default, can be rebound or disabled)",
 	"item-info: added support for 3.27 item bases",
-	"horizons tooltip: updated atlas data to 3.27"
+	"horizons tooltip updated to 3.27"
   ],
   [
 	["1.60.2", 16002, 1],
 	"october 30, 2025",
 	"act-decoder: custom layout images are not supported anymore(/highlight)",
-	"act-decoder: added hotkeys for layout selection while moving, added/updated layouts up to A3 sewers"
+	"act-decoder: added hotkeys for layout selection while moving, added/updated layouts up to a3 sewers"
   ],
   [
 	["1.60.1", 16001],
 	"october 27, 2025",
-	"act-tracker: major poe1 guide changes (new routes, improved town visits, fewer detours)",
-	"act-tracker: made poe1 guide more compact, improved quest rewards and hints"
+	"act-tracker: major poe1 guide changes (new routes, improved town visits, fewer detours)"
   ],
   [
 	["1.60.0", 16000, 1],
 	"october 19, 2025",
-	"omni-key: now on <capslock> by default, and a blocked/exclusive key (only registered by the tool)(/highlight)",
+	"omni-key is now <capslock> by default and only registered by the tool(/highlight)",
 	"hotkeys: <tab> key is now the <widget-key>, and some activations were moved to the <omni-key> instead",
-	"ui: replaced the main toolbar with a dynamic 'radial' menu: long-press <esc> to access it(/highlight)",
-	"seed-explorer: disabled (3rd-party data no longer maintained)"
+	"replaced the main toolbar with a dynamic menu-widget (long-press <esc> to access it)(/highlight)",
+	"seed-explorer feature removed (3rd-party data no longer maintained)"
   ],
   [
 	["1.59.8", 15908],
@@ -103,7 +102,7 @@
 	"july 30, 2025",
 	"act-tracker: stylistic rewrite of poe1 guide, guide-panel auto hides in lab",
 	"act-tracker: added earlier ascension options, skip siosa/lilly if not required (pob)",
-	"guide editor: major redesign"
+	"guide editor received a major redesign"
   ],
   [
 	["1.58.9", 15809],
@@ -147,7 +146,7 @@
   [
 	["1.58.4", 15804],
 	"june 6, 2025",
-	"filterspoon: feature removed for the time being",
+	"filterspoon feature removed for the time being",
 	"added wiki-links for talismans, added support for updated 0.2.1 map mods",
 	"new feature: <enchant finder> for anointing/instilling amulets"
   ],

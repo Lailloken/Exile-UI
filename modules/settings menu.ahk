@@ -4926,7 +4926,7 @@ Settings_updater()
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_updater2 checked"settings.updater.update_check, % Lang_Trans("m_updater_autocheck")
 	Gui, %GUI%: Add, Text, % "ys", % "        " ;to make the window a bit wider and improve changelog tooltips
 	WinGetPos,,, wCheckbox, hCheckbox, ahk_id %hwnd%
-	vars.hwnd.settings.update_check := vars.hwnd.help_tooltips["settings_update check"] := hwnd
+	vars.hwnd.settings.update_check := vars.hwnd.help_tooltips["settings_updater check"] := hwnd
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+"vars.settings.spacing, % Lang_Trans("m_updater_version")
@@ -4939,29 +4939,83 @@ Settings_updater()
 	ControlGetPos, x,,,,, ahk_id %hwnd%
 	color := vars.updater.skip && (vars.updater.latest.1 = vars.updater.skip) ? " cYellow" : (IsNumber(vars.updater.latest.1) && vars.updater.latest.1 > vars.updater.version.1) ? " cLime" : ""
 	Gui, %GUI%: Add, Text, % "Section xs w" width . color, % Lang_Trans("m_updater_version", 3) " "
-	Gui, %GUI%: Add, Text, % "ys x" x . color, % vars.updater.latest.2
+	Gui, %GUI%: Add, Text, % "ys x+0" color, % vars.updater.latest.2
 
 	If InStr(vars.updater.latest.1, ".")
 	{
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_update hotfix"] := hwnd
+		vars.hwnd.help_tooltips["settings_updater hotfix"] := hwnd
 	}
 
 	If IsNumber(vars.updater.latest.1) && (vars.updater.latest.1 > vars.updater.version.1) && (vars.updater.latest.1 != vars.updater.skip)
 	{
 		Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans gSettings_updater2 HWNDhwnd", % " " Lang_Trans("m_updater_skip") " "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled Border BackgroundBlack cRed range0-500 HWNDhwnd0", 0
-		vars.hwnd.settings.skip := hwnd, vars.hwnd.settings.skip_bar := vars.hwnd.help_tooltips["settings_update skip"] := hwnd0
+		vars.hwnd.settings.skip := hwnd, vars.hwnd.settings.skip_bar := vars.hwnd.help_tooltips["settings_updater skip"] := hwnd0
+
+		Gui, %GUI%: Add, Text, % "ys Border Center gSettings_updater2 HWNDhwnd", % " " Lang_Trans("global_restart") " "
+		latest := vars.updater.latest.2, latest := InStr(latest, "hotfix") ? SubStr(latest, 1, InStr(latest, " (hotfix") - 1) : latest
+		vars.hwnd.settings.restart_install2 := vars.hwnd.help_tooltips["settings_updater changelog " latest "|"] := hwnd
 	}
 
 	If IsNumber(vars.updater.latest.1) && IsObject(vars.updater.changelog)
 	{
 		Gui, %GUI%: Font, underline bold
+		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_updater_recent")
+		Gui, %GUI%: Font, norm
+
+		features := {}, remove := []
+		For iVersion, aVersion in vars.updater.changelog
+			For iLine, vLine in aVersion
+			{
+				If (iLine = 1)
+					version := vLine.1, date := ""
+				Else If (iLine = 2)
+					date := vLine
+				Else If (check := InStr(vLine, ":"))
+					feature := SubStr(vLine, 1, check - 1), change := SubStr(vLine, check + 2)
+				Else change := vLine, feature := ""
+
+				If InStr(vLine, "/highlight")
+					change := (feature ? feature ": " : "") change, feature := "0major changes"
+				If date
+					change := version " (" date ")`n" change
+				If !feature || (iLine < 3)
+					Continue
+
+				If !IsObject(features[feature])
+					features[feature] := []
+				features[feature].Push(change)
+			}
+
+		For key in vars.help.settings
+			If InStr(key, "recentchanges")
+				remove.Push(key)
+		For iRemove, kRemove in remove
+			vars.help.settings.Delete(kRemove)
+
+		For key, array in features
+		{
+			vars.help.settings["recentchanges " (key := StrReplace(key, 0))] := array.Clone(), outer := A_Index
+			While !Blank(vars.help.settings["recentchanges " key].11)
+				vars.help.settings["recentchanges " key].RemoveAt(11)
+			Loop 2
+			{
+				Gui, %GUI%: Add, Text, % (outer = 1 || A_Index = 2 ? "Section xs" : "ys") " Border HWNDhwnd" (key = "major changes" ? " cFF8000" : ""), % " " StrReplace(key, "&", "&&") " "
+				vars.hwnd.help_tooltips["settings_recentchanges " key] := hwnd
+				ControlGetPos, xControl, yControl, wControl, hControl,, % "ahk_id " hwnd
+				If (xControl + wControl <= vars.settings.x_anchor + settings.general.fWidth * 38)
+					Break
+				Else GuiControl, +Hidden, % hwnd
+			}
+		}
+
+		Gui, %GUI%: Font, underline bold
 		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_updater_versions")
 		added := {}, selected := vars.updater.selected, selected_sub := SubStr(selected, InStr(selected, ".",, 0) + 1)
 		Gui, %GUI%: Font, norm
 		Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-		vars.hwnd.help_tooltips["settings_update versions"] := hwnd
+		vars.hwnd.help_tooltips["settings_updater versions"] := hwnd
 
 		For index, val in vars.updater.changelog
 		{
@@ -4970,7 +5024,7 @@ Settings_updater()
 				Gui, %GUI%: Add, Text, % "Section xs", % major
 			minor := SubStr(val.1.2, -1) + 0, color := (selected = major . minor) ? " cFuchsia" : val.1.3 ? " cFF8000" : ""
 			Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd gSettings_updater2 Center w" settings.general.fWidth * 2 . color . (!added[major] ? " x+0" : " x+" settings.general.fWidth/2), % minor
-			vars.hwnd.settings["versionselect_" major . minor] := vars.hwnd.help_tooltips["settings_update changelog " major . minor] := hwnd, added[major] := 1
+			vars.hwnd.settings["versionselect_" major . minor] := vars.hwnd.help_tooltips["settings_updater changelog " major . minor] := hwnd, added[major] := 1
 		}
 	}
 
@@ -4980,8 +5034,8 @@ Settings_updater()
 		Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans gSettings_updater2 HWNDhwnd cFuchsia", % " " Lang_Trans("global_restart") " "
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Disabled Border BackgroundBlack cRed range0-500 HWNDhwnd0", 0
 		ControlGetPos,,, wButton,,, ahk_id %hwnd%
-		vars.hwnd.settings["fullchangelog_" vars.updater.selected] := vars.hwnd.help_tooltips["settings_update full changelog"] := hwnd00
-		vars.hwnd.settings.restart_install := hwnd, vars.hwnd.settings.restart_bar := vars.hwnd.help_tooltips["settings_update restart"] := hwnd0
+		vars.hwnd.settings["fullchangelog_" vars.updater.selected] := vars.hwnd.help_tooltips["settings_updater full changelog"] := hwnd00
+		vars.hwnd.settings.restart_install := hwnd, vars.hwnd.settings.restart_bar := vars.hwnd.help_tooltips["settings_updater restart"] := hwnd0
 	}
 
 	If IsNumber(vars.update.1) && (vars.update.1 < 0)
@@ -5004,7 +5058,7 @@ Settings_updater()
 			Gui, %GUI%: Add, Text, % "Section xs Center Border BackgroundTrans HWNDmanual gSettings_updater2", % " " Lang_Trans("m_updater_manual") " "
 			Gui, %GUI%: Add, Progress, % "xp yp wp hp Border HWNDbar range0-10 BackgroundBlack cGreen", 0
 			Gui, %GUI%: Add, Text, % "ys Center Border HWNDgithub gSettings_updater2", % " " Lang_Trans("m_updater_manual", 2) " "
-			vars.hwnd.settings.manual := manual, vars.hwnd.settings.manual_bar := vars.hwnd.help_tooltips["settings_update manual"] := bar, vars.hwnd.settings.github := vars.hwnd.help_tooltips["settings_update github"] := github
+			vars.hwnd.settings.manual := manual, vars.hwnd.settings.manual_bar := vars.hwnd.help_tooltips["settings_updater manual"] := bar, vars.hwnd.settings.github := vars.hwnd.help_tooltips["settings_updater github"] := github
 		}
 	}
 
@@ -5047,8 +5101,10 @@ Settings_updater2(cHWND := "")
 	}
 	Else If InStr(check, "fullchangelog_")
 		Run, % "https://github.com/Lailloken/Lailloken-UI/releases/tag/v" control
-	Else If (check = "restart_install")
+	Else If InStr(check, "restart_install")
 	{
+		If InStr(check, 2)
+			latest := vars.updater.latest.2, vars.updater.selected := InStr(latest, "hotfix") ? SubStr(latest, 1, InStr(latest, " (hotfix") - 1) : latest
 		If !settings.general.dev || LLK_Progress(vars.hwnd.settings.restart_bar, "LButton")
 		{
 			KeyWait, LButton

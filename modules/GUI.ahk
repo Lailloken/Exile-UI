@@ -156,7 +156,7 @@ Gui_HelpToolTip(HWND_key)
 			target_array.InsertAt(1, Trim(ini.info.character ":`n" name, "`n:") "(/underline)(/bold)")
 	}
 
-	If InStr(control, "update changelog")
+	If InStr(control, "updater changelog")
 		For index0, val in vars.updater.changelog
 		{
 			If !InStr(control, val.1.1)
@@ -185,7 +185,7 @@ Gui_HelpToolTip(HWND_key)
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000
 	WinGetPos,,, width, height, ahk_id %tooltip%
 	xPos := (check = "settings") ? vars.settings.x + vars.settings.wSelection - 1 : xWin + (check = "leveltrackereditor" ? (wWin - 2)//8 : 0)
-	yPos := InStr(control, "update changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
+	yPos := InStr(control, "updater changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
 
 	If (check = "lootfilter")
 		yPos := vars.lootfilter.yPos - height, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos

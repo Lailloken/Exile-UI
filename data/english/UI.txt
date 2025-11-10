@@ -1191,6 +1191,7 @@
 		m_updater_version		=	"current:"
 		m_updater_version		=	"latest:"
 		m_updater_versions		=	"available downloads:"
+		m_updater_recent		=	"recent changes:"
 		m_updater_github		=	"github links:"
 		m_updater_github		=	"main page"
 		m_updater_github		=	"releases"

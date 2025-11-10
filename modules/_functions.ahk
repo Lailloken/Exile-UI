@@ -580,15 +580,20 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	vars.updater := {"version": [versions_local._release.1, UpdateParseVersion(versions_local._release.1)], "latest": [versions_live._release.1, UpdateParseVersion(versions_live._release.1)]}
 	vars.updater.skip := LLK_IniRead("ini\config.ini", "versions", "skip", 0)
 
-	Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
+	If !settings.general.dev
+		Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
+	Else changelog_check := LLK_FileRead("data\changelog.json")
 	changelog_check := changelog_check ? Trim(changelog_check, " `r`n`t") : ""
 
 	If (SubStr(changelog_check, 1, 1) . SubStr(changelog_check, 0) = "[]")
 	{
 		vars.updater.changelog := Json.Load(changelog_check)
-		FileDelete, data\changelog.json
-		If !FileExist("data\changelog.json")
-			FileAppend, % changelog_check, data\changelog.json
+		If !settings.general.dev
+		{
+			FileDelete, data\changelog.json
+			If !FileExist("data\changelog.json")
+				FileAppend, % changelog_check, data\changelog.json
+		}
 	}
 	Else
 	{
