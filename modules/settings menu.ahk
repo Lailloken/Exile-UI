@@ -2651,9 +2651,8 @@ Settings_macros()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros">wiki page</a>
-	Gui, %GUI%: Add, Link, % "ys x+"settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
-	Gui, %GUI%: Add, Link, % "ys x+"settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/Hotkeys.htm">ahk: formatting</a>
-	Gui, %GUI%: Add, Link, % "Section xs", % "<a href=""https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"">poe.wiki: chat commands</a>"
+	Gui, %GUI%: Add, Link, % "ys x+" settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
+	Gui, %GUI%: Add, Link, % "ys x+" settings.general.fWidth, % "<a href=""https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"">poe.wiki: chat</a>"
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs Center y+" vars.settings.spacing, % Lang_Trans("global_ui")
@@ -2783,7 +2782,6 @@ Settings_macros2(cHWND)
 		Case InStr(check, "enable_"):
 			If Blank(LLK_ControlGet(vars.hwnd.settings["label_" control])) && (control != 0) || Blank(LLK_ControlGet(vars.hwnd.settings["command_" control]))
 				Return
-			SoundBeep
 			IniWrite, % (settings.macros["enable_" control] := !settings.macros["enable_" control]), % "ini" vars.poe_version "\chat macros.ini", macros, % "enable " control
 			GuiControl, % "+Background" (settings.macros["enable_" control] ? "Lime" : "Black"), % vars.hwnd.settings["enable_" control "_bar"]
 

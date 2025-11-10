@@ -214,6 +214,7 @@
 		log_infamous			=	", the Keitan"
 		log_infamous			=	", the Azadin"
 		log_infamous			=	", the Bardiyan"
+		log_graftblood			=	"Equipped Grafts"			;## there are 2 (or more) warnings for graftblood almost being full
 
 
 ;## expedition note: in PoE1, there is a difference in displayed names depending on whether the NPCs greet you when they first see you in a map (Gwennen, the Gambler) or whether the encounter has finished (Gwennen)

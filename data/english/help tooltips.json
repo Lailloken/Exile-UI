@@ -597,7 +597,7 @@
       "to disable commands, either click the number-labels or leave the fields blank"
     ],
     "macros hotkeys": [
-      "for special keys, check the links above to find proper names and formatting",
+      "for special keys, check the ahk-link above to find the proper names",
       "leave it blank to disable this feature"
     ],
     "macros label": [

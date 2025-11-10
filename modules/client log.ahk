@@ -486,7 +486,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 			Maptracker_ParseDialogue(loopfield)
 
 		If settings.qol.mapevents
-			For index0, type in ["mist", "seer", "infamous"]
+			For index0, type in ["mist", "seer", "infamous", "graftblood"]
 				For index1, line in vars.lang["log_" type]
 					If InStr(loopfield, line, 1) && (type != "infamous" || type = "infamous" && MapEvent_InfamousMerc(loopfield "."))
 					{
