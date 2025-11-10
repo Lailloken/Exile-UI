@@ -1060,12 +1060,12 @@
       "enter areaid1_5_2 ;; the control blocks"
     ],
     [
-      "go (img:7), find the (quest:miasmeter)",
+      "go (img:7), find (img:quest) (quest:miasmeter)",
       "go (img:1), kill casticus for (quest:eyes)",
       "go (img:0), enter areaid1_5_3 ;; oriath square"
     ],
     [
-      "go (img:1) to areaid1_5_4 ;; the templar courts"
+      "go (img:1) to (img:quest) areaid1_5_4 ;; the templar courts"
     ],
     [
       "enter  areaid1_5_5 (lvl:37) ;; the chamber of innocence",
@@ -1123,7 +1123,7 @@
       ],
       "lines": [
         "find 3x (img:quest) (quest:torment) near corners",
-        "(hint)__ (img:craft) in (img:3) corner near a (img:quest) (quest:torment)",
+        "(hint)__ (img:craft) near one of the (img:quest) (quest:torments)",
         "(img:waypoint) to areaid1_5_town (img:town) ;; overseer's tower"
       ]
     },
@@ -1193,7 +1193,7 @@
       ],
       "lines": [
         "activate the (img:waypoint)",
-        "optional: (img:quest) <belt>: (img:waypoint) to areaid2_6_2 ;; the coast",
+        "optional: (img:quest) <belt/amu>: (img:waypoint) to areaid2_6_2 ;; the coast",
         "(hint)__ find (img:quest) (quest:script) in (img:arena) areaid2_6_3 ;; tidal island",
         "(img:portal) to areaid2_6_town ;; lioneye's watch"
       ]
@@ -1224,7 +1224,7 @@
       ],
       "lines": [
         "lilly: <fallen_from_grace>",
-        "optional: bestel: <belt> for (quest:manuscript)",
+        "optional: bestel: <belt/amu> for (quest:manuscript)",
         "tarkleigh: <book> ;; tukohama",
         "(img:waypoint) to areaid2_6_6 ;; the ridge"
       ]
@@ -1334,8 +1334,6 @@
     ],
     [
       "follow (img:2) edge to find bridges",
-      "(hint)_ - smaller gaps can be jumped across",
-      "(hint)_ - first 2 bridges are (img:4), 3rd is (img:1)",
       "follow cliff (img:3) to areaid2_6_13 ;; the cavern of anger"
     ],
     [
@@ -1986,8 +1984,8 @@
       ],
       "lines": [
         "follow edge, complete (img:lab) trial",
-        "(hint)_ - zone is (rotated) 8-shape",
         "(hint)_ - (img:lab) is (img:0) of (img:quest) (quest:elixir) (opt: <2_respecs>)",
+        "(hint)_ - (img:craft) is also near (img:quest) (quest:elixir)",
         "(color:cc99ff)relog: areaid2_10_town ;; oriath docks"
       ]
     },

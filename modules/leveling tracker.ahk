@@ -176,12 +176,15 @@ Geartracker(mode := "")
 	Else If (check = "clear")
 	{
 		If LLK_Progress(vars.hwnd.geartracker.delbar_clear, "LButton")
-			Loop, % vars.leveltracker.gear_ready
-			{
-				IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gear", % vars.leveltracker.gear[A_Index]
-				IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gems", % vars.leveltracker.gear[A_Index]
-				vars.leveltracker.gear.Delete(A_Index)
-			}
+		{
+			Loop, % (count := vars.leveltracker.gear.Count()) + 1
+				If !Blank(gear := vars.leveltracker.gear[(index := count - (A_Index - 1))]) && (SubStr(gear, 2, 2) <= vars.log.level)
+				{
+					IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gear", % vars.leveltracker.gear[index]
+					IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gems", % vars.leveltracker.gear[index]
+					vars.leveltracker.gear.RemoveAt(index)
+				}
+		}
 		Else Return
 	}
 	Else If (check = "clear_gems")
@@ -189,9 +192,9 @@ Geartracker(mode := "")
 		If LLK_Progress(vars.hwnd.geartracker.delbar_gems, "LButton")
 		{
 			IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gems"
-			Loop, % (count := vars.leveltracker.gear.Count())
-				If InStr(vars.leveltracker.gear[count - (A_Index - 1)], "gem:")
-					vars.leveltracker.gear.RemoveAt(count - (A_Index - 1))
+			Loop, % (count := vars.leveltracker.gear.Count()) + 1
+				If !Blank(gear := vars.leveltracker.gear[(index := count - (A_Index - 1))]) && InStr(gear, "gem:")
+					vars.leveltracker.gear.RemoveAt(index)
 		}
 		Else Return
 	}
