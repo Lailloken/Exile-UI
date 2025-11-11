@@ -353,7 +353,7 @@ Settings_CharTracking(mode, wEdits := "")
 
 	If (fSize != settings.general.fSize)
 	{
-		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("m_general_build")], settings.general.fSize, wChar, hChar)
+		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_info")], settings.general.fSize, wChar, hChar)
 		fSize := settings.general.fSize
 	}
 
@@ -394,7 +394,7 @@ Settings_CharTracking(mode, wEdits := "")
 
 	If vars.log.level && settings.features.maptracker && settings.maptracker.character || (mode = "leveltracker")
 	{
-		Gui, %GUI%: Add, Text, % "Section xs y+" margin " hp Border HWNDhwnd w" wChar, % " " Lang_Trans("m_general_build")
+		Gui, %GUI%: Add, Text, % "Section xs y+" margin " hp Border HWNDhwnd w" wChar, % " " Lang_Trans("global_info")
 		Gui, %GUI%: Font, % "s"settings.general.fSize - 4
 		build_text := (mode = "general" ? settings.general.build : settings.leveltracker["guide" profile].info.name)
 		Gui, %GUI%: Add, Edit, % "ys x+-1 R1 cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2 w" wEdits, % build_text

@@ -69,7 +69,7 @@
       "this label will be out of sync if you have recently (re)specced but not leveled up yet: in that case, click the refresh button on the left"
     ],
     "active build": [
-      "optional: enter a description/name of the current build",
+      "optional: enter a description for the current build",
       "used in the map-tracker feature to log which build was played"
     ],
     "logfile": [
