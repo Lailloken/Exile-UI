@@ -5001,7 +5001,7 @@ Settings_updater()
 				vars.help.settings["recentchanges " key].RemoveAt(11)
 			Loop 2
 			{
-				Gui, %GUI%: Add, Text, % (outer = 1 || A_Index = 2 ? "Section xs" : "ys") " Border HWNDhwnd" (key = "major changes" ? " cFF8000" : ""), % " " StrReplace(key, "&", "&&") " "
+				Gui, %GUI%: Add, Text, % (outer = 1 || A_Index = 2 ? "Section xs" : "ys") " Border HWNDhwnd" (RegExMatch(key, "i)major.changes|new.feature") ? " cFF8000" : ""), % " " StrReplace(key, "&", "&&") " "
 				vars.hwnd.help_tooltips["settings_recentchanges " key] := hwnd
 				ControlGetPos, xControl, yControl, wControl, hControl,, % "ahk_id " hwnd
 				If (xControl + wControl <= vars.settings.x_anchor + settings.general.fWidth * 38)

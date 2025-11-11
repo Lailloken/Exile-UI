@@ -1,5 +1,14 @@
 [
   [
+	["1.60.5", 16005],
+	"november 11, 2025",
+	"stash-ninja: fixed ultimatum issues",
+	"new feature: <chat macros> for fast-travel and custom chat commands",
+	"added a <recent changes> section to the updater",
+	"map-events: added support for graftblood warnings",
+	"item-info: foulborn unique support, updated unique drop-tiers"
+  ],
+  [
 	["1.60.4", 16004],
 	"november 3, 2025",
 	"stash-ninja: now uses poe.ninja's currency exchange api, added support for 3.27 tabs and keepers leagues",
@@ -65,7 +74,7 @@
 	"september 3, 2025",
 	"act-tracker: initial support for act 4 and interludes (requires progress reset), added support for 0.3 gems",
 	"item-info: updated item bases and mods",
-	"map-tracker & statlas: added support for newly-added maps"
+	"updated map-tracker & statlas to support newly-added maps"
   ],
   [
 	["1.59.4", 15904],
