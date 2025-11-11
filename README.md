@@ -94,7 +94,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 ### [Chat Macros](https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros): quick-access macros and "chat wheels"
 | configuration | "chat wheels" |
 |---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/chatmacros_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/chatmacros_001.jpg) |
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/chatmacros_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/chatmacros_002.jpg) |
 <br>
 
 ### [Map-Tracker](https://github.com/Lailloken/Lailloken-UI/wiki/Map%E2%80%90Tracker): collect, save, view, and export mapping-related data for statistical analysis
