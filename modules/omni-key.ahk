@@ -376,9 +376,9 @@ Omni_ContextMenu()
 			If !(item.unid && item.rarity = Lang_Trans("items_unique")) && (LLK_PatternMatch(item.name, "", ["Splinter"]) || item.itembase || !LLK_PatternMatch(item.rarity, "", [Lang_Trans("items_magic"), Lang_Trans("items_rare"), Lang_Trans("items_currency")]))
 			&& (settings.general.lang_client = "english")
 			{
-				Gui, omni_context: Add, Text, % "Section gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: " LLK_StringCase(item[item.itembase && item.rarity != Lang_Trans("items_unique") ? "itembase" : "name"])
+				Gui, omni_context: Add, Text, % "Section gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: " LLK_StringCase(StrReplace(item[item.itembase && item.rarity != Lang_Trans("items_unique") ? "itembase" : "name"], "foulborn "))
 				ControlGetPos,,, w1,,, % "ahk_id " hwnd
-				vars.hwnd.omni_context.wiki_exact := hwnd, vars.omni_context[hwnd] := item[item.itembase && item.rarity != Lang_Trans("items_unique") ? "itembase" : "name"]
+				vars.hwnd.omni_context.wiki_exact := hwnd, vars.omni_context[hwnd] := StrReplace(item[item.itembase && item.rarity != Lang_Trans("items_unique") ? "itembase" : "name"], "foulborn ")
 			}
 
 			If (item.rarity != Lang_Trans("items_unique")) && !Blank(item.class)
