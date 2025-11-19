@@ -44,11 +44,6 @@ Macro_CustomMacros(cHWND := "", mode := "", hotkey := 1)
 	local
 	global vars, settings
 
-	If (A_TickCount < vars.radial.last + 250)
-	{
-		KeyWait, % settings.macros.hotkey_custommacros
-		Return
-	}
 	KeyWait, % settings.macros.hotkey_custommacros, T0.25
 	longpress := ErrorLevel
 
@@ -65,7 +60,7 @@ Macro_CustomMacros(cHWND := "", mode := "", hotkey := 1)
 
 		KeyWait, % settings.macros.hotkey_custommacros
 		KeyWait, % Hotkeys_Convert(settings.macros.hotkey_custommacros)
-		vars.radial.last := A_TickCount
+		Sleep 200
 		Return
 	}
 
@@ -81,6 +76,7 @@ Macro_CustomMacros(cHWND := "", mode := "", hotkey := 1)
 		If !ErrorLevel && !Blank(Clipboard)
 			SendInput, {ENTER}^v{ENTER}
 	}
+	Sleep 200
 }
 
 Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
@@ -88,11 +84,6 @@ Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
 	local
 	global vars, settings
 
-	If (A_TickCount < vars.radial.last + 250)
-	{
-		KeyWait, % settings.macros.hotkey_fasttravel
-		Return
-	}
 	KeyWait, % settings.macros.hotkey_fasttravel, T0.25
 	longpress := ErrorLevel
 
@@ -109,7 +100,7 @@ Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
 
 		KeyWait, % settings.macros.hotkey_fasttravel
 		KeyWait, % Hotkeys_Convert(settings.macros.hotkey_fasttravel)
-		vars.radial.last := A_TickCount
+		Sleep 200
 		Return
 	}
 
@@ -125,4 +116,5 @@ Macro_FastTravel(cHWND := "", mode := "", hotkey := 1)
 		If !ErrorLevel
 			SendInput, {ENTER}^v{ENTER}
 	}
+	Sleep 200
 }

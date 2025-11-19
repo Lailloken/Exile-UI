@@ -257,6 +257,7 @@ Omni_Release()
 		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 	If (settings.features.sanctum) && !vars.sanctum.lock && !vars.sanctum.scanning && WinExist("ahk_id " vars.hwnd.sanctum.main)
 		Sanctum("close")
+	Sleep 200 ;to prevent another omni-key trigger when releasing the key after a long-press
 }
 
 Omni_Context(mode := 0)

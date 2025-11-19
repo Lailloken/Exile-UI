@@ -97,8 +97,7 @@ Hotkeys_ESC()
 
 	If vars.hwnd.radial.main && WinExist("ahk_id " vars.hwnd.radial.main)
 	{
-		If (A_TickCount >= vars.radial.last + 250)
-			LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
+		LLK_Overlay(vars.hwnd.radial.main, "destroy"), vars.hwnd.radial.main := ""
 		KeyWait, ESC
 		Return
 	}
@@ -108,6 +107,7 @@ Hotkeys_ESC()
 		Gui_MenuWidget()
 		KeyWait, ESC
 		KeyWait, SC001
+		Sleep 200
 		Return
 	}
 

@@ -438,7 +438,7 @@ Gui_RadialMenu(selection := "", longpress := 0)
 			Loop 9
 				GuiControl, -Hidden, % vars.hwnd.radial.indexed[A_Index "_text"]
 	}
-	vars.radial.wait := 0, vars.radial.last := A_TickCount
+	vars.radial.wait := 0
 
 	If longpress
 	{
