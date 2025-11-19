@@ -1632,7 +1632,10 @@ Iteminfo_GUI()
 		highlights := "", color_t := "Black" ;track (un)desired highlighting for every part of hybrid mods
 		Loop, Parse, mod, `n ;parse mod-text line by line
 		{
-			text_check := StrReplace(StrReplace(StrReplace(A_LoopField, " (desecrated)"), " (crafted)"), " (fractured)"), invert_check := (settings.iteminfo.roll_range = 1 || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
+			text_check := A_LoopField
+			For ireplace, vreplace in ["desecrated", "crafted", "fractured", "mutated"]
+				text_check := StrReplace(text_check, " (" vreplace ")")
+			invert_check := (settings.iteminfo.roll_range = 1 || unique) * vars.iteminfo.inverted_mods.HasKey(Iteminfo_ModHighlight(A_LoopField, "parse"))
 			rolls := Iteminfo_ModRollCheck(A_LoopField)
 			If invert_check
 				rolls[4] := rolls[1], rolls[1] := rolls[3], rolls[3] := rolls[4]
@@ -1677,7 +1680,7 @@ Iteminfo_GUI()
 			Gui, %GUI_name%: Add, Text, % "xs Section HWNDhwnd Border Hidden Center w"(UI.segments - (unique ? 1 : 1.25))*UI.wSegment, % mod_text ;dummy text-panel to gauge the required height of the text
 			GuiControlGet, text_, Pos, % hwnd
 
-			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : (settings.iteminfo.roll_range = 1) && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted)"), "(") ? "303060" : "404040"
+			color := (invert_check && (rolls_val / rolls_max) * 100 != 0) ? "505000" : unique ? "994C00" : (settings.iteminfo.roll_range = 1) && !InStr(LLK_StringRemove(A_LoopField, " (fractured), (crafted), (mutated)"), "(") ? "303060" : "404040"
 			color := !unique && !(settings.iteminfo.roll_range = 1) && (min_roll = max_roll) ? "303060" : color
 			;if dummy text-panel is single-line, increase height slightly to make small cells square
 			Gui, %GUI_name%: Add, Text, % "xp yp wp h"(text_h < UI.hSegment ? UI.hSegment : "p" ) " Section BackgroundTrans HWNDhwnd Border Center" (invert_check && (rolls_val / rolls_max) * 100 = 0 ? " cCCCC00" : ""), % mod_text ;add actual text-panel with the correct size
@@ -1706,7 +1709,7 @@ Iteminfo_GUI()
 				color := !highlight ? "Black" : (highlight = -2) ? mColors.4 : (highlight = -1) ? mColors.2 : (highlight = 1) ? mColors.1 : mColors.3 ;determine the right color
 				Gui, %GUI_name%: Add, Text, % "ys hp w"UI.wSegment/4 " Border BackgroundTrans Center", % " " ;add the rectangle
 				Gui, %GUI_name%: Add, Progress, % "xp yp wp hp HWNDhwnd Disabled Border BackgroundBlack c"color, 100 ;color the rectangle
-				vars.hwnd.iteminfo[StrReplace(StrReplace(A_LoopField, " (crafted)"), " (fractured)")] := hwnd ;store the rectangle's HWND and include the mod-text
+				vars.hwnd.iteminfo[LLK_StringRemove(A_LoopField, " (crafted), (fractured), (mutated)")] := hwnd ;store the rectangle's HWND and include the mod-text
 			}
 			If (A_Index = 1) ;for the first line within a group, store the coordinates so that the tier-cell can be placed right next to it
 			{
@@ -2090,7 +2093,7 @@ Iteminfo_ModHighlight(string, mode := 0, implicit := 0) ;check if mod is highlig
 	itemchecker_highlight_parse := "+-.()%", itemchecker_rule_applies := ""
 	implicit_check := !implicit ? "global" : "implicits" ;simple flag to facilitate handling objects
 	string := InStr(string, ":") ? SubStr(string, InStr(string, ":") + 2) : string, string := StrReplace(string, "`n", ";")
-	string := StrReplace(string, " (fractured)"), string := StrReplace(string, " (crafted)")
+	string := StrReplace(string, " (fractured)"), string := StrReplace(string, " (crafted)"), string := StrReplace(string, " (mutated)")
 
 	If Lang_Match(string, vars.lang.mods_eldritch_targets, 0) ;remove singular/plural distinction from this mod so they don't have to be highlighted as (un)desired separately
 		For index, val in vars.lang.mods_eldritch_targets
@@ -2780,7 +2783,8 @@ Iteminfo_ModRollCheck(mod, alt_mode := 0) ;parses a mod's text and returns an ar
 {
 	local
 
-	mod := StrReplace(StrReplace(StrReplace(mod, " (desecrated)"), " (crafted)"), " (fractured)")
+	For index, val in ["desecrated", "crafted", "fractured", "mutated"]
+		mod := StrReplace(mod, " (" val ")")
 	rolls := [], sum_min := 0, sum_current := 0, sum_max := 0
 
 	If !InStr(mod, "(") && !alt_mode
