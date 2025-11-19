@@ -2323,6 +2323,8 @@ Settings_leveltracker2(cHWND := "")
 		IniWrite, % settings.leveltracker.geartracker, % "ini" vars.poe_version "\leveling tracker.ini", settings, enable geartracker
 		If settings.leveltracker.geartracker
 			Geartracker_GUI("refresh")
+		If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+			Leveltracker_Progress(1)
 	}
 	Else If (check = "recommend")
 	{
