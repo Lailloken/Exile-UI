@@ -84,7 +84,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | simple<br>fallback | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
 <br>
 
-### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja/bulk-exchange price-overlay & sale management
+### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja price-overlay
 | | Path of Exile | Path of Exile 2 |
 |---|---|---|
 | customizable<br>price-tags<br>& profiles | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_101.jpg) |
@@ -204,7 +204,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 
 - `act-tracker` has a default guide and PoB-import features that were originally derived from [exile-leveling](https://github.com/HeartofPhos/exile-leveling)
 
-- `stash-ninja` uses price-data provided by [poe.ninja](https://poe.ninja/), and bulk-exchange support was implemented with [BocikPG](https://github.com/BocikPG)'s help
+- `stash-ninja` uses price-data provided by [poe.ninja](https://poe.ninja/)
 
 - `seed-explorer` uses a custom version of the timeless-jewel databases provided via [TimelessJewelData](https://github.com/KeshHere/TimelessJewelData)
 
