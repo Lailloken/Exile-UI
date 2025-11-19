@@ -65,7 +65,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	If InStr(mode, "SC00")
 	{
 		hotkey := SubStr(mode, 0) - 1, subzone := vars.actdecoder.zone_layouts[vars.log.areaID].subzone, target := vars.actdecoder.loaded[hotkey]
-		If !InStr(target, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " target "_*")
+		If !InStr(target, "x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " target "_*")
 			Actdecoder_ImageSelect(target), check := 1
 		Else If (vars.actdecoder.zone_layouts[vars.log.areaID].subzone || InStr(vars.actdecoder.loaded.1, "y")) && vars.actdecoder.loaded[hotkey] && !InStr(vars.actdecoder.loaded[hotkey], "x") && (vars.actdecoder.loaded.Count() >= hotkey)
 		{
