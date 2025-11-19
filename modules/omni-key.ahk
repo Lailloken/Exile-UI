@@ -372,6 +372,23 @@ Omni_ContextMenu()
 			ControlGetPos,,, w1,,, % "ahk_id " hwnd
 			vars.hwnd.omni_context.wiki_exact := hwnd, vars.omni_context[hwnd] := reward
 		}
+		Else If (settings.general.lang_client = "english") && InStr(item.name "`n" item.itembase, "inscribed ultimatum") && (check := InStr(clip, "requires sacrifice: "))
+		{
+			sacrifice := SubStr(clip, check + StrLen("requires sacrifice: ")), sacrifice := Trim(SubStr(sacrifice, 1, (check := RegExMatch(sacrifice, "i)\sx\d")) ? check - 1 : InStr(sacrifice, "`n") - 1), " `r`n")
+			reward := SubStr(clip, InStr(clip, "reward: ") + 8), reward := Trim(SubStr(reward, 1, (check := RegExMatch(reward, "i)\sx\d")) ? check - 1 : InStr(reward, "`n") - 1), " `r`n")
+
+			Gui, omni_context: Add, Text, % "Section gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: inscribed ultimatum"
+			ControlGetPos,,, w1,,, % "ahk_id " hwnd
+			vars.hwnd.omni_context.wiki_exact := hwnd, vars.omni_context[hwnd] := "Inscribed Ultimatum"
+
+			If !InStr(clip, "sacrificed currency")
+			{
+				Gui, omni_context: Add, Text, % "Section gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: " LLK_StringCase(sacrifice . (InStr(reward, "sacrificed") ? "" : " && " reward))
+				ControlGetPos,,, w2,,, % "ahk_id " hwnd
+				vars.hwnd.omni_context.wiki_exact := hwnd, vars.omni_context[hwnd] := sacrifice . (InStr(reward, "sacrificed") ? "" : "|" reward)
+				Clipboard := "^(" StrReplace(sacrifice . (InStr(reward, "sacrificed") ? "" : "|" reward), " ", ".") ")$"
+			}
+		}
 		Else
 		{
 			If !(item.unid && item.rarity = Lang_Trans("items_unique")) && (LLK_PatternMatch(item.name, "", ["Splinter"]) || item.itembase || !LLK_PatternMatch(item.rarity, "", [Lang_Trans("items_magic"), Lang_Trans("items_rare"), Lang_Trans("items_currency")]))
@@ -493,7 +510,8 @@ Omni_ContextMenuPick(cHWND)
 	{
 		class := StrReplace(vars.omni_context[cHWND], " ", "_"), class := (class = "body_armours") ? "Body_armour" : (InStr(item.itembase, "Runic ") ? "Runic_base_type#" : "") . class
 		class := StrReplace(class, "Jewels", "jewel"), class := InStr(item.class, "heist ") ? "Rogue's_equipment#" . StrReplace(item.class, "heist ") : class
-		Run, % "https://www.poe" Trim(vars.poe_version, " ") "wiki.net/wiki/" . class
+		Loop, Parse, class, `|
+			Run, % "https://www.poe" Trim(vars.poe_version, " ") "wiki.net/wiki/" . A_LoopField
 	}
 	Else If (check = "poelab")
 	{
