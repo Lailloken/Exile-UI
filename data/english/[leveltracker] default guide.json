@@ -826,7 +826,7 @@
       ],
       "lines": [
         "maramoa: <sever_the_right_hand>",
-        "grigor: <piety's_pets>",
+        "grigor: <book>",
         "(color:ff00ff)buy_gems in (img:hideout) (library gems) || lilly: <a_fixture_of_fate>  ;; only shows with imported pob",
         "(img:waypoint) to areaid1_3_13 ;; the ebony barracks"
       ]
@@ -1242,7 +1242,7 @@
       ],
       "lines": [
         "get (img:lab) || enter areaid2_6_7_2 : ;; shavronne's tower",
-        "(hint)_ - check for (color:cc99ff)map-icons near (img:waypoint) & follow",
+        "(hint)_ - check for (color:cc99ff)map-icons near (img:waypoint)",
         "(hint)_ - if (img:lab) trial is (img:1), the (img:arena) exit is (img:2)",
         "(hint)_ - if (img:arena) exit is (img:3) / (img:4), (img:lab) is further (img:4)"
       ]
@@ -1254,9 +1254,9 @@
       ],
       "lines": [
         "enter areaid2_6_7_2 : ;; shavronne's tower",
-        "(hint)_ - check for (color:cc99ff)map-icons near (img:waypoint) & follow",
+        "(hint)_ - check for (color:cc99ff)map-icons near (img:waypoint)",
         "(hint)_ - if (img:lab) trial is (img:1), the (img:arena) exit is (img:2)",
-        "(hint)_ - check if (img:arena) exit is (img:3) / (img:4) of (img:waypoint)"
+        "(hint)_ - else: check if (img:arena) exit is (img:3) / (img:4) of (img:waypoint)"
       ]
     },
     [
@@ -1678,11 +1678,12 @@
       ]
     },
     [
-      "find (img:arena) arena along (img:0) edge",
-      "kill yugul || (color:cc99ff)relog: areaid2_8_town ;; sarn encampment"
+      "find (img:arena) arena, kill yugul",
+      "(color:cc99ff)relog: areaid2_8_town ;; sarn encampment"
     ],
     [
-      "maramoa: <book> || hargan: <book> ;; gemling legion || yugul",
+      "maramoa: <book> ;; gemling legion",
+      "hargan: <ring>, <book> ;; doedre, yugul",
       "clarissa: <book> ;; tolman",
       "(img:waypoint) areaid2_8_12_1 ;; solaris temple level 1"
     ],
@@ -1812,7 +1813,7 @@
     [
       "find (img:arena) sand_pit, kill shakari",
       "(hint)__ search along the (img:2) zone-edge",
-      "(img:portal) to areaid2_9_town ;; highgate"
+      "(color:cc99ff)relog: areaid2_9_town ;; highgate"
     ],
     [
       "irasha: <book>",
