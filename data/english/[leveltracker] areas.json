@@ -2,6 +2,7 @@
   [
     {
       "id": "1_1_1",
+      "lvl": 1,
       "name": "Twilight Strand"
     },
     {
@@ -10,70 +11,86 @@
     },
     {
       "id": "1_1_2",
+      "lvl": 2,
       "name": "The Coast"
     },
     {
       "id": "1_1_2a",
+      "lvl": 3,
       "name": "Tidal Island"
     },
     {
       "id": "1_1_3",
+      "lvl": 4,
       "name": "Mud Flats"
     },
     {
       "id": "1_1_3a",
+      "lvl": 5,
       "name": "Fetid Pool"
     },
     {
       "id": "1_1_4_1",
+      "lvl": 5,
       "name": "Submerged Passage"
     },
     {
       "id": "1_1_4_0",
+      "lvl": 6,
       "name": "Flooded Depths"
     },
     {
       "id": "1_1_5",
+      "lvl": 6,
       "name": "The Ledge"
     },
     {
       "id": "1_1_6",
+      "lvl": 7,
       "name": "The Climb"
     },
     {
       "id": "1_1_7_1",
+      "lvl": 8,
       "name": "Lower Prison",
       "map_name": "The Prison"
     },
     {
       "id": "1_1_7_2",
+      "lvl": 9,
       "name": "Upper Prison"
     },
     {
       "id": "1_1_8",
+      "lvl": 10,
       "name": "Prisoner's Gate"
     },
     {
       "id": "1_1_9",
+      "lvl": 11,
       "name": "Ship Graveyard"
     },
     {
       "id": "1_1_9a",
+      "lvl": 12,
       "name": "Ship Graveyard Cave"
     },
     {
       "id": "1_1_11_1",
       "name": "Cavern of Wrath",
+      "lvl": 12,
       "map_name": "Merveil's Caverns"
     },
     {
       "id": "1_1_11_2",
+      "lvl": 13,
       "name": "Cavern of Anger"
     }
   ],
   [
     {
       "id": "1_2_1",
+      "lvl": 13,
       "name": "Southern Forest"
     },
     {
@@ -82,77 +99,95 @@
     },
     {
       "id": "1_2_2",
+      "lvl": 14,
       "name": "Old Fields"
     },
     {
       "id": "1_2_2a",
+      "lvl": 15,
       "name": "The Den"
     },
     {
       "id": "1_2_3",
+      "lvl": 15,
       "name": "The Crossroads"
     },
     {
       "id": "1_2_4",
+      "lvl": 16,
       "name": "Broken Bridge"
     },
     {
       "id": "1_2_6_1",
+      "lvl": 15,
       "name": "Chamber of Sins Level 1",
       "map_name": "Chamber of Sins"
     },
     {
       "id": "1_2_6_2",
+      "lvl": 16,
       "name": "Chamber of Sins Level 2"
     },
     {
       "id": "1_2_15",
+      "lvl": 16,
       "name": "Fellshrine Ruins"
     },
     {
       "id": "1_2_5_1",
+      "lvl": 17,
       "name": "Crypt Level 1",
       "map_name": "The Crypt"
     },
     {
       "id": "1_2_5_2",
+      "lvl": 18,
       "name": "Crypt Level 2"
     },
     {
       "id": "1_2_7",
+      "lvl": 15,
       "name": "The Riverways"
     },
     {
       "id": "1_2_8",
+      "lvl": 21,
       "name": "Northern Forest"
     },
     {
       "id": "1_2_9",
+      "lvl": 17,
       "name": "Western Forest"
     },
     {
       "id": "1_2_10",
+      "lvl": 18,
       "name": "Weaver's Chambers"
     },
     {
       "id": "1_2_11",
+      "lvl": 20,
       "name": "Vaal Ruins"
     },
     {
       "id": "1_2_12",
+      "lvl": 19,
       "name": "The Wetlands"
     },
     {
       "id": "1_2_13",
+      "lvl": 21,
       "name": "Dread Thicket"
     },
     {
       "id": "1_2_14_2",
+      "lvl": 22,
       "name": "The Caverns",
       "crafting_recipe": "Vaal Skill Damage I"
     },
     {
       "id": "1_2_14_3",
+      "lvl": 23,
       "name": "Ancient Pyramid",
       "crafting_recipe": "Spell Damage I"
     }
@@ -160,6 +195,7 @@
   [
     {
       "id": "1_3_1",
+      "lvl": 23,
       "name": "City of Sarn",
       "crafting_recipe": "Movement Speed I"
     },
@@ -169,78 +205,95 @@
     },
     {
       "id": "1_3_2",
+      "lvl": 24,
       "name": "The Slums"
     },
     {
       "id": "1_3_3_1",
+      "lvl": 25,
       "name": "The Crematorium",
       "crafting_recipe": "Defences I"
     },
     {
       "id": "1_3_10_1",
+      "lvl": 26,
       "name": "The Sewers",
       "crafting_recipe": "Physical Damage I"
     },
     {
       "id": "1_3_5",
+      "lvl": 26,
       "name": "The Marketplace"
     },
     {
       "id": "1_3_6",
+      "lvl": 27,
       "name": "The Catacombs",
       "crafting_recipe": "Elemental Damage with Attacks I"
     },
     {
       "id": "1_3_7",
+      "lvl": 27,
       "name": "The Battlefront"
     },
     {
       "id": "1_3_8_1",
+      "lvl": 27,
       "name": "Solaris Temple Level 1"
     },
     {
       "id": "1_3_8_2",
+      "lvl": 28,
       "name": "Solaris Temple Level 2",
       "crafting_recipe": "Fire Damage I"
     },
     {
       "id": "1_3_9",
+      "lvl": 29,
       "name": "The Docks"
     },
     {
       "id": "1_3_13",
+      "lvl": 29,
       "name": "Ebony Barracks"
     },
     {
       "id": "1_3_14_1",
+      "lvl": 29,
       "name": "Lunaris Temple Level 1",
       "map_name": "Lunaris Temple"
     },
     {
       "id": "1_3_14_2",
+      "lvl": 30,
       "name": "Lunaris Temple Level 2",
       "crafting_recipe": "Lightning Damage I"
     },
     {
       "id": "1_3_15",
+      "lvl": 30,
       "name": "Imperial Gardens",
       "crafting_recipe": "All Attributes I"
     },
     {
       "id": "1_3_17_1",
+      "lvl": 30,
       "name": "The Library"
     },
     {
       "id": "1_3_17_2",
+      "lvl": 31,
       "name": "The Archives",
       "crafting_recipe": "Life and Mana Regeneration I"
     },
     {
       "id": "1_3_18_1",
+      "lvl": 32,
       "name": "Sceptre of God"
     },
     {
       "id": "1_3_18_2",
+      "lvl": 33,
       "name": "Upper Sceptre of God"
     },
     {
@@ -251,6 +304,7 @@
   [
     {
       "id": "1_4_1",
+      "lvl": 33,
       "name": "The Aqueduct"
     },
     {
@@ -259,56 +313,68 @@
     },
     {
       "id": "1_4_2",
+      "lvl": 34,
       "name": "Dried Lake",
       "crafting_recipe": "Attack, Cast and Warcry Speed I"
     },
     {
       "id": "1_4_3_1",
+      "lvl": 34,
       "name": "The Mines Level 1",
       "crafting_recipe": "Socket Colours"
     },
     {
       "id": "1_4_3_2",
+      "lvl": 35,
       "name": "The Mines Level 2"
     },
     {
       "id": "1_4_3_3",
+      "lvl": 36,
       "name": "Crystal Veins",
       "crafting_recipe": "Cold Damage I"
     },
     {
       "id": "1_4_4_1",
+      "lvl": 37,
       "name": "Kaom's Dream"
     },
     {
       "id": "1_4_4_3",
+      "lvl": 38,
       "name": "Kaom's Stronghold",
       "crafting_recipe": "Socket Links - 2 to 4 Linked Sockets"
     },
     {
       "id": "1_4_5_1",
+      "lvl": 37,
       "name": "Daresso's Dream"
     },
     {
       "id": "1_4_5_2",
+      "lvl": 38,
       "name": "Grand Arena",
       "crafting_recipe": "Socket Numbers - 2 to 4 Sockets"
     },
     {
       "id": "1_4_6_1",
+      "lvl": 38,
       "name": "Belly of the Beast Level 1"
     },
     {
       "id": "1_4_6_2",
+      "lvl": 39,
       "name": "Belly of the Beast Level 2",
       "crafting_recipe": "Elemental Resistances II"
     },
     {
       "id": "1_4_6_3",
+      "lvl": 40,
       "name": "The Harvest"
     },
     {
       "id": "1_4_7",
+      "lvl": 40,
       "name": "The Ascent",
       "crafting_recipe": "Ailment, Stun and Curse Mitigation I"
     },
@@ -320,6 +386,7 @@
   [
     {
       "id": "1_5_1",
+      "lvl": 41,
       "name": "Slave Pens"
     },
     {
@@ -328,41 +395,50 @@
     },
     {
       "id": "1_5_2",
+      "lvl": 41,
       "name": "Control Blocks"
     },
     {
       "id": "1_5_3",
+      "lvl": 42,
       "name": "Oriath Square"
     },
     {
       "id": "1_5_4",
+      "lvl": 42,
       "name": "Templar Courts"
     },
     {
       "id": "1_5_5",
+      "lvl": 43,
       "name": "Chamber of Innocence",
       "crafting_recipe": "Movement Speed and Exerted Attacks II"
     },
     {
       "id": "1_5_4b",
+      "lvl": 44,
       "name": "Torched Courts"
     },
     {
       "id": "1_5_3b",
+      "lvl": 44,
       "name": "Ruined Square"
     },
     {
       "id": "1_5_6",
+      "lvl": 44,
       "name": "The Ossuary",
       "crafting_recipe": "Physical Damage II"
     },
     {
       "id": "1_5_7",
+      "lvl": 44,
       "name": "The Reliquary",
       "crafting_recipe": "Accuracy I"
     },
     {
       "id": "1_5_8",
+      "lvl": 45,
       "name": "Cathedral Rooftop"
     }
   ],
@@ -373,72 +449,88 @@
     },
     {
       "id": "2_6_1",
+      "lvl": 45,
       "name": "Twilight Strand"
     },
     {
       "id": "2_6_2",
+      "lvl": 45,
       "name": "The Coast"
     },
     {
       "id": "2_6_3",
+      "lvl": 45,
       "name": "Tidal Island"
     },
     {
       "id": "2_6_4",
+      "lvl": 46,
       "name": "Mud Flats"
     },
     {
       "id": "2_6_5",
+      "lvl": 46,
       "name": "Karui Fortress",
       "crafting_recipe": "Defences II"
     },
     {
       "id": "2_6_6",
+      "lvl": 46,
       "name": "The Ridge"
     },
     {
       "id": "2_6_7_1",
+      "lvl": 47,
       "name": "Lower Prison",
       "map_name": "The Prison",
       "crafting_recipe": "Double Resistances I"
     },
     {
       "id": "2_6_7_2",
+      "lvl": 47,
       "name": "Shavronne's Tower",
       "crafting_recipe": "Spell Damage II"
     },
     {
       "id": "2_6_8",
+      "lvl": 47,
       "name": "Prisoner's Gate"
     },
     {
       "id": "2_6_9",
+      "lvl": 48,
       "name": "Western Forest",
       "crafting_recipe": "Attributes II"
     },
     {
       "id": "2_6_10",
+      "lvl": 48,
       "name": "The Riverways"
     },
     {
       "id": "2_6_11",
+      "lvl": 48,
       "name": "The Wetlands"
     },
     {
       "id": "2_6_12",
+      "lvl": 49,
       "name": "Southern Forest"
     },
     {
       "id": "2_6_13",
+      "lvl": 49,
       "name": "Cavern of Anger"
     },
     {
       "id": "2_6_14",
+      "lvl": 49,
       "name": "The Beacon",
       "crafting_recipe": "Life and Mana II"
     },
     {
       "id": "2_6_15",
+      "lvl": 50,
       "name": "Brine King's Reef"
     }
   ],
@@ -449,68 +541,83 @@
     },
     {
       "id": "2_7_1",
+      "lvl": 50,
       "name": "Broken Bridge"
     },
     {
       "id": "2_7_2",
+      "lvl": 51,
       "name": "The Crossroads"
     },
     {
       "id": "2_7_3",
+      "lvl": 51,
       "name": "Fellshrine Ruins"
     },
     {
       "id": "2_7_4",
+      "lvl": 51,
       "name": "The Crypt",
       "crafting_recipe": "Damage over Time I"
     },
     {
       "id": "2_7_5_1",
+      "lvl": 52,
       "name": "Chamber of Sins Level 1",
       "map_name": "Chamber of Sins",
       "crafting_recipe": "Lightning Damage II"
     },
     {
       "id": "2_7_5_2",
+      "lvl": 52,
       "name": "Chamber of Sins Level 2",
       "crafting_recipe": "Mana Regen I"
     },
     {
       "id": "2_7_5_map",
+      "lvl": 52,
       "name": "Maligaro's Sanctum"
     },
     {
       "id": "2_7_6",
+      "lvl": 53,
       "name": "The Den"
     },
     {
       "id": "2_7_7",
+      "lvl": 53,
       "name": "Ashen Fields"
     },
     {
       "id": "2_7_8",
+      "lvl": 53,
       "name": "Northern Forest"
     },
     {
       "id": "2_7_9",
+      "lvl": 53,
       "name": "Dread Thicket",
       "crafting_recipe": "Fire Damage II"
     },
     {
       "id": "2_7_10",
+      "lvl": 54,
       "name": "The Causeway",
       "crafting_recipe": "Cold Damage II"
     },
     {
       "id": "2_7_11",
+      "lvl": 54,
       "name": "Vaal City"
     },
     {
       "id": "2_7_12_1",
+      "lvl": 54,
       "name": "Temple of Decay Level 1"
     },
     {
       "id": "2_7_12_2",
+      "lvl": 55,
       "name": "Temple of Decay Level 2",
       "crafting_recipe": "Chaos Damage I"
     },
@@ -522,6 +629,7 @@
   [
     {
       "id": "2_8_1",
+      "lvl": 55,
       "name": "Sarn Ramparts"
     },
     {
@@ -530,77 +638,94 @@
     },
     {
       "id": "2_8_2_1",
+      "lvl": 56,
       "name": "Toxic Conduits"
     },
     {
       "id": "2_8_2_2",
+      "lvl": 56,
       "name": "Doedre's Cesspool",
       "map_name": "Toxic Conduits",
       "crafting_recipe": "Elemental Resistances III"
     },
     {
       "id": "2_8_3",
+      "lvl": 56,
       "name": "Grand Promenade"
     },
     {
       "id": "2_8_5",
+      "lvl": 57,
       "name": "Bath House",
       "crafting_recipe": "Flask Duration I"
     },
     {
       "id": "2_8_4",
+      "lvl": 58,
       "name": "High Gardens"
     },
     {
       "id": "2_8_6",
+      "lvl": 58,
       "name": "Lunaris Concourse"
     },
     {
       "id": "2_8_7_1_",
+      "lvl": 59,
       "name": "Lunaris Temple Level 1"
     },
     {
       "id": "2_8_7_2",
+      "lvl": 59,
       "name": "Lunaris Temple Level 2",
       "crafting_recipe": "Minions I"
     },
     {
       "id": "2_8_8",
+      "lvl": 57,
       "name": "The Quay"
     },
     {
       "id": "2_8_9",
+      "lvl": 57,
       "name": "Grain Gate"
     },
     {
       "id": "2_8_10",
+      "lvl": 58,
       "name": "Imperial Fields"
     },
     {
       "id": "2_8_11",
+      "lvl": 58,
       "name": "Solaris Concourse"
     },
     {
       "id": "2_8_12_1",
+      "lvl": 59,
       "name": "Solaris Temple Level 1"
     },
     {
       "id": "2_8_12_2",
+      "lvl": 59,
       "name": "Solaris Temple Level 2",
       "crafting_recipe": "Traps and Mines I"
     },
     {
       "id": "2_8_13",
+      "lvl": 60,
       "name": "Harbour Bridge"
     },
     {
       "id": "2_8_14",
+      "lvl": 58,
       "name": "Hidden Underbelly"
     }
   ],
   [
     {
       "id": "2_9_1",
+      "lvl": 61,
       "name": "Blood Aqueduct"
     },
     {
@@ -609,47 +734,57 @@
     },
     {
       "id": "2_9_2",
+      "lvl": 61,
       "name": "The Descent"
     },
     {
       "id": "2_9_3",
+      "lvl": 61,
       "name": "Vastiri Desert",
       "crafting_recipe": "Attack and Cast Speed II"
     },
     {
       "id": "2_9_4",
+      "lvl": 61,
       "name": "The Oasis"
     },
     {
       "id": "2_9_5",
+      "lvl": 62,
       "name": "The Foothills"
     },
     {
       "id": "2_9_6",
+      "lvl": 62,
       "name": "Boiling Lake",
       "crafting_recipe": "Spell Damage III"
     },
     {
       "id": "2_9_7",
+      "lvl": 62,
       "name": "The Tunnel",
       "crafting_recipe": "All Attributes II"
     },
     {
       "id": "2_9_8",
+      "lvl": 63,
       "name": "The Quarry",
       "crafting_recipe": "Physical Damage III"
     },
     {
       "id": "2_9_9",
+      "lvl": 63,
       "name": "The Refinery",
       "crafting_recipe": "Trigger a Socketed Spell when you Use a Skill"
     },
     {
       "id": "2_9_10_1",
+      "lvl": 63,
       "name": "Belly of the Beast"
     },
     {
       "id": "2_9_10_2",
+      "lvl": 64,
       "name": "Rotting Core"
     }
   ],
@@ -660,40 +795,49 @@
     },
     {
       "id": "2_10_1",
+      "lvl": 64,
       "name": "Cathedral Rooftop"
     },
     {
       "id": "2_10_2",
+      "lvl": 64,
       "name": "Ravaged Square"
     },
     {
       "id": "2_10_8",
+      "lvl": 67,
       "name": "The Reliquary"
     },
     {
       "id": "2_10_7",
+      "lvl": 66,
       "name": "Control Blocks"
     },
     {
       "id": "2_10_9",
+      "lvl": 67,
       "name": "The Ossuary",
       "crafting_recipe": "Chaos Damage II"
     },
     {
       "id": "2_10_3",
+      "lvl": 65,
       "name": "Torched Courts"
     },
     {
       "id": "2_10_4",
+      "lvl": 65,
       "name": "Desecrated Chambers",
       "crafting_recipe": "Accuracy II"
     },
     {
       "id": "2_10_5",
+      "lvl": 66,
       "name": "The Canals"
     },
     {
       "id": "2_10_6",
+      "lvl": 67,
       "name": "Feeding Trough",
       "crafting_recipe": "Life and Mana III"
     },

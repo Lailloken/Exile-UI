@@ -51,9 +51,17 @@ DB_Load(database)
 				Else db.leveltracker.areaIDs[oArea.id] := oArea.map_name ? {"name": oArea.name, "mapname": oArea.map_name} : {"name": oArea.name}
 
 		If !vars.poe_version
+		{
 			For gem in db.leveltracker.gems
 				If !RegExMatch(gem, "i)flask|quest")
 					db.leveltracker.gems[gem].quests["fallen from grace"] := {"vendor": []}
+
+			db.leveltracker.arealvls := {}
+			For iAct, aZones in db.leveltracker.areas
+				For iZone, vZone in aZones
+					If vZone.lvl
+						db.leveltracker.arealvls[vZone.id] := vZone.lvl
+		}
 	}
 	Else If (database = "maps")
 		db.maps := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\maps" vars.poe_version ".json") ? settings.general.lang_client : "english") "\maps" vars.poe_version ".json",, "65001"))
