@@ -282,11 +282,15 @@ Log_Loop(mode := 0)
 	If settings.qol.alarm && !vars.alarm.drag
 	{
 		For timestamp, timer in vars.alarm.timers
+		{
 			If IsNumber(StrReplace(timestamp, "|")) && (timestamp <= A_Now)
 				expired := "expired"
+			If vars.alarm.single_use[timestamp].pause
+				vars.alarm.single_use[timestamp].offset += 1
+		}
 		If (expired || vars.alarm.toggle) && !WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main)
 			Alarm("", "", vars.alarm.toggle ? "" : expired)
-		Else If WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main) && !(expired || vars.alarm.toggle)
+		Else If !(expired || vars.alarm.toggle) && (WinExist("ahk_id " vars.hwnd.alarm.alarm_set.main) || WinExist("ahk_id " vars.hwnd.alarm.main))
 			LLK_Overlay(vars.hwnd.alarm.main, "destroy")
 	}
 

@@ -21,7 +21,7 @@
 	settings.alarm.xPos := !Blank(check := ini.alarm["x-coordinate"]) ? check : "center"
 	settings.alarm.yPos := !Blank(check := ini.alarm["y-coordinate"]) ? check : vars.client.y - vars.monitor.y
 	settings.alarm.orientation := !Blank(check := ini.alarm.orientation) ? check : "horizontal"
-	vars.alarm := {"timers": {}, "defaults": {}}
+	vars.alarm := {"timers": {}, "defaults": {}, "single_use": {}}
 	For timer, timestamp in ini["alarm - timers"]
 	{
 		array := ""
@@ -67,9 +67,9 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 
 	mode := (mode = "expired") ? mode : "", tick += 1
 
-	If (A_Gui = "alarm_set" || hotkey = "alarm_set")
+	If (A_Gui = "alarm_set" || hotkey = "alarm_set") || (hotkey = 2 && cHWND = vars.hwnd.alarm.new)
 	{
-		If (hotkey = "alarm_set") && (LLK_HasVal(vars.hwnd.alarm.alarm_set, cHWND) = "cancel")
+		If (hotkey = "alarm_set") && (cHWND = vars.hwnd.alarm.alarm_set.cancel)
 		{
 			Hotkeys_ESC()
 			Return
@@ -111,7 +111,8 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 		Gui, alarm_set: Destroy
 		vars.hwnd.alarm.alarm_set := ""
 		WinActivate, ahk_group poe_window
-		Return
+		If !(hotkey = 2 && cHWND = vars.hwnd.alarm.new)
+			Return
 	}
 	Else If !Blank(cHWND)
 	{
@@ -141,6 +142,13 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 				IniWrite, % settings.alarm.yPos, % "ini" vars.poe_version "\qol tools.ini", alarm, y-coordinate
 			}
 			vars.alarm.drag := 0
+			Return
+		}
+		Else If InStr(check, "pauseresume_")
+		{
+			If !IsObject(vars.alarm.single_use[control])
+				vars.alarm.single_use[control] := {"offset": -1, "pause": 0}
+			vars.alarm.single_use[control].pause := !vars.alarm.single_use[control].pause
 			Return
 		}
 		Else If (check = "new") || (cHWND = "start")
@@ -212,7 +220,7 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 					vars.alarm.timers["xyz|" control] := control
 					IniWrite, % """[0,""" (vars.alarm.defaults[control] ? vars.alarm.defaults[control] : "") """]""", % "ini" vars.poe_version "\qol tools.ini", alarm - timers, % control
 				}
-				Else vars.alarm.timers.Delete(control)
+				Else vars.alarm.timers.Delete(control), vars.alarm.single_use.Delete(control)
 			}
 			Else If (hotkey = 1)
 			{
@@ -285,27 +293,34 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 
 	For timestamp, description in vars.alarm.timers
 	{
+		offset := vars.alarm.single_use[timestamp].offset, offset := (!offset ? 0 : offset), pause := vars.alarm.single_use[timestamp].pause
 		timestamp0 := timestamp, timestamp := StrReplace(timestamp, "|")
 		If (mode = "expired") && (timestamp > A_Now)
 			Continue
 		timer := timestamp
+		EnvAdd, timer, offset, seconds
 		EnvSub, timer, A_Now, seconds
 		color := " c" settings.alarm["color" (timestamp < A_Now ? "1" : "")], color1 := settings.alarm["color" (timestamp < A_Now ? "" : "1")]
-		If (mode = "expired") && Mod(tick, 2)
+		If (mode = "expired") && (Mod(tick, 2) || pause)
 			buffer := SubStr(color, 3), color := " c" color1, color1 := buffer
 		Gui, %GUI_name%: Add, Text, % ((A_Index != 1 || Blank(mode)) && (Blank(mode) || mode = "expired") ? section : "") " Section Border BackgroundTrans Center w" wTimers . color, % FormatSeconds(Abs(timer), 0)
 		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd0 Background" color1, 0
+
+		Gui, %GUI_name%: Font, % "s" Max(6, settings.alarm.fSize * 0.7)
+		Gui, %GUI_name%: Add, Text, % "xs y+-1 Border BackgroundTrans Center wp", % (!Blank(description) ? description : Lang_Trans("global_" (pause ? "resume" : "pause")))
+		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Vertical Range0-500 Background" settings.alarm.color1 " c" settings.alarm.color, 0
+		Gui, %GUI_name%: Font, % "s" settings.alarm.fSize
 		If !Blank(description)
 		{
-			Gui, %GUI_name%: Font, % "s" Max(6, settings.alarm.fSize * 0.7)
-			Gui, %GUI_name%: Add, Text, % "xs y+-1 Border BackgroundTrans Center wp", % description
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Vertical Range0-500 Background" settings.alarm.color1 " c" settings.alarm.color, 0
-			Gui, %GUI_name%: Font, % "s" settings.alarm.fSize
 			vars.hwnd.alarm["name_" description] := hwnd
 			If vars.alarm.toggle
 				vars.hwnd.help_tooltips["alarm_name" handle] := hwnd
 		}
-		Else description := timestamp0
+		Else
+		{
+			description := timestamp0
+			vars.hwnd.alarm["pauseresume_" description] := hwnd
+		}
 
 		If vars.alarm.toggle
 			vars.hwnd.help_tooltips["alarm_timer" (Blank(timer) ? " idle" : "") handle] := hwnd0

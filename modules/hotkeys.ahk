@@ -321,7 +321,12 @@ Hotkeys_Tab()
 	If InStr(active, "alarm")
 	{
 		vars.alarm.toggle := 0
-		LLK_Overlay(vars.hwnd.alarm.main, "destroy")
+		For timestamp, timer in vars.alarm.timers
+			If IsNumber(StrReplace(timestamp, "|")) && (timestamp <= A_Now)
+				expired := "expired"
+		If !expired
+			LLK_Overlay(vars.hwnd.alarm.main, "destroy")
+		Else Alarm("", "", "expired")
 	}
 	If InStr(active, "notepad")
 	{
@@ -366,6 +371,7 @@ Hotkeys_Tab()
 
 	If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
+	Sleep 200
 }
 
 ;pre-defined contexts for hotkey command

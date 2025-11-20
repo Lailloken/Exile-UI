@@ -1048,7 +1048,7 @@
   },
   "alarm": {
     "add": [
-      "add a new timer"
+      "click: add a new timer\nr-click: add a new stop-watch"
     ],
     "drag": [
       "drag to reposition the whole widget"

@@ -229,6 +229,8 @@
 		global_alt			=	"alt"
 		global_shift			=	"shift"
 		global_shiftclick		=	"shift-click"
+		global_pause			=	"pause"
+		global_resume			=	"resume"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
