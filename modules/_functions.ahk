@@ -660,6 +660,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 		{
 			FileDelete, data\version_check.json
 			IniDelete, % "ini\config.ini", versions, apply update
+			IniWrite, updater, % "ini" vars.poe_version "\config.ini", versions, reload settings
 			LLK_Log("finished update to " vars.updater.target_version.1)
 			If (vars.updater.target_version.2 <= 15703) && !InStr(A_ScriptName, "lailloken")
 			{
