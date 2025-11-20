@@ -121,7 +121,7 @@ Gui_HelpToolTip(HWND_key)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
 	If (check = "exchange")
-		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1, yWin := y + h
+		tooltip_width := vars.exchange.wTooltip, xWin := xControl + wControl/2 - tooltip_width/2 - 1, yWin := y + h * (InStr(control, "edit field") ? 2 : 1)
 	Else If (check = "alarm" || check = "leveltrackerschematics")
 		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
 	Else If (check = "radial")
