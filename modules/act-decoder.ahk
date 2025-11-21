@@ -351,8 +351,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Gdip_GetImageDimension(pBitmap, wInfo, hInfo)
 		pBitmap_resized := Gdip_ResizeBitmap(pBitmap, wInfo * settings.actdecoder.sLayouts, 10000, 1, 7, 1), Gdip_DisposeBitmap(pBitmap)
 		hbmBitmap2 := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
-		Gui, %GUI_name%: Add, Picture, % "Border " (alignment = "horizontal" ? "xs x" xFirst " y+" margin*2 : "ys y" yFirst " x+" margin*2)
-			, % "HBitmap:" hbmBitmap2
+		Gui, %GUI_name%: Add, Picture, % "Border " (alignment = "horizontal" ? "xs x" xFirst " y" new_width + margin*4 + settings.general.fHeight : "ys y" yFirst " x" new_width + margin*4 + settings.general.fHeight), % "HBitmap:" hbmBitmap2
 		DeleteObject(hbmBitmap2)
 	}
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
