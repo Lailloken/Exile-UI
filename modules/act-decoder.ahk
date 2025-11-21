@@ -161,6 +161,12 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Else vars.actdecoder.zone_layouts[vars.log.areaID][control].Push(flip)
 			}
 		}
+		Else If InStr(check, "imagereset_")
+		{
+			KeyWait, LButton
+			KeyWait, RButton
+			vars.actdecoder.zone_layouts[vars.log.areaID].Delete(control)
+		}
 		Else If (click = 1) && !InStr(check, " x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " pic "_*")
 			Actdecoder_ImageSelect(pic)
 		Else If (click = 1) && !InStr(check, " x") && (vars.actdecoder.loaded.Count() != 1)
@@ -169,12 +175,6 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			For index, val in vars.actdecoder.loaded
 				If (control != val)
 					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val
-		}
-		Else If InStr(check, "imagereset_")
-		{
-			KeyWait, LButton
-			KeyWait, RButton
-			vars.actdecoder.zone_layouts[vars.log.areaID].Delete(control)
 		}
 		Else If InStr(check, vars.log.areaID " ") && (click = 2)
 		{
