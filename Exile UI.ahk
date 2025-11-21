@@ -234,7 +234,7 @@ Init_client()
 		}
 
 		If !InStr(poe_config_check, "`nlanguage=") || InStr(poe_config_check, "`nlanguage=en")
-			settings.general.lang_client0 := "english"
+			settings.general.lang_client0 := (!InStr(poe_config_check, "`nlanguage=") && InStr(vars.log.file_location, "kakao") ? "ko-kr" : "english")
 		Else parse := SubStr(poe_config_check, InStr(poe_config_check, "`nlanguage=") + 10), parse := SubStr(parse, 1, ((check := InStr(parse, "`r")) ? check : InStr(parse, "`n")) - 1)
 			, settings.general.lang_client0 := parse
 	}
