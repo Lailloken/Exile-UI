@@ -266,7 +266,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.actdecoder && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.actdecoder && Blank(settings.actdecoder.hotkey) && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			vars.actdecoder.tab := 1
@@ -389,9 +389,7 @@ Hotkeys_Tab()
 *SC005::
 *SC006::
 *SC007::
-*SC010::
-*SC011::
-*SC012::Actdecoder_ZoneLayouts(A_ThisHotkey)
+*SC010::Actdecoder_ZoneLayouts(A_ThisHotkey)
 
 #If vars.hwnd.radial.main && vars.general.cMouse && LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
 LButton::Gui_RadialMenu2(vars.general.cMouse)

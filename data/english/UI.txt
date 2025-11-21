@@ -162,6 +162,7 @@
 		global_setup			=	"setup"
 		global_variance			=	"variance (0-255)"
 		global_hotkey			=	"hotkey:"
+		global_hotkey			=	"alt. hotkey:"		;## alternative hotkey
 		global_panelsize		=	"panel-size:"
 		global_uisize			=	"ui-size:"
 		global_auto			=	"auto"
@@ -834,6 +835,7 @@
 		m_actdecoder_opacity		=	"opacity when locked:"
 		m_actdecoder_zoom		=	"zoom when locked:"
 		m_actdecoder_simple		=	"only show generic layouts"
+		m_actdecoder_missing		=	"act-decoder:;no layouts"
 
 
 

@@ -38,6 +38,58 @@
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
 	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
+	settings.actdecoder.hotkey := hotkey := !Blank(check := ini.settings["alternative hotkey"]) ? check : ""
+
+	Hotkey, IfWinActive, ahk_group poe_ahk_window
+	If !GetKeyVK(hotkey)
+		settings.actdecoder.hotkey := ""
+	Else Hotkey, % Hotkeys_Convert(hotkey), Actdecoder_Hotkey, On
+}
+
+Actdecoder_Hotkey()
+{
+	local
+	global vars, settings
+
+	KeyWait, % settings.actdecoder.hotkey, T0.25
+	If !ErrorLevel
+	{
+		SendInput, % "{" settings.actdecoder.hotkey "}"
+		Return
+	}
+
+	vars.actdecoder.tab := 1
+	If Actdecoder_ZoneLayouts()
+		active := 1
+	Else 
+	{
+		vars.actdecoder.tab := 0
+		LLK_ToolTip(Lang_Trans("m_actdecoder_missing"),,,,, "Red")
+	}
+
+	KeyWait, % settings.actdecoder.hotkey
+	If !active
+		Return
+	If !vars.actdecoder.layouts_lock
+		LLK_Overlay(vars.hwnd.actdecoder.main, "destroy"), vars.hwnd.actdecoder.main := ""
+	Else If settings.actdecoder.sLayouts1
+		Actdecoder_ZoneLayouts(2)
+
+	If vars.hwnd.actdecoder.main
+	{
+		If !settings.actdecoder.sLayouts1
+		{
+			WinSet, TransColor, % "Green " (settings.actdecoder.trans_zones * 25), % "ahk_id " vars.hwnd.actdecoder.main
+			Gui, % Gui_Name(vars.hwnd.actdecoder.main) ": +E0x20"
+		}
+		For key, val in vars.hwnd.actdecoder
+			If LLK_PatternMatch(key, "", ["_rotate", "_flip", "helppanel", "alignment", "reset", "drag"],,, 0)
+				GuiControl, % "+hidden", % val
+	}
+
+	vars.actdecoder.tab := 0
+	If (settings.actdecoder.sLayouts != settings.actdecoder.sLayouts0)
+		IniWrite, % (settings.actdecoder.sLayouts0 := settings.actdecoder.sLayouts), % "ini" vars.poe_version "\act-decoder.ini", Settings, zone-layouts size
 }
 
 Actdecoder_ImageSelect(pic)

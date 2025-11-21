@@ -120,8 +120,12 @@
       "credits: layouts created by engineering eternity, compiled by u/_treb"
     ],
     "actdecoder generic 2": [
-      "disables sub-layout selections and only shows basic layouts",
-      "credits: layouts provided by lolcohol and the campaign codex discord"
+      "disables sub-layout selections and only shows basic layouts"
+    ],
+    "actdecoder hotkey": [
+      "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
+      "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button on the mouse",
+      "holding this key will only activate the act-decoder, tapping it will use its normal function(/highlight)"
     ],
     "actdecoder layouts opacity": [
       "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
@@ -1345,7 +1349,7 @@
       "click images or press the corresponding number-key to select them",
       "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
       "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
-      "press <q>, <w>, or <e> to revert all modifications"
+      "press <q> to revert all modifications"
     ],
     "help panel 2": [
       "general:\n- scroll to zoom, hold down m-mouse for info\n- press space to (un)lock the overlay",
@@ -1353,7 +1357,7 @@
       "click images or press the corresponding number-key to select them",
       "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
       "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
-      "press <q>, <w>, or <e> to revert all modifications",
+      "press <q> to revert all modifications",
       "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
     ],
     "reset": [

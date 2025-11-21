@@ -5,6 +5,7 @@
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Act‐Decoder">wiki page</a>
+	Gui, %GUI%: Add, Link, % "ys x+" settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs y+" vars.settings.spacing " Section gSettings_actdecoder2 HWNDhwnd Checked" settings.features.actdecoder, % Lang_Trans("m_actdecoder_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_actdecoder enable"] := hwnd
@@ -15,6 +16,14 @@
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_hotkey", 2)
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "ys hp cBlack gSettings_actdecoder2 HWNDhwnd w" settings.general.fWidth * 10, % settings.actdecoder.hotkey
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd2 BackgroundTrans", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Add, Text, % "ys hp 0x200 Border Hidden cRed gSettings_actdecoder2 HWNDhwnd1", % " " Lang_Trans("global_save") " "
+	vars.hwnd.help_tooltips["settings_hotkeys formatting"] := vars.hwnd.settings.hotkey := hwnd, vars.hwnd.settings.hotkey_save := hwnd1, vars.hwnd.help_tooltips["settings_actdecoder hotkey"] := hwnd2
 
 	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
@@ -60,10 +69,41 @@ Settings_actdecoder2(cHWND := "")
 	KeyWait, LButton
 	If (check = "enable")
 	{
-		IniWrite, % (settings.features.actdecoder := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
-		If !settings.features.actdecoder
+		IniWrite, % (settings.features.actdecoder := input := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
+		Hotkey, IfWinActive, ahk_group poe_ahk_window
+		If !input
+		{
 			vars.actdecoder.layouts_lock := 0, LLK_Overlay(vars.hwnd.actdecoder.main, "destroy"), vars.hwnd.actdecoder.main := ""
+			If !Blank(settings.actdecoder.hotkey)
+				Hotkey, % Hotkeys_Convert(settings.actdecoder.hotkey), Actdecoder_Hotkey, Off
+		}
+		Else If !Blank(settings.actdecoder.hotkey)
+			Hotkey, % Hotkeys_Convert(settings.actdecoder.hotkey), Actdecoder_Hotkey, On
 		Settings_menu("actdecoder")
+	}
+	Else If (check = "hotkey")
+	{
+		input := LLK_ControlGet(cHWND)
+		GuiControl, % "+c" (input != settings.actdecoder.hotkey ? "Red" : "Black"), % cHWND
+		GuiControl, % (input != settings.actdecoder.hotkey ? "-" : "+") "Hidden", % vars.hwnd.settings.hotkey_save
+	}
+	Else If (check = "hotkey_save")
+	{
+		input := LLK_ControlGet(vars.hwnd.settings.hotkey)
+		If !(Blank(input) || GetKeyVK(input))
+		{
+			LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5,,,, "Red")
+			Return
+		}
+		Hotkey, IfWinActive, ahk_group poe_ahk_window
+		If !Blank(settings.actdecoder.hotkey)
+			Hotkey, % Hotkeys_Convert(settings.actdecoder.hotkey), Actdecoder_Hotkey, Off
+		If !Blank(input)
+			Hotkey, % Hotkeys_Convert(input), Actdecoder_Hotkey, On
+		IniWrite, % """" (settings.actdecoder.hotkey := input) """", % "ini" vars.poe_version "\act-decoder.ini", settings, alternative hotkey
+		GuiControl, +cBlack, % vars.hwnd.settings.hotkey
+		GuiControl, movedraw, % vars.hwnd.settings.hotkey
+		GuiControl, +Hidden, % vars.hwnd.settings.hotkey_save
 	}
 	Else If (check = "generic")
 	{
@@ -97,7 +137,7 @@ Settings_actdecoder2(cHWND := "")
 	}
 	Else LLK_ToolTip("no action")
 
-	If InStr("enable, generic", check) && If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+	If InStr("enable, generic", check) && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Leveltracker_Progress()
 }
 
@@ -4999,8 +5039,8 @@ Settings_updater()
 		For key, array in features
 		{
 			vars.help.settings["recentchanges " (key := StrReplace(key, 0))] := array.Clone(), outer := A_Index
-			While !Blank(vars.help.settings["recentchanges " key].11)
-				vars.help.settings["recentchanges " key].RemoveAt(11)
+			While !Blank(vars.help.settings["recentchanges " key].8)
+				vars.help.settings["recentchanges " key].RemoveAt(8)
 			Loop 2
 			{
 				Gui, %GUI%: Add, Text, % (outer = 1 || A_Index = 2 ? "Section xs" : "ys") " Border HWNDhwnd" (RegExMatch(key, "i)major.changes|new.feature") ? " cFF8000" : ""), % " " StrReplace(key, "&", "&&") " "
