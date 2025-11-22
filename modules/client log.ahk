@@ -25,21 +25,19 @@
 		If !mode && !IsObject(log_content) && (check := InStr(log_read, " Generating level ", 1, 0, 3))
 			log_content := StrSplit(SubStr(log_read, check), "`n", "`r" vars.lang.system_fullstop.1)
 
-		/*
-		If Blank(vars.general.input_method) && (check := InStr(log_read, "current input mode = ",, 0))
+		If settings.general.character && Blank(log_character.1) && InStr(log_read, settings.general.character)
 		{
-			method := SubStr(log_read, 1, check + 23), method := SubStr(method, InStr(method, "`n",, 0) + 1)
-			timestamp := SubStr(method, 1, InStr(method, " ",,, 2) - 1)
-			Loop, Parse, timestamp
-				timestamp := (A_Index = 1) ? "" : timestamp, timestamp .= IsNumber(A_LoopField) ? A_LoopField : ""
-			method := SubStr(method, InStr(method, " ",, 0) + 1), method := Trim(method, "'")
-			vars.general.input_method := [method, timestamp]
+			log_array := StrSplit(log_read, "`n", "`r" vars.lang.system_fullstop.1)
+			Loop, % log_array.Count()
+			{
+				line := log_array[log_array.Count() - (A_Index - 1)]
+				If InStr(line, settings.general.character) && IsObject(Log_CharacterInfo(line))
+				{
+					log_character := [line]
+					Break
+				}
+			}
 		}
-		*/
-
-		If settings.general.character && Blank(log_character.1)
-		&& (InStr(log_read, " " settings.general.character " " Lang_Trans("system_parenthesis")) || InStr(log_read, " " settings.general.character " " Lang_Trans("log_whois")))
-			log_character := StrSplit(log_read, "`n", "`r" vars.lang.system_fullstop.1), log_character := [log_character[Log_FindLines(log_character, "character")]]
 
 		If (max_pointer = move) || (IsObject(log_content) || mode) && (!settings.general.character || !Blank(log_character.1))
 			Break
@@ -184,27 +182,38 @@ Log_Backup()
 	}
 }
 
-Log_FindLines(log_array, data)
+Log_CharacterInfo(line)
 {
 	local
 	global vars, settings
 
-	count := log_array.Count()
-	Loop
+	If Lang_Match(line, vars.lang.log_level)
 	{
-		line := count - (A_Index - 1)
-		If (data = "area") && InStr(log_array[line], " Generating Level ", 1)
-			found := line, hits += 1
-		Else If (data = "character")
-		&& (InStr(log_array[line], " " settings.general.character " " Lang_Trans("system_parenthesis")) || InStr(log_array[line], " " settings.general.character " " Lang_Trans("log_whois")))
-		{
-			found := line
-			Break
-		}
-		If (hits >= 5)
-			Break
+		parse := SubStr(line, InStr(line, ":",, 0) + 1)
+		Loop, Parse, parse
+			level .= (IsNumber(A_LoopField) ? A_LoopField : "")
+		If InStr(line, settings.general.character " " Lang_Trans("system_parenthesis")) || InStr(line, settings.general.character . Lang_Trans("system_parenthesis"))
+			class := SubStr(line, InStr(line, Lang_Trans("system_parenthesis")) + 1), class := LLK_StringCase(SubStr(class, 1, InStr(class, Lang_Trans("system_parenthesis", 2)) - 1))
 	}
-	Return found
+	Else If Lang_Match(line, vars.lang.log_whois)
+	{
+		parse := SubStr(line, InStr(line, ":",, 0) + 1)
+		Loop, Parse, parse
+			If IsNumber(A_LoopField)
+				level .= A_LoopField
+		If (check := InStr(parse, vars.lang.log_whois_class.1))
+		{
+			class0 := SubStr(parse, check), class0 := SubStr(class0, 1, InStr(class0, vars.lang.log_whois_class.2) - 1)
+			class0 := StrReplace(class0, vars.lang.log_whois_class.1)
+			Loop, Parse, class0
+				class .= (A_LoopField = " " || !IsNumber(A_LoopField) ? A_LoopField : "")
+			While InStr(class, "  ")
+				class := StrReplace(class, "  ", " ")
+			class := LLK_StringCase(Trim(class, " "))
+		}
+	}
+	If level && class
+		Return [level, class]
 }
 
 Log_Get(log_text, data)
@@ -446,30 +455,8 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		If Lang_Match(loopfield, vars.lang.log_enter)
 			parse := SubStr(loopfield, InStr(loopfield, vars.lang.log_enter.1)), areaname := LLK_StringCase(Lang_Trim(parse, vars.lang.log_enter, Lang_Trans("log_location")))
 
-		If !Blank(settings.general.character) && InStr(loopfield, " " settings.general.character " ")
-		{
-			If Lang_Match(loopfield, vars.lang.log_level)
-			{
-				level := SubStr(loopfield, InStr(loopfield, vars.lang.log_level.1)), level := Lang_Trim(level, vars.lang.log_level)
-				If InStr(loopfield, settings.general.character " " Lang_Trans("system_parenthesis"))
-					character_class := SubStr(loopfield, InStr(loopfield, Lang_Trans("system_parenthesis")) + 1)
-					, character_class := LLK_StringCase(SubStr(character_class, 1, InStr(character_class, Lang_Trans("system_parenthesis", 2)) - 1))
-				vars.log.character_last := loopfield
-			}
-			Else If Lang_Match(loopfield, vars.lang.log_whois)
-			{
-				level0 := SubStr(loopfield, InStr(loopfield, settings.general.character)), parse := ""
-				Loop, Parse, level0
-				{
-					If (A_Index = 1)
-						level := ""
-					If IsNumber(A_LoopField)
-						parse := !parse ? A_Index : parse, level .= A_LoopField
-				}
-				level0 := SubStr(level0, parse), level0 := SubStr(level0, InStr(level0, " ") + 1), character_class := LLK_StringCase(SubStr(level0, 1, InStr(level0, " ") - 1))
-				vars.log.character_last := loopfield
-			}
-		}
+		If !Blank(settings.general.character) && InStr(loopfield, settings.general.character) && IsObject((character_info := Log_CharacterInfo(loopfield)))
+			level := character_info.1, character_class := character_info.2
 
 		If settings.features.maptracker && (vars.log.areaID = vars.maptracker.map.id) && (Lang_Match(loopfield, vars.lang.log_slain) || Lang_Match(loopfield, vars.lang.log_suicide))
 			vars.maptracker.map.deaths += 1, vars.maptracker.map.died := 1

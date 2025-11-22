@@ -138,7 +138,8 @@
 
 ;## -----------------------------------------------------------------------------------
 		log_level			=	"is now level"			;## PoE1 and PoE2 (whole block), when your character levels up
-		log_whois			=	"is a level # in the"		;## using the /whois in-game command, e.g. "Lailloken is a level 69 Champion in the Standard League..."
+		log_whois			=	"is a level # in the"		;## this identifies the response of the /whois in-game command, then extracts the number from it
+		log_whois_class			=	"level # in the"		;## similar to above, but specifically isolates a string containing class/ascendancy and the surrounding words, then removes numbers and surrounding words
 		log_slain			=	"has been slain"		;## when your character dies
 		log_suicide			=	"has committed suicide"		;## when your character dies from self-damage
 		log_killed			=	"You have killed # monsters"	;## when activating the "/kills" command
