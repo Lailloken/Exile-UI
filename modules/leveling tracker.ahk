@@ -177,7 +177,7 @@ Geartracker(mode := "")
 	{
 		If LLK_Progress(vars.hwnd.geartracker.delbar_clear, "LButton")
 		{
-			Loop, % (count := vars.leveltracker.gear.Count()) + 1
+			Loop, % (count := vars.leveltracker.gear.Count())
 				If !Blank(gear := vars.leveltracker.gear[(index := count - (A_Index - 1))]) && (SubStr(gear, 2, 2) <= vars.log.level)
 				{
 					IniDelete, % "ini" vars.poe_version "\leveling guide" profile ".ini", % "Tracker - Gear", % vars.leveltracker.gear[index]
@@ -2366,7 +2366,7 @@ Leveltracker_PobImport(b64, profile)
 
 	Base64Dec((pobString := RTrim(b64, "=")), compressed), buffer := 1024 * 10000
 	zlib_Decompress(decompressed, compressed, buffer)
-	xml := StrReplace(StrGet(&decompressed, buffer, ""), "`t"), xml := LLK_StringCase(xml)
+	xml := StrReplace(StrGet(&decompressed, buffer, "UTF-8"), "`t"), xml := LLK_StringCase(xml)
 
 	If !IsObject(db.leveltracker)
 		DB_Load("leveltracker")
