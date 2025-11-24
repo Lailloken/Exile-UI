@@ -1029,6 +1029,17 @@ Startup()
 			file_error := 1, LLK_FilePermissionError("create", A_ScriptDir "\" A_LoopField)
 	}
 
+	;get the location of the client.txt file
+	WinGet, poe_log_file, ProcessPath, ahk_group poe_window
+	If FileExist(SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt")
+		poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt"
+	Else poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Kakaoclient.txt"
+	LLK_Log("game's log-file: " poe_log_file)
+
+	If FileExist(poe_log_file) ;parse client.txt at startup to get basic location info
+		vars.log.file_location := poe_log_file, LLK_Log("found game's log-file")
+	Else vars.log.file_location := 0, LLK_Log("couldn't find game's log-file")
+
 	Init_client(), Init_Lang()
 
 	;start secondary thread for multi-threading
@@ -1049,16 +1060,8 @@ Startup()
 	vars.hwnd.poe_client := WinExist("ahk_group poe_window") ;save the client's handle
 	vars.general.runcheck := A_TickCount ;save when the client was last running (for purposes of killing the script after X minutes)
 
-	;get the location of the client.txt file
-	WinGet, poe_log_file, ProcessPath, ahk_group poe_window
-	If FileExist(SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt")
-		poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt"
-	Else poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Kakaoclient.txt"
-	LLK_Log("game's log-file: " poe_log_file)
-
-	If FileExist(poe_log_file) ;parse client.txt at startup to get basic location info
-		vars.log.file_location := poe_log_file, LLK_Log("found game's log-file"), Init_log(), LLK_Log("accessed required information from log-file")
-	Else vars.log.file_location := 0, LLK_Log("couldn't find game's log-file")
+	If vars.log.file_location
+		Init_log(), LLK_Log("accessed required information from log-file")
 
 	Gui_ClientFiller()
 }
