@@ -53,7 +53,7 @@ DB_Load(database)
 		If !vars.poe_version
 		{
 			For gem in db.leveltracker.gems
-				If !RegExMatch(gem, "i)flask|quest")
+				If !RegExMatch(gem, "i)flask|quest|comment")
 					db.leveltracker.gems[gem].quests["fallen from grace"] := {"vendor": []}
 
 			db.leveltracker.arealvls := {}

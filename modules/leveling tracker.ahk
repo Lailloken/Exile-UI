@@ -688,13 +688,14 @@ Leveltracker_GemPickups(cHWND := "")
 	dimensions := [], gems := {}, character_class := vars.leveltracker["PoB" profile].class, default_acts := {}
 	For index, gem in vars.leveltracker.guide.gems_initial
 		If !InStr(gem, "quicksilver")
-			gems[gem] := 1, dimensions.Push(" " . (gem != "barrage support" ? StrReplace(gem, " support") : gem))
+			gem_name := (db.leveltracker.gems[gem].name ? db.leveltracker.gems[gem].name : gem)
+			, gems[gem] := 1, dimensions.Push(" " . (gem_name != "barrage support" ? StrReplace(gem_name, " support") : gem_name))
 	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wList, hList,,, 0)
 
 	vars.leveltracker_gempickups.tooltips := {}
 	For gem in gems
 	{
-		acts := [], ddl := "", gem_name := (gem != "barrage support" ? StrReplace(gem, " support") : gem)
+		acts := [], ddl := "", gem_name := (db.leveltracker.gems[gem].name ? db.leveltracker.gems[gem].name : gem), gem_name := (gem_name != "barrage support" ? StrReplace(gem_name, " support") : gem_name)
 		For Quest, oQuest in db.leveltracker.gems[gem].quests
 			If oQuest.vendor && (!oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, character_class)) || oQuest.quest && (!oQuest.quest.Count() || LLK_HasVal(oQuest.quest, character_class))
 				acts[db.leveltracker.gems._quests[Quest].act] := 1
@@ -1976,7 +1977,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 						replace := SubStr(text, InStr(text, "(quest:")), replace := SubStr(replace, 1, InStr(replace, ")")), item := StrReplace(SubStr(replace, InStr(replace, ":") + 1), ")"), text := StrReplace(text, replace, item)
 					If RegExMatch(text_parts[index - 1], "i)img\:(arena|in-out2)") && (part != ",")
 						color := "CC99FF"
-					Else color := InStr(part, "areaid") ? "FEC076" : kill && !InStr("everything, it", part) || InStr(part, "arena:") ? "FF8111" : InStr(part, "<") ? "FFDB1F" : InStr(part, "(quest:") ? "Lime" : InStr(part, "trial") || InStr(part, "_lab") ? "569777" : "White"
+					Else color := InStr(part, "areaid") ? "FEC076" : kill && !InStr("everything, it", part) || InStr(part, "arena:") ? "FF8111" : InStr(part, "<") ? "FFDB1F" : InStr(part, "(quest:") ? "Lime" : !vars.poe_version && InStr(part, "trial") || InStr(part, "_lab") ? "569777" : "White"
 					If InStr(part, "(color:")
 						color := SubStr(part, InStr(part, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), text := StrReplace(text, "(color:"color ")")
 					If InStr(step, "(hint)_")

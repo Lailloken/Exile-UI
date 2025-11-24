@@ -1,4 +1,15 @@
 {
+  "_comments": [
+    "when translating gems, add a 'name' key to a gem's object, for example:",
+    {
+      "absolution": {
+        "attribute": 1,
+        "level": 12,
+        "name": "TRANSLATION",
+        "quests": {}
+      }
+    }
+  ],
   "_quests": {
     "a fixture of fate": {
       "act": 3,
