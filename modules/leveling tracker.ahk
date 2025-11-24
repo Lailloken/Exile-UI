@@ -62,6 +62,9 @@
 	If IsObject(ini2.info)
 		settings.leveltracker["guide" profile] := {"info": ini2.info.Clone()}
 	Else settings.leveltracker["guide" profile] := {"info": {"custom": 0}}
+
+	If (settings.leveltracker["guide" profile].info.bandit = "eramir")
+		settings.leveltracker["guide" profile].info.bandit := "none"
 	settings.leveltracker["guide" profile].info.leaguestart .= Blank(settings.leveltracker["guide" profile].info.leaguestart) ? 0 : ""
 	settings.leveltracker["guide" profile].info.bandit .= Blank(settings.leveltracker["guide" profile].info.bandit) ? "none" : ""
 	settings.leveltracker["guide" profile].info.optionals .= Blank(settings.leveltracker["guide" profile].info.optionals) ? 0 : ""
@@ -1468,7 +1471,7 @@ Leveltracker_Load(profile := "")
 						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") . (!InStr(vGem, "support") ? " support" : "") : vGem)
 
 	stat_colors := ["D81C1C", "00BF40", "0077FF"], remove := [], array_offset := 0, vars.leveltracker.guide.gems_initial := vars.leveltracker.guide.gems.Clone()
-	skipped_quests := []
+	skipped_quests := [], lilly_regex := "(" Lang_Trans("quest_mercy") "|" Lang_Trans("quest_fixture") "|" Lang_Trans("quest_fallen") ")"
 	For iPage, aPage in vars.leveltracker.guide.import
 	{
 		If !Leveltracker("condition", iPage) || !LLK_HasVal(aPage, ": <", 1,,, 1)
@@ -1495,13 +1498,14 @@ Leveltracker_Load(profile := "")
 			}
 
 			new_group.Push(line)
-			If settings.leveltracker["guide" (profile ? profile : current_profile)].info.gems && !RegExMatch(line, "i)lilly.*(mercy.mission|a.fixture.of.fate|fallen.from.grace)")
+			If settings.leveltracker["guide" (profile ? profile : current_profile)].info.gems && !RegExMatch(line, "i)lilly.*" StrReplace(lilly_regex, " ", "."))
 				For index, quest in quests_line
 					For index, gem in vars.leveltracker.guide.gems
 						If gem && gems[gem].quests[quest] && gems[gem].quests[quest].quest && (!gems[gem].quests[quest].quest.Count() || LLK_HasVal(gems[gem].quests[quest].quest, class))
 						&& (Blank(gem_check := vars.leveltracker["PoB" (profile ? profile : current_profile)].vendors[gem]) || (gem_check = db.leveltracker.gems._quests[quest].act))
 						{
-							new_group.Push("(hint)__ take: " ((check := gems[gem].attribute) ? "(color:" stat_colors[check] ")" : "") StrReplace(StrReplace(gem, " support"), " ", "_"))
+							gem_name := (db.leveltracker.gems[gem].name ? db.leveltracker.gems[gem].name : gem)
+							new_group.Push("(hint)__ " Lang_Trans("lvltracker_gemreward") " " ((check := gems[gem].attribute) ? "(color:" stat_colors[check] ")" : "") StrReplace(StrReplace(gem_name, " support"), " ", "_"))
 							vars.leveltracker.guide.gems[index] := "", reward_available[quest] := 1
 							If (gem = "quicksilver flask")
 								Continue
@@ -1535,8 +1539,8 @@ Leveltracker_Load(profile := "")
 		Loop, % (count := new_group.Count())
 		{
 			index := count - (A_Index - 1), line := new_group[index], quest_count := LLK_InStrCount(line, "<"), no_reward_count := 0
-			If (npc_check := InStr(line, ": <"))
-				npc := SubStr(line, 1, npc_check - 1), npc := (InStr(npc, "lilly") && InStr(line, "breaking_some_eggs") ? "tarkleigh" : npc)
+			If (npc_check := InStr(line, Lang_Trans("global_colon") " <"))
+				npc := SubStr(line, 1, npc_check - 1), npc := (InStr(npc, Lang_Trans("quest_lilly")) && InStr(line, StrReplace(Lang_Trans("quest_breaking"), " ", "_")) ? Lang_Trans("quest_tarkleigh") : npc)
 			Else npc := ""
 
 			For quest, oQuest in db.leveltracker.gems._quests
@@ -1545,9 +1549,9 @@ Leveltracker_Load(profile := "")
 					act := oQuest.act
 					If !reward_available[quest]
 					{
-						If !(InStr(line, "lilly:") && (settings.leveltracker["guide" current_profile].info.leaguestart && InStr(line, "fallen_from_grace") || vendor_available.Count()))
+						If !(InStr(line, Lang_Trans("quest_lilly") . Lang_Trans("global_colon")) && (settings.leveltracker["guide" current_profile].info.leaguestart && InStr(line, StrReplace(Lang_Trans("quest_fallen"), " ", "_")) || vendor_available.Count()))
 							no_reward_count += 1
-						If !(InStr(line, "lilly:") && RegExMatch(quest, "i)(mercy.mission|a.fixture.of.fate|fallen.from.grace)"))
+						If !(InStr(line, Lang_Trans("quest_lilly") . Lang_Trans("global_colon")) && RegExMatch(quest, "i)" StrReplace(lilly_regex, " ", ".")))
 						{
 							If !IsObject(skipped_quests[oQuest.act])
 								skipped_quests[oQuest.act] := {}
@@ -1557,12 +1561,12 @@ Leveltracker_Load(profile := "")
 						}
 					}
 				}
-			If (lilly_check := InStr(line, "|| lilly:"))
+			If (lilly_check := InStr(line, " || " Lang_Trans("quest_lilly") . Lang_Trans("global_colon")))
 				new_group[index] := SubStr(line, 1, lilly_check - 1)
 
 			If quest_count && (no_reward_count = quest_count)
 				new_group.RemoveAt(index)
-			Else If !InStr(line, "lilly: <") && npc && skipped_quests[act][npc].Count()
+			Else If !InStr(line, Lang_Trans("quest_lilly") . Lang_Trans("global_colon") " <") && npc && skipped_quests[act][npc].Count()
 			{
 				new_line := ""
 				For iQuest, quest in skipped_quests[act][npc]
@@ -1893,13 +1897,13 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If !preview && !settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
 				Continue
 
-			If RegExMatch(step, "i)(\|\|.|^)\(.*\)buy")
+			If RegExMatch(step, "i)\(.*\)" StrReplace(Lang_Trans("lvltracker_gembuy"), " ", "."))
 				hardcoded_buy := 1
 
-			If InStr(step, "<breaking_some_eggs1>") && InStr(step, "<breaking_some_eggs2>")
-				step := StrReplace(step, ", <breaking_some_eggs2>")
+			If InStr(step, "<" StrReplace(Lang_Trans("quest_breaking"), " ", "_") "1>") && InStr(step, "<" StrReplace(Lang_Trans("quest_breaking"), " ", "_") "2>")
+				step := StrReplace(step, ", <" Lang_Trans("quest_breaking") "2>")
 
-			If (lilly_check := InStr(step, "|| lilly:"))
+			If (lilly_check := InStr(step, "|| " Lang_Trans("quest_lilly") . Lang_Trans("global_colon")))
 				step := SubStr(step, 1, lilly_check - 2)
 
 			line := step, hint := InStr(step, "(hint)_"), optional := InStr(step, Lang_Trans("lvltracker_format_optional")), step := StrReplace(step, Lang_Trans("lvltracker_format_optional") " ")
@@ -1941,7 +1945,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			If buy_prompt && !hardcoded_buy
 			{
 				Gui, %name_main%: Add, Pic, % "Section xs", % "HBitmap:*" vars.pics.leveltracker.bullet_diamond
-				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % "buy " (LLK_HasVal(guide.group1, "buy item", 1) ? "items" : "gems") " (hold omni-key)"
+				Gui, %name_main%: Add, Text, % "ys x+0 cFuchsia", % Lang_Trans("lvltracker_" (LLK_HasVal(guide.group1, "buy item", 1) ? "item" : "gem") "buy") . " " Lang_Trans("lvltracker_gembuy", 2)
 				buy_prompt := 0
 			}
 

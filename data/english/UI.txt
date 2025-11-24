@@ -471,8 +471,11 @@
 		lvltracker_editor_remove	=	"remove page"
 		lvltracker_editor_condition	=	"no condition"
 
-
+		lvltracker_itembuy		=	"buy items"
 		lvltracker_gempickups		=	"gem pickups"					;## a manager to adjust when gems should be picked up
+		lvltracker_gemreward		=	"take:"						;## when handing in quests, the guide will prompt you to take specific rewards
+		lvltracker_gembuy		=	"buy gems"					;## the guide will tell you to buy gems that you unlocked via questing
+		lvltracker_gembuy		=	"(hold omni-key)"
 
 
 ;#####################################################
