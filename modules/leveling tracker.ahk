@@ -1539,7 +1539,7 @@ Leveltracker_Load(profile := "")
 		Loop, % (count := new_group.Count())
 		{
 			index := count - (A_Index - 1), line := new_group[index], quest_count := LLK_InStrCount(line, "<"), no_reward_count := 0
-			If (npc_check := InStr(line, Lang_Trans("global_colon") " <"))
+			If (npc_check := RegexMatch(line, "i)" Lang_Trans("global_colon") ".{0,1}<")) ;InStr(line, Lang_Trans("global_colon") " <")
 				npc := SubStr(line, 1, npc_check - 1), npc := (InStr(npc, Lang_Trans("quest_lilly")) && InStr(line, StrReplace(Lang_Trans("quest_breaking"), " ", "_")) ? Lang_Trans("quest_tarkleigh") : npc)
 			Else npc := ""
 
@@ -1901,7 +1901,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				hardcoded_buy := 1
 
 			If InStr(step, "<" StrReplace(Lang_Trans("quest_breaking"), " ", "_") "1>") && InStr(step, "<" StrReplace(Lang_Trans("quest_breaking"), " ", "_") "2>")
-				step := StrReplace(step, ", <" Lang_Trans("quest_breaking") "2>")
+				step := StrReplace(step, ", <" StrReplace(Lang_Trans("quest_breaking"), " ", "_") "2>")
 
 			If (lilly_check := InStr(step, "|| " Lang_Trans("quest_lilly") . Lang_Trans("global_colon")))
 				step := SubStr(step, 1, lilly_check - 2)
