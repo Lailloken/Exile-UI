@@ -790,7 +790,7 @@ Leveltracker_GuideEditor(cHWND)
 		If (new_profile != profile)
 		{
 			vars.leveltracker_editor.act := 1, page := vars.leveltracker_editor.page := [1], vars.leveltracker_editor.guide := [], vars.leveltracker_editor.guide_last := []
-			ini := IniBatchRead("ini" vars.poe_version "\leveling guide" new_profile ".ini", "guide")
+			ini := IniBatchRead("ini" vars.poe_version "\leveling guide" new_profile ".ini")
 			Loop, % vars.poe_version ? 7 : 10
 				vars.leveltracker_editor.guide.Push(json.Load(ini.guide["act" A_Index])), vars.leveltracker_editor.guide_last.Push(json.Load(ini.guide["act" A_Index]))
 			vars.leveltracker_editor.guide_last_json := json.dump(vars.leveltracker_editor.guide), profile := new_profile
