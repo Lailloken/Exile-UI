@@ -54,7 +54,7 @@ DB_Load(database)
 		{
 			For gem in db.leveltracker.gems
 				If !RegExMatch(gem, "i)flask|quest|comment")
-					db.leveltracker.gems[gem].quests["fallen from grace"] := {"vendor": []}
+					db.leveltracker.gems[gem].quests[Lang_Trans("quest_fallen")] := {"vendor": []}
 
 			db.leveltracker.arealvls := {}
 			For iAct, aZones in db.leveltracker.areas
