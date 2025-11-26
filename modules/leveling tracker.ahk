@@ -2303,20 +2303,30 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 	For index, val in (vars.poe_version && type ? check2[hover] : LLK_HasVal(pob.gems[hover].groups, (support ? " |–" : "") gem_name,,, 1, 1))
 	{
 		If !vars.poe_version
-			LLK_PanelDimensions(pob.gems[hover].groups[val].gems, settings.leveltracker.fSize, wLinks, hLinks)
+		{
+			dimensions := [], english := []
+			For iGem, vGem in pob.gems[hover].groups[val].gems
+				gem0 := vGem . (InStr(vGem, "|") && !InStr(vGem, " support") ? " support" : ""), gem0 := StrReplace(gem0, " |–"), english.Push(gem0)
+				, gem0 := (db.leveltracker.gems[gem0].name ? db.leveltracker.gems[gem0].name : vGem), dimensions.Push(gem0)
+			LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wLinks, hLinks)
+		}
 		Else
 		{
-			dimensions := []
+			dimensions := [], english := []
 			For iGem, vGem in pob.gems[hover].groups[val].gems
 				For gem_type, oGems in db.leveltracker.gems
-					If oGems[StrReplace(vGem, " |–")] && !LLK_HasVal(dimensions, vGem, 1)
-						dimensions.Push(vGem " (" oGems[StrReplace(vGem, " |–")].1 ")")
+					If oGems[(gem0 := StrReplace(vGem, " |–"))] && !LLK_HasVal(dimensions, vGem, 1)
+					{
+						gem0 := (oGems[gem0].3 ? oGems[gem0].3 : gem0)
+						dimensions.Push((InStr(vGem, "|") ? " |–" : "") . gem0 " (" oGems[StrReplace(vGem, " |–")].1 ")"), english.Push(StrReplace(vGem, " |–"))
+					}
 			LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wLinks, hLinks)
 		}
 
-		For link, gem in (vars.poe_version ? dimensions : pob.gems[hover].groups[val].gems)
+		For link, gem in dimensions
 		{
-			gem_lookup := InStr(gem, "|") ? StrReplace(gem, " |–") . (vars.poe_version || InStr(gem, "support") ? "" : " support") : gem, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
+			gem0 := english[link]
+			gem_lookup := InStr(gem0, "|") ? StrReplace(gem0, " |–") . (vars.poe_version || InStr(gem0, "support") ? "" : " support") : gem0, gem_lookup := StrReplace(StrReplace(gem_lookup, "vaal "), "awakened ")
 			gem_lookup := InStr(gem_lookup, "(") ? SubStr(gem_lookup, 1, InStr(gem_lookup, "(") - 2) : gem_lookup
 			style := (index = 1 && link = 1) ? (orientation = "left" ? "x0" : "x" wHover - 1) " y1" : (link = 1 ? "ys x+-1 y1" : "xs y+-" Floor(settings.leveltracker.fHeight/5))
 			color := vars.poe_version ? stat_colors[db.leveltracker.gems[LLK_HasKey(db.leveltracker.gems, gem_lookup,,,, 1)][gem_lookup].2] : stat_colors[db.leveltracker.gems[gem_lookup].attribute]
