@@ -22,23 +22,23 @@
     },
     {
       "id": "g1_5",
-      "name": "the red vale"
+      "name": "red vale"
     },
     {
       "id": "g1_6",
-      "name": "the grim tangle"
+      "name": "grim tangle"
     },
     {
       "id": "g1_7",
-      "name": "cemetery of the eternals"
+      "name": "cemetery of eternals"
     },
     {
       "id": "g1_8",
-      "name": "mausoleum of the praetor"
+      "name": "mausoleum of praetor"
     },
     {
       "id": "g1_9",
-      "name": "tomb of the consort"
+      "name": "tomb of consort"
     },
     {
       "id": "g1_10",
@@ -62,7 +62,7 @@
     },
     {
       "id": "g1_14",
-      "name": "the manor ramparts"
+      "name": "manor ramparts"
     },
     {
       "id": "g1_15",
@@ -76,7 +76,7 @@
     },
     {
       "id": "g2_town",
-      "name": "the ardura caravan"
+      "name": "ardura caravan"
     },
     {
       "id": "g2_2",
@@ -84,11 +84,11 @@
     },
     {
       "id": "g2_3a",
-      "name": "the halani gates (blocked)"
+      "name": "halani gates (blocked)"
     },
     {
       "id": "g2_3",
-      "name": "the halani gates"
+      "name": "halani gates"
     },
     {
       "id": "g2_4_1",
@@ -96,7 +96,7 @@
     },
     {
       "id": "g2_4_2",
-      "name": "the lost city"
+      "name": "lost city"
     },
     {
       "id": "g2_4_3",
@@ -108,7 +108,7 @@
     },
     {
       "id": "g2_5_2",
-      "name": "the bone pits"
+      "name": "bone pits"
     },
     {
       "id": "g2_6",
@@ -116,7 +116,7 @@
     },
     {
       "id": "g2_7",
-      "name": "the titan grotto"
+      "name": "titan grotto"
     },
     {
       "id": "g2_8",
@@ -128,7 +128,7 @@
     },
     {
       "id": "g2_9_2",
-      "name": "the spires of deshar"
+      "name": "spires of deshar"
     },
     {
       "id": "g2_10_1",
@@ -148,7 +148,7 @@
     },
     {
       "id": "g2_13",
-      "name": "trial of the sekhemas"
+      "name": "trial of sekhemas"
     }
   ],
   [
@@ -166,11 +166,11 @@
     },
     {
       "id": "g3_2_2",
-      "name": "the matlan waterways"
+      "name": "matlan waterways"
     },
     {
       "id": "g3_4",
-      "name": "the venom crypts"
+      "name": "venom crypts"
     },
     {
       "id": "g3_3",
@@ -190,19 +190,19 @@
     },
     {
       "id": "g3_7",
-      "name": "the azak bog"
+      "name": "azak bog"
     },
     {
       "id": "g3_8",
-      "name": "the drowned city"
+      "name": "drowned city"
     },
     {
       "id": "g3_9",
-      "name": "the molten vault"
+      "name": "molten vault"
     },
     {
       "id": "g3_10_airlock",
-      "name": "the temple of chaos"
+      "name": "temple of chaos"
     },
     {
       "id": "g3_11",
@@ -222,7 +222,7 @@
     },
     {
       "id": "g3_17",
-      "name": "the black chambers"
+      "name": "black chambers"
     }
   ],
   [
@@ -340,11 +340,11 @@
   [
     {
       "id": "p2_town",
-      "name": "the khari bazaar"
+      "name": "khari bazaar"
     },
     {
       "id": "p2_1",
-      "name": "the khari crossing"
+      "name": "khari crossing"
     },
     {
       "id": "p2_2",
@@ -356,7 +356,7 @@
     },
     {
       "id": "p2_5",
-      "name": "the galai gates"
+      "name": "galai gates"
     },
     {
       "id": "p2_6",
@@ -398,13 +398,13 @@
     },
     {
       "id": "p3_7",
-      "name": "the cuachic vault"
+      "name": "cuachic vault"
     }
   ],
   [
     {
       "id": "g_endgame_town",
-      "name": "the ziggurat refuge"
+      "name": "ziggurat refuge"
     }
   ]
 ]

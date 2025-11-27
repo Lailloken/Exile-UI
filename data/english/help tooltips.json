@@ -529,9 +529,7 @@
       "(img:in-out2) zone-name for x: this means \"enter (color:CC99FF)zone to get x, then leave again\"",
       "(hint)__",
       "(img:0), (img:2): these show cardinal directions, i.e. north, east, etc.",
-      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)",
-      "(hint)__",
-      "\"xyz (map)\" means a point of interest is marked on the mini-map"
+      "(hint)__ direct pathing might sometimes be blocked (you'll have to walk around)"
     ],
     "leveltracker leaguestart": [
       "choose whether quests/objectives that only need to be done once per league should be shown or not (e.g. lab trials, crafting recipes)",

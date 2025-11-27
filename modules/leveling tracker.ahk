@@ -2307,7 +2307,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 			dimensions := [], english := []
 			For iGem, vGem in pob.gems[hover].groups[val].gems
 				gem0 := vGem . (InStr(vGem, "|") && !InStr(vGem, " support") ? " support" : ""), gem0 := StrReplace(gem0, " |–"), english.Push(gem0)
-				, gem0 := (db.leveltracker.gems[gem0].name ? db.leveltracker.gems[gem0].name : gem0), dimensions.Push((InStr(vGem, "|") ? " |–" : "") . gem0)
+				, gem0 := (db.leveltracker.gems[gem0].name ? db.leveltracker.gems[gem0].name : vGem), dimensions.Push((InStr(vGem, "|") && !InStr(gem0, "|") ? " |–" : "") . gem0)
 			LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wLinks, hLinks)
 		}
 		Else
