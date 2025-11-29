@@ -784,11 +784,12 @@
       "displays notifications whenever certain map events spawn",
       "examples: nameless seer, reflecting mist, infamous mercenary"
     ],
+    "map-events enable event": [
+      "click to enable/disable this event",
+      "right-click to activate a test notification"
+    ],
     "map-events position": [
       "the notification will be docked to one of the client's edges"
-    ],
-    "map-events test": [
-      "click to activate a test-notification"
     ],
     "notepad enable": [
       "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes",

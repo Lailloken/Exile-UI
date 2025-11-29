@@ -43,11 +43,15 @@
 		Lab("init")
 
 	settings.mapevents := {"fSize": !Blank(check := ini.mapevents["font-size"]) ? check : settings.general.fSize * 2}
+	settings.mapevents.event_list := ["seer", "mist", "graftblood"]
 	LLK_FontDimensions(settings.mapevents.fSize, font_height, font_width), settings.mapevents.fHeight := font_height, settings.mapevents.fWidth := font_width
 	settings.mapevents.color := !Blank(check := ini.mapevents["font-color"]) ? check : "FF0000"
 	settings.mapevents.color1 := !Blank(check := ini.mapevents["background color"]) ? check : "FFFFFF"
 	settings.mapevents.duration := !Blank(check := ini.mapevents.duration) ? check : 5
 	settings.mapevents.position := !Blank(check := ini.mapevents.position) ? check : 1
+	For index, val in settings.mapevents.event_list
+		settings.mapevents[val] := !Blank(check := ini.mapevents["enable " val]) ? check : 1
+		, settings.mapevents["color_" val] := !Blank(check := ini.mapevents["text-color " val]) ? check : "FF0000", settings.mapevents["color1_" val] := !Blank(check := ini.mapevents["background-color " val]) ? check : "FFFFFF"
 
 	settings.notepad := {"fSize": !Blank(check := ini.notepad["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.notepad.fSize, font_height, font_width), settings.notepad.fHeight := font_height, settings.notepad.fWidth := font_width
@@ -727,7 +731,7 @@ MapEvent(type)
 	global vars, settings
 
 	position := settings.mapevents.position, text := (position > 2) ? StrReplace(Lang_Trans("mechanic_" type), " ", "`n") : Lang_Trans("mechanic_" type)
-	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "_mapevents_" type, settings.mapevents.color, settings.mapevents.fSize, (position = 4 ? "Right" : ""),,, settings.mapevents.color1)
+	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "_mapevents_" type, settings.mapevents["color_" type], settings.mapevents.fSize, (position = 4 ? "Right" : ""),,, settings.mapevents["color1_" type])
 	WinGetPos,,, Width, Height, % "ahk_id" vars.hwnd["tooltip_mapevents_" type]
 	Switch position
 	{
