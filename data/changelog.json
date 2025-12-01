@@ -1,5 +1,14 @@
 [
   [
+	["1.60.6", 16006],
+	"december 1, 2025",
+	"act-decoder: added an alternative hotkey, fixed some selection and resetting issues",
+	"act-tracker: major rewrite of poe2 guide, major a4 restructuring for upcoming quest rotations",
+	"alarm timer: right-click <+> button for easier stopwatch, and they can now be paused/resumed",
+	"map-events: notifications can now be individually toggled and customized",
+	"minor qol: added new context-menu options for inscribed ultimatums"
+  ],
+  [
 	["1.60.5", 16005],
 	"november 11, 2025",
 	"stash-ninja: fixed ultimatum issues",
