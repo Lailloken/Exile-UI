@@ -70,7 +70,7 @@ Settings_actdecoder2(cHWND := "")
 	If (check = "enable")
 	{
 		IniWrite, % (settings.features.actdecoder := input := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
-		Hotkey, IfWinActive, ahk_group poe_ahk_window
+		Hotkey, If, vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
 		If !input
 		{
 			vars.actdecoder.layouts_lock := 0, LLK_Overlay(vars.hwnd.actdecoder.main, "destroy"), vars.hwnd.actdecoder.main := ""
@@ -95,7 +95,7 @@ Settings_actdecoder2(cHWND := "")
 			LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5,,,, "Red")
 			Return
 		}
-		Hotkey, IfWinActive, ahk_group poe_ahk_window
+		Hotkey, If, vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
 		If !Blank(settings.actdecoder.hotkey)
 			Hotkey, % Hotkeys_Convert(settings.actdecoder.hotkey), Actdecoder_Hotkey, Off
 		If !Blank(input)

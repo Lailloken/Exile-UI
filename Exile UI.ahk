@@ -635,7 +635,7 @@ Loop()
 		vars.client.closed := 0
 
 		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1200000)
-			UpdateCheck(1), vars.general.updatetick := A_TickCount
+			vars.general.updatetick := A_TickCount, UpdateCheck(1)
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)

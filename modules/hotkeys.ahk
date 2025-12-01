@@ -381,6 +381,7 @@ Hotkeys_Tab()
 #If (settings.features.anoints) && WinActive("ahk_id " vars.hwnd.poe_client)
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
+#If vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
 
 #If vars.actdecoder.tab
 *SC002::

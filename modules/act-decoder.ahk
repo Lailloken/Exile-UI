@@ -27,6 +27,7 @@
 		If (check := InStr(A_LoopFileName, " "))
 		{
 			vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt)] := 1
+			vars.actdecoder.zones[SubStr(StrReplace(A_LoopFileName, "." A_LoopFileExt), 1, InStr(A_LoopFileName, " ") - 1)] := 1
 			vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
 		}
 
@@ -40,7 +41,7 @@
 	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
 	settings.actdecoder.hotkey := hotkey := !Blank(check := ini.settings["alternative hotkey"]) ? check : ""
 
-	Hotkey, IfWinActive, ahk_group poe_ahk_window
+	Hotkey, If, vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
 	If !GetKeyVK(hotkey)
 		settings.actdecoder.hotkey := ""
 	Else Hotkey, % Hotkeys_Convert(hotkey), Actdecoder_Hotkey, On
