@@ -518,7 +518,7 @@
       "each line has one or more steps you need to complete",
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
-      "(color:FF00FF)x_tasks/find_x: some lines have x sub-tasks you need to complete",
+      "(color:FF00FF)x_tasks / (color:FF00FF)find_x: some lines have x sub-tasks you need to complete",
       "(hint)__ they can be completed in random order or at the same time (zone-dependent)",
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
