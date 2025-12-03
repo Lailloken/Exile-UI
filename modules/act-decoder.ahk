@@ -137,6 +137,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			Else If vars.actdecoder.loaded[hotkey]
 				vars.actdecoder.zone_layouts[vars.log.areaID].subzone := vars.actdecoder.loaded[hotkey], check := 1
 		}
+		Else If InStr(target, "x")
+			vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" target, check := 1
 		If !check
 			Return
 	}
@@ -347,7 +349,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			Gdip_DisposeBitmap(pBitmap)
 			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
 
-			Gui, %GUI_name%: Add, Text, % (mode = 2 || InStr(file, "x") || pic_count = 1 && (subzone || InStr(file, "y")) ? "Hidden " : "") "BackgroundTrans Center w" settings.general.fHeight (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % (InStr(file, "x") ? "" : count)
+			hidden := (mode = 2 || pic_count = 1 && (!vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt) "_1"] || subzone || InStr(file, "y")) ? "Hidden " : "")
+			Gui, %GUI_name%: Add, Text, % hidden "BackgroundTrans Center w" settings.general.fHeight (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % count
 			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd xp yp", % "HBitmap:" hbmBitmap
 			vars.hwnd.actdecoder[vars.log.areaID " " file] := hwnd, DeleteObject(hbmBitmap)
 			vars.actdecoder.loaded.Push(file)
