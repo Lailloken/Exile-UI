@@ -137,7 +137,7 @@ Settings_actdecoder2(cHWND := "")
 	}
 	Else LLK_ToolTip("no action")
 
-	If InStr("enable, generic", check) && WinExist("ahk_id " vars.hwnd.leveltracker.main)
+	If (check != "hotkey") && InStr("enable, generic, hotkey_save", check) && WinExist("ahk_id " vars.hwnd.leveltracker.main)
 		Leveltracker_Progress()
 }
 

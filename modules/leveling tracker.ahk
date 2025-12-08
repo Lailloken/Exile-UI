@@ -1331,7 +1331,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, -1, -1
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize " cWhite", % vars.system.font
 
-	If pic && !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"]))
+	If pic && (settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " 1"])))
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -1987,7 +1987,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					If InStr(step, "(hint)_")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If preview || !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[vars.log.areaID " 1"]))
+					If preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[vars.log.areaID " 1"]))
 						For key in vars.leveltracker.hints
 							If InStr(StrReplace(part, "_", " "), key)
 								color := "Aqua", text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text

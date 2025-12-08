@@ -124,7 +124,7 @@
     ],
     "actdecoder hotkey": [
       "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
-      "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button on the mouse",
+      "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton 1/2) on the mouse",
       "holding this key will only activate the act-decoder, tapping it will use its normal function(/highlight)"
     ],
     "actdecoder layouts opacity": [
@@ -132,7 +132,7 @@
     ],
     "actdecoder layouts locked zoom": [
       "custom zoom setting for when the overlay is locked (0 = disabled)",
-      "this means you can have separate settings while (not) holding down the <widget-key>"
+      "this means you can have separate settings while (not) holding down the hotkey"
     ],
     "anoints enable": [
       "provides a quick-access interface to find and filter which recipes are available with the materials you currently have",
@@ -1337,30 +1337,27 @@
   },
   "actdecoder": {
     "alignment": [
-      "toggles alignment of images between horizontal and vertical"
+      "toggles alignment of images: horizontal or vertical"
     ],
     "drag": [
-      "- drag to move the overlay\n- right-click to reset to default position of current alignment"
+      "drag to move the overlay\nr-click to reset to default position"
+    ],
+    "flip": [
+      "click: mirror horizontally\nr-click: mirror vertically",
+      "when unsure how to match indicators, always try mirroring before rotating(/highlight)"
     ],
     "help panel": [
-      "general:\n- scroll to zoom, hold down m-mouse for info\n- press space to (un)lock the overlay",
-      "if images have a white border, that means you have to find specific identifiers on the minimap from which the whole layout can be deduced",
-      "click images or press the corresponding number-key to select them",
-      "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
-      "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
-      "press <q> to revert all modifications"
-    ],
-    "help panel 2": [
-      "general:\n- scroll to zoom, hold down m-mouse for info\n- press space to (un)lock the overlay",
-      "if images have a white border, that means you have to find specific identifiers on the minimap from which the whole layout can be deduced",
-      "click images or press the corresponding number-key to select them",
-      "right-click images to discard/hide them\n(important: only 2 identifiers will be shown at a time, so make sure to discard the ones that don't match)",
-      "when identifiers (white borders) are displayed, press 3 to hide them all and show the next available ones",
-      "press <q> to revert all modifications",
-      "rotate/flip buttons:\n- click: 90°, r-click: -90°\n- click: horizontal, r-click: vertical"
+      "general:\nscroll to zoom, hold down m-mouse for info\npress space to (un)lock the overlay",
+      "if images have orange borders, they are inconclusive examples of possible layouts, rotations, mirrors (just to give a rough idea)(/highlight)",
+      "if images have white borders, you have to match specific identifiers on the minimap to find the exact layouts:\n\nclick images or press number-keys to select a match\n\npress 3 to discard the currently-displayed set of identifiers and cycle to the next set",
+      "press <q> to revert all modifications and selections/discards"
     ],
     "reset": [
-      "click to reset image modifications/picks for this zone"
+      "click to reset image modifications and selections/discards for this zone"
+    ],
+    "rotate": [
+      "click: rotate 90 degrees\nr-click: rotate -90 degrees",
+      "when unsure how to match indicators, always try mirroring before rotating(/highlight)"
     ]
   },
   "lootfilter": {
