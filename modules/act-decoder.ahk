@@ -231,13 +231,6 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				If (control != val)
 					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val
 		}
-		Else If InStr(check, vars.log.areaID " ") && (click = 2)
-		{
-			KeyWait, RButton
-			If !IsObject(vars.actdecoder.zone_layouts[vars.log.areaID])
-				vars.actdecoder.zone_layouts[vars.log.areaID] := {}
-			control := SubStr(check, InStr(check, " ") + 1), vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" control
-		}
 		Else Return
 	}
 
