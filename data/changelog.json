@@ -1,5 +1,12 @@
 [
   [
+	["1.60.7", 16007],
+	"december 8, 2025",
+	"act-decoder: added a new type (<sample layouts>, orange border) to give a rough idea of a zone",
+	"act-decoder: added <full layouts> to several zones, and every zone now has at least a <sample layout>",
+	"act-tracker: hints are now available when using a dedicated hotkey for the act-decoder"
+  ],
+  [
 	["1.60.6", 16006],
 	"december 1, 2025",
 	"act-decoder: added an alternative hotkey, fixed some selection and resetting issues",
