@@ -17,11 +17,12 @@ CheckClient()
 		WinGetTitle, title, ahk_exe GeForceNOW.exe
 	Else
 	{
-		WinGet, title, ProcessPath, ahk_class POEWindowClass
-		title := SubStr(title, 1, InStr(title, "\",, 0) - 1)
+		WinGet, path, ProcessPath, ahk_class POEWindowClass
+		WinGetTitle, title, ahk_class POEWindowClass
+		path := SubStr(path, 1, InStr(path, "\",, 0) - 1), path := SubStr(path, InStr(path, "\",, 0) + 1)
 	}
 
-	If WinExist("ahk_exe GeForceNOW.exe") && LLK_PatternMatch(title, "", [" 2", " ii"],,, 0) || (SubStr(title, 0) = "2")
+	If InStr(title . path, "2") || InStr(title . path, "ii")
 		Return " 2"
 }
 
