@@ -2312,14 +2312,15 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		}
 		Else
 		{
-			dimensions := [], english := []
+			dimensions := [], english := []					
 			For iGem, vGem in pob.gems[hover].groups[val].gems
-				For gem_type, oGems in db.leveltracker.gems
-					If oGems[(gem0 := StrReplace(vGem, " |–"))] && !LLK_HasVal(dimensions, vGem, 1)
-					{
-						gem0 := (oGems[gem0].3 ? oGems[gem0].3 : gem0)
-						dimensions.Push((InStr(vGem, "|") ? " |–" : "") . gem0 " (" oGems[StrReplace(vGem, " |–")].1 ")"), english.Push(StrReplace(vGem, " |–"))
-					}
+			{
+				gem0 := StrReplace(vGem, " |–")
+				gem_type := LLK_HasKey(db.leveltracker.gems, gem0,,,, 1), gem_level := db.leveltracker.gems[gem_type][gem0].1, gem_level := !gem_level ? 0 : gem_level
+				If gem_type
+					gem0 := db.leveltracker.gems[gem_type][gem0].3 ? db.leveltracker.gems[gem_type][gem0].3 : gem0
+				dimensions.Push((InStr(vGem, "|") ? " |–" : "") . gem0 " (" gem_level ")"), english.Push(StrReplace(vGem, " |–"))
+			}
 			LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wLinks, hLinks)
 		}
 
@@ -2375,7 +2376,7 @@ Leveltracker_PobImport(b64, profile)
 
 	If !classes
 		If vars.poe_version
-			classes := {"mercenary": ["tactician", "witchhunter", "gemling legionnaire"], "monk": ["invoker", "acolyte of chayula"], "ranger": ["deadeye", "pathfinder"], "sorceress": ["stormweaver", "chronomancer"], "warrior": ["titan", "warbringer", "smith of kitava"], "witch": ["infernalist", "blood mage", "lich"], "huntress": ["amazon", "ritualist"]}
+			classes := {"mercenary": ["tactician", "witchhunter", "gemling legionnaire"], "monk": ["invoker", "acolyte of chayula"], "ranger": ["deadeye", "pathfinder"], "sorceress": ["stormweaver", "chronomancer"], "warrior": ["titan", "warbringer", "smith of kitava"], "witch": ["infernalist", "blood mage", "lich"], "huntress": ["amazon", "ritualist"], "druid": ["oracle", "shaman"]}
 		Else classes := {"scion": ["ascendant"], "marauder": ["juggernaut", "berserker", "chieftain"], "ranger": ["warden", "deadeye", "pathfinder"], "witch": ["occultist", "elementalist", "necromancer"]
 		, "duelist": ["slayer", "gladiator", "champion"], "templar": ["inquisitor", "hierophant", "guardian"], "shadow": ["assassin", "trickster", "saboteur"]}
 
@@ -2473,18 +2474,17 @@ Leveltracker_PobImport(b64, profile)
 					If !support && InStr(name, " of ") && gems[SubStr(name, 1, InStr(name, " of ") - 1)]
 						name := SubStr(name, 1, InStr(name, " of ") - 1)
 
-					If !Blank(name) && (!vars.poe_version && gems[name . (support && !InStr(name, "support") ? " support" : "")] || vars.poe_version && LLK_HasKey(gems, name,,,, 1))
+					If !Blank(name)
 					{
 						group.gems.Push((support ? " |–" : "") . name)
-						If !LLK_PatternMatch(name, "", ["enlighten", "empower", "enhance"],,, 0) && !LLK_HasVal(vars.leveltracker.starter_gems[class], name)
+						If !vars.poe_version && gems[name . (support && !InStr(name, "support") ? " support" : "")]
+						&& !LLK_PatternMatch(name, "", ["enlighten", "empower", "enhance"],,, 0) && !LLK_HasVal(vars.leveltracker.starter_gems[class], name)
 						{
 							geartracker_gems["(" ((level := gems[name (support && !InStr(name, "support") ? " support" : "")].level) < 10 ? "0" : "") . level ") gem: " name] := 1
 							name0 := name . (support && !InStr(name, "support") ? " support" : ""), attribute := gems[name0].attribute ? gems[name0].attribute : 4
 							searchstrings_gems[attribute][support ? 2 : 1][name0] := 1
 						}
 					}
-					Else If settings.general.dev
-						MsgBox, % "unknown gem: " name "`n" A_LoopField
 				}
 				If InStr(A_LoopField, "</skill>")
 				{
