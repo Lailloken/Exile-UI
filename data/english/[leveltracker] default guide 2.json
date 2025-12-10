@@ -202,8 +202,8 @@
   ],
   [
     [
-      "follow edge, find long passage",
       "kill (img:checkpoint) rathbreaker || (img:portal) out",
+      "(hint)__ follow this edge from the start",
       "(img:quest_2) zarka: (img:skill) || enter areaidg2_town ;; the ardura caravan"
     ],
     [
@@ -211,12 +211,12 @@
       "(color:cc99ff)desert_map: areaidg2_10_1 ;; mawdun quarry"
     ],
     [
-      "optional: (img:artificer) in (img:checkpoint) (color:cc99ff)faridun_cache (side area)",
+      "optional: (img:artificer) in (img:checkpoint) (color:cc99ff)faridun_cache (edge)",
       "find & enter (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
       "kill rudja || free (img:quest_2) risu",
-      "(hint)__ (img:checkpoint) (color:cc99ff)arena is usually (img:0) / (img:1)",
+      "(hint)__ usually (img:0) / (img:1) after start-area",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
     ],
     [
@@ -307,7 +307,7 @@
       "(img:quest_2) asala || (color:cc99ff)desert_map: areaidg2_8 ;; deshar"
     ],
     [
-      "optional: (img:artificer) (color:cc99ff)skeleton: side area with (img:checkpoint)",
+      "optional: (img:artificer) in a (img:checkpoint) (color:cc99ff)side_path near start",
       "find (quest:letter) on (img:quest_2) (quest:fallen_dekhara)",
       "(hint)__ search around tower structures",
       "enter (img:checkpoint) areaidg2_9_1 ;; path of mourning"
@@ -367,7 +367,7 @@
       "(color:ff00ff)2_tasks: find (img:waypoint) || kill (img:checkpoint) silverfist",
       "(hint)_ arena:silverfist: look for pillar structures",
       "optional: <rawhide/linen_belt>: (img:checkpoint) (color:cc99ff)jungle_grave",
-      "follow edge to (img:checkpoint) areaidg3_2_1 ;; infested barrens"
+      "(img:0) edge leads to (img:checkpoint) areaidg3_2_1 ;; infested barrens"
     ],
     [
       "get (img:waypoint) || (color:ff00ff)2_tasks along waterway edge:",
@@ -552,8 +552,9 @@
       "(img:quest_2) makoru (ship): areaidg4_5_1 ;; abandoned prison"
     ],
     [
-      "slay monsters for (quest:chapel_key)",
-      "find (img:checkpoint) (color:cc99ff)chapel, activate (quest:statue)",
+      "(quest:buff): 30% inc. flask recovery",
+      "(hint)_ - farm monsters for (quest:chapel_key)",
+      "(hint)_ - find (img:checkpoint) (color:cc99ff)chapel, activate (quest:statue)",
       "enter (img:checkpoint) areaidg4_5_2 ;; solitary confinement"
     ],
     [
@@ -670,7 +671,7 @@
     ],
     [
       "go (img:7): (img:in-out2) areaidp2_5 for (img:waypoint) ;; galai gates",
-      "optional: go (img:1): (img:checkpoint) (color:cc99ff)ring/caster_vendor",
+      "optional: go (img:2): (img:checkpoint) (color:cc99ff)ring/caster_vendor",
       "go (img:1): get (quest:gift) in (img:arena) stairway",
       "(img:portal) to areaidp2_town ;; khari bazaar"
     ],
@@ -704,8 +705,8 @@
       "kill (img:checkpoint) vornas || enter areaidp2_6 ;; qimah"
     ],
     [
-      "follow edge to (img:checkpoint) (color:cc99ff)7_pillars (color:lime)(buff)",
-      "(hint)__ usually near the entrance (color:cc99ff)or exit",
+      "find (img:checkpoint) (color:cc99ff)7_pillars for (quest:perma._buff)",
+      "(hint)__ usually in corner near entrance/exit",
       "follow edge to (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
