@@ -3118,14 +3118,19 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	level_diff := vars.log.level - vars.log.arealevel
 
 	If vars.log.level
+	{
 		exp_info := vars.poe_version ? (RegExMatch(vars.log.areaID, "i)^hideout|_town$") ? "" : Lang_Trans("lvltracker_exp") " " (level_diff > 0 ? "+" : "") level_diff) : Leveltracker_Experience("", 1)
-	If !vars.poe_version
-		color := (!InStr(exp_info, "100%") ? (InStr(exp_info, "+") && IsNumber(target_lvl := db.leveltracker.arealvls[vars.leveltracker.guide.target_area]) && target_lvl > vars.log.arealevel ? "Fuchsia" : "Red") : "Lime")
-	Else color := (Abs(level_diff) > 5 ? "Red" : (Abs(level_diff) > 3 ? "FF8000" : (Abs(level_diff) > 2 ? "Yellow" : "Lime")))
+		If !vars.poe_version
+			color := " c" (!InStr(exp_info, "100%") ? (InStr(exp_info, "+") && IsNumber(target_lvl := db.leveltracker.arealvls[vars.leveltracker.guide.target_area]) && target_lvl > vars.log.arealevel ? "Fuchsia" : "Red") : "Lime")
+		Else 
+			threshold := 3 + vars.log.level//16, gap := threshold - Abs(level_diff)
+			, color := " c" (level_diff > 0 ? (level_diff = 1 ? "FF8000" : "Red") : (gap > 0 ? "Lime" : (gap = 0 ? "Yellow" : (gap = -1 ? "FF8000" : "Red"))))
+	}
+
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "?"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % ">"
-	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels " c" color, % StrReplace(exp_info, (exp_info = "100%") ? "" : "100%")
+	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels . color, % StrReplace(exp_info, (exp_info = "100%" ? "" : "100%"))
 	vars.hwnd.leveltracker.experience := hwnd
 
 	Gui, %GUI_name_controls2%: Show, % "NA x10000 y10000"
