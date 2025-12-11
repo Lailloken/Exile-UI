@@ -412,7 +412,7 @@ Omni_ContextMenu()
 					class := item.class
 
 				Gui, omni_context: Add, Text, % "Section" (hwnd ? " xs " : " ") "gOmni_ContextMenuPick HWNDhwnd" style, % "wiki: "
-				. (class = "socketable" ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul cores" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talismans" : "runes")) : LLK_StringCase((InStr(item.itembase, "Runic ") ? "runic " : "") . class))
+				. (class = "socketable" ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul cores" : (InStr(item.name, Lang_Trans("items_idol")) ? "idols" : "runes")) : LLK_StringCase((InStr(item.itembase, "Runic ") ? "runic " : "") . class))
 				ControlGetPos,,, w2,,, % "ahk_id " hwnd
 				If (class != "cluster jewels") && (!Blank(LLK_HasVal(db.item_bases._classes, item.class)) || vars.poe_version && vars.omnikey.poedb[item.class] || InStr(item.class, "heist") && item.itembase)
 				{
@@ -430,7 +430,7 @@ Omni_ContextMenu()
 				If settings.features.anoints && RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
 
-				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_talisman")) ? "talisman" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
+				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "socketable") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_idol")) ? "idol" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
 				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3, vars.hwnd.omni_context.anoints := hwnd4
 				width := (Max(w, w1, w2) > width) ? Max(w, w1, w2) : width
 			}
