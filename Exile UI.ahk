@@ -279,7 +279,7 @@ Init_client()
 
 	If !vars.client.stream
 	{
-		vars.client.docked := !Blank(check := ini.settings["window-position"]) ? check : "center", vars.client.docked2 := !Blank(check := ini.settings["window-position vertical"]) ? check : "center"
+		vars.client.docked := !Blank(check := ini.settings["window-position"]) ? check : "center", vars.client.docked2 := !Blank(check := ini.settings["window-position vertical"]) ? check : "top"
 		vars.client.borderless := (vars.client.fullscreen = "true") ? 1 : !Blank(check := ini.settings["remove window-borders"]) ? check : 0
 		vars.client.customres := [ini.settings["custom-width"], ini.settings["custom-resolution"]]
 	}
