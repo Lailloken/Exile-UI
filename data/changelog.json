@@ -1,5 +1,14 @@
 [
   [
+	["1.61.0", 16100],
+	"december 11, 2025",
+	"added support for 800p custom resolutions",
+	"act-tracker: general tweaks, a4 restructure, many new optionals",
+	"act-tracker: lvl-diff color more accurate, added lvl recommendations (highly-optimized runs)",
+	"act-decoder: can now be moved outside main monitor (beta), improved tooltips",
+	"item-info: added support for talismans"
+  ],
+  [
 	["1.60.7", 16007],
 	"december 8, 2025",
 	"act-decoder: added a new type (<sample layouts>, orange border) to give a rough idea of a zone",
@@ -128,80 +137,5 @@
 	"act-tracker: stylistic rewrite of poe1 guide, guide-panel auto hides in lab",
 	"act-tracker: added earlier ascension options, skip siosa/lilly if not required (pob)",
 	"guide editor received a major redesign"
-  ],
-  [
-	["1.58.9", 15809],
-	"july 18, 2025",
-	"map-tracker: fixed oshabi fight, replaced reflecting mist icon",
-	"act-tracker: pob-tree improvements (smoothness, color customization)",
-	"map-events: added support for infamous mercenaries",
-	"vaal street: added ratio locking"
-  ],
-  [
-	["1.58.8", 15808],
-	"july 7, 2025",
-	"map-info: fixed the t17 rare monster map-mod",
-	"map-tracker: added starfall crater to trackable side-areas (untested, needs feedback)",
-	"new feature: <vaal street> (currency exchange qol, trade logging, balance tracking)"
-  ],
-  [
-	["1.58.7", 15807],
-	"june 28, 2025",
-	"if the updater fails, read the full release notes",
-	"fixed act-decoder on multi-monitors, map-info alt-activation on invitations, act-tracker guide-panel unhiding after completion",
-	"act-tracker: added per-slot character tracking, increased max slots to 9",
-	"map-tracker: added support for nameless seer and reflecting mist",
-	"new feature: map-event notifications (nameless seer and reflecting mist)"
-  ],
-  [
-	["1.58.6", 15806],
-	"june 13, 2025",
-	"(hotfix 1) lab-compass import fallback, fixed outdated horizon orb tooltip",
-	"(hotfix 2) updated betrayal-info to 3.26 (not ruthless), added betrayal-info updater",
-	"(hotfix 3) updated stash-ninja to 3.26",
-	"act-tracker: added extended regex support, great white beast now optional"
-  ],
-  [
-	["1.58.5", 15805],
-	"june 12, 2025",
-	"act-decoder: added advanced layouts to 9 zones in acts 1 and 2",
-	"act-tracker: added pobb.in support, added 3.26 pob support",
-	"act-tracker: updated the default guide with hints from cyclon's guide, updated/added some hint images"
-  ],
-  [
-	["1.58.4", 15804],
-	"june 6, 2025",
-	"filterspoon feature removed for the time being",
-	"added wiki-links for talismans, added support for updated 0.2.1 map mods",
-	"new feature: <enchant finder> for anointing/instilling amulets"
-  ],
-  [
-	["1.58.3", 15803],
-	"may 20, 2025",
-	"fixed amazon & ritualist ascendancy trees, sanctum planner couldn't be locked if act-decoder was enabled",
-	"act-decoder: added new advanced layouts for act 1",
-	"item-info: restructured settings, added new roll-range option, added customization for last column",
-	"sanctum/sekhema: poe2 compatibility, greatly improved scan accuracy, added relic management feature"
-  ],
-  [
-	["1.58.2", 15802],
-	"may 8, 2025",
-	"act-tracker: rewrote many sections in poe2 guide, added toggle for optional loot/quests",
-	"item-info: added <quality and iron rune scaling> to more easily compare looted/crafted items to equipped ones",
-	"map-info: added support for updated chest map-mods"
-  ],
-  [
-	["1.58.1", 15801],
-	"may 5, 2025",
-	"new feature: <act-decoder> for campaign layouts (moved from act-tracker)",
-	"act-decoder: initial test of more advanced layouts",
-	"statlas: updated some boss images, layout images are now monochrome for better visibility, added support for various maps"
-  ],
-  [
-	["1.58.0", 15800],
-	"april 24, 2025",
-	"item-info: fixed maces and bucklers, improved affix detection",
-	"map-tracker: fixed rare issue when reviving during boss-fights, added afk detection",
-	"new feature: <statlas> for checking layouts, bosses, and stats right from the atlas"
   ]
 ]
