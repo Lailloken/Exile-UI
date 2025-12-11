@@ -201,6 +201,8 @@ Gui_HelpToolTip(HWND_key)
 		xPos := (control = "general" ? xControl : xControl + wControl), yPos := (control = "general" ? y + h : y)
 	Else If (check = "radial")
 		xPos := xWin + wWin/2 - tooltip_width/2
+	Else If (check = "actdecoder")
+		xPos := (vars.general.xMouse >= vars.monitor.x + vars.monitor.w//2 ? xWin - tooltip_width : vars.general.xMouse)
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1
