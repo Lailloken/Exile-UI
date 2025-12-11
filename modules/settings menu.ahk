@@ -2111,11 +2111,8 @@ Settings_leveltracker()
 		vars.hwnd.settings.fade_hover := hwnd, vars.hwnd.help_tooltips["settings_leveltracker fade mouse"] := hwnd
 	}
 
-	If !vars.poe_version
-	{
-		Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked"settings.leveltracker.recommend, % Lang_Trans("m_lvltracker_recommend")
-		vars.hwnd.settings.recommend := vars.hwnd.help_tooltips["settings_leveltracker recommendation"] := hwnd
-	}
+	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_leveltracker2 HWNDhwnd Checked"settings.leveltracker.recommend, % Lang_Trans("m_lvltracker_recommend")
+	vars.hwnd.settings.recommend := vars.hwnd.help_tooltips["settings_leveltracker recommendation" vars.poe_version] := hwnd
 
 	If !vars.client.stream && !vars.poe_version
 	{

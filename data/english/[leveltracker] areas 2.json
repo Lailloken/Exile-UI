@@ -10,7 +10,8 @@
     },
     {
       "id": "g1_2",
-      "name": "clearfell"
+      "name": "clearfell",
+      "recommendation": "2 | 2"
     },
     {
       "id": "g1_3",
@@ -18,27 +19,33 @@
     },
     {
       "id": "g1_4",
-      "name": "the grelwood"
+      "name": "the grelwood",
+      "recommendation": "2 | 2"
     },
     {
       "id": "g1_5",
-      "name": "red vale"
+      "name": "red vale",
+      "recommendation": "2 | 4"
     },
     {
       "id": "g1_6",
-      "name": "grim tangle"
+      "name": "grim tangle",
+      "recommendation": "4 | 5"
     },
     {
       "id": "g1_7",
-      "name": "cemetery of eternals"
+      "name": "cemetery of eternals",
+      "recommendation": "5 | 6"
     },
     {
       "id": "g1_8",
-      "name": "mausoleum of praetor"
+      "name": "mausoleum of praetor",
+      "recommendation": "7 | 7"
     },
     {
       "id": "g1_9",
-      "name": "tomb of consort"
+      "name": "tomb of consort",
+      "recommendation": "6 | 7"
     },
     {
       "id": "g1_10",
@@ -46,33 +53,40 @@
     },
     {
       "id": "g1_11",
-      "name": "hunting grounds"
+      "name": "hunting grounds",
+      "recommendation": "7 | 8"
     },
     {
       "id": "g1_12",
-      "name": "freythorn"
+      "name": "freythorn",
+      "recommendation": "8 | 9"
     },
     {
       "id": "g1_13_1",
-      "name": "ogham farmlands"
+      "name": "ogham farmlands",
+      "recommendation": "9 | 10"
     },
     {
       "id": "g1_13_2",
-      "name": "ogham village"
+      "name": "ogham village",
+      "recommendation": "10 | 11"
     },
     {
       "id": "g1_14",
-      "name": "manor ramparts"
+      "name": "manor ramparts",
+      "recommendation": "11 | 12"
     },
     {
       "id": "g1_15",
-      "name": "ogham manor"
+      "name": "ogham manor",
+      "recommendation": "12 | 13"
     }
   ],
   [
     {
       "id": "g2_1",
-      "name": "vastiri outskirts"
+      "name": "vastiri outskirts",
+      "recommendation": "13 | 14"
     },
     {
       "id": "g2_town",
@@ -80,7 +94,8 @@
     },
     {
       "id": "g2_2",
-      "name": "traitor's passage"
+      "name": "traitor's passage",
+      "recommendation": "16.5 | 17.5"
     },
     {
       "id": "g2_3a",
@@ -88,63 +103,78 @@
     },
     {
       "id": "g2_3",
-      "name": "halani gates"
+      "name": "halani gates",
+      "recommendation": "17.5 | 18.5"
     },
     {
       "id": "g2_4_1",
-      "name": "keth"
+      "name": "keth",
+      "recommendation": "18.5 | 19"
     },
     {
       "id": "g2_4_2",
-      "name": "lost city"
+      "name": "lost city",
+      "recommendation": "19 | 20"
     },
     {
       "id": "g2_4_3",
-      "name": "buried shrines"
+      "name": "buried shrines",
+      "recommendation": "20 | 21"
     },
     {
       "id": "g2_5_1",
-      "name": "mastodon badlands"
+      "name": "mastodon badlands",
+      "recommendation": "21 | 21.5"
     },
     {
       "id": "g2_5_2",
-      "name": "bone pits"
+      "name": "bone pits",
+      "recommendation": "21.5 | 22.5"
     },
     {
       "id": "g2_6",
-      "name": "valley of the titans"
+      "name": "valley of the titans",
+      "recommendation": "22.5 | 23.5"
     },
     {
       "id": "g2_7",
-      "name": "titan grotto"
+      "name": "titan grotto",
+      "recommendation": "23.5 | 24"
     },
     {
       "id": "g2_8",
-      "name": "deshar"
+      "name": "deshar",
+      "recommendation": "24 | 25"
     },
     {
       "id": "g2_9_1",
-      "name": "path of mourning"
+      "name": "path of mourning",
+      "recommendation": "25 | 25"
     },
     {
       "id": "g2_9_2",
-      "name": "spires of deshar"
+      "name": "spires of deshar",
+      "recommendation": "25 | 26"
     },
     {
       "id": "g2_10_1",
-      "name": "mawdun quarry"
+      "name": "mawdun quarry",
+      "recommendation": "14 | 15.5"
     },
     {
       "id": "g2_10_2",
-      "name": "mawdun mine"
+      "name": "mawdun mine",
+      "recommendation": "15.5 | 16.5"
     },
     {
       "id": "g2_12_1",
-      "name": "the dreadnought"
+      "name": "the dreadnought",
+      "recommendation": "26 | 27"
     },
     {
       "id": "g2_12_2",
-      "name": "dreadnought vanguard"
+      "name": "dreadnought vanguard",
+      "recommendation": "27 | 28.5"
     },
     {
       "id": "g2_13",
@@ -154,7 +184,8 @@
   [
     {
       "id": "g3_1",
-      "name": "sandswept marsh"
+      "name": "sandswept marsh",
+      "recommendation": "28.5 | 29"
     },
     {
       "id": "g3_town",
@@ -162,7 +193,8 @@
     },
     {
       "id": "g3_2_1",
-      "name": "infested barrens"
+      "name": "infested barrens",
+      "recommendation": "30 | 31"
     },
     {
       "id": "g3_2_2",
@@ -170,15 +202,18 @@
     },
     {
       "id": "g3_4",
-      "name": "venom crypts"
+      "name": "venom crypts",
+      "recommendation": "31 | 31"
     },
     {
       "id": "g3_3",
-      "name": "jungle ruins"
+      "name": "jungle ruins",
+      "recommendation": "29 | 30"
     },
     {
       "id": "g3_5",
-      "name": "chimeral wetlands"
+      "name": "chimeral wetlands",
+      "recommendation": "32 | 33"
     },
     {
       "id": "g3_6_1",
@@ -190,7 +225,8 @@
     },
     {
       "id": "g3_7",
-      "name": "azak bog"
+      "name": "azak bog",
+      "recommendation": "31 | 32"
     },
     {
       "id": "g3_8",
@@ -222,7 +258,8 @@
     },
     {
       "id": "g3_17",
-      "name": "black chambers"
+      "name": "black chambers",
+      "recommendation": "x | 41"
     }
   ],
   [
@@ -232,35 +269,43 @@
     },
     {
       "id": "g4_1_1",
-      "name": "isle of kin"
+      "name": "isle of kin",
+      "recommendation": "44 | 44"
     },
     {
       "id": "g4_1_2",
-      "name": "volcanic warrens"
+      "name": "volcanic warrens",
+      "recommendation": "44 | 45"
     },
     {
       "id": "g4_2_1",
-      "name": "kedge bay"
+      "name": "kedge bay",
+      "recommendation": "41 | 41"
     },
     {
       "id": "g4_2_2",
-      "name": "journey's end"
+      "name": "journey's end",
+      "recommendation": "41 | 42"
     },
     {
       "id": "g4_3_1",
-      "name": "whakapanu island"
+      "name": "whakapanu island",
+      "recommendation": "42 | 42"
     },
     {
       "id": "g4_3_2",
-      "name": "singing caverns"
+      "name": "singing caverns",
+      "recommendation": "42 | 42"
     },
     {
       "id": "g4_4_1",
-      "name": "eye of hinekora"
+      "name": "eye of hinekora",
+      "recommendation": "45 | 45"
     },
     {
       "id": "g4_4_2",
-      "name": "halls of the dead"
+      "name": "halls of the dead",
+      "recommendation": "45 | 46"
     },
     {
       "id": "g4_4_3",
@@ -268,15 +313,18 @@
     },
     {
       "id": "g4_5_1",
-      "name": "abandoned prison"
+      "name": "abandoned prison",
+      "recommendation": "42 | 43"
     },
     {
       "id": "g4_5_2",
-      "name": "solitary confinement"
+      "name": "solitary confinement",
+      "recommendation": "43 | 43"
     },
     {
       "id": "g4_7",
-      "name": "shrike island"
+      "name": "shrike island",
+      "recommendation": "43 | 44"
     },
     {
       "id": "g4_8a",
@@ -284,11 +332,13 @@
     },
     {
       "id": "g4_8b",
-      "name": "arastas (hostile)"
+      "name": "arastas (hostile)",
+      "recommendation": "46 | 46"
     },
     {
       "id": "g4_10",
-      "name": "the excavation"
+      "name": "the excavation",
+      "recommendation": "46 | 47"
     },
     {
       "id": "g4_11_1a",
@@ -296,11 +346,13 @@
     },
     {
       "id": "g4_11_1b",
-      "name": "ngakanu (hostile)"
+      "name": "ngakanu (hostile)",
+      "recommendation": "47 | 47"
     },
     {
       "id": "g4_11_2",
-      "name": "heart of the tribe"
+      "name": "heart of the tribe",
+      "recommendation": "47 | 48"
     },
     {
       "id": "g4_13",

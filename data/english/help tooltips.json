@@ -423,6 +423,10 @@
     "leveltracker recommendation": [
       "includes level recommendations for some areas or boss fights"
     ],
+    "leveltracker recommendation 2": [
+      "shows level recommendations for optimizing acts 1-4 in the bottom-left corner",
+      "it shows two numbers:\nrecommended level when entering a zone\nrecommended level when leaving a zone"
+    ],
     "leveltracker geartracker": [
       "notifies you when you meet gear or gem requirements after lvl-ups (mainly a twink feature):\nthe guide overlay will display <gear rdy>",
       "requires your character-name in the <general> settings(/highlight)",
@@ -551,7 +555,7 @@
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
       "they will be marked with a plus-sign in the guide(/highlight)",
-      "examples: jeweller's/artificer's orbs, gems, jewelry, flasks, a4 treasure map"
+      "examples: jeweller's/artificer's orbs, league rewards, gems, jewelry, flasks, a4 treasure map"
     ],
     "leveltracker reset": [
       "long-click to reset the progress in this guide slot and start over"
