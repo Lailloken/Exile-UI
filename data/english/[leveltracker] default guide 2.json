@@ -41,8 +41,7 @@
       "(img:waypoint) to areaidg1_6 ;; the grim tangle"
     ],
     [
-      "optional: (img:skill) (color:cc99ff)league_mechanic",
-      "optional: (img:support) arena:the_rotten_druid",
+      "optional: (img:skill) (color:cc99ff)league || (img:support) arena:rotten_druid",
       "enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
     ],
     [
@@ -52,7 +51,7 @@
     ],
     [
       "optional: amulet: (color:cc99ff)league_mechanic",
-      "optional: (img:support) <knight> in (img:checkpoint) (color:cc99ff)treasure",
+      "optional: (img:support) <knight>: (img:checkpoint) (color:cc99ff)haunted_treasure",
       "kill (img:checkpoint) asinia for (quest:key_piece)",
       "enter areaidg1_7 ;; cemetery of the eternals"
     ],
@@ -71,7 +70,7 @@
       ],
       "lines": [
         "(img:checkpoint) -travel to (img:waypoint), open (color:cc99ff)gate",
-        "(hint)__ when it opens, esc: (color:cc99ff)respawn",
+        "(hint)__ when it opens, (color:cc99ff)esc:_respawn",
         "kill lachlann for (quest:ring)",
         "enter areaidg1_11 ;; hunting grounds"
       ]
@@ -83,7 +82,7 @@
       ],
       "lines": [
         "(img:checkpoint) -travel to (img:waypoint), open (color:cc99ff)gate",
-        "(hint)__ when it opens, esc: (color:cc99ff)respawn",
+        "(hint)__ when it opens, (color:cc99ff)esc:_respawn",
         "kill lachlann || leave (quest:ring)",
         "enter areaidg1_11 ;; hunting grounds"
       ]
@@ -124,7 +123,7 @@
     [
       "road leads straight to (img:checkpoint) (color:cc99ff)hut / (quest:lute)",
       "(hint)__ walk around potential obstacles",
-      "optional: (img:skill) (color:cc99ff)league_mechanic & (img:checkpoint) (color:cc99ff)crop_circle",
+      "optional: (img:skill) (color:cc99ff)league || (img:skill) in (img:checkpoint) (color:cc99ff)crop_circle",
       "one road leads to (img:checkpoint) areaidg1_13_2 ;; ogham village"
     ],
     [
@@ -383,9 +382,9 @@
     },
     [
       "optional: alchemy orb: (color:cc99ff)league_mechanic",
+      "optional: <belt>: (img:checkpoint) (color:cc99ff)grave || <gloves>: (img:checkpoint) (color:cc99ff)npc_camp",
       "(color:ff00ff)2_tasks: find (img:waypoint) || kill (img:checkpoint) silverfist",
       "(hint)_ arena:silverfist: look for pillar structures",
-      "optional: <belt>: (img:checkpoint) (color:cc99ff)grave || <gloves>: (img:checkpoint) (color:cc99ff)npc_camp",
       "(img:0) edge leads to (img:checkpoint) areaidg3_2_1 ;; infested barrens"
     ],
     [
@@ -460,7 +459,6 @@
       "lines": [
         "(img:in-out2) areaidg3_9 for (img:waypoint) ;; the molten vault",
         "(hint)_ - (quest:reforging_bench) quest",
-        "(hint)_ - can be skipped for later",
         "enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
@@ -544,7 +542,7 @@
     ],
     [
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)abandoned_ship (?)",
-      "optional: optional: (img:exa) (color:cc99ff)league || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)smuggler's_stash",
+      "optional: optional: (img:exa) (color:cc99ff)league || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)stash",
       "enter areaidg4_2_2 ;; journey's end"
     ],
     [
@@ -566,8 +564,8 @@
       "makoru: areaidg4_3_1 ;; whakapanu island"
     ],
     [
-      "optional: (img:support) in (img:checkpoint) (color:cc99ff)cavern || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
       "optional: (img:artificer) (color:cc99ff)league_mechanic",
+      "optional: (img:support) in (img:checkpoint) (color:cc99ff)cavern || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
       "kill (img:checkpoint) shark || free (img:quest_2) matiki (?)",
       "(hint)__ opt: (color:cc99ff)unc._gem for (quest:fin) in areaidg4_11_1a ;; ngakanu",
       "find & enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
@@ -722,7 +720,7 @@
       "enter (img:checkpoint) areaidp2_3 ;; sel khari sanctuary"
     ],
     [
-      "optional: <ring,_amu,_jewel>: loot (quest:2_baryas)",
+      "optional: <ring_&_amulet>: loot (quest:2_baryas)",
       "(hint)__ insert into pedestals (side edges)",
       "find & kill (img:checkpoint) elzarah",
       "(img:quest_2) asala || (img:portal) to areaidp2_town ;; the khari bazaar"
@@ -740,7 +738,7 @@
       "follow edge to (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
-      "optional: currency: loot (quest:2_vials) for 2 (img:checkpoint) (color:cc99ff)wells",
+      "optional: currency: find (quest:2_vials) for (img:checkpoint) (color:cc99ff)2_wells",
       "kill (img:checkpoint) azmadi || (img:quest_2) grand barya",
       "(img:quest_2) jado || (img:portal) to areaidp2_town ;; the khari bazaar"
     ],
@@ -789,7 +787,7 @@
     ],
     [
       "kill (img:checkpoint) zolin_&_zelina",
-      "(img:quest_2) doryani || (img:checkpoint) back to start",
+      "(img:quest_2) doryani || (img:portal) out",
       "(img:waypoint) to areaidg4_town (img:town) ;; kingsmarch"
     ],
     [
