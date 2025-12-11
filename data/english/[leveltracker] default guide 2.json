@@ -5,7 +5,7 @@
       "enter areaidg1_town ;; clearfell encampment"
     ],
     [
-      "(color:red)info: possible (color:cc99ff)league_mechanic rewards",
+      "(color:red)info: (color:cc99ff)league_mechanic rewards",
       "(hint)_ - examples: currencies, gems, gear, etc.",
       "(hint)_ - not fully confirmed but very probable",
       "(hint)_ - to include them, enable (quest:optionals)",
@@ -247,8 +247,9 @@
     ],
     [
       "optional: (img:artificer) (color:cc99ff)league_mechanic",
-      "kill (img:checkpoint) balbala for (quest:barya)",
-      "(hint)__ follow paper talismans",
+      "early (quest:ascension?): kill (img:checkpoint) balbala",
+      "(hint)_ - build-dependent: (color:cc99ff)2nd_option_later",
+      "(hint)_ - find & follow paper talismans",
       "enter (img:checkpoint) areaidg2_3 ;; the halani gates"
     ],
     [
@@ -258,21 +259,13 @@
       "(img:portal) to areaidg2_town ;; the ardura caravan"
     ],
     [
-      "(img:quest_2) zarka: (img:skill)",
-      "(color:cc99ff)desert_map: areaidg2_13 ;; trial of the sekhemas"
-    ],
-    [
-      "activate the (img:waypoint)",
-      "(hint)_ - (quest:ascension) is based on build/preference",
-      "(hint)_ - you can do it now or come back later",
-      "(img:waypoint) to areaidg2_town (img:town) ;; the ardura caravan"
-    ],
-    [
-      "(img:quest_2) asala",
+      "(img:quest_2) zarka: (img:skill) || (img:quest_2) asala",
+      "if you want to (quest:ascend) early:",
+      "(hint)__ (color:cc99ff)desert_map: areaidg2_13 ;; trial of the sekhemas",
       "(color:cc99ff)desert_map: areaidg2_4_1 ;; keth"
     ],
     [
-      "optional: (img:gcp) (color:cc99ff)league_mechanic || (color:66b2ff)amulet: (img:arena) stairs",
+      "optional: (img:gcp) (color:cc99ff)league || (color:66b2ff)amulet: check 2 (img:arena) stairs",
       "(color:ff00ff)kill_2: (color:cc99ff)snakes (color:lime)(relic) || (img:checkpoint) arena:kabala (color:lime)(book)",
       "follow edge, find bridge to areaidg2_4_2 ;; the lost city"
     ],
@@ -295,6 +288,9 @@
     ],
     [
       "optional: (img:support) in (img:checkpoint) (color:cc99ff)fossilized_memorial",
+      "(quest:abyss): find (img:arena) lightless_passage",
+      "(hint)_ - can be skipped for later",
+      "(hint)_ - find (img:arena) well_of_souls inside for (img:waypoint)",
       "find & enter (img:checkpoint) areaidg2_5_2 ;; the bone pits"
     ],
     [
@@ -327,6 +323,8 @@
     ],
     [
       "optional: (img:artificer) in a (img:checkpoint) (color:cc99ff)side_path near start",
+      "late (quest:ascension?): find (img:checkpoint) (color:cc99ff)corpses",
+      "(hint)__ kill (color:yellow)2_vultures for (color:cc99ff)djinn_barya",
       "find (quest:letter) on (img:quest_2) (quest:fallen_dekhara)",
       "(hint)__ search around tower structures",
       "enter (img:checkpoint) areaidg2_9_1 ;; path of mourning"
@@ -342,7 +340,8 @@
     ],
     [
       "give (quest:letter) to shambrin: (quest:book)",
-      "(img:quest_2) asala",
+      "late (quest:ascension?): (img:quest_2) zarka || (img:quest_2) asala",
+      "(hint)__ (color:cc99ff)desert_map: areaidg2_13 ;; trial of the sekhemas",
       "(color:cc99ff)desert_map: areaidg2_12_1 ;; the dreadnought"
     ],
     [
@@ -386,11 +385,11 @@
       "optional: alchemy orb: (color:cc99ff)league_mechanic",
       "(color:ff00ff)2_tasks: find (img:waypoint) || kill (img:checkpoint) silverfist",
       "(hint)_ arena:silverfist: look for pillar structures",
-      "optional: <rawhide/linen_belt>: (img:checkpoint) (color:cc99ff)jungle_grave",
+      "optional: <belt>: (img:checkpoint) (color:cc99ff)grave || <gloves>: (img:checkpoint) (color:cc99ff)npc_camp",
       "(img:0) edge leads to (img:checkpoint) areaidg3_2_1 ;; infested barrens"
     ],
     [
-      "optional: (img:exa) (color:cc99ff)league_mechanic",
+      "optional: (img:exa) (color:cc99ff)league || <boots>: (img:checkpoint) (color:cc99ff)npc_camp",
       "get (img:waypoint) || (color:ff00ff)2_tasks along waterway edge:",
       "(hint)__ (img:in-out2) exit_1 for (img:waypoint) || enter (img:arena) exit_2 for (img:waypoint)",
       "(img:waypoint) -travel to areaidg3_3 ;; jungle ruins"
@@ -419,6 +418,7 @@
       "(img:waypoint) to areaidg3_5 ;; chimeral wetlands"
     ],
     [
+      "optional: <helmet>: (img:checkpoint) (color:cc99ff)ravaged_camp",
       "(color:ff00ff)find_2 along the edge:",
       "(hint)_ - (img:checkpoint) areaidg3_10_airlock: (img:in-out2) (color:ffffff)for (img:waypoint) ;; temple of chaos",
       "(hint)_ - (img:checkpoint) arena:chimera: (quest:trial_key) & (img:arena) exit",
@@ -447,7 +447,8 @@
     ],
     [
       "(quest:ascension): (img:waypoint) to areaidg3_10_airlock ;; temple of chaos",
-      "(hint)__ build-dependent, can be done later",
+      "(hint)__ build-dependent: can be done later,",
+      "(hint)__ but there won't be a 2nd reminder",
       "(img:waypoint) to areaidg3_town (img:town) ;; ziggurat encampment",
       "go (img:3): (img:quest_2) alva, enter areaidg3_8 ;; the drowned city"
     ],
@@ -501,7 +502,8 @@
     },
     [
       "find corner (img:arena) exits, kill ketzuli",
-      "(img:quest_2) alva: areaidg3_town ;; ziggurat encampment"
+      "(img:quest_2) alva: areaidg3_town ;; ziggurat encampment",
+      "(hint)__ opt. skip: (img:portal) when she says \"wait\""
     ],
     [
       "enter the (color:cc99ff)gateway",
@@ -585,11 +587,6 @@
     ],
     [
       "kill (img:checkpoint) prisoner || free (img:quest_2) matiki (?)",
-      "makoru (ship): areaidg4_7 ;; shrike island"
-    ],
-    [
-      "optional: (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)corpse_nest",
-      "kill (img:checkpoint) scourge || free (img:quest_2) matiki (?)",
       "makoru (ship): areaidg4_1_1 ;; isle of kin"
     ],
     [
@@ -602,6 +599,11 @@
       "optional: (color:ff0000)fire / (color:ffff00)light (img:ring) in (img:checkpoint) (color:cc99ff)volc._nest",
       "(hint)__ element based on (color:cc99ff)2nd_kill",
       "kill (img:checkpoint) krutog || free (img:quest_2) matiki (?)",
+      "makoru (ship): areaidg4_7 ;; shrike island"
+    ],
+    [
+      "optional: (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)corpse_nest",
+      "kill (img:checkpoint) scourge || free (img:quest_2) matiki (?)",
       "(img:portal) to areaidg4_town ;; kingsmarch"
     ],
     [
