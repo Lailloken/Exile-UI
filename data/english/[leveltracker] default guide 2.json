@@ -5,6 +5,10 @@
       "enter areaidg1_town ;; clearfell encampment"
     ],
     [
+      "(color:red)info: possible (color:cc99ff)league_mechanic rewards",
+      "(hint)_ - examples: currencies, gems, gear, etc.",
+      "(hint)_ - not fully confirmed but very probable",
+      "(hint)_ - to include them, enable (quest:optionals)",
       "(img:quest_2) renly: (img:skill) || enter areaidg1_2 ;; clearfell"
     ],
     [
@@ -20,6 +24,7 @@
       "enter (img:checkpoint) areaidg1_5 (often near arena:bramble) ;; the red vale"
     ],
     [
+      "optional: (img:skill) (color:cc99ff)league_mechanic",
       "clear (quest:3_obelisks) for (quest:3_runes)",
       "(img:portal) to areaidg1_town ;; clearfell encampment"
     ],
@@ -36,15 +41,18 @@
       "(img:waypoint) to areaidg1_6 ;; the grim tangle"
     ],
     [
+      "optional: (img:skill) (color:cc99ff)league_mechanic",
       "optional: (img:support) arena:the_rotten_druid",
       "enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
     ],
     [
       "activate the (img:waypoint) and (img:checkpoint)",
+      "optional: regal orb: (color:cc99ff)league_mechanic",
       "optional: (img:ring) in (img:checkpoint) (color:cc99ff)ancient_ruin (edge)",
       "enter (img:checkpoint) areaidg1_9 ;; tomb of the consort"
     ],
     [
+      "optional: amulet: (color:cc99ff)league_mechanic",
       "optional: (img:support) <knight> in (img:checkpoint) (color:cc99ff)treasure",
       "kill (img:checkpoint) asinia for (quest:key_piece)",
       "enter areaidg1_7 ;; cemetery of the eternals"
@@ -85,6 +93,7 @@
       "follow edge for (color:ff00ff)2_tasks:",
       "(hint)_ - kill (img:checkpoint) crowbell for (quest:book)",
       "(hint)_ - (img:in-out2) areaidg1_13_1 for (img:waypoint) ;; ogham farmlands",
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "optional: (img:support) (color:cc99ff)dryad_ritual || (img:skill) (color:cc99ff)rit._altar",
       "follow edge to (img:checkpoint) areaidg1_12 ;; freythorn"
     ],
@@ -117,7 +126,7 @@
     [
       "road leads straight to (img:checkpoint) (color:cc99ff)hut / (quest:lute)",
       "(hint)__ walk around potential obstacles",
-      "optional: (img:skill): find & clear (img:checkpoint) (color:cc99ff)crop_circle",
+      "optional: (img:skill) (color:cc99ff)league_mechanic & (img:checkpoint) (color:cc99ff)crop_circle",
       "one road leads to (img:checkpoint) areaidg1_13_2 ;; ogham village"
     ],
     [
@@ -133,6 +142,7 @@
         "yes"
       ],
       "lines": [
+        "optional: (img:artificer) (color:cc99ff)league_mechanic",
         "find (img:checkpoint) (color:cc99ff)workshop: (quest:tools) & <chest>",
         "find & kill (img:checkpoint) executioner",
         "(img:quest_2) leitis || enter areaidg1_14 ;; the manor ramparts"
@@ -144,12 +154,14 @@
         "no"
       ],
       "lines": [
+        "optional: (img:artificer) (color:cc99ff)league_mechanic",
         "optional: (color:cc99ff)blank_rune & (img:artificer) in (img:checkpoint) (color:cc99ff)workshop",
         "find & kill (img:checkpoint) executioner",
         "(img:quest_2) leitis || enter areaidg1_14 ;; the manor ramparts"
       ]
     },
     [
+      "optional: (img:skill) (color:cc99ff)league_mechanic",
       "optional: (img:support) (color:cc99ff)hanged_man along outer edge",
       "inner edge leads to areaidg1_15 ;; ogham manor"
     ],
@@ -159,6 +171,7 @@
         "yes"
       ],
       "lines": [
+        "optional: alchemy orb: (color:cc99ff)league_mechanic",
         "kill (img:checkpoint) candlemass for (quest:essence)",
         "(hint)__ find hole, check surroundings",
         "kill (img:checkpoint) geonor",
@@ -171,6 +184,7 @@
         "no"
       ],
       "lines": [
+        "optional: alchemy orb: (color:cc99ff)league_mechanic",
         "kill (img:checkpoint) candlemass for (quest:essence)",
         "(hint)__ find hole, check surroundings",
         "kill (img:checkpoint) geonor",
@@ -202,6 +216,7 @@
   ],
   [
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "kill (img:checkpoint) rathbreaker || (img:portal) out",
       "(hint)__ follow this edge from the start",
       "(img:quest_2) zarka: (img:skill) || enter areaidg2_town ;; the ardura caravan"
@@ -215,6 +230,7 @@
       "find & enter (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
+      "optional: (img:support) (color:cc99ff)league_mechanic",
       "kill rudja || free (img:quest_2) risu",
       "(hint)__ usually (img:0) / (img:1) after start-area",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
@@ -232,11 +248,13 @@
       "(color:cc99ff)desert_map: areaidg2_2 ;; traitor's passage"
     ],
     [
+      "optional: (img:artificer) (color:cc99ff)league_mechanic",
       "kill (img:checkpoint) balbala for (quest:barya)",
       "(hint)__ follow paper talismans",
       "enter (img:checkpoint) areaidg2_3 ;; the halani gates"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "follow the canyon, kill jamanra",
       "use (img:arena) stairs, go further into area",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
@@ -256,18 +274,19 @@
       "(color:cc99ff)desert_map: areaidg2_4_1 ;; keth"
     ],
     [
+      "optional: (img:gcp) (color:cc99ff)league_mechanic || (color:66b2ff)amulet: (img:arena) stairs",
       "(color:ff00ff)kill_2: (color:cc99ff)snakes (color:lime)(relic) || (img:checkpoint) arena:kabala (color:lime)(book)",
-      "optional: (color:66b2ff)amulet in one of two (img:arena) stairs",
       "follow edge, find bridge to areaidg2_4_2 ;; the lost city"
     ],
     [
+      "optional: alchemy orb: (color:cc99ff)league_mechanic",
       "optional: (img:spirit) in (img:checkpoint) (color:cc99ff)tomb || (color:66b2ff)jewel from <scarab>",
       "find & enter (img:checkpoint) areaidg2_4_3 ;; buried shrines",
       "(hint)_ - 1st corridor shows gen. direction",
       "(hint)_ - find (img:checkpoint) (color:aqua)v-shaped_bridge along edge"
     ],
     [
-      "optional: (color:66b2ff)resist (img:ring) in (img:checkpoint) (color:cc99ff)elemental_offering",
+      "optional: (img:jeweller) (color:cc99ff)league || (color:66b2ff)res (img:ring) in (img:checkpoint) (color:cc99ff)ele._offering",
       "find (img:arena) heart_of_keth, kill azarian",
       "(img:quest_2) halani: (quest:cinders) || (img:quest_2) halani: (quest:essence)",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
@@ -281,6 +300,7 @@
       "find & enter (img:checkpoint) areaidg2_5_2 ;; the bone pits"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "(color:ff00ff)kill_2: (color:cc99ff)hyenas (color:lime)(relic) || arena:ekbab (color:lime)(tusks)",
       "(hint)_ - starting area is crescent-shaped",
       "(hint)_ - arena:arena is on 1 side of (color:aqua)shape: check (img:checkpoint)",
@@ -291,6 +311,7 @@
       "(color:cc99ff)desert_map: areaidg2_6 ;; valley of the titans"
     ],
     [
+      "optional: (color:ff8111)unique: (color:cc99ff)league_mechanic",
       "(color:ff00ff)2_tasks on outer/inner edges:",
       "(hint)_ - activate (quest:3) (img:checkpoint) (quest:ancient_seals)",
       "(hint)_ - find (img:waypoint): insert (quest:relics) nearby",
@@ -364,12 +385,14 @@
       ]
     },
     [
+      "optional: alchemy orb: (color:cc99ff)league_mechanic",
       "(color:ff00ff)2_tasks: find (img:waypoint) || kill (img:checkpoint) silverfist",
       "(hint)_ arena:silverfist: look for pillar structures",
       "optional: <rawhide/linen_belt>: (img:checkpoint) (color:cc99ff)jungle_grave",
       "(img:0) edge leads to (img:checkpoint) areaidg3_2_1 ;; infested barrens"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "get (img:waypoint) || (color:ff00ff)2_tasks along waterway edge:",
       "(hint)__ (img:in-out2) exit_1 for (img:waypoint) || enter (img:arena) exit_2 for (img:waypoint)",
       "(img:waypoint) -travel to areaidg3_3 ;; jungle ruins"
@@ -410,6 +433,7 @@
       "enter areaidg3_6_2 ;; jiquani's sanctum"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "find (quest:2_cores), start (quest:2_generators) (v-shape)",
       "(hint)__ then (color:cc99ff)esc:_respawn || (img:checkpoint) -travel back to start",
       "activate (quest:core) || kill zicoatl for (quest:soul_core)",
@@ -519,12 +543,14 @@
       "(img:quest_2) doryani || (img:quest_2) alva: (quest:charter) || (img:quest_2) makoru: areaidg4_2_1 ;; kedge bay"
     ],
     [
+      "optional: exalted: (color:cc99ff)league_mechanic",
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)abandoned_ship (?)",
       "optional: (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)smuggler's_stash",
       "enter areaidg4_2_2 ;; journey's end"
     ],
     [
       "activate the (img:waypoint) _|| (img:quest_2) tujen",
+      "optional: alchemy orb: (color:cc99ff)league_mechanic",
       "find & kill (img:checkpoint) hartlin for (quest:verisium)",
       "free (img:quest_2) matiki (?) || (img:portal) to areaidg4_town ;; kingsmarch"
     ],
@@ -542,6 +568,7 @@
     ],
     [
       "optional: (img:support) in (img:checkpoint) (color:cc99ff)cavern || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
+      "optional: (img:artificer) (color:cc99ff)league_mechanic",
       "kill (img:checkpoint) shark || free (img:quest_2) matiki (?)",
       "(hint)__ opt: (color:cc99ff)unc._gem for (quest:fin) in areaidg4_11_1a ;; ngakanu",
       "find & enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
@@ -553,6 +580,7 @@
       "makoru (ship): areaidg4_5_1 ;; abandoned prison"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "(quest:buff): 30% inc. flask recovery",
       "(hint)_ - kill (color:cc99ff)necromancers for (quest:key)",
       "(hint)_ - find (img:checkpoint) (color:cc99ff)chapel, activate (quest:statue)",
@@ -568,7 +596,7 @@
       "makoru (ship): areaidg4_1_1 ;; isle of kin"
     ],
     [
-      "optional: (img:skill) (img:support) in (img:checkpoint) (color:cc99ff)beast_pen",
+      "optional: (img:gcp) (color:cc99ff)league || (img:skill) (img:support) in (img:checkpoint) (color:cc99ff)beast_pen",
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)delve_site || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)sailor",
       "kill (img:checkpoint) blind_beast || free (img:quest_2) matiki (?)",
       "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
@@ -586,10 +614,10 @@
       "makoru: areaidg4_4_1 ;; eye of hinekora"
     ],
     [
+      "optional: chaos orb: (color:cc99ff)league_mechanic",
       "(img:quest_2) matiki || (img:quest_2) (color:cc99ff)well || complete 3 tests",
       "(hint)__ (img:spirit): (color:cc99ff)waterfall between 2nd/3rd test",
       "(img:quest_2) (color:lime)pay_respects in (img:checkpoint) (color:cc99ff)silent_hall",
-      "(hint)__ side passage right after 3rd test",
       "enter (img:checkpoint) areaidg4_4_2 ;; halls of the dead"
     ],
     [
@@ -608,6 +636,7 @@
       "kill torvian || enter areaidg4_10 ;; the excavation"
     ],
     [
+      "optional: <amulet>: (color:cc99ff)league_mechanic",
       "kill (img:checkpoint) benedictus || enter the site",
       "(img:quest_2) hooded one || (img:portal) to areaidg4_town ;; kingsmarch"
     ],
@@ -615,9 +644,7 @@
       "(img:quest_2) rhodri (ship): areaidg4_11_1b ;; ngakanu"
     ],
     [
-      "greater (img:jeweller) in (color:cc99ff)league_mechanic (?)",
-      "(hint)_ - speculation based on abyss league",
-      "(hint)_ - might not be a recurring reward",
+      "greater (img:jeweller): (color:cc99ff)league_mechanic",
       "enter (img:checkpoint) areaidg4_11_2 ;; heart of the tribe"
     ],
     [
@@ -640,6 +667,7 @@
       "kill witches, enter (img:checkpoint) areaidp1_2 ;; stones of serle"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "activate 6 (img:checkpoint) (color:cc99ff)megaliths || kill siora",
       "(img:quest_2) una: (color:cc99ff)listen_to_the_end",
       "go back to (img:checkpoint) areaidp1_1 ;; scorched farmlands"
@@ -691,6 +719,7 @@
       "go (img:6) to (img:checkpoint) areaidp2_2 ;; pools of khatal"
     ],
     [
+      "optional: alchemy orb: (color:cc99ff)league_mechanic",
       "enter (img:checkpoint) areaidp2_3 ;; sel khari sanctuary"
     ],
     [
@@ -706,6 +735,7 @@
       "kill (img:checkpoint) vornas || enter areaidp2_6 ;; qimah"
     ],
     [
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "find (img:checkpoint) (color:cc99ff)7_pillars for (quest:perma._buff)",
       "(hint)__ usually in corner near entrance/exit",
       "follow edge to (img:checkpoint) areaidp2_7 ;; qimah reservoir"
@@ -738,8 +768,8 @@
       "enter (img:checkpoint) areaidp3_4 ;; howling caves"
     ],
     [
-      "kill (img:checkpoint) yeti for (quest:tusks)",
-      "(img:portal) to areaidp3_town ;; the glade"
+      "optional: chaos orb: (color:cc99ff)league_mechanic",
+      "kill (img:checkpoint) yeti (color:lime)(tusks) || (img:portal) areaidp3_town ;; the glade"
     ],
     [
       "(img:quest_2) hilda: (quest:book)",
@@ -755,7 +785,7 @@
       "enter (img:checkpoint) areaidp3_6 ;; etched ravine"
     ],
     [
-      "kill stormgore",
+      "optional: exalted orb: (color:cc99ff)league_mechanic",
       "enter areaidp3_7 ;; the cuachic vault"
     ],
     [
