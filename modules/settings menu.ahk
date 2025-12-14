@@ -4433,7 +4433,7 @@ Settings_searchstrings()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
 	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Search-strings">wiki page</a>
-	Gui, %GUI%: Add, Link, % "ys HWNDhwnd x+"2*settings.general.fWidth, <a href="https://poe.re/">poe regex</a>
+	Gui, %GUI%: Add, Link, % "ys HWNDhwnd x+"2*settings.general.fWidth, % "<a href=""https://poe" StrReplace(vars.poe_version, " ") ".re/"">poe regex</a>"
 	vars.hwnd.help_tooltips["settings_searchstrings poe-regex"] := hwnd
 
 	For string, val in vars.searchstrings.list
