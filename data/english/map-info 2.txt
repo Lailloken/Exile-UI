@@ -80,11 +80,6 @@ type	=	monsters
 text	=	extra magic: +%
 ID	=	008
 
-[# increased number of Rare Monsters]
-type	=	monsters
-text	=	extra rares: +%
-ID	=	009
-
 [# increased amount of Magic Chests]
 type	=	area
 text	=	magic chests: +%
