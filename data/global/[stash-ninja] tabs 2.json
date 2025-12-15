@@ -3,1355 +3,1624 @@
     [
       49,
       204,
-      "orb of transmutation"
+      "orb of transmutation",
+      "transmute"
     ],
     [
       0,
       0,
-      "greater orb of transmutation"
+      "greater orb of transmutation",
+      "greater-orb-of-transmutation"
     ],
     [
       0,
       0,
-      "perfect orb of transmutation"
+      "perfect orb of transmutation",
+      "perfect-orb-of-transmutation"
     ],
     [
       319,
       0,
-      "orb of alchemy"
+      "orb of alchemy",
+      "alch"
     ],
     [
       409,
       0,
-      "vaal orb"
+      "vaal orb",
+      "vaal"
     ],
     [
       499,
       0,
-      "orb of annulment"
+      "orb of annulment",
+      "annul"
     ],
     [
       607,
       0,
-      "lesser jeweller's orb"
+      "lesser jeweller's orb",
+      "lesser-jewellers-orb"
     ],
     [
       0,
       0,
-      "greater jeweller's orb"
+      "greater jeweller's orb",
+      "greater-jewellers-orb"
     ],
     [
       0,
       0,
-      "perfect jeweller's orb"
+      "perfect jeweller's orb",
+      "perfect-jewellers-orb"
     ],
     [
       49,
       294,
-      "orb of augmentation"
+      "orb of augmentation",
+      "aug"
     ],
     [
       0,
       0,
-      "greater orb of augmentation"
+      "greater orb of augmentation",
+      "greater-orb-of-augmentation"
     ],
     [
       0,
       0,
-      "perfect orb of augmentation"
+      "perfect orb of augmentation",
+      "perfect-orb-of-augmentation"
     ],
     [
       319,
       0,
-      "orb of chance"
+      "orb of chance",
+      "chance"
     ],
     [
       409,
       0,
-      "fracturing orb"
+      "fracturing orb",
+      "fracturing-orb"
     ],
     [
       499,
       0,
-      "divine orb"
+      "divine orb",
+      "divine"
     ],
     [
       769,
       0,
-      "artificer's orb"
+      "artificer's orb",
+      "artificers"
     ],
     [
       49,
       384,
-      "regal orb"
+      "regal orb",
+      "regal"
     ],
     [
       0,
       0,
-      "greater regal orb"
+      "greater regal orb",
+      "greater-regal-orb"
     ],
     [
       0,
       0,
-      "perfect regal orb"
+      "perfect regal orb",
+      "perfect-regal-orb"
     ],
     [
       364,
       0,
-      "mirror of kalandra"
+      "mirror of kalandra",
+      "mirror"
     ],
     [
       454,
       0,
-      "hinekora's lock"
+      "hinekora's lock",
+      "hinekoras-lock"
     ],
     [
       589,
       411,
-      "arcanist's etcher"
+      "arcanist's etcher",
+      "etcher"
     ],
     [
       679,
       0,
-      "armourer's scrap"
+      "armourer's scrap",
+      "scrap"
     ],
     [
       769,
       0,
-      "blacksmith's whetstone"
+      "blacksmith's whetstone",
+      "whetstone"
     ],
     [
       49,
       474,
-      "exalted orb"
+      "exalted orb",
+      "exalted"
     ],
     [
       0,
       0,
-      "greater exalted orb"
+      "greater exalted orb",
+      "greater-exalted-orb"
     ],
     [
       0,
       0,
-      "perfect exalted orb"
+      "perfect exalted orb",
+      "perfect-exalted-orb"
     ],
     [
       679,
       501,
-      "glassblower's bauble"
+      "glassblower's bauble",
+      "bauble"
     ],
     [
       769,
       501,
-      "gemcutter's prism"
+      "gemcutter's prism",
+      "gcp"
     ],
     [
       49,
       564,
-      "chaos orb"
+      "chaos orb",
+      "chaos"
     ],
     [
       0,
       0,
-      "greater chaos orb"
+      "greater chaos orb",
+      "greater-chaos-orb"
     ],
     [
       0,
       0,
-      "perfect chaos orb"
+      "perfect chaos orb",
+      "perfect-chaos-orb"
     ],
     [
       769,
       618,
-      "scroll of wisdom"
+      "scroll of wisdom",
+      "wisdom"
     ]
   ],
   "delirium": [
     [
       407,
       237,
-      "simulacrum splinter"
+      "simulacrum splinter",
+      "simulacrum-splinter"
     ],
     [
       223,
       409,
-      "diluted liquid ire"
+      "diluted liquid ire",
+      "diluted-liquid-ire"
     ],
     [
       0,
       0,
-      "diluted liquid guilt"
+      "diluted liquid guilt",
+      "diluted-liquid-guilt"
     ],
     [
       0,
       0,
-      "diluted liquid greed"
+      "diluted liquid greed",
+      "diluted-liquid-greed"
     ],
     [
       0,
       0,
-      "liquid paranoia"
+      "liquid paranoia",
+      "liquid-paranoia"
     ],
     [
       0,
       0,
-      "liquid envy"
+      "liquid envy",
+      "liquid-envy"
     ],
     [
       223,
       505,
-      "liquid disgust"
+      "liquid disgust",
+      "liquid-disgust"
     ],
     [
       0,
       0,
-      "liquid despair"
+      "liquid despair",
+      "liquid-despair"
     ],
     [
       0,
       0,
-      "concentrated liquid fear"
+      "concentrated liquid fear",
+      "concentrated-liquid-fear"
     ],
     [
       0,
       0,
-      "concentrated liquid suffering"
+      "concentrated liquid suffering",
+      "concentrated-liquid-suffering"
     ],
     [
       0,
       0,
-      "concentrated liquid isolation"
+      "concentrated liquid isolation",
+      "concentrated-liquid-isolation"
     ]
   ],
   "essences": [
     [
       64,
       197,
-      "lesser essence of the body"
+      "lesser essence of the body",
+      "lesser-essence-of-the-body"
     ],
     [
       0,
       0,
-      "essence of the body"
+      "essence of the body",
+      "essence-of-the-body"
     ],
     [
       0,
       0,
-      "greater essence of the body"
+      "greater essence of the body",
+      "greater-essence-of-the-body"
     ],
     [
       285,
       0,
-      "perfect essence of the body"
+      "perfect essence of the body",
+      "perfect-essence-of-the-body"
     ],
     [
       545,
       0,
-      "lesser essence of command"
+      "lesser essence of command",
+      "lesser-essence-of-command"
     ],
     [
       0,
       0,
-      "essence of command"
+      "essence of command",
+      "essence-of-command"
     ],
     [
       0,
       0,
-      "greater essence of command"
+      "greater essence of command",
+      "greater-essence-of-command"
     ],
     [
       765,
       0,
-      "perfect essence of command"
+      "perfect essence of command",
+      "perfect-essence-of-command"
     ],
     [
       64,
       278,
-      "lesser essence of the mind"
+      "lesser essence of the mind",
+      "lesser-essence-of-the-mind"
     ],
     [
       0,
       0,
-      "essence of the mind"
+      "essence of the mind",
+      "essence-of-the-mind"
     ],
     [
       0,
       0,
-      "greater essence of the mind"
+      "greater essence of the mind",
+      "greater-essence-of-the-mind"
     ],
     [
       285,
       0,
-      "perfect essence of the mind"
+      "perfect essence of the mind",
+      "perfect-essence-of-the-mind"
     ],
     [
       545,
       0,
-      "lesser essence of abrasion"
+      "lesser essence of abrasion",
+      "lesser-essence-of-abrasion"
     ],
     [
       0,
       0,
-      "essence of abrasion"
+      "essence of abrasion",
+      "essence-of-abrasion"
     ],
     [
       0,
       0,
-      "greater essence of abrasion"
+      "greater essence of abrasion",
+      "greater-essence-of-abrasion"
     ],
     [
       765,
       0,
-      "perfect essence of abrasion"
+      "perfect essence of abrasion",
+      "perfect-essence-of-abrasion"
     ],
     [
       64,
       359,
-      "lesser essence of enhancement"
+      "lesser essence of enhancement",
+      "lesser-essence-of-enhancement"
     ],
     [
       0,
       0,
-      "essence of enhancement"
+      "essence of enhancement",
+      "essence-of-enhancement"
     ],
     [
       0,
       0,
-      "greater essence of enhancement"
+      "greater essence of enhancement",
+      "greater-essence-of-enhancement"
     ],
     [
       285,
       0,
-      "perfect essence of enhancement"
+      "perfect essence of enhancement",
+      "perfect-essence-of-enhancement"
     ],
     [
       545,
       0,
-      "lesser essence of sorcery"
+      "lesser essence of sorcery",
+      "lesser-essence-of-sorcery"
     ],
     [
       0,
       0,
-      "essence of sorcery"
+      "essence of sorcery",
+      "essence-of-sorcery"
     ],
     [
       0,
       0,
-      "greater essence of sorcery"
+      "greater essence of sorcery",
+      "greater-essence-of-sorcery"
     ],
     [
       765,
       0,
-      "perfect essence of sorcery"
+      "perfect essence of sorcery",
+      "perfect-essence-of-sorcery"
     ],
     [
       64,
       440,
-      "lesser essence of flames"
+      "lesser essence of flames",
+      "lesser-essence-of-flames"
     ],
     [
       0,
       0,
-      "essence of flames"
+      "essence of flames",
+      "essence-of-flames"
     ],
     [
       0,
       0,
-      "greater essence of flames"
+      "greater essence of flames",
+      "greater-essence-of-flames"
     ],
     [
       285,
       0,
-      "perfect essence of flames"
+      "perfect essence of flames",
+      "perfect-essence-of-flames"
     ],
     [
       545,
       0,
-      "lesser essence of haste"
+      "lesser essence of haste",
+      "lesser-essence-of-haste"
     ],
     [
       0,
       0,
-      "essence of haste"
+      "essence of haste",
+      "essence-of-haste"
     ],
     [
       0,
       0,
-      "greater essence of haste"
+      "greater essence of haste",
+      "greater-essence-of-haste"
     ],
     [
       765,
       0,
-      "perfect essence of haste"
+      "perfect essence of haste",
+      "perfect-essence-of-haste"
     ],
     [
       64,
       521,
-      "lesser essence of insulation"
+      "lesser essence of insulation",
+      "lesser-essence-of-insulation"
     ],
     [
       0,
       0,
-      "essence of insulation"
+      "essence of insulation",
+      "essence-of-insulation"
     ],
     [
       0,
       0,
-      "greater essence of insulation"
+      "greater essence of insulation",
+      "greater-essence-of-insulation"
     ],
     [
       285,
       0,
-      "perfect essence of insulation"
+      "perfect essence of insulation",
+      "perfect-essence-of-insulation"
     ],
     [
       545,
       0,
-      "lesser essence of alacrity"
+      "lesser essence of alacrity",
+      "lesser-essence-of-alacrity"
     ],
     [
       0,
       0,
-      "essence of alacrity"
+      "essence of alacrity",
+      "essence-of-alacrity"
     ],
     [
       0,
       0,
-      "greater essence of alacrity"
+      "greater essence of alacrity",
+      "greater-essence-of-alacrity"
     ],
     [
       765,
       0,
-      "perfect essence of alacrity"
+      "perfect essence of alacrity",
+      "perfect-essence-of-alacrity"
     ],
     [
       64,
       602,
-      "lesser essence of ice"
+      "lesser essence of ice",
+      "lesser-essence-of-ice"
     ],
     [
       0,
       0,
-      "essence of ice"
+      "essence of ice",
+      "essence-of-ice"
     ],
     [
       0,
       0,
-      "greater essence of ice"
+      "greater essence of ice",
+      "greater-essence-of-ice"
     ],
     [
       285,
       0,
-      "perfect essence of ice"
+      "perfect essence of ice",
+      "perfect-essence-of-ice"
     ],
     [
       545,
       0,
-      "lesser essence of seeking"
+      "lesser essence of seeking",
+      "lesser-essence-of-seeking"
     ],
     [
       0,
       0,
-      "essence of seeking"
+      "essence of seeking",
+      "essence-of-seeking"
     ],
     [
       0,
       0,
-      "greater essence of seeking"
+      "greater essence of seeking",
+      "greater-essence-of-seeking"
     ],
     [
       765,
       0,
-      "perfect essence of seeking"
+      "perfect essence of seeking",
+      "perfect-essence-of-seeking"
     ],
     [
       64,
       683,
-      "lesser essence of thawing"
+      "lesser essence of thawing",
+      "lesser-essence-of-thawing"
     ],
     [
       0,
       0,
-      "essence of thawing"
+      "essence of thawing",
+      "essence-of-thawing"
     ],
     [
       0,
       0,
-      "greater essence of thawing"
+      "greater essence of thawing",
+      "greater-essence-of-thawing"
     ],
     [
       285,
       0,
-      "perfect essence of thawing"
+      "perfect essence of thawing",
+      "perfect-essence-of-thawing"
     ],
     [
       545,
       0,
-      "lesser essence of battle"
+      "lesser essence of battle",
+      "lesser-essence-of-battle"
     ],
     [
       0,
       0,
-      "essence of battle"
+      "essence of battle",
+      "essence-of-battle"
     ],
     [
       0,
       0,
-      "greater essence of battle"
+      "greater essence of battle",
+      "greater-essence-of-battle"
     ],
     [
       765,
       0,
-      "perfect essence of battle"
+      "perfect essence of battle",
+      "perfect-essence-of-battle"
     ],
     [
       64,
       764,
-      "lesser essence of electricity"
+      "lesser essence of electricity",
+      "lesser-essence-of-electricity"
     ],
     [
       0,
       0,
-      "essence of electricity"
+      "essence of electricity",
+      "essence-of-electricity"
     ],
     [
       0,
       0,
-      "greater essence of electricity"
+      "greater essence of electricity",
+      "greater-essence-of-electricity"
     ],
     [
       285,
       0,
-      "perfect essence of electricity"
+      "perfect essence of electricity",
+      "perfect-essence-of-electricity"
     ],
     [
       379,
       0,
-      "essence of hysteria"
+      "essence of hysteria",
+      "essence-of-hysteria"
     ],
     [
       0,
       0,
-      "essence of horror"
+      "essence of horror",
+      "essence-of-horror"
     ],
     [
       545,
       0,
-      "lesser essence of the infinite"
+      "lesser essence of the infinite",
+      "lesser-essence-of-the-infinite"
     ],
     [
       0,
       0,
-      "essence of the infinite"
+      "essence of the infinite",
+      "essence-of-the-infinite"
     ],
     [
       0,
       0,
-      "greater essence of the infinite"
+      "greater essence of the infinite",
+      "greater-essence-of-the-infinite"
     ],
     [
       765,
       0,
-      "perfect essence of the infinite"
+      "perfect essence of the infinite",
+      "perfect-essence-of-the-infinite"
     ],
     [
       64,
       845,
-      "lesser essence of grounding"
+      "lesser essence of grounding",
+      "lesser-essence-of-grounding"
     ],
     [
       0,
       0,
-      "essence of grounding"
+      "essence of grounding",
+      "essence-of-grounding"
     ],
     [
       0,
       0,
-      "greater essence of grounding"
+      "greater essence of grounding",
+      "greater-essence-of-grounding"
     ],
     [
       285,
       0,
-      "perfect essence of grounding"
+      "perfect essence of grounding",
+      "perfect-essence-of-grounding"
     ],
     [
       379,
       0,
-      "essence of delirium"
+      "essence of delirium",
+      "essence-of-delirium"
     ],
     [
       0,
       0,
-      "essence of insanity"
+      "essence of insanity",
+      "essence-of-insanity"
     ],
     [
       545,
       0,
-      "lesser essence of opulence"
+      "lesser essence of opulence",
+      "lesser-essence-of-opulence"
     ],
     [
       0,
       0,
-      "essence of opulence"
+      "essence of opulence",
+      "essence-of-opulence"
     ],
     [
       0,
       0,
-      "greater essence of opulence"
+      "greater essence of opulence",
+      "greater-essence-of-opulence"
     ],
     [
       765,
       0,
-      "perfect essence of opulence"
+      "perfect essence of opulence",
+      "perfect-essence-of-opulence"
     ],
     [
       64,
       926,
-      "lesser essence of ruin"
+      "lesser essence of ruin",
+      "lesser-essence-of-ruin"
     ],
     [
       0,
       0,
-      "essence of ruin"
+      "essence of ruin",
+      "essence-of-ruin"
     ],
     [
       0,
       0,
-      "greater essence of ruin"
+      "greater essence of ruin",
+      "greater-essence-of-ruin"
     ],
     [
       285,
       0,
-      "perfect essence of ruin"
+      "perfect essence of ruin",
+      "perfect-essence-of-ruin"
     ],
     [
       413,
       0,
-      "essence of the abyss"
+      "essence of the abyss",
+      "essence-of-abyss"
     ]
   ],
   "ritual": [
     [
       409,
       204,
-      "petition splinter"
+      "petition splinter",
+      "petition-splinter"
     ],
     [
       251,
       339,
-      "omen of homogenising coronation"
+      "omen of homogenising coronation",
+      "omen-of-homogenising-coronation"
     ],
     [
       368,
       0,
-      "omen of gambling"
+      "omen of gambling",
+      "omen-of-gambling"
     ],
     [
       0,
       0,
-      "omen of bartering"
+      "omen of bartering",
+      "omen-of-bartering"
     ],
     [
       566,
       0,
-      "omen of corruption"
+      "omen of corruption",
+      "omen-of-corruption"
     ],
     [
       148,
       456,
-      "omen of sinistral exaltation"
+      "omen of sinistral exaltation",
+      "omen-of-sinistral-exaltation"
     ],
     [
       0,
       0,
-      "omen of dextral exaltation"
+      "omen of dextral exaltation",
+      "omen-of-dextral-exaltation"
     ],
     [
       0,
       0,
-      "omen of greater exaltation"
+      "omen of greater exaltation",
+      "omen-of-greater-exaltation"
     ],
     [
       427,
       0,
-      "omen of sinistral erasure"
+      "omen of sinistral erasure",
+      "omen-of-sinistral-erasure"
     ],
     [
       0,
       0,
-      "omen of dextral erasure"
+      "omen of dextral erasure",
+      "omen-of-dextral-erasure"
     ],
     [
       0,
       0,
-      "omen of whittling"
+      "omen of whittling",
+      "omen-of-whittling"
     ],
     [
       188,
       537,
-      "omen of homogenising exaltation"
+      "omen of homogenising exaltation",
+      "omen-of-homogenising-exaltation"
     ],
     [
       0,
       0,
-      "omen of catalysing exaltation"
+      "omen of catalysing exaltation",
+      "omen-of-catalysing-exaltation"
     ],
     [
       427,
       537,
-      "omen of chaotic rarity"
+      "omen of chaotic rarity",
+      "omen-of-chaotic-rarity"
     ],
     [
       0,
       0,
-      "omen of chaotic quantity"
+      "omen of chaotic quantity",
+      "omen-of-chaotic-quantity"
     ],
     [
       0,
       0,
-      "omen of chaotic monsters"
+      "omen of chaotic monsters",
+      "omen-of-chaotic-monsters"
     ],
     [
       170,
       654,
-      "omen of sinistral annulment"
+      "omen of sinistral annulment",
+      "omen-of-sinistral-annulment"
     ],
     [
       0,
       0,
-      "omen of dextral annulment"
+      "omen of dextral annulment",
+      "omen-of-dextral-annulment"
     ],
     [
       368,
       0,
-      "omen of chance"
+      "omen of chance",
+      "omen-of-chance"
     ],
     [
       0,
       0,
-      "omen of the ancients"
+      "omen of the ancients",
+      "omen-of-the-ancients"
     ],
     [
       566,
       0,
-      "omen of the blessed"
+      "omen of the blessed",
+      "omen-of-the-blessed"
     ],
     [
       0,
       0,
-      "omen of sanctification"
+      "omen of sanctification",
+      "omen-of-sanctification"
     ],
     [
       170,
       771,
-      "omen of dextral crystallisation"
+      "omen of dextral crystallisation",
+      "omen-of-dextral-crystallisation"
     ],
     [
       0,
       0,
-      "omen of sinistral crystallisation"
+      "omen of sinistral crystallisation",
+      "omen-of-sinistral-crystallisation"
     ],
     [
       566,
       0,
-      "omen of recombination"
+      "omen of recombination",
+      "omen-of-recombination"
     ],
     [
       148,
       906,
-      "omen of resurgence"
+      "omen of resurgence",
+      "omen-of-resurgence"
     ],
     [
       0,
       0,
-      "omen of amelioration"
+      "omen of amelioration",
+      "omen-of-amelioration"
     ],
     [
       0,
       0,
-      "omen of refreshment"
+      "omen of refreshment",
+      "omen-of-refreshment"
     ],
     [
       427,
       0,
-      "omen of the hunt"
+      "omen of the hunt",
+      "omen-of-the-hunt"
     ],
     [
       0,
       0,
-      "omen of answered prayers"
+      "omen of answered prayers",
+      "omen-of-answered-prayers"
     ],
     [
       0,
       0,
-      "omen of secret compartments"
+      "omen of secret compartments",
+      "omen-of-secret-compartments"
     ],
     [
       0,
       0,
-      "omen of reinforcements"
+      "omen of reinforcements",
+      "omen-of-reinforcements"
     ]
   ],
   "socketables": [
     [
       58,
       194,
-      "lesser desert rune"
+      "lesser desert rune",
+      "lesser-desert-rune"
     ],
     [
       0,
       0,
-      "desert rune"
+      "desert rune",
+      "desert-rune"
     ],
     [
       0,
       0,
-      "greater desert rune"
+      "greater desert rune",
+      "greater-desert-rune"
     ],
     [
       256,
       0,
-      "lesser glacial rune"
+      "lesser glacial rune",
+      "lesser-glacial-rune"
     ],
     [
       0,
       0,
-      "glacial rune"
+      "glacial rune",
+      "glacial-rune"
     ],
     [
       0,
       0,
-      "greater glacial rune"
+      "greater glacial rune",
+      "greater-glacial-rune"
     ],
     [
       454,
       0,
-      "lesser storm rune"
+      "lesser storm rune",
+      "lesser-storm-rune"
     ],
     [
       0,
       0,
-      "storm rune"
+      "storm rune",
+      "storm-rune"
     ],
     [
       0,
       0,
-      "greater storm rune"
+      "greater storm rune",
+      "greater-storm-rune"
     ],
     [
       652,
       0,
-      "lesser iron rune"
+      "lesser iron rune",
+      "lesser-iron-rune"
     ],
     [
       0,
       0,
-      "iron rune"
+      "iron rune",
+      "iron-rune"
     ],
     [
       0,
       0,
-      "greater iron rune"
+      "greater iron rune",
+      "greater-iron-rune"
     ],
     [
       58,
       266,
-      "lesser body rune"
+      "lesser body rune",
+      "lesser-body-rune"
     ],
     [
       0,
       0,
-      "body rune"
+      "body rune",
+      "body-rune"
     ],
     [
       0,
       0,
-      "greater body rune"
+      "greater body rune",
+      "greater-body-rune"
     ],
     [
       256,
       0,
-      "lesser mind rune"
+      "lesser mind rune",
+      "lesser-mind-rune"
     ],
     [
       0,
       0,
-      "mind rune"
+      "mind rune",
+      "mind-rune"
     ],
     [
       0,
       0,
-      "greater mind rune"
+      "greater mind rune",
+      "greater-mind-rune"
     ],
     [
       454,
       0,
-      "lesser rebirth rune"
+      "lesser rebirth rune",
+      "lesser-rebirth-rune"
     ],
     [
       0,
       0,
-      "rebirth rune"
+      "rebirth rune",
+      "rebirth-rune"
     ],
     [
       0,
       0,
-      "greater rebirth rune"
+      "greater rebirth rune",
+      "greater-rebirth-rune"
     ],
     [
       652,
       0,
-      "lesser inspiration rune"
+      "lesser inspiration rune",
+      "lesser-inspiration-rune"
     ],
     [
       0,
       0,
-      "inspiration rune"
+      "inspiration rune",
+      "inspiration-rune"
     ],
     [
       0,
       0,
-      "greater inspiration rune"
+      "greater inspiration rune",
+      "greater-inspiration-rune"
     ],
     [
       58,
       338,
-      "lesser robust rune"
+      "lesser robust rune",
+      "lesser-robust-rune"
     ],
     [
       0,
       0,
-      "robust rune"
+      "robust rune",
+      "robust-rune"
     ],
     [
       0,
       0,
-      "greater robust rune"
+      "greater robust rune",
+      "greater-robust-rune"
     ],
     [
       256,
       0,
-      "lesser adept rune"
+      "lesser adept rune",
+      "lesser-adept-rune"
     ],
     [
       0,
       0,
-      "adept rune"
+      "adept rune",
+      "adept-rune"
     ],
     [
       0,
       0,
-      "greater adept rune"
+      "greater adept rune",
+      "greater-adept-rune"
     ],
     [
       454,
       0,
-      "lesser resolve rune"
+      "lesser resolve rune",
+      "lesser-resolve-rune"
     ],
     [
       0,
       0,
-      "resolve rune"
+      "resolve rune",
+      "resolve-rune"
     ],
     [
       0,
       0,
-      "greater resolve rune"
+      "greater resolve rune",
+      "greater-resolve-rune"
     ],
     [
       652,
       0,
-      "lesser vision rune"
+      "lesser vision rune",
+      "lesser-vision-rune"
     ],
     [
       0,
       0,
-      "vision rune"
+      "vision rune",
+      "vision-rune"
     ],
     [
       0,
       0,
-      "greater vision rune"
+      "greater vision rune",
+      "greater-vision-rune"
     ],
     [
       58,
       410,
-      "lesser stone rune"
+      "lesser stone rune",
+      "lesser-stone-rune"
     ],
     [
       0,
       0,
-      "stone rune"
+      "stone rune",
+      "stone-rune"
     ],
     [
       0,
       0,
-      "greater stone rune"
+      "greater stone rune",
+      "greater-stone-rune"
     ],
     [
       562,
       0,
-      "greater rune of leadership"
+      "greater rune of leadership",
+      "greater-rune-of-leadership"
     ],
     [
       634,
       0,
-      "greater rune of tithing"
+      "greater rune of tithing",
+      "greater-rune-of-tithing"
     ],
     [
       706,
       0,
-      "greater rune of alacrity"
+      "greater rune of alacrity",
+      "greater-rune-of-alacrity"
     ],
     [
       778,
       0,
-      "greater rune of nobility"
+      "greater rune of nobility",
+      "greater-rune-of-nobility"
     ],
     [
       58,
       482,
-      "farrul's rune of the hunt"
+      "farrul's rune of the hunt",
+      "farruls-rune-of-the-hunt"
     ],
     [
       130,
       0,
-      "thane myrk's rune of summer"
+      "thane myrk's rune of summer",
+      "thane-myrks-rune-of-summer"
     ],
     [
       202,
       0,
-      "lady hestra's rune of winter"
+      "lady hestra's rune of winter",
+      "lady-hestras-rune-of-winter"
     ],
     [
       274,
       0,
-      "thane leld's rune of spring"
+      "thane leld's rune of spring",
+      "thane-lelds-rune-of-spring"
     ],
     [
       346,
       0,
-      "fenumus' rune of agony"
+      "fenumus' rune of agony",
+      "fenumus-rune-of-agony"
     ],
     [
       418,
       0,
-      "thane girt's rune of wildness"
+      "thane girt's rune of wildness",
+      "thane-girts-rune-of-wildness"
     ],
     [
       490,
       0,
-      "hedgewitch assandra's rune of wisdom"
+      "hedgewitch assandra's rune of wisdom",
+      "hedgewitch-assandras-rune-of-wisdom"
     ],
     [
       562,
       0,
-      "saqawal's rune of the sky"
+      "saqawal's rune of the sky",
+      "saqawals-rune-of-the-sky"
     ],
     [
       634,
       0,
-      "the greatwolf's rune of willpower"
+      "the greatwolf's rune of willpower",
+      "the-greatwolfs-rune-of-willpower"
     ],
     [
       706,
       0,
-      "craiceann's rune of recovery"
+      "craiceann's rune of recovery",
+      "craiceanns-rune-of-recovery"
     ],
     [
       778,
       0,
-      "craiceann's rune of warding"
+      "craiceann's rune of warding",
+      "craiceanns-rune-of-warding"
     ],
     [
       94,
       554,
-      "countess seske's rune of archery"
+      "countess seske's rune of archery",
+      "countess-seskes-rune-of-archery"
     ],
     [
       166,
       0,
-      "saqawal's rune of erosion"
+      "saqawal's rune of erosion",
+      "saqawals-rune-of-erosion"
     ],
     [
       238,
       0,
-      "saqawal's rune of memory"
+      "saqawal's rune of memory",
+      "saqawals-rune-of-memory"
     ],
     [
       310,
       0,
-      "the greatwolf's rune of claws"
+      "the greatwolf's rune of claws",
+      "the-greatwolfs-rune-of-claws"
     ],
     [
       382,
       0,
-      "courtesan mannan's rune of cruelty"
+      "courtesan mannan's rune of cruelty",
+      "courtesan-mannans-rune-of-cruelty"
     ],
     [
       454,
       0,
-      "thane grannell's rune of mastery"
+      "thane grannell's rune of mastery",
+      "thane-grannells-rune-of-mastery"
     ],
     [
       526,
       0,
-      "fenumus' rune of spinning"
+      "fenumus' rune of spinning",
+      "fenumus-rune-of-spinning"
     ],
     [
       598,
       0,
-      "fenumus' rune of draining"
+      "fenumus' rune of draining",
+      "fenumus-rune-of-draining"
     ],
     [
       670,
       0,
-      "farrul's rune of grace"
+      "farrul's rune of grace",
+      "farruls-rune-of-grace"
     ],
     [
       742,
       0,
-      "farrul's rune of the chase"
+      "farrul's rune of the chase",
+      "farruls-rune-of-the-chase"
     ],
     [
       58,
       635,
-      "soul core of topotante"
+      "soul core of topotante",
+      "soul-core-of-topotante"
     ],
     [
       130,
       0,
-      "soul core of tacati"
+      "soul core of tacati",
+      "soul-core-of-tacati"
     ],
     [
       202,
       0,
-      "soul core of opiloti"
+      "soul core of opiloti",
+      "soul-core-of-opiloti"
     ],
     [
       274,
       0,
-      "soul core of jiquani"
+      "soul core of jiquani",
+      "soul-core-of-jiquani"
     ],
     [
       346,
       0,
-      "soul core of zalatl"
+      "soul core of zalatl",
+      "soul-core-of-zalatl"
     ],
     [
       418,
       0,
-      "soul core of citaqualotl"
+      "soul core of citaqualotl",
+      "soul-core-of-citaqualotl"
     ],
     [
       490,
       0,
-      "soul core of puhuarte"
+      "soul core of puhuarte",
+      "soul-core-of-puhuarte"
     ],
     [
       562,
       0,
-      "soul core of tzamoto"
+      "soul core of tzamoto",
+      "soul-core-of-tzamoto"
     ],
     [
       634,
       0,
-      "soul core of xopec"
+      "soul core of xopec",
+      "soul-core-of-xopec"
     ],
     [
       706,
       0,
-      "soul core of quipolatl"
+      "soul core of quipolatl",
+      "soul-core-of-quipolatl"
     ],
     [
       778,
       0,
-      "soul core of ticaba"
+      "soul core of ticaba",
+      "soul-core-of-ticaba"
     ],
     [
       58,
       707,
-      "soul core of atmohua"
+      "soul core of atmohua",
+      "soul-core-of-atmohua"
     ],
     [
       130,
       0,
-      "soul core of cholotl"
+      "soul core of cholotl",
+      "soul-core-of-cholotl"
     ],
     [
       202,
       0,
-      "soul core of zantipi"
+      "soul core of zantipi",
+      "soul-core-of-zantipi"
     ],
     [
       274,
       0,
-      "soul core of azcapa"
+      "soul core of azcapa",
+      "soul-core-of-azcapa"
     ],
     [
       562,
       0,
-      "atmohua's soul core of retreat"
+      "atmohua's soul core of retreat",
+      "atmohuas-soul-core-of-retreat"
     ],
     [
       634,
       0,
-      "hayoxi's soul core of heatproofing"
+      "hayoxi's soul core of heatproofing",
+      "hayoxis-soul-core-of-heatproofing"
     ],
     [
       706,
       0,
-      "zalatl's soul core of insulation"
+      "zalatl's soul core of insulation",
+      "zalatls-soul-core-of-insulation"
     ],
     [
       778,
       0,
-      "topotante's soul core of dampening"
+      "topotante's soul core of dampening",
+      "topotantes-soul-core-of-dampening"
     ],
     [
       58,
       780,
-      "opiloti's soul core of assault"
+      "opiloti's soul core of assault",
+      "opilotis-soul-core-of-assault"
     ],
     [
       130,
       0,
-      "guatelitzi's soul core of endurance"
+      "guatelitzi's soul core of endurance",
+      "guatelitzis-soul-core-of-endurance"
     ],
     [
       202,
       0,
-      "xopec's soul core of power"
+      "xopec's soul core of power",
+      "xopecs-soul-core-of-power"
     ],
     [
       274,
       0,
-      "xipocado's soul core of dominion"
+      "xipocado's soul core of dominion",
+      "xipocados-soul-core-of-dominion"
     ],
     [
       346,
       0,
-      "citaqualotl's soul core of foulness"
+      "citaqualotl's soul core of foulness",
+      "citaqualotls-soul-core-of-foulness"
     ],
     [
       418,
       0,
-      "cholotl's soul core of war"
+      "cholotl's soul core of war",
+      "cholotls-soul-core-of-war"
     ],
     [
       490,
       0,
-      "tacati's soul core of affliction"
+      "tacati's soul core of affliction",
+      "tacatis-soul-core-of-affliction"
     ],
     [
       562,
       0,
-      "quipolatl's soul core of flow"
+      "quipolatl's soul core of flow",
+      "quipolatls-soul-core-of-flow"
     ],
     [
       634,
       0,
-      "tzamoto's soul core of ferocity"
+      "tzamoto's soul core of ferocity",
+      "tzamotos-soul-core-of-ferocity"
     ],
     [
       706,
       0,
-      "uromoti's soul core of attenuation"
+      "uromoti's soul core of attenuation",
+      "uromotis-soul-core-of-attenuation"
     ],
     [
       778,
       0,
-      "estazunti's soul core of convalescence"
+      "estazunti's soul core of convalescence",
+      "estazuntis-soul-core-of-convalescence"
     ],
     [
       58,
       860,
-      "serpent talisman"
+      "snake idol",
+      "serpent-idol"
     ],
     [
       130,
       0,
-      "primate talisman"
+      "primate idol",
+      "primate-idol"
     ],
     [
       202,
       0,
-      "owl talisman"
+      "owl idol",
+      "owl-idol"
     ],
     [
       274,
       0,
-      "cat talisman"
+      "cat idol",
+      "cat-idol"
     ],
     [
       346,
       0,
-      "wolf talisman"
+      "wolf idol",
+      "wolf-idol"
     ],
     [
       418,
       0,
-      "stag talisman"
+      "stag idol",
+      "stag-idol"
     ],
     [
       490,
       0,
-      "boar talisman"
+      "boar idol",
+      "boar-idol"
     ],
     [
       562,
       0,
-      "bear talisman"
+      "bear idol",
+      "bear-idol"
     ],
     [
       634,
       0,
-      "ox talisman"
+      "ox idol",
+      "ox-idol"
     ],
     [
       706,
       0,
-      "rabbit talisman"
+      "rabbit idol",
+      "rabbit-idol"
     ],
     [
       778,
       0,
-      "fox talisman"
+      "fox idol",
+      "fox-idol"
     ],
     [
       202,
       932,
-      "talisman of thruldana"
+      "idol of thruldana",
+      "idol-of-thruldana"
     ],
     [
       274,
       0,
-      "talisman of maxarius"
+      "idol of maxarius",
+      "idol-of-maxarius"
     ],
     [
       346,
       0,
-      "talisman of eeshta"
+      "idol of eeshta",
+      "idol-of-eeshta"
     ],
     [
       418,
       0,
-      "talisman of egrin"
+      "idol of egrin",
+      "idol-of-egrin"
     ],
     [
       490,
       0,
-      "talisman of ralakesh"
+      "idol of ralakesh",
+      "idol-of-ralakesh"
     ],
     [
       562,
       0,
-      "talisman of sirrius"
+      "idol of sirrius",
+      "idol-of-sirrius"
     ],
     [
       634,
       0,
-      "talisman of grold"
+      "idol of grold",
+      "idol-of-grold"
     ]
   ]
 }

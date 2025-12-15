@@ -18,7 +18,7 @@
 	{
 		settings.stash := {"indexes": 15}, ini := IniBatchRead("ini" vars.poe_version "\stash-ninja.ini")
 		settings.stash.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
-		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"]] : [["standard", "Standard"], ["keepers", "Keepers"], ["hc keepers", "Hardcore Keepers"]])
+		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"], ["vaal", "Fate of the Vaal"], ["hc vaal", "HC Fate of the Vaal"]] : [["standard", "Standard"], ["keepers", "Keepers"], ["hc keepers", "Hardcore Keepers"]])
 		settings.stash.league := !Blank(check := ini.settings["league"]) && LLK_HasVal(settings.stash.leagues, check,,,, 1) ? check : settings.stash.leagues.1.2
 		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : (vars.poe_version ? 0 : 1)
 		settings.stash.show_exalt := (!vars.poe_version ? 0 : !Blank(check := ini.settings["show exalt conversion"]) ? check : (vars.poe_version ? 1 : 0))
@@ -392,7 +392,7 @@ Stash_PriceFetch(tab)
 	static types
 
 	If !types
-		types := (vars.poe_version ? {"currency": ["Currency"], "delirium": ["Delirium"], "essences": ["Essences"], "ritual": ["Ritual"], "socketables": ["Runes", "Ultimatum", "Talismans"]}
+		types := (vars.poe_version ? {"currency": ["Currency"], "delirium": ["Delirium"], "essences": ["Essences"], "ritual": ["Ritual"], "socketables": ["Runes", "Ultimatum", "Idols"]}
 			: {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency"], "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]})
 
 	If (tab = "flush") ; when changing leagues, flush prices first to avoid old prices carrying over
@@ -416,7 +416,7 @@ Stash_PriceFetch(tab)
 	{
 		tab := InStr(tab, "currency") ? "currency" : tab, type := types[tab][A_Index], league := StrReplace(settings.stash.league, " ", "+"), outer := A_Index
 		If vars.poe_version
-			URL := "https://poe.ninja/poe2/api/economy/temp/overview?leagueName=" league "&overviewName=" type
+			URL := "https://poe.ninja/poe2/api/economy/exchange/current/overview?league=" league "&type=" type
 		Else data_type := (InStr("fragments,currency", tab) ? "currency" : "item") "/overview", URL := "https://poe.ninja/poe1/api/economy/exchange/current/overview?league=" league "&type=" type
 
 		Try prices := HTTPtoVar(URL)
@@ -438,11 +438,16 @@ Stash_PriceFetch(tab)
 				Else If (val.currencytypename = "divine orb")
 					vars.stash.divine := val.chaosequivalent
 
-		If !vars.poe_version
+		;If !vars.poe_version
 			For index, val in prices.lines
 			{
-				check := LLK_HasVal(vars.stash, val.id,,,, 1), name := LLK_HasVal(vars.stash[check], val.id,,,, 1)
-				trend := "", price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.divine) ", 0, " (core.primary = "chaos" ? val.primaryValue * core.rates.divine : val.primaryValue)
+				check := LLK_HasVal(vars.stash, val.id,,,, 1), name := LLK_HasVal(vars.stash[check], val.id,,,, 1), trend := ""
+				If !vars.poe_version
+					price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.divine) ", 0, " (core.primary = "chaos" ? val.primaryValue * core.rates.divine : val.primaryValue)
+				Else price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.chaos) ", "
+					. (core.primary = "exalted" ? val.primaryValue : val.primaryValue * core.rates.exalted) ", "
+					. (core.primary = "divine" ? val.primaryValue : val.primaryValue * core.rates.divine)
+
 				For iTrend, vTrend in val.sparkline.data
 					trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
 				If name
@@ -476,7 +481,7 @@ Stash_PriceFetch(tab)
 				}
 			}
 
-		If vars.poe_version
+		If (bla = 1 ) && vars.poe_version
 			For index, val in prices.items
 			{
 				name := LLK_StringCase(val.item.name), price := ""
