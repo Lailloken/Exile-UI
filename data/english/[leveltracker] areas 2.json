@@ -250,16 +250,18 @@
     },
     {
       "id": "g3_14",
-      "name": "utzaal"
+      "name": "utzaal",
+      "recommendation": "38 | 39"
     },
     {
       "id": "g3_16",
-      "name": "aggorat"
+      "name": "aggorat",
+      "recommendation": "39 | 40"
     },
     {
       "id": "g3_17",
       "name": "black chambers",
-      "recommendation": "x | 41"
+      "recommendation": "40 | 41"
     }
   ],
   [

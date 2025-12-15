@@ -1841,7 +1841,9 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 	guide := preview ? (preview = 1 ? vars.leveltracker_editor.dummy_guide : {"group1": vars.help.settings["leveltracker guide format info" vars.poe_version].Clone()}) : vars.leveltracker.guide
 	areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, gems := db.leveltracker.gems, profile := settings.leveltracker.profile
 	exp := Leveltracker_Experience("", 1), exp := (InStr(exp, "100%") && InStr(exp, "|") ? StrReplace(exp, "100%") : exp)
-	LLK_PanelDimensions([(vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : " " exp " "), (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : "")], settings.leveltracker.fSize, wExp, hExp)
+	dimensions := [(vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : " " exp " ")]
+	dimensions.Push((settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : (vars.poe_version && settings.leveltracker.recommend ? "99.5 | 99 | 99.5")))
+	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wExp, hExp)
 	wButtons := Round(settings.leveltracker.fWidth*2)
 	While Mod(wButtons, 2)
 		wButtons += 1
@@ -3130,7 +3132,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 		iArea := LLK_HasVal(db.leveltracker.areas[vars.log.act], vars.log.areaID,,,, 1), recommendation := db.leveltracker.areas[vars.log.act][iArea].recommendation
 
 	Gui, %GUI_name_controls2%: Add, Text, % "Section xs " (settings.leveltracker.timer ? "xs y+-1" : "") " Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels . (recommendation ? "" : " cLime")
-	, % (recommendation ? recommendation : (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : ""))
+	, % (recommendation ? StrReplace(recommendation, "|", "| " vars.log.level " |") : (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : ""))
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "?"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % ">"
