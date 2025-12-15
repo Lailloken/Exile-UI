@@ -5,9 +5,8 @@
       "enter areaidg1_town ;; clearfell encampment"
     ],
     [
-      "(color:red)info: (color:cc99ff)league_mechanic rewards",
-      "(hint)_ - examples: currencies, gems, gear, etc.",
-      "(hint)_ - not fully confirmed but very likely",
+      "(color:red)info: optional rewards",
+      "(hint)_ - examples: currency, gems, gear",
       "(hint)_ - to include them, enable (quest:optionals)",
       "(img:quest_2) renly: (img:skill) || enter areaidg1_2 ;; clearfell"
     ],
@@ -56,7 +55,7 @@
       "enter areaidg1_7 ;; cemetery of the eternals"
     ],
     [
-      "optional: (img:ring) in (img:checkpoint) (color:cc99ff)ancient_ruin (edge)",
+      "optional: (img:regal) (color:cc99ff)league || (img:ring) in (img:checkpoint) (color:cc99ff)ruin (edge)",
       "enter (img:checkpoint) areaidg1_8 ;; mausoleum of the praetor"
     ],
     [
@@ -458,7 +457,6 @@
       ],
       "lines": [
         "(img:in-out2) areaidg3_9 for (img:waypoint) ;; the molten vault",
-        "(hint)_ - (quest:reforging_bench) quest",
         "enter (img:checkpoint) areaidg3_11 ;; apex of filth"
       ]
     },
@@ -483,9 +481,9 @@
         "yes"
       ],
       "lines": [
-        "(quest:reforging) & (img:artificer) (also doable later):",
-        "(hint)_ - (img:waypoint) to areaidg3_9, kill mektul ;; the molten vault",
-        "(hint)_ - take (quest:hammer), (img:portal) out || (img:quest_2) oswald",
+        "(img:waypoint) to areaidg3_9, kill mektul ;; the molten vault",
+        "(hint)_ - then: (img:portal) || (img:quest_2) oswald: (quest:reforge), (img:skill), (img:artificer)",
+        "(hint)_ - skippable for later if preferred",
         "go (img:3): enter areaidg3_12 ;; temple of kopec"
       ]
     },
@@ -533,12 +531,8 @@
   ],
   [
     [
-      "(color:ff0000)0.4_general_info: act 4 quests (color:cc99ff)rotate every league",
-      "(hint)_ - 3 arena:bosses have a (img:quest_2) (quest:weapon_piece): main quest",
-      "(hint)_ - 1 arena:boss has captured (img:quest_2) matiki: areaidg4_4_1 quest ;; eye of hinekora",
-      "(hint)_ - thus, some steps are recurring and tagged with (?)",
-      "(hint)_ - to be safe, potentially optional arena:bosses are included",
-      "(img:quest_2) doryani || (img:quest_2) alva: (quest:charter) || (img:quest_2) makoru: areaidg4_2_1 ;; kedge bay"
+      "(img:quest_2) doryani || (img:quest_2) alva: (quest:charter)",
+      "(img:quest_2) makoru (ship): areaidg4_2_1 ;; kedge bay"
     ],
     [
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)abandoned_ship (?)",
@@ -548,8 +542,8 @@
     [
       "activate the (img:waypoint) _|| (img:quest_2) tujen",
       "optional: alchemy orb: (color:cc99ff)league_mechanic",
-      "find & kill (img:checkpoint) hartlin for (quest:verisium)",
-      "free (img:quest_2) matiki (?) || (img:portal) to areaidg4_town ;; kingsmarch"
+      "kill (img:checkpoint) hartlin for (quest:verisium)",
+      "(img:portal) to areaidg4_town ;; kingsmarch"
     ],
     [
       "(img:quest_2) dannig: (quest:verisium_spikes)",
@@ -564,16 +558,15 @@
       "makoru: areaidg4_3_1 ;; whakapanu island"
     ],
     [
-      "optional: (img:artificer) (color:cc99ff)league_mechanic",
-      "optional: (img:support) in (img:checkpoint) (color:cc99ff)cavern || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
-      "kill (img:checkpoint) shark || free (img:quest_2) matiki (?)",
-      "(hint)__ opt: (color:cc99ff)unc._gem for (quest:fin) in areaidg4_11_1a ;; ngakanu",
-      "find & enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
+      "optional: (img:artificer) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)cavern",
+      "optional: gem: (img:checkpoint) arena:shark   || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
+      "(hint)__ hand in (quest:shark_fin) in areaidg4_11_1a ;; ngakanu",
+      "enter (img:checkpoint) areaidg4_3_2 ;; singing caverns"
     ],
     [
       "optional: <all-res_amu>: find (quest:pearl) in (img:checkpoint) (color:cc99ff)clam",
       "(hint)__ then: (img:portal), talk to (img:quest_2) rog || enter (img:portal)",
-      "kill (img:checkpoint) diamora || free (img:quest_2) matiki (?)",
+      "find & kill (img:checkpoint) diamora",
       "makoru (ship): areaidg4_5_1 ;; abandoned prison"
     ],
     [
@@ -584,25 +577,25 @@
       "enter (img:checkpoint) areaidg4_5_2 ;; solitary confinement"
     ],
     [
-      "kill (img:checkpoint) prisoner || free (img:quest_2) matiki (?)",
+      "kill (img:checkpoint) the_prisoner",
       "makoru (ship): areaidg4_1_1 ;; isle of kin"
     ],
     [
       "optional: (img:gcp) (color:cc99ff)league || (img:skill) (img:support) in (img:checkpoint) (color:cc99ff)beast_pen",
-      "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)delve_site || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)sailor",
-      "kill (img:checkpoint) blind_beast || free (img:quest_2) matiki (?)",
+      "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)delve || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)sailor",
+      "optional: greater rune: (img:checkpoint) arena:blind_beast",
       "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
     ],
     [
       "optional: (color:ff0000)fire / (color:ffff00)light (img:ring) in (img:checkpoint) (color:cc99ff)volc._nest",
       "(hint)__ element based on (color:cc99ff)2nd_kill",
-      "kill (img:checkpoint) krutog || free (img:quest_2) matiki (?)",
+      "find & kill (img:checkpoint) krutog",
       "makoru (ship): areaidg4_7 ;; shrike island"
     ],
     [
       "optional: (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)corpse_nest",
-      "kill (img:checkpoint) scourge || free (img:quest_2) matiki (?)",
-      "(img:portal) to areaidg4_town ;; kingsmarch"
+      "kill (img:checkpoint) scourge_of_the_skies",
+      "free (img:quest_2) matiki || (img:portal) areaidg4_town ;; kingsmarch"
     ],
     [
       "(img:quest_2) hooded one",
