@@ -782,7 +782,7 @@ Iteminfo_Mods()
 		If InStr(A_LoopField, "(implicit)") && settings.iteminfo.compare
 			item.implicits.Push(StrReplace(A_LoopField, " (implicit)")) ;store all implicits if league-start mode is enabled
 
-		If (SubStr(A_LoopField, 1, 1) != "{") || InStr(A_LoopField, " (implicit)") || InStr(A_LoopField, "{ Allocated Crucible") ;don't include implicits or crucible info
+		If (SubStr(A_LoopField, 1, 1) != "{") || InStr(A_LoopField, " (implicit)") || InStr(A_LoopField, Lang_Trans("items_implicit")) || InStr(A_LoopField, "{ Allocated Crucible") ;don't include implicits or crucible info
 			Continue
 		clip2 .= A_LoopField "`n" ;rebuild the copied item-info without unnecessary lines
 	}
@@ -940,7 +940,7 @@ Iteminfo_Mods2()
 			clip2 := ""
 		If clip2 && InStr(A_LoopField, "---")
 			Break
-		If !InStr(A_LoopField, "{") || LLK_PatternMatch(A_LoopField, "", ["rune)", "implicit)", "---", "enchant)"])
+		If (!InStr(A_LoopField, "{") || InStr(A_LoopField, Lang_Trans("items_implicit"))) || LLK_PatternMatch(A_LoopField, "", ["rune)", "implicit)", "---", "enchant)"])
 			Continue
 		Loop, Parse, A_LoopField, `n, % " "
 		{
