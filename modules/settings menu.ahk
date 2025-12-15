@@ -1146,9 +1146,12 @@ Settings_general()
 	Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_multi-threading " multi] := hwnd
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section hp gSettings_general2 HWNDhwnd Checked" settings.general.multithread_off, % "disable multi-threading"
+	vars.hwnd.settings.multithread := vars.hwnd.help_tooltips["settings_multi-threading off"] := hwnd
+
 	If settings.general.dev
 	{
-		Gui, %GUI%: Add, Checkbox, % "xs Section hp gSettings_general2 HWNDhwnd Checked" settings.general.dev_env, % "dev branch"
+		Gui, %GUI%: Add, Checkbox, % "ys hp gSettings_general2 HWNDhwnd Checked" settings.general.dev_env, % "dev branch"
 		vars.hwnd.settings.dev_env := hwnd
 	}
 
@@ -1361,6 +1364,11 @@ Settings_general2(cHWND := "")
 				vars.settings.x := xPos, vars.settings.y := yPos, vars.general.drag := 0
 				Return
 			}
+		Case "multithread":
+			IniWrite, % LLK_ControlGet(cHWND), % "ini\config.ini", Settings, disable multi-threading
+			IniWrite, % "general", % "ini" vars.poe_version "\config.ini", Versions, reload settings
+			Reload
+			ExitApp
 		Case "dev_env":
 			settings.general.dev_env := LLK_ControlGet(cHWND)
 			IniWrite, % settings.general.dev_env, % "ini" vars.poe_version "\config.ini", Settings, dev env

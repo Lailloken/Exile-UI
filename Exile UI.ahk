@@ -1043,19 +1043,23 @@ Startup()
 	Init_client(), Init_Lang()
 
 	;start secondary thread for multi-threading
-	Run, modules\_secondary thread.ahk, % A_ScriptDir, UseErrorLevel, PID
-	If PID
-		WinWait, ahk_pid %PID%,, 1.5
-	vars.general.MultiThreading := ErrorLevel ? 0 : 1, vars.general.bThread := "LLK-UI: B-Thread"
-	string := json.dump({"PID": DllCall("GetCurrentProcessId"), "monitor": vars.monitor.Clone(), "client": vars.client.Clone()})
-	If vars.general.MultiThreading && !StringSend(string)
-	{
+	If (settings.general.multithread_off := LLK_IniRead("ini\config.ini", "settings", "disable multi-threading", 0))
 		vars.general.MultiThreading := 0
+	Else
+	{
+		Run, modules\_secondary thread.ahk, % A_ScriptDir, UseErrorLevel, PID
 		If PID
-			PostMessage, 0x8000, 0, 0,, % vars.general.bThread
+			WinWait, ahk_pid %PID%,, 1.5
+		vars.general.MultiThreading := ErrorLevel ? 0 : 1, vars.general.bThread := "LLK-UI: B-Thread"
+		string := json.dump({"PID": DllCall("GetCurrentProcessId"), "monitor": vars.monitor.Clone(), "client": vars.client.Clone()})
+		If vars.general.MultiThreading && !StringSend(string)
+		{
+			vars.general.MultiThreading := 0
+			If PID
+				PostMessage, 0x8000, 0, 0,, % vars.general.bThread
+		}
+		LLK_Log("launch of secondary thread: " (vars.general.MultiThreading ? "successful" : "failed"))
 	}
-	LLK_Log("launch of secondary thread: " (vars.general.MultiThreading ? "successful" : "failed"))
-
 
 	vars.hwnd.poe_client := WinExist("ahk_group poe_window") ;save the client's handle
 	vars.general.runcheck := A_TickCount ;save when the client was last running (for purposes of killing the script after X minutes)

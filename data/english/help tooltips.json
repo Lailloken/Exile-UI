@@ -8,6 +8,10 @@
       "advanced features and performance options are available",
       "examples:\n- clone-frames fps options"
     ],
+    "multi-threading off": [
+      "check this box if you occasionally get errors about the secondary thread crashing",
+      "checking this box will restart the tool(/highlight)"
+    ],
     "kill timer": [
       "automatically closes the tool if the game client is not running",
       "specify how long it may run without the game"
