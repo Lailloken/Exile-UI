@@ -190,7 +190,7 @@ type	=	monsters
 text	=	inc damage: +%
 ID	=	029
 
-[# increased Monster Movement Speed|# increased Monster Attack Speed|# increased Monster Cast Speed]
+[Monsters have # increased Attack, Cast and Movement Speed]
 type	=	monsters
 text	=	speed: +%
 ID	=	030
