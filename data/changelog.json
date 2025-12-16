@@ -1,5 +1,15 @@
 [
   [
+	["1.61.1", 16101],
+	"december 16, 2025",
+	"added an option to disable multi-threading to resolve crash issues(/highlight)",
+	"act-tracker: added support for 0.4 trees and gems (druid ascendancy-trees untested, may be offset slightly)",
+	"act-tracker: general tweaks, finalized A4 structure (applied after guide reset!), tweaked lvl recommendation panel",
+	"enchant finder: updated to 0.4",
+	"item-info: fixed implicit items, updated mods / bases / drop-tiers to 0.4",
+	"stash-ninja: updated for fate of the vaal"
+  ],
+  [
 	["1.61.0", 16100],
 	"december 11, 2025",
 	"added support for 800p custom resolutions",
