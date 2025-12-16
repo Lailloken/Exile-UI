@@ -2685,6 +2685,8 @@ Iteminfo_ModCheck(string, item_type := "") ;checks a mod's text to determine if 
 			Return "minion"
 		Else If InStr(string, "totem")
 			Return "totems"
+		Else If InStr(string, "accuracy rating")
+			Return "accuracy"
 		Else If InStr(string, "increased") && InStr(string, "damage")
 		{
 			Loop, Parse, resists, `,
