@@ -423,7 +423,7 @@
 		items_class_Life Flasks		=	"Life Flasks"
 		items_class_Mana Flasks		=	"Mana Flasks"
 		items_class_Charms		=	"Charms"
-		items_class_Socketable		=	"Socketable"		;## runes and soul cores
+		items_class_Augment		=	"Augment"		;## runes and soul cores
 
 
 ;## these are mod-related strings in item tooltips, e.g. "+X to Armour", "+X to maximum Energy Shield"
