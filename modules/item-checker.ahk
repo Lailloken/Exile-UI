@@ -2894,13 +2894,11 @@ Iteminfo_WeightCheck(mod_weights, item_tags)
 	local
 
 	check := 0
-	For tag, weight in mod_weights
-		If (tag = "default" && mod_weights.Count() != 1)
+	For index, array in mod_weights
+		If (array.1 = "default" && mod_weights.Count() != 1)
 			Continue
-		Else If LLK_HasVal(item_tags, tag)
-			If !weight
+		Else If LLK_HasVal(item_tags, array.1)
+			If !array.2
 				Return 0
-			Else check += 1
-
-	Return check
+			Else Return 1
 }
