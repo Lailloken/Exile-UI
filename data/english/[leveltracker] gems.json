@@ -5377,7 +5377,6 @@
       },
       "enemy at the gate": {
         "vendor": [
-          "scion",
           "ranger"
         ]
       },
@@ -5810,8 +5809,7 @@
         "quest": [
           "duelist",
           "ranger",
-          "shadow",
-          "scion"
+          "shadow"
         ],
         "vendor": []
       }
