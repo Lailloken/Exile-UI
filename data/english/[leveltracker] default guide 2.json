@@ -634,7 +634,7 @@
       "(img:quest_2) rhodri (ship): areaidg4_11_1b ;; ngakanu"
     ],
     [
-      "greater (img:jeweller): (color:cc99ff)league_mechanic",
+      "optional: greater (img:jeweller): (color:cc99ff)league_mechanic",
       "enter (img:checkpoint) areaidg4_11_2 ;; heart of the tribe"
     ],
     [
