@@ -206,7 +206,8 @@
       "boss": "silverfist"
     },
     "rockpools": {
-      "name": "rockpools"
+      "name": "rockpools",
+      "boss": "krutog"
     },
     "rugosa": {
       "name": "rugosa",
