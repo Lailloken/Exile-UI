@@ -20,7 +20,7 @@
 	;settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
 	settings.iteminfo.roll_range := !Blank(check := ini.settings["roll range"]) ? check : ((check1 := ini.settings["tier bars"]) ? check1 : 1)
 	settings.iteminfo.qual_scaling := !Blank(check := ini.settings["quality scaling"]) ? check : 0
-	settings.iteminfo.affixinfo := !Blank(check := ini.settings["affix-info"]) ? (check = 2 ? 0 : check) : (ini.settings["enable item-levels"] ? 0 : 1)
+	settings.iteminfo.affixinfo := !Blank(check := ini.settings["affix-info"]) ? (!vars.poe_version && check = 2 ? 0 : check) : (!vars.poe_version && ini.settings["enable item-levels"] ? 0 : 1)
 
 	settings.iteminfo.rules := {}
 	;settings.iteminfo.rules.res_weapons := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["weapon res override"]) ? check : 0
