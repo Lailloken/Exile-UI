@@ -219,6 +219,11 @@
       "hide: clone-frames will hide when the interface is on screen",
       "show: clone-frames will show only when the specific interface is on screen"
     ],
+    "cloneframes close button toggle": [
+      "this option will unlock the <close button> check in the <screen-checks> section",
+      "if calibrated correctly, clone-frames will automatically hide whenever a full-screen interface with that button is on screen",
+      "mainly for setups where the infopanel check cannot be used reliably(/highlight)"
+    ],
     "cloneframes performance": [
       "select a preferred/compatible performance profile",
       "try to balance the number of clone-frames and the target fps so that the measured performance stays green"
@@ -1642,7 +1647,18 @@
       "-> the minimap has to be in the center",
       "-> the infopanel (img) has to be fully visible",
       "-> long-click the <cal> button: a 'crosshair' and zoom-widget will follow the cursor",
-      "-> drag the 'crosshair' onto a letter in the infopanel (as shown on the img)",
+      "-> drag the 'crosshair' onto a letter in the infopanel, as shown on the img",
+      "-> follow the instructions in <test>"
+    ],
+    "close_button": [
+      "(/bold)(/underline)explanation:",
+      "-> this is an alternative check to (loosely) determine whether a full-screen ui is on screen",
+      "-> used by the <clone-frames> feature to automatically (un)hide overlays",
+      "(/bold)(/underline)instructions:",
+      "-> open the in-game passive tree",
+      "-> the <close button> (img) has to be fully visible",
+      "-> long-click the <cal> button: a 'crosshair' and zoom-widget will follow the cursor",
+      "-> drag the 'crosshair' onto a red pixel on the <close button>, as shown on the img",
       "-> follow the instructions in <test>"
     ],
     "inventory": [

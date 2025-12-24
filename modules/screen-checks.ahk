@@ -21,15 +21,17 @@
 	If (coords.Count() = 2)
 		vars.pixelsearch.gamescreen := {"x1": coords.1, "y1": coords.2}
 	Else If vars.poe_version
-		vars.pixelsearch.gamescreen := {"x1": vars.client.x + vars.client.w - 1 - Round(vars.client.h/15), "y1": vars.client.y - 1 + Round(vars.client.h/24), "x2": vars.client.x + vars.client.w - 1, "y2": vars.client.y - 1 + Round(vars.client.h/24) + Round(vars.client.h/60)}
+		vars.pixelsearch.gamescreen := {"x1": vars.client.x + vars.client.w - 1 - Round(vars.client.h/15), "y1": vars.client.y + Round(vars.client.h/24), "x2": vars.client.x + vars.client.w - 1, "y2": vars.client.y + Round(vars.client.h/24) + Round(vars.client.h/60)}
 
 	ini := IniBatchRead("ini" vars.poe_version "\screen checks (" vars.client.h "p).ini")
 	vars.pixelsearch.gamescreen.color1 := ini.gamescreen["color 1"]
+	If vars.poe_version
+		coords := StrSplit(ini.close_button.coordinates, ",", " ", 2), vars.pixelsearch.close_button := {"x1": coords.1, "y1": coords.2}, vars.pixelsearch.close_button.color1 := ini.close_button["color 1"]
 	vars.pixelsearch.inventory := {"x1": 0, "x2": 0, "x3": 6, "y1": 0, "y2": 6, "y3": 0, "check": 0}
 	Loop 3
 		vars.pixelsearch.inventory["color" A_Index] := ini.inventory["color " A_Index]
 
-	vars.pixelsearch.variation := 0, vars.pixelsearch.list := {"gamescreen": 1, "inventory": 1}
+	vars.pixelsearch.variation := 0, vars.pixelsearch.list := (!vars.poe_version ? {"gamescreen": 1, "inventory": 1} : {"gamescreen": 1, "inventory": 1, "close_button": 1})
 	vars.imagesearch := {}
 	If !vars.poe_version
 	{
@@ -327,6 +329,10 @@ Screenchecks_PixelRecalibrate2(name)
 	Gui, pixel_zoom: Destroy
 	PixelGetColor, color, vars.general.xMouse, vars.general.yMouse - 5, RGB
 	IniWrite, % (vars.pixelsearch[name].color1 := object["color1"] := (color ? color : "")), % "ini" vars.poe_version "\screen checks (" vars.client.h "p).ini", % name, color 1
+	If (name = "close_button")
+	{
+		IniWrite, % ((vars.pixelsearch[name].x1 := object.x1 := vars.general.xMouse) ", " (vars.pixelsearch[name].y1 := object.y1 := vars.general.yMouse - 5)), % "ini" vars.poe_version "\screen checks (" vars.client.h "p).ini", % name, coordinates
+	}
 
 	If vars.general.MultiThreading
 		StringSend("pixel-" name "=" json.dump(object))
@@ -341,7 +347,7 @@ Screenchecks_PixelSearch(name) ;performing pixel-checks
 	pixel_check := 1, pixels := vars.pixelsearch
 	Switch name
 	{
-		Case "gamescreen":
+		Default:
 			loopcount := 1
 		Case "inventory":
 			loopcount := 3
@@ -349,14 +355,16 @@ Screenchecks_PixelSearch(name) ;performing pixel-checks
 
 	Loop %loopcount%
 	{
-		If (pixels[name]["color" A_Index] = "ERROR") || Blank(pixels[name]["color" A_Index])
+		If (pixels[name]["color" A_Index] = "ERROR") || Blank(pixels[name]["color" A_Index]) || Blank(pixels[name].x1) || Blank(pixels[name].y1)
 		{
 			pixel_check := 0
 			Break
 		}
 
-		If vars.poe_version && (name = "gamescreen")
-			PixelSearch, x, y, % pixels.gamescreen.x1, % pixels.gamescreen.y1, % pixels.gamescreen.x2, % pixels.gamescreen.y2, % pixels.gamescreen.color1, % pixels.variation, Fast RGB
+		If vars.poe_version && InStr("gamescreen", name)
+			PixelSearch, x, y, % pixels[name].x1, % pixels[name].y1, % pixels[name].x2, % pixels[name].y2, % pixels[name].color1, % pixels.variation, Fast RGB
+		Else If (name = "close_button")
+			PixelSearch, x, y, % pixels[name].x1, % pixels[name].y1, % pixels[name].x1, % pixels[name].y1, % pixels[name].color1, % pixels.variation + 10, Fast RGB
 		Else PixelSearch, x, y, % vars.client.x + vars.client.w - 1 - pixels[name]["x" A_Index], % vars.client.y + pixels[name]["y" A_Index], % vars.client.x + vars.client.w - 1 - pixels[name]["x" A_Index]
 		, % vars.client.y + pixels[name]["y" A_Index], % pixels[name]["color" A_Index], % pixels.variation, Fast RGB
 

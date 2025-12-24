@@ -702,6 +702,10 @@ Loop_main()
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")
 		Else vars.pixels.gamescreen := 0
 
+		If settings.cloneframes.closebutton_toggle && vars.cloneframes.enabled
+			vars.pixels.close_button := Screenchecks_PixelSearch("close_button")
+		Else vars.pixels.close_button := 0
+
 		If vars.cloneframes.enabled && vars.cloneframes.inventory || settings.features.iteminfo * settings.iteminfo.compare || vars.hwnd.exchange.main || vars.hwnd.sanctum_relics.main
 			vars.pixels.inventory := Screenchecks_PixelSearch("inventory")
 		Else vars.pixels.inventory := 0

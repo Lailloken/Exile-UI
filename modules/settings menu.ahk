@@ -811,7 +811,8 @@ Settings_cloneframes()
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w1 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
-	Gui, %GUI%: Add, Text, % "Section ys Center w" wHeader2max, % Lang_Trans("m_screen_gamescreen")
+	Gui, %GUI%: Add, Text, % "Section ys Center HWNDhwnd_info w" wHeader2max, % Lang_Trans("m_screen_gamescreen")
+	ControlGetPos, xInfo, yInfo, wInfo, hInfo,, % "ahk_id " hwnd_info
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
 	{
@@ -822,8 +823,14 @@ Settings_cloneframes()
 	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
+	If vars.poe_version
+	{
+		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd x" x_anchor " y" yLast + hLast + settings.general.fWidth/2 " gSettings_cloneframes2 Checked" settings.cloneframes.closebutton_toggle, % Lang_Trans("m_clone_closebutton")
+		vars.hwnd.settings.closebutton_toggle := vars.hwnd.help_tooltips["settings_cloneframes close button toggle"] := hwnd
+	}
+
 	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y" yLast + hLast + settings.general.fWidth/2 " w" settings.general.fWidth * 30, % Lang_Trans("m_clone_town")
+	Gui, %GUI%: Add, Text, % "xs Section " (vars.poe_version ? "" : "x" x_anchor " y" yLast + hLast + settings.general.fWidth/2) " w" (xInfo + wInfo - x_anchor), % Lang_Trans("m_clone_town")
 	Gui, %GUI%: Font, % "cWhite norm s" settings.general.fSize
 
 	LLK_PanelDimensions([Lang_Trans("global_coordinates"), Lang_Trans("global_width") "/" Lang_Trans("global_height")], settings.general.fSize, width, height)
@@ -954,6 +961,12 @@ Settings_cloneframes2(cHWND)
 		If (control = "global")
 			IniWrite, % input, % "ini" vars.poe_version "\clone frames.ini", settings, gamescreen toggle
 		Else IniWrite, % input, % "ini" vars.poe_version "\clone frames.ini", % control, gamescreen toggle
+	}
+	Else If (check = "closebutton_toggle")
+	{
+		input := LLK_ControlGet(cHWND)
+		IniWrite, % input, % "ini" vars.poe_version "\clone frames.ini", settings, close button toggle
+		Cloneframes_SettingsRefresh()
 	}
 	Else If (check = "save")
 		Cloneframes_SettingsSave()
@@ -4343,11 +4356,11 @@ Settings_screenchecks2(cHWND := "")
 						Else LLK_ToolTip(Lang_Trans("global_negative"),,,,, "red")
 					Case "c":
 						start := A_TickCount
-						While vars.poe_version && (control = "gamescreen") && !longpress && GetKeyState("LButton", "P")
+						While vars.poe_version && InStr("gamescreen, close_button", control) && !longpress && GetKeyState("LButton", "P")
 							If (A_TickCount >= start + 250)
 								longpress := 1
 
-						If vars.poe_version && (control = "gamescreen")
+						If vars.poe_version && InStr("gamescreen, close_button", control)
 						{
 							If longpress
 								result := Screenchecks_PixelRecalibrate2(control)
@@ -4413,6 +4426,7 @@ Settings_ScreenChecksValid(type := "")
 	valid := 1, active_pixel := {}, active_image := {}
 	For key, val in vars.pixelsearch.list
 		If (key = "gamescreen") && !vars.cloneframes.gamescreen
+		|| (key = "close_button") && !(vars.cloneframes.enabled && settings.cloneframes.closebutton_toggle)
 		|| (key = "inventory") && !(vars.cloneframes.inventory || settings.features.iteminfo * (settings.iteminfo.compare + settings.iteminfo.trigger) || settings.features.exchange || settings.features.sanctum * settings.sanctum.relics || settings.features.mapinfo * settings.mapinfo.trigger)
 			Continue
 		Else valid *= vars.pixelsearch[key].color1 ? 1 : 0, active_pixel[key] := 1

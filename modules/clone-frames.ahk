@@ -11,6 +11,7 @@
 	settings.cloneframes.inventory := !Blank(check := ini.settings["inventory toggle"]) ? check : (!Blank(check1 := ini.settings["hide in inventory"]) ? check1 : 1)
 	settings.cloneframes.speed := speed := !Blank(check := ini.settings["performance"]) ? check : 2
 	settings.cloneframes.toggle := !Blank(check := ini.settings.toggle) ? check : 1
+	settings.cloneframes.closebutton_toggle := !Blank(check := ini.settings["close button toggle"]) ? check : 0
 
 	If !IsObject(vars.cloneframes)
 		vars.cloneframes := {"enabled": 0, "gamescreen": 0, "inventory": 0, "scroll": {}, "intervals": [200, 100, 50, 33]}
@@ -63,7 +64,7 @@ Cloneframes_Check()
 
 	location := vars.log.areaID
 	If vars.cloneframes.enabled
-	&& (!LLK_StringCompare(location, ["hideout"]) && !LLK_PatternMatch(location, "", ["_town", "heisthub", "KalguuranSettlersLeague"],,, 0))
+	&& (!LLK_StringCompare(location, ["hideout"]) && !LLK_PatternMatch(location, "", ["_town", "heisthub", "KalguuranSettlersLeague", "incursionhub", "abyss_hub", "g2_13"],,, 0))
 	&& !vars.sanctum.active && (location != "login")
 	|| (vars.settings.active = "clone-frames") ;accessing the clone-frames section of the settings
 		Cloneframes_Show()
@@ -254,7 +255,8 @@ Cloneframes_Show()
 	{
 		If !(vars.cloneframes.editing && cloneframe = vars.cloneframes.editing) && (!val.enable || (cloneframe = "settings_cloneframe")
 		|| (val.inventory = 1) && vars.pixels.inventory || (val.inventory = 2) && !vars.pixels.inventory && !(val.gamescreen = 2 && vars.pixels.gamescreen)
-		|| (val.gamescreen = 1) && vars.pixels.gamescreen || (val.gamescreen = 2) && !vars.pixels.gamescreen && !(val.inventory = 2 && vars.pixels.inventory))
+		|| (val.gamescreen = 1) && vars.pixels.gamescreen || (val.gamescreen = 2) && !vars.pixels.gamescreen && !(val.inventory = 2 && vars.pixels.inventory)
+		|| settings.cloneframes.closebutton_toggle && vars.pixels.close_button)
 		{
 			If WinExist("ahk_id " vars.hwnd.cloneframes[cloneframe])
 				Gui, % "cloneframe_" StrReplace(cloneframe, " ", "_") ": Hide"

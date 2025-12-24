@@ -902,7 +902,8 @@
 		m_clone_scale			=	"scale:"
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders		=	"invalid frame borders"
-		m_clone_town			=	"clone-frames are hidden in hideouts/towns unless this section is open"
+		m_clone_closebutton		=	"use <close button> for auto-toggling (beta)"
+		m_clone_town			=	"clone-frames are hidden in hideouts and towns unless this settings section is open"
 
 
 
@@ -1110,6 +1111,7 @@
 		m_screen_image			=	"list of required image-checks:"
 		m_screen_inactive		=	"the features that are currently enabled do not require any further setup"
 		m_screen_gamescreen		=	"infopanel"									;## refers to the small panel in the top-right corner that shows area-name, server, league, etc.
+		m_screen_close_button		=	"close button"
 		m_screen_instructions		=	"read the instructions on;the <info> button!"
 		m_screen_sanctum		=	"sanctum floor map"
 		m_screen_sanctum		=	"sekhema floor map"
