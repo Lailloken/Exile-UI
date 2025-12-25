@@ -1,5 +1,13 @@
 [
   [
+	["1.61.2", 16102],
+	"december 25, 2025",
+	"act-tracker: fixed scion a1 quest rewards, added missing disciple of varashta tree",
+	"act-decoder: improved selection for full layouts, added/improved some layouts",
+	"clone-frames: added optional setting for improved auto-toggling",
+	"item-info: re-enabled ilvl display for PoE2, improved mod detection"
+  ],
+  [
 	["1.61.1", 16101],
 	"december 16, 2025",
 	"added an option to disable multi-threading to resolve crash issues(/highlight)",
