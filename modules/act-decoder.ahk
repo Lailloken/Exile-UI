@@ -123,7 +123,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		hotkey := SubStr(mode, 0) - 1, subzone := vars.actdecoder.zone_layouts[vars.log.areaID].subzone, target := vars.actdecoder.loaded[hotkey]
 		If (vars.actdecoder.loaded.Count() = 1) && !selection
 			Return
-		If !InStr(target, "x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " target "_*")
+		If !InStr(target, "x") && FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " " target "_*") && !(selection && hotkey = 3)
 			Actdecoder_ImageSelect(target), check := 1
 		Else If (vars.actdecoder.zone_layouts[vars.log.areaID].subzone || !vars.actdecoder.files[vars.log.areaID " " target "_1"] || InStr(vars.actdecoder.loaded.1, "y"))
 		&& vars.actdecoder.loaded[hotkey] && !InStr(vars.actdecoder.loaded[hotkey], "x") && (vars.actdecoder.loaded.Count() >= hotkey)
@@ -254,7 +254,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Return
 	}
 
-	alignment := settings.actdecoder.aLayouts
+	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_4": 1, "g1_14": 1, "g1_15": 1, "g2_4_3": 1, "g3_11": 1, "g3_16": 1}
 	If (vars.actdecoder.current_zone != vars.log.areaID)
 		vars.actdecoder.current_zone := vars.log.areaID
 	toggle := !toggle, GUI_name := "actdecoder_zones" toggle
@@ -301,24 +301,26 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	For outer in [1, 2]
 	{
-		count := 0, pic_count := (alignment = "vertical") && vars.actdecoder.tab ? Min(4, pic_count) : pic_count
+		count := 0 ;, pic_count := (alignment = "vertical") && vars.actdecoder.tab ? Min(4, pic_count) : pic_count
 		exclude := vars.actdecoder.zone_layouts[vars.log.areaID].exclude
 		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
 		{
+			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
 			selection += (vars.actdecoder.files[vars.log.areaID " " file "_1"] ? 1 : 0)
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x(_x){" deep "})_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
 			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
-			|| selection && (!subzone && count = 2) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
+			;|| selection && (count > 3) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
 			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
 				Continue
-			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
-			count += 1, pic_count += (outer = 1) ? 1 : 0, pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0, ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
+
+			count += 1, pic_count += (outer = 1 ? (selection && (count = 3) && !InStr(file, "x") ? 0.2 : (count < 4 || InStr(file, "x") ? 1 : 0)) : 0), pic_count0 += (outer = 1) && !RegExMatch(A_LoopFileName, "i)\s(x|y)") ? 1 : 0
+			ypic_count += InStr(A_LoopFileName, " y") ? 1 : 0
 
 			If (outer = 1)
 				Continue
 			If (alignment = "vertical")
-				style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " ys Section y" yFirst : " Section xs"
-			Else style := (vars.log.areaID = "2_7_4" && A_Index = 4) ? " xs Section x" xFirst : " Section ys"
+				style := (!selection || (selection && count < 4) || InStr(file, "x") ? " Section xs" : " ys")
+			Else style := (!selection || (selection && count < 4) || InStr(file, "x") ? " Section ys" : " xs") ;" Section ys"
 
 			pBitmap := Gdip_CreateBitmapFromFile(A_LoopFilePath), Gdip_GetImageDimension(pBitmap, width, height)
 			For index, operation in vars.actdecoder.zone_layouts[vars.log.areaID][file]
@@ -343,22 +345,25 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				}
 				Else Gdip_ImageRotateFlip(pBitmap, (operation = "h" ? 4 : 6))
 
-			new_width := (vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1) ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1)
-			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.25)) : new_width
+			new_width := Round(vars.actdecoder.tab && (mode != 2) || !settings.actdecoder.sLayouts1 ? width * settings.actdecoder.sLayouts : vars.monitor.h * (settings.actdecoder.sLayouts1 * 0.05 + 0.1))
+			new_width := (new_width * pic_count + margin * (pic_count + 2) + settings.general.fHeight >= (axis := vars.monitor[(settings.actdecoder.aLayouts = "vertical" ? "h" : "w")])) ? Round(axis / (pic_count + 0.33)) : new_width
+			While Mod(new_width, 8)
+				new_width -= 1
+			new_width := (selection && (count > 2) && !InStr(file, "x") ? new_width/8 : new_width)
 			pBitmap_resized := Gdip_ResizeBitmap(pBitmap, new_width * (InStr(A_LoopFileName, "x") ? 0.66 : 1), 10000, 1, 7, 1)
 			Gdip_DisposeBitmap(pBitmap)
 			hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap_resized, 0), Gdip_DisposeBitmap(pBitmap_resized)
 
-			hidden := (mode = 2 || pic_count = 1 && (!vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt) "_1"] || subzone || InStr(file, "y")) ? "Hidden " : "")
-			Gui, %GUI_name%: Add, Text, % hidden "BackgroundTrans Center w" settings.general.fHeight (mode != 2 && alignment = "vertical" && count = 5 && vars.log.areaID != "2_7_4" ? " Section ys y" yFirst : style), % count
+			hidden := (mode = 2 || pic_count = 1 && (!vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt) "_1"] || subzone || InStr(file, "y")) || selection && (InStr(file, "x") || count > 3) ? "Hidden " : "")
+			Gui, %GUI_name%: Add, Text, % hidden "BackgroundTrans Center w" settings.general.fHeight . style, % (selection && count > 2 && !InStr(file, "x") ? 3 : count)
 			Gui, %GUI_name%: Add, Picture, % "Border HWNDhwnd xp yp", % "HBitmap:" hbmBitmap
 			vars.hwnd.actdecoder[vars.log.areaID " " file] := hwnd, DeleteObject(hbmBitmap)
-			vars.actdecoder.loaded.Push(file)
+			vars.actdecoder.loaded.Push(selection && count > 2 && !InStr(file, "x") ? "" : file)
 
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 
-			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !RegExMatch(A_LoopFileName, "i)(\sx|g3_11|g1_4)")
+			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !rota_block[vars.log.areaID] && !InStr(file, "x") && !(selection && count > 2)
 			{
 				If !vars.pics.zone_layouts.rotate
 					vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
