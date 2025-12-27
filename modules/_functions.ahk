@@ -621,7 +621,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	}
 	Else If (timer = 2)
 	{
-		Gui, update_download: New, -Caption -DPIScale +LastFound +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDdownload
+		Gui, update_download: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDdownload
 		Gui, update_download: Color, Black
 		Gui, update_download: Add, Progress, range0-10 HWNDhwnd BackgroundBlack cGreen, 0
 		Gui, update_download: Show
