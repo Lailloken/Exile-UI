@@ -20,7 +20,7 @@
 		settings.stash.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"], ["vaal", "Fate of the Vaal"], ["hc vaal", "HC Fate of the Vaal"]] : [["standard", "Standard"], ["keepers", "Keepers"], ["hc keepers", "Hardcore Keepers"]])
 		settings.stash.league := !Blank(check := ini.settings["league"]) && LLK_HasVal(settings.stash.leagues, check,,,, 1) ? check : settings.stash.leagues.1.2
-		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : (vars.poe_version ? 0 : 1)
+		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : 1
 		settings.stash.show_exalt := (!vars.poe_version ? 0 : !Blank(check := ini.settings["show exalt conversion"]) ? check : (vars.poe_version ? 1 : 0))
 		settings.stash.bulk_trade := 0 ;!Blank(check := ini.settings["show bulk-sale suggestions"]) ? check : 0
 		settings.stash.min_trade := 0 ;!Blank(check := ini.settings["minimum trade value"]) ? check : ""
