@@ -527,12 +527,12 @@ Sanctum_Relics(cHWND := "")
 			{
 				value := ""
 				Loop, Parse, vCell
-					If IsNumber(A_LoopField)
+					If IsNumber(A_LoopField) || (A_LoopField = ".")
 						value .= A_LoopField
 					Else If value && !IsNumber(A_LoopField)
 						Break
 
-				value := !value ? 1 : value
+				value := !value ? 1 : RTrim(value, "0")
 				mod := LLK_StringCase(StrReplace(StrReplace(vCell, "an additional", "# additional"), value, "#"))
 				mods[mod] := mods[mod] ? mods[mod] + value : value
 				If !IsObject(cell_mods[index])
