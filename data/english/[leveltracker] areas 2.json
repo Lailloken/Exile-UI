@@ -198,7 +198,8 @@
     },
     {
       "id": "g3_2_2",
-      "name": "matlan waterways"
+      "name": "matlan waterways",
+      "recommendation": "34 | 35"
     },
     {
       "id": "g3_4",
@@ -217,11 +218,13 @@
     },
     {
       "id": "g3_6_1",
-      "name": "jiquani's machinarium"
+      "name": "jiquani's machinarium",
+      "recommendation": "33 | 33"
     },
     {
       "id": "g3_6_2",
-      "name": "jiquani's sanctum"
+      "name": "jiquani's sanctum",
+      "recommendation": "33 | 34"
     },
     {
       "id": "g3_7",
@@ -230,11 +233,13 @@
     },
     {
       "id": "g3_8",
-      "name": "drowned city"
+      "name": "drowned city",
+      "recommendation": "35 | 36"
     },
     {
       "id": "g3_9",
-      "name": "molten vault"
+      "name": "molten vault",
+      "recommendation": "37 | 37"
     },
     {
       "id": "g3_10_airlock",
@@ -242,11 +247,13 @@
     },
     {
       "id": "g3_11",
-      "name": "apex of filth"
+      "name": "apex of filth",
+      "recommendation": "36 | 37"
     },
     {
       "id": "g3_12",
-      "name": "temple of kopec"
+      "name": "temple of kopec",
+      "recommendation": "37 | 38"
     },
     {
       "id": "g3_14",

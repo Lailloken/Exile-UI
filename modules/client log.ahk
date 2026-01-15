@@ -201,6 +201,8 @@ Log_CharacterInfo(line)
 		Loop, Parse, parse
 			If IsNumber(A_LoopField)
 				level .= A_LoopField
+			Else If level
+				Break
 		If (check := InStr(parse, vars.lang.log_whois_class.1))
 		{
 			class0 := SubStr(parse, check), class0 := SubStr(class0, 1, InStr(class0, vars.lang.log_whois_class.2) - 1)
