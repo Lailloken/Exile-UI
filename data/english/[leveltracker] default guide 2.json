@@ -724,7 +724,8 @@
     ],
     [
       "optional: (img:exa) (color:cc99ff)league_mechanic",
-      "(quest:buff): (img:checkpoint) (color:cc99ff)7_pillars along edge",
+      "(quest:buff): find (img:checkpoint) (color:cc99ff)7_pillars",
+      "(hint)__ check zone's corners & edges",
       "enter (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
