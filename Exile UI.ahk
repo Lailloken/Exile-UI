@@ -1,6 +1,6 @@
 ﻿#NoEnv
 #SingleInstance Force
-#Requires AutoHotkey >=1.1.36 <2
+#Requires AutoHotkey >=1.1.36 <2 64-bit
 #InstallKeybdHook
 #InstallMouseHook
 #Hotstring NoMouse

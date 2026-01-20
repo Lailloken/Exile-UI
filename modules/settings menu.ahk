@@ -4634,26 +4634,9 @@ Settings_stash()
 		vars.hwnd.settings.hotkey := vars.hwnd.help_tooltips["settings_stash hotkey"] := hwnd
 	}
 
-	If !vars.poe_version
-	{
-		Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
-		;Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
-		/*
-		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd4 gSettings_stash2 Checked" settings.stash.bulk_trade, % Lang_Trans("m_stash_bulk")
-		If settings.stash.bulk_trade
-		{
-			Gui, %GUI%: Add, Text, % "xs+" settings.general.fWidth * 3 " Section HWNDhwnd3", % Lang_Trans("m_stash_mintrade")
-			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-			Gui, %GUI%: Add, Edit, % "ys cBlack Number HWNDhwnd2 gSettings_stash2 Limit hp Right w" settings.general.fWidth * 3, % settings.stash.min_trade
-			Gui, %GUI%: Font, % "s" settings.general.fSize
-			Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd00 gSettings_stash2 Checked" settings.stash.autoprofiles, % Lang_Trans("m_stash_profiles")
-			vars.hwnd.settings.min_trade := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade"] := hwnd2, vars.hwnd.help_tooltips["settings_stash mintrade|"] := hwnd3
-			vars.hwnd.settings.autoprofiles := vars.hwnd.help_tooltips["settings_stash autoprofiles"] := hwnd00
-		}
-		vars.hwnd.settings.bulk_trade := vars.hwnd.help_tooltips["settings_stash bulk"] := hwnd4
-		*/
-		vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd ;, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
-	}
+	Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
+	;Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
+	vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd ;, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")

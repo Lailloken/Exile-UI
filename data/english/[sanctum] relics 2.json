@@ -28,7 +28,7 @@
   "# additional rooms are revealed on the trial map": ["revealed room(s)"],
   "#% chance to avoid gaining an affliction": ["afflictions: avoid chance", "%"],
   "#% increased quantity of relics dropped by monsters": ["relics: inc. drops (monsters)", "%"],
-  "+# metres to dodge roll distance": ["dodge: roll distance"],
+  "+# metres to dodge roll distance": ["dodge: inc. roll distance"],
   "#% reduced slowing potency of debuffs on you": ["slows: reduced effect", "%"],
   "hits against you have #% reduced critical damage bonus": ["defences: crit reduction", "%"],
   "restore # honour on picking up a key": ["honor: restored on key pickup"],

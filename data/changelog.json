@@ -1,5 +1,13 @@
 [
   [
+	["1.61.3", 16103],
+	"january 20, 2026",
+	"act-tracker: tweaked poe2 guide + druid ascendancy-trees, fixed a lvl-tracking issue in private leagues",
+	"act-decoder: tweaked a few areas, added a new manor ramparts layout",
+	"item-info: updated poe2 unique drop-tiers",
+	"stash-ninja: enabled price history for poe2"
+  ],
+  [
 	["1.61.2", 16102],
 	"december 25, 2025",
 	"(hotfix 1) fixed an oversight in act-decoder",

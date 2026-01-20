@@ -527,12 +527,12 @@ Sanctum_Relics(cHWND := "")
 			{
 				value := ""
 				Loop, Parse, vCell
-					If IsNumber(A_LoopField)
+					If IsNumber(A_LoopField) || !Blank(value) && InStr(".,", A_LoopField)
 						value .= A_LoopField
 					Else If value && !IsNumber(A_LoopField)
 						Break
 
-				value := !value ? 1 : value
+				value := !value ? 1 : (RegExMatch(value, "i)(\.|,)[0-9]") ? RTrim(value, ",.0") : value)
 				mod := LLK_StringCase(StrReplace(StrReplace(vCell, "an additional", "# additional"), value, "#"))
 				mods[mod] := mods[mod] ? mods[mod] + value : value
 				If !IsObject(cell_mods[index])
@@ -576,7 +576,7 @@ Sanctum_Relics(cHWND := "")
 	mods2 := {}, dimensions := []
 	For mod, val in mods
 	{
-		mod2 := db.relics[mod].1
+		mod2 := db.relics[mod].1, val := (RegExMatch(val, "i)(\.|,)[0-9]") ? RTrim(val, ",.0") : val)
 		If Blank(mod2)
 			mods2.unknown := !mods2.unknown ? [1] : [mods2.unknown + 1]
 		Else mods2[mod2] := [val . (db.relics[mod].2 ? "%" : ""), mod], dimensions.Push(val . (db.relics[mod].2 ? "%" : ""))

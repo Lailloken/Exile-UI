@@ -158,7 +158,7 @@
     },
     [
       "optional: (img:skill) (color:cc99ff)league_mechanic",
-      "optional: (img:support) (color:cc99ff)hanged_man along outer edge",
+      "optional: (img:support) in (img:checkpoint) (color:cc99ff)gallows along outer edge",
       "inner edge leads to areaidg1_15 ;; ogham manor"
     ],
     {
@@ -193,7 +193,7 @@
         "yes"
       ],
       "lines": [
-        "(img:quest_2) leitis: (img:support)",
+        "(img:quest_2) leitis: (img:skill)",
         "(img:quest_2) renly: (color:cc99ff)rune & (quest:salvage_bench)",
         "(img:quest_2) hooded one: areaidg2_1 ;; vastiri outskirts"
       ]
@@ -204,7 +204,7 @@
         "no"
       ],
       "lines": [
-        "(img:quest_2) leitis: (img:support)",
+        "(img:quest_2) leitis: (img:skill)",
         "optional: (img:quest_2) renly: (color:cc99ff)rune for (color:cc99ff)blank_rune",
         "(img:quest_2) hooded one: areaidg2_1 ;; vastiri outskirts"
       ]
@@ -236,8 +236,7 @@
       "(color:cc99ff)desert_map: areaidg2_3a ;; the halani gates (blocked)"
     ],
     [
-      "(img:quest_2) asala",
-      "return to areaidg2_town ;; the ardura caravan"
+      "(img:quest_2) asala || (img:portal) areaidg2_town ;; the ardura caravan"
     ],
     [
       "(img:quest_2) risu || (img:quest_2) asala",
@@ -286,9 +285,8 @@
     ],
     [
       "optional: (img:support) in (img:checkpoint) (color:cc99ff)fossilized_memorial",
-      "(quest:abyss): find (img:arena) lightless_passage",
-      "(hint)_ - can be skipped for later",
-      "(hint)_ - find (img:arena) well_of_souls inside for (img:waypoint)",
+      "(img:in-out2) lightless_passage for (img:waypoint)",
+      "(hint)_ required later for (quest:abyss_crafts)",
       "find & enter (img:checkpoint) areaidg2_5_2 ;; the bone pits"
     ],
     [
@@ -357,7 +355,7 @@
   [
     [
       "optional: (img:skill) arena:rootdredge || (img:ring) (color:cc99ff)hanging_tree",
-      "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)orok_camp near the exit",
+      "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)azak_camp near the exit",
       "enter (img:checkpoint) areaidg3_town ;; ziggurat encampment"
     ],
     {
@@ -535,7 +533,6 @@
       "(img:quest_2) makoru (ship): areaidg4_2_1 ;; kedge bay"
     ],
     [
-      "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)abandoned_ship (?)",
       "optional: optional: (img:exa) (color:cc99ff)league || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)stash",
       "enter areaidg4_2_2 ;; journey's end"
     ],
@@ -551,11 +548,12 @@
     ],
     [
       "(img:quest_2) freya || kill omniphobia",
+      "makoru (ship): areaidg4_3_1 ;; whakapanu island",
       "(img:portal) to areaidg4_town ;; kingsmarch"
     ],
     [
-      "(img:quest_2) tujen: (img:skill) & (quest:book)",
-      "makoru: areaidg4_3_1 ;; whakapanu island"
+      "(img:quest_2) tujen: (quest:book) & (img:skill)",
+      "(img:waypoint) to areaidg4_3_1 ;; whakapanu island"
     ],
     [
       "optional: (img:artificer) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)cavern",
@@ -652,15 +650,15 @@
       "enter areaidp1_1 ;; scorched farmlands"
     ],
     [
-      "optional: (img:skill) (color:cc99ff)corpse along the road",
+      "optional: (img:skill) on (img:checkpoint) (color:cc99ff)corpse along the road",
       "get the (img:checkpoint) next to (color:cc99ff)wall_of_darkness",
       "kill witches, enter (img:checkpoint) areaidp1_2 ;; stones of serle"
     ],
     [
       "optional: (img:exa) (color:cc99ff)league_mechanic",
-      "activate 6 (img:checkpoint) (color:cc99ff)megaliths || kill siora",
-      "(img:quest_2) una: (color:cc99ff)listen_to_the_end",
-      "go back to (img:checkpoint) areaidp1_1 ;; scorched farmlands"
+      "find 6 (img:checkpoint) (color:cc99ff)megaliths || kill siora",
+      "(img:quest_2) una (color:ff0000)(listen_to_the_end) || (img:portal) out",
+      "enter (img:checkpoint) areaidp1_1 ;; scorched farmlands"
     ],
     [
       "(img:checkpoint) -travel to (color:cc99ff)wall_of_darkness",
@@ -726,9 +724,9 @@
     ],
     [
       "optional: (img:exa) (color:cc99ff)league_mechanic",
-      "find (img:checkpoint) (color:cc99ff)7_pillars for (quest:perma._buff)",
-      "(hint)__ usually in corner near entrance/exit",
-      "follow edge to (img:checkpoint) areaidp2_7 ;; qimah reservoir"
+      "(quest:buff): find (img:checkpoint) (color:cc99ff)7_pillars",
+      "(hint)__ check zone's corners & edges",
+      "enter (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
       "optional: currency: find (quest:2_vials) for (img:checkpoint) (color:cc99ff)2_wells",
@@ -788,10 +786,26 @@
       "(img:quest_2) hooded one: (color:cc99ff)travel_to_oriath",
       "enter areaidg_endgame_town ;; the ziggurat refuge"
     ],
-    [
-      "(img:quest_2) alva || (img:quest_2) doryani",
-      "use the (color:cc99ff)map_device",
-      "<the_act-tracker_ends_here>"
-    ]
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "(img:quest_2) alva || (img:quest_2) doryani",
+        "use the (color:cc99ff)map_device",
+        "<the_act-tracker_ends_here>"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
+        "(img:quest_2) alva || (img:quest_2) doryani",
+        "<the_act-tracker_ends_here>"
+      ]
+    }
   ]
 ]
