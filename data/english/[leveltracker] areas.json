@@ -120,13 +120,13 @@
     {
       "id": "1_2_6_1",
       "lvl": 15,
-      "name": "Chamber of Sins Level 1",
+      "name": "Chamber of Sins (1)",
       "map_name": "Chamber of Sins"
     },
     {
       "id": "1_2_6_2",
       "lvl": 16,
-      "name": "Chamber of Sins Level 2"
+      "name": "Chamber of Sins (2)"
     },
     {
       "id": "1_2_15",
@@ -136,13 +136,13 @@
     {
       "id": "1_2_5_1",
       "lvl": 17,
-      "name": "Crypt Level 1",
+      "name": "The Crypt (1)",
       "map_name": "The Crypt"
     },
     {
       "id": "1_2_5_2",
       "lvl": 18,
-      "name": "Crypt Level 2"
+      "name": "The Crypt (2)"
     },
     {
       "id": "1_2_7",
@@ -239,12 +239,12 @@
     {
       "id": "1_3_8_1",
       "lvl": 27,
-      "name": "Solaris Temple Level 1"
+      "name": "Solaris Temple (1)"
     },
     {
       "id": "1_3_8_2",
       "lvl": 28,
-      "name": "Solaris Temple Level 2",
+      "name": "Solaris Temple (2)",
       "crafting_recipe": "Fire Damage I"
     },
     {
@@ -260,13 +260,13 @@
     {
       "id": "1_3_14_1",
       "lvl": 29,
-      "name": "Lunaris Temple Level 1",
+      "name": "Lunaris Temple (1)",
       "map_name": "Lunaris Temple"
     },
     {
       "id": "1_3_14_2",
       "lvl": 30,
-      "name": "Lunaris Temple Level 2",
+      "name": "Lunaris Temple (2)",
       "crafting_recipe": "Lightning Damage I"
     },
     {
@@ -320,13 +320,13 @@
     {
       "id": "1_4_3_1",
       "lvl": 34,
-      "name": "The Mines Level 1",
+      "name": "The Mines (1)",
       "crafting_recipe": "Socket Colours"
     },
     {
       "id": "1_4_3_2",
       "lvl": 35,
-      "name": "The Mines Level 2"
+      "name": "The Mines (2)"
     },
     {
       "id": "1_4_3_3",
@@ -359,12 +359,12 @@
     {
       "id": "1_4_6_1",
       "lvl": 38,
-      "name": "Belly of the Beast Level 1"
+      "name": "Belly of the Beast (1)"
     },
     {
       "id": "1_4_6_2",
       "lvl": 39,
-      "name": "Belly of the Beast Level 2",
+      "name": "Belly of the Beast (2)",
       "crafting_recipe": "Elemental Resistances II"
     },
     {
@@ -563,14 +563,14 @@
     {
       "id": "2_7_5_1",
       "lvl": 52,
-      "name": "Chamber of Sins Level 1",
+      "name": "Chamber of Sins (1)",
       "map_name": "Chamber of Sins",
       "crafting_recipe": "Lightning Damage II"
     },
     {
       "id": "2_7_5_2",
       "lvl": 52,
-      "name": "Chamber of Sins Level 2",
+      "name": "Chamber of Sins (2)",
       "crafting_recipe": "Mana Regen I"
     },
     {
@@ -613,12 +613,12 @@
     {
       "id": "2_7_12_1",
       "lvl": 54,
-      "name": "Temple of Decay Level 1"
+      "name": "Temple of Decay (1)"
     },
     {
       "id": "2_7_12_2",
       "lvl": 55,
-      "name": "Temple of Decay Level 2",
+      "name": "Temple of Decay (2)",
       "crafting_recipe": "Chaos Damage I"
     },
     {
@@ -672,12 +672,12 @@
     {
       "id": "2_8_7_1_",
       "lvl": 59,
-      "name": "Lunaris Temple Level 1"
+      "name": "Lunaris Temple (1)"
     },
     {
       "id": "2_8_7_2",
       "lvl": 59,
-      "name": "Lunaris Temple Level 2",
+      "name": "Lunaris Temple (2)",
       "crafting_recipe": "Minions I"
     },
     {
@@ -703,12 +703,12 @@
     {
       "id": "2_8_12_1",
       "lvl": 59,
-      "name": "Solaris Temple Level 1"
+      "name": "Solaris Temple (1)"
     },
     {
       "id": "2_8_12_2",
       "lvl": 59,
-      "name": "Solaris Temple Level 2",
+      "name": "Solaris Temple (2)",
       "crafting_recipe": "Traps and Mines I"
     },
     {
