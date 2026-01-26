@@ -237,6 +237,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				If (control != val)
 					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val
 		}
+		Else If (click = 2) && !vars.actdecoder.files[check "_1"]
+			vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" pic
 		Else Return
 	}
 
