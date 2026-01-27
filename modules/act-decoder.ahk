@@ -277,8 +277,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If !vars.pics.zone_layouts.drag
 		vars.pics.zone_layouts.drag := LLK_ImageCache("img\GUI\drag.png")
-	Gui, %GUI_name%: Add, Pic, % (alignment = "vertical" ? "ys" : "xs") " Border HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden")
-		, % "HBitmap:*" vars.pics.zone_layouts.drag
+	Gui, %GUI_name%: Add, Pic, % (alignment = "vertical" ? "ys" : "xs") " Border HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden"), % "HBitmap:*" vars.pics.zone_layouts.drag
 	vars.hwnd.actdecoder.drag := vars.hwnd.help_tooltips["actdecoder_drag"] := hwnd
 
 	If !vars.pics.zone_layouts.vertical

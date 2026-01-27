@@ -1989,10 +1989,13 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					If InStr(step, "(hint)_")
 						Gui, %name_main%: Font, % "s"settings.leveltracker.fSize - 2
 
-					If preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !(settings.features.actdecoder && !settings.actdecoder.generic && (vars.actdecoder.files[vars.log.areaID " 1"]))
-						For key in vars.leveltracker.hints
-							If InStr(StrReplace(part, "_", " "), key)
-								color := "Aqua", text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text
+					hint := 0
+					For key in vars.leveltracker.hints
+						If InStr(StrReplace(part, "_", " "), key)
+							text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text, hint := 1
+					If hint && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !(settings.features.actdecoder && !settings.actdecoder.generic && vars.actdecoder.files[vars.log.areaID " 1"]))
+						color := "Aqua"
+
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
 						text := SubStr(text, 1, -1)
 					Gui, %name_main%: Add, Text, % (index = 1 && bullets ? "ys x+0" : style) " c"color, % (index = text_parts.MaxIndex()) || spacing_check || InStr(text_parts[index + 1], "(img:") ? text : text " "
