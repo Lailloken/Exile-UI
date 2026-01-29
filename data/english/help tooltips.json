@@ -1360,15 +1360,19 @@
       "when unsure how to match indicators, always try mirroring before rotating(/highlight)"
     ],
     "help panel": [
-      "general:\nscroll to zoom, hold down m-mouse for info\npress space to (un)lock the overlay",
-      "if images have orange borders, they are inconclusive examples of possible layouts, rotations, mirrors (just to give a rough idea)(/highlight)",
+      "general:\nscroll to zoom\nhold down m-mouse for info\npress space to (un)lock the overlay",
+      "if images have orange borders, they are inconclusive examples of possible layouts (just to give a rough idea)(/highlight)",
       "if images have white borders, you have to match specific identifiers on the minimap to find the exact layouts:\n\nclick images or press number-keys to select a match\n\npress 3 to discard the currently-displayed set of identifiers and cycle to the next set",
-      "press <q> to revert all modifications and selections/discards"
+      "press <q> to revert all modifications and selections/discards",
+      "to hide legends/info-boxes, press the corresponding number-key\n\nto hide images in general, right-click them"
     ],
     "reset": [
       "click to reset image modifications and selections/discards for this zone"
     ],
     "rotate": [
+      "click: rotate 90 degrees\nr-click: rotate -90 degrees"
+    ],
+    "rotate 2": [
       "click: rotate 90 degrees\nr-click: rotate -90 degrees",
       "when unsure how to match indicators, always try mirroring before rotating(/highlight)"
     ]

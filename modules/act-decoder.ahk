@@ -237,6 +237,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				If (control != val)
 					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val
 		}
+		Else If (click = 2) && !vars.actdecoder.files[check "_1"]
+			vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" pic
 		Else Return
 	}
 
@@ -254,7 +256,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Return
 	}
 
-	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_4": 1, "g1_14": 1, "g1_15": 1, "g2_4_3": 1, "g3_11": 1, "g3_16": 1}
+	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_4": 1, "g1_14": 1, "g1_15": 1, "g2_4_3": 1, "g3_11": 1, "g3_16": 1}, rota_whitelist := {"1_1_2a": 1}
+
 	If (vars.actdecoder.current_zone != vars.log.areaID)
 		vars.actdecoder.current_zone := vars.log.areaID
 	toggle := !toggle, GUI_name := "actdecoder_zones" toggle
@@ -274,8 +277,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If !vars.pics.zone_layouts.drag
 		vars.pics.zone_layouts.drag := LLK_ImageCache("img\GUI\drag.png")
-	Gui, %GUI_name%: Add, Pic, % (alignment = "vertical" ? "ys" : "xs") " Border HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden")
-		, % "HBitmap:*" vars.pics.zone_layouts.drag
+	Gui, %GUI_name%: Add, Pic, % (alignment = "vertical" ? "ys" : "xs") " Border HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden"), % "HBitmap:*" vars.pics.zone_layouts.drag
 	vars.hwnd.actdecoder.drag := vars.hwnd.help_tooltips["actdecoder_drag"] := hwnd
 
 	If !vars.pics.zone_layouts.vertical
@@ -363,17 +365,23 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			If (count = 1)
 				ControlGetPos, xFirst, yFirst,,,, ahk_id %hwnd%
 
-			If vars.poe_version && vars.actdecoder.tab && (mode != 2) && !rota_block[vars.log.areaID] && !InStr(file, "x") && !(selection && count > 2)
+			If (vars.poe_version || rota_whitelist[vars.log.areaID]) && vars.actdecoder.tab && (mode != 2) && !rota_block[vars.log.areaID] && !InStr(file, "x") && !(selection && count > 2)
 			{
 				If !vars.pics.zone_layouts.rotate
 					vars.pics.zone_layouts.rotate := LLK_ImageCache("img\GUI\rotate.png")
 				If !vars.pics.zone_layouts.flip
 					vars.pics.zone_layouts.flip := LLK_ImageCache("img\GUI\flip.png")
-				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (alignment = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.flip
-				vars.hwnd.actdecoder[vars.log.areaID " " file "_flip"] := vars.hwnd.help_tooltips["actdecoder_flip" handle0] := hwnd
-				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1"
-					, % "HBitmap:*" vars.pics.zone_layouts.rotate
-				vars.hwnd.actdecoder[vars.log.areaID " " file "_rotate"] := vars.hwnd.help_tooltips["actdecoder_rotate" handle0] := hwnd, handle0 .= "|"
+
+				If !rota_whitelist[vars.log.areaID]
+				{
+					Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " (alignment = "horizontal" ? "xs" : "ys") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.flip
+					vars.hwnd.actdecoder[vars.log.areaID " " file "_flip"] := vars.hwnd.help_tooltips["actdecoder_flip" handle0] := hwnd
+					style0 := (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp")
+				}
+				Else style0 := (alignment = "horizontal" ? "xs" : "ys")
+
+				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " style0 " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.rotate
+				vars.hwnd.actdecoder[vars.log.areaID " " file "_rotate"] := vars.hwnd.help_tooltips["actdecoder_rotate" vars.poe_version . handle0] := hwnd, handle0 .= "|"
 				If (vars.actdecoder.zone_layouts[vars.log.areaID][file].Count() > 1) || vars.actdecoder.zone_layouts[vars.log.areaID][file].1
 				{
 					Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd0 BackgroundTrans " (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.revert

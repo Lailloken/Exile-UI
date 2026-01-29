@@ -176,7 +176,8 @@
       "go (img:1) to areaid1_2_2 ;; the old fields"
     ],
     [
-      "optional: (img:quest) (color:8787fe)flask / <belt> : find (img:arena) areaid1_2_2a, place (img:portal) ;; the den",
+      "optional: (img:quest) (color:8787fe)flask / <belt> : find (img:arena) den, set (img:portal) ;; the den",
+      "(hint)__ usually located near the road",
       "follow road to areaid1_2_3 ;; the crossroads"
     ],
     [
@@ -1036,10 +1037,7 @@
     ],
     [
       "kill doedre,_maligaro,_shav",
-      "(img:quest) piety || kill malachai (lvl:34)",
-      "(img:portal) to areaid1_4_town ;; highgate"
-    ],
-    [
+      "(img:quest) piety || kill malachai (lvl:34) || (img:portal) out",
       "dialla: <the_eternal_nightmare>",
       "enter areaid1_4_7 ;; the ascent"
     ],
@@ -1049,12 +1047,31 @@
     ]
   ],
   [
-    [
-      "follow (img:5) edge, kill overseer",
-      "(hint)_ - find corridor with gallows",
-      "(hint)_ - loop clockwise to reach (img:arena) exit",
-      "enter areaid1_5_town (img:town) ;; overseer's tower"
-    ],
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "optional: (color:cc99ff)5l_armor in (color:ff00ff)breach encounter",
+        "follow (img:5) edge, kill overseer",
+        "(hint)_ - find corridor with gallows",
+        "(hint)_ - loop clockwise to reach (img:arena) exit",
+        "enter areaid1_5_town (img:town) ;; overseer's tower"
+      ]
+    },
+    {
+      "condition": [
+        "league-start",
+        "no"
+      ],
+      "lines": [
+        "follow (img:5) edge, kill overseer",
+        "(hint)_ - find corridor with gallows",
+        "(hint)_ - loop clockwise to reach (img:arena) exit",
+        "enter areaid1_5_town (img:town) ;; overseer's tower"
+      ]
+    },
     [
       "lani: <ring>",
       "enter areaid1_5_2 ;; the control blocks"
@@ -1213,6 +1230,7 @@
         "yes"
       ],
       "lines": [
+        "optional: (color:cc99ff)5l_armor in (color:ff00ff)breach encounter",
         "kill everything",
         "(color:cc99ff)relog: areaid2_6_town ;; lioneye's watch"
       ]

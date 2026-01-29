@@ -1,5 +1,11 @@
 [
   [
+	["1.61.4", 16104],
+	"january 29, 2026",
+	"act-tracker: added support for 3.27 phrecia imports, added 'optionals' for 5L breach drops in acts 5 + 6 (league-start route)",
+	"act-decoder: added 'sample' layouts for acts 1 through 10, as well as some 'decoded' ones for certain areas"
+  ],
+  [
 	["1.61.3", 16103],
 	"january 20, 2026",
 	"act-tracker: tweaked poe2 guide + druid ascendancy-trees, fixed a lvl-tracking issue in private leagues",
