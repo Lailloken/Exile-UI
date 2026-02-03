@@ -119,13 +119,6 @@
       "hold down the <widget-key> while in a supported campaign area to activate the overlay",
       "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
     ],
-    "actdecoder generic": [
-      "disables sub-layout selections and only shows basic layouts",
-      "credits: layouts created by engineering eternity, compiled by u/_treb"
-    ],
-    "actdecoder generic 2": [
-      "disables sub-layout selections and only shows basic layouts"
-    ],
     "actdecoder hotkey": [
       "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
       "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton 1/2) on the mouse",

@@ -38,7 +38,6 @@
 	settings.actdecoder.sLayouts1 := !Blank(check := ini.settings["zone-layouts locked size"]) ? check : 0
 	settings.actdecoder.aLayouts := !Blank(check := ini.settings["zone-layouts arrangement"]) ? check : "vertical"
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
-	settings.actdecoder.generic := !Blank(check := ini.settings["show generic layouts"]) ? check : 0
 	settings.actdecoder.hotkey := hotkey := !Blank(check := ini.settings["alternative hotkey"]) ? check : ""
 
 	Hotkey, If, vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
@@ -305,13 +304,13 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	{
 		count := 0 ;, pic_count := (alignment = "vertical") && vars.actdecoder.tab ? Min(4, pic_count) : pic_count
 		exclude := vars.actdecoder.zone_layouts[vars.log.areaID].exclude
-		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " *"
+		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " *"
 		{
 			file := StrReplace(A_LoopFileName, "." A_LoopFileExt), file := SubStr(file, InStr(file, " ") + 1)
 			If !RegExMatch(A_LoopFileName, "i)" (subzone ? "\s(" subzone "|x(_x){" deep "})_." : "\s(\d|x)") "\.(jpg|png)$") && !(pic_count0 = 0 && InStr(A_LoopFileName, " y"))
-			|| exclude && RegExMatch(A_LoopFileName, "i)" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
+			|| exclude && RegExMatch(A_LoopFileName, "i)" vars.log.areaID . exclude "\.") || !pic_count0 && InStr(A_LoopFileName, " x")
 			;|| selection && (count > 3) && !RegExMatch(A_LoopFileName, "i)\s(x|y)")
-			|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[StrReplace(vars.log.areaID, "c_") " y_1"]
+			;|| settings.actdecoder.generic && !InStr(A_LoopFileName, " y") && vars.actdecoder.files[vars.log.areaID " y_1"]
 				Continue
 
 			selection += (vars.actdecoder.files[vars.log.areaID " " file "_1"] ? 1 : 0)
@@ -391,7 +390,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			}
 		}
 		If !pic_count0
-			If !FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" StrReplace(vars.log.areaID, vars.poe_version ? "c_" : "") " y*")
+			If !FileExist("img\GUI\act-decoder\zones" vars.poe_version "\" vars.log.areaID " y*")
 				vars.actdecoder.zone_layouts[vars.log.areaID].exclude := "", pic_count0 := 1, pic_count := 3
 			Else If !ypic_count
 				Loop, Parse, exclude, |

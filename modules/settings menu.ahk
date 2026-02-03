@@ -26,9 +26,6 @@
 	vars.hwnd.help_tooltips["settings_hotkeys formatting"] := vars.hwnd.settings.hotkey := hwnd, vars.hwnd.settings.hotkey_save := hwnd1, vars.hwnd.help_tooltips["settings_actdecoder hotkey"] := hwnd2
 
 	LLK_PanelDimensions([Lang_Trans("m_actdecoder_opacity") " ", Lang_Trans("m_actdecoder_zoom") " "], settings.general.fSize, wPanels, hPanels,,, 0)
-	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_actdecoder2 Checked" (settings.actdecoder.generic ? 1 : 0), % Lang_Trans("m_actdecoder_simple")
-	vars.hwnd.settings.generic := vars.hwnd.help_tooltips["settings_actdecoder generic" vars.poe_version] := hwnd
-
 	Gui, %GUI%: Add, Text, % "Section xs Center HWNDhwnd", % Lang_Trans("m_actdecoder_opacity")
 	vars.hwnd.help_tooltips["settings_actdecoder layouts opacity"] := hwnd
 
@@ -104,12 +101,6 @@ Settings_actdecoder2(cHWND := "")
 		GuiControl, +cBlack, % vars.hwnd.settings.hotkey
 		GuiControl, movedraw, % vars.hwnd.settings.hotkey
 		GuiControl, +Hidden, % vars.hwnd.settings.hotkey_save
-	}
-	Else If (check = "generic")
-	{
-		IniWrite, % (settings.actdecoder.generic := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\act-decoder.ini", settings, show generic layouts
-		If !vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
-			Actdecoder_ZoneLayouts(2)
 	}
 	Else If InStr(check, "zonesopac_")
 	{
