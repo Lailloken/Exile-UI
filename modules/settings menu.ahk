@@ -3425,8 +3425,19 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 		Return
 	}
 
-	If !section
+	If !section || (NA = "tray")
 		section := (vars.settings.active_last ? vars.settings.active_last : "general")
+
+	If (NA = "tray")
+		If !WinExist("ahk_group poe_window")
+			Return
+		Else
+		{
+			WinActivate, % "ahk_group poe_window"
+			WinWaitActive, % "ahk_group poe_window",, 3
+			If ErrorLevel
+				Return
+		}
 
 	If !IsObject(vars.settings)
 	{

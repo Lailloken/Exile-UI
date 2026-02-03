@@ -108,6 +108,9 @@ If vars.ini_integrity
 	ExitApp
 }
 LLK_Log("+++ tool is running +++")
+
+Menu, Tray, Add
+Menu, Tray, Add, Settings, Settings_menu
 Return
 
 #Include modules\_functions.ahk
