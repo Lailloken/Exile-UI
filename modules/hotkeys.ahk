@@ -279,7 +279,8 @@ Hotkeys_Tab()
 	While settings.features.leveltracker && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
-			active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_Hints()
+			If WinExist("ahk_id " vars.hwnd.leveltracker.main)
+				active .= " leveltracker", vars.leveltracker.overlays := 1, Leveltracker_Hints()
 			Break
 		}
 
