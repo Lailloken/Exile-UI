@@ -9,7 +9,7 @@
       "enter areaid1_1_2 ;; the coast"
     ],
     [
-      "league: activate (img:waypoint)",
+      "leaguestart: activate (img:waypoint)",
       "enter areaid1_1_3 ;; the mud flats"
     ],
     [
@@ -96,7 +96,7 @@
       "(img:waypoint) to areaid1_1_7_1 ;; the lower prison"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "(hint)__ often (img:1) in the zone",
       "enter areaid1_1_7_2 ;; the upper prison"
     ],
@@ -170,7 +170,7 @@
       "(hint)__ (img:waypoint) in center points to the exit"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "kill fidelitas (lvl:14-15) || take (img:quest) (quest:gem)",
       "(hint)__ (img:arena) start & (color:cc99ff)arena: opposite corners",
       "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
@@ -184,7 +184,7 @@
       "follow road to areaid1_2_5_1 ;; the crypt level 1"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "find & enter areaid1_2_5_2 ;; the crypt level 2",
       "(hint)__ (img:arena) start & (img:arena) exit: opposite corners"
     ],
@@ -497,7 +497,7 @@
     [
       "find & enter areaid1_2_14_3 ;; the ancient pyramid",
       "(hint)_ in (img:7) / (img:0) / (img:1) corner after (img:waypoint)",
-      "(hint)_ league: (img:craft) in diff. corner (secret door)"
+      "(hint)_ leaguestart: (img:craft) in diff. corner (secret door)"
     ],
     [
       "find (img:arena) apex, kill oversoul (lvl:20-22)",
@@ -507,7 +507,7 @@
   ],
   [
     [
-      "league: go (img:3) to get (img:craft)",
+      "leaguestart: go (img:3) to get (img:craft)",
       "go (img:7) to save (img:quest) clarissa",
       "go (img:5) to areaid1_3_town ;; the sarn encampment"
     ],
@@ -517,7 +517,7 @@
       "(hint)__ (img:arena) start & (img:arena) exit: opposite corners"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "kill piety || get (img:quest) (quest:bracelet)",
       "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
     ],
@@ -625,7 +625,7 @@
     ],
     [
       "find (img:quest) dialla: <amulet>,  (quest:talc)",
-      "(hint)__ league: (img:craft) in (img:arena) room next to her",
+      "(hint)__ leaguestart: (img:craft) in (img:arena) room next to her",
       "(img:waypoint) to areaid1_3_10_1 ;; the sewers"
     ],
     [
@@ -645,7 +645,7 @@
       "find & kill piety for (quest:key) (lvl:27)",
       "(hint)_ - follow (color:cc99ff)3_stairs_up + single wagon",
       "(hint)_ - (color:cc99ff)2_large_gates lead to her arena",
-      "(hint)_ - league: (img:craft): far side of arena",
+      "(hint)_ - leaguestart: (img:craft): far side of arena",
       "(color:cc99ff)relog: areaid1_3_town ;; the sarn encampment"
     ],
     {
@@ -798,7 +798,7 @@
       "enter areaid1_4_3_1 ;; the mines level 1"
     ],
     [
-      "league: find the (img:craft)",
+      "leaguestart: find the (img:craft)",
       "enter areaid1_4_3_2 ;; the mines level 2"
     ],
     [
@@ -870,7 +870,7 @@
   ],
   [
     [
-      "optional: league: (color:cc99ff)5l_armor in (color:ff00ff)breach encounter",
+      "optional: leaguestart: (color:cc99ff)5l_armor in (color:ff00ff)breach encounter",
       "follow (img:5) edge, kill overseer",
       "(hint)_ - find corridor with gallows",
       "(hint)_ - loop clockwise to reach (img:arena) exit",
@@ -895,10 +895,10 @@
     ],
     [
       "follow (img:0) edge, kill avarius",
-      "(hint)__ league: (img:craft): corridor along (img:4) edge",
+      "(hint)__ leaguestart: (img:craft): corridor along (img:4) edge",
       "(hint)__ high exp zone, farm level: 40-42",
       "use (img:arena), enter areaid1_5_4b ;; torched courts",
-      "(hint)__ league: talk to (img:quest) bannon so he's in (img:town)"
+      "(hint)__ leaguestart: talk to (img:quest) bannon so he's in (img:town)"
     ],
     [
       "enter areaid1_5_3b ;; the ruined square",
@@ -920,7 +920,7 @@
     ],
     [
       "find 3x (img:quest) (quest:torment) near corners",
-      "(hint)__ league: (img:craft) is near one of the (img:quest) (quest:torments)",
+      "(hint)__ leaguestart: (img:craft) is near one of the (img:quest) (quest:torments)",
       "(img:waypoint) to areaid1_5_town (img:town) ;; overseer's tower"
     ],
     [
@@ -958,7 +958,7 @@
       ]
     },
     [
-      "league: activate (img:waypoint)",
+      "leaguestart: activate (img:waypoint)",
       "enter areaid2_6_4 ;; mud flats"
     ],
     [
@@ -1022,7 +1022,7 @@
       "enter areaid2_6_7_1 ;; the lower prison"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "enter areaid2_6_7_2 : ;; shavronne's tower"
     ],
     [
@@ -1034,8 +1034,8 @@
     ],
     [
       "follow road to areaid2_6_10 ;; the riverways",
-      "(hint)__ league: (img:craft): follow side path marked by",
-      "(hint)__ league: torch on road"
+      "(hint)__ leaguestart: (img:craft): follow side path marked by",
+      "(hint)__ leaguestart: torch on road"
     ],
     [
       "follow road, get (img:waypoint)",
@@ -1090,7 +1090,7 @@
     ],
     [
       "go (img:1) to (img:quest) (quest:fuel_carts)",
-      "(hint)__ league: (img:craft): stairs leading to carts",
+      "(hint)__ leaguestart: (img:craft): stairs leading to carts",
       "light (img:quest) (quest:beacon), burn (img:quest) (quest:flag)",
       "(img:quest) weylam: areaid2_6_15 ;; the brine king's reef"
     ],
@@ -1110,8 +1110,8 @@
       "enter areaid2_7_1 ;; the broken bridge"
     ],
     [
-      "league: follow road up to broken (img:waypoint)",
-      "league: find (img:quest) (quest:locket) in nearby ruins",
+      "leaguestart: follow road up to broken (img:waypoint)",
+      "leaguestart: find (img:quest) (quest:locket) in nearby ruins",
       "follow road to areaid2_7_2 ;; the crossroads"
     ],
     [
@@ -1122,12 +1122,12 @@
       "follow road to areaid2_7_4 ;; the crypt"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "find (img:arena) sarcophagus & (img:quest) (quest:map)",
       "(img:portal) to areaid2_7_town ;; the bridge encampment"
     ],
     [
-      "league: (img:quest) weylam: (color:8787fe)util._flask",
+      "leaguestart: (img:quest) weylam: (color:8787fe)util._flask",
       "(img:waypoint) to areaid2_7_2 ;; the crossroads"
     ],
     [
@@ -1198,7 +1198,7 @@
     [
       "(img:quest) weylam: (quest:book) ;; star",
       "(img:quest) eramir: (quest:book) ;; greust",
-      "league: (img:quest) helena: <boots> ;;maligaro",
+      "leaguestart: (img:quest) helena: <boots> ;;maligaro",
       "(img:waypoint) / (img:portal) to areaid2_7_8 ;; the northern forest"
     ],
     [
@@ -1208,7 +1208,7 @@
     [
       "find (img:arena) den, kill gruthkul",
       "(hint)__ either (img:4) or (img:3) of (img:arena) start",
-      "(hint)__ league: (img:craft) in the other direction",
+      "(hint)__ leaguestart: (img:craft) in the other direction",
       "find 7x (img:quest) (quest:firefly)",
       "(img:portal) to areaid2_7_town ;; the bridge encampment"
     ],
@@ -1229,7 +1229,7 @@
     [
       "find & kill arakaali",
       "(hint)_ - floor 1+2: (rot.) z-pattern",
-      "(hint)_ - league: (img:craft) in center of floor 2",
+      "(hint)_ - leaguestart: (img:craft) in center of floor 2",
       "(hint)_ - floor 3: follow (img:0) edge",
       "enter areaid2_8_1 ;; the sarn ramparts"
     ]
@@ -1251,7 +1251,7 @@
       "find & kill kill doedre",
       "(hint)__ try: far (img:5), far (img:3), or far (img:1)",
       "after (img:waypoint), go (img:2) to areaid2_8_8 ;; the quay",
-      "(hint)__ league: (img:craft) is near the waypoint"
+      "(hint)__ leaguestart: (img:craft) is near the waypoint"
     ],
     [
       "follow water, find (img:quest) (quest:ankh)",
@@ -1333,7 +1333,7 @@
     [
       "kill dawn for (quest:sun_orb)",
       "(hint)__ follow top edge",
-      "(hint)__ league: (img:craft): far side of arena",
+      "(hint)__ leaguestart: (img:craft): far side of arena",
       "(img:portal) to areaid2_8_town ;; sarn encampment"
     ],
     [
@@ -1351,7 +1351,7 @@
       "kill dusk for (quest:moon_orb)",
       "(hint)_ - follow (color:cc99ff)3_stairs_up + single flower-pot",
       "(hint)_ - (color:cc99ff)2_large_gates lead to the arena",
-      "(hint)_ - league: (img:craft): far side of arena",
+      "(hint)_ - leaguestart: (img:craft): far side of arena",
       "(img:portal) to areaid2_8_town ;; sarn encampment"
     ],
     [
@@ -1412,7 +1412,7 @@
       "go (img:7) to areaid2_9_7 ;; the tunnel"
     ],
     [
-      "league: complete (img:lab) trial",
+      "leaguestart: complete (img:lab) trial",
       "(hint)__ in side path with (img:help) -icon",
       "enter areaid2_9_8 ;; the quarry"
     ],
@@ -1472,7 +1472,7 @@
     ],
     [
       "follow (img:0) edge, kill avarius",
-      "(hint)__ league: (img:craft): corridor along (img:4) edge",
+      "(hint)__ leaguestart: (img:craft): corridor along (img:4) edge",
       "(img:quest) (quest:staff) || (img:waypoint) to areaid2_10_town ;; oriath docks"
     ],
     [
@@ -1556,7 +1556,7 @@
       "(img:quest) lilly: areaid2_11_endgame_town ;; karui shores"
     ],
     [
-      "league: get the (img:craft) || talk to (img:quest) kirac",
+      "leaguestart: get the (img:craft) || talk to (img:quest) kirac",
       "<type_\"/passives\"_in_chat>",
       "<the_act-tracker_guide_ends_here>"
     ]
