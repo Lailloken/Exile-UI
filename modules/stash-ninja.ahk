@@ -175,7 +175,7 @@ Stash(mode, test := 0)
 	hwnd_old := vars.hwnd.stash.main, vars.hwnd.stash := {"main": hwnd_stash, "GUI_name": GUI_name}, dBox := vars.stash[tab].box, dButtons := vars.stash.buttons, dButtons2 := vars.stash.buttons2
 	lBot := settings.stash[tab].limits[profile].1, lTop := settings.stash[tab].limits[profile].2, lType := settings.stash[tab].limits[profile].3
 	lBot := Blank(lBot) ? (lType = 4) ? -999 : 0 : lBot, lTop := Blank(lTop) ? 999999 : lTop
-	count := added := 0, width := Floor(vars.client.h * (37/60)), height := vars.client.h, currencies := ["chaos", "exalt", "divine", "percent"], vars.stash.wait := 1, vars.stash.enter := 0
+	count := added := 0, width := Floor(vars.client.h * (37/60)), height := vars.client.h, currencies := ["chaos", "exalted", "divine", "percent"], vars.stash.wait := 1, vars.stash.enter := 0
 	bookmark_profile := settings.stash[tab].bookmark
 
 	For item, val in vars.stash[tab]
@@ -283,7 +283,7 @@ Stash(mode, test := 0)
 
 			If !vars.pics.stashninja[currencies[limit.3]]
 				For index, currency in currencies
-					vars.pics.stashninja[currency] := LLK_ImageCache("img\GUI\" currency . (currency != "percent" ? vars.poe_version : "") ".png")
+					vars.pics.stashninja[currency] := LLK_ImageCache("img\GUI\currency\" currency . (currency != "percent" ? vars.poe_version : "") ".png")
 			Gui, %GUI_name%: Add, Pic, % "xp y" y " BackgroundTrans w" w - 2 " h-1 Border", % "HBitmap:*" vars.pics.stashninja[currencies[limit.3]]
 			Gui, %GUI_name%: Add, Progress, % "BackgroundBlack Disabled cBlack xp yp wp hp Border", 100
 			added += 1
@@ -793,9 +793,9 @@ Stash_PriceInfo(GUI_name, xAnchor, yAnchor, item, val, trend := 1, currency := 0
 	}
 	Else LLK_PanelDimensions([Round(val.prices.1, 2), Round(val.prices.2, 2), Round(val.prices.3, 2), ".`n."], settings.stash.fSize, wMarket, hMarket)
 
-	For index, cType in ["chaos", "exalt", "divine"]
+	For index, cType in ["chaos", "exalted", "divine"]
 	{
-		If (cType = "exalt") && !exalt || !trend && (item = cType " orb" || item = cType "ed orb") || !trend && (val.prices[index] > 1200*1.1)
+		If (cType = "exalted") && !exalt || !trend && (item = cType " orb") || !trend && (val.prices[index] > 1200*1.1)
 			Continue
 		lines += 1, color := (val.source.1 = "trade" && val.source.2[index]) ? " cLime" : ""
 
@@ -844,7 +844,7 @@ Stash_PriceInfo(GUI_name, xAnchor, yAnchor, item, val, trend := 1, currency := 0
 		Else Gui, %GUI_name%: Add, Text, % "Right " (index != 1 ? "xs " : "x+" settings.stash.fWidth " yp+" settings.stash.fWidth + 0) " Section BackgroundTrans HWNDhwnd w" wMarket " h" hMarket " 0x200" color, % Round(val.prices[index], 2) " "
 
 		If !vars.pics.stashninja[cType "2"]
-			vars.pics.stashninja[cType "2"] := LLK_ImageCache("img\GUI\" cType . vars.poe_version ".png",, hMarket - (!trend ? 2 : 0))
+			vars.pics.stashninja[cType "2"] := LLK_ImageCache("img\GUI\currency\" cType . vars.poe_version ".png",, hMarket - (!trend ? 2 : 0))
 		Gui, %GUI_name%: Add, Pic, % "ys HWNDhwnd BackgroundTrans h" hMarket - (!trend ? 2 : 0) " w-1" (!trend ? " Border gStash_PricePicker" : ""), % "HBitmap:*" vars.pics.stashninja[cType "2"]
 		If !trend
 			vars.hwnd.stash_picker["tradecheck_" cType] := hwnd

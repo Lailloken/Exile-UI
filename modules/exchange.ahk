@@ -261,8 +261,8 @@ Exchange(cHWND := "", hotkey := "")
 	}
 
 	If !vars.pics.exchange.chaos
-		vars.pics.exchange.chaos := LLK_ImageCache("img\GUI\chaos" vars.poe_version ".png", hIcons - 2), vars.pics.exchange.divine := LLK_ImageCache("img\GUI\divine" vars.poe_version ".png", hIcons - 2)
-		, vars.pics.exchange.exalt := LLK_ImageCache("img\GUI\exalt" vars.poe_version ".png", hIcons - 2)
+		vars.pics.exchange.chaos := LLK_ImageCache("img\GUI\currency\chaos" vars.poe_version ".png", hIcons - 2), vars.pics.exchange.divine := LLK_ImageCache("img\GUI\currency\divine" vars.poe_version ".png", hIcons - 2)
+		, vars.pics.exchange.exalt := LLK_ImageCache("img\GUI\currency\exalted" vars.poe_version ".png", hIcons - 2)
 
 	dates := []
 	For date, object in vars.exchange.transactions
