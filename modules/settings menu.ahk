@@ -5287,12 +5287,9 @@ Settings_LeagueSelection2(cHWND := "")
 		}
 		FileMove, % "data\global\league update.json", % "data\global\leagues" vars.poe_version ".json", 1
 		vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1))
-		For index, val in ["general"] ;"stash"
-		{
-			leage := settings[val].league
-			If vars.poe_version && !vars.leagues[league.1][league.2][league.3] || !vars.poe_version && !vars.leagues[league.1][league.2][league.3][league.4]
-				settings[val].league := settings.general.league0.Clone(), Stash_PriceFetch("flush")
-		}
+		league := settings.general.league
+		If vars.poe_version && !vars.leagues[league.1][league.2][league.3] || !vars.poe_version && !vars.leagues[league.1][league.2][league.3][league.4]
+			settings.general.league := settings.general.league0.Clone(), Stash_PriceFetch("flush")
 		Settings_menu(), LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
 	}
 	Else LLK_ToolTip("no action")
