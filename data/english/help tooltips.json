@@ -76,6 +76,13 @@
       "optional: enter a description for the current build",
       "used in the map-tracker feature to log which build was played"
     ],
+    "league selection": [
+      "select the league you're currently playing in",
+      "this information can be used in various features for price-checking and logging purposes"
+    ],
+    "league update": [
+      "check for new leagues/events"
+    ],
     "logfile": [
       "the size and load-time of the game's client.txt log-file: excessively large log-files may negatively impact the game's and tool's performance",
       "if you have issues with the game or log-related features, click the folder button on the right to open the game's log folder"
@@ -251,8 +258,8 @@
     ],
     "exchange enable": [
       "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
-      "requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section(/highlight)",
-      "while the currency exchange is on screen, press the <omni-key> to activate the feature",
+      "requires the <async trade> checks to be set up correctly in the <screen-checks> section(/highlight)",
+      "while the async trade window is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
     ],
     "exchange delete logs": [
@@ -260,6 +267,18 @@
     ],
     "exchange graphs": [
       "visualizes how your in-/outflow developed over the course of a specific day and the past week"
+    ],
+    "exchange async enable": [
+      "provides quick-pricing functionality, as well as pricing/age tracking for listed items",
+      "requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section(/highlight)",
+      "while the currency exchange is on screen, press the <omni-key> to activate the feature",
+      "hold down <alt> to temporarily hide the overlay"
+    ],
+    "exchange async name": [
+      "trade logs will show names in addition to the base type"
+    ],
+    "exchange async minchange": [
+      "suggested pricing options will start x% below the current price (or as close as possible)"
     ],
     "hotkeys ingame-keybinds": [
       "to avoid conflicts between custom in-game keybinds and the tool's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
@@ -653,6 +672,10 @@
       "optional: name/description of the build can also be logged",
       "you have to specify this info in the <general> section of the settings"
     ],
+    "maptracker league": [
+      "the league you're currently playing in will be logged",
+      "you have to select the correct league in the <general> section of the settings"
+    ],
     "maptracker side-content": [
       "side-areas you enter and the time spent inside will be logged",
       "examples: abyssal depths, lab trials, vaal areas, starfall crater"
@@ -951,6 +974,9 @@
       "stash feature that overlays poe.ninja price-tags onto items in specific stash tabs",
       "long-press the <omni-key> while hovering over an item in a tab to activate the feature"
     ],
+    "stash league": [
+      "league selection is a global setting and can be found in the <general> tab"
+    ],
     "stash hotkey": [
       "this hotkey is exclusive to streaming clients, and pressing it will open an exclusive selection menu that lists the available tabs",
       "don't bind it to modifier-keys or keys used for chatting: type in a key-name and press <enter>"
@@ -983,8 +1009,7 @@
       "once the stash-ninja overlay is active, settings for the active tab will appear below"
     ],
     "stash gap": [
-      "refers to the horizontal gap between item boxes/slots in the stash tab",
-      "fine-tune this value to align the overlay and in-game stash"
+      "if price tags don't align with the in-game grid, fine-tune this value to improve positioning"
     ],
     "stash in folder": [
       "the overlay's position has to be offset if this specific tab is in a stash folder",
@@ -1107,6 +1132,21 @@
     ],
     "stock reset": [
       "long-click to reset materials to 0"
+    ]
+  },
+  "async": {
+    "font-size": [
+      "– and + can be held down, the middle button resets the size"
+    ],
+    "list sell": [
+      "press the <omni-key> over an item to open 'quick repricing'\n\nhold down the <omni-key> over an item to track and add it to the list below",
+      "<click> an item on the list to highlight it in game\n\n<long-right-click> an item on the list to remove it",
+      "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed since repricing or listing the item"
+    ],
+    "list buy": [
+      "press the <omni-key> over an item to log the purchase",
+      "<long-right-click> an item on the list to remove it",
+      "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed"
     ]
   },
   "cheatsheet": {
@@ -1532,6 +1572,10 @@
     ],
     "logviewer header character": [
       "information about the character (and build) played in the run:\nclick highlighted cells in this column to view this information",
+      "header is clickable for searching:\nclick to paste \"yes\" into the search, r-click to paste \"no\", double-(r-)click to search immediately"
+    ],
+    "logviewer header league": [
+      "information about the league (optional, has to be enabled first):\nclick highlighted cells in this column to view this information",
       "header is clickable for searching:\nclick to paste \"yes\" into the search, r-click to paste \"no\", double-(r-)click to search immediately"
     ],
     "logviewer search content": [

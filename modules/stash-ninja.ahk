@@ -18,8 +18,6 @@
 	{
 		settings.stash := {"indexes": 15}, ini := IniBatchRead("ini" vars.poe_version "\stash-ninja.ini")
 		settings.stash.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
-		settings.stash.leagues := (vars.poe_version ? [["standard", "Standard"], ["vaal", "Fate of the Vaal"], ["hc vaal", "HC Fate of the Vaal"]] : [["standard", "Standard"], ["keepers", "Keepers"], ["hc keepers", "Hardcore Keepers"]])
-		settings.stash.league := !Blank(check := ini.settings["league"]) && LLK_HasVal(settings.stash.leagues, check,,,, 1) ? check : settings.stash.leagues.1.2
 		settings.stash.history := !Blank(check := ini.settings["enable price history"]) ? check : 1
 		settings.stash.show_exalt := (!vars.poe_version ? 0 : !Blank(check := ini.settings["show exalt conversion"]) ? check : (vars.poe_version ? 1 : 0))
 		settings.stash.bulk_trade := 0 ;!Blank(check := ini.settings["show bulk-sale suggestions"]) ? check : 0
@@ -136,8 +134,9 @@ Stash(mode, test := 0)
 			Continue
 		tab := (RegExMatch(mode, "i)currency|ultimatum") ? "currency" : (mode = "refresh") ? (RegExMatch(vars.stash.active, "i)currency|ultimatum") ? "currency" : vars.stash.active) : mode)
 		tab := (tab = "breach" || A_Index = 2) ? "fragments" : tab, now := A_Now, timestamp := vars.stash[tab].timestamp, league := vars.stash[tab].league
+		league_ID := (vars.poe_version ? vars.leagues[settings.general.league.1].trade[settings.general.league.3] : vars.leagues[settings.general.league.1].trade.normal[settings.general.league.4])
 		EnvSub, now, timestamp, Minutes
-		If (league != settings.stash.league) || Blank(timestamp) || Blank(now) || (now >= 61)
+		If (league != league_ID) || Blank(timestamp) || Blank(now) || (now >= 61)
 		{
 			If !tooltip
 				LLK_ToolTip(Lang_Trans("stash_update"), 10000,,, "stashprices", "lime")
@@ -289,6 +288,12 @@ Stash(mode, test := 0)
 			added += 1
 		}
 
+	xPos := width//2 - (settings.stash[tab].bookmarking ? 0 : (count/2) * width//10)
+	Gui, %GUI_name%: Font, % "s" settings.stash.fSize
+	string := Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[(vars.poe_version ? 3 : 4)])
+	Gui, %GUI_name%: Add, Text, % "x" xPos " y+0 Border BackgroundTrans cLime", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " " string " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", % 0
+
 	Gui, %GUI_name%: Show, % "NA x" vars.client.x " y" vars.client.y
 	LLK_Overlay(hwnd_stash, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	vars.stash.GUI := 1, vars.stash.wait := 0
@@ -414,7 +419,8 @@ Stash_PriceFetch(tab)
 
 	Loop, % (loop_count := types[tab].Count())
 	{
-		tab := InStr(tab, "currency") ? "currency" : tab, type := types[tab][A_Index], league := StrReplace(settings.stash.league, " ", "+"), outer := A_Index
+		tab := InStr(tab, "currency") ? "currency" : tab, type := types[tab][A_Index], outer := A_Index, league := settings.general.league.Clone()
+		league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4]), league := StrReplace(league, " ", "+")
 		If vars.poe_version
 			URL := "https://poe.ninja/poe2/api/economy/exchange/current/overview?league=" league "&type=" type
 		Else data_type := (InStr("fragments,currency", tab) ? "currency" : "item") "/overview", URL := "https://poe.ninja/poe1/api/economy/exchange/current/overview?league=" league "&type=" type
@@ -424,7 +430,7 @@ Stash_PriceFetch(tab)
 			Return 0
 		prices := Json.Load(prices)
 		If (A_Index = 1)
-			ini_dump := "timestamp=" A_Now "`nleague=" settings.stash.league
+			ini_dump := "timestamp=" A_Now "`nleague=" StrReplace(league, "+", " ")
 		If !vars.poe_version && !prices.lines.Count() || vars.poe_version && !prices.items.Count()
 			Return 0
 		If (A_Index = 1)
@@ -459,45 +465,10 @@ Stash_PriceFetch(tab)
 					, vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
 			}
 
-		If (bla = 1) && !vars.poe_version
-			For index, val in prices.lines
-			{
-				name := LLK_StringCase(val[InStr(data_type, "item") ? "name" : "currencytypename"]), price0 := val["chaos" (InStr(data_type, "item") ? "value" : "equivalent")]
-				price := price0 ", " price0 / vars.stash.exalt ", " price0 / vars.stash.divine, trend := ""
-				For iTrend, vTrend in val[(InStr(data_type, "item") ? "" : "receive") "sparkline"].data
-					trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
-				ini_dump .= "`n" name "=""" price """", ini_dump .= !Blank(trend) ? "`n" name "_trend=""" trend """" : ""
-
-				If (check := LLK_HasKey(vars.stash, name,,,, 1))
-				{
-					If (vars.stash[check][name].source.1 = "trade")
-					{
-						Loop, Parse, price, `,, % A_Space
-							If !vars.stash[check][name].source.2[A_Index]
-								vars.stash[check][name].prices[A_Index] := A_LoopField
-					}
-					Else vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
-					vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
-				}
-			}
-
-		If (bla = 1 ) && vars.poe_version
-			For index, val in prices.items
-			{
-				name := LLK_StringCase(val.item.name), price := ""
-				For iPrice, vPrice in ["chaos", "exalted", "divine"]
-					price .= (Blank(price) ? "" : ", ") (name = vPrice " orb" ? 1 : (val.rate[vPrice] ? 1/val.rate[vPrice] : 0))
-				ini_dump .= "`n" name "=""" price """"
-
-				If (check := LLK_HasKey(vars.stash, name,,,, 1))
-					vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
-					, vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
-			}
-
 		If (A_Index = loop_count)
 		{
 			IniWrite, % ini_dump, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab
-			vars.stash[tab].timestamp := A_Now, vars.stash[tab].league := settings.stash.league
+			vars.stash[tab].timestamp := A_Now, vars.stash[tab].league := StrReplace(league, "+", " ")
 		}
 	}
 	Return 1

@@ -376,144 +376,6 @@ Settings_betrayal2(cHWND := "")
 	Else LLK_ToolTip("no action")
 }
 
-Settings_CharTracking(mode, wEdits := "")
-{
-	local
-	global vars, settings
-	static fSize, wChar
-
-	If (fSize != settings.general.fSize)
-	{
-		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_info")], settings.general.fSize, wChar, hChar)
-		fSize := settings.general.fSize
-	}
-
-	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, profile := settings.leveltracker.profile
-	char := settings.leveltracker["guide" profile].info.character
-	If (mode = "general")
-		color := " " (vars.log.level ? "cLime" : (settings.general.character ? "cYellow" : "cFF8000"))
-	Else color := " " (vars.log.level && settings.general.character = char ? "cLime" : (char ? "cYellow" : "cFF8000"))
-
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "Section xs y+" margin " Hidden", % "test"
-	Gui, %GUI%: Font, % "s" settings.general.fSize
-
-	wEdits := !wEdits ? settings.general.fWidth2 * 18 : wEdits - wChar
-	Gui, %GUI%: Add, Text, % "Section xp yp hp Border HWNDhwnd w" wChar . color, % " " Lang_Trans("m_general_character")
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	char_text := (mode = "general" ? settings.general.character : settings.leveltracker["guide" profile].info.character)
-	Gui, %GUI%: Add, Edit, % "ys x+-1 R1 cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2 w" wEdits, % char_text
-	Gui, %GUI%: Font, % "s" settings.general.fSize
-	vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active character status" : "leveltracker character status")] := hwnd
-	vars.hwnd.settings.charinfo := vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active character" : "leveltracker character info")] := hwnd1
-	ControlGetPos, xEdit1, yEdit1, wEdit1, hEdit1,, ahk_id %hwnd1%
-
-
-	If (mode = "general" && settings.general.character || mode = "leveltracker" && char)
-	{
-		Gui, %GUI%: Add, Pic, % "ys x+" margin " HWNDhwnd00 gSettings_CharTracking2 Border hp-2 w-1", % "HBitmap:*" vars.pics.global.reload
-		vars.hwnd.settings.refresh_class := vars.hwnd.help_tooltips["settings_active character whois"] := hwnd00
-	}
-
-	If (mode = "general" && vars.log.level || mode = "leveltracker" && vars.log.level && settings.general.character = char)
-	{
-		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Text, % "ys x+-1 HWNDhwnd0 Border hp 0x200 Center", % " " vars.log.character_class " (" vars.log.level ") "
-		Gui, %GUI%: Font, % "s" settings.general.fSize
-		vars.hwnd.settings.class_text := vars.hwnd.help_tooltips["settings_ascendancy"] := hwnd0
-	}
-
-	If vars.log.level && settings.features.maptracker && settings.maptracker.character || (mode = "leveltracker")
-	{
-		Gui, %GUI%: Add, Text, % "Section xs y+" margin " hp Border HWNDhwnd w" wChar, % " " Lang_Trans("global_info")
-		Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-		build_text := (mode = "general" ? settings.general.build : settings.leveltracker["guide" profile].info.name)
-		Gui, %GUI%: Add, Edit, % "ys x+-1 R1 cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2 w" wEdits, % build_text
-		Gui, %GUI%: Font, % "s" settings.general.fSize
-		vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active build" : "leveltracker profile name")] := vars.hwnd.settings.buildinfo := hwnd1
-		ControlGetPos, xEdit2, yEdit2, wEdit2, hEdit2,, ahk_id %hwnd1%
-	}
-	Else yEdit2 := yEdit1, hEdit2 := hEdit1
-
-	Gui, %GUI%: Add, Text, % "ys x+" margin " Border 0x200 cRed Hidden HWNDhwnd gSettings_CharTracking2 x" xEdit1 + wEdit1 + margin " y" yEdit1 - 1 " h" yEdit2 + hEdit2 - yEdit1, % " " Lang_Trans("global_save") " "
-	vars.hwnd.settings.save_buildinfo := hwnd
-}
-
-Settings_CharTracking2(cHWND)
-{
-	local
-	global vars, settings
-	static char_wait
-
-	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
-	If char_wait
-		Return
-	char_wait := 1, active := vars.settings.active
-
-	If (check = "refresh_class")
-	{
-		KeyWait, LButton
-		KeyWait, RButton
-		WinActivate, % "ahk_id " vars.hwnd.poe_client
-		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
-		Clipboard := "/whois " LLK_ControlGet(vars.hwnd.settings.charinfo)
-		ClipWait, 0.1
-		SendInput, {Enter}
-		Sleep, 100
-		SendInput, ^{a}^{v}{Enter}
-		Sleep, 100
-		Clipboard := ""
-	}
-	Else If (check = "charinfo" || check = "buildinfo")
-	{
-		charinfo := LLK_ControlGet(vars.hwnd.settings.charinfo), buildinfo := LLK_ControlGet(vars.hwnd.settings.buildinfo), profile := settings.leveltracker.profile
-		If (active = "leveling tracker" && charinfo . buildinfo != settings.leveltracker["guide" profile].info.character . settings.leveltracker["guide" profile].info.name)
-		|| (active = "general" && charinfo . buildinfo != settings.general.character . settings.general.build)
-		{
-			GuiControl, % "-Hidden", % vars.hwnd.settings.save_buildinfo
-			GuiControl, % "+Hidden", % vars.hwnd.settings.refresh_class
-			GuiControl, % "+Hidden", % vars.hwnd.settings.class_text
-		}
-		Else
-		{
-			GuiControl, % "+Hidden", % vars.hwnd.settings.save_buildinfo
-			GuiControl, % "-Hidden", % vars.hwnd.settings.refresh_class
-			GuiControl, % "-Hidden", % vars.hwnd.settings.class_text
-		}
-	}
-	Else If (check = "save_buildinfo" || cHWND = "refresh")
-		bla := 1
-	Else LLK_ToolTip("no action")
-
-	If (check = "save_buildinfo" || check = "refresh_class")
-	{
-		charinfo := Trim(LLK_ControlGet(vars.hwnd.settings.charinfo), " "), buildinfo := Trim(LLK_ControlGet(vars.hwnd.settings.buildinfo), " "), profile := settings.leveltracker.profile
-		If (active = "leveling tracker")
-		{
-			IniWrite, % """" (settings.leveltracker["guide" profile].info.character := charinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, character
-			IniWrite, % """" (settings.leveltracker["guide" profile].info.name := buildinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, name
-		}
-		IniWrite, % """" (settings.general.character := charinfo) """", % "ini" vars.poe_version "\config.ini", settings, active character
-		IniWrite, % """" (settings.general.build := (Blank(charinfo) ? "" : buildinfo)) """", % "ini" vars.poe_version "\config.ini", settings, active build
-	}
-
-	If (check = "save_buildinfo" || cHWND = "refresh" || check = "refresh_class")
-	{
-		Init_log("refresh")
-		If WinExist("ahk_id " vars.hwnd.geartracker.main)
-			Geartracker_GUI()
-		Else If settings.leveltracker.geartracker && vars.hwnd.geartracker.main
-			Geartracker_GUI("refresh")
-		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
-			Leveltracker_Progress()
-		If settings.features.maptracker && settings.maptracker.character
-			Maptracker_GUI()
-		If (check != "refresh_class")
-			Settings_menu(active)
-	}
-	char_wait := 0
-}
-
 Settings_cheatsheets()
 {
 	local
@@ -1173,8 +1035,10 @@ Settings_general()
 	If vars.log.file_location
 		Settings_CharTracking("general")
 
+	Settings_LeagueSelection(yCoord)
+
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section x" vars.settings.x_anchor " y" yCoord + vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd", % Lang_Trans("global_font")
@@ -3190,6 +3054,8 @@ Settings_maptracker()
 	vars.hwnd.settings.rename := vars.hwnd.help_tooltips["settings_maptracker rename" vars.poe_version] := hwnd
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.character, % Lang_Trans("m_maptracker_character")
 	vars.hwnd.settings.character := vars.hwnd.help_tooltips["settings_maptracker character"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "ys gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.league, % Lang_Trans("m_maptracker_league")
+	vars.hwnd.settings.league := vars.hwnd.help_tooltips["settings_maptracker league"] := hwnd
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_maptracker2 HWNDhwnd Checked"settings.maptracker.mechanics, % Lang_Trans("m_maptracker_content")
 	vars.hwnd.settings.mechanics := vars.hwnd.help_tooltips["settings_maptracker mechanics"] := hwnd
 
@@ -3317,8 +3183,10 @@ Settings_maptracker2(cHWND)
 			settings.maptracker.rename := LLK_ControlGet(cHWND)
 			IniWrite, % settings.maptracker.rename, % "ini" vars.poe_version "\map tracker.ini", settings, rename boss maps
 		Case "character":
-			settings.maptracker.character := LLK_ControlGet(cHWND)
-			IniWrite, % settings.maptracker.character, % "ini" vars.poe_version "\map tracker.ini", settings, log character info
+			IniWrite, % (settings.maptracker.character := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\map tracker.ini", settings, log character info
+			Maptracker_GUI()
+		Case "league":
+			IniWrite, % (settings.maptracker.character := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\map tracker.ini", settings, log league info
 			Maptracker_GUI()
 		Case "mechanics":
 			settings.maptracker.mechanics := LLK_ControlGet(cHWND)
@@ -4609,8 +4477,6 @@ Settings_stash()
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_stash2 y+" vars.settings.spacing " Checked" settings.features.stash, % Lang_Trans("m_stash_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_stash enable" vars.poe_version] := hwnd
-	If vars.poe_version
-		Gui, %GUI%: Add, Text, % "Section xs cFF8000 w" settings.general.fWidth * 35, % "poe.ninja 2 is still under active development, so any changes made there might negatively impact this feature"
 
 	If !settings.features.stash
 		Return
@@ -4619,29 +4485,26 @@ Settings_stash()
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden Default HWNDhwnd gSettings_stash2", OK
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_stash_leagues")
-	leagues := settings.stash.leagues, vars.hwnd.settings.apply_button := hwnd
-	For index, array in leagues
-	{
-		Gui, %GUI%: Add, Text, % (!InStr(array.1, leagues[index - 1].1) ? "xs Section" : "ys x+" settings.general.fWidth//2) " HWNDhwnd Border Center gSettings_stash2" (index = 1 ? " Section" : "") . (array.2 = settings.stash.league ? " cLime" : ""), % " " array.1 " "
-		vars.hwnd.settings["league_" array.2] := hwnd
-	}
+	vars.hwnd.settings.apply_button := hwnd
+
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd cLime", % Lang_Trans("global_league") . Lang_Trans("global_colon") " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4])
+	vars.hwnd.help_tooltips["settings_stash league"] := hwnd
 
 	If vars.client.stream
 	{
-		Gui, %GUI%: Add, Text, % "xs Section x" x_anchor, % Lang_Trans("global_hotkey")
+		Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_hotkey")
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 		Gui, %GUI%: Add, Edit, % "ys HWNDhwnd Limit cBlack r1 gSettings_stash2 w" settings.general.fWidth * 8, % settings.stash.hotkey
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		vars.hwnd.settings.hotkey := vars.hwnd.help_tooltips["settings_stash hotkey"] := hwnd
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs x" x_anchor " Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
+	Gui, %GUI%: Add, Checkbox, % "Section xs Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
 	;Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
 	vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd ;, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("stash_pricetags")
@@ -4685,7 +4548,7 @@ Settings_stash()
 	If !vars.settings.selected_tab
 		Return
 
-	Gui, %GUI%: Add, Text, % "ys HWNDhwnd2", % "    " Lang_Trans("global_gap") ":"
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd2", % Lang_Trans("m_stash_grid")
 	Gui, %GUI%: Add, Text, % "ys HWNDhwnd3 gSettings_stash2 Center Border w" settings.general.fWidth * 2, % "–"
 	Gui, %GUI%: Add, Text, % "ys HWNDhwnd4 gSettings_stash2 Center Border wp x+" settings.general.fWidth//2, % "+"
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd5 gSettings_stash2 Checked" settings.stash[vars.stash.active].in_folder, % Lang_Trans("m_stash_folder")
@@ -4786,15 +4649,6 @@ Settings_stash2(cHWND)
 		If !settings.stash[control].enable && WinExist("ahk_id " vars.hwnd.stash.main)
 			Stash_Close()
 		Settings_menu("stash-ninja")
-	}
-	Else If InStr(check, "league_")
-	{
-		GuiControl, +cWhite, % vars.hwnd.settings["league_" settings.stash.league]
-		GuiControl, movedraw, % vars.hwnd.settings["league_" settings.stash.league]
-		IniWrite, % (settings.stash.league := control), % "ini" vars.poe_version "\stash-ninja.ini", settings, league
-		GuiControl, +cLime, % cHWND
-		GuiControl, movedraw, % cHWND
-		Stash_PriceFetch("flush")
 	}
 	Else If (check = "history")
 		IniWrite, % (settings.stash.history := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, enable price history
@@ -4904,7 +4758,7 @@ Settings_stash2(cHWND)
 		Stash(vars.settings.selected_stash, 1)
 	Else LLK_ToolTip("no action")
 
-	For index, val in ["limits", "gap", "color_", "font_", "league_", "history", "folder", "bookmarking_"]
+	For index, val in ["limits", "gap", "color_", "font_", "history", "folder", "bookmarking_"]
 		If InStr(check, val) && WinExist("ahk_id " vars.hwnd.stash.main)
 			Stash("refresh", (val = "gap") ? 1 : 0)
 	in_progress := 0
@@ -5221,6 +5075,225 @@ Settings_updater2(cHWND := "")
 			IniWrite, % vars.updater.latest.1, ini\config.ini, versions, skip
 			Settings_menu("updater")
 		}
+	}
+	Else LLK_ToolTip("no action")
+}
+
+Settings_CharTracking(mode, wEdits := "")
+{
+	local
+	global vars, settings
+	static fSize, wChar
+
+	If (fSize != settings.general.fSize)
+	{
+		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_info")], settings.general.fSize, wChar, hChar)
+		fSize := settings.general.fSize
+	}
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, profile := settings.leveltracker.profile
+	char := settings.leveltracker["guide" profile].info.character
+	If (mode = "general")
+		color := " " (vars.log.level ? "cLime" : (settings.general.character ? "cYellow" : "cFF8000"))
+	Else color := " " (vars.log.level && settings.general.character = char ? "cLime" : (char ? "cYellow" : "cFF8000"))
+
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "Section xs y+" margin " Hidden", % "test"
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+
+	wEdits := !wEdits ? settings.general.fWidth2 * 18 : wEdits - wChar
+	Gui, %GUI%: Add, Text, % "Section xp yp hp Border HWNDhwnd w" wChar . color, % " " Lang_Trans("m_general_character")
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	char_text := (mode = "general" ? settings.general.character : settings.leveltracker["guide" profile].info.character)
+	Gui, %GUI%: Add, Edit, % "ys x+-1 R1 cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2 w" wEdits, % char_text
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active character status" : "leveltracker character status")] := hwnd
+	vars.hwnd.settings.charinfo := vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active character" : "leveltracker character info")] := hwnd1
+	ControlGetPos, xEdit1, yEdit1, wEdit1, hEdit1,, ahk_id %hwnd1%
+
+
+	If (mode = "general" && settings.general.character || mode = "leveltracker" && char)
+	{
+		Gui, %GUI%: Add, Pic, % "ys x+" margin " HWNDhwnd00 gSettings_CharTracking2 Border hp-2 w-1", % "HBitmap:*" vars.pics.global.reload
+		vars.hwnd.settings.refresh_class := vars.hwnd.help_tooltips["settings_active character whois"] := hwnd00
+	}
+
+	If (mode = "general" && vars.log.level || mode = "leveltracker" && vars.log.level && settings.general.character = char)
+	{
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+		Gui, %GUI%: Add, Text, % "ys x+-1 HWNDhwnd0 Border hp 0x200 Center", % " " vars.log.character_class " (" vars.log.level ") "
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.settings.class_text := vars.hwnd.help_tooltips["settings_ascendancy"] := hwnd0
+	}
+
+	If vars.log.level && settings.features.maptracker && settings.maptracker.character || (mode = "leveltracker")
+	{
+		Gui, %GUI%: Add, Text, % "Section xs y+" margin " hp Border HWNDhwnd w" wChar, % " " Lang_Trans("global_info")
+		Gui, %GUI%: Font, % "s"settings.general.fSize - 4
+		build_text := (mode = "general" ? settings.general.build : settings.leveltracker["guide" profile].info.name)
+		Gui, %GUI%: Add, Edit, % "ys x+-1 R1 cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2 w" wEdits, % build_text
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.help_tooltips["settings_" (mode = "general" ? "active build" : "leveltracker profile name")] := vars.hwnd.settings.buildinfo := hwnd1
+		ControlGetPos, xEdit2, yEdit2, wEdit2, hEdit2,, ahk_id %hwnd1%
+	}
+	Else yEdit2 := yEdit1, hEdit2 := hEdit1
+
+	Gui, %GUI%: Add, Text, % "ys x+" margin " Border 0x200 cRed Hidden HWNDhwnd gSettings_CharTracking2 x" xEdit1 + wEdit1 + margin " y" yEdit1 - 1 " h" yEdit2 + hEdit2 - yEdit1, % " " Lang_Trans("global_save") " "
+	vars.hwnd.settings.save_buildinfo := hwnd
+}
+
+Settings_CharTracking2(cHWND)
+{
+	local
+	global vars, settings
+	static char_wait
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If char_wait
+		Return
+	char_wait := 1, active := vars.settings.active
+
+	If (check = "refresh_class")
+	{
+		KeyWait, LButton
+		KeyWait, RButton
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+		Clipboard := "/whois " LLK_ControlGet(vars.hwnd.settings.charinfo)
+		ClipWait, 0.1
+		SendInput, {Enter}
+		Sleep, 100
+		SendInput, ^{a}^{v}{Enter}
+		Sleep, 100
+		Clipboard := ""
+	}
+	Else If (check = "charinfo" || check = "buildinfo")
+	{
+		charinfo := LLK_ControlGet(vars.hwnd.settings.charinfo), buildinfo := LLK_ControlGet(vars.hwnd.settings.buildinfo), profile := settings.leveltracker.profile
+		If (active = "leveling tracker" && charinfo . buildinfo != settings.leveltracker["guide" profile].info.character . settings.leveltracker["guide" profile].info.name)
+		|| (active = "general" && charinfo . buildinfo != settings.general.character . settings.general.build)
+		{
+			GuiControl, % "-Hidden", % vars.hwnd.settings.save_buildinfo
+			GuiControl, % "+Hidden", % vars.hwnd.settings.refresh_class
+			GuiControl, % "+Hidden", % vars.hwnd.settings.class_text
+		}
+		Else
+		{
+			GuiControl, % "+Hidden", % vars.hwnd.settings.save_buildinfo
+			GuiControl, % "-Hidden", % vars.hwnd.settings.refresh_class
+			GuiControl, % "-Hidden", % vars.hwnd.settings.class_text
+		}
+	}
+	Else If (check = "save_buildinfo" || cHWND = "refresh")
+		bla := 1
+	Else LLK_ToolTip("no action")
+
+	If (check = "save_buildinfo" || check = "refresh_class")
+	{
+		charinfo := Trim(LLK_ControlGet(vars.hwnd.settings.charinfo), " "), buildinfo := Trim(LLK_ControlGet(vars.hwnd.settings.buildinfo), " "), profile := settings.leveltracker.profile
+		If (active = "leveling tracker")
+		{
+			IniWrite, % """" (settings.leveltracker["guide" profile].info.character := charinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, character
+			IniWrite, % """" (settings.leveltracker["guide" profile].info.name := buildinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, name
+		}
+		IniWrite, % """" (settings.general.character := charinfo) """", % "ini" vars.poe_version "\config.ini", settings, active character
+		IniWrite, % """" (settings.general.build := (Blank(charinfo) ? "" : buildinfo)) """", % "ini" vars.poe_version "\config.ini", settings, active build
+	}
+
+	If (check = "save_buildinfo" || cHWND = "refresh" || check = "refresh_class")
+	{
+		Init_log("refresh")
+		If WinExist("ahk_id " vars.hwnd.geartracker.main)
+			Geartracker_GUI()
+		Else If settings.leveltracker.geartracker && vars.hwnd.geartracker.main
+			Geartracker_GUI("refresh")
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress()
+		If settings.features.maptracker && settings.maptracker.character
+			Maptracker_GUI()
+		If (check != "refresh_class")
+			Settings_menu(active)
+	}
+	char_wait := 0
+}
+
+Settings_LeagueSelection(ByRef yCoord)
+{
+	local
+	global vars, settings
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, yMax := 0
+	Gui, %GUI%: Add, Text, % "Section xs Border 0x200 HWNDhwnd h" settings.general.fHeight * vars.leagues.Count() - 1, % " " Lang_Trans("global_league") " "
+	ControlGetPos, xFirst, yFirst, wFirst, hFirst,, ahk_id %hwnd%
+	vars.hwnd.help_tooltips["settings_league selection"] := hwnd, yCoord := yFirst + hFirst
+
+	leagues := vars.leagues, league := settings.general.league
+	objects := [leagues, leagues[league.1], leagues[league.1][league.2], leagues[league.1][league.2][league.3], leagues[league.1][league.2][league.3][league.4]]
+	Loop, % (vars.poe_version ? 3 : 4)
+	{
+		outer := A_Index, LLK_PanelDimensions(objects[outer], settings.general.fSize, width, height,,,,, 1)
+		For key in objects[outer]
+		{
+			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "Section ys x+-1" : "xs y+-1") " Border Center HWNDhwnd gSettings_LeagueSelection2 w" width . (key = league[outer] ? " cLime" : ""), % Lang_Trans("global_league_" key)
+			vars.hwnd.settings["leagueselect_" outer "|" key] := hwnd
+		}
+	}
+
+	Gui, %GUI%: Add, Pic, % "ys Border x+-1 hp-2 w-1 gSettings_LeagueSelection2 HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
+	vars.hwnd.settings.league_update := vars.hwnd.help_tooltips["settings_league update"] := hwnd
+}
+
+Settings_LeagueSelection2(cHWND := "")
+{
+	local
+	global vars, settings, json
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	KeyWait, LButton
+	If InStr(check, "leagueselect_")
+	{
+		control := StrSplit(control, "|"), settings.general.league[control.1] := control.2, league := settings.general.league
+		target := (vars.poe_version ? vars.leagues[league.1][league.2][league.3] : vars.leagues[league.1][league.2][league.3][league.4])
+		If !target
+			Loop, % (vars.poe_version ? 3 : 4)
+				If (A_Index != control.1)
+					settings.general.league[A_Index] := settings.general.league0[A_Index]
+
+		For index, val in settings.general.league
+			string .= (string ? "|" : "") val
+		IniWrite, % """" string """", % "ini" vars.poe_version "\config.ini", settings, league
+		Stash_PriceFetch("flush")
+		If WinExist("ahk_id " vars.hwnd.stash.main)
+			Stash("refresh")
+		Settings_menu()
+	}
+	Else If (check = "league_update")
+	{
+		KeyWait, LButton
+		FileDelete, % "data\global\league update.json"
+		UrlDownloadToFile, % "https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/global/leagues" StrReplace(vars.poe_version, " ", "%20") ".json", % "data\global\league update.json"
+		If ErrorLevel || !FileExist("data\global\league update.json")
+		{
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
+			Return
+		}
+		Try file_check := json.Load(LLK_FileRead("data\global\league update.json", 1))
+
+		If !IsObject(file_check)
+		{
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
+			FileDelete, % "data\global\league update.json"
+			Return
+		}
+		FileMove, % "data\global\league update.json", % "data\global\leagues" vars.poe_version ".json", 1
+		vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1))
+		For index, val in ["general"] ;"stash"
+		{
+			leage := settings[val].league
+			If vars.poe_version && !vars.leagues[league.1][league.2][league.3] || !vars.poe_version && !vars.leagues[league.1][league.2][league.3][league.4]
+				settings[val].league := settings.general.league0.Clone(), Stash_PriceFetch("flush")
+		}
+		Settings_menu(), LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
 	}
 	Else LLK_ToolTip("no action")
 }

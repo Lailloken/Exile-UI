@@ -706,7 +706,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 			vars.GUI.RemoveAt(A_LoopField)
 }
 
-LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", header_offset := 0, margins := 1, min_width := 0)
+LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", header_offset := 0, margins := 1, min_width := 0, use_key := 0)
 {
 	local
 	global vars
@@ -733,6 +733,8 @@ LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", he
 
 	For index, val in array
 	{
+		If use_key
+			val := index
 		font := InStr(val, "(/bold)") ? "bold" : "", font .= InStr(val, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font
 		Gui, panel_dimensions: Font, % font
 		val := StrReplace(StrReplace(StrReplace(val, "&&", "&"), "(/bold)"), "(/underline)"), val := StrReplace(val, "&", "&&")

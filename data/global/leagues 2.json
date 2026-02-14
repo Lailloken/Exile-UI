@@ -1,0 +1,22 @@
+{
+  "sc": {
+    "ssf": {
+      "standard": "Solo Self-Found",
+      "vaal": "SSF Fate of the Vaal"
+    },
+    "trade": {
+      "standard": "Standard",
+      "vaal": "Fate of the Vaal"
+    }
+  },
+  "hc": {
+    "ssf": {
+      "standard": "Hardcore SSF",
+      "vaal": "HC SSF Fate of the Vaal"
+    },
+    "trade": {
+      "standard": "Hardcore",
+      "vaal": "HC Fate of the Vaal"
+    }
+  }
+}

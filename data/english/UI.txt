@@ -157,8 +157,8 @@
 		global_width			=	"width"
 		global_height			=	"height"
 		global_gap			=	"gap"
-		global_pattern			=	"pattern"		;## as in color pattern
-		global_regular			=	"regular"		;## as in default
+		global_pattern			=	"pattern"			;## as in color pattern
+		global_regular			=	"regular"			;## as in default
 		global_setup			=	"setup"
 		global_variance		=	"variance (0-255)"
 		global_hotkey			=	"hotkey:"
@@ -180,7 +180,7 @@
 		global_cancel			=	"cancel"
 		global_downloading		=	"downloading..."
 		global_search			=	"search:"
-		global_toggle			=	"toggle"		;## pressing a hotkey opens a feature
+		global_toggle			=	"toggle"			;## pressing a hotkey opens a feature
 		global_hold			=	"hold"			;## feature stays open while holding a hotkey, then closes on release
 		global_hide			=	"hide"
 		global_unhide			=	"unhide"
@@ -193,18 +193,28 @@
 		global_multithreading	=	"multi-threaded"	;## i.e. using multiple CPU cores/threads
 		global_multithreading	=	"single-threaded"
 		global_ignore			=	"ignore"
-		global_custom			=	"custom"		;## as in "user-defined"
+		global_custom			=	"custom"			;## as in "user-defined"
 		global_condition		=	"condition:"		;## as in "if x condition is met"
 		global_yes			=	"yes"
 		global_no				=	"no"
 		global_activation		=	"activation:"
 		global_maps			=	"maps"
 		global_league			=	"league"
+		global_league_sc		=	"sc"				;## softcore league
+		global_league_hc		=	"hc"				;## hardcore league
+		global_league_standard	=	"standard"
+		global_league_keepers	=	"keepers"
+		global_league_phrecia	=	"phrecia"
+		global_league_vaal		=	"vaal"
+		global_league_ssf		=	"ssf"
+		global_league_trade		=	"trade"
+		global_league_ruthless	=	"ruthless"
+		global_league_normal	=	"normal"			;## unofficial term, used as an opposite for ruthless
 		global_copy			=	"copy"
 		global_icon			=	"icon"
 		global_off			=	"off"
 		global_keywords		=	"keywords"		;## related to search-results: words that come up often
-		global_matches			=	"matches"		;## matches of a search-result
+		global_matches			=	"matches"			;## matches of a search-result
 		global_colon			=	":"
 		global_ok				=	"ok"
 		global_cost			=	"cost"
@@ -217,6 +227,7 @@
 		global_duration		=	"duration (sec)"
 		global_position		=	"position"
 		global_exchange		=	"currency exchange"
+		global_timeunits		=	"minute#minutes#hour#hours#day#days#week#weeks"
 		global_day			=	"day"
 		global_day			=	"days"
 		global_week			=	"week"
@@ -232,6 +243,7 @@
 		global_shiftclick		=	"shift-click"
 		global_pause			=	"pause"
 		global_resume			=	"resume"
+		global_filter			=	"filter"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -370,6 +382,14 @@
 ;## these strings are displayed/required when using the vaal street feature
 		exchange_chaos_div		=	"conversion;ratio required!"
 		exchange_7days			=	"past 7 days"
+		async_listheader		=	"current listings:"
+		async_listheader		=	"logged purchases:"
+		async_nolist			=	"not tracking anything (yet)"
+		async_nolist			=	"couldn't find any logs"
+		async_listing			=	"listing added"
+		async_listing			=	"already tracking"
+		async_history			=	"price history:"
+		async_adjust			=	"adjust price:"
 
 
 
@@ -913,8 +933,11 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "vaal street" section of the settings menu
-		m_exchange_enable		=	"enable the vaal street feature"
+		m_exchange_enable		=	"enable currency exchange features"
 		m_exchange_graphs		=	"show balance graphs"
+		m_async_enable			=	"enable async trading features"
+		m_async_name			=	"show full item names"
+		m_async_minchange		=	"min. price change:"				;## used for 'quick reprice' feature: new price needs to be at least x% lower than the current price
 
 
 
@@ -1043,6 +1066,7 @@
 		m_maptracker_sidearea		=	"side-areas"
 		m_maptracker_rename			=	"tag & rename boss maps"					;## adds a "boss:"-tag to logged map-runs
 		m_maptracker_character		=	"character/build info"
+		m_maptracker_league			=	"league info"
 		m_maptracker_content		=	"track atlas mechanics"
 		m_maptracker_dialogue		=	"–> dialogue tracking:"					;## tracking is done via in-game dialogue in the chat-box
 		m_maptracker_screen			=	"–> screen tracking:"					;## tracking is done via screen-reading
@@ -1116,6 +1140,8 @@
 		m_screen_instructions	=	"read the instructions on;the <info> button!"
 		m_screen_sanctum		=	"sanctum floor map"
 		m_screen_sanctum		=	"sekhema floor map"
+		m_screen_async1		=	"async trade (sell)"
+		m_screen_async2		=	"async trade (buy)"
 
 
 ;#####################################################
@@ -1160,6 +1186,7 @@
 		m_stash_margins		=	"margins (%):"
 		m_stash_active			=	"active tab:"
 		m_stash_bookmarking		=	"enable bookmarking"
+		m_stash_grid			=	"fine-tune grid alignment:"
 
 
 

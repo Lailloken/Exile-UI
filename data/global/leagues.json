@@ -1,0 +1,50 @@
+{
+  "sc": {
+    "ssf": {
+      "normal": {
+        "standard": "Solo Self-Found",
+        "keepers": "SSF Keepers",
+        "phrecia": "SSF Phrecia 2.0"
+      },
+      "ruthless": {
+        "standard": "SSF Ruthless",
+        "keepers": "SSF R Keepers"
+      }
+    },
+    "trade": {
+      "normal": {
+        "standard": "Standard",
+        "keepers": "Keepers",
+        "phrecia": "Phrecia 2.0"
+      },
+      "ruthless": {
+        "standard": "Ruthless",
+        "keepers": "Ruthless Keepers"
+      }
+    }
+  },
+  "hc": {
+    "ssf": {
+      "normal": {
+        "standard": "Hardcore SSF",
+        "keepers": "HC SSF Keepers",
+        "phrecia": "HC SSF Phrecia 2.0"
+      },
+      "ruthless": {
+        "standard": "Hardcore SSF Ruthless",
+        "keepers": "HC SSF R Keepers"
+      }
+    },
+    "trade": {
+      "normal": {
+        "standard": "Hardcore",
+        "keepers": "Hardcore Keepers",
+        "phrecia": "Hardcore Phrecia 2.0"
+      },
+      "ruthless": {
+        "standard": "Hardcore Ruthless",
+        "keepers": "HC Ruthless Keepers"
+      }
+    }
+  }
+}
