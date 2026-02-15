@@ -44,9 +44,15 @@
 			LLK_ToolTip(Lang_Trans("omnikey_language"), 3,,,, "red"), Omni_Release()
 			Return
 		}
-
+		
 		vars.omnikey.start := A_TickCount, vars.omnikey.item := {} ;store data about the clicked item here
 		Omni_ItemInfo()
+
+		If InStr(Clipboard, "note: ~b/o") && WinExist("ahk_id " vars.hwnd.async.main)
+		{
+			AsyncTrade2(vars.async.mode), Omni_Release()
+			Return
+		}
 
 		Switch Omni_Context()
 		{
@@ -182,6 +188,13 @@ Omnikey2()
 		If !vars.hwnd.exchange.main
 			Exchange()
 		Else Exchange("close")
+		active := 1
+	}
+	Else If settings.features.async && (vars.imagesearch.async1.check || vars.imagesearch.async2.check)
+	{
+		If !vars.hwnd.async.main
+			AsyncTrade(vars.imagesearch.async1.check ? "sell" : "buy")
+		Else AsyncTrade("close")
 		active := 1
 	}
 	Else If settings.features.statlas && vars.imagesearch.atlas.check

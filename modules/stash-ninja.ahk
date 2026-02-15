@@ -133,7 +133,7 @@ Stash(mode, test := 0)
 		If vars.poe_version && (A_Index != 1)
 			Continue
 		tab := (RegExMatch(mode, "i)currency|ultimatum") ? "currency" : (mode = "refresh") ? (RegExMatch(vars.stash.active, "i)currency|ultimatum") ? "currency" : vars.stash.active) : mode)
-		tab := (tab = "breach" || A_Index = 2) ? "fragments" : tab, now := A_Now, timestamp := vars.stash[tab].timestamp, league := vars.stash[tab].league
+		tab := (tab = "breach" || A_Index = 2) ? "fragments" : tab, now := A_NowUTC, timestamp := vars.stash[tab].timestamp, league := vars.stash[tab].league
 		league_ID := (vars.poe_version ? vars.leagues[settings.general.league.1].trade[settings.general.league.3] : vars.leagues[settings.general.league.1].trade.normal[settings.general.league.4])
 		EnvSub, now, timestamp, Minutes
 		If (league != league_ID) || Blank(timestamp) || Blank(now) || (now >= 61)
@@ -143,7 +143,7 @@ Stash(mode, test := 0)
 			check := Stash_PriceFetch(tab), tooltip := 1
 			If !check
 			{
-				LLK_ToolTip(Lang_Trans("stash_updateerror", 2), 2,,,, "red"), now := A_Now
+				LLK_ToolTip(Lang_Trans("stash_updateerror", 2), 2,,,, "red"), now := A_NowUTC
 				EnvAdd, now, -50, Minutes
 				IniWrite, % now, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab, timestamp
 				vars.stash[tab].timestamp := now
@@ -417,6 +417,7 @@ Stash_PriceFetch(tab)
 		Return
 	}
 
+	timestamp := A_NowUTC
 	Loop, % (loop_count := types[tab].Count())
 	{
 		tab := InStr(tab, "currency") ? "currency" : tab, type := types[tab][A_Index], outer := A_Index, league := settings.general.league.Clone()
@@ -429,46 +430,40 @@ Stash_PriceFetch(tab)
 		If !(SubStr(prices, 1, 1) . SubStr(prices, 0) = "{}")
 			Return 0
 		prices := Json.Load(prices)
+		If !prices.lines.Count()
+			Return 0
 		If (A_Index = 1)
-			ini_dump := "timestamp=" A_Now "`nleague=" StrReplace(league, "+", " ")
+			ini_dump := "timestamp=" timestamp "`nleague=" StrReplace(league, "+", " ")
 		If !vars.poe_version && !prices.lines.Count() || vars.poe_version && !prices.items.Count()
 			Return 0
 		If (A_Index = 1)
 			IniDelete, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab
 
 		core := prices.core
-		If (bla = 1) && !vars.poe_version && (tab = "currency")
-			For index, val in prices.lines
-				If (val.currencytypename = "exalted orb")
-					vars.stash.exalt := val.chaosequivalent
-				Else If (val.currencytypename = "divine orb")
-					vars.stash.divine := val.chaosequivalent
+		For index, val in prices.lines
+		{
+			check := LLK_HasVal(vars.stash, val.id,,,, 1), name := LLK_HasVal(vars.stash[check], val.id,,,, 1), trend := ""
+			If !vars.poe_version
+				price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.divine) ", 0, " (core.primary = "chaos" ? val.primaryValue * core.rates.divine : val.primaryValue)
+			Else price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.chaos) ", "
+				. (core.primary = "exalted" ? val.primaryValue : val.primaryValue * core.rates.exalted) ", "
+				. (core.primary = "divine" ? val.primaryValue : val.primaryValue * core.rates.divine)
 
-		;If !vars.poe_version
-			For index, val in prices.lines
-			{
-				check := LLK_HasVal(vars.stash, val.id,,,, 1), name := LLK_HasVal(vars.stash[check], val.id,,,, 1), trend := ""
-				If !vars.poe_version
-					price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.divine) ", 0, " (core.primary = "chaos" ? val.primaryValue * core.rates.divine : val.primaryValue)
-				Else price := (core.primary = "chaos" ? val.primaryValue : val.primaryValue * core.rates.chaos) ", "
-					. (core.primary = "exalted" ? val.primaryValue : val.primaryValue * core.rates.exalted) ", "
-					. (core.primary = "divine" ? val.primaryValue : val.primaryValue * core.rates.divine)
+			For iTrend, vTrend in val.sparkline.data
+				trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
+			If name
+				ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
+			Else Continue
 
-				For iTrend, vTrend in val.sparkline.data
-					trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
-				If name
-					ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
-				Else Continue
-
-				If check
-					vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
-					, vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
-			}
+			If check
+				vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
+				, vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
+		}
 
 		If (A_Index = loop_count)
 		{
 			IniWrite, % ini_dump, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab
-			vars.stash[tab].timestamp := A_Now, vars.stash[tab].league := StrReplace(league, "+", " ")
+			vars.stash[tab].timestamp := timestamp, vars.stash[tab].league := StrReplace(league, "+", " ")
 		}
 	}
 	Return 1

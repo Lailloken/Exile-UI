@@ -99,7 +99,7 @@
     "reset resolution": [
       "long-click to reset the client's resolution and delete custom-resolution settings",
       "this will restart the tool(/highlight)",
-      "this is mainly for situations when the tool is forcing an incorrect resolution after changing monitors"
+      "this is mainly for situations when the tool is forcing an incorrect resolution after switching monitors"
     ],
     "client filler": [
       "blacks out the empty screen area around the client window and makes it unclickable",
@@ -974,9 +974,6 @@
       "stash feature that overlays poe.ninja price-tags onto items in specific stash tabs",
       "long-press the <omni-key> while hovering over an item in a tab to activate the feature"
     ],
-    "stash league": [
-      "league selection is a global setting and can be found in the <general> tab"
-    ],
     "stash hotkey": [
       "this hotkey is exclusive to streaming clients, and pressing it will open an exclusive selection menu that lists the available tabs",
       "don't bind it to modifier-keys or keys used for chatting: type in a key-name and press <enter>"
@@ -1651,6 +1648,18 @@
     ]
   },
   "screenchecks": {
+    "async1": [
+      "(/bold)(/underline)instructions:",
+      "-> open your merchant window: the plaque at the top (img) has to be fully visible",
+      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
+      "-> follow the instructions in <test>"
+    ],
+    "async2": [
+      "(/bold)(/underline)instructions:",
+      "-> open a player's merchant window: the plaque at the top (img) has to be fully visible",
+      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
+      "-> follow the instructions in <test>"
+    ],
     "atlas": [
       "(/bold)(/underline)instructions:",
       "-> open the atlas: the plaque at the top (img) has to be fully visible",

@@ -115,6 +115,8 @@ Hotkeys_ESC()
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
 	Else If WinExist("Exile UI: RGB-Picker")
 		vars.RGB_picker.cancel := 1
+	Else If vars.hwnd.async.main && !vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async.main)
+		AsyncTrade("close")
 	Else If vars.snipping_tool.GUI
 		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -219,6 +221,8 @@ Hotkeys_ESC()
 		Iteminfo_Close(1)
 	Else
 	{
+		If vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async_pricing.main)
+			AsyncTrade2("close")
 		SendInput, {ESC down}
 		KeyWait, ESC
 		SendInput, {ESC up}
@@ -392,6 +396,9 @@ Hotkeys_Tab()
 *SC006::
 *SC007::
 *SC010::Actdecoder_ZoneLayouts(A_ThisHotkey)
+
+#If vars.hwnd.async.main && WinExist("ahk_id " vars.hwnd.async.main)
+~SC038::AsyncTrade("hide")
 
 #If vars.hwnd.radial.main && vars.general.cMouse && LLK_HasVal(vars.hwnd.radial, vars.general.cMouse)
 LButton::Gui_RadialMenu2(vars.general.cMouse)

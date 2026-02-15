@@ -12,8 +12,13 @@
 	If !IsObject(vars.exchange)
 		vars.exchange := {"date": 0, "inventory": 0, "multiplier": 1, "ratio_lock": 0, "transactions": {}}, vars.pics.exchange := {}, vars.pics.exchange_trades := {}
 
+	If !IsObject(vars.async)
+		vars.async := {"conversions": {}}, vars.pics.async := {}
+
 	If !IsObject(settings.exchange)
 		settings.exchange := {}
+	If !IsObject(settings.async)
+		settings.async := {}
 
 	ini := IniBatchRead("ini" vars.poe_version "\vaal street.ini")
 	settings.exchange.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
@@ -21,6 +26,19 @@
 	settings.exchange.graphs := !Blank(check := ini.settings["show graphs"]) ? check : 0
 	settings.exchange.chaos_div := !Blank(check := ini.settings["chaos-div ratio"]) ? check : ""
 	settings.exchange.exalt_div := !Blank(check := ini.settings["exalt-div ratio"]) ? check : ""
+
+	settings.async.fSize := !Blank(check := ini["settings async trade"]["font-size"]) ? check : settings.general.fSize
+	LLK_FontDimensions(settings.async.fSize, font_height, font_width), settings.async.fWidth := font_width, settings.async.fHeight := font_height
+	settings.async.fSize2 := settings.async.fSize - 2
+	LLK_FontDimensions(settings.async.fSize2, font_height, font_width), settings.async.fWidth2 := font_width, settings.async.fHeight2 := font_height
+	settings.async.sorting_sell := !Blank(check := ini["settings async trade"]["sorting (sell)"]) ? check : ""
+	settings.async.sorting_buy := !Blank(check := ini["settings async trade"]["sorting (buy)"]) ? check : "age"
+	settings.async.filter_sell := ""
+	settings.async.filter_buy := !Blank(check := ini["settings async trade"]["filter (buy)"]) ? check : "hour"
+	settings.async.show_name := !Blank(check := ini["settings async trade"]["show full name"]) ? check : 0
+	settings.async.minchange := !Blank(check := ini["settings async trade"]["minimum price change"]) ? check : 10
+
+	vars.async.currencies := {"chaos": "chaos", "exalted": "exalted", "transmut": "transmute", "aug": "aug", "regal": "regal"}
 
 	If FileExist("ini" vars.poe_version "\vaal street log.ini")
 	{
@@ -35,6 +53,515 @@
 			vars.exchange.transactions[date].Push(object)
 		}
 	}
+
+	If FileExist("ini" vars.poe_version "\async trade.ini")
+	{
+		ini2 := IniBatchRead("ini" vars.poe_version "\async trade.ini")
+		For key, object in ini2
+		{
+			If !object.league || object.sold
+				Continue
+			object_new := {"prices": [], "timestamp": SubStr(key, 1, InStr(key, " ") - 1), "name": SubStr(key, InStr(key, " ") + 1)}
+			For key1, val in object
+				If InStr(key1, "price ")
+					object_new.prices.Push(StrSplit(SubStr(key1, InStr(key1, " ") + 1) " " val, " "))
+				Else If (key1 != "type")
+					object_new[key1] := val
+
+			If !IsObject(vars.async[object.league])
+				vars.async[object.league] := {"buy": {}, "sell": {}}
+			vars.async[object.league][object.type][key] := object_new
+		}
+	}
+}
+
+AsyncTrade(cHWND := "", hotkey := "")
+{
+	local
+	global vars, settings
+	static toggle := 0, fSize, listings
+	
+	check := LLK_HasVal(vars.hwnd.async, cHWND), control := SubStr(check, InStr(check, "_") + 1), league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
+	If !IsObject(vars.async[league])
+		vars.async[league] := {"buy": {}, "sell": {}}
+
+	If (cHWND = "close")
+	{
+		LLK_Overlay(vars.hwnd.async.main, "destroy")
+		vars.hwnd.async := ""
+		Return
+	}
+	Else If (cHWND = "hide")
+	{
+		LLK_Overlay(vars.hwnd.async.main, "hide"), hwnd := vars.hwnd.async.main, vars.hwnd.async.main := ""
+		KeyWait, ALT
+		vars.hwnd.async.main := hwnd, LLK_Overlay(vars.hwnd.async.main, "show")
+		Return
+	}
+	Else If RegExMatch(cHWND, "i)buy|sell")
+		vars.async.mode := cHWND
+	Else If InStr(check, "sort_")
+	{
+		KeyWait, LButton
+		mode := vars.async.mode
+		input := (settings.async["sorting_" mode] = "price" && InStr(control, "price") ? "price_asc" : (settings.async["sorting_" mode] = "price_asc" && InStr(control, "price") ? "price" : StrReplace(control, "|")))
+		input := StrReplace(input, "agetotal")
+		IniWrite, % (settings.async["sorting_" mode] := input), % "ini" vars.poe_version "\vaal street.ini", settings async trade, % "sorting (" mode ")"
+	}
+	Else If InStr(check, "listing_")
+	{
+		If LLK_Progress(vars.hwnd.async[check "_bar"], "RButton")
+		{
+			target := listings[control].timestamp " " listings[control].name
+			vars.async[league][vars.async.mode].Delete(target)
+			IniDelete, % "ini" vars.poe_version "\async trade.ini", % target
+		}
+		Else If (vars.system.click = 2) || (vars.system.click = 1 && vars.async.mode = "buy")
+			Return
+		Else
+		{
+			GuiControl, +cLime, % vars.hwnd.async[check "_bar"]
+			If LLK_Progress(vars.hwnd.async[check "_bar"], "LButton")
+			{
+				target := listings[control].timestamp " " listings[control].name, vars.async[league].sell[target].sold := 1
+				IniWrite, 1, % "ini" vars.poe_version "\async trade.ini", % target, sold
+			}
+			Else
+			{
+				GuiControl, +cRed, % vars.hwnd.async[check "_bar"]
+				target := listings[control], regex := (target.rarity = "magic" ? """" StrReplace(target.name, target.itembase, ".*") """" : """" target.name """"), regex := StrReplace(StrReplace(regex, ".* ", ".*"), " .*", ".*")
+				regex := regex " """ target.prices[target.prices.MaxIndex()].2 " " target.prices[target.prices.MaxIndex()].3 """"
+				For string, replace in {"perfect-": "p.*-", "greater-": "g.*-"}
+					regex := StrReplace(regex, string, replace)
+				Clipboard := "", Clipboard := regex
+				ClipWait, 0.1
+				KeyWait, LButton
+				WinActivate, % "ahk_id " vars.hwnd.poe_client
+				WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+				SendInput, ^{f}
+				Sleep 100
+				SendInput, ^{a}^{v}
+				Return
+			}
+		}
+	}
+	Else If (check = "league_select")
+	{
+		KeyWait, LButton
+		Settings_menu("general")
+		Return
+	}
+	Else If InStr(check, "filter_")
+	{
+		KeyWait, LButton
+		IniWrite, % (settings.async["filter_" vars.async.mode] := control), % "ini" vars.poe_version "\vaal street.ini", settings async trade, % "filter (" vars.async.mode ")"
+	}
+	Else If InStr(check, "font_")
+	{
+		While GetKeyState("LButton", "P")
+		{
+			If (control = "reset")
+				settings.async.fSize := settings.general.fSize
+			Else settings.async.fSize += (control = "plus" ? 1 : (control = "minus" && settings.async.fSize > 6 ? -1 : 0))
+			GuiControl, Text, % vars.hwnd.async.font_reset, % settings.async.fSize
+			Sleep 150
+		}
+		IniWrite, % settings.async.fSize, % "ini" vars.poe_version "\vaal street.ini", settings async trade, font-size
+		LLK_FontDimensions(settings.async.fSize, font_height, font_width), settings.async.fWidth := font_width, settings.async.fHeight := font_height
+		LLK_FontDimensions((settings.async.fSize2 := settings.async.fSize - 2), font_height, font_width), settings.async.fWidth2 := font_width, settings.async.fHeight2 := font_height
+		For key, HBitmap in vars.pics.async
+			DeleteObject(HBitmap)
+		vars.pics.async := {}
+	}
+	Else If cHWND
+	{
+		LLK_ToolTip("no action")
+		Return
+	}
+
+	toggle := !toggle, GUI_name := "async" toggle, margin := settings.async.fWidth//2, listings0 := {}, listings := [], mode := vars.async.mode
+	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_async", LLK-UI: async trade
+	Gui, %GUI_name%: Font, % "s" settings.async.fSize " cWhite", % vars.system.font
+	Gui, %GUI_name%: Margin, % margin, % margin
+	Gui, %GUI_name%: Color, % "Black"
+
+	hwnd_old := vars.hwnd.async.main, vars.hwnd.async := {"main": hwnd_async}
+	Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans", % Lang_Trans("global_font") " "
+	Gui, %GUI_name%: Add, Text, % "ys x+0 gAsyncTrade Border Center HWNDhwnd w" settings.async.fWidth*2, % "–"
+	vars.hwnd.async.font_minus := hwnd, vars.hwnd.help_tooltips["async_font-size"] := hwnd
+	Gui, %GUI_name%: Add, Text, % "ys x+" settings.async.fwidth / 4 " gAsyncTrade Border Center HWNDhwnd", % " " settings.async.fSize " "
+	vars.hwnd.async.font_reset := hwnd, vars.hwnd.help_tooltips["async_font-size|"] := hwnd
+	Gui, %GUI_name%: Add, Text, % "ys wp x+" settings.async.fwidth / 4 " gAsyncTrade Border Center HWNDhwnd w"settings.async.fWidth*2, % "+"
+	vars.hwnd.async.font_plus := hwnd, vars.hwnd.help_tooltips["async_font-size||"] := hwnd
+
+	Gui, %GUI_name%: Add, Text, % "ys cAqua Border gAsyncTrade HWNDhwnd", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	vars.hwnd.async.league_select := hwnd
+
+	sorting := settings.async["sorting_" mode]
+	If InStr(sorting, "price")
+	{
+		UpdateConversions()
+		If (vars.async.conversions.timestamp.2 = "failed")
+			unavailable := 1, sorting := settings.async["sorting_" mode] := ""
+	}
+
+	If unavailable
+	{
+		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
+		Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed")
+		Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed", 2)
+		Gui, %GUI_name%: Font, % "s" settings.async.fSize
+	}
+
+	Gui, %GUI_name%: Font, bold underline
+	Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("async_listheader", (mode = "buy" ? 2 : 1))
+	Gui, %GUI_name%: Font, norm
+	Gui, %GUI_name%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["async_list " vars.async.mode] := hwnd
+
+	If !IsObject(vars.async[league])
+		vars.async[league] := {"buy": {}, "sell": {}}
+
+	If (mode = "buy") && vars.async[league][mode].Count()
+	{
+		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
+		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("global_filter") . Lang_Trans("global_colon")
+		filters := ["hour", "day", "week"]
+		For index, val in [3, 5, 7]
+		{
+			color := (settings.async.filter_buy = filters[index] ? "Lime" : "White")
+			Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" color, % " " SubStr(Lang_Trans("global_timeunits", val), 1, 1) " "
+			vars.hwnd.async["filter_" filters[index]] := hwnd
+		}
+		Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" (settings.async.filter_buy = "all" ? "Lime" : "White"), % " " Lang_Trans("global_all") " "
+		vars.hwnd.async["filter_all"] := hwnd
+		Gui, %GUI_name%: Font, % "s" settings.async.fSize
+	}
+
+	vars.async.dIcon := dIcon := settings.async.fHeight*2 - 4, filter := settings.async["filter_" mode]
+	If !vars.async[league][mode].Count()
+		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("async_nolist", (mode = "buy" ? 2 : 1))
+	Else
+	{
+		For kLog, object in vars.async[league][mode]
+		{
+			If object.sold
+				Continue
+			If (mode = "buy") && (filter != "all")
+			{
+				elapsed := A_NowUTC, timestamp := object.timestamp
+				EnvSub, elapsed, timestamp, Minutes
+				If (filter = "hour" && elapsed > 60) || (filter = "day" && elapsed > 1440) || (filter = "week" && elapsed > 10080)
+					Continue
+			}
+			If InStr(sorting, "price")
+				prefix := Format("{:012}", StrReplace(Round(object.prices[object.prices.MaxIndex()].2 * vars.async.conversions[object.prices[object.prices.MaxIndex()].3], 2), "."))
+			Else If (sorting = "age")
+				prefix := object.prices[object.prices.MaxIndex()].1
+			key := (prefix ? prefix " " : "") . object.timestamp " " object.name, listings0[key] := object
+		}
+
+		For key, object in listings0
+			If !(mode = "buy" && sorting = "age") && RegExMatch(settings.async["sorting_" mode], "price_asc|^age") || !settings.async["sorting_" mode]
+				listings.Push(object)
+			Else listings.InsertAt(1, object)
+
+		For iListing, object in listings
+		{
+			name := object.name
+			timestamp0 := object.timestamp, elapsed0 := elapsed1 := A_NowUTC, unit0 := unit1 := 1, price := object.prices[object.prices.MaxIndex()]
+			timestamp1 := price.1, currency := currency0 := price.3, price := price.2
+
+			EnvSub, elapsed0, timestamp0, minutes
+			EnvSub, elapsed1, timestamp1, minutes
+			For index, val0 in [0, 1]
+				For index, val in [60, 24, 7]
+					If (elapsed%val0% >= val)
+						elapsed%val0% := Round(elapsed%val0% / val, 1), unit%val0% += 2
+					Else Break
+
+			For key, val in vars.async.currencies
+				If InStr(currency, key)
+				{
+					currency := val
+					Break
+				}
+			elapsed0 := StrReplace(elapsed0, ".0"), elapsed1 := StrReplace(elapsed1, ".0")
+			elapsed0 := (elapsed0 >= 10 ? Round(elapsed0) : elapsed0), elapsed1 := (elapsed1 >= 10 ? Round(elapsed1) : elapsed1)
+			color := (object.rarity = "rare" ? "FFE155" : (object.rarity = "unique" ? "FF8111" : (object.rarity = "magic" ? "7B98FF" : "White")))
+
+			Gui, %GUI_name%: Font, % "bold s" settings.async.fSize2
+			Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans gAsyncTrade Right HWNDhwnd xs w" dIcon " h" dIcon, % (InStr(currency0, "greater-") ? "ii" : (InStr(currency0, "perfect-") ? "iii" : ""))
+			vars.hwnd.async["sort_price" handle_price] := hwnd, handle_price .= "|"
+			ControlGetPos, xIcon, yIcon, wIcon, hIcon,, ahk_id %hwnd%
+
+			If (mode = "sell") && (yIcon + hIcon >= vars.monitor.h) || (mode = "buy") && (yIcon + hIcon >= vars.client.h * 0.7)
+			{
+				GuiControl, +Hidden, % hwnd
+				Break
+			}
+
+			Gui, %GUI_name%: Add, Text, % "xp wp BackgroundTrans Right y+-" settings.async.fHeight2 - 3 . (InStr(sorting, "price") ? " cLime" : ""), % price
+			Gui, %GUI_name%: Font, % "norm s" settings.async.fSize
+
+			If !vars.pics.async[currency]
+				vars.pics.async[currency] := LLK_ImageCache("img\GUI\currency\" currency . vars.poe_version ".png",, dIcon)
+			Gui, %GUI_name%: Add, Pic, % "x" xIcon " y" yIcon, % "HBitmap:*" vars.pics.async[currency]
+
+			Gui, %GUI_name%: Add, Progress, % "Disabled yp x+0 BackgroundBlack cRed Vertical Range0-500 HWNDhwnd w" margin*2 " h" dIcon, 0
+			vars.hwnd.async["listing_" iListing "_bar"] := hwnd
+
+			If object.itembase
+				itembase := (!RegExMatch(object.rarity, "i)magic|unique") || object.rarity = "unique" && settings.async.show_name ? " | " (object.itembase) : "")
+			Else itembase := ""
+			label := (!settings.async.show_name && object.rarity != "unique" ? LLK_StringCase(object.itembase ? object.itembase : name) : name . itembase)
+			Gui, %GUI_name%: Add, Text, % "ys xp+" margin*2 " gAsyncTrade BackgroundTrans HWNDhwnd c" color, % label
+			vars.hwnd.async["listing_" iListing] := hwnd
+
+			age_same := (elapsed0 = elapsed1 && unit0 = unit1 ? 1 : 0)
+			Gui, %GUI_name%: Add, Text, % "xp gAsyncTrade HWNDhwnd y+0" (sorting = "age" || !sorting && age_same ? " cLime" : ""), % elapsed1 " " Lang_Trans("global_timeunits", unit1 + (elapsed1 != 1 ? 1 : 0))
+			vars.hwnd.async["sort_age" handle_age] := hwnd, handle_age .= "|"
+			If !age_same
+			{
+				Gui, %GUI_name%: Add, Text, % "yp x+0", % " / "
+				Gui, %GUI_name%: Add, Text, % "yp gAsyncTrade HWNDhwnd x+0" (!sorting ? " cLime" : ""), % elapsed0 " " Lang_Trans("global_timeunits", unit0 + (elapsed0 != 1 ? 1 : 0))
+				vars.hwnd.async["sort_agetotal" handle_agetotal] := hwnd, handle_agetotal .= "|"
+			}
+		}
+	}
+
+	xPos := (vars.async.mode = "sell" ? vars.client.x + Round(vars.client.h * 0.615) : vars.client.x + vars.client.w/2 + Floor(vars.client.h/90))
+	yPos := (vars.async.mode = "sell" ? vars.client.y : Round(vars.client.h * (vars.poe_version ? 0.12 : 0.164)))
+	Gui, %GUI_name%: Show, % "NA AutoSize x" xPos " y" yPos
+	LLK_Overlay(hwnd_async, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+}
+
+AsyncTrade2(mode := "")
+{
+	local
+	global vars, settings
+	static toggle := 0, existing_item_prev, price_prev
+	
+	item := vars.omnikey.item, timestamp := A_NowUTC, check := LLK_HasVal(vars.hwnd.async_pricing, mode), control := SubStr(check, InStr(check, "_") + 1)
+	league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
+	If InStr(check, "setprice")
+	{
+		Clipboard := "", Clipboard := control
+		ClipWait, 0.1
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+		SendInput, ^{a}^{v}
+		KeyWait, LButton
+		If (vars.general.cMouse = mode)
+		{
+			currency := SubStr(price_prev, InStr(price_prev, " ") + 1), timestamp := A_NowUTC
+			If !InStr(check, "alt")
+				SendInput, {ENTER}
+			Else currency := (vars.poe_version ? "exalted" : "chaos")
+
+			If existing_item_prev
+			{
+				vars.async[league].sell[existing_item_prev].prices.Push([timestamp, control, currency])
+				IniWrite, % """" control " " currency """", % "ini" vars.poe_version "\async trade.ini", % existing_item_prev, % "price " timestamp
+				AsyncTrade("sell")
+			}
+		}
+		Else SendInput, {ESC}
+		LLK_Overlay(vars.hwnd.async_pricing.main, "destroy"), vars.hwnd.async_pricing := ""
+		Return
+	}
+	Else If (mode = "close")
+	{
+		LLK_Overlay(vars.hwnd.async_pricing.main, "destroy"), vars.hwnd.async_pricing := ""
+		Return
+	}
+	Else If (mode = "sell" || mode = "buy")
+	{
+		price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), price_prev := price
+		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r")
+
+		If !RegExMatch(price, "\d") || InStr(price, "offer")
+		{
+			LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
+			Return
+		}
+		If (mode = "sell")
+		{
+			For key, object in vars.async[league].sell
+			{
+				If object.sold
+					Continue
+				price0 := object.prices[object.prices.MaxIndex()].2 " " object.prices[object.prices.MaxIndex()].3
+				If InStr(key, item.name) && (item.itembase && item.itembase = object.itembase) && (item.ilvl && item.ilvl = object.ilvl) && (price = price0)
+				{
+					existing_item := key
+					Break
+				}
+			}
+			KeyWait, % vars.omnikey.hotkey, T0.5
+			omni1 := ErrorLevel
+			If !Blank(vars.omnikey.hotkey2)
+				KeyWait, % vars.omnikey.hotkey2, T0.5
+			longpress := (omni1 || ErrorLevel ? 1 : 0)
+		}
+		
+		If longpress && existing_item
+		{
+			LLK_ToolTip(Lang_Trans("async_listing", 2),,,,, "Yellow")
+			Return
+		}
+		Else If longpress || (mode = "buy")
+		{
+			key := timestamp " " LLK_StringCase(item.name), clip := StrReplace(StrReplace(item_text, "`r", "(r)"), "`n", "(n)")
+			object := {"prices": [StrSplit(timestamp " " price, " ")], "itembase": LLK_StringCase(item.itembase), "ilvl": item.ilvl, "rarity": LLK_StringCase(item.rarity), "timestamp": timestamp
+				, "name": LLK_StringCase(item.name), "clipboard": clip, "league": league}
+			vars.async[league][mode][key] := object
+			IniWrite, % "itembase=""" LLK_StringCase(item.itembase) """`nilvl=""" item.ilvl """`nrarity=""" LLK_StringCase(item.rarity) """`ntype=""" mode """`nclipboard=""" clip """`nleague=""" league """`nprice " timestamp "=""" price """", % "ini" vars.poe_version "\async trade.ini", % key
+			AsyncTrade(), LLK_ToolTip(Lang_Trans("async_listing"),,,,, "Lime")
+			Return
+		}
+
+		SendInput, {RButton}
+		toggle := !toggle, GUI_name := "async_pricing" toggle, margin := settings.async.fWidth//2
+		Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_pricing", LLK-UI: async pricing
+		Gui, %GUI_name%: Font, % "bold underline s" settings.async.fSize " cWhite", % vars.system.font
+		Gui, %GUI_name%: Margin, % margin, % margin
+		Gui, %GUI_name%: Color, % "Black"
+
+		hwnd_old := vars.hwnd.async_pricing.main, vars.hwnd.async_pricing := {"main": hwnd_pricing}, dIcon := vars.async.dIcon
+		If existing_item
+		{
+			item := vars.async[league].sell[existing_item], count := item.prices.Count(), existing_item_prev := existing_item
+			If (item.prices.1.3 = item.prices[item.prices.MaxIndex()].3)
+				price_diff := Round((item.prices[item.prices.MaxIndex()].2 / item.prices.1.2) * 100 - 100, 1)
+			Else If (converted1 := settings.async[item.prices.1.3]) && (converted2 := settings.async[item.prices[item.prices.MaxIndex()].3])
+				price_diff := Round(((item.prices[item.prices.MaxIndex()].2 * converted2) / (item.prices.1.2 * converted1)) * 100 - 100, 1)
+			Else price_diff := ""
+			Gui, %GUI_name%: Add, Text, % "Section", % Lang_Trans("async_history") . (count > 1 ? (price_diff ? " " price_diff "%" : "") : "")
+			Gui, %GUI_name%: Font, % "norm s" settings.async.fSize2
+			For iPrice, array in item.prices
+			{
+				elapsed := A_NowUTC, unit := 1
+				EnvSub, elapsed, % array.1, minutes
+				For index, val in [60, 24, 7]
+					If (elapsed >= val)
+						elapsed := Round(elapsed / val, 1), unit += 2
+					Else Break
+				elapsed := StrReplace((elapsed >= 10 ? Round(elapsed) : elapsed), ".0")
+				Gui, %GUI_name%: Add, Text, % "Section Center " (iPrice = 1 ? "xs" : "ys") " w" dIcon, % elapsed . SubStr(Lang_Trans("global_timeunits", unit + (elapsed != 1 ? 1 : 0)), 1, 1)
+
+				Gui, %GUI_name%: Font, % "bold"
+				Gui, %GUI_name%: Add, Text, % "xs y+0 BackgroundTrans Right HWNDhwnd w" dIcon " h" dIcon, % (InStr(price, "greater-") ? "ii" : (InStr(price, "perfect-") ? "iii" : ""))
+				ControlGetPos, xIcon, yIcon, wIcon, hIcon,, ahk_id %hwnd%
+				Gui, %GUI_name%: Add, Text, % "xp wp BackgroundTrans Right y+-" settings.async.fHeight2 - 3 . (InStr(sorting, "price") ? " cLime" : ""), % array.2
+				Gui, %GUI_name%: Font, % "norm"
+
+				currency := array.3
+				For key, val in vars.async.currencies
+					If InStr(currency, key)
+					{
+						currency := val
+						Break
+					}
+
+				If !vars.pics.async[currency]
+					vars.pics.async[currency] := LLK_ImageCache("img\GUI\currency\" currency . vars.poe_version ".png",, dIcon)
+				Gui, %GUI_name%: Add, Pic, % "x" xIcon " y" yIcon, % "HBitmap:*" vars.pics.async[currency]
+			}
+		}
+		Else existing_item_prev := ""
+		Gui, %GUI_name%: Font, % "bold underline s" settings.async.fSize
+		Gui, %GUI_name%: Add, Text, % "Section" (!existing_item ? "" : " x" margin " y+" margin), % Lang_Trans("async_adjust")
+		Gui, %GUI_name%: Font, norm
+
+		price0 := StrSplit(price, " "), minchange := settings.async.minchange
+		currency := price0.2
+
+		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
+		For outer in [1, 2]
+		{
+			loop := (outer = 1 ? price0.1 : Round(price0.1 * vars.async.conversions[currency])), options := []
+			If !(loop > 1) || (outer = 2) && !offer_alt
+			{
+				offer_alt := 1
+				Continue
+			}
+
+			If (outer = 2)
+				UpdateConversions(), currency := (vars.poe_version ? "exalted" : "chaos")
+			If (outer = 2) && (vars.async.conversions.timestamp.2 = "failed")
+			{
+				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed")
+				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed", 3)
+				Break
+			}
+
+			For key, val in vars.async.currencies
+				If InStr(currency, key)
+				{
+					currency := val
+					Break
+				}
+			If !vars.pics.async[currency]
+				vars.pics.async[currency] := LLK_ImageCache("img\GUI\currency\" currency . vars.poe_version ".png",, dIcon)
+
+			Loop, % loop
+				If !options.Count()
+				{
+					price_diff := 100 * (1 - ((loop - A_Index) / loop)), price_diff1 := 100 * (1 - ((loop - A_Index + 1) / loop))
+					If (price_diff >= minchange)
+					{
+						If (minchange - price_diff < minchange - price_diff1)
+							options[A_Index] := loop - A_Index, last_diff := price_diff
+						Else options[A_Index - 1] := loop - A_Index + 1, last_diff := price_diff1
+
+						If (last_diff > 2*minchange) && (price0.1 < price0.1 * vars.async.conversions[currency])
+							offer_alt := 1
+						last_diff := last_diff // 5 * 5
+					}
+				}
+				Else If (options.Count() = 5) || (A_Index = loop)
+					Break
+				Else 
+				{
+					price_diff := 100 * (1 - ((loop - A_Index) / loop)), price_diff1 := 100 * (1 - ((loop - A_Index + 1) / loop))
+					If (price_diff >= last_diff + 5)
+					{
+						If (Abs(last_diff + 5 - price_diff) <= Abs(last_diff + 5 - price_diff1)) || options[A_Index - 1]
+							options[A_Index] := loop - A_Index, last_diff0 := price_diff // 5 * 5
+						Else options[A_Index - 1] := loop - A_Index + 1, last_diff0 := price_diff1 // 5 * 5
+						last_diff := (last_diff0 = last_diff ? last_diff0 + 5 : last_diff0)
+					}
+				}
+
+			For index, val in options
+			{
+				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTrade2 HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n" Round(100 * (1 - val / loop)) "%"
+				vars.hwnd.async_pricing["setprice" (outer = 2 ? "alt" : "") "_" val] := hwnd
+				If (A_Index = 1 && outer = 1)
+				{
+					ControlGetPos, x, y, w, h,, ahk_id %hwnd%
+					vars.async.button1 := {"x": x, "y": y}
+				}
+			}
+			If options.Count() && offer_alt
+			{
+				Gui, %GUI_name%: Font, % "bold"
+				Gui, %GUI_name%: Add, Text, % "ys x+0 Right BackgroundTrans w" dIcon " h" dIcon, % (InStr(price0.2, "perfect-") ? "iii" : (InStr(price0.2, "greater-") ? "ii" : ""))
+				Gui, %GUI_name%: Add, Pic, % "xp yp wp hp", % "HBitmap:*" vars.pics.async[currency]
+				Gui, %GUI_name%: Font, % "norm"
+			}
+		}
+
+				
+		
+
+		Gui, %GUI_name%: Show, % "NA x10000 y10000"
+		WinGetPos, x, y, w, h, ahk_id %hwnd_pricing%
+		button1 := vars.async.button1, xPos := vars.general.xMouse - (button1.x + dIcon//2), yPos := vars.general.yMouse - (button1.y + dIcon//2), Gui_CheckBounds(xPos, yPos, w, h)
+		Gui, %GUI_name%: Show, % "NA x" xPos " y" yPos
+		LLK_Overlay(hwnd_pricing, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+	}
 }
 
 Exchange(cHWND := "", hotkey := "")
@@ -46,6 +573,7 @@ Exchange(cHWND := "", hotkey := "")
 	If wait
 		Return
 
+	league := settings.general.league
 	If cHWND && InStr("open, close", cHWND) && WinExist("ahk_id " vars.hwnd.exchange.main)
 	{
 		LLK_Overlay(vars.hwnd.exchange.main, "destroy")
@@ -134,6 +662,12 @@ Exchange(cHWND := "", hotkey := "")
 		GuiControl, % "+c" (edit1 / Min(edit1, edit2) != value1 || edit2 / Min(edit1, edit2) != value2 ? "FF8000" : "White"), % vars.hwnd.exchange["ratio_text" (lock ? "2" : "")]
 		Return
 	}
+	Else If (check = "league_select")
+	{
+		KeyWait, LButton
+		Settings_menu("general")
+		Return
+	}
 	Else If InStr(check, "day_")
 	{
 		ControlFocus,, % "ahk_id " vars.hwnd.exchange.ratio_text
@@ -215,6 +749,16 @@ Exchange(cHWND := "", hotkey := "")
 	}
 	Else If RegExMatch(check, "i)chaos|divine|exalt")
 	{
+		If RegexMatch(check, "i)chaos|exalt")
+		{
+			UpdateConversions()
+			If (vars.async.conversions.timestamp.2 = "failed")
+			{
+				GuiControl, -Hidden, % vars.hwnd.exchange.chaos_div
+				If vars.poe_version
+					GuiControl, -Hidden, % vars.hwnd.exchange.exalt_div
+			}
+		}
 		If InStr(check, "chaos") && !settings.exchange.chaos_div || InStr(check, "exalt") && !settings.exchange.exalt_div
 		{
 			WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.exchange[(InStr(check, "chaos") ? "chaos" : "exalt") "_div"]
@@ -346,11 +890,15 @@ Exchange(cHWND := "", hotkey := "")
 	Gui, %GUI_name%: Add, Edit, % "ys R1 Limit Center cBlack HWNDhwnd gExchange w" wEdits, 0
 	Gui, %GUI_name%: Add, Text, % "ys hp 0x200 Center Border gExchange HWNDhwnd1 BackgroundTrans cFF8000 w" wRatio, % "0 : 0"
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd3 BackgroundBlack cBlack", 100
+	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize - 2
+	Gui, %GUI_name%: Add, Text, % "xp y+-1 wp hp 0x200 Center cLime Border BackgroundTrans gExchange HWNDhwnd6", % Lang_Trans("global_league_" league.1) " " Lang_Trans("global_league_" league[(vars.poe_version ? 3 : 4)])
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", 0
+	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize + 2
 	Gui, %GUI_name%: Add, Text, % "xp y+-1 wp hp Hidden 0x200 Center Border HWNDhwnd4 BackgroundTrans"
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Hidden HWNDhwnd5 BackgroundBlack cBlack", 100
 	Gui, %GUI_name%: Add, Edit, % "ys R1 Limit Center cBlack HWNDhwnd2 gExchange w" wEdits, 0
 	vars.hwnd.exchange.edit1 := hwnd, vars.hwnd.exchange.ratio_text := hwnd1, vars.hwnd.exchange.ratio := hwnd3, vars.hwnd.exchange.edit2 := hwnd2
-	vars.hwnd.exchange.ratio_text2 := hwnd4, vars.hwnd.exchange.ratio2 := hwnd5
+	vars.hwnd.exchange.ratio_text2 := hwnd4, vars.hwnd.exchange.ratio2 := hwnd5, vars.hwnd.exchange.league_select := hwnd6
 	vars.hwnd.help_tooltips["exchange_edit fields"] := hwnd, vars.hwnd.help_tooltips["exchange_edit fields|"] := hwnd2, vars.hwnd.help_tooltips["exchange_ratio"] := hwnd3, vars.hwnd.help_tooltips["exchange_ratio 2"] := hwnd5
 
 	If vars.poe_version
@@ -368,11 +916,12 @@ Exchange(cHWND := "", hotkey := "")
 
 	ControlGetPos, xChaos1, yChaos1, wChaos1, hChaos1,, % "ahk_id " vars.hwnd.exchange.chaos1
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize - 2
-	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 1.5, % settings.exchange.chaos_div
+	hidden := (vars.async.conversions.timestamp.2 = "failed" && RegExMatch(vars.exchange.selected_currency, "i)exalt|chaos") ? "" : " Hidden")
+	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 1.5 . hidden, % settings.exchange.chaos_div
 	vars.hwnd.help_tooltips["exchange_chaos-div"] := vars.hwnd.exchange.chaos_div := hwnd
 	If vars.poe_version
 	{
-		Gui, %GUI_name%: Add, Edit, % "x+0 yp Number r1 gExchange HWNDhwnd1 cBlack Center w" hIcons * 1.5, % settings.exchange.exalt_div
+		Gui, %GUI_name%: Add, Edit, % "x+0 yp Number r1 gExchange HWNDhwnd1 cBlack Center w" hIcons * 1.5 . hidden, % settings.exchange.exalt_div
 		vars.hwnd.help_tooltips["exchange_exalt-div"] := vars.hwnd.exchange.exalt_div := hwnd1
 	}
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
@@ -599,4 +1148,32 @@ Exchange_coords()
 		Return "amount2"
 	Else If LLK_IsBetween(vars.general.xMouse, vars.exchange.coords.order.1, vars.exchange.coords.order.2) && LLK_IsBetween(vars.general.yMouse, vars.exchange.coords.order.3, vars.exchange.coords.order.4)
 		Return "order"
+}
+
+UpdateConversions()
+{
+	local
+	global vars, settings
+
+	timestamp := vars.async.conversions.timestamp, league := settings.general.league.Clone(), league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4])
+	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > 60)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 15)
+	{
+		If !IsNumber(vars.stash.currency.timestamp) || (vars.stash.currency.league != league) || (LLK_TimeElapsed(vars.stash.currency.timestamp) > 60)
+			success := Stash_PriceFetch("currency")
+		If success || IsNumber(vars.stash.currency.timestamp) && (LLK_TimeElapsed(vars.stash.currency.timestamp) <= 60)
+		{
+			vars.async.conversions := {}, ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", "currency")
+			For key, val in ini.currency
+				If !InStr(key, "_trend")
+					vars.async.conversions[key] := StrSplit(val, ",", " ")[(vars.poe_version ? 2 : 1)]
+			If vars.poe_version
+				vars.async.conversions.exalted := 1
+			Else vars.async.conversions.chaos := 1
+
+			IniWrite, % (settings.exchange.chaos_div := Round(StrSplit(ini.currency.divine, ",", " ").1)), % "ini" vars.poe_version "\vaal street.ini", settings, chaos-div ratio
+			IniWrite, % (settings.exchange.exalt_div := Round(StrSplit(ini.currency.divine, ",", " ").2)), % "ini" vars.poe_version "\vaal street.ini", settings, exalt-div ratio
+		}
+		Else If !success
+			vars.async.conversions.timestamp := [A_NowUTC, "failed"]
+	}
 }

@@ -898,39 +898,60 @@ Settings_exchange()
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 y+" vars.settings.spacing " Checked" settings.features.exchange, % Lang_Trans("m_exchange_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_exchange enable"] := hwnd
 
-	If !settings.features.exchange
-		Return
-
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_general")
-	Gui, %GUI%: Font, norm
-
-	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 Checked" settings.exchange.graphs, % Lang_Trans("m_exchange_graphs")
-	vars.hwnd.settings.graphs := vars.hwnd.help_tooltips["settings_exchange graphs"] := hwnd
-
-	count := vars.exchange.transactions.Count(), count1 := 0
-	For date, array in vars.exchange.transactions
-		count1 += array.Count()
-
-	If (count * count1)
+	If settings.features.exchange
 	{
-		Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("maptracker_logs") " " count " " Lang_Trans("global_day", (count > 1 ? 2 : 1)) ", " count1 " " Lang_Trans("global_trade", (count1 > 1 ? 2 : 1))
-		Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans HWNDhwnd gSettings_exchange2", % " " Lang_Trans("global_delete") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Border Range0-500 Vertical HWNDhwnd1", 0
-		vars.hwnd.settings.logs_delete := hwnd, vars.hwnd.help_tooltips["settings_exchange delete logs"] := vars.hwnd.settings.logs_delete_bar := hwnd1
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_general")
+		Gui, %GUI%: Font, norm
+
+		Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 Checked" settings.exchange.graphs, % Lang_Trans("m_exchange_graphs")
+		vars.hwnd.settings.graphs := vars.hwnd.help_tooltips["settings_exchange graphs"] := hwnd
+
+		count := vars.exchange.transactions.Count(), count1 := 0
+		For date, array in vars.exchange.transactions
+			count1 += array.Count()
+
+		If (count * count1)
+		{
+			Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("maptracker_logs") " " count " " Lang_Trans("global_day", (count > 1 ? 2 : 1)) ", " count1 " " Lang_Trans("global_trade", (count1 > 1 ? 2 : 1))
+			Gui, %GUI%: Add, Text, % "ys Border Center BackgroundTrans HWNDhwnd gSettings_exchange2", % " " Lang_Trans("global_delete") " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Border Range0-500 Vertical HWNDhwnd1", 0
+			vars.hwnd.settings.logs_delete := hwnd, vars.hwnd.help_tooltips["settings_exchange delete logs"] := vars.hwnd.settings.logs_delete_bar := hwnd1
+		}
+
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
+		Gui, %GUI%: Font, norm
+
+		Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("global_font")
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "–"
+		vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*3, % settings.exchange.fSize
+		vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "+"
+		vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
 	}
 
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
-	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Progress, % "Disabled xs BackgroundWhite h4 w" settings.general.fWidth * 35 " y+" vars.settings.spacing, 0
 
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0", % Lang_Trans("global_font")
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "–"
-	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*3, % settings.exchange.fSize
-	vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_exchange2 HWNDhwnd w"settings.general.fWidth*2, % "+"
-	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_exchange2 y+" vars.settings.spacing " Checked" settings.features.async, % Lang_Trans("m_async_enable")
+	vars.hwnd.settings.async_enable := vars.hwnd.help_tooltips["settings_exchange async enable"] := hwnd
+
+	If settings.features.async
+	{
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_general")
+		Gui, %GUI%: Font, norm
+
+		Gui, %GUI%: Add, Checkbox, % "Section xs gSettings_exchange2 HWNDhwnd Checked" settings.async.show_name, % Lang_Trans("m_async_name")
+		vars.hwnd.settings.async_name := vars.hwnd.help_tooltips["settings_exchange async name"] := hwnd
+
+		Gui, %GUI%: Add, Text, % "Section HWNDhwnd xs", % Lang_Trans("m_async_minchange")
+		Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd2 Center w" settings.general.fWidth*4, % settings.async.minchange "%"
+		Gui, %GUI%: Add, Slider, % "ys x+0 hp gSettings_exchange2 HWNDhwnd1 NoTicks ToolTip Center Range5-50 w" settings.general.fWidth*8, % settings.async.minchange
+		vars.hwnd.settings.minchange := hwnd1, vars.hwnd.settings.minchange_label := hwnd2
+		vars.hwnd.help_tooltips["settings_exchange async minchange"] := hwnd, vars.hwnd.help_tooltips["settings_exchange async minchange|"] := hwnd2
+	}
 }
 
 Settings_exchange2(cHWND)
@@ -992,6 +1013,24 @@ Settings_exchange2(cHWND)
 		If WinExist("ahk_id " vars.hwnd.exchange.main)
 			Exchange()
 	}
+	Else If (check = "async_enable")
+	{
+		IniWrite, % (settings.features.async := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable async trade
+		If WinExist("ahk_id " vars.hwnd.async.main)
+			AsyncTrade("close")
+		Settings_menu("exchange")
+	}
+	Else If (check = "async_name")
+	{
+		IniWrite, % (settings.async.show_name := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\vaal street.ini", settings async trade, show full name
+		If WinExist("ahk_id " vars.hwnd.async.main)
+			AsyncTrade()
+	}
+	Else If (check = "minchange")
+	{
+		IniWrite, % (settings.async.minchange := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\vaal street.ini", settings async trade, minimum price change
+		GuiControl, Text, % vars.hwnd.settings.minchange_label, % settings.async.minchange "%"
+	}
 	Else LLK_ToolTip("no action")
 }
 
@@ -1032,6 +1071,9 @@ Settings_general()
 	Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd gSettings_general2 Checked" settings.general.capslock, % Lang_Trans("m_general_capslock")
 	vars.hwnd.settings.capslock := hwnd, vars.hwnd.help_tooltips["settings_capslock toggling"] := hwnd, check := ""
 
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_general_charleague")
+	Gui, %GUI%: Font, norm
 	If vars.log.file_location
 		Settings_CharTracking("general")
 
@@ -3434,7 +3476,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	}
 	Else
 	{
-		Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + vars.client.xc - w//2 " y" vars.monitor.y + vars.client.yc - h//2 " w"w - 1 " h"h - 2
+		Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + vars.client.xc - w//2 " y" vars.monitor.y + vars.monitor.yc - h//2 " w"w - 1 " h"h - 2
 		vars.settings.x := vars.monitor.x + vars.client.xc - w//2
 	}
 	LLK_Overlay(vars.hwnd.settings.main, "show", NA, GUI_name), LLK_Overlay(hwnd_old, "destroy")
@@ -4172,7 +4214,7 @@ Settings_screenchecks()
 		vars.hwnd.settings["cImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-calibration"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (Blank(vars.imagesearch[key].x1) ? " cRed" : ""), % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["tImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-test"handle] := hwnd, handle .= "|"
-		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((key = "sanctum" ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
+		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((RegExMatch(key, "i)sanctum|async") ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
 	}
 
 	If active_image.Count()
@@ -4306,7 +4348,7 @@ Settings_ScreenChecksValid(type := "")
 
 	For key, val in vars.imagesearch.list
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
-		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key]
+		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key] || InStr(key, "async") && !settings.features.async
 			Continue
 		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 
@@ -4487,8 +4529,9 @@ Settings_stash()
 	Gui, %GUI%: Font, norm
 	vars.hwnd.settings.apply_button := hwnd
 
-	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd cLime", % Lang_Trans("global_league") . Lang_Trans("global_colon") " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4])
-	vars.hwnd.help_tooltips["settings_stash league"] := hwnd
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border gSettings_stash2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	vars.hwnd.settings.league_select := vars.hwnd.help_tooltips["settings_stash league"] := hwnd
 
 	If vars.client.stream
 	{
@@ -4599,6 +4642,8 @@ Settings_stash2(cHWND)
 			Stash_Close()
 		Settings_menu("stash-ninja")
 	}
+	Else If (check = "league_select")
+		Settings_menu("general")
 	Else If (check = "hotkey")
 	{
 		GuiControl, +cRed, % cHWND
@@ -5262,9 +5307,13 @@ Settings_LeagueSelection2(cHWND := "")
 		For index, val in settings.general.league
 			string .= (string ? "|" : "") val
 		IniWrite, % """" string """", % "ini" vars.poe_version "\config.ini", settings, league
-		Stash_PriceFetch("flush")
+		Stash_PriceFetch("flush"), vars.async.conversions = {}
 		If WinExist("ahk_id " vars.hwnd.stash.main)
 			Stash("refresh")
+		If WinExist("ahk_id " vars.hwnd.async.main)
+			AsyncTrade()
+		If WinExist("ahk_id " vars.hwnd.exchange.main)
+			Exchange()
 		Settings_menu()
 	}
 	Else If (check = "league_update")

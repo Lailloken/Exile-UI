@@ -3,11 +3,11 @@
 ;#####################################################
 
 ;## purpose of this file
-	;## this file contains all the strings that are displayed in the script's UIs
+	;## this file contains all the strings that are displayed in the tool's UIs
 
 
 ;## file structure
-	;## the script ignores TABs, empty lines, as well as lines/sections marked as comments (;##)
+	;## the tool ignores TABs, empty lines, as well as lines/sections marked as comments (;##)
 	;## each non-comment line in this file is a key/value pair, divided into two parts:
 		;##	key			=	"value"
 		;## the value has to be enclosed in quotation marks
@@ -87,7 +87,7 @@
 ;## global: recurring/common strings
 ;#####################################################
 
-;## these strings are commonly used throughout the script
+;## these strings are commonly used throughout the tool
 		global_screencap		=	"screen-cap"
 		global_error			=	"error"
 		global_success			=	"successful"
@@ -295,7 +295,7 @@
 ;## betrayal-info
 ;#####################################################
 
-;## in order to use the betrayal-info feature with a different language, the script will access the file "data\Betrayal_XYZ.json"
+;## in order to use the betrayal-info feature with a different language, the tool will access the file "data\Betrayal_XYZ.json"
 ;## make a copy of "data\Betrayal.json" and rename that accordingly, then translate the contained strings with reward-texts
 ;## the file is structured as follows:
 ;## object "aisling":
@@ -390,6 +390,9 @@
 		async_listing			=	"already tracking"
 		async_history			=	"price history:"
 		async_adjust			=	"adjust price:"
+		async_pricefailed		=	"poe.ninja currently unavailable"
+		async_pricefailed		=	"(price sorting not possible)"
+		async_pricefailed		=	"(price conversion not possible)"
 
 
 
@@ -788,6 +791,7 @@
 		m_general_kill			=	"exit x minutes after closing the game:"
 		m_general_browser		=	"browser features"
 		m_general_capslock		=	"capslock-toggling"						;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
+		m_general_charleague	=	"character & league:"
 		m_general_character		=	"char"
 		m_general_level		=	"lvl"
 		m_general_client		=	"game-client settings:"
@@ -811,9 +815,9 @@
 		m_general_posbottom		=	"bottom"
 		m_general_borderless	=	"apply borderless-windowed mode"
 		m_general_blackbars		=	"the client has black bars on the sides"	;## black bars as in letterboxes
-		m_general_permissions	=	"script write-permissions test:"
+		m_general_permissions	=	"write-permissions test:"
 		m_general_start		=	"start test"
-		m_general_admin		=	"restart script as admin"
+		m_general_admin		=	"restart as admin"
 		m_general_menuwidget	=	"menu-widget size:"
 		m_general_animations	=	"disable ui animations"
 		m_general_input		=	"input method:"
@@ -829,7 +833,7 @@
 		m_permission_yes		=	"yes"
 		m_permission_no		=	"no"
 		m_permission_unknown	=	"unknown"
-		m_permission_admin		=	"script launched with admin rights:"
+		m_permission_admin		=	"tool launched with admin rights:"
 		m_permission_folder		=	"can create folders:"
 		m_permission_folder		=	"can delete folders:"
 		m_permission_ini		=	"can create ini-files:"
@@ -837,14 +841,14 @@
 		m_permission_ini		=	"can delete ini-files:"
 		m_permission_image		=	"can create image-files:"
 		m_permission_image		=	"can delete image-files:"
-		m_permission_error		=	"There are some leftover files from a previous test, and the script cannot delete them."
+		m_permission_error		=	"There are some leftover files from a previous test, and the tool cannot delete them."
 		m_permission_error		=	"Please delete the 'write-test' folder within the folder that will open after closing this message."	;## NOTE: don't translate the name of folders (as they're hard-coded and not localized)
 
 ;## these strings are displayed/required in an error-message related to write-permissions
-		m_permission_error1		=	"The script couldn't create a file/folder:"
-		m_permission_error1		=	"The script couldn't delete a file/folder:"
+		m_permission_error1		=	"The tool couldn't create a file/folder:"
+		m_permission_error1		=	"The tool couldn't delete a file/folder:"
 		m_permission_error1		=	"There seeem to be write-permission issues in the current folder location."
-		m_permission_error1		=	"Try moving the script to another location or running it as administrator."
+		m_permission_error1		=	"Try moving the tool to another location or running it as administrator."
 		m_permission_error1		=	"There is a write-permissions test in the settings menu that you can use to troubleshoot this issue."
 		m_permission_error1		=	"It's highly recommended to fix this issue as many features will not work correctly otherwise."
 
@@ -958,7 +962,7 @@
 		m_hotkeys_keyblock		=	"block the keypress"										;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu
 		m_hotkeys_keyblock		=	"keypress is blocked"										;## same as above, but as a note instead of option
 		m_hotkeys_widget		=	"widget-key:"
-		m_hotkeys_emergency		=	"force-restart:"											;## hotkey to force-restart the script in case of crash/hang
+		m_hotkeys_emergency		=	"force-restart:"											;## hotkey to force-restart the tool in case of crash/hang
 		m_hotkeys_winkey		=	"win-key"													;## Windows-key
 		m_hotkeys_menuwidget	=	"menu-widget (alt. key):"
 		m_hotkeys_error		=	"invalid hotkey"
@@ -1238,11 +1242,11 @@
 		m_updater_error1		=	"the last update attempt failed because of write-permission errors. please open the <general> section of the settings and run the test at the bottom."
 		m_updater_error1		=	"fixing these issues is critical not just for the updater but for many other features as well."
 
-		m_updater_error2		=	"the last update attempt failed because the script couldn't download the latest version-list."
+		m_updater_error2		=	"the last update attempt failed because the tool couldn't download the latest version-list."
 		m_updater_error2		=	"this could be a random error that will fix itself on the next try."
 		m_updater_error2		=	"if it doesn't fix itself, you'll have to update manually."
 
-		m_updater_error3		=	"the last update attempt failed because the script couldn't verify the current version-list. this indicates a damaged installation and needs to be fixed manually as soon as possible."
+		m_updater_error3		=	"the last update attempt failed because the tool couldn't verify the current version-list. this indicates a damaged installation and needs to be fixed manually as soon as possible."
 		m_updater_error4		=	"the last update attempt failed because some files couldn't be downloaded."
 		m_updater_manual		=	"update manually"
 		m_updater_manual		=	"github download"

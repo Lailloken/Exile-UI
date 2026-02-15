@@ -305,6 +305,15 @@ LLK_FormatTime(time, format)
 	Return formatted
 }
 
+LLK_TimeElapsed(timestamp, unit := "minutes")
+{
+	local
+
+	now := A_NowUTC
+	EnvSub, now, % timestamp, % unit
+	Return now
+}
+
 LLK_HasKey(object, value, InStr := 0, case_sensitive := 0, all_results := 0, recurse := 0)
 {
 	local
