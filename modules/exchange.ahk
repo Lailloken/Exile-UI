@@ -432,9 +432,10 @@ AsyncTrade2(mode := "")
 		If existing_item
 		{
 			item := vars.async[league].sell[existing_item], count := item.prices.Count(), existing_item_prev := existing_item
+			UpdateConversions()
 			If (item.prices.1.3 = item.prices[item.prices.MaxIndex()].3)
 				price_diff := Round((item.prices[item.prices.MaxIndex()].2 / item.prices.1.2) * 100 - 100, 1)
-			Else If (converted1 := settings.async[item.prices.1.3]) && (converted2 := settings.async[item.prices[item.prices.MaxIndex()].3])
+			Else If (converted1 := vars.async.conversions[item.prices.1.3]) && (converted2 := vars.async.conversions[item.prices[item.prices.MaxIndex()].3])
 				price_diff := Round(((item.prices[item.prices.MaxIndex()].2 * converted2) / (item.prices.1.2 * converted1)) * 100 - 100, 1)
 			Else price_diff := ""
 			Gui, %GUI_name%: Add, Text, % "Section", % Lang_Trans("async_history") . (count > 1 ? (price_diff ? " " price_diff "%" : "") : "")
@@ -488,7 +489,7 @@ AsyncTrade2(mode := "")
 			}
 
 			If (outer = 2)
-				UpdateConversions(), currency := (vars.poe_version ? "exalted" : "chaos")
+				currency := (vars.poe_version ? "exalted" : "chaos")
 			If (outer = 2) && (vars.async.conversions.timestamp.2 = "failed")
 			{
 				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed")
@@ -515,8 +516,8 @@ AsyncTrade2(mode := "")
 							options[A_Index] := loop - A_Index, last_diff := price_diff
 						Else options[A_Index - 1] := loop - A_Index + 1, last_diff := price_diff1
 
-						If (last_diff > 2*minchange) && (price0.1 < price0.1 * vars.async.conversions[currency])
-							offer_alt := 1
+						If (last_diff >= 2*minchange)
+							UpdateConversions(), offer_alt := (price0.1 < price0.1 * vars.async.conversions[currency] ? 1 : 0)
 						last_diff := last_diff // 5 * 5
 					}
 				}
@@ -1174,6 +1175,6 @@ UpdateConversions()
 			IniWrite, % (settings.exchange.exalt_div := Round(StrSplit(ini.currency.divine, ",", " ").2)), % "ini" vars.poe_version "\vaal street.ini", settings, exalt-div ratio
 		}
 		Else If !success
-			vars.async.conversions.timestamp := [A_NowUTC, "failed"]
+			vars.async.conversions := {"timestamp": [A_NowUTC, "failed"]}
 	}
 }
