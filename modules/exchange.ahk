@@ -382,7 +382,7 @@ AsyncTrade2(mode := "")
 			LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
 			Return
 		}
-		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r"), , price_prev := price
+		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r"), price_prev := price
 
 		If (mode = "sell")
 		{
