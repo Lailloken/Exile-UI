@@ -34,7 +34,7 @@
 	settings.async.sorting_sell := !Blank(check := ini["settings async trade"]["sorting (sell)"]) ? check : ""
 	settings.async.sorting_buy := !Blank(check := ini["settings async trade"]["sorting (buy)"]) ? check : "age"
 	settings.async.filter_sell := ""
-	settings.async.filter_buy := !Blank(check := ini["settings async trade"]["filter (buy)"]) ? check : "hour"
+	settings.async.filter_buy := !Blank(check := ini["settings async trade"]["filter (buy)"]) ? check : "all"
 	settings.async.show_name := !Blank(check := ini["settings async trade"]["show full name"]) ? check : 0
 	settings.async.minchange := !Blank(check := ini["settings async trade"]["minimum price change"]) ? check : 10
 
@@ -226,19 +226,19 @@ AsyncTrade(cHWND := "", hotkey := "")
 	{
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
 		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("global_filter") . Lang_Trans("global_colon")
-		filters := ["hour", "day", "week"]
-		For index, val in [3, 5, 7]
+		filters := ["m", "m", "m"]
+		For index, val in [5, 10, 15]
 		{
-			color := (settings.async.filter_buy = filters[index] ? "Lime" : "White")
-			Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" color, % " " SubStr(Lang_Trans("global_timeunits", val), 1, 1) " "
-			vars.hwnd.async["filter_" filters[index]] := hwnd
+			color := (settings.async.filter_buy = val "|" filters[index] ? "Lime" : "White")
+			Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" color, % " " val . SubStr(Lang_Trans("global_timeunits", 1), 1, 1) " "
+			vars.hwnd.async["filter_" val "|" filters[index]] := hwnd
 		}
 		Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" (settings.async.filter_buy = "all" ? "Lime" : "White"), % " " Lang_Trans("global_all") " "
 		vars.hwnd.async["filter_all"] := hwnd
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize
 	}
 
-	vars.async.dIcon := dIcon := settings.async.fHeight*2 - 4, filter := settings.async["filter_" mode]
+	vars.async.dIcon := dIcon := settings.async.fHeight*2 - 4, filter := settings.async["filter_" mode], filter := (filter = "all" ? filter : StrSplit(filter, "|"))
 	If !vars.async[league][mode].Count()
 		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("async_nolist", (mode = "buy" ? 2 : 1))
 	Else
@@ -249,9 +249,8 @@ AsyncTrade(cHWND := "", hotkey := "")
 				Continue
 			If (mode = "buy") && (filter != "all")
 			{
-				elapsed := A_NowUTC, timestamp := object.timestamp
-				EnvSub, elapsed, timestamp, Minutes
-				If (filter = "hour" && elapsed > 60) || (filter = "day" && elapsed > 1440) || (filter = "week" && elapsed > 10080)
+				elapsed := LLK_TimeElapsed(object.timestamp, filter.2)
+				If (elapsed > filter.1)
 					Continue
 			}
 			If InStr(sorting, "price")
@@ -343,7 +342,7 @@ AsyncTrade2(mode := "")
 	static toggle := 0, existing_item_prev, price_prev
 	
 	item := vars.omnikey.item, timestamp := A_NowUTC, check := LLK_HasVal(vars.hwnd.async_pricing, mode), control := SubStr(check, InStr(check, "_") + 1)
-	league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
+	league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)], alt_currency := (vars.poe_version ? "exalted" : "chaos")
 	If InStr(check, "setprice")
 	{
 		Clipboard := "", Clipboard := control
@@ -377,14 +376,14 @@ AsyncTrade2(mode := "")
 	}
 	Else If (mode = "sell" || mode = "buy")
 	{
-		price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), price_prev := price
-		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r")
-
-		If !RegExMatch(price, "\d") || InStr(price, "offer")
+		price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), array := StrSplit(price, " ")
+		If !RegExMatch(price, "\d") || InStr(price, "offer") || (array.1 = 1 && array.2 = alt_currency)
 		{
 			LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
 			Return
 		}
+		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r"), , price_prev := price
+
 		If (mode = "sell")
 		{
 			For key, object in vars.async[league].sell
@@ -432,7 +431,8 @@ AsyncTrade2(mode := "")
 		If existing_item
 		{
 			item := vars.async[league].sell[existing_item], count := item.prices.Count(), existing_item_prev := existing_item
-			UpdateConversions()
+			If (item.prices.1.3 != item.prices[item.prices.MaxIndex()].3)
+				UpdateConversions()
 			If (item.prices.1.3 = item.prices[item.prices.MaxIndex()].3)
 				price_diff := Round((item.prices[item.prices.MaxIndex()].2 / item.prices.1.2) * 100 - 100, 1)
 			Else If (converted1 := vars.async.conversions[item.prices.1.3]) && (converted2 := vars.async.conversions[item.prices[item.prices.MaxIndex()].3])
@@ -452,9 +452,9 @@ AsyncTrade2(mode := "")
 				Gui, %GUI_name%: Add, Text, % "Section Center " (iPrice = 1 ? "xs" : "ys") " w" dIcon, % elapsed . SubStr(Lang_Trans("global_timeunits", unit + (elapsed != 1 ? 1 : 0)), 1, 1)
 
 				Gui, %GUI_name%: Font, % "bold"
-				Gui, %GUI_name%: Add, Text, % "xs y+0 BackgroundTrans Right HWNDhwnd w" dIcon " h" dIcon, % (InStr(price, "greater-") ? "ii" : (InStr(price, "perfect-") ? "iii" : ""))
+				Gui, %GUI_name%: Add, Text, % "xs y+0 BackgroundTrans Right HWNDhwnd w" dIcon " h" dIcon, % (InStr(array.3, "greater-") ? "ii" : (InStr(array.3, "perfect-") ? "iii" : ""))
 				ControlGetPos, xIcon, yIcon, wIcon, hIcon,, ahk_id %hwnd%
-				Gui, %GUI_name%: Add, Text, % "xp wp BackgroundTrans Right y+-" settings.async.fHeight2 - 3 . (InStr(sorting, "price") ? " cLime" : ""), % array.2
+				Gui, %GUI_name%: Add, Text, % "xp wp BackgroundTrans Right y+-" settings.async.fHeight2 - 3, % array.2
 				Gui, %GUI_name%: Font, % "norm"
 
 				currency := array.3
@@ -475,36 +475,45 @@ AsyncTrade2(mode := "")
 		Gui, %GUI_name%: Add, Text, % "Section" (!existing_item ? "" : " x" margin " y+" margin), % Lang_Trans("async_adjust")
 		Gui, %GUI_name%: Font, norm
 
-		price0 := StrSplit(price, " "), minchange := settings.async.minchange
-		currency := price0.2
-
+		price0 := StrSplit(price, " "), minchange := settings.async.minchange, currency := price0.2, vars.async.button1 := {}
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
 		For outer in [1, 2]
 		{
 			loop := (outer = 1 ? price0.1 : Round(price0.1 * vars.async.conversions[currency])), options := []
-			If !(loop > 1) || (outer = 2) && !offer_alt
+			If (loop = 1) || (outer = 2) && !offer_alt
 			{
-				offer_alt := 1
+				If (price0.2 != alt_currency)
+				{
+					If (loop = 1)
+						UpdateConversions()
+					offer_alt := 1
+				}
 				Continue
 			}
 
-			If (outer = 2)
-				currency := (vars.poe_version ? "exalted" : "chaos")
+			If offer_alt
+				currency := alt_currency
+
 			If (outer = 2) && (vars.async.conversions.timestamp.2 = "failed")
 			{
-				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed")
+				Gui, %GUI_name%: Add, Text, % "Section xs HWNDhwnd cFF8000", % Lang_Trans("async_pricefailed")
 				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed", 3)
+				If !options.Count()
+				{
+					ControlGetPos, x, y, w, h,, ahk_id %hwnd%
+					vars.async.button1 := {"x": x, "y": y}
+				}
 				Break
 			}
 
 			For key, val in vars.async.currencies
 				If InStr(currency, key)
 				{
-					currency := val
+					currency_icon := val
 					Break
 				}
-			If !vars.pics.async[currency]
-				vars.pics.async[currency] := LLK_ImageCache("img\GUI\currency\" currency . vars.poe_version ".png",, dIcon)
+			If !vars.pics.async[currency_icon]
+				vars.pics.async[currency_icon] := LLK_ImageCache("img\GUI\currency\" currency_icon . vars.poe_version ".png",, dIcon)
 
 			Loop, % loop
 				If !options.Count()
@@ -512,7 +521,7 @@ AsyncTrade2(mode := "")
 					price_diff := 100 * (1 - ((loop - A_Index) / loop)), price_diff1 := 100 * (1 - ((loop - A_Index + 1) / loop))
 					If (price_diff >= minchange)
 					{
-						If (minchange - price_diff < minchange - price_diff1)
+						If !price_diff1 || (Abs(minchange - price_diff) < Abs(minchange - price_diff1))
 							options[A_Index] := loop - A_Index, last_diff := price_diff
 						Else options[A_Index - 1] := loop - A_Index + 1, last_diff := price_diff1
 
@@ -539,7 +548,7 @@ AsyncTrade2(mode := "")
 			{
 				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTrade2 HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n" Round(100 * (1 - val / loop)) "%"
 				vars.hwnd.async_pricing["setprice" (outer = 2 ? "alt" : "") "_" val] := hwnd
-				If (A_Index = 1 && outer = 1)
+				If (A_Index = 1 && outer = 1) || (A_Index = 1 && outer = 2 && !vars.async.button1.Count())
 				{
 					ControlGetPos, x, y, w, h,, ahk_id %hwnd%
 					vars.async.button1 := {"x": x, "y": y}
@@ -548,14 +557,11 @@ AsyncTrade2(mode := "")
 			If options.Count() && offer_alt
 			{
 				Gui, %GUI_name%: Font, % "bold"
-				Gui, %GUI_name%: Add, Text, % "ys x+0 Right BackgroundTrans w" dIcon " h" dIcon, % (InStr(price0.2, "perfect-") ? "iii" : (InStr(price0.2, "greater-") ? "ii" : ""))
-				Gui, %GUI_name%: Add, Pic, % "xp yp wp hp", % "HBitmap:*" vars.pics.async[currency]
+				Gui, %GUI_name%: Add, Text, % "ys x+0 Right BackgroundTrans w" dIcon " h" dIcon, % (InStr(currency, "greater-") ? "ii" : (InStr(currency, "perfect-") ? "iii" : ""))
+				Gui, %GUI_name%: Add, Pic, % "xp yp wp hp", % "HBitmap:*" vars.pics.async[currency_icon]
 				Gui, %GUI_name%: Font, % "norm"
 			}
 		}
-
-				
-		
 
 		Gui, %GUI_name%: Show, % "NA x10000 y10000"
 		WinGetPos, x, y, w, h, ahk_id %hwnd_pricing%

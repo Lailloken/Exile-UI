@@ -1137,7 +1137,7 @@
     ],
     "list sell": [
       "press the <omni-key> over an item to open 'quick repricing'\n\nhold down the <omni-key> over an item to track and add it to the list below",
-      "<click> an item on the list to highlight it in game\n\n<long-right-click> an item on the list to remove it",
+      "<click> an item on the list to highlight it in game\n\n<long-click> an item to mark it as sold and hide it\n\n<long-right-click> an item to permanently remove it",
       "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed since repricing or listing the item"
     ],
     "list buy": [
