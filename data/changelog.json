@@ -1,5 +1,14 @@
 [
   [
+	["1.61.5", 16105, 1],
+	"february 17, 2026",
+	"added settings menu shortcut to tray icon, f2 no longer the default alt. hotkey for settings menu(/highlight)",
+	"stash-ninja: league selection moved to <general> settings (is a global setting now)",
+	"act-decoder: removed 'generic' layouts (outdated or inaccurate), tweaked some layouts",
+	"act-tracker: tweaked a few poe1 sections",
+	"new feature: added async trading functionality to <vaal street>: quick repricing, tracking, logging"
+  ],
+  [
 	["1.61.4", 16104],
 	"january 29, 2026",
 	"act-tracker: added support for 3.27 phrecia imports, added 'optionals' for 5L breach drops in acts 5 + 6 (league-start route)",
@@ -23,7 +32,7 @@
 	"item-info: re-enabled ilvl display for PoE2, improved mod detection"
   ],
   [
-	["1.61.1", 16101],
+	["1.61.1", 16101, 1],
 	"december 16, 2025",
 	"added an option to disable multi-threading to resolve crash issues(/highlight)",
 	"act-tracker: added support for 0.4 trees and gems (druid ascendancy-trees untested, may be offset slightly)",
