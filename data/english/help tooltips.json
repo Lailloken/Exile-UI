@@ -269,7 +269,7 @@
       "visualizes how your in-/outflow developed over the course of a specific day and the past week"
     ],
     "exchange async enable": [
-      "provides quick-pricing functionality, as well as pricing/age tracking for listed items",
+      "provides quick-pricing functionality, as well as price/age tracking for listed items",
       "requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section(/highlight)",
       "while the currency exchange is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
@@ -1134,16 +1134,19 @@
   "async": {
     "font-size": [
       "– and + can be held down, the middle button resets the size"
+    ],"list buy": [
+      "press the <omni-key> over an item to log the purchase",
+      "<long-right-click> an item on the list to remove it",
+      "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed"
+    ],
+    "list clear": [
+      "long-click to clear the whole list and permanently remove everything on it",
+      "(/highlight)this ignores any active filters"
     ],
     "list sell": [
       "press the <omni-key> over an item to open 'quick repricing'\n\nhold down the <omni-key> over an item to track and add it to the list below",
       "<click> an item on the list to highlight it in game\n\n<long-click> an item to mark it as sold and hide it\n\n<long-right-click> an item to permanently remove it",
       "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed since repricing or listing the item"
-    ],
-    "list buy": [
-      "press the <omni-key> over an item to log the purchase",
-      "<long-right-click> an item on the list to remove it",
-      "sorting:\n<click> currency icons to sort by price (ascending or descending)\n\n<click> time labels to sort based on how much time has passed"
     ]
   },
   "cheatsheet": {

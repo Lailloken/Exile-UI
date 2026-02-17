@@ -948,7 +948,7 @@ Settings_exchange()
 
 		Gui, %GUI%: Add, Text, % "Section HWNDhwnd xs", % Lang_Trans("m_async_minchange")
 		Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd2 Center w" settings.general.fWidth*4, % settings.async.minchange "%"
-		Gui, %GUI%: Add, Slider, % "ys x+0 hp gSettings_exchange2 HWNDhwnd1 NoTicks ToolTip Center Range5-50 w" settings.general.fWidth*8, % settings.async.minchange
+		Gui, %GUI%: Add, Slider, % "ys x+0 hp gSettings_exchange2 HWNDhwnd1 NoTicks ToolTip Center Range5-50 w" settings.general.fWidth*12, % settings.async.minchange
 		vars.hwnd.settings.minchange := hwnd1, vars.hwnd.settings.minchange_label := hwnd2
 		vars.hwnd.help_tooltips["settings_exchange async minchange"] := hwnd, vars.hwnd.help_tooltips["settings_exchange async minchange|"] := hwnd2
 	}

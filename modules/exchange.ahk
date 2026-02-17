@@ -100,6 +100,14 @@ AsyncTrade(cHWND := "", hotkey := "")
 	}
 	Else If RegExMatch(cHWND, "i)buy|sell")
 		vars.async.mode := cHWND
+	Else If (check = "clear_list")
+		If LLK_Progress(vars.hwnd.async.clear_list_bar, "LButton")
+		{
+			For key in vars.async[league][vars.async.mode]
+				IniDelete, % "ini" vars.poe_version "\async trade.ini", % key
+			vars.async[league][vars.async.mode] := {}
+		}
+		Else Return
 	Else If InStr(check, "sort_")
 	{
 		KeyWait, LButton
@@ -123,7 +131,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 			GuiControl, +cLime, % vars.hwnd.async[check "_bar"]
 			If LLK_Progress(vars.hwnd.async[check "_bar"], "LButton")
 			{
-				target := listings[control].timestamp " " listings[control].name, vars.async[league].sell[target].sold := 1
+				target := listings[control].timestamp " " listings[control].name, vars.async[league].sell.Delete(target)
 				IniWrite, 1, % "ini" vars.poe_version "\async trade.ini", % target, sold
 			}
 			Else
@@ -218,6 +226,13 @@ AsyncTrade(cHWND := "", hotkey := "")
 	Gui, %GUI_name%: Font, norm
 	Gui, %GUI_name%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["async_list " vars.async.mode] := hwnd
+
+	If vars.async[league][mode].Count()
+	{
+		Gui, %GUI_name%: Add, Text, % "ys Border BackgroundTrans gAsyncTrade HWNDhwnd", % " " Lang_Trans("global_clear") " "
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack cRed Vertical Range0-500 HWNDhwnd2", 0
+		vars.hwnd.async.clear_list := hwnd, vars.hwnd.async.clear_list_bar := vars.hwnd.help_tooltips["async_list clear"] := hwnd2
+	}
 
 	If !IsObject(vars.async[league])
 		vars.async[league] := {"buy": {}, "sell": {}}
@@ -377,7 +392,7 @@ AsyncTrade2(mode := "")
 	Else If (mode = "sell" || mode = "buy")
 	{
 		price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), array := StrSplit(price, " ")
-		If !RegExMatch(price, "\d") || InStr(price, "offer") || (array.1 = 1 && array.2 = alt_currency)
+		If !RegExMatch(price, "\d") || InStr(price, "offer") || (mode = "sell") && (array.1 = 1 && array.2 = alt_currency)
 		{
 			LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
 			Return
@@ -506,6 +521,7 @@ AsyncTrade2(mode := "")
 				Break
 			}
 
+			currency_icon := currency
 			For key, val in vars.async.currencies
 				If InStr(currency, key)
 				{
@@ -527,7 +543,7 @@ AsyncTrade2(mode := "")
 
 						If (last_diff >= 2*minchange)
 							UpdateConversions(), offer_alt := (price0.1 < price0.1 * vars.async.conversions[currency] ? 1 : 0)
-						last_diff := last_diff // 5 * 5
+						last_diff := Round(last_diff) // 5 * 5
 					}
 				}
 				Else If (options.Count() = 5) || (A_Index = loop)

@@ -244,6 +244,7 @@
 		global_pause			=	"pause"
 		global_resume			=	"resume"
 		global_filter			=	"filter"
+		global_clear			=	"clear"			;## remove everything, as in "clear a list"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
