@@ -155,11 +155,19 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | example:<br>vendors | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/searchstrings_103.jpg) |
 <br>
 
-### [Vaal Street](https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street): currency exchange ratio-calculator, QoL, trade logging, and balance tracking
+### [Vaal Street](https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street): QoL, tracking, and logging features for the exchange and async trading
+
+**currency exchange:**
 | | optional trade logging | ratio-calculator | optional balance tracking |
 |---|---|---|---|
 | PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_003.jpg) |
 | PoE2 | <p align="center">✔️</p> | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_102.jpg) | <p align="center">✔️</p> |
+
+**async trade:**
+| | quick repricing | optional sales tracking/logging | optional purchase logging |
+|---|---|---|---|
+| PoE1 | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_010.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_011.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/vaalstreet_012.jpg) |
+| PoE2 | <p align="center">✔️</p> | <p align="center">✔️</p> | <p align="center">✔️</p> |
 <br>
 
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  
