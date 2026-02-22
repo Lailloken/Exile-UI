@@ -151,7 +151,7 @@
       ],
       "lines": [
         "optional: (img:artificer) (color:cc99ff)league_mechanic",
-        "optional: (color:cc99ff)blank_rune & (img:artificer) in (img:checkpoint) (color:cc99ff)workshop",
+        "optional: (color:cc99ff)blank (img:rune) + (img:artificer) in (img:checkpoint) (color:cc99ff)workshop",
         "find & kill (img:checkpoint) executioner",
         "(img:quest_2) leitis || enter areaidg1_14 ;; the manor ramparts"
       ]
@@ -274,7 +274,7 @@
       "(hint)_ - find (img:checkpoint) (color:aqua)v-shaped_bridge along edge"
     ],
     [
-      "optional: (img:jeweller) (color:cc99ff)league || (color:66b2ff)res (img:ring) in (img:checkpoint) (color:cc99ff)ele._offering",
+      "optional: (img:jeweller) (color:cc99ff)league || (color:66b2ff)res (img:ring) + (img:rune) in (img:checkpoint) (color:cc99ff)ele._offer",
       "find (img:arena) heart_of_keth, kill azarian",
       "(img:quest_2) halani: (quest:cinders) || (img:quest_2) halani: (quest:essence)",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
@@ -581,7 +581,7 @@
     [
       "optional: (img:gcp) (color:cc99ff)league || (img:skill) (img:support) in (img:checkpoint) (color:cc99ff)beast_pen",
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)delve || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)sailor",
-      "optional: greater rune: (img:checkpoint) arena:blind_beast",
+      "optional: greater (img:rune) from (img:checkpoint) arena:blind_beast",
       "enter (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
     ],
     [
@@ -670,9 +670,10 @@
     ],
     [
       "optional: (img:checkpoint) (color:cc99ff)rune_vendor: ferry pier (center)",
-      "(color:ff00ff)find_2 side areas (edge): (img:in-out2), then (img:arena)",
+      "(color:ff00ff)find_2 areas (edge): (img:in-out2), then (img:arena)",
+      "(color:ff00ff)find_2_(edge): (img:in-out2) exit_1, (img:arena) exit_2",
       "(hint)_ - areaidp1_5: kill oswin for (quest:book) ;; wolvenhold",
-      "(hint)_ - areaidp1_6: kill elswyth_&_wulfric ;; holten estate",
+      "(hint)_ - areaidp1_6: kill elswyth/wulfric ;; holten estate",
       "after 2nd arena:fight, (img:portal) to areaidp1_town ;; the refuge"
     ],
     [

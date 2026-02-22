@@ -772,7 +772,7 @@ Leveltracker_GuideEditor(cHWND)
 
 	If !icons
 		If vars.poe_version
-			icons := [0, 1, 2, 3, 4, 5, 6, 7, "checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out2", "ring", "artificer", "jeweller", "gcp", "exa", "regal", "skill", "spirit", "support"]
+			icons := [0, 1, 2, 3, 4, 5, 6, 7, "checkpoint", "waypoint", "portal", "arena", "quest_2", "help", "in-out2", "ring", "rune", "artificer", "jeweller", "gcp", "exa", "regal", "skill", "spirit", "support"]
 		Else icons := [0, 1, 2, 3, 4, 5, 6, 7, "waypoint", "portal", "arena", "quest", "help", "craft", "lab", "in-out2"]
 
 	If !vars.leveltracker_editor.act
