@@ -131,7 +131,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				If (index != hotkey)
 					vars.actdecoder.zone_layouts[vars.log.areaID].exclude .= (vars.actdecoder.zone_layouts[vars.log.areaID].exclude ? "|" : "") "\s" val, check := 1
 		}
-		Else If !vars.actdecoder.zone_layouts[vars.log.areaID].subzone && selection && !InStr(vars.actdecoder.loaded.1, "y") && (!InStr(vars.actdecoder.loaded[hotkey], "x") || hotkey = 3)
+		Else If selection && vars.actdecoder.loaded.HasKey(3) && (!InStr(vars.actdecoder.loaded[hotkey], "x") || hotkey = 3 )
 		{
 			If (hotkey = 3)
 			{
@@ -255,7 +255,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Return
 	}
 
-	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_4": 1, "g1_14": 1, "g1_15": 1, "g2_4_3 1": 1, "g2_4_3 2": 1, "g2_4_3 3": 1, "g2_4_3 4": 1, "g3_11": 1, "g3_16": 1}, rota_whitelist := {"1_1_2a": 1}
+	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_2": 1, "g1_4": 1, "g1_7": 1, "g1_8 1": 1, "g1_11": 1, "g1_12": 1, "g1_14": 1, "g1_15": 1, "g2_4_3 1": 1, "g2_4_3 2": 1, "g2_4_3 3": 1, "g2_4_3 4": 1, "g3_11": 1, "g3_16": 1}, rota_whitelist := {"1_1_2a": 1}
 
 	If (vars.actdecoder.current_zone != vars.log.areaID)
 		vars.actdecoder.current_zone := vars.log.areaID
@@ -424,8 +424,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	}
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
 	WinGetPos,,, w, h, % "ahk_id " vars.hwnd.actdecoder.main
-	xPos := Blank(settings.actdecoder.xLayouts) ? (alignment = "horizontal" ? vars.monitor.x + vars.client.xc - w/2 : vars.monitor.x) : vars.monitor.x + settings.actdecoder.xLayouts
-	yPos := Blank(settings.actdecoder.yLayouts) ? (alignment = "vertical" ? vars.monitor.y + vars.monitor.h/2 - h/2 : vars.monitor.y) : vars.monitor.y + settings.actdecoder.yLayouts
+	xPos := Blank(settings.actdecoder.xLayouts) ? (alignment = "horizontal" ? vars.monitor.x + vars.client.xc - w/2 - (settings.general.fHeight + margin)/2 : vars.monitor.x) : vars.monitor.x + settings.actdecoder.xLayouts
+	yPos := Blank(settings.actdecoder.yLayouts) ? (alignment = "vertical" ? vars.monitor.y + vars.monitor.h/2 - h/2 - (settings.general.fHeight + margin)/2 : vars.monitor.y) : vars.monitor.y + settings.actdecoder.yLayouts
 	xPos := (xPos >= vars.monitor.x + vars.monitor.w / 2) ? xPos - w + 1 : xPos, yPos := (yPos >= vars.monitor.y + vars.monitor.h / 2) ? yPos - h + 1 : yPos
 	;Gui_CheckBounds(xPos, yPos, w, h)
 
