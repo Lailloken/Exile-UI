@@ -440,10 +440,10 @@ Actdecoder_ZoneLayoutsSize(hotkey)
 	global vars, settings
 	static resizing
 
-	If (hotkey = "SC039")
+	If InStr(hotkey, "SC038")
 	{
 		vars.actdecoder.layouts_lock := !vars.actdecoder.layouts_lock
-		KeyWait, SC039
+		KeyWait, SC038
 		Return
 	}
 

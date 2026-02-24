@@ -618,9 +618,9 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 ~*^LButton::Maptracker_Loot()
 ^RButton::Maptracker_Loot("back")
 
-#If !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) && vars.actdecoder.tab ;resizing the act-decoder overlay
+#If vars.actdecoder.tab && !(vars.general.wMouse && !Blank(LLK_HasVal(vars.hwnd.notepad_widgets, vars.general.wMouse))) ;resizing the act-decoder overlay
 
-SC039::
+SC038::
 MButton::
 WheelUp::
 WheelDown::Actdecoder_ZoneLayoutsSize(A_ThisHotkey)
