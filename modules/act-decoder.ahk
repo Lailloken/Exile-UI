@@ -255,7 +255,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 		Return
 	}
 
-	alignment := settings.actdecoder.aLayouts, rota_block := {"g1_2": 1, "g1_4": 1, "g1_7": 1, "g1_8 1": 1, "g1_11": 1, "g1_12": 1, "g1_14": 1, "g1_15": 1, "g2_4_3 1": 1, "g2_4_3 2": 1, "g2_4_3 3": 1, "g2_4_3 4": 1, "g3_11": 1, "g3_16": 1}, rota_whitelist := {"1_1_2a": 1}
+	alignment := settings.actdecoder.aLayouts, rota_whitelist := {"1_1_2a": 1}
+	rota_block := {"g1_2": 1, "g1_4": 1, "g1_7": 1, "g1_8 1": 1, "g1_11": 1, "g1_12": 1, "g1_14": 1, "g1_15": 1, "g2_2": 1, "g2_4_3 1": 1, "g2_4_3 2": 1, "g2_4_3 3": 1, "g2_4_3 4": 1, "g2_6": 1, "g3_11": 1, "g3_16": 1}
 
 	If (vars.actdecoder.current_zone != vars.log.areaID)
 		vars.actdecoder.current_zone := vars.log.areaID
