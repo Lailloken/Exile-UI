@@ -562,7 +562,7 @@ AsyncTrade2(mode := "")
 
 			For index, val in options
 			{
-				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTrade2 HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n" Round(100 * (1 - val / loop)) "%"
+				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTrade2 HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n-" Round(100 * (1 - val / loop)) "%"
 				vars.hwnd.async_pricing["setprice" (outer = 2 ? "alt" : "") "_" val] := hwnd
 				If (A_Index = 1 && outer = 1) || (A_Index = 1 && outer = 2 && !vars.async.button1.Count())
 				{
