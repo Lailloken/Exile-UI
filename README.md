@@ -82,7 +82,6 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 |---|---|---|
 | layout<br>indicators | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_101.jpg) |
 | full<br>layouts | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) |
-| simple<br>fallback | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_003.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_103.jpg) |
 <br>
 
 ### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja price-overlay
