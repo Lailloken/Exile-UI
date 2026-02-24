@@ -625,6 +625,10 @@ MButton::
 WheelUp::
 WheelDown::Actdecoder_ZoneLayoutsSize(A_ThisHotkey)
 
+#If !vars.actdecoder.tab && vars.hwnd.actdecoder.main && WinExist("ahk_id " vars.hwnd.actdecoder.main)
+
+~SC038::Actdecoder_ZoneLayoutsSize("hide")
+
 #If settings.leveltracker.pobmanual && settings.leveltracker.pob && WinActive("ahk_exe Path of Building.exe") && !WinExist("ahk_id " vars.hwnd.leveltracker_screencap.main) ;opening the screen-cap menu via m-clicking in PoB
 
 MButton::Leveltracker_ScreencapMenu()

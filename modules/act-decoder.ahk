@@ -440,7 +440,15 @@ Actdecoder_ZoneLayoutsSize(hotkey)
 	global vars, settings
 	static resizing
 
-	If InStr(hotkey, "SC038")
+	If (hotkey = "hide") 
+	{
+		LLK_Overlay(vars.hwnd.actdecoder.main, "hide")
+		KeyWait, SC038
+		If WinActive("ahk_id " vars.hwnd.poe_client)
+			LLK_Overlay(vars.hwnd.actdecoder.main, "show")
+		Return
+	}
+	Else If InStr(hotkey, "SC038")
 	{
 		vars.actdecoder.layouts_lock := !vars.actdecoder.layouts_lock
 		KeyWait, SC038
