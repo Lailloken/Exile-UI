@@ -3,8 +3,7 @@
     "ssf": {
       "normal": {
         "standard": "Solo Self-Found",
-        "keepers": "SSF Keepers",
-        "phrecia": "SSF Phrecia 2.0"
+        "keepers": "SSF Keepers"
       },
       "ruthless": {
         "standard": "SSF Ruthless",
@@ -14,8 +13,7 @@
     "trade": {
       "normal": {
         "standard": "Standard",
-        "keepers": "Keepers",
-        "phrecia": "Phrecia 2.0"
+        "keepers": "Keepers"
       },
       "ruthless": {
         "standard": "Ruthless",
@@ -27,8 +25,7 @@
     "ssf": {
       "normal": {
         "standard": "Hardcore SSF",
-        "keepers": "HC SSF Keepers",
-        "phrecia": "HC SSF Phrecia 2.0"
+        "keepers": "HC SSF Keepers"
       },
       "ruthless": {
         "standard": "Hardcore SSF Ruthless",
@@ -38,8 +35,7 @@
     "trade": {
       "normal": {
         "standard": "Hardcore",
-        "keepers": "Hardcore Keepers",
-        "phrecia": "Hardcore Phrecia 2.0"
+        "keepers": "Hardcore Keepers"
       },
       "ruthless": {
         "standard": "Hardcore Ruthless",
