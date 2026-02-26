@@ -1,5 +1,12 @@
 [
   [
+	["1.61.6", 16106],
+	"february 26, 2026",
+	"act-decoder: major alignment update for poe2: revised acts 1-3 and added new decoded layouts",
+	"act-decoder: lock hotkey moved from <space> to <alt>, hold <alt> to temporarily hide the overlay",
+	"vaal street: repricing panel now shows negative percentage values"
+  ],
+  [
 	["1.61.5", 16105, 1],
 	"february 17, 2026",
 	"added settings menu shortcut to tray icon, f2 no longer the default alt. hotkey for settings menu(/highlight)",
