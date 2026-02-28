@@ -1862,7 +1862,13 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 		While InStr(guide.group1[index_raw - trace_optional], "(hint)_")
 			trace_optional += 1
 
-		If !preview && (!settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional"))) || !settings.leveltracker["guide" profile].info.leaguestart && (InStr(step, Lang_Trans("lvltracker_format_league")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_league"))))
+		If !preview
+			If !settings.leveltracker["guide" profile].info.optionals
+				&& (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+			|| !settings.leveltracker["guide" profile].info.leaguestart
+				&& (InStr(step, Lang_Trans("lvltracker_format_league")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_league")))
+			|| settings.leveltracker["guide" profile].info.leaguestart
+				&& (InStr(step, Lang_Trans("lvltracker_format_twink")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_twink")))
 			Continue
 		bullets += (InStr(step, "(hint)_") ? 0 : 1)
 	}
@@ -1896,7 +1902,13 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 			While InStr(guide.group1[index_raw - trace_optional], "(hint)_")
 				trace_optional += 1
 
-			If !preview && (!settings.leveltracker["guide" profile].info.optionals && (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional"))) || !settings.leveltracker["guide" profile].info.leaguestart && (InStr(step, Lang_Trans("lvltracker_format_league")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_league"))))
+			If !preview
+				If !settings.leveltracker["guide" profile].info.optionals
+					&& (InStr(step, Lang_Trans("lvltracker_format_optional")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_optional")))
+				|| !settings.leveltracker["guide" profile].info.leaguestart
+					&& (InStr(step, Lang_Trans("lvltracker_format_league")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_league")))
+				|| settings.leveltracker["guide" profile].info.leaguestart
+					&& (InStr(step, Lang_Trans("lvltracker_format_twink")) || trace_optional && InStr(guide.group1[index_raw - trace_optional], Lang_Trans("lvltracker_format_twink")))
 				Continue
 
 			If RegExMatch(step, "i)\(.*\)" StrReplace(Lang_Trans("lvltracker_gembuy"), " ", "."))
@@ -1909,7 +1921,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				step := SubStr(step, 1, lilly_check - 2)
 
 			line := step, hint := InStr(step, "(hint)_"), optional := InStr(step, Lang_Trans("lvltracker_format_optional"))
-			step := StrReplace(step, Lang_Trans("lvltracker_format_optional") " "), step := StrReplace(step, Lang_Trans("lvltracker_format_league") " ")
+			step := LLK_StringRemove(step, Lang_Trans("lvltracker_format_optional") " ," Lang_Trans("lvltracker_format_league") " ," Lang_Trans("lvltracker_format_twink") " ")
 			style := "Section xs", step := StrReplace(StrReplace(StrReplace(step, ": ", " : "), ". ", " . "), ", ", " , "), kill := 0, text_parts := []
 			If (check := InStr(step, " `;"))
 				step := SubStr(step, 1, check - 1)
