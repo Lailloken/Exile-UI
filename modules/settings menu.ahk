@@ -4953,7 +4953,7 @@ Settings_updater()
 				Else change := vLine, feature := ""
 
 				If InStr(vLine, "/highlight")
-					change := (feature ? feature ": " : "") change, feature := "0major changes"
+					change := (feature ? feature ":`n" : "") change, feature := "0major changes"
 				If date
 					change := version " (" date ")`n" change
 				If !feature || (iLine < 3)
