@@ -501,7 +501,8 @@
     ],
     "leveltracker import": [
       "imports pobb.in-links, pob-codes or custom guides from clipboard into this guide slot",
-      "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
+      "importing will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)",
+      "it will also reset gem-pickup customizations(/highlight)"
     ],
     "leveltracker editor": [
       "open the editor to edit the guide in this slot"
@@ -1355,7 +1356,8 @@
   "leveltrackergems": {
     "general": [
       "adjust when and/or whether to pick up specific gems during the campaign",
-      "select <skip> if you don't want to pick up certain gems (e.g. if you are already muling them with a different character)"
+      "select <skip> if you don't want to pick up certain gems (e.g. if you are already muling them with a different character)",
+      "if gems are underlined, it means that the earliest pickup is the a3 library quest"
     ],
     "save-reset": [
       "applying/reverting changes will also reset your guide progress(/highlight)"

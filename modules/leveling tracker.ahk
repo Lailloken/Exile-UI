@@ -388,7 +388,7 @@ Leveltracker(cHWND := "", hotkey := "")
 				KeyWait, LButton
 				Return
 			}
-			start := A_TickCount, loop := 1
+			start := A_TickCount, loop := 1, leaguestart := settings.leveltracker["guide" settings.leveltracker.profile].info.leaguestart
 			While (loop = 1) && (GetKeyState("LButton", "P") && (cHWND = vars.hwnd.leveltracker["+"]) || settings.leveltracker.hotkeys && settings.leveltracker.hotkey_2 && GetKeyState(settings.leveltracker.hotkey_2, "P"))
 				If (A_TickCount >= start + 1000)
 					loop := 1000, vars.leveltracker.fast := 1, area_check := db.leveltracker.areaIDs.HasKey(vars.log.areaID)
@@ -401,9 +401,12 @@ Leveltracker(cHWND := "", hotkey := "")
 					If (index <= vars.leveltracker.guide.progress) || val.condition && !Leveltracker("condition", index)
 						Continue
 					For index, line in (val.condition ? val.lines : val)
-						Loop, Parse, line, %A_Space%
-							If InStr(A_LoopField, "areaid")
-								target_area := StrReplace(A_LoopField, "areaid")
+						If leaguestart && InStr(line, Lang_Trans("lvltracker_format_twink")) || !leaguestart && InStr(line, Lang_Trans("lvltracker_format_league"))
+							Continue
+						Else
+							Loop, Parse, line, %A_Space%
+								If InStr(A_LoopField, "areaid")
+									target_area := StrReplace(A_LoopField, "areaid")
 					If (target_area = vars.log.areaID)
 					{
 						area_check := 1
@@ -678,8 +681,7 @@ Leveltracker_GemPickups(cHWND := "")
 	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.leveltracker_gempickups.main, vars.hwnd.leveltracker_gempickups := {"main": hwnd_manager}
 
-	Gui, %GUI_name%: Add, Text, % "Section x-1 y-1 Center Border gLeveltracker_GemPickups HWNDhwnd_winbar"
-	, % " exile ui: " Lang_Trans("lvltracker_gempickups") " (" Lang_Trans("lvltracker_editor_slot") " " (!profile ? 1 : profile) ") "
+	Gui, %GUI_name%: Add, Text, % "Section x-1 y-1 Center Border gLeveltracker_GemPickups HWNDhwnd_winbar", % " exile ui: " Lang_Trans("lvltracker_gempickups") " (" Lang_Trans("lvltracker_editor_slot") " " (!profile ? 1 : profile) ") "
 	Gui, %GUI_name%: Add, Pic, % " ys BackgroundTrans Border hp-2 w-1 HWNDhwnd_help", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Add, Text, % "ys Center Border gLeveltracker_GemPickups HWNDhwnd_xbutton w" settings.leveltracker.fWidth * 2, % "x"
 	vars.hwnd.leveltracker_gempickups.xbutton := hwnd_xbutton, vars.hwnd.leveltracker_gempickups.winbar := hwnd_winbar
@@ -698,10 +700,13 @@ Leveltracker_GemPickups(cHWND := "")
 	vars.leveltracker_gempickups.tooltips := {}
 	For gem in gems
 	{
+		If !db.leveltracker.gems[gem]
+			Continue
 		acts := [], ddl := "", gem_name := (db.leveltracker.gems[gem].name ? db.leveltracker.gems[gem].name : gem), gem_name := (gem_name != "barrage support" ? StrReplace(gem_name, " support") : gem_name)
+		quest_check := {}
 		For Quest, oQuest in db.leveltracker.gems[gem].quests
 			If oQuest.vendor && (!oQuest.vendor.Count() || LLK_HasVal(oQuest.vendor, character_class)) || oQuest.quest && (!oQuest.quest.Count() || LLK_HasVal(oQuest.quest, character_class))
-				acts[db.leveltracker.gems._quests[Quest].act] := 1
+				acts[db.leveltracker.gems._quests[Quest].act] := 1, quest_check[quest] := 1
 		default_acts[gem] := acts.MinIndex(), acts.0 := 1, acts.6 := 1
 
 		vars.leveltracker_gempickups.tooltips[gem_name] := ["skillset(s):"]
@@ -724,7 +729,7 @@ Leveltracker_GemPickups(cHWND := "")
 		Gui, %GUI_name%: Add, DDL, % (A_Index = 1 ? "Section x" margin " y+" margin : (break ? "Section ys x+" margin : "xs y+" margin/2))
 		. (InStr(ddl, "||") ? "" : " Choose2") " HWNDhwnd gLeveltracker_GemPickups w" settings.leveltracker.fWidth * 6, % ddl
 		vars.hwnd.leveltracker_gempickups[gem "_ddl"] := hwnd
-		Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize
+		Gui, %GUI_name%: Font, % (quest_check.Count() < 3 && quest_check["a fixture of fate"] ? "underline" : "norm") " s" settings.leveltracker.fSize
 
 		modified := (!Blank(vars.leveltracker["PoB" profile].vendors[gem]) && (default_acts[gem] != vars.leveltracker["PoB" profile].vendors[gem]) ? 100 : 0)
 		Gui, %GUI_name%: Add, Progress, % "Disabled xp-" margin/2 " yp-" margin/2 " wp+" margin " hp+" margin " HWNDhwnd Background" (modified ? "Fuchsia" : "Black"), 0
@@ -1453,6 +1458,7 @@ Leveltracker_Load(profile := "")
 
 	current_profile := settings.leveltracker.profile, gems := db.leveltracker.gems, class := vars.leveltracker["PoB" current_profile].class
 	import := [], ini := IniBatchRead("ini" vars.poe_version "\leveling guide" (profile ? profile : current_profile) ".ini")
+	leaguestart := settings.leveltracker["guide" current_profile].info.leaguestart
 
 	If !profile
 		vars.leveltracker.guide.progress := !Blank(check := ini.progress.pages) ? check : 0
@@ -1485,6 +1491,8 @@ Leveltracker_Load(profile := "")
 				new_group.Push(line)
 				Continue
 			}
+			Else If leaguestart && InStr(line, Lang_Trans("lvltracker_format_twink")) || !leaguestart && InStr(line, Lang_Trans("lvltracker_format_league"))
+				Continue
 
 			quests_line := [], loop := 1
 			While InStr(line, "<",,, loop)
@@ -3045,7 +3053,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	import := vars.leveltracker.guide.import, in_progress := 1, vars.leveltracker.last := A_TickCount*100 ;dummy-value to prevent Loop_main() from prematurely fading the overlay
 	guide := vars.leveltracker.guide, areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, timer := vars.leveltracker.timer ;short-cut variables
 	vars.leveltracker.fade := mode ? 0 : vars.leveltracker.fade, vars.leveltracker.toggle := mode ? 1 : vars.leveltracker.toggle
-	profile := settings.leveltracker.profile
+	profile := settings.leveltracker.profile, leaguestart := settings.leveltracker["guide" profile].info.leaguestart
 
 	If !vars.log.act || (vars.log.act = "c")
 		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && !vars.log.act && IsNumber(SubStr(vars.log.areaID, 2, 1)) ? SubStr(vars.log.areaID, 2, 1) : vars.log.act)
@@ -3063,7 +3071,9 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 
 	guide.target_area := ""
 	For index, val in guide.group1
-		If InStr(val, "areaid") && !InStr(val, "(hint)_")
+		If leaguestart && InStr(val, Lang_Trans("lvltracker_format_twink")) || !leaguestart && InStr(val, Lang_Trans("lvltracker_format_league"))
+			Continue
+		Else If InStr(val, "areaid") && !InStr(val, "(hint)_")
 			Loop, Parse, val, %A_Space%
 				If InStr(A_LoopField, "areaid")
 					guide.target_area := StrReplace(A_LoopField, "areaid")
