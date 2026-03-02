@@ -52,7 +52,7 @@
 		Else vars.maptracker := {"keywords": [], "mechanics": {"delirium": 1, "expedition": 1, "ritual": 2}}
 		If vars.poe_version
 			vars.maptracker.leagues := [["ea standard", 20241206, 20250403], ["ea dawn", 20250404, 20250828], ["ea abyss", 20250829, 20251211], ["ea vaal", 20251212, 20261231]]
-		Else vars.maptracker.leagues := [["crucible", 20230407, 20230815], ["ancestor", 20230818, 20231205], ["affliction", 20231208, 20240326], ["necropolis", 20240329, 20240723], ["settlers", 20240726, 20250609], ["mercenaries", 20250613, 20251027], ["keepers", 20251031, 20250302]]
+		Else vars.maptracker.leagues := [["crucible", 20230407, 20230815], ["ancestor", 20230818, 20231205], ["affliction", 20231208, 20240326], ["necropolis", 20240329, 20240723], ["settlers", 20240726, 20250609], ["mercenaries", 20250613, 20251027], ["keepers", 20251031, 20260302], ["mirage", 20260306, 20261212]]
 	}
 
 	For mechanic in vars.maptracker.mechanics
