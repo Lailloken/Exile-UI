@@ -96,7 +96,7 @@
 	settings.leveltracker.hotkeys := !Blank(check := ini.settings["enable page hotkeys"]) ? check : vars.client.stream
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
 	settings.leveltracker.hotkey_2 := !Blank(check := ini.settings["hotkey 2"]) ? check : "F4"
-	settings.leveltracker.tree_hotkey := tree_hotkey := !Blank(check := ini.settings["tree hotkey"]) ? check : ""
+	settings.leveltracker.tree_hotkey := tree_hotkey := !Blank(check := ini.settings["tree hotkey"]) ? check : "space"
 
 	tree_hotkey := (!GetKeyVK(tree_hotkey) ? "" : tree_hotkey)
 	If !Blank(tree_hotkey)
