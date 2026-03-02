@@ -571,8 +571,9 @@
       "toggling this setting will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync the guide to the zone you're currently in(/highlight)"
     ],
     "leveltracker optionals": [
-      "whether optional loot/quests/encounters should be included\nexamples: strongboxes, gear/flask quests, vendor recipes",
-      "they will be marked with a plus-sign in the guide(/highlight)"
+      "choose whether optional loot/quests/encounters should be included",
+      "they will be marked with a plus-sign in the guide(/highlight)",
+      "examples: strongboxes, gear quests, guaranteed drops, vendor recipes"
     ],
     "leveltracker optionals 2": [
       "choose whether optional loot/quests should be shown or not",
