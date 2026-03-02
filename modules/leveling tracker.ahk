@@ -1336,7 +1336,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, -1, -1
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize " cWhite", % vars.system.font
 
-	If pic && (settings.features.actdecoder && !Blank(settings.actdecoder.hotkey))
+	If pic && (settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder)
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -2014,7 +2014,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					For key in vars.leveltracker.hints
 						If InStr(StrReplace(part, "_", " "), key)
 							text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text, hint_img := 1
-					If hint_img && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey))
+					If hint_img && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder)
 						color := "Aqua"
 
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
