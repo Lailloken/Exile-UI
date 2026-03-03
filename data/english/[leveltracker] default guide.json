@@ -473,7 +473,7 @@
     },
     [
       "find & enter areaid1_2_8 ;; the northern forest",
-      "(hint)_ - zone is often s- or l-shaped",
+      "(hint)_ - zone is often s- or v-shaped",
       "(hint)_ - rare: zone is an outward spiral"
     ],
     [
@@ -1001,7 +1001,7 @@
       "enter areaid2_7_1 ;; the broken bridge"
     ],
     [
-      "leaguestart: optional: (img:quest) (color:8787fe)utility_flask",
+      "leaguestart: (img:quest) (color:8787fe)utility_flask",
       "(hint)_ - follow road up to broken (img:waypoint)",
       "(hint)_ - find (img:quest) (quest:locket) in nearby ruins",
       "follow road: areaid2_7_2 ;; the crossroads"
@@ -1250,9 +1250,8 @@
       "(hint)__ section 1: go (img:1) || rest: linear"
     ],
     [
-      "go (img:2), activate (img:waypoint)",
-      "find (img:quest) (quest:chest) (circle of pillars)",
-      "(hint)__ usually near (img:waypoint), or far (img:5) of it",
+      "go (img:2), get (img:waypoint) || find (img:quest) (quest:chest)",
+      "(hint)__ usually around (img:waypoint) or far (img:5)",
       "go (img:0) to areaid2_9_5 ;; the foothills"
     ],
     [
