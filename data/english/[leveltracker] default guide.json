@@ -92,7 +92,7 @@
     ],
     [
       "(img:quest) tarkleigh: <the_caged_brute2>",
-      "optional: spare quicksilver? (color:cc99ff)vendor:",
+      "leaguestart: optional: spare quicksilver? (color:cc99ff)vendor:",
       "(hint)__ qs-flask + aug + (ms) boots",
       "(img:waypoint) to areaid1_1_8 ;; prisoner's gate"
     ],
@@ -234,7 +234,7 @@
       ],
       "lines": [
         "follow the road",
-        "optional: jewellery + 3 rogue exiles",
+        "leaguestart: optional: jewellery + 3 rogue exiles",
         "(hint)__ look for (color:cc99ff)ruins near (img:waypoint)",
         "(color:red)kill arena:kraityn for (quest:amulet)",
         "(color:cc99ff)relog: areaid1_2_town ;; the forest encampment"
@@ -391,7 +391,7 @@
       ],
       "lines": [
         "follow the road",
-        "optional: jewellery + 3 rogue exiles",
+        "leaguestart: optional: jewellery + 3 rogue exiles",
         "(hint)__ look for (color:cc99ff)ruins near (img:waypoint)",
         "(quest:help) (color:ff8111)kraityn for (quest:apex)",
         "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
@@ -930,7 +930,7 @@
     ],
     [
       "leaguestart: complete (img:lab) trial",
-      "enter areaid2_6_7_2 : ;; shavronne's tower"
+      "enter areaid2_6_7_2 ;; shavronne's tower"
     ],
     [
       "kill shavronne_&_brutus",
@@ -964,7 +964,7 @@
     ],
     [
       "(img:quest) bestel: (quest:book) ;; abberath",
-      "(img:quest) tarkleigh: <helmet> || (quest:book) ;; shav || ryslatha",
+      "leaguestart: (img:quest) tarkleigh: <helmet> || (quest:book) ;; shav || ryslatha",
       "twinkrun: (img:quest) tarkleigh: (quest:book) || <helmet> || (quest:book) ;; tukohama || shav || ryslatha",
       "(img:waypoint) to areaid2_6_10 ;; the riverways"
     ],
@@ -973,7 +973,7 @@
       "go (img:3) to areaid2_6_12 ;; the southern forest"
     ],
     [
-      "go (img:2), then follow cliff (img:3)",
+      "go (img:2), then follow wall (img:3)",
       "enter areaid2_6_13 ;; the cavern of anger"
     ],
     [
@@ -1131,7 +1131,7 @@
       "leaguestart: (hint)__ (img:craft) is near the waypoint"
     ],
     [
-      "follow water, find (img:quest) (quest:ankh)",
+      "follow water edge: (img:quest) (quest:ankh)",
       "search far (img:4) for (img:arena) res._site",
       "(hint)__ (img:quest) clarissa || kill tolman",
       "go far (img:2) to areaid2_8_9 ;; the grain gate"
