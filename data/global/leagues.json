@@ -2,44 +2,36 @@
   "sc": {
     "ssf": {
       "normal": {
-        "standard": "Solo Self-Found",
-        "keepers": "SSF Keepers"
+        "standard": "Solo Self-Found"
       },
       "ruthless": {
-        "standard": "SSF Ruthless",
-        "keepers": "SSF R Keepers"
+        "standard": "SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Standard",
-        "keepers": "Keepers"
+        "standard": "Standard"
       },
       "ruthless": {
-        "standard": "Ruthless",
-        "keepers": "Ruthless Keepers"
+        "standard": "Ruthless"
       }
     }
   },
   "hc": {
     "ssf": {
       "normal": {
-        "standard": "Hardcore SSF",
-        "keepers": "HC SSF Keepers"
+        "standard": "Hardcore SSF"
       },
       "ruthless": {
-        "standard": "Hardcore SSF Ruthless",
-        "keepers": "HC SSF R Keepers"
+        "standard": "Hardcore SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Hardcore",
-        "keepers": "Hardcore Keepers"
+        "standard": "Hardcore"
       },
       "ruthless": {
-        "standard": "Hardcore Ruthless",
-        "keepers": "HC Ruthless Keepers"
+        "standard": "Hardcore Ruthless"
       }
     }
   }
