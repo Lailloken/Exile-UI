@@ -1045,6 +1045,7 @@
 		m_lvltracker_bandits		=	"kraityn"
 		m_lvltracker_bandits		=	"oak"
 		m_lvltracker_treehotkey		=	"hotkey to close trees:"	;## optional setting for users who don't close the in-game tree with ESC
+		m_lvltracker_gemquests		=	"gem-quests"			;## quests that unlock skill-gems
 
 
 

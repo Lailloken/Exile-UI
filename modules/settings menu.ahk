@@ -2147,12 +2147,22 @@ Settings_leveltracker()
 		vars.hwnd.settings.optionals := vars.hwnd.help_tooltips["settings_leveltracker optionals" vars.poe_version] := hwnd
 		ControlGetPos, xOptionals,, wOptionals,,, ahk_id %hwnd%
 
-		If !vars.poe_version && vars.leveltracker["pob" profile].gems.Count()
-		{
-			Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems ? "Lime" : "Gray"), % " " Lang_Trans("global_gem", 2) " "
-			Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 cBlack HWNDhwnd1 Background" (settings.leveltracker["guide" profile].info.gems && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), 100
-			vars.hwnd.settings.gems := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems"] := hwnd1
-		}
+		If !vars.poe_version
+			If vars.leveltracker["pob" profile].gems.Count()
+			{
+				Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems ? "Lime" : "Gray"), % " " Lang_Trans("m_lvltracker_gemquests") " "
+				Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 cBlack HWNDhwnd1 Background" (settings.leveltracker["guide" profile].info.gems && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), 100
+				vars.hwnd.settings.gems := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems"] := hwnd1
+				hidden := (settings.leveltracker["guide" profile].info.gems ? "" : " Hidden")
+				
+				Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "Gray") . hDDL . hidden, % " " Lang_Trans("global_all") " "
+				vars.hwnd.settings.gems_all := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd
+			}
+			Else
+			{
+				Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "Gray"), % " " Lang_Trans("m_lvltracker_gemquests") " "
+				vars.hwnd.settings.gems_all := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd
+			}
 
 		Settings_CharTracking("leveltracker", xOptionals + wOptionals - x_anchor)
 
@@ -2518,6 +2528,8 @@ Settings_leveltracker2(cHWND := "")
 		If settings.leveltracker["guide" profile].info.leaguestart
 			Return
 		IniWrite, % (input := settings.leveltracker["guide" profile].info.gems := !settings.leveltracker["guide" profile].info.gems), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems
+		If !input
+			IniWrite, % (settings.leveltracker["guide" profile].info.gems_all := 0), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems_all
 		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
@@ -2525,6 +2537,21 @@ Settings_leveltracker2(cHWND := "")
 		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		GuiControl, % "+Background" (input && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), % vars.hwnd.help_tooltips["settings_leveltracker gems"]
+
+		GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.gems_all
+		GuiControl, % "+cGray", % vars.hwnd.settings.gems_all
+		GuiControl, % "movedraw", % vars.hwnd.settings.gems_all
+	}
+	Else If (check = "gems_all")
+	{
+		profile := settings.leveltracker.profile
+		IniWrite, % (input := settings.leveltracker["guide" profile].info.gems_all := !settings.leveltracker["guide" profile].info.gems_all), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, gems_all
+		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
+		Leveltracker_Load()
+		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
+			Leveltracker_Progress(1)
+		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
 	}
 	Else If (check = "bandit")
 	{

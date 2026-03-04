@@ -73,6 +73,8 @@
 		settings.leveltracker["guide" profile].info.gems := 1
 	Else settings.leveltracker["guide" profile].info.gems .= Blank(settings.leveltracker["guide" profile].info.gems) ? 1 : ""
 
+	settings.leveltracker["guide" profile].info.gems_all .= Blank(settings.leveltracker["guide" profile].info.gems_all) ? 0 : ""
+
 	vars.leveltracker.gearfilter := 1, vars.leveltracker.gear := []
 	For key in ini2["Tracker - Gear"]
 		vars.leveltracker.gear.Push(key)
@@ -1572,8 +1574,11 @@ Leveltracker_Load(profile := "")
 			If (lilly_check := InStr(line, " || " Lang_Trans("quest_lilly") . Lang_Trans("global_colon")))
 				new_group[index] := SubStr(line, 1, lilly_check - 1)
 
-			If quest_count && (no_reward_count = quest_count)
-				new_group.RemoveAt(index)
+			If quest_count && (no_reward_count = quest_count) 
+			{
+				If !settings.leveltracker["guide" current_profile].info.gems_all || lilly_check && settings.leveltracker["guide" current_profile].info.gems_all
+					new_group.RemoveAt(index)
+			}
 			Else If !InStr(line, Lang_Trans("quest_lilly") . Lang_Trans("global_colon") " <") && npc && skipped_quests[act][npc].Count()
 			{
 				new_line := ""

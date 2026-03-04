@@ -518,6 +518,10 @@
       "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)",
       "this toggle is forced to on if <league-start> is on (/highlight)"
     ],
+    "leveltracker gems all": [
+      "by default, the guide skips gem-quests that don't have relevant rewards for the imported build",
+      "click this button to override this behavior and instead include every gem-quest (except a3 library)"
+    ],
     "leveltracker guide info 2": [
       "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
