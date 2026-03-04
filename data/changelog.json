@@ -1,5 +1,12 @@
 [
   [
+	["1.61.7", 16107],
+	"march 4, 2026",
+	">> this is not the 3.28 update\n>> every league-start will now have a new major version, so mirage's update will be v1.62.0",
+	"act-decoder:\n>> revisited and tweaked many layouts from a1 to a10",
+	"act-tracker:\n>> fixed hint images not working under specific settings\n>> tweaked/rewrote many sections of the poe1 guide\n>> added a new toggle to include every gem-quest, regardless of imports\n>> hotkey to close skill-tree and overlay is now space by default"
+  ],
+  [
 	["1.61.6", 16106],
 	"february 26, 2026",
 	"act-decoder:\n>> major alignment update for poe2: revised acts 1-3 and added new decoded layouts\n>> lock hotkey moved from <space> to <alt>, hold <alt> to temporarily hide the overlay",
