@@ -11,7 +11,7 @@
 	If !IsObject(vars.leveltracker)
 	{
 		vars.leveltracker := {"starter_gems": {"witch": ["fireball", "arcane surge"], "shadow": ["viper strike", "chance to poison"], "ranger": ["burning arrow", "momentum"], "duelist": ["double strike", "chance to bleed"]
-		, "marauder": ["heavy strike", "ruthless"], "templar": ["glacial hammer", "elemental proliferation"], "scion": ["spectral throw", "prismatic burst"]}, "layouts_lock": 0}
+		, "marauder": ["heavy strike", "ruthless"], "templar": ["holy strike", "hallow"], "scion": ["spectral throw", "prismatic burst"]}, "layouts_lock": 0}
 	}
 
 	settings.leveltracker := {}, ini := IniBatchRead("ini" vars.poe_version "\leveling tracker.ini")
@@ -2001,7 +2001,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 				Else
 				{
 					text := LLK_StringRemove(StrReplace(StrReplace(part, "&&", "&"), "&", "&&"), "<,>,arena:,(hint)"), area := StrReplace(text, "areaid"), act := LLK_HasVal(areas, area,,,, 1)
-					area := areaIDs[area][InStr(line, "img:waypoint") && areaIDs[area].mapname ? "mapname" : "name"], area := (InStr(area, "(") && !(InStr(area, "(1)") || InStr(area, "(2)")) ? SubStr(area, 1, InStr(area, "(") - 2) : area)
+					area := areaIDs[area][InStr(line, "img:waypoint") && areaIDs[area].mapname ? "mapname" : "name"], area := (vars.poe_version && InStr(area, "(") ? SubStr(area, 1, InStr(area, "(") - 2) : area)
 					If InStr(text, "areaid") ;translate ID to location-name (and add potential act-clarification)
 						text := (!preview && ((act != vars.log.act) && !InStr(text, "labyrinth") || InStr(vars.log.areaID, "hideout")) ? vars.leveltracker.acts[act] " | " : "") . area
 					text := StrReplace(text, "_", " "), text := StrReplace(text, "(a11)", "(epilogue)")
@@ -2408,7 +2408,7 @@ Leveltracker_PobImport(b64, profile)
 	If !classes
 		If vars.poe_version
 			classes := {"mercenary": ["tactician", "witchhunter", "gemling legionnaire"], "monk": ["invoker", "acolyte of chayula"], "ranger": ["deadeye", "pathfinder"], "sorceress": ["stormweaver", "chronomancer", "disciple of varashta"], "warrior": ["titan", "warbringer", "smith of kitava"], "witch": ["infernalist", "blood mage", "lich", "abyssal lich"], "huntress": ["amazon", "ritualist"], "druid": ["oracle", "shaman"]}
-		Else classes := {"scion": ["ascendant"], "marauder": ["juggernaut", "berserker", "chieftain"], "ranger": ["warden", "deadeye", "pathfinder"], "witch": ["occultist", "elementalist", "necromancer"]
+		Else classes := {"scion": ["ascendant", "reliquarian"], "marauder": ["juggernaut", "berserker", "chieftain"], "ranger": ["warden", "deadeye", "pathfinder"], "witch": ["occultist", "elementalist", "necromancer"]
 		, "duelist": ["slayer", "gladiator", "champion"], "templar": ["inquisitor", "hierophant", "guardian"], "shadow": ["assassin", "trickster", "saboteur"]}
 
 	Base64Dec((pobString := RTrim(b64, "=")), compressed), buffer := 1024 * 10000
