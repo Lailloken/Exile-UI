@@ -1,5 +1,13 @@
 [
   [
+	["1.62.0", 16200],
+	"march 6, 2026",
+	"act-tracker:\n>> added support for new trees and reliquarian\n>> new gems are supported, but we didn't get full quest/vendor info",
+	"betrayal-info:\n>> updated rewards to 3.28",
+	"map-tracker:\n>> removed ritual reminder when opening portals (there's a new in-game notification)",
+	"glhf"
+  ],
+  [
 	["1.61.7", 16107],
 	"march 4, 2026",
 	">> this is not the 3.28 update\n>> every league-start will now have a new major version, so mirage's update will be v1.62.0",
