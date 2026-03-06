@@ -1692,7 +1692,7 @@ Maptracker_Reminder()
 	local
 	global vars, settings
 
-	ignore := ["vaal area", "abyssal depths", "abyssal boss", "lab trial", "maven", "harvest", "delirium", "starfall crater", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor"]
+	ignore := ["vaal area", "abyssal depths", "abyssal boss", "lab trial", "maven", "harvest", "delirium", "starfall crater", "baran", "veritania", "al-hezmin", "drox", "purifier", "enslaver", "eradicator", "constrictor", "ritual"]
 
 	For index, mechanic in vars.maptracker.map.content
 	{
