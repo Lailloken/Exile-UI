@@ -451,60 +451,6 @@ EssenceTooltip(cHWND)
 	LLK_Overlay(essences, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
-HorizonsTooltip(mode := "")
-{
-	local
-	global vars, settings, db
-	static toggle := 0
-
-	If !mode && InStr(A_ThisHotkey, "SC0")
-		mode := GetKeyName(StrReplace(A_ThisHotkey, "*"))
-
-	If !IsObject(db.mapinfo)
-		DB_Load("mapinfo")
-
-	If (StrLen(mode) = 1) && LLK_IsType(mode, "alpha") && !db.mapinfo.maps[mode]
-	{
-		LLK_ToolTip(Lang_Trans("global_errorname", 2),,,,, "red")
-		Return
-	}
-	toggle := !toggle, GUI_name := "horizons" toggle
-	Gui, %GUI_name%: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDhorizons
-	Gui, %GUI_name%: Color, Black
-	Gui, %GUI_name%: Margin, % settings.general.fWidth/2, 0
-	Gui, %GUI_name%: Font, % "s"settings.general.fSize " cWhite", % vars.system.font
-	hwnd_old := vars.hwnd.horizons.main, vars.hwnd.horizons := {"main": horizons}
-
-	If LLK_IsType(mode, "alpha") && (mode != "shaper")
-		Gui, %GUI_name%: Add, Text, xs, % LLK_StringCase(db.mapinfo.maps[mode])
-	Else If LLK_IsType(mode, "number") || (mode = "shaper")
-	{
-		If (mode != 17)
-		{
-			Gui, %GUI_name%: Font, underline bold
-			Gui, %GUI_name%: Add, Text, xs, horizons:
-			Gui, %GUI_name%: Font, norm
-			Gui, %GUI_name%: Add, Text, xs, % (mode = "shaper") ? "forge of the phoenix`nlair of the hydra`nmaze of the minotaur`npit of the chimera" : LLK_StringCase(db.mapinfo.maps[mode])
-		}
-		If vars.log.level
-		{
-			Gui, %GUI_name%: Font, underline bold
-			Gui, %GUI_name%: Add, Text, Section xs, e-exp:
-			Gui, %GUI_name%: Font, norm
-			Gui, %GUI_name%: Add, Text, ys, % Leveltracker_Experience(67 + vars.omnikey.item.tier,, "horizon")
-		}
-	}
-
-	Gui, %GUI_name%: Show, NA x10000 y10000
-	WinGetPos,,, w, h, ahk_id %horizons%
-	xPos := (vars.general.xMouse + w/2 > vars.monitor.x + vars.monitor.w - 1) ? vars.monitor.x + vars.monitor.w - w + 1 : (vars.general.xMouse - w/2 < vars.monitor.x ) ? vars.monitor.x : vars.general.xMouse - w/2
-	yPos := (vars.general.yMouse - h < vars.monitor.y) ? vars.monitor.y : vars.general.yMouse - h
-	Gui, %GUI_name%: Show, % "NA x"xPos " y"yPos
-	LLK_Overlay(horizons, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
-	If (StrLen(mode) = 1) && LLK_IsType(mode, "alpha")
-		KeyWait, % mode
-}
-
 Lab(mode := "", override := 0)
 {
 	local

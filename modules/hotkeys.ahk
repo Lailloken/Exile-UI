@@ -64,10 +64,6 @@
 	Hotkey, IfWinActive, ahk_group poe_ahk_window
 	Hotkey, % Hotkeys_Convert(settings.hotkeys.tab), Hotkeys_Tab, On
 
-	Hotkey, If, WinExist("ahk_id "vars.hwnd.horizons.main)
-	Loop, Parse, % "abcdefghijklmnopqrstuvwxyz"
-		Hotkey, % "*" Hotkeys_Convert(A_LoopField), HorizonsTooltip, On
-
 	If vars.client.stream
 		Return
 }

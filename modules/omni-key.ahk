@@ -92,18 +92,6 @@
 				Legion_Parse(), Legion_GUI()
 			Case "context_menu":
 				Omni_ContextMenu()
-			Case "horizons":
-				HorizonsTooltip("a")
-				Omni_Release()
-				LLK_Overlay(vars.hwnd.horizons.main, "destroy")
-			Case "horizons_map":
-				HorizonsTooltip(vars.omnikey.item.tier)
-				Omni_Release()
-				LLK_Overlay(vars.hwnd.horizons.main, "destroy")
-			Case "horizons_shaper":
-				HorizonsTooltip("shaper")
-				Omni_Release()
-				LLK_Overlay(vars.hwnd.horizons.main, "destroy")
 			Case "lootfilter":
 				input := LLK_ControlGet(vars.hwnd.lootfilter.search), item := vars.omnikey.item, shift := GetKeyState("Shift", "P")
 				If (item.rarity = Lang_Trans("items_magic")) && !item.itembase && WinExist("ahk_id " vars.hwnd.lootfilter.main)
