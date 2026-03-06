@@ -143,11 +143,11 @@
   "it": {
     "rewards": {
       "transportation": [
-        "breach corrupted\nmaps",
+        "trapped chest:\nfoulborn uniques",
         "jewel"
       ],
       "fortification": [
-        "map device:\nbreachstone bargain",
+        "crafting bench:\nbreach ring",
         "trapped chest:\njewels"
       ],
       "research": [
@@ -263,7 +263,7 @@
   "rin": {
     "rewards": {
       "transportation": [
-        "map currency",
+        "originator maps",
         "map"
       ],
       "fortification": [
@@ -271,7 +271,7 @@
         "trapped chest:\nmaps"
       ],
       "research": [
-        "crafting bench:\nmap",
+        "trapped chest:\nscarabs",
         "beyond scarabs"
       ],
       "intervention": [
@@ -296,18 +296,18 @@
       ],
       "intervention": [
         "ritual scarabs",
-        "harbinger scarab"
+        "cartography\nscarabs"
       ]
     }
   },
   "vagan": {
     "rewards": {
       "transportation": [
-        "harbinger scarabs",
+        "incubators",
         "weapon"
       ],
       "fortification": [
-        "incubators (?)",
+        "accelerates\nincubators",
         "trapped chest:\nweapons"
       ],
       "research": [
