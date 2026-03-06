@@ -961,6 +961,18 @@
       }
     }
   },
+  "blessed call support": {
+    "attribute": 1,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "quest": [
+          "templar"
+        ],
+        "vendor": []
+      }
+    }
+  },
   "blight": {
     "attribute": 3,
     "level": 1,
@@ -2320,6 +2332,24 @@
       }
     }
   },
+  "divine blast": {
+    "attribute": 1,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "templar"
+        ],
+        "vendor": [
+          "marauder",
+          "scion"
+        ]
+      }
+    }
+  },
   "divine blessing support": {
     "attribute": 1,
     "level": 31,
@@ -2846,6 +2876,36 @@
           "duelist",
           "templar",
           "scion"
+        ]
+      }
+    }
+  },
+  "excommunicate support": {
+    "attribute": 1,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "quest": [
+          "templar"
+        ],
+        "vendor": []
+      }
+    }
+  },
+  "exemplar support": {
+    "attribute": 3,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sharp and cruel": {
+        "quest": [
+          "templar"
+        ],
+        "vendor": [
+          "scion",
+          "witch"
         ]
       }
     }
@@ -3852,6 +3912,27 @@
       }
     }
   },
+  "hallow support": {
+    "attribute": 1,
+    "level": 1,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "enemy at the gate": {
+        "vendor": [
+          "templar"
+        ]
+      },
+      "mercy mission": {
+        "vendor": [
+          "marauder",
+          "scion",
+          "witch"
+        ]
+      }
+    }
+  },
   "haste": {
     "attribute": 2,
     "level": 24,
@@ -4090,6 +4171,45 @@
           "marauder",
           "templar",
           "witch"
+        ]
+      }
+    }
+  },
+  "holy hammers": {
+    "attribute": 1,
+    "level": 0,
+    "quests": {}
+  },
+  "holy strike": {
+    "attribute": 1,
+    "level": 1,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "enemy at the gate": {
+        "vendor": [
+          "scion"
+        ]
+      }
+    }
+  },
+  "holy sweep": {
+    "attribute": 1,
+    "level": 12,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "the siren's cadence": {
+        "quest": [
+          "marauder",
+          "duelist"
+        ],
+        "vendor": [
+          "duelist",
+          "marauder",
+          "templar"
         ]
       }
     }
@@ -5409,6 +5529,30 @@
       }
     }
   },
+  "multiple projectiles support": {
+    "attribute": 2,
+    "level": 8,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "the caged brute1": {
+        "quest": [
+          "duelist",
+          "ranger",
+          "shadow",
+          "scion"
+        ],
+        "vendor": [
+          "duelist",
+          "ranger",
+          "scion",
+          "shadow",
+          "witch"
+        ]
+      }
+    }
+  },
   "multiple totems support": {
     "attribute": 1,
     "level": 38,
@@ -6551,6 +6695,23 @@
           "marauder",
           "scion",
           "templar"
+        ]
+      }
+    }
+  },
+  "shield of light": {
+    "attribute": 1,
+    "level": 0,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "intruders in black": {
+        "quest": [
+          "templar"
+        ],
+        "vendor": [
+          "scion"
         ]
       }
     }
