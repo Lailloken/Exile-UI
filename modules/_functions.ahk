@@ -112,18 +112,6 @@ DB_Load(database)
 					MsgBox, % "invalid mod-type for:`n" section
 			}
 		}
-
-		Loop, Parse, % StrReplace(LLK_FileRead("data\global\Atlas.txt", 1), "`t"), `n, `r
-		{
-			val := SubStr(A_LoopField, InStr(A_LoopField, "=") + 1)
-			maps .= StrReplace(val, ",", " (" A_Index "),") ;create a list of all maps
-			Sort, val, D`,
-			db.mapinfo.maps[A_Index] := StrReplace(SubStr(val, 1, -1), ",", "`n") ;store tier X maps here
-		}
-		Sort, maps, D`,
-		Loop, Parse, % LLK_StringCase(maps), `,
-			If A_LoopField
-				db.mapinfo.maps[SubStr(A_LoopField, 1, 1)] .= !db.mapinfo.maps[SubStr(A_LoopField, 1, 1)] ? A_LoopField : "`n" A_LoopField ;store maps starting with a-z here
 	}
 	Else If (database = "OCR")
 	{
