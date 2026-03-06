@@ -1470,13 +1470,29 @@ Leveltracker_Load(profile := "")
 			import.Push(oPage)
 	vars.leveltracker.guide.import := LLK_CloneObject(import)
 
+	reward_gems := {}, vendor_gems := {}, gems_all := {}
 	vars.leveltracker.guide.gems := (settings.leveltracker["guide" (profile ? profile : current_profile)].info.leaguestart ? ["quicksilver flask"] : [])
 	For iSkillset, oSkillset in vars.leveltracker["PoB" current_profile].gems
 		For iGroup, oGroup in oSkillset.groups
 			For iGem, vGem in oGroup.gems
 				If !LLK_PatternMatch(vGem, "", ["empower", "enhance", "enlighten"],,, 0) && !LLK_HasVal(vars.leveltracker.starter_gems[class], StrReplace(vGem, " |–"))
-					If !LLK_HasVal(vars.leveltracker.guide.gems, InStr(vGem, " |–") ? StrReplace(StrReplace(StrReplace(vGem, "vaal "), "awakened "), " |–") . (!InStr(vGem, "support") ? " support" : "") : vGem)
-						vars.leveltracker.guide.gems.Push(InStr(vGem, " |–") ? StrReplace(vGem, " |–") . (!InStr(vGem, "support") ? " support" : "") : vGem)
+					gem_name := LLK_StringRemove(vGem, " |–,vaal ,awakened ") . (InStr(vGem, "|") && !InStr(vGem, "support") ? " support" : ""), gems_all[gem_name] := 1
+
+	For key in gems_all
+	{
+		exclusive_reward := 0
+		For kQuest, oQuest in gems[key].quests
+			If gems._quests[kQuest].npc && LLK_HasVal(oQuest.quest, class) && oQuest.vendor.Count() && !LLK_HasVal(oQuest.vendor, class)
+				exclusive_reward += 1
+		If exclusive_reward
+			reward_gems[key] := 1
+		Else vendor_gems[key] := 1
+	}
+
+	For key in reward_gems
+		vars.leveltracker.guide.gems.Push(key)
+	For key in vendor_gems
+		vars.leveltracker.guide.gems.Push(key)
 
 	stat_colors := ["D81C1C", "00BF40", "0077FF"], remove := [], array_offset := 0, vars.leveltracker.guide.gems_initial := vars.leveltracker.guide.gems.Clone()
 	skipped_quests := [], lilly_regex := "(" Lang_Trans("quest_mercy") "|" Lang_Trans("quest_fixture") "|" Lang_Trans("quest_fallen") ")"
