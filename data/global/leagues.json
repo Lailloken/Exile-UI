@@ -2,36 +2,44 @@
   "sc": {
     "ssf": {
       "normal": {
-        "standard": "Solo Self-Found"
+        "standard": "Solo Self-Found",
+        "mirage": "SSF Mirage"
       },
       "ruthless": {
-        "standard": "SSF Ruthless"
+        "standard": "SSF Ruthless",
+        "mirage": "SSF R Mirage"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Standard"
+        "standard": "Standard",
+        "mirage": "Mirage"
       },
       "ruthless": {
-        "standard": "Ruthless"
+        "standard": "Ruthless",
+        "mirage": "Ruthless Mirage"
       }
     }
   },
   "hc": {
     "ssf": {
       "normal": {
-        "standard": "Hardcore SSF"
+        "standard": "Hardcore SSF",
+        "mirage": "HC SSF Mirage"
       },
       "ruthless": {
-        "standard": "Hardcore SSF Ruthless"
+        "standard": "Hardcore SSF Ruthless",
+        "mirage": "HC SSF R Mirage"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Hardcore"
+        "standard": "Hardcore",
+        "mirage": "Hardcore Mirage"
       },
       "ruthless": {
-        "standard": "Hardcore Ruthless"
+        "standard": "Hardcore Ruthless",
+        "mirage": "HC Ruthless Mirage"
       }
     }
   }
