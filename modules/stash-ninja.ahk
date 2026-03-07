@@ -48,8 +48,8 @@
 	{
 		If !oCheck
 			If !vars.poe_version
-				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "scarabs": [30, 2], "betrayal": [20, Round(height * (1/80))]
-				, "breach": [20, Round(height * (1/80))], "currency1": [24, Round(height * (1/90))], "currency2": [24, Round(height * (1/90))], "blight": [24, Round(height * (1/60))]
+				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "scarabs": [32, Round(height//160)], "betrayal": [20, Round(height * (1/80))]
+				, "breach": [20, Round(height * (1/80))], "currency1": [24, Round(height * (1/90))], "currency2": [24, Round(height * (1/90))], "currency3": [24, Round(height * (1/90))], "blight": [24, Round(height * (1/60))]
 				, "delirium": [20, Round(height * (1/72))], "ultimatum": [20, Round(height * (1/90))]}
 				, "width": width, "buttons": Round(height * (1/36)), "buttons2": Round(height * (19/720))}
 				, json_data := Json.Load(LLK_FileRead("data\global\[stash-ninja] tabs" vars.poe_version ".json"))
@@ -108,7 +108,7 @@
 			Else name0 := name := array1.3 (tab = "delve" && !InStr(array1.3, "resonator") ? " fossil" : "")
 
 			ID := array1.4, exception1 := LLK_PatternMatch(name, "", ["potent", "powerful", "prime"]) ? 1 : 0, exception2 := LLK_PatternMatch(name, "", ["prime"]) ? 1 : 0
-			xCoord := array1.1 ? Floor(Format("{:.10f}", array1.1 / 1440) * vars.client.h) : xCoord + (exception2 ? vars.client.h * (1/12) : dBox) + gap * (tab = "scarabs" && index > 105 ? 2 : 1)
+			xCoord := array1.1 ? Floor(Format("{:.10f}", array1.1 / 1440) * vars.client.h) : xCoord + (exception2 ? vars.client.h * (1/12) : dBox) + gap
 			yCoord := array1.2 ? Floor(((array1.2 + (in_folder ? 47 : 0)) / 1440) * vars.client.h) : yCoord
 			tab0 := (!vars.poe_version && (check := LLK_HasVal(exceptions, name,,,, 1))) ? check : (tab = "breach") ? "fragments" : InStr(tab, "currency") || (tab = "ultimatum") ? "currency" : tab
 			prices := IsObject(vars.stash[tab][name].prices) ? vars.stash[tab][name].prices.Clone() : StrSplit(!Blank(check := ini[tab0][ID]) ? check : "0, 0, 0", ",", A_Space, 3)
@@ -397,8 +397,10 @@ Stash_PriceFetch(tab)
 	static types
 
 	If !types
-		types := (vars.poe_version ? {"currency": ["Currency"], "delirium": ["Delirium"], "essences": ["Essences"], "ritual": ["Ritual"], "socketables": ["Runes", "Ultimatum", "Idols"]}
-			: {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency"], "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]})
+		If vars.poe_version
+			types := {"currency": ["Currency"], "delirium": ["Delirium"], "essences": ["Essences"], "ritual": ["Ritual"], "socketables": ["Runes", "Ultimatum", "Idols"]}
+		Else types :=  {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency"]
+			, "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]}
 
 	If (tab = "flush") ; when changing leagues, flush prices first to avoid old prices carrying over
 	{
