@@ -549,6 +549,31 @@ type	=	player
 text	=	reduced leech: %
 ID	=	090
 
+[Rare monsters in area Temporarily Revive on death]
+type	=	monsters
+text	=	rares temp revive
+ID	=	153
+
+[Players have # less effect of Flasks applied to them]
+type	=	player
+text	=	flask effect: -%
+ID	=	154
+
+[Auras from Player Skills which affect Allies also affect Enemies]
+type	=	player
+text	=	hostile auras
+ID	=	155
+
+[Area contains patches of moving Marked Ground, inflicting random Marks]
+type	=	area
+text	=	marked ground
+ID	=	156
+
+[area contains labyrinth hazards]
+type	=	area
+text	=	lab hazards
+ID	=	157
+
 [players are cursed with vulnerability|players are cursed with temporal chains|players are cursed with elemental weakness]
 type	=	player
 text	=	vuln | chains | ele weak
