@@ -1,5 +1,12 @@
 [
   [
+	["1.62.1", 16201],
+	"march 7, 2026",
+	"map-info:\n>> added support for new nightmare and originator mods",
+	"stash-ninja:\n>> updated for 3.28 (some items are not listed on poe.ninja yet)",
+	"fixed league-selection display in the general settings (visual bug)"
+  ],
+  [
 	["1.62.0", 16200],
 	"march 6, 2026",
 	"act-tracker:\n>> added support for new trees and reliquarian\n>> new gems are supported, but we didn't get full quest/vendor info",
