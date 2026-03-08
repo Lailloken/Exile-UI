@@ -1,5 +1,5 @@
 {
-  "_timestamp": "2025-10-31, 13:30 (utc)",
+  "_timestamp": "2026-03-08, 21:20 (utc)",
   "amulets": {
     "Acrimony": {
       "recipe": "1, 10, 10",
@@ -875,7 +875,8 @@
     "Defiled Forces": {
       "recipe": "9, 10, 11",
       "stats": [
-        "Refresh Duration of Ignite, Chill and Shock on enemies you Curse",
+        "Curse Skills have 15% increased Cast Speed",
+        "Refresh Duration of Chill and Shock on enemies you Curse",
         "Remove Elemental Ailments when you Cast a Curse Spell"
       ]
     },
@@ -1498,6 +1499,13 @@
         "10% increased Attack Speed when on Full-Life",
         "1% of Physical Attack Damage Leeched as Life",
         "40% increased Attack Damage while Leeching"
+      ]
+    },
+    "Glory of Command": {
+      "recipe": "4, 7, 13",
+      "stats": [
+        "40% increased Global Accuracy while you have at least 1 nearby Ally",
+        "15% increased Area-of-Effect for Attacks while you have at least 1 nearby Ally"
       ]
     },
     "Golem Commander": {
@@ -2721,6 +2729,13 @@
       "stats": [
         "40% increased Mana Regen Rate",
         "Regen 1% of Life per second"
+      ]
+    },
+    "Shining Justice": {
+      "recipe": "7, 7, 13",
+      "stats": [
+        "20% increased Effect of Consecrated Ground you create",
+        "Consecrated Ground you create grants 30% increased Accuracy to you and Allies"
       ]
     },
     "Silent Steps": {
