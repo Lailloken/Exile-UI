@@ -53,7 +53,7 @@ Recombination()
 	{
 		If InStr(A_LoopField, Lang_Trans("items_implicit")) || !LLK_PatternMatch(A_LoopField, "", [Lang_Trans("items_prefix"), Lang_Trans("items_suffix")])
 			Continue
-		mod := "", type := InStr(A_LoopField, Lang_Trans("items_prefix")) ? "prefixes" : "suffixes", fractured := InStr(A_LoopField, "(fractured)")
+		mod := "", type := InStr(A_LoopField, Lang_Trans("items_prefix")) ? "prefixes" : "suffixes", fractured := InStr(A_LoopField, "{ fractured")
 		Loop, Parse, % StrReplace(A_LoopField, " (fractured)"), `n, %A_Space%
 		{
 			affix := ""

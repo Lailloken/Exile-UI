@@ -215,7 +215,7 @@ Iteminfo(refresh := 0) ; refresh: 1 to refresh it normally, 2 for clipboard pars
 		{
 			Loop, Parse, % vars[(refresh = 2) ? "omnikey" : "iteminfo"].clipboard, `n, `r
 			{
-				If !LLK_PatternMatch(A_LoopField, "{ ", ["Master Crafted Prefix ", "Prefix ", "Master Crafted Suffix ", "Suffix "])
+				If !RegExMatch(A_LoopField, "i)\{\s(master.crafted.|fractured.)*(prefix|suffix)")
 					Continue
 				If InStr(A_LoopField, "Prefix")
 					prefix := SubStr(A_LoopField, InStr(A_LoopField, """") + 1), prefix := SubStr(prefix, 1, InStr(prefix, """") - 1) . " "
@@ -1420,6 +1420,7 @@ Iteminfo_GUI()
 			tier := unique ? "u" : InStr(A_LoopField, Lang_Trans("items_tier")) ? SubStr(A_LoopField, InStr(A_LoopField, Lang_Trans("items_tier")) + StrLen(Lang_Trans("items_tier")) + 1, 2) : InStr(A_LoopField, "(crafted)") ? "c" : "#", tier := InStr(tier, ")") ? StrReplace(tier, ")") : tier ;determine affix tier for non-jewel items
 		Else tier := "?"
 
+		outer_loopfield := A_LoopField
 		mod := SubStr(A_LoopField, InStr(A_LoopField, "`n") + 1) ;text of the mod
 		While InStr(mod, "`n(") ;remove info-text
 			parse := SubStr(mod, InStr(mod, "`n(")), parse := SubStr(parse, 1, InStr(parse, ")")), mod := StrReplace(mod, parse)
@@ -1721,7 +1722,7 @@ Iteminfo_GUI()
 		If !unique ;add tier and icon/ilvl-cells for non-uniques
 		{
 			;determine the right color for the cells
-			If InStr(A_LoopField, " (fractured)")
+			If InStr(outer_loopfield, "{ fractured")
 			{
 				color := tColors.7 ;fractured mods have a specific color
 				If InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n")) && ((tier = 1) || item.class = "base jewels") ;if the fractured mod is also desired, add red highlighting to the text and make it bold
@@ -1743,7 +1744,7 @@ Iteminfo_GUI()
 			affixinfo := settings.iteminfo.affixinfo
 			label := Iteminfo_ModgroupCheck(name) ? Iteminfo_ModgroupCheck(name) : Iteminfo_ModCheck(mod, item.type), label := InStr(A_LoopField, " (crafted)") ? "mastercraft" : label ;check for suitable icon
 			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
-			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(A_LoopField, " (fractured)")) ? UI.wSegment : width
+			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(outer_loopfield, "{ fractured")) ? UI.wSegment : width
 
 			If (affixinfo = 3 && tier = max_tier) && InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n"))
 				width := UI.wSegment, color := "White", color_t := "Red"
@@ -1781,7 +1782,7 @@ Iteminfo_GUI()
 						Gui, %GUI_name%: Add, Text, % "x+0 wp hp 0x200 Border Center BackgroundTrans HWNDhwnd", % max_tier
 				}
 				ControlGetPos, x, y,,,, % "ahk_id " hwnd ;get the cells coordinates to place progress-control right onto it (can't use xp yp in cases with taller cells that also contain an icon)
-				If (affixinfo = 2 && item.class != "base jewels" && ilvl != "??") && !InStr(A_LoopField, " (fractured)") ;get the correct color for the ilvl (unless the mod is fractured)
+				If (affixinfo = 2 && item.class != "base jewels" && ilvl != "??") && !InStr(outer_loopfield, "{ fractured") ;get the correct color for the ilvl (unless the mod is fractured)
 				{
 					For index, level in settings.iteminfo.ilevels
 						If (ilvl >= level)
