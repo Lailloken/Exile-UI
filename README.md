@@ -170,9 +170,9 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  
-| essence tooltip to check the next tier's stats | orb of horizons tooltips | countdown & stopwatch |
+| essence tooltip to check the next tier's stats | countdown & stopwatch |
 |---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_002.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
 ||| <p align="center">**Path of Exile 2 compatible**</p> |
 
 | in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs | map-event notifications |
