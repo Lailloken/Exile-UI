@@ -196,6 +196,7 @@
     "Copper Tower Shield": "28",
     "Coral Amulet": "1",
     "Coral Ring": "27",
+    "Cord Belt": "5",
     "Coronal Leather": "6",
     "Coronal Maul": "25",
     "Corroded Blade": "33",
@@ -1242,6 +1243,13 @@
       "_tags": [
         "belt",
         "default"
+      ]
+    },
+    "Cord Belt": {
+      "_tags": [
+        "belt",
+        "default",
+        "not_for_sale"
       ]
     },
     "Crystal Belt": {
@@ -5235,6 +5243,7 @@
   "Grafts": {
     "Aegis Tulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_tul",
         "graft_tul_aegis"
@@ -5242,6 +5251,7 @@
     },
     "Battering Uulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_uulnetol",
@@ -5250,6 +5260,7 @@
     },
     "Draining Eshgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_esh",
@@ -5258,6 +5269,7 @@
     },
     "Erupting Xophgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_xoph",
@@ -5266,6 +5278,7 @@
     },
     "Flamecaller Xophgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_xoph",
@@ -5274,6 +5287,7 @@
     },
     "Freezing Tulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_tul",
@@ -5282,6 +5296,7 @@
     },
     "Hardening Uulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_uulnetol",
         "graft_uulnetol_low_life_buff"
@@ -5289,6 +5304,7 @@
     },
     "Impaling Uulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_uulnetol",
         "graft_uulnetol_impale_buff"
@@ -5296,6 +5312,7 @@
     },
     "Jolting Eshgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_esh",
         "graft_esh_jolt_buff"
@@ -5303,6 +5320,7 @@
     },
     "Molten Xophgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_xoph",
@@ -5311,6 +5329,7 @@
     },
     "Replicating Eshgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_esh",
@@ -5319,6 +5338,7 @@
     },
     "Spiking Uulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_uulnetol",
@@ -5327,6 +5347,7 @@
     },
     "Squalling Tulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_tul",
@@ -5335,6 +5356,7 @@
     },
     "Stoking Xophgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_xoph",
         "graft_xoph_ailment_buff"
@@ -5342,6 +5364,7 @@
     },
     "Storming Eshgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_damaging_skill",
         "graft_esh",
@@ -5350,6 +5373,7 @@
     },
     "Summoning Tulgraft": {
       "_tags": [
+        "default",
         "graft",
         "graft_tul",
         "graft_tul_summon"

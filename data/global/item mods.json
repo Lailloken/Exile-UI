@@ -14356,6 +14356,17 @@
       ],
       "type": "Prefix"
     },
+    "AfflictionNotableFieryAegis": {
+      "affix": "Notable",
+      "level": "50",
+      "tags": [
+        "affliction_chance_to_block"
+      ],
+      "texts": [
+        "1 Added Passive Skill is Fiery Aegis"
+      ],
+      "type": "Prefix"
+    },
     "AfflictionNotableFireAttunement_": {
       "affix": "Notable",
       "level": "1",
@@ -14665,6 +14676,17 @@
       ],
       "texts": [
         "1 Added Passive Skill is Holy Conquest"
+      ],
+      "type": "Prefix"
+    },
+    "AfflictionNotableHolyWord": {
+      "affix": "Notable",
+      "level": "50",
+      "tags": [
+        "affliction_warcry_buff_effect"
+      ],
+      "texts": [
+        "1 Added Passive Skill is Holy Word"
       ],
       "type": "Prefix"
     },
@@ -30177,6 +30199,72 @@
       ],
       "texts": [
         "% increased Elemental Damage"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentInfluence1": {
+      "affix": "Redeemer's",
+      "level": "75",
+      "tags": [
+        "body_armour_eyrie"
+      ],
+      "texts": [
+        "100% of Elemental Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentRingInfluence1": {
+      "affix": "Hunter's",
+      "level": "68",
+      "tags": [
+        "ring_basilisk"
+      ],
+      "texts": [
+        "% of Elemental Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentRingInfluence2": {
+      "affix": "Hunter's",
+      "level": "75",
+      "tags": [
+        "ring_basilisk"
+      ],
+      "texts": [
+        "% of Elemental Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentRingUber1": {
+      "affix": "The Shaper's",
+      "level": "68",
+      "tags": [
+        "ring_shaper"
+      ],
+      "texts": [
+        "% of Elemental Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentRingUber2": {
+      "affix": "The Shaper's",
+      "level": "75",
+      "tags": [
+        "ring_shaper"
+      ],
+      "texts": [
+        "% of Elemental Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "ElementalDamageCannotBeReflectedPercentUber1": {
+      "affix": "The Shaper's",
+      "level": "68",
+      "tags": [
+        "body_armour_shaper"
+      ],
+      "texts": [
+        "100% of Elemental Hit Damage from you and your Minions cannot be Reflected"
       ],
       "type": "Prefix"
     },
@@ -49471,6 +49559,72 @@
       ],
       "type": "Prefix"
     },
+    "PhysicalDamageCannotBeReflectedPercentInfluence1": {
+      "affix": "Warlord's",
+      "level": "75",
+      "tags": [
+        "body_armour_adjudicator"
+      ],
+      "texts": [
+        "100% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "PhysicalDamageCannotBeReflectedPercentRingInfluence1": {
+      "affix": "Hunter's",
+      "level": "68",
+      "tags": [
+        "ring_basilisk"
+      ],
+      "texts": [
+        "% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "PhysicalDamageCannotBeReflectedPercentRingInfluence2": {
+      "affix": "Hunter's",
+      "level": "75",
+      "tags": [
+        "ring_basilisk"
+      ],
+      "texts": [
+        "% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "PhysicalDamageCannotBeReflectedPercentRingUber1": {
+      "affix": "The Elder's",
+      "level": "68",
+      "tags": [
+        "ring_elder"
+      ],
+      "texts": [
+        "% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "PhysicalDamageCannotBeReflectedPercentRingUber2": {
+      "affix": "The Elder's",
+      "level": "75",
+      "tags": [
+        "ring_elder"
+      ],
+      "texts": [
+        "% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
+    "PhysicalDamageCannotBeReflectedPercentUber1": {
+      "affix": "The Elder's",
+      "level": "68",
+      "tags": [
+        "body_armour_elder"
+      ],
+      "texts": [
+        "100% of Physical Hit Damage from you and your Minions cannot be Reflected"
+      ],
+      "type": "Prefix"
+    },
     "PhysicalDamageConvertedToChaosUber1": {
       "affix": "of the Elder",
       "level": "68",
@@ -50937,41 +51091,6 @@
       ],
       "type": "Suffix"
     },
-    "ReducedElementalReflectTakenRingUber1": {
-      "affix": "The Shaper's",
-      "level": "68",
-      "tags": [
-        "ring_shaper"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReducedElementalReflectTakenRingUber2": {
-      "affix": "The Shaper's",
-      "level": "75",
-      "tags": [
-        "ring_shaper"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReducedElementalReflectTakenUber1": {
-      "affix": "The Shaper's",
-      "level": "68",
-      "tags": [
-        "body_armour_shaper"
-      ],
-      "texts": [
-        "You and your Minions take 100% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
     "ReducedExtraDamageFromCrits1___": {
       "affix": "of Dulling",
       "level": "33",
@@ -51082,41 +51201,6 @@
       ],
       "type": "Suffix"
     },
-    "ReducedPhysicalReflectTakenRingUber1": {
-      "affix": "The Elder's",
-      "level": "68",
-      "tags": [
-        "ring_elder"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReducedPhysicalReflectTakenRingUber2": {
-      "affix": "The Elder's",
-      "level": "75",
-      "tags": [
-        "ring_elder"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReducedPhysicalReflectTakenUber1": {
-      "affix": "The Elder's",
-      "level": "68",
-      "tags": [
-        "body_armour_elder"
-      ],
-      "texts": [
-        "You and your Minions take 100% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
-    },
     "ReducedShockEffectInfluence3_": {
       "affix": "of the Crusade",
       "level": "75",
@@ -51127,76 +51211,6 @@
         "% reduced Effect of Shock on you"
       ],
       "type": "Suffix"
-    },
-    "ReflectedElementalDamageInfluence1": {
-      "affix": "Redeemer's",
-      "level": "75",
-      "tags": [
-        "body_armour_eyrie"
-      ],
-      "texts": [
-        "You and your Minions take 100% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReflectedElementalDamageRingInfluence1": {
-      "affix": "Hunter's",
-      "level": "68",
-      "tags": [
-        "ring_basilisk"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReflectedElementalDamageRingInfluence2": {
-      "affix": "Hunter's",
-      "level": "75",
-      "tags": [
-        "ring_basilisk"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Elemental Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReflectedPhysicalDamageInfluence1__": {
-      "affix": "Warlord's",
-      "level": "75",
-      "tags": [
-        "body_armour_adjudicator"
-      ],
-      "texts": [
-        "You and your Minions take 100% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReflectedPhysicalDamageRingInfluence1": {
-      "affix": "Hunter's",
-      "level": "68",
-      "tags": [
-        "ring_basilisk"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
-    },
-    "ReflectedPhysicalDamageRingInfluence2_": {
-      "affix": "Hunter's",
-      "level": "75",
-      "tags": [
-        "ring_basilisk"
-      ],
-      "texts": [
-        "You and your Minions take ",
-        "% reduced Reflected Physical Damage"
-      ],
-      "type": "Prefix"
     },
     "RegenerateLifeOver1SecondInfluence1": {
       "affix": "Hunter's",
@@ -55254,7 +55268,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Lesser Multiple Projectiles",
+        "Socketed Gems are Supported by Level 16 Multiple Projectiles",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
@@ -55266,7 +55280,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Lesser Multiple Projectiles",
+        "Socketed Gems are Supported by Level 18 Multiple Projectiles",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
@@ -55278,7 +55292,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Lesser Multiple Projectiles",
+        "Socketed Gems are Supported by Level 20 Multiple Projectiles",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
