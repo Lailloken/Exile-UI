@@ -963,7 +963,7 @@
   },
   "blessed call support": {
     "attribute": 1,
-    "level": 0,
+    "level": 31,
     "quests": {
       "a fixture of fate": {
         "quest": [
@@ -2334,7 +2334,7 @@
   },
   "divine blast": {
     "attribute": 1,
-    "level": 0,
+    "level": 28,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -2882,7 +2882,7 @@
   },
   "excommunicate support": {
     "attribute": 1,
-    "level": 0,
+    "level": 31,
     "quests": {
       "a fixture of fate": {
         "quest": [
@@ -2894,7 +2894,7 @@
   },
   "exemplar support": {
     "attribute": 3,
-    "level": 0,
+    "level": 18,
     "quests": {
       "a fixture of fate": {
         "vendor": []
@@ -4177,8 +4177,17 @@
   },
   "holy hammers": {
     "attribute": 1,
-    "level": 0,
-    "quests": {}
+    "level": 28,
+    "quests": {
+      "a fixture of fate": {
+        "vendor": []
+      },
+      "sever the right hand": {
+        "quest": [
+          "templar"
+        ]
+      }
+    }
   },
   "holy strike": {
     "attribute": 1,
@@ -6701,7 +6710,7 @@
   },
   "shield of light": {
     "attribute": 1,
-    "level": 0,
+    "level": 16,
     "quests": {
       "a fixture of fate": {
         "vendor": []
