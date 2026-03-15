@@ -170,14 +170,14 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ### Several minor [QoL features](https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features):  
-| essence tooltip to check the next tier's stats | countdown & stopwatch |
+| quick-access overlay and tracker for casual lab-runs | countdown & stopwatch |
 |---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_003.png) |
 || <p align="center">**Path of Exile 2 compatible**</p> |
 
-| in-client notepad & sticky-notes | quick-access overlay and tracker for casual lab-runs | map-event notifications |
+| in-client notepad & sticky-notes | essence tooltip to check the next tier's stats | map-event notifications |
 |---|---|---|
-| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_005.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_006.png) |
+| ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/qol_006.png) |
 | <p align="center">**Path of Exile 2 compatible**</p> |||
 <br>
 
