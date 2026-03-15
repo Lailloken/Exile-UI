@@ -1,5 +1,13 @@
 [
   [
+	["1.62.2", 16202],
+	"march 15, 2026",
+	"act-tracker:\n>> removed 5L optionals in A5 + A6\n>> updated 3.28 gem info",
+	"item-info:\n>> updated item bases and mods to 3.28\n>> added support for new in-game formatting (fractures, bench-crafts)\n>> added icons for abyss and infamous mods\n>> updated unique drop-tiers",
+	"map-tracker:\n>> fixed map-mod tracking via the map-info feature",
+	"stash-ninja:\n>> added support for astrolabes"
+  ],
+  [
 	["1.62.1", 16201],
 	"march 7, 2026",
 	"map-info:\n>> added support for new nightmare and originator mods",
