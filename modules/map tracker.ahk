@@ -1885,8 +1885,8 @@ Maptracker_Timer()
 			}
 
 		active_map := vars.mapinfo.active_map
-		If settings.features.mapinfo && settings.maptracker.mapinfo && !vars.maptracker.map.mapinfo && !active_map.expired && active_map.name
-		&& (vars.poe_version || vars.maptracker.map.name && InStr(active_map.name, vars.maptracker.map.name) || LLK_HasVal(vars.mapinfo.categories, vars.log.areaname, 1) || active_map.tag && InStr(vars.log.areaID, active_map.tag))
+		If settings.features.mapinfo && settings.maptracker.mapinfo && !vars.maptracker.map.mapinfo && !active_map.expired
+		&& (active_map.name || LLK_HasVal(vars.mapinfo.categories, vars.log.areaname, 1) || active_map.tag && InStr(vars.log.areaID, active_map.tag))
 		{
 			If LLK_PatternMatch(vars.mapinfo.active_map.tag, "", ["mavenhub", "heist", "blight"])
 				vars.maptracker.map.name := (settings.maptracker.rename && vars.mapinfo.active_map.tag = "mavenhub" ? Lang_Trans("maps_boss") ": " : "") LLK_StringCase(vars.mapinfo.active_map.name)
