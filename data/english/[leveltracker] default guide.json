@@ -794,7 +794,6 @@
   ],
   [
     [
-      "optional: leaguestart: (color:cc99ff)5l_chest: (color:ff00ff)league encounter (?)",
       "follow (img:5) edge, kill overseer",
       "(hint)_ - find corridor with gallows",
       "(hint)_ - loop clockwise to reach (img:arena) exit",
@@ -905,7 +904,6 @@
         "yes"
       ],
       "lines": [
-        "optional: (color:cc99ff)5l_chest: (color:ff00ff)league encounter (?)",
         "kill everything",
         "(color:cc99ff)relog: areaid2_6_town ;; lioneye's watch"
       ]
