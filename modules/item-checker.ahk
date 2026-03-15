@@ -2063,10 +2063,11 @@ Iteminfo_ModgroupCheck(name, mode := 0) ;check the affix-name to determine if th
 		Return
 
 	If !vars.poe_version
-		parse := "bestiary,delve,incursion,syndicate,shaper,elder,crusader,redeemer,hunter,warlord,essence"
-	Else parse := "abyss,essence"
+		parse := "abyss,bestiary,delve,incursion,syndicate,shaper,elder,crusader,redeemer,hunter,warlord,essence,infamous"
+	Else parse := "abyss2,essence"
 
-	abyss := ["veiled", "amanamu", "kurgal", "ulaman", "lightless"]
+	abyss := ["abyssal"]
+	abyss2 := ["veiled", "amanamu", "kurgal", "ulaman", "lightless"]
 	bestiary := ["saqawal", "farrul", "craiceann", "fenumus"]
 	delve := ["subterranean", "of the underground"]
 	incursion := ["Citaqualotl", "Guatelitzi", "Matatl", "Tacati", "Topotante", "Xopec"]
@@ -2078,6 +2079,7 @@ Iteminfo_ModgroupCheck(name, mode := 0) ;check the affix-name to determine if th
 	hunter := ["hunter's", " hunt"]
 	warlord := ["warlord", "conquest"]
 	essence := ["essences", " essence"]
+	infamous := ["infamous", "of infamy"]
 
 	Loop, Parse, parse, `,
 		For key, val in %A_LoopField%
