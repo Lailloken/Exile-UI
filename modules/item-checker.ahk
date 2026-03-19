@@ -1742,7 +1742,7 @@ Iteminfo_GUI()
 			Else color := InStr("c#", tier) ? tColors.0 : (tier >= 6) ? tColors.6 : IsNumber(tier) ? tColors[tier] : "Black"
 
 			affixinfo := settings.iteminfo.affixinfo
-			label := Iteminfo_ModgroupCheck(name) ? Iteminfo_ModgroupCheck(name) : Iteminfo_ModCheck(mod, item.type), label := InStr(outer_loopfield, "{ master") ? "mastercraft" : label ;check for suitable icon
+			label := !(InStr(A_LoopField, "attack speed") && InStr(outer_loopfield, "of infamy")) && Iteminfo_ModgroupCheck(name) ? Iteminfo_ModgroupCheck(name) : Iteminfo_ModCheck(mod, item.type), label := InStr(outer_loopfield, "{ master") ? "mastercraft" : label ;check for suitable icon
 			width := (label && affixinfo = 1 || affixinfo = 2 && item.class != "base jewels" && ilvl != "??" || affixinfo = 3 && max_tier) ? UI.wSegment/2 : UI.wSegment ;determine the width of the cell, and whether it needs to be divided into two parts
 			width := (settings.iteminfo.override && InStr(highlights, "-",,, LLK_InStrCount(A_LoopField, "`n")) && !InStr(outer_loopfield, "{ fractured")) ? UI.wSegment : width
 
