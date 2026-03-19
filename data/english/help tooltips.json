@@ -989,6 +989,9 @@
       "this will be shown next to conversion rates when hovering over a highlighted item-slot",
       "it's a timeline with bars that each represent a day and display the change in price compared to the first day"
     ],
+    "stash global profiles": [
+      "use a unified set of profiles for every tab"
+    ],
     "stash exalt": [
       "also shows exalt-equivalent prices when hovering over highlighted items or pricing items"
     ],

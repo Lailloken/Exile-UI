@@ -25,6 +25,21 @@
 		settings.stash.autoprofiles := 0 ;!Blank(check := ini.settings["enable trade-value profiles"]) ? check : 0
 		settings.stash.retry := !Blank(check := ini.settings["retry"]) && (check > A_Now) ? check : 0
 		settings.stash.index_stock := !Blank(check := ini.settings["show stock in index"]) ? check : 1
+		settings.stash.use_global := !Blank(check := ini.settings["use global profiles"]) ? check : 0
+
+		settings.stash.global_profile := dLimits.Clone()
+		If ini["global profiles"].Count()
+		{
+			For outer in [1, 2, 3, 4, 5]
+			{
+				For index, val in ["bot", "top", "cur"]
+				{
+					If !Blank(new := ini["global profiles"]["limit " outer " " val])
+						settings.stash.global_profile[outer][index] := (new = "null" ? "" : new)
+				}
+			}
+		}
+
 		settings.stash.rate_limits := {"timestamp": ""}
 		settings.stash.colors := [!Blank(check := ini.UI["text color"]) ? check : "000000", !Blank(check1 := ini.UI["background color"]) ? check1 : "00CC00"
 							, !Blank(check2 := ini.UI["text color2"]) ? check2 : "000000", !Blank(check3 := ini.UI["background color2"]) ? check3 : "FF8000"
@@ -161,18 +176,19 @@ Stash(mode, test := 0)
 	WinSet, TransColor, Purple
 	Gui, %GUI_name%: Margin, 0, 0
 	tab := (mode = "refresh") ? vars.stash.active : mode, profile := settings.stash[tab].profile, vars.stash.active := tab, vars.stash.regex := ""
+	array := (settings.stash.use_global ? settings.stash.global_profile : settings.stash[tab].limits)
 
 	If test
 		settings.stash[tab].profile := profile := "test"
-	Else If Blank(settings.stash[tab].limits[settings.stash[tab].profile].3)
+	Else If Blank(array[settings.stash[tab].profile].3)
 		Loop 5
-			If !Blank(settings.stash[tab].limits[A_Index].3)
+			If !Blank(array[A_Index].3)
 			{
 				settings.stash[tab].profile := profile := A_Index
 				Break
 			}
 	hwnd_old := vars.hwnd.stash.main, vars.hwnd.stash := {"main": hwnd_stash, "GUI_name": GUI_name}, dBox := vars.stash[tab].box, dButtons := vars.stash.buttons, dButtons2 := vars.stash.buttons2
-	lBot := settings.stash[tab].limits[profile].1, lTop := settings.stash[tab].limits[profile].2, lType := settings.stash[tab].limits[profile].3
+	lBot := array[profile].1, lTop := array[profile].2, lType := array[profile].3
 	lBot := Blank(lBot) ? (lType = 4) ? -999 : 0 : lBot, lTop := Blank(lTop) ? 999999 : lTop
 	count := added := 0, width := Floor(vars.client.h * (37/60)), height := vars.client.h, currencies := ["chaos", "exalted", "divine", "percent"], vars.stash.wait := 1, vars.stash.enter := 0
 	bookmark_profile := settings.stash[tab].bookmark
@@ -254,7 +270,7 @@ Stash(mode, test := 0)
 	}
 
 	For outer in ["", ""]
-		For index, limit in settings.stash[tab].limits
+		For index, limit in array
 		{
 			count += (outer = 1 && !Blank(limit.3)) ? 1 : 0
 			If (outer = 1) || Blank(limit.3)

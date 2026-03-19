@@ -4570,12 +4570,17 @@ Settings_stash()
 		vars.hwnd.settings.hotkey := vars.hwnd.help_tooltips["settings_stash hotkey"] := hwnd
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "Section xs Section HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_stash2 Checked" settings.stash.history, % Lang_Trans("m_stash_history")
 	;Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd1 gSettings_stash2 Checked" settings.stash.show_exalt, % Lang_Trans("m_stash_exalt")
 	vars.hwnd.settings.history := vars.hwnd.help_tooltips["settings_stash history"] := hwnd ;, vars.hwnd.settings.exalt := vars.hwnd.help_tooltips["settings_stash exalt"] := hwnd1
 
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_stash2 Checked" settings.stash.use_global, % Lang_Trans("m_stash_use_global")
+	vars.hwnd.settings.use_global := vars.hwnd.help_tooltips["settings_stash global profiles"] := hwnd
+	If settings.stash.use_global
+		Settings_stash_profiles(GUI, "global")
+
+	Gui, %GUI%: Font, % "bold underline cWhite s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("stash_pricetags")
@@ -4629,26 +4634,9 @@ Settings_stash()
 	vars.hwnd.settings["gap+_" tab] := hwnd4, vars.hwnd.settings["infolder_" tab] := vars.hwnd.help_tooltips["settings_stash in folder"] := hwnd5
 	vars.hwnd.settings["bookmarking_" tab] := vars.hwnd.help_tooltips["settings_stash bookmarking"] := hwnd6
 
-	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_stash_limits")
-	Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 4 " cBlack"
-	vars.hwnd.help_tooltips["settings_stash limits" vars.poe_version] := hwnd, currencies := ["c", "e", "d", "%"]
-	Loop 5
-	{
-		style := (A_Index != 5) && settings.stash.bulk_trade && settings.stash.min_trade && settings.stash.autoprofiles ? " Disabled" : ""
-		If style
-			Gui, %GUI%: Add, Edit, % (A_Index = 1 ? "xs" : "ys x+" settings.general.fWidth/2) " Section Border Center w" settings.stash.fWidth * 2 " h" settings.stash.fHeight . style, % A_Index
-		Else
-		{
-			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs" : "ys x+" settings.general.fWidth/2) " Section cWhite 0x200 Border Center w" settings.stash.fWidth * 2 " h" settings.stash.fHeight, % A_Index
-			;Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp BackgroundWhite", 0
-		}
-		Gui, %GUI%: Add, Edit, % "xs y+-1 Center HWNDhwnd2 gSettings_stash2 Limit1 wp hp" style, % currencies[settings.stash[tab].limits[A_Index].3]
-		Gui, %GUI%: Add, Edit, % "ys Section x+-1 Center HWNDhwnd gSettings_stash2 Limit w" settings.general.fWidth * 4 " hp" style, % settings.stash[tab].limits[A_Index].2
-		Gui, %GUI%: Add, Edit, % "xs y+-1 Center HWNDhwnd1 Limit gSettings_stash2 wp hp" style, % settings.stash[tab].limits[A_Index].1
-
-		vars.hwnd.settings["limits" A_Index "top_" tab] := hwnd, vars.hwnd.settings["limits" A_Index "bot_" tab] := hwnd1, vars.hwnd.settings["limits" A_Index "cur_" tab] := hwnd2
-	}
+	If settings.stash.use_global
+		Return
+	Settings_stash_profiles(GUI, tab)
 }
 
 Settings_stash2(cHWND)
@@ -4725,6 +4713,13 @@ Settings_stash2(cHWND)
 	}
 	Else If (check = "history")
 		IniWrite, % (settings.stash.history := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, enable price history
+	Else If (check = "use_global")
+	{
+		IniWrite, % (settings.stash.use_global := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, use global profiles
+		Settings_menu()
+		If WinExist("ahk_id " vars.hwnd.stash.main)
+			Stash(vars.stash.active)
+	}
 	Else If (check = "exalt")
 		IniWrite, % (settings.stash.show_exalt := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, show exalt conversion
 	Else If (check = "bulk_trade")
@@ -4803,11 +4798,12 @@ Settings_stash2(cHWND)
 		input := StrReplace(LLK_ControlGet(cHWND), ",", "."), lIndex := SubStr(check, 7, 1), lType := types[SubStr(check, 8, 3)], tab := control, currencies := ["c", "e", "d", "%"]
 		If (SubStr(input, 1, 1) = "." || SubStr(input, 0) = ".") || InStr(input, "+")
 			input := "invalid"
+		array := (tab = "global" ? settings.stash.global_profile : settings.stash[tab].limits)
 		If Blank(input)
-			settings.stash[tab].limits0[lIndex][lType] := settings.stash[tab].limits[lIndex][lType] := "", input := "null"
+			settings.stash[tab].limits0[lIndex][lType] := array[lIndex][lType] := "", input := "null"
 		Else
 		{
-			lTop := settings.stash[tab].limits[lIndex].2, lBot := settings.stash[tab].limits[lIndex].1
+			lTop := array[lIndex].2, lBot := array[lIndex].1
 			If (lType < 3) && !IsNumber(input) || (lType = 1 && !Blank(lTop) && input > lTop) || (lType = 2 && !Blank(lBot) && input < lBot)
 			|| (lType = 3) && !InStr("c" (vars.poe_version ? "e" : "") "d%", input)
 				valid := 0
@@ -4821,11 +4817,11 @@ Settings_stash2(cHWND)
 			}
 			If (lType = 3)
 				input := InStr("ced%", input)
-			settings.stash[tab].limits0[lIndex][lType] := settings.stash[tab].limits[lIndex][lType] := input
-			While InStr(settings.stash[tab].limits[lIndex][lType], ".") && InStr(".0", SubStr(settings.stash[tab].limits[lIndex][lType], 0))
-				input := settings.stash[tab].limits0[lIndex][lType] := settings.stash[tab].limits[lIndex][lType] := SubStr(settings.stash[tab].limits[lIndex][lType], 1, -1)
+			settings.stash[tab].limits0[lIndex][lType] := array[lIndex][lType] := input
+			While InStr(array[lIndex][lType], ".") && InStr(".0", SubStr(array[lIndex][lType], 0))
+				input := settings.stash[tab].limits0[lIndex][lType] := array[lIndex][lType] := SubStr(array[lIndex][lType], 1, -1)
 		}
-		IniWrite, % input, % "ini" vars.poe_version "\stash-ninja.ini", % tab, % "limit " lIndex " " SubStr(check, 8, 3)
+		IniWrite, % input, % "ini" vars.poe_version "\stash-ninja.ini", % (tab = "global" ? "global profiles" : tab), % "limit " lIndex " " SubStr(check, 8, 3)
 	}
 	Else If InStr(check, "test")
 		Stash(vars.settings.selected_stash, 1)
@@ -4835,6 +4831,30 @@ Settings_stash2(cHWND)
 		If InStr(check, val) && WinExist("ahk_id " vars.hwnd.stash.main)
 			Stash("refresh", (val = "gap") ? 1 : 0)
 	in_progress := 0
+}
+
+Settings_stash_profiles(GUI, tab)
+{
+	local
+	global vars, settings
+
+	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_stash_limits")	
+	Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4 " cBlack"
+	vars.hwnd.help_tooltips["settings_stash limits" vars.poe_version] := hwnd, currencies := ["c", "e", "d", "%"]
+	Loop 5
+	{
+		style := (A_Index != 5) && settings.stash.bulk_trade && settings.stash.min_trade && settings.stash.autoprofiles ? " Disabled" : ""
+		If style
+			Gui, %GUI%: Add, Edit, % (A_Index = 1 ? "xs" : "ys x+" settings.general.fWidth/2) " Section Border Center w" settings.stash.fWidth * 2 " h" settings.stash.fHeight . style, % A_Index
+		Else Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs" : "ys x+" settings.general.fWidth/2) " Section cWhite 0x200 Border Center w" settings.stash.fWidth * 2 " h" settings.stash.fHeight, % A_Index
+
+		array := (tab = "global" ? settings.stash.global_profile[A_Index] : settings.stash[tab].limits[A_Index])
+		Gui, %GUI%: Add, Edit, % "xs y+-1 Center HWNDhwnd2 gSettings_stash2 Limit1 wp hp" style, % currencies[array.3]
+		Gui, %GUI%: Add, Edit, % "ys Section x+-1 Center HWNDhwnd gSettings_stash2 Limit w" settings.general.fWidth * 4 " hp" style, % array.2
+		Gui, %GUI%: Add, Edit, % "xs y+-1 Center HWNDhwnd1 Limit gSettings_stash2 wp hp" style, % array.1
+		vars.hwnd.settings["limits" A_Index "top_" tab] := hwnd, vars.hwnd.settings["limits" A_Index "bot_" tab] := hwnd1, vars.hwnd.settings["limits" A_Index "cur_" tab] := hwnd2
+	}
 }
 
 Settings_statlas()

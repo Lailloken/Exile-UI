@@ -1188,6 +1188,7 @@
 		m_stash_limits			=	"price-range profiles:"
 		m_stash_profiles		=	"apply trade value to profiles 1-4"
 		m_stash_history		=	"show price history"
+		m_stash_use_global		=	"use global price-range profiles"
 		m_stash_exalt			=	"show exalt rates"
 		m_stash_mintrade		=	"minimum trade value (chaos):"
 		m_stash_folder			=	"this tab is in a stash folder"
