@@ -4916,30 +4916,6 @@
       }
     }
   },
-  "lesser multiple projectiles support": {
-    "attribute": 2,
-    "level": 8,
-    "quests": {
-      "a fixture of fate": {
-        "vendor": []
-      },
-      "the caged brute1": {
-        "quest": [
-          "duelist",
-          "ranger",
-          "shadow",
-          "scion"
-        ],
-        "vendor": [
-          "duelist",
-          "ranger",
-          "scion",
-          "shadow",
-          "witch"
-        ]
-      }
-    }
-  },
   "life gain on hit support": {
     "attribute": 1,
     "level": 8,
@@ -7669,26 +7645,6 @@
           "duelist",
           "marauder",
           "scion",
-          "templar"
-        ]
-      }
-    }
-  },
-  "sweep": {
-    "attribute": 1,
-    "level": 12,
-    "quests": {
-      "a fixture of fate": {
-        "vendor": []
-      },
-      "the siren's cadence": {
-        "quest": [
-          "marauder",
-          "duelist"
-        ],
-        "vendor": [
-          "duelist",
-          "marauder",
           "templar"
         ]
       }

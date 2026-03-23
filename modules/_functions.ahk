@@ -37,10 +37,10 @@ DB_Load(database)
 		If !vars.poe_version
 			db.leveltracker := {"areas": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas.json") ? lang : "english") "\[leveltracker] areas.json"))
 			, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] gems.json") ? lang : "english") "\[leveltracker] gems.json"))
-			, "trees": {"supported": ["3_27", "3_27_alternate", "3_28"]}}
+			, "trees": {"supported": ["3_28"]}}
 		Else
 			db.leveltracker := {"areaIDs": {}, "areas": json.load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas 2.json") ? lang : "english") "\[leveltracker] areas 2.json"))
-			, "trees": {"supported": ["0_3", "0_4"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
+			, "trees": {"supported": ["0_4"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
 
 		If db.leveltracker.gems.HasKey("renamed")
 			db.leveltracker.renamed_gems := LLK_CloneObject(db.leveltracker.gems.renamed), db.leveltracker.gems.Delete("renamed")
