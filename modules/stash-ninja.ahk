@@ -29,16 +29,10 @@
 
 		settings.stash.global_profile := dLimits.Clone()
 		If ini["global profiles"].Count()
-		{
 			For outer in [1, 2, 3, 4, 5]
-			{
 				For index, val in ["bot", "top", "cur"]
-				{
 					If !Blank(new := ini["global profiles"]["limit " outer " " val])
 						settings.stash.global_profile[outer][index] := (new = "null" ? "" : new)
-				}
-			}
-		}
 
 		settings.stash.rate_limits := {"timestamp": ""}
 		settings.stash.colors := [!Blank(check := ini.UI["text color"]) ? check : "000000", !Blank(check1 := ini.UI["background color"]) ? check1 : "00CC00"
