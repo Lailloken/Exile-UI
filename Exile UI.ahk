@@ -1060,7 +1060,7 @@ Startup()
 		vars.general.MultiThreading := 0
 	Else
 	{
-		Run, modules\_secondary thread.ahk, % A_ScriptDir, UseErrorLevel, PID
+		Run, % """" A_AhkPath """ """ A_ScriptDir "\modules\_secondary thread.ahk""", % A_ScriptDir, UseErrorLevel, PID
 		If PID
 			WinWait, ahk_pid %PID%,, 1.5
 		vars.general.MultiThreading := ErrorLevel ? 0 : 1, vars.general.bThread := "LLK-UI: B-Thread"
