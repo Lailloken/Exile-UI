@@ -899,7 +899,7 @@
       "long-click to see instructions"
     ],
     "screenchecks image-about": [
-      "these checks are used to interpret which feature to activate when pressing the omni-key"
+      "these checks are used to interpret which feature to activate when you press the omni-key"
     ],
     "screenchecks image-info": [
       "long-click to see instructions"
@@ -928,7 +928,7 @@
     ],
     "searchstrings about": [
       "search-strings are grouped into use-cases, e.g. gwennen, harvest, vendor",
-      "when pressing the <omni-key>, the tool detects the right use-case and displays a list with entries to choose from",
+      "when you press the <omni-key>, the tool detects the right use-case and displays a list with entries to choose from",
       "this detection requires manual image calibration for each use-case"
     ],
     "searchstrings calibrate": [
@@ -962,6 +962,10 @@
     "searchstrings add": [
       "type in a name and press <enter>"
     ],
+    "searchstrings universal": [
+      "optionally, you can use a separate hotkey that doesn't require calibrated screen-checks",
+      "this is mainly for situations where screen-checks don't work, or for users who only have one use-case (e.g. vendor)"
+    ],
     "stash color tag1": [
       "this is what price tags with poe.ninja-prices look like"
     ],
@@ -990,7 +994,7 @@
       "it's a timeline with bars that each represent a day and display the change in price compared to the first day"
     ],
     "stash global profiles": [
-      "use a unified set of profiles for every tab"
+      "use a unified set of profiles that applies to every tab"
     ],
     "stash exalt": [
       "also shows exalt-equivalent prices when hovering over highlighted items or pricing items"

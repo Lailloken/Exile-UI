@@ -21,6 +21,12 @@
 		vars.searchstrings := {}
 	vars.searchstrings.list := {}, vars.searchstrings.enabled := 0, ini := IniBatchRead("ini" vars.poe_version "\search-strings.ini"), remove := []
 
+	settings.searchstrings := {"universal_hotkey": ini["universal_search-strings"].hotkey_}
+	Hotkey, IfWinActive, ahk_group poe_ahk_window
+	If !Blank(settings.searchstrings.universal_hotkey) && Hotkeys_Convert(settings.searchstrings.universal_hotkey)
+		Hotkey, % Hotkeys_Convert(settings.searchstrings.universal_hotkey), String_Universal, On
+	Else settings.searchstrings.universal_hotkey := ""
+
 	For key in ini["hideout lilly"]
 		If InStr(key, "exile leveling")
 		{
@@ -39,6 +45,7 @@
 		If val
 			vars.searchstrings.enabled += 1
 	}
+	vars.searchstrings.list["universal_search-strings"] := {"enable": 1}
 
 	For key in vars.searchstrings.list
 	{
@@ -55,7 +62,7 @@
 
 		For inikey, inival in ini[key]
 		{
-			If InStr(inikey, "last coordinates")
+			If InStr(inikey, "last coordinates") || InStr(inikey, "_")
 				Continue
 			If !IsObject(vars.searchstrings.list[key].strings)
 				vars.searchstrings.list[key].strings := {}
@@ -145,7 +152,7 @@ String_Menu(name)
 	Gui, %GUI_name%: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.searchstrings_menu.main, vars.hwnd.searchstrings_menu := {"main": searchstrings_menu}
 
-	Gui, %GUI_name%: Add, Text, % "x-1 y-1 Section Border Center gString_Menu2 HWNDhwnd", % Lang_Trans("search_header") " " name
+	Gui, %GUI_name%: Add, Text, % "x-1 y-1 Section Border Center gString_Menu2 HWNDhwnd", % Lang_Trans("search_header") " " StrReplace(name, "_", " ")
 	vars.hwnd.searchstrings_menu.winbar := hwnd
 	Gui, %GUI_name%: Add, Text, % "ys x+-1 Border gString_MenuClose Center HWNDhwnd w"settings.general.fWidth*2, % "x"
 	vars.hwnd.searchstrings_menu.winx := hwnd
@@ -228,12 +235,8 @@ String_Menu2(cHWND)
 		active.2 := control
 	Else If (check = "add")
 	{
-		name := LLK_ControlGet(vars.hwnd.searchstrings_menu.name)
+		name := Trim(LLK_ControlGet(vars.hwnd.searchstrings_menu.name), " ")
 		WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.searchstrings_menu.name
-		While (SubStr(name, 1, 1) = " ")
-			name := SubStr(name, 2)
-		While (SubStr(name, 0) = " ")
-			name := SubStr(name, 1, -1)
 		If (name = "last coordinates")
 			error := ["invalid name", 1]
 		If vars.searchstrings.list[active.1].strings.HasKey(name)
@@ -393,4 +396,12 @@ String_Search(name)
 	If InStr(A_Gui, "settings_menu")
 		LLK_ToolTip(Lang_Trans("global_negative"),,,,, "red"), Gdip_DisposeImage(pHaystack_searchstrings)
 	Return 0
+}
+
+String_Universal()
+{
+	local
+	global vars, settings
+
+	String_ContextMenu("universal_search-strings")
 }

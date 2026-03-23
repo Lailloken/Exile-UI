@@ -226,7 +226,7 @@ Omnikey2()
 		vars.searchstrings.pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
 		For string, val in vars.searchstrings.list
 		{
-			If !val.enable
+			If !val.enable || InStr(string, "_")
 				Continue
 			If String_Search(string)
 			{

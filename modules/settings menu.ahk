@@ -4400,6 +4400,8 @@ Settings_searchstrings()
 
 	For string, val in vars.searchstrings.list
 	{
+		If InStr(string, "_")
+			Continue
 		If (A_Index = 1)
 		{
 			Gui, %GUI%: Font, bold underline
@@ -4434,7 +4436,7 @@ Settings_searchstrings()
 		vars.hwnd.settings["enable_"string] := vars.hwnd.help_tooltips["settings_searchstrings enable" (string = "hideout lilly" ? "-lilly" : (string = "beast crafting" ? "-beastcrafting" : "")) handle] := hwnd, handle .= "|"
 	}
 
-	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd0 y+"vars.settings.spacing, % Lang_Trans("m_search_add")
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd0" (vars.searchstrings.list.Count() ? "" : " y+" vars.settings.spacing), % Lang_Trans("m_search_add")
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden default HWNDhwnd gSettings_searchstrings2", ok
 	vars.hwnd.help_tooltips["settings_searchstrings add"] := hwnd0, vars.hwnd.settings.add := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
@@ -4445,9 +4447,22 @@ Settings_searchstrings()
 		vars.hwnd.help_tooltips["settings_searchstrings about"] := hwnd69
 	}
 	vars.hwnd.settings.name := vars.hwnd.help_tooltips["settings_searchstrings add|"] := hwnd
-	Gui, %GUI%: Font, % "s"settings.general.fSize
+	Gui, %GUI%: Font, % "s" settings.general.fSize
 	GuiControl, % "+c" (!vars.searchstrings.enabled ? "Gray" : "White"), % vars.hwnd.settings["search-strings"]
 	GuiControl, % "movedraw", % vars.hwnd.settings["search-strings"]
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_search_universal")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Font, norm
+	Gui, %GUI%: Add, Text, % "Section xs Border gSettings_searchstrings2 HWNDhwnd1", % " " Lang_Trans("m_search_edit") " "
+	Gui, %GUI%: Add, Text, % "ys", % Lang_Trans("global_hotkey")
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "ys cBlack HWNDhwnd2 gSettings_searchstrings2 w" settings.general.fWidth*10, % settings.searchstrings.universal_hotkey
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "ys x+-1 hp Border cRed Hidden HWNDhwnd3 gSettings_searchstrings2", % " " Lang_Trans("global_save") " "
+	vars.hwnd.help_tooltips["settings_searchstrings universal"] := hwnd, vars.hwnd.settings.universal_bind := hwnd2, vars.hwnd.settings.universal_save := hwnd3
+	vars.hwnd.settings["edit_universal_search-strings"] := vars.hwnd.help_tooltips["settings_searchstrings edit" handle] := hwnd1
 }
 
 Settings_searchstrings2(cHWND)
@@ -4499,13 +4514,9 @@ Settings_searchstrings2(cHWND)
 	Else If (check = "add") || InStr(check, "copy_")
 	{
 		KeyWait, LButton
-		name := LLK_ControlGet(vars.hwnd.settings.name)
+		name := Trim(LLK_ControlGet(vars.hwnd.settings.name), " ")
 		WinGetPos, x, y, w, h, % "ahk_id "vars.hwnd.settings.name
-		While (SubStr(name, 1, 1) = " ")
-			name := SubStr(name, 2)
-		While (SubStr(name, 0) = " ")
-			name := SubStr(name, 1, -1)
-		If (name = "searches" || name = "exile-leveling")
+		If (name = "searches")
 			error := ["invalid name", 1]
 		If vars.searchstrings.list.HasKey(name)
 			error := ["name already in use", 1.5]
@@ -4533,6 +4544,27 @@ Settings_searchstrings2(cHWND)
 
 		IniWrite, 1, % "ini" vars.poe_version "\search-strings.ini", searches, % name
 		Settings_menu("search-strings")
+	}
+	Else If (check = "universal_bind")
+	{
+		input := LLK_ControlGet(cHWND)
+		GuiControl, % (input != settings.searchstrings.universal_hotkey ? "-" : "+") "Hidden", % vars.hwnd.settings.universal_save
+	}
+	Else If (check = "universal_save")
+	{
+		input := Trim(LLK_ControlGet(vars.hwnd.settings.universal_bind), " ")
+		If !Blank(input) && !Hotkeys_Convert(input)
+		{
+			LLK_ToolTip(Lang_Trans("m_hotkeys_error"),,,,, "Red")
+			Return
+		}
+		Hotkey, IfWinActive, ahk_group poe_ahk_window
+		If !Blank(settings.searchstrings.universal_hotkey)
+			Hotkey, % Hotkeys_Convert(settings.searchstrings.universal_hotkey), String_Universal, Off
+		If !Blank(input)
+			Hotkey, % Hotkeys_Convert(settings.searchstrings.universal_hotkey := input), String_Universal, On
+		IniWrite, % """" input """", % "ini" vars.poe_version "\search-strings.ini", universal_search-strings, hotkey_
+		GuiControl, +Hidden, % vars.hwnd.settings.universal_save
 	}
 	Else LLK_ToolTip("no action")
 }

@@ -1160,6 +1160,8 @@
 		m_search_usecases		=	"use-cases currently set up:"
 		m_search_hideout lilly	=	"hideout lilly"					;## as in the Lilly who is in your hideout (she has a different vendor window)
 		m_search_add			=	"add use-case:"
+		m_search_universal		=	"universal search-strings:"
+		m_search_edit			=	"edit strings"
 
 
 
