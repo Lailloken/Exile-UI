@@ -119,7 +119,7 @@ String_ContextMenu(name := "")
 
 	If !vars.searchstrings.list[name].strings.Count()
 	{
-		LLK_ToolTip(Lang_Trans("cheat_entrynotext", 1, [name]), 1.5,,,, "yellow")
+		LLK_ToolTip(Lang_Trans("cheat_entrynotext", 1, [StrReplace(name, "_", " ")]), 1.5,,,, "yellow")
 		Return
 	}
 	Gui, searchstrings_context: New, -Caption +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd
@@ -404,4 +404,5 @@ String_Universal()
 	global vars, settings
 
 	String_ContextMenu("universal_search-strings")
+	KeyWait, % Hotkeys_Convert(settings.searchstrings.universal_hotkey)
 }
