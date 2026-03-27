@@ -533,7 +533,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required when using the map-tracker feature
-		maptracker_idle		=	"not tracking"
+		maptracker_idle		=	"not mapping"
 		maptracker_kills		=	"press the omni-key to;start the kill-tracker"
 		maptracker_kills		=	"kill-count updated"
 		maptracker_check		=	"double-check;map content!"
