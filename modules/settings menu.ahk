@@ -3504,9 +3504,11 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	}
 	Else
 	{
-		Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + vars.client.xc - w//2 " y" vars.monitor.y + vars.monitor.yc - h//2 " w"w - 1 " h"h - 2
-		vars.settings.x := vars.monitor.x + vars.client.xc - w//2
+		vars.settings.x := vars.monitor.x + vars.monitor.w/2 - w/2
+		vars.settings.y := vars.monitor.y + vars.monitor.h/2 - h/2
+		Gui, %GUI_name%: Show, % "NA x" vars.settings.x " y" vars.settings.y " w"w - 1 " h"h - 2
 	}
+
 	LLK_Overlay(vars.hwnd.settings.main, "show", NA, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	vars.settings.w := w, vars.settings.h := h, vars.settings.restart := vars.settings.wait := ""
 }
