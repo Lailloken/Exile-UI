@@ -258,8 +258,8 @@
     ],
     "exchange enable": [
       "provides a ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
-      "requires the <async trade> checks to be set up correctly in the <screen-checks> section(/highlight)",
-      "while the async trade window is on screen, press the <omni-key> to activate the feature",
+      "requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section(/highlight)",
+      "while the currency exchange is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
     ],
     "exchange delete logs": [
@@ -270,8 +270,8 @@
     ],
     "exchange async enable": [
       "provides quick-pricing functionality, as well as price/age tracking for listed items",
-      "requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section(/highlight)",
-      "while the currency exchange is on screen, press the <omni-key> to activate the feature",
+      "requires the <async trade> checks to be set up correctly in the <screen-checks> section(/highlight)",
+      "while the async trade window is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
     ],
     "exchange async name": [
