@@ -246,6 +246,8 @@
 		global_resume			=	"resume"
 		global_filter			=	"filter"
 		global_clear			=	"clear"			;## remove everything, as in "clear a list"
+		global_view			=	"view:"			;## in the sense of layout or appearance, e.g. split/unified view
+		global_expand			=	"expand"			;## in the sense of lists or tables where specific sections can be collapsed/expanded to (un)hide information
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -388,6 +390,7 @@
 		async_listheader		=	"logged purchases:"
 		async_nolist			=	"not tracking anything (yet)"
 		async_nolist			=	"couldn't find any logs"
+		async_openlogs			=	"open logs"
 		async_listing			=	"listing added"
 		async_listing			=	"already tracking"
 		async_history			=	"price history:"
@@ -395,6 +398,7 @@
 		async_pricefailed		=	"poe.ninja currently unavailable"
 		async_pricefailed		=	"(price sorting not possible)"
 		async_pricefailed		=	"(price conversion not possible)"
+		async_inout			=	"in/out"						;## refers to trading: a split table that shows in/out-going trades
 
 
 

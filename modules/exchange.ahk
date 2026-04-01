@@ -12,9 +12,6 @@
 	If !IsObject(vars.exchange)
 		vars.exchange := {"date": 0, "inventory": 0, "multiplier": 1, "ratio_lock": 0, "transactions": {}}, vars.pics.exchange := {}, vars.pics.exchange_trades := {}
 
-	If !IsObject(vars.async)
-		vars.async := {"conversions": {}}, vars.pics.async := {}
-
 	If !IsObject(settings.exchange)
 		settings.exchange := {}
 	If !IsObject(settings.async)
@@ -37,7 +34,11 @@
 	settings.async.filter_buy := !Blank(check := ini["settings async trade"]["filter (buy)"]) ? check : "all"
 	settings.async.show_name := !Blank(check := ini["settings async trade"]["show full name"]) ? check : 0
 	settings.async.minchange := !Blank(check := ini["settings async trade"]["minimum price change"]) ? check : 10
+	settings.async.logview := "default"
+	settings.async.logweek := (!settings.async.logweek ? 1 : settings.async.logweek)
 
+	If !IsObject(vars.async)
+		vars.async := {"conversions": {}, "dIcon": settings.async.fHeight * 2 - 4}, vars.pics.async := {}
 	vars.async.currencies := {"chaos": "chaos", "exalted": "exalted", "transmut": "transmute", "aug": "aug", "regal": "regal"}
 
 	If FileExist("ini" vars.poe_version "\vaal street log.ini")
@@ -59,18 +60,26 @@
 		ini2 := IniBatchRead("ini" vars.poe_version "\async trade.ini")
 		For key, object in ini2
 		{
-			If !object.league || object.sold
+			If !object.league
 				Continue
 			object_new := {"prices": [], "timestamp": SubStr(key, 1, InStr(key, " ") - 1), "name": SubStr(key, InStr(key, " ") + 1)}
 			For key1, val in object
 				If InStr(key1, "price ")
 					object_new.prices.Push(StrSplit(SubStr(key1, InStr(key1, " ") + 1) " " val, " "))
+				Else If (key1 = "clipboard")
+					object_new.clipboard := LLK_StringReplace(val, [["--------", "|"], ["(r)(n)(r)(n)", "(r)(n)"], ["(r)", "`r"], ["(n)", "`n"]])
 				Else If (key1 != "type")
 					object_new[key1] := val
 
 			If !IsObject(vars.async[object.league])
-				vars.async[object.league] := {"buy": {}, "sell": {}}
-			vars.async[object.league][object.type][key] := object_new
+				vars.async[object.league] := {"buy": {}, "sell": {}, "sold": {}}
+			If (target_key := object.sold)
+			{
+				If (target_key = 1)
+					target_key := object_new.prices[object_new.prices.MaxIndex()].1
+				vars.async[object.league].sold[target_key " " object_new.name] := object_new
+			}
+			Else vars.async[object.league][object.type][key] := object_new
 		}
 	}
 }
@@ -83,7 +92,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 	
 	check := LLK_HasVal(vars.hwnd.async, cHWND), control := SubStr(check, InStr(check, "_") + 1), league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
 	If !IsObject(vars.async[league])
-		vars.async[league] := {"buy": {}, "sell": {}}
+		vars.async[league] := {"buy": {}, "sell": {}, "sold": {}}
 
 	If (cHWND = "close")
 	{
@@ -131,15 +140,19 @@ AsyncTrade(cHWND := "", hotkey := "")
 			GuiControl, +cLime, % vars.hwnd.async[check "_bar"]
 			If LLK_Progress(vars.hwnd.async[check "_bar"], "LButton")
 			{
-				target := listings[control].timestamp " " listings[control].name, vars.async[league].sell.Delete(target)
-				IniWrite, 1, % "ini" vars.poe_version "\async trade.ini", % target, sold
+				target := listings[control].timestamp " " listings[control].name
+				IniWrite, % (target_key := A_NowUTC), % "ini" vars.poe_version "\async trade.ini", % target, sold
+				vars.async[league].sold[target_key " " listings[control].name] := LLK_CloneObject(vars.async[league].sell[target])
+				vars.async[league].sold[target_key " " listings[control].name].sold := target_key, clip := vars.async[league].sold[target_key " " listings[control].name].clipboard
+				vars.async[league].sold[target_key " " listings[control].name].clipboard := LLK_StringReplace(clip, [["--------", "|"], ["(r)(n)(r)(n)", "(r)(n)"], ["(r)", "`r"], ["(n)", "`n"]])
+				vars.async[league].sell.Delete(target)
 			}
 			Else
 			{
 				GuiControl, +cRed, % vars.hwnd.async[check "_bar"]
 				target := listings[control], regex := (target.rarity = "magic" ? """" StrReplace(target.name, target.itembase, ".*") """" : """" target.name """"), regex := StrReplace(StrReplace(regex, ".* ", ".*"), " .*", ".*")
 				regex := regex " """ target.prices[target.prices.MaxIndex()].2 " " target.prices[target.prices.MaxIndex()].3 """"
-				For string, replace in {"perfect-": "p.*-", "greater-": "g.*-"}
+				For string, replace in {"perfect-": "p.*-", "greater-": "g.*-", "(": ".", ")": "."}
 					regex := StrReplace(regex, string, replace)
 				Clipboard := "", Clipboard := regex
 				ClipWait, 0.1
@@ -159,6 +172,13 @@ AsyncTrade(cHWND := "", hotkey := "")
 		Settings_menu("general")
 		Return
 	}
+	Else If (check = "logs_open")
+	{
+		KeyWait, LButton
+		AsyncTradeLogs()
+		AsyncTrade("close")
+		Return
+	}
 	Else If InStr(check, "filter_")
 	{
 		KeyWait, LButton
@@ -175,11 +195,8 @@ AsyncTrade(cHWND := "", hotkey := "")
 			Sleep 150
 		}
 		IniWrite, % settings.async.fSize, % "ini" vars.poe_version "\vaal street.ini", settings async trade, font-size
-		LLK_FontDimensions(settings.async.fSize, font_height, font_width), settings.async.fWidth := font_width, settings.async.fHeight := font_height
+		LLK_FontDimensions(settings.async.fSize, font_height, font_width), settings.async.fWidth := font_width, settings.async.fHeight := font_height, vars.async.dIcon := 2*font_height - 4
 		LLK_FontDimensions((settings.async.fSize2 := settings.async.fSize - 2), font_height, font_width), settings.async.fWidth2 := font_width, settings.async.fHeight2 := font_height
-		For key, HBitmap in vars.pics.async
-			DeleteObject(HBitmap)
-		vars.pics.async := {}
 	}
 	Else If cHWND
 	{
@@ -187,7 +204,14 @@ AsyncTrade(cHWND := "", hotkey := "")
 		Return
 	}
 
-	toggle := !toggle, GUI_name := "async" toggle, margin := settings.async.fWidth//2, listings0 := {}, listings := [], mode := vars.async.mode
+	If (fSize != settings.async.fSize)
+	{
+		For key, HBitmap in vars.pics.async
+			DeleteObject(HBitmap)
+		vars.pics.async := {}, fSize := settings.async.fSize
+	}
+
+	toggle := !toggle, GUI_name := "async" toggle, margin := settings.async.fWidth//2, listings0 := {}, listings := [], mode := vars.async.mode, league := settings.general.league.1 " " settings.general.league[vars.poe_version ? 3 : 4]
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_async", LLK-UI: async trade
 	Gui, %GUI_name%: Font, % "s" settings.async.fSize " cWhite", % vars.system.font
 	Gui, %GUI_name%: Margin, % margin, % margin
@@ -204,6 +228,11 @@ AsyncTrade(cHWND := "", hotkey := "")
 
 	Gui, %GUI_name%: Add, Text, % "ys cAqua Border gAsyncTrade HWNDhwnd", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
 	vars.hwnd.async.league_select := hwnd
+	If (vars.async[league].buy.Count() + vars.async[league].sold.Count())
+	{
+		Gui, %GUI_name%: Add, Text, % "ys Border gAsyncTrade HWNDhwnd1", % " " Lang_Trans("async_openlogs") " "
+		vars.hwnd.async.logs_open := hwnd1
+	}
 
 	sorting := settings.async["sorting_" mode]
 	If InStr(sorting, "price")
@@ -241,11 +270,11 @@ AsyncTrade(cHWND := "", hotkey := "")
 	{
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
 		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("global_filter") . Lang_Trans("global_colon")
-		filters := ["m", "m", "m"]
-		For index, val in [5, 10, 15]
+		filters := ["m", "m", "m", "h"]
+		For index, val in [5, 10, 15, 24]
 		{
 			color := (settings.async.filter_buy = val "|" filters[index] ? "Lime" : "White")
-			Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" color, % " " val . SubStr(Lang_Trans("global_timeunits", 1), 1, 1) " "
+			Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" color, % " " val . SubStr(Lang_Trans("global_timeunits", (index = 4 ? 4 : 2)), 1, 1) " "
 			vars.hwnd.async["filter_" val "|" filters[index]] := hwnd
 		}
 		Gui, %GUI_name%: Add, Text, % "ys Border HWNDhwnd gAsyncTrade c" (settings.async.filter_buy = "all" ? "Lime" : "White"), % " " Lang_Trans("global_all") " "
@@ -253,7 +282,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize
 	}
 
-	vars.async.dIcon := dIcon := settings.async.fHeight*2 - 4, filter := settings.async["filter_" mode], filter := (filter = "all" ? filter : StrSplit(filter, "|"))
+	dIcon := vars.async.dIcon, filter := settings.async["filter_" mode], filter := (filter = "all" ? filter : StrSplit(filter, "|"))
 	If !vars.async[league][mode].Count()
 		Gui, %GUI_name%: Add, Text, % "Section xs", % Lang_Trans("async_nolist", (mode = "buy" ? 2 : 1))
 	Else
@@ -282,17 +311,9 @@ AsyncTrade(cHWND := "", hotkey := "")
 
 		For iListing, object in listings
 		{
-			name := object.name
-			timestamp0 := object.timestamp, elapsed0 := elapsed1 := A_NowUTC, unit0 := unit1 := 1, price := object.prices[object.prices.MaxIndex()]
-			timestamp1 := price.1, currency := currency0 := price.3, price := price.2
-
-			EnvSub, elapsed0, timestamp0, minutes
-			EnvSub, elapsed1, timestamp1, minutes
-			For index, val0 in [0, 1]
-				For index, val in [60, 24, 7]
-					If (elapsed%val0% >= val)
-						elapsed%val0% := Round(elapsed%val0% / val, 1), unit%val0% += 2
-					Else Break
+			name := object.name, price := object.prices[object.prices.MaxIndex()]
+			elapsed0 := LLK_TimeSince(object.timestamp, A_NowUTC), elapsed1 := LLK_TimeSince(price.1, A_NowUTC)
+			currency := currency0 := price.3, price := price.2
 
 			For key, val in vars.async.currencies
 				If InStr(currency, key)
@@ -300,8 +321,6 @@ AsyncTrade(cHWND := "", hotkey := "")
 					currency := val
 					Break
 				}
-			elapsed0 := StrReplace(elapsed0, ".0"), elapsed1 := StrReplace(elapsed1, ".0")
-			elapsed0 := (elapsed0 >= 10 ? Round(elapsed0) : elapsed0), elapsed1 := (elapsed1 >= 10 ? Round(elapsed1) : elapsed1)
 			color := (object.rarity = "rare" ? "FFE155" : (object.rarity = "unique" ? "FF8111" : (object.rarity = "magic" ? "7B98FF" : "White")))
 
 			Gui, %GUI_name%: Font, % "bold s" settings.async.fSize2
@@ -325,20 +344,20 @@ AsyncTrade(cHWND := "", hotkey := "")
 			Gui, %GUI_name%: Add, Progress, % "Disabled yp x+0 BackgroundBlack cRed Vertical Range0-500 HWNDhwnd w" margin*2 " h" dIcon, 0
 			vars.hwnd.async["listing_" iListing "_bar"] := hwnd
 
-			If object.itembase
+			If object.itembase && (object.rarity != "normal")
 				itembase := (!RegExMatch(object.rarity, "i)magic|unique") || object.rarity = "unique" && settings.async.show_name ? " | " (object.itembase) : "")
 			Else itembase := ""
 			label := (!settings.async.show_name && object.rarity != "unique" ? LLK_StringCase(object.itembase ? object.itembase : name) : name . itembase)
 			Gui, %GUI_name%: Add, Text, % "ys xp+" margin*2 " gAsyncTrade BackgroundTrans HWNDhwnd c" color, % label
 			vars.hwnd.async["listing_" iListing] := hwnd
 
-			age_same := (elapsed0 = elapsed1 && unit0 = unit1 ? 1 : 0)
-			Gui, %GUI_name%: Add, Text, % "xp gAsyncTrade HWNDhwnd y+0" (sorting = "age" || !sorting && age_same ? " cLime" : ""), % elapsed1 " " Lang_Trans("global_timeunits", unit1 + (elapsed1 != 1 ? 1 : 0))
+			age_same := (elapsed0 = elapsed1 ? 1 : 0)
+			Gui, %GUI_name%: Add, Text, % "xp gAsyncTrade HWNDhwnd y+0" (sorting = "age" || !sorting && age_same ? " cLime" : ""), % elapsed1
 			vars.hwnd.async["sort_age" handle_age] := hwnd, handle_age .= "|"
 			If !age_same
 			{
-				Gui, %GUI_name%: Add, Text, % "yp x+0", % " / "
-				Gui, %GUI_name%: Add, Text, % "yp gAsyncTrade HWNDhwnd x+0" (!sorting ? " cLime" : ""), % elapsed0 " " Lang_Trans("global_timeunits", unit0 + (elapsed0 != 1 ? 1 : 0))
+				Gui, %GUI_name%: Add, Text, % "yp x+0", % "  |  "
+				Gui, %GUI_name%: Add, Text, % "yp gAsyncTrade HWNDhwnd x+0" (!sorting ? " cLime" : ""), % elapsed0
 				vars.hwnd.async["sort_agetotal" handle_agetotal] := hwnd, handle_agetotal .= "|"
 			}
 		}
@@ -350,14 +369,401 @@ AsyncTrade(cHWND := "", hotkey := "")
 	LLK_Overlay(hwnd_async, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
-AsyncTrade2(mode := "")
+AsyncTradeLogs(cHWND := "")
+{
+	local
+	global vars, settings
+	static toggle := 0, fSize, collapse := {}, search, search_price
+
+	If (cHWND = "close")
+	{
+		LLK_Overlay(vars.hwnd.async_logs.main, "destroy"), vars.hwnd.async_logs.main := ""
+		Return
+	}
+	check := LLK_HasVal(vars.hwnd.async_logs, cHWND), control := SubStr(check, InStr(check, "_") + 1), league := settings.general.league.1 " " (settings.general.league[(vars.poe_version ? 3 : 4)])
+	
+	If check && !RegExMatch(check, "i)(tooltip|pricehistory|transaction)_")
+		KeyWait, LButton
+	If InStr(check, "view_")
+	{
+		If (settings.async.logview = control)
+			Return
+		settings.async.logview := control
+	}
+	Else If InStr(check, "week_")
+		settings.async.logweek := control
+	Else If (check = "expand_all")
+		collapse := {}
+	Else If (check = "search_ok")
+		search := LLK_ControlGet(vars.hwnd.async_logs.search_edit), search_price := LLK_ControlGet(vars.hwnd.async_logs.search_price)
+	Else If (check = "search_reset")
+		search := search_price := ""
+	Else If InStr(check, "collapse_")
+		collapse[control] := !collapse[control]
+	Else If InStr(check, "tooltip_")
+	{
+		AsyncTradeLogsTooltip((InStr(check, "buy") ? "buy" : "sold"), control)
+		Return
+	}
+	Else If InStr(check, "transaction_")
+	{
+		AsyncTradeLogsTooltip(SubStr(check, 1, InStr(check, " ") - 1), SubStr(control, InStr(control, " ") + 1))
+		Return
+	}
+	Else If InStr(check, "pricehistory_")
+	{
+		AsyncTradeReprice(, "tooltip_" control)
+		Return
+	}
+	Else If check
+	{
+		LLK_ToolTip("no action")
+		Return
+	}
+
+	If (fSize != settings.async.fSize)
+	{
+		For key, hbm in vars.pics.async
+			DeleteObject(hbm)
+		vars.pics.async := {}, fSize := settings.async.fSize
+	}
+
+	toggle := !toggle, GUI_name := "async_logs" toggle, margin := settings.async.fWidth//2
+	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_logs", LLK-UI: async logs
+	Gui, %GUI_name%: Font, % "s" settings.async.fSize " cWhite", % vars.system.font
+	Gui, %GUI_name%: Margin, -1, -1
+	Gui, %GUI_name%: Color, % "Black"
+
+	hwnd_old := vars.hwnd.async_logs.main, vars.hwnd.async_logs := {"main": hwnd_logs}, league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
+	list := {}, list_final := [], dIcon := vars.async.dIcon, timestamps := {}, weeks := [], logview := settings.async.logview
+	vars.async.wItem := wItem := settings.async.fWidth*40, wItem1 := wItem + settings.async.fWidth * 5 - 1
+	wTotal := 2*(dIcon + wItem - 1 + settings.async.fWidth * 5 - 1), timezone := A_Now
+	timezone -= A_NowUTC, Hours
+
+	search := (Blank(search) ? Lang_Trans("global_search") : search), search_price := (Blank(search_price) ? Lang_Trans("global_price") . Lang_Trans("global_colon") : search_price)
+	search_default := (search = Lang_Trans("global_search") && search_price = Lang_Trans("global_price") . Lang_Trans("global_colon") ? 1 : 0)
+	If (search_price != Lang_Trans("global_price") . Lang_Trans("global_colon"))
+		UpdateConversions()
+
+	For key, object in vars.async[league].sold
+	{
+		If !AsyncTradeLogsSearch(search, search_price, object)
+			Continue
+		If (logview = "inout")
+		{
+			source := clipboard_sell := ""
+			Loop, Parse, % object.clipboard, `n, % " `r"
+				If !InStr(A_LoopField, Lang_Trans("items_sockets"))
+					clipboard_sell .= (!clipboard_sell ? "" : "`n") A_LoopField
+			For kBuy, oBuy in vars.async[league].buy
+			{
+				clipboard_buy := ""
+				Loop, Parse, % oBuy.clipboard, `n, % " `r"
+					If !InStr(A_LoopField, Lang_Trans("items_sockets"))
+						clipboard_buy .= (!clipboard_buy ? "" : "`n") A_LoopField
+				If InStr(clipboard_sell, clipboard_buy) && ((timestamp_buy := SubStr(kBuy, 1, InStr(kBuy, " ") - 1)) < object.timestamp)
+					source := kBuy
+			}
+			If !source
+				Continue
+		}
+		timestamp := SubStr(key, 1, 14)
+		timestamp += timezone, Hours
+		timestamp := SubStr(timestamp, 1, 8), timestamps[timestamp] := 1
+		If !list[timestamp]
+			list[timestamp] := {"buy": [], "sold": []}
+		list[timestamp].sold.InsertAt(1, object)
+		If source
+			list[timestamp].buy.InsertAt(1, vars.async[league].buy[source])
+	}
+
+	If (logview = "default")
+		For key, object in vars.async[league].buy
+		{
+			If !AsyncTradeLogsSearch(search, search_price, object)
+				Continue
+			timestamp := SubStr(key, 1, 14)
+			timestamp += timezone, Hours
+			timestamp := SubStr(timestamp, 1, 8), timestamps[timestamp] := 1
+			If !list[timestamp]
+				list[timestamp] := {"buy": [], "sold": []}
+			list[timestamp].buy.InsertAt(1, object)
+		}
+
+	For timestamp in timestamps
+	{
+		now := SubStr(A_Now, 1, 8)
+		EnvSub, now, timestamp, Hours
+		weeks[Max(Ceil((now + 0.1)/168), 1)] := 1
+	}
+
+	For timestamp, object in list
+		list_final.InsertAt(1, [timestamp, object])
+
+	Gui, %GUI_name%: Add, Text, % "Section x" margin " y" margin, % Lang_Trans("global_view") " "
+	Gui, %GUI_name%: Add, Text, % "ys x+0 Border gAsyncTradeLogs HWNDhwnd" (logview = "default" ? " cLime" : ""), % " " Lang_Trans("global_all") " "
+	Gui, %GUI_name%: Add, Text, % "ys x+-1 Border gAsyncTradeLogs HWNDhwnd1" (logview = "inout" ? " cLime" : ""), % " " Lang_Trans("async_inout") " "
+	vars.hwnd.async_logs.view_default := vars.hwnd.help_tooltips["asynclogs_view default"] := hwnd
+	vars.hwnd.async_logs.view_inout := vars.hwnd.help_tooltips["asynclogs_view in-out"] := hwnd1
+
+	Gui, %GUI_name%: Add, Text, % "ys x+" 2*margin, % Lang_Trans("global_week") . Lang_Trans("global_colon")
+	For index in weeks
+	{
+		If !weeks[settings.async.logweek] && (A_Index = 1)
+			settings.async.logweek := index
+		label := (index = 1 ? " " Lang_Trans("global_current") " " : "-" index - 1)
+		Gui, %GUI_name%: Add, Text, % "ys Border Center gAsyncTradeLogs HWNDhwnd x+" (A_Index = 1 ? margin : -1) (index != 1 ? " w" settings.async.fWidth*3 : "") . (settings.async.logweek = index ? " cLime" : ""), % label
+		vars.hwnd.async_logs["week_" index] := hwnd
+	}
+
+	If LLK_HasVal(collapse, 1,,,, 1)
+	{
+		Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border gAsyncTradeLogs HWNDhwnd", % " " Lang_Trans("global_expand") " "
+		vars.hwnd.async_logs.expand_all := vars.hwnd.help_tooltips["asynclogs_expand all"] := hwnd
+	}
+
+	Gui, %GUI_name%: Font, % "s" settings.async.fSize - 4
+	Gui, %GUI_name%: Add, Edit, % "Section xs x0 y+" margin " HWNDhwnd cBlack Right w" wItem1, % search
+	Gui, %GUI_name%: Add, Edit, % "ys HWNDhwnd1 cBlack Right w" 2 * dIcon - 1, % search_price
+	Gui, %GUI_name%: Add, Button, % "xp yp wp hp Default gAsyncTradeLogs Hidden HWNDhwnd2", ok
+	Gui, %GUI_name%: Font, % "s" settings.async.fSize
+	If !search_default
+		Gui, %GUI_name%: Add, Text, % "ys Border hp cRed Center gAsyncTradeLogs HWNDhwnd3 w" settings.async.fWidth * 2, x
+	If (vars.async.conversions.timestamp.2 = "failed")
+		Gui, %GUI_name%: Add, Text, % "ys hp BackgroundTrans cFF8000 x+" margin, % Lang_Trans("async_pricefailed", 3)
+	vars.hwnd.async_logs.search_edit := vars.hwnd.help_tooltips["asynclogs_search field"] := hwnd,
+	vars.hwnd.async_logs.search_price := vars.hwnd.help_tooltips["asynclogs_search price"] := hwnd1, vars.hwnd.async_logs.search_ok := hwnd2
+	vars.hwnd.async_logs.search_reset := hwnd3
+
+	Gui, %GUI_name%: Add, Pic, % "ys HWNDhwnd x" wTotal - margin - settings.async.fHeight " w-1 hp", % "HBitmap:*" vars.pics.global.help
+	vars.hwnd.help_tooltips["asynclogs_general"] := hwnd
+
+	today := yesterday := SubStr(A_Now, 1, 8)
+	yesterday += -1, Days
+
+	For index, array in list_final
+	{
+		timestamp := array.1, object_outer := array.2, now := SubStr(A_Now, 1, 8)
+		EnvSub, now, timestamp, Hours
+		If (settings.async.logweek != Max(Ceil((now + 0.1)/168), 1))
+			Continue
+		Gui, %GUI_name%: Font, % "bold s" settings.async.fSize - 2
+		Gui, %GUI_name%: Add, Text, % "Section xs x-1 " (!added ? "y+0" : "") " Border Center BackgroundTrans gAsyncTradeLogs HWNDhwnd w" wTotal, % LLK_StringCase(LLK_FormatTime(timestamp, "dddd"))
+		Gui, %GUI_name%: Font, % "norm s" settings.async.fSize
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c303030", 100
+		vars.hwnd.async_logs["collapse_" timestamp] := hwnd, added := 1
+
+		If collapse[timestamp]
+			Continue
+
+		Loop, % Max(object_outer.buy.Count(), object_outer.sold.Count())
+		{
+			outer := A_Index
+			For index, val in ["buy", "sold"]
+			{
+				object := object_outer[val][outer]
+				If object.itembase && (object.rarity != "normal")
+					itembase := (!RegExMatch(object.rarity, "i)magic|unique") || object.rarity = "unique" && settings.async.show_name ? " | " (object.itembase) : "")
+				Else itembase := ""
+				label := (!settings.async.show_name && object.rarity != "unique" ? LLK_StringCase(object.itembase ? object.itembase : object.name) : object.name . itembase)
+				color := " c" (object.rarity = "rare" ? "FFE155" : (object.rarity = "unique" ? "FF8111" : (object.rarity = "magic" ? "7B98FF" : "White")))
+				price := object.prices[object.prices.MaxIndex()].Clone(), currency := currency0 := price.3, price := price.2
+
+				For key, currency_type in vars.async.currencies
+					If InStr(currency0, key)
+					{
+						currency := currency_type
+						Break
+					}
+				If currency && !vars.pics.async[currency]
+					vars.pics.async[currency] := LLK_ImageCache("img\GUI\currency\" currency . vars.poe_version ".png",, dIcon)
+
+				If Blank(object)
+				{
+					Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section xs" : "ys x+0") " Border HWNDhwnd Hidden w" dIcon + wItem1 - 1 " h" dIcon
+					Gui, %GUI_name%: Add, Text, % "Border ys " (index = 1 ? "x" : "xp") "+-1 hp w1 Border"
+				}
+				Else 
+				{
+					If (index = 1)
+					{
+						Gui, %GUI_name%: Add, Text, % "Section xs Right Border 0x200 HWNDhwnd gAsyncTradeLogs w" wItem1 " h" dIcon . color, % " " label " "
+						vars.hwnd.async_logs["buytooltip_" object.timestamp " " object.name] := hwnd
+					}
+					label_currency := (InStr(currency0, "greater-") ? "ii" : (InStr(currency0, "perfect-") ? "iii" : ""))
+					Gui, %GUI_name%: Font, % "bold s" settings.async.fSize2
+					Gui, %GUI_name%: Add, Text, % (index = 1 ? "" : "x+0") " ys Border BackgroundTrans HWNDhwnd Right w" dIcon " h" dIcon, % label_currency
+				}
+				ControlGetPos, xIcon, yIcon, wIcon, hIcon,, ahk_id %hwnd%
+
+				If Blank(object)
+					Continue
+				Gui, %GUI_name%: Add, Text, % "xp wp BackgroundTrans Right y+-" settings.async.fHeight2, % price " "
+				Gui, %GUI_name%: Add, Pic, % "x" xIcon - 1 " gAsyncTradeLogs HWNDhwnd y" yIcon - 1, % "HBitmap:*" vars.pics.async[currency]
+				Gui, %GUI_name%: Font, % "norm s" settings.async.fSize
+				vars.hwnd.async_logs["transaction_" val " " object[(val = "sold" ? "sold" : "timestamp")] " " object.name] := hwnd
+
+				If (index = 1)
+					Continue
+				Gui, %GUI_name%: Add, Text, % "ys x+-1 Border 0x200 HWNDhwnd gAsyncTradeLogs w" wItem " h" dIcon . color, % " " label " "
+				vars.hwnd.async_logs["soldtooltip_" object.sold " " object.name] := hwnd
+				ControlGetPos, xIcon, yIcon, wIcon, hIcon,, ahk_id %hwnd%
+
+				If (object.prices.Count() = 1)
+					label := "100%"
+				Else
+				{
+					last_price := object.prices[object.prices.MaxIndex()]
+					If (object.prices.1.3 != last_price.3)
+						UpdateConversions()
+					If (object.prices.1.3 = last_price.3)
+						price_diff := Round((last_price.2 / object.prices.1.2) * 100 - 100) "%"
+					Else If (converted1 := vars.async.conversions[object.prices.1.3]) && (converted2 := vars.async.conversions[last_price.3])
+						price_diff := Round(((last_price.2 * converted2) / (object.prices.1.2 * converted1)) * 100 - 100) "%"
+					Else price_diff := "n/a"
+
+					label := price_diff "`n(" object.prices.Count() - 1 ")"
+				}
+				Gui, %GUI_name%: Add, Text, % "ys x+-1 Center Border HWNDhwnd gAsyncTradeLogs w" settings.async.fWidth * 5 " h" dIcon . (object.prices.Count() = 1 ? " 0x200" : ""), % StrReplace(label, ".0")
+				vars.hwnd.async_logs["pricehistory_" object.sold " " object.name] := vars.hwnd.help_tooltips["asynclogs_price history" handle_history] := hwnd, handle_history .= "|"
+			}
+			If (yIcon + hIcon >= vars.monitor.h * 0.8)
+				Break 2
+		}
+	}
+
+	Gui, %GUI_name%: Show, % "NA x10000 y10000"
+	ControlFocus,, % "ahk_id " vars.hwnd.async_logs.search_ok
+	WinGetPos, X, Y, Width, Height, ahk_id %hwnd_logs%
+	Gui, %GUI_name%: Show, % "x" vars.monitor.x + vars.monitor.w/2 - width/2 " y" vars.monitor.y + vars.monitor.h/20
+	LLK_Overlay(hwnd_logs, "show", 0, GUI_name), LLK_Overlay(hwnd_old, "destroy"), vars.async.wLogs := width
+	ControlFocus,, % "ahk_id " vars.hwnd.async_logs.search_ok
+}
+
+AsyncTradeLogsSearch(search, search_price, object)
+{
+	local
+	global vars
+	static currencies := {"c": "chaos", "e": "exalted", "d": "divine"}
+
+	If (search = Lang_Trans("global_search"))
+		search0 := 1
+	Else
+	{
+		search0 := 1
+		Loop, Parse, search, % ",", % " "
+			search0 *= InStr(object.clipboard, A_LoopField)
+	}
+
+	If (search_price = Lang_Trans("global_price") . Lang_Trans("global_colon"))
+		price0 := 1
+	Else
+	{
+		For key, type in {"price": "number", "currency": "alpha"}
+			Loop, Parse, search_price
+				%key% .= (LLK_IsType(A_LoopField, type) || (type = "number" && A_LoopField = ".") ? A_LoopField : "")
+		If !currencies[currency]
+			Return 0
+
+		currency := currencies[currency], final_price := object.prices[object.prices.MaxIndex()]
+		If (currency = final_price.3 && final_price.2 >= price)
+			price0 := 1
+		Else If (converted := vars.async.conversions[final_price.3]) && (converted2 := vars.async.conversions[currency]) && (final_price.2 * converted >= price * converted2)
+			price0 := 1
+	}
+	Return (search0 * price0)
+}
+
+AsyncTradeLogsTooltip(type, key)
+{
+	local
+	global vars, settings
+
+	GUI := "async_tooltip", league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)], width := vars.async.wLogs, margin := settings.async.fWidth/2
+	dIcon := vars.async.dIcon
+	Gui, %GUI%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_tooltip"
+	Gui, %GUI%: Font, % "s" settings.async.fSize - 2 " cWhite", % vars.system.font
+	Gui, %GUI%: Margin, -1, -1
+	Gui, %GUI%: Color, % "Black"
+
+	If InStr(type, "transaction_")
+	{
+		Gui, %GUI%: Font, % "s" settings.async.fSize
+		Gui, %GUI%: Margin, % margin, % margin
+		timestamp := SubStr(key, 1, InStr(key, " ") - 1), object := vars.async[league][(InStr(type, "buy") ? "buy" : "sold")][key]		
+		Gui, %GUI%: Add, Text, % "Section", % LLK_StringCase(LLK_FormatTime(timestamp, "dddd") " (" LLK_FormatTime(timestamp, "ShortDate") ")")
+		Gui, %GUI%: Add, Text, % "Section xs wp Center y+0", % " " LLK_FormatTime(timestamp, "Time") " "
+		UpdateConversions()
+		If (vars.async.conversions.timestamp.2 != "failed")
+		{
+			price := object.prices[object.prices.MaxIndex()].2, currency := object.prices[object.prices.MaxIndex()].3, added := 0
+			For index, val in ["divine", (vars.poe_version ? "exalted" : "chaos")]
+				If (currency != val)
+				{
+					If !vars.pics.async[val]
+						vars.pics.async[val] := LLK_ImageCache("img\GUI\currency" val . vars.poe_version ".png",, dIcon)
+					label_currency := (InStr(currency, "greater-") ? "ii" : (InStr(currency, "perfect-") ? "iii" : ""))
+					converted := price * vars.async.conversions[currency], converted2 := vars.async.conversions[val], converted3 := Round(converted/converted2, (converted/converted2 >= 10 ? 0 : 2))
+					Gui, %GUI%: Add, Text, % "Section " (added ? "ys x+" 2*margin : "xs") " 0x200 BackgroundTrans h" dIcon, % (converted3 >= 1000 ? StrReplace(Round(converted3/1000, 1), ".0") "k" : converted3)
+					Gui, %GUI%: Add, Pic, % "ys x+0", % "HBitmap:*" vars.pics.async[val]
+					added += 1
+				}
+		}
+		Else Gui, %GUI%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed") "`n" Lang_Trans("async_pricefailed", 3)
+	}
+	Else
+	{
+		clip := vars.async[league][type][key].clipboard, clip := StrSplit(LLK_StringCase(clip), "|", " `r`n")
+		For index, val in clip
+		{
+			If (index > 1)
+				Gui, %GUI%: Add, Progress, % "Disabled xs y+" margin " Background606060 h1 w" width, 0
+			Loop, Parse, val, % "`n", % " `r"
+			{
+				If (A_Index = 1)
+					val := ""
+				If (SubStr(A_LoopField, 1, 1) . SubStr(A_LoopField, 0, 1) = "()")
+					Continue
+				val .= (!val ? "" : "`n") A_LoopField
+			}
+
+			If InStr(val, "{")
+			{
+				val := StrReplace(val, "{", "|{"), val := StrSplit(val, "|", " `r`n")
+				For index, mod in val
+					If mod
+						Gui, %GUI%: Add, Text, % "xs y+" (index = 1 ? margin : margin*1.5) " Center w" width, % mod
+			}
+			Else Gui, %GUI%: Add, Text, % (index = 1 ? "Section y" margin : "xs y+" margin) " Center w" width, % val
+		}
+		Gui, %GUI%: Add, Progress, % "Disabled xs y+2 BackgroundBlack h" margin " w" width, 0
+	}
+
+	Gui, %GUI%: Show, % "NA x10000 y10000"
+	WinGetPos,,, wTooltip, hTooltip, ahk_id %hwnd_tooltip%
+	If InStr(type, "transaction_")
+		xPos := vars.general.xMouse - wTooltip/2, yPos := vars.general.yMouse
+	Else xPos := vars.monitor.x + vars.monitor.w/2 - wTooltip/2, yPos := vars.general.yMouse, Gui_CheckBounds(xPos, yPos, wTooltip, hTooltip)
+	Gui, %GUI%: Show, % "NA x" xPos " y" yPos
+	KeyWait, LButton
+	Gui, %GUI%: Destroy
+}
+
+AsyncTradeReprice(mode := "", tooltip := "")
 {
 	local
 	global vars, settings
 	static toggle := 0, existing_item_prev, price_prev
 	
-	item := vars.omnikey.item, timestamp := A_NowUTC, check := LLK_HasVal(vars.hwnd.async_pricing, mode), control := SubStr(check, InStr(check, "_") + 1)
-	league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)], alt_currency := (vars.poe_version ? "exalted" : "chaos")
+	If InStr(tooltip, "tooltip_")
+		tooltip := SubStr(tooltip, InStr(tooltip, "_") + 1)
+	Else
+	{
+		item := vars.omnikey.item, timestamp := A_NowUTC, check := LLK_HasVal(vars.hwnd.async_pricing, mode), control := SubStr(check, InStr(check, "_") + 1)
+		alt_currency := (vars.poe_version ? "exalted" : "chaos"), tooltip := ""
+	}
+	league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
+
 	If InStr(check, "setprice")
 	{
 		Clipboard := "", Clipboard := control
@@ -389,63 +795,69 @@ AsyncTrade2(mode := "")
 		LLK_Overlay(vars.hwnd.async_pricing.main, "destroy"), vars.hwnd.async_pricing := ""
 		Return
 	}
-	Else If (mode = "sell" || mode = "buy")
+	Else If (mode = "sell" || mode = "buy") || tooltip
 	{
-		price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), array := StrSplit(price, " ")
-		If !RegExMatch(price, "\d") || InStr(price, "offer") || (mode = "sell") && (array.1 = 1 && array.2 = alt_currency)
+		If !tooltip
 		{
-			LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
-			Return
-		}
-		item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r"), price_prev := price
-
-		If (mode = "sell")
-		{
-			For key, object in vars.async[league].sell
+			price := SubStr(Clipboard, InStr(Clipboard, "note:") + 11), price := RTrim(price, " `n`r"), array := StrSplit(price, " ")
+			If !RegExMatch(price, "\d") || InStr(price, "offer") || (mode = "sell") && (array.1 = 1 && array.2 = alt_currency)
 			{
-				If object.sold
-					Continue
-				price0 := object.prices[object.prices.MaxIndex()].2 " " object.prices[object.prices.MaxIndex()].3
-				If InStr(key, item.name) && (item.itembase && item.itembase = object.itembase) && (item.ilvl && item.ilvl = object.ilvl) && (price = price0)
-				{
-					existing_item := key
-					Break
-				}
+				LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
+				Return
 			}
-			KeyWait, % vars.omnikey.hotkey, T0.5
-			omni1 := ErrorLevel
-			If !Blank(vars.omnikey.hotkey2)
-				KeyWait, % vars.omnikey.hotkey2, T0.5
-			longpress := (omni1 || ErrorLevel ? 1 : 0)
-		}
-		
-		If longpress && existing_item
-		{
-			LLK_ToolTip(Lang_Trans("async_listing", 2),,,,, "Yellow")
-			Return
-		}
-		Else If longpress || (mode = "buy")
-		{
-			key := timestamp " " LLK_StringCase(item.name), clip := StrReplace(StrReplace(item_text, "`r", "(r)"), "`n", "(n)")
-			object := {"prices": [StrSplit(timestamp " " price, " ")], "itembase": LLK_StringCase(item.itembase), "ilvl": item.ilvl, "rarity": LLK_StringCase(item.rarity), "timestamp": timestamp
-				, "name": LLK_StringCase(item.name), "clipboard": clip, "league": league}
-			vars.async[league][mode][key] := object
-			IniWrite, % "itembase=""" LLK_StringCase(item.itembase) """`nilvl=""" item.ilvl """`nrarity=""" LLK_StringCase(item.rarity) """`ntype=""" mode """`nclipboard=""" clip """`nleague=""" league """`nprice " timestamp "=""" price """", % "ini" vars.poe_version "\async trade.ini", % key
-			AsyncTrade(), LLK_ToolTip(Lang_Trans("async_listing"),,,,, "Lime")
-			Return
+			item_text := RTrim(SubStr(Clipboard, 1, InStr(Clipboard, "`n---",, 0) - 1), " `n`r"), price_prev := price
+
+			If (mode = "sell")
+			{
+				For key, object in vars.async[league].sell
+				{
+					If object.sold
+						Continue
+					price0 := object.prices[object.prices.MaxIndex()].2 " " object.prices[object.prices.MaxIndex()].3
+					If InStr(key, item.name) && (item.itembase && item.itembase = object.itembase) && (item.ilvl && item.ilvl = object.ilvl) && (price = price0)
+					{
+						existing_item := key
+						Break
+					}
+				}
+				KeyWait, % vars.omnikey.hotkey, T0.5
+				omni1 := ErrorLevel
+				If !Blank(vars.omnikey.hotkey2)
+					KeyWait, % vars.omnikey.hotkey2, T0.5
+				longpress := (omni1 || ErrorLevel ? 1 : 0)
+			}
+			
+			If longpress && existing_item
+			{
+				LLK_ToolTip(Lang_Trans("async_listing", 2),,,,, "Yellow")
+				Return
+			}
+			Else If longpress || (mode = "buy")
+			{
+				key := timestamp " " LLK_StringCase(item.name), clip := StrReplace(StrReplace(item_text, "`r", "(r)"), "`n", "(n)")
+				object := {"prices": [StrSplit(timestamp " " price, " ")], "itembase": LLK_StringCase(item.itembase), "ilvl": item.ilvl, "rarity": LLK_StringCase(item.rarity), "timestamp": timestamp
+					, "name": LLK_StringCase(item.name), "clipboard": clip, "league": league}
+				vars.async[league][mode][key] := object
+				IniWrite, % "itembase=""" LLK_StringCase(item.itembase) """`nilvl=""" item.ilvl """`nrarity=""" LLK_StringCase(item.rarity) """`ntype=""" mode """`nclipboard=""" clip """`nleague=""" league """`nprice " timestamp "=""" price """", % "ini" vars.poe_version "\async trade.ini", % key
+				AsyncTrade(), LLK_ToolTip(Lang_Trans("async_listing"),,,,, "Lime")
+				Return
+			}
+			SendInput, {RButton}
 		}
 
-		SendInput, {RButton}
 		toggle := !toggle, GUI_name := "async_pricing" toggle, margin := settings.async.fWidth//2
-		Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_pricing", LLK-UI: async pricing
+		Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_pricing" (tooltip ? " +E0x20" : ""), LLK-UI: async pricing
 		Gui, %GUI_name%: Font, % "bold underline s" settings.async.fSize " cWhite", % vars.system.font
 		Gui, %GUI_name%: Margin, % margin, % margin
 		Gui, %GUI_name%: Color, % "Black"
 
 		hwnd_old := vars.hwnd.async_pricing.main, vars.hwnd.async_pricing := {"main": hwnd_pricing}, dIcon := vars.async.dIcon
-		If existing_item
+		If existing_item || tooltip
 		{
-			item := vars.async[league].sell[existing_item], count := item.prices.Count(), existing_item_prev := existing_item
+			If !tooltip
+				item := vars.async[league].sell[existing_item], count := item.prices.Count(), existing_item_prev := existing_item
+			Else item := vars.async[league].sold[tooltip], count := item.prices.Count()
+
 			If (item.prices.1.3 != item.prices[item.prices.MaxIndex()].3)
 				UpdateConversions()
 			If (item.prices.1.3 = item.prices[item.prices.MaxIndex()].3)
@@ -453,18 +865,15 @@ AsyncTrade2(mode := "")
 			Else If (converted1 := vars.async.conversions[item.prices.1.3]) && (converted2 := vars.async.conversions[item.prices[item.prices.MaxIndex()].3])
 				price_diff := Round(((item.prices[item.prices.MaxIndex()].2 * converted2) / (item.prices.1.2 * converted1)) * 100 - 100, 1)
 			Else price_diff := ""
-			Gui, %GUI_name%: Add, Text, % "Section", % Lang_Trans("async_history") . (count > 1 ? (price_diff ? " " price_diff "%" : "") : "")
+
+			elapsed_total := LLK_TimeSince(item.prices.1.1, (tooltip ? item.sold : A_NowUTC))
+			Gui, %GUI_name%: Add, Text, % "Section", % Lang_Trans("async_history") . (count > 1 ? (price_diff ? " " price_diff "% (" elapsed_total ")" : "") : "")
 			Gui, %GUI_name%: Font, % "norm s" settings.async.fSize2
 			For iPrice, array in item.prices
 			{
-				elapsed := A_NowUTC, unit := 1
-				EnvSub, elapsed, % array.1, minutes
-				For index, val in [60, 24, 7]
-					If (elapsed >= val)
-						elapsed := Round(elapsed / val, 1), unit += 2
-					Else Break
-				elapsed := StrReplace((elapsed >= 10 ? Round(elapsed) : elapsed), ".0")
-				Gui, %GUI_name%: Add, Text, % "Section Center " (iPrice = 1 ? "xs" : "ys") " w" dIcon, % elapsed . SubStr(Lang_Trans("global_timeunits", unit + (elapsed != 1 ? 1 : 0)), 1, 1)
+				elapsed := (item.prices[iPrice + 1].1 ? item.prices[iPrice + 1].1 : (tooltip ? item.sold : A_NowUTC))
+				elapsed := LLK_TimeSince(array.1, elapsed, 1)
+				Gui, %GUI_name%: Add, Text, % "Section Center " (iPrice = 1 ? "xs" : "ys") " w" dIcon, % elapsed
 
 				Gui, %GUI_name%: Font, % "bold"
 				Gui, %GUI_name%: Add, Text, % "xs y+0 BackgroundTrans Right HWNDhwnd w" dIcon " h" dIcon, % (InStr(array.3, "greater-") ? "ii" : (InStr(array.3, "perfect-") ? "iii" : ""))
@@ -486,6 +895,17 @@ AsyncTrade2(mode := "")
 			}
 		}
 		Else existing_item_prev := ""
+
+		If tooltip
+		{
+			Gui, %GUI_name%: Show, % "NA x10000 y10000"
+			WinGetPos, x, y, w, h, ahk_id %hwnd_pricing%
+			Gui, %GUI_name%: Show, % "NA x" vars.general.xMouse - w " y" vars.general.yMouse
+			KeyWait, LButton
+			Gui, %GUI_name%: Destroy
+			Return
+		}
+
 		Gui, %GUI_name%: Font, % "bold underline s" settings.async.fSize
 		Gui, %GUI_name%: Add, Text, % "Section" (!existing_item ? "" : " x" margin " y+" margin), % Lang_Trans("async_adjust")
 		Gui, %GUI_name%: Font, norm
@@ -562,7 +982,7 @@ AsyncTrade2(mode := "")
 
 			For index, val in options
 			{
-				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTrade2 HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n-" Round(100 * (1 - val / loop)) "%"
+				Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section xs" : "ys") " Border Center gAsyncTradeReprice HWNDhwnd w" dIcon - 2 " h" dIcon - 2, % val "`n-" Round(100 * (1 - val / loop)) "%"
 				vars.hwnd.async_pricing["setprice" (outer = 2 ? "alt" : "") "_" val] := hwnd
 				If (A_Index = 1 && outer = 1) || (A_Index = 1 && outer = 2 && !vars.async.button1.Count())
 				{

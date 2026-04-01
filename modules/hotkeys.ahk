@@ -113,6 +113,8 @@ Hotkeys_ESC()
 		vars.RGB_picker.cancel := 1
 	Else If vars.hwnd.async.main && !vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async.main)
 		AsyncTrade("close")
+	Else If vars.hwnd.async_logs.main && WinExist("ahk_id " vars.hwnd.async_logs.main)
+		AsyncTradeLogs("close")
 	Else If vars.snipping_tool.GUI
 		vars.snipping_tool := {"GUI": 0}
 	Else If WinExist("LLK-UI: notepad reminder")
@@ -218,7 +220,7 @@ Hotkeys_ESC()
 	Else
 	{
 		If vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async_pricing.main)
-			AsyncTrade2("close")
+			AsyncTradeReprice("close")
 		SendInput, {ESC down}
 		KeyWait, ESC
 		SendInput, {ESC up}

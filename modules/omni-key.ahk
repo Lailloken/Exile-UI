@@ -50,7 +50,7 @@
 
 		If InStr(Clipboard, "note: ~b/o") && WinExist("ahk_id " vars.hwnd.async.main)
 		{
-			AsyncTrade2(vars.async.mode), Omni_Release()
+			AsyncTradeReprice(vars.async.mode), Omni_Release()
 			Return
 		}
 

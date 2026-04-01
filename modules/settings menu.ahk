@@ -1018,6 +1018,8 @@ Settings_exchange2(cHWND)
 		IniWrite, % (settings.features.async := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable async trade
 		If WinExist("ahk_id " vars.hwnd.async.main)
 			AsyncTrade("close")
+		If WinExist("ahk_id " vars.hwnd.async_logs.main)
+			AsyncTradeLogs("close")
 		Settings_menu("exchange")
 	}
 	Else If (check = "async_name")
@@ -1025,6 +1027,8 @@ Settings_exchange2(cHWND)
 		IniWrite, % (settings.async.show_name := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\vaal street.ini", settings async trade, show full name
 		If WinExist("ahk_id " vars.hwnd.async.main)
 			AsyncTrade()
+		If WinExist("ahk_id " vars.hwnd.async_logs.main)
+			AsyncTradeLogs()
 	}
 	Else If (check = "minchange")
 	{

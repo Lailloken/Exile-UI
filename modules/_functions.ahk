@@ -293,15 +293,6 @@ LLK_FormatTime(time, format)
 	Return formatted
 }
 
-LLK_TimeElapsed(timestamp, unit := "minutes")
-{
-	local
-
-	now := A_NowUTC
-	EnvSub, now, % timestamp, % unit
-	Return now
-}
-
 LLK_HasKey(object, value, InStr := 0, case_sensitive := 0, all_results := 0, recurse := 0)
 {
 	local
@@ -482,6 +473,40 @@ LLK_StringRemove(string, characters)
 		string := StrReplace(string, A_LoopField)
 	}
 	Return string
+}
+
+LLK_StringReplace(string, array)
+{
+	local
+
+	For index, pair in array
+		string := StrReplace(string, pair.1, pair.2)
+	Return string
+}
+
+LLK_TimeElapsed(timestamp, unit := "minutes")
+{
+	local
+
+	now := A_NowUTC
+	EnvSub, now, % timestamp, % unit
+	Return now
+}
+
+LLK_TimeSince(timestamp_early, timestamp_late, short := 0)
+{
+	local
+
+	unit := 1
+	timestamp_late -= timestamp_early, Minutes
+	For index, val in [60, 24, 7]
+		If (timestamp_late >= val)
+			timestamp_late := Round(timestamp_late / val, 1), unit += 2
+		Else Break
+	
+	timestamp_late := StrReplace(timestamp_late, ".0")
+	timestamp_late := (timestamp_late >= 10 ? Round(timestamp_late) : timestamp_late)
+	Return timestamp_late . (short ? "" : " ") . SubStr(Lang_Trans("global_timeunits", unit + (timestamp_late != 1 ? 1 : 0)), 1, (short ? 1 : 1000))
 }
 
 LLK_TrimDecimals(string)
