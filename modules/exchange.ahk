@@ -158,7 +158,9 @@ AsyncTrade(cHWND := "", hotkey := "")
 				ClipWait, 0.1
 				KeyWait, LButton
 				WinActivate, % "ahk_id " vars.hwnd.poe_client
-				WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+				WinWaitActive, % "ahk_id " vars.hwnd.poe_client, 2
+				If ErrorLevel
+					Return
 				SendInput, ^{f}
 				Sleep 100
 				SendInput, ^{a}^{v}
@@ -680,7 +682,8 @@ AsyncTradeLogsTooltip(type, key)
 	global vars, settings
 
 	GUI := "async_tooltip", league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)], width := vars.async.wLogs, margin := settings.async.fWidth/2
-	dIcon := vars.async.dIcon
+	dIcon := vars.async.dIcon, timezone := A_Now
+	timezone -= A_NowUTC, Hours
 	Gui, %GUI%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_tooltip"
 	Gui, %GUI%: Font, % "s" settings.async.fSize - 2 " cWhite", % vars.system.font
 	Gui, %GUI%: Margin, -1, -1
@@ -690,7 +693,8 @@ AsyncTradeLogsTooltip(type, key)
 	{
 		Gui, %GUI%: Font, % "s" settings.async.fSize
 		Gui, %GUI%: Margin, % margin, % margin
-		timestamp := SubStr(key, 1, InStr(key, " ") - 1), object := vars.async[league][(InStr(type, "buy") ? "buy" : "sold")][key]		
+		timestamp := SubStr(key, 1, InStr(key, " ") - 1), object := vars.async[league][(InStr(type, "buy") ? "buy" : "sold")][key]
+		timestamp += timezone, Hours
 		Gui, %GUI%: Add, Text, % "Section", % LLK_StringCase(LLK_FormatTime(timestamp, "dddd") " (" LLK_FormatTime(timestamp, "ShortDate") ")")
 		Gui, %GUI%: Add, Text, % "Section xs wp Center y+0", % " " LLK_FormatTime(timestamp, "Time") " "
 		UpdateConversions()
@@ -701,7 +705,7 @@ AsyncTradeLogsTooltip(type, key)
 				If (currency != val)
 				{
 					If !vars.pics.async[val]
-						vars.pics.async[val] := LLK_ImageCache("img\GUI\currency" val . vars.poe_version ".png",, dIcon)
+						vars.pics.async[val] := LLK_ImageCache("img\GUI\currency\" val . vars.poe_version ".png",, dIcon)
 					label_currency := (InStr(currency, "greater-") ? "ii" : (InStr(currency, "perfect-") ? "iii" : ""))
 					converted := price * vars.async.conversions[currency], converted2 := vars.async.conversions[val], converted3 := Round(converted/converted2, (converted/converted2 >= 10 ? 0 : 2))
 					Gui, %GUI%: Add, Text, % "Section " (added ? "ys x+" 2*margin : "xs") " 0x200 BackgroundTrans h" dIcon, % (converted3 >= 1000 ? StrReplace(Round(converted3/1000, 1), ".0") "k" : converted3)
@@ -834,11 +838,12 @@ AsyncTradeReprice(mode := "", tooltip := "")
 			}
 			Else If longpress || (mode = "buy")
 			{
-				key := timestamp " " LLK_StringCase(item.name), clip := StrReplace(StrReplace(item_text, "`r", "(r)"), "`n", "(n)")
+				key := timestamp " " LLK_StringCase(item.name), clip := LLK_StringReplace(item_text, [["--------", "|"], ["`r`n`r`n", "`r`n"]])
 				object := {"prices": [StrSplit(timestamp " " price, " ")], "itembase": LLK_StringCase(item.itembase), "ilvl": item.ilvl, "rarity": LLK_StringCase(item.rarity), "timestamp": timestamp
 					, "name": LLK_StringCase(item.name), "clipboard": clip, "league": league}
 				vars.async[league][mode][key] := object
-				IniWrite, % "itembase=""" LLK_StringCase(item.itembase) """`nilvl=""" item.ilvl """`nrarity=""" LLK_StringCase(item.rarity) """`ntype=""" mode """`nclipboard=""" clip """`nleague=""" league """`nprice " timestamp "=""" price """", % "ini" vars.poe_version "\async trade.ini", % key
+				IniWrite, % "itembase=""" LLK_StringCase(item.itembase) """`nilvl=""" item.ilvl """`nrarity=""" LLK_StringCase(item.rarity) """`ntype=""" mode """`nclipboard="""
+					. LLK_StringReplace(item_text, [["`r", "(r)"], ["`n", "(n)"]]) """`nleague=""" league """`nprice " timestamp "=""" price """", % "ini" vars.poe_version "\async trade.ini", % key
 				AsyncTrade(), LLK_ToolTip(Lang_Trans("async_listing"),,,,, "Lime")
 				Return
 			}
