@@ -1,5 +1,16 @@
 [
   [
+	["1.62.3", 16203],
+	"april 2, 2026",
+	"act-decoder:\n>> added extra highlighting to indicators past the first pair",
+	"act-tracker:\n>> implemented the new a1 dweller route\n>> added a prompt to invite helena to your hideout in a2",
+	"improved the 'black out screen area' option to also cover the taskbar",
+	"map-tracker:\n>> changed idle text to 'not mapping'\n>> added tracking support for hive colonies (hivebrain glands)",
+	"search-strings:\n>> added an optional usage method that skips calibration steps",
+	"stash-ninja:\n>> added a toggle to use a unified set of price profiles that applies to every tab",
+	"vaal street:\n>> tweaked price-history display in 'quick repricing'\n>> added a log-viewer for async trading"
+  ],
+  [
 	["1.62.2", 16202],
 	"march 15, 2026",
 	"act-tracker:\n>> removed 5L optionals in A5 + A6\n>> updated 3.28 gem info",
