@@ -647,7 +647,7 @@ Loop()
 			vars.general.updatetick := A_TickCount, UpdateCheck(1)
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
-			LLK_Error("Secondary thread has crashed, the tool needs to be restarted", 1)
+			LLK_Error("Secondary thread has crashed, the tool needs to be restarted`n`nIf this is a recurring issue, disable multi-threading in the <general> settings", 1)
 
 		If (vars.news.unread || vars.update.1) && (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main))
 		{
