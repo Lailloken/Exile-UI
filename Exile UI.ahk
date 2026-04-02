@@ -459,6 +459,7 @@ Init_general()
 	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
+	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
 	settings.general.animations := !Blank(check := ini.settings.animations) ? check : 1
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0

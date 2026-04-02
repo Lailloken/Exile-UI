@@ -11,6 +11,7 @@
 	ini := IniBatchRead("ini" vars.poe_version "\chat macros.ini")
 
 	settings.macros.sMenu := !Blank(check := ini.settings["widget-menu size"]) ? check : Max(settings.general.fSize, 10)
+	LLK_FontDimensions(settings.macros.sMenu, height, width), settings.macros.wMenu := width
 	settings.macros.animations := !Blank(check := ini.settings.animations) ? check : 1
 	settings.macros.hotkey_fasttravel := hotkey_fasttravel := !Blank(check := ini.settings["fasttravel hotkey"]) ? check : ""
 	If !Blank(hotkey_fasttravel) && Hotkeys_Convert(hotkey_fasttravel)

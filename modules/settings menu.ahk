@@ -1410,6 +1410,7 @@ Settings_general2(cHWND := "")
 					Sleep 150
 				}
 				IniWrite, % settings.general.sMenu, % "ini" vars.poe_version "\config.ini", Settings, menu-widget size
+				LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
 				For key, hbm in vars.pics.radial.menu
 					DeleteObject(hbm)
 				vars.pics.radial.menu := {}
@@ -2670,7 +2671,7 @@ Settings_macros()
 		vars.pics.settings_macros := {}, sMenu := settings.macros.sMenu
 	}
 
-	height := (settings.macros.sMenu + 6) * 2
+	height := 4 * settings.macros.wMenu
 	For index, travel in vars.macros.fasttravels
 	{
 		If !vars.pics.settings_macros[travel]
@@ -2738,6 +2739,7 @@ Settings_macros2(cHWND)
 				Sleep 150
 			}
 			IniWrite, % settings.macros.sMenu, % "ini" vars.poe_version "\chat macros.ini", settings, menu-widget size
+			LLK_FontDimensions(settings.macros.sMenu, height, width), settings.macros.wMenu := width
 			For key, hbm in vars.pics.radial.macros
 				DeleteObject(hbm)
 			vars.pics.radial.macros := {}, Settings_menu("macros")

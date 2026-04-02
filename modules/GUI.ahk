@@ -340,14 +340,14 @@ Gui_RadialMenu(selection := "", longpress := 0)
 	global vars, settings
 	static toggle := 0
 
-	active := (vars.radial.active = "menu" ? "menu" : "macros"), height := 2 * (settings[(active = "menu" ? "general" : "macros")].sMenu + 6), toggle := !toggle, GUI := "radial_menu" toggle
+	active := (vars.radial.active = "menu" ? "menu" : "macros"), height := 4 * settings[(active = "menu" ? "general" : "macros")].wMenu, toggle := !toggle, GUI := "radial_menu" toggle
 	vars.radial.click_select := (longpress ? vars.radial.click_select : ""), vars.radial.wait := 1
 
 	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow HWNDradial_menu +E0x02000000 +E0x00080000
 	Gui, %GUI%: Color, Purple
 	WinSet, TransColor, Purple
 	Gui, %GUI%: Margin, % (margin := Round(height/6)), % margin
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
+	Gui, %GUI%: Font, % "s" settings[(active = "menu" ? "general" : "macros")].sMenu " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := []
 
 	Loop 9
@@ -356,15 +356,13 @@ Gui_RadialMenu(selection := "", longpress := 0)
 		If val && !IsNumber(val)
 		{
 			click := vars.radial.click_select
-			If (click && (click != "settings") || InStr("fasttravel, custommacros", vars.radial.active)) && (val = "settings")
+			If (val = "settings") && (click && (click != "settings") || InStr("fasttravel, custommacros", vars.radial.active))
 				img := "settings_bg"
 			Else img := (val = "close" && click = "notepad" ? "notepad_close" : (val = "close" && click = "leveltracker" ? "leveltracker_close" : val))
 			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (val = "anoints" ? vars.poe_version : "")
 			file := (val = "maptracker" && vars.maptracker.pause) ? 0 : file
 			If !vars.pics.radial[active][img . file]
 				vars.pics.radial[active][img . file] := LLK_ImageCache("img\GUI\radial menu\" img . file ".png", height)
-			If !vars.pics.radial[active].square_black
-				vars.pics.radial[active].square_black := LLK_ImageCache("img\GUI\square_black.png", height)
 			If RegExMatch(val, "i)(leveltracker|maptracker)$")
 				If !vars.pics.radial[active][img . (file = "0" ? "" : "0")]
 					vars.pics.radial[active][img . (file = "0" ? "" : "0")] := LLK_ImageCache("img\GUI\radial menu\" img . (file = "0" ? "" : "0") ".png", height)
@@ -375,6 +373,8 @@ Gui_RadialMenu(selection := "", longpress := 0)
 			Gui, %GUI%: Add, Progress, % style " w" height + 2 " h" height + 2 " Disabled BackgroundTrans Hidden Border HWNDhwnd"
 		Else If (val != "settings" && vars.radial.active = "custommacros")
 		{
+			If !vars.pics.radial[active].square_black
+				vars.pics.radial[active].square_black := LLK_ImageCache("img\GUI\square_black.png", height)
 			Gui, %GUI%: Add, Text, % style " w" height + 2 " h" height + 2 " Center 0x200 BackgroundTrans Border HWNDhwnd0", % settings.macros["label_" val]
 			Gui, %GUI%: Add, Pic, % "xp yp Border HWNDhwnd", % "HBitmap:*" vars.pics.radial[active].square_black
 		}
