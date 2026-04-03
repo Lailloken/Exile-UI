@@ -813,7 +813,8 @@
 		m_general_display		=	"windowed"
 		m_general_display		=	"borderless windowed"
 		m_general_resolution	=	"custom resolution:"
-		m_general_filler		=	"black out screen area around the client"
+		m_general_filler		=	"black out empty screen space"
+		m_general_filler		=	"and taskbar"							;## separate toggle, in addition to previous line
 		m_general_position		=	"window-position:"
 		m_general_posleft		=	"left"
 		m_general_poscenter		=	"center"

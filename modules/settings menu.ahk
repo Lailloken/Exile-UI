@@ -1232,6 +1232,8 @@ Settings_general()
 		{
 			Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_general2 HWNDhwnd Checked" settings.general.ClientFiller, % Lang_Trans("m_general_filler")
 			vars.hwnd.settings.ClientFiller := vars.hwnd.help_tooltips["settings_client filler"] := hwnd
+			Gui, %GUI%: Add, Checkbox, % "ys x+0 gSettings_general2 HWNDhwnd Checked" settings.general.ClientFillerTaskbar . (settings.general.ClientFiller ? "" : " Hidden"), % Lang_Trans("m_general_filler", 2)
+			vars.hwnd.settings.ClientFillerTaskbar := vars.hwnd.help_tooltips["settings_client filler taskbar"] := hwnd
 		}
 
 		If (vars.client.h0 / vars.client.w0 < (5/12))
@@ -1351,7 +1353,11 @@ Settings_general2(cHWND := "")
 			IniWrite, % width, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 			IniWrite, % LLK_ControlGet(vars.hwnd.settings.remove_borders), % "ini" vars.poe_version "\config.ini", settings, remove window-borders
 			If vars.hwnd.settings.ClientFiller
-				IniWrite, % LLK_ControlGet(vars.hwnd.settings.ClientFiller), % "ini" vars.poe_version "\config.ini", Settings, client background filler
+			{
+				IniWrite, % (input := LLK_ControlGet(vars.hwnd.settings.ClientFiller)), % "ini" vars.poe_version "\config.ini", Settings, client background filler
+				If input
+					IniWrite, % LLK_ControlGet(vars.hwnd.settings.ClientFillerTaskbar), % "ini" vars.poe_version "\config.ini", Settings, cover taskbar
+			}
 			If vars.hwnd.settings.blackbars
 				IniWrite, % LLK_ControlGet(vars.hwnd.settings.blackbars), % "ini" vars.poe_version "\config.ini", Settings, black-bar compensation
 			IniWrite, % vars.settings.active, % "ini" vars.poe_version "\config.ini", Versions, reload settings
@@ -1359,6 +1365,12 @@ Settings_general2(cHWND := "")
 			Reload
 			ExitApp
 		Case "ClientFiller":
+			input := LLK_ControlGet(cHWND)
+			GuiControl, -Hidden, % vars.hwnd.settings.apply
+			GuiControl, movedraw, % vars.hwnd.settings.apply
+			GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.ClientFillerTaskbar
+			GuiControl, movedraw, % vars.hwnd.settings.ClientFillerTaskbar
+		Case "ClientFillerTaskbar":
 			GuiControl, -Hidden, % vars.hwnd.settings.apply
 			GuiControl, movedraw, % vars.hwnd.settings.apply
 		Case "dock":

@@ -450,6 +450,7 @@ Init_general()
 	settings.general.dev_env := settings.general.dev * (!Blank(check := ini.settings["dev env"]) ? check : 0)
 	settings.general.warning_ultrawide := !Blank(check := ini.versions["ultrawide warning"]) ? check : 0
 	settings.general.ClientFiller := !settings.general.FillerAvailable ? 0 : !Blank(check := ini.settings["client background filler"]) ? check : 0
+	settings.general.ClientFillerTaskbar := !Blank(check := ini.settings["cover taskbar"]) ? check : 0
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
 
 	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
@@ -486,6 +487,8 @@ Init_general()
 	settings.general.league := league := !Blank(check := ini.settings.league) ? StrSplit(check, "|", " ", 4) : settings.general.league0.Clone()
 	If !vars.poe_version && !vars.leagues[league.1][league.2][league.3][league.4] || vars.poe_version && !vars.leagues[league.1][league.2][league.3]
 		settings.general.league := settings.general.league0.Clone()
+
+	Gui_ClientFiller()
 }
 
 Init_vars()
@@ -1080,8 +1083,6 @@ Startup()
 
 	If vars.log.file_location
 		Init_log(), LLK_Log("accessed required information from log-file")
-
-	Gui_ClientFiller()
 }
 
 StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com/docs/v1/lib/OnMessage.htm
