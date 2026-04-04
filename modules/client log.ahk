@@ -454,8 +454,8 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		}
 		*/
 
-		If Lang_Match(loopfield, vars.lang.log_enter)
-			parse := SubStr(loopfield, InStr(loopfield, vars.lang.log_enter.1)), areaname := LLK_StringCase(Lang_Trim(parse, vars.lang.log_enter, Lang_Trans("log_location")))
+		If !vars.poe_version && RegExMatch(loopfield, "i)set.source.\[(?!\(|.*\d)")
+			parse := SubStr(loopfield, InStr(loopfield, "[",, 0)), areaname := LLK_StringCase(Trim(parse, " []`r`n"))
 
 		If !Blank(settings.general.character) && InStr(loopfield, settings.general.character) && IsObject((character_info := Log_CharacterInfo(loopfield)))
 			level := character_info.1, character_class := character_info.2
