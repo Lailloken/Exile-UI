@@ -2419,12 +2419,14 @@ Settings_leveltracker2(cHWND := "")
 		{
 			FileDelete, % "ini" vars.poe_version "\leveling guide" target_profile ".ini"
 			IniDelete, % "ini" vars.poe_version "\search-strings.ini", hideout lilly, % "00-PoB gems: slot " (!target_profile ? "1" : target_profile)
+			IniDelete, % "ini" vars.poe_version "\leveling tracker.ini", % "current run" target_profile
 			If vars.searchstrings.list["hideout lilly"]
 				Init_searchstrings()
 
 			If (settings.leveltracker.profile = target_profile)
 			{
 				Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
+				vars.leveltracker.timer := {}
 				Loop, Files, % "ini" vars.poe_version "\leveling guide*.ini"
 				{
 					new_file := SubStr(StrReplace(A_LoopFileName, ".ini"), 0), new_file := IsNumber(new_file) ? new_file : ""
