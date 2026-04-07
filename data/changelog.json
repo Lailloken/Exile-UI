@@ -1,5 +1,14 @@
 [
   [
+	["1.62.4", 16204, 1],
+	"april 7, 2026",
+	"fixed scaling inconsistencies for the menu-widget and chat-macros menus",
+	"'blacking out' the taskbar is now a separate toggle and should be more consistent",
+	"act-tracker:\n>> added a new option 'dynamic character tracking' to make tracking and switching between characters easier\n>> fixed an oversight where deleting a guide-slot didn't reset its timer",
+	"stash-ninja:\n>> essence of insanity was positioned incorrectly",
+	"vaal street:\n>> fixed a lock-up when clicking on tracked listings (async trade)(/highlight)"
+  ],
+  [
 	["1.62.3", 16203],
 	"april 2, 2026",
 	"act-decoder:\n>> added extra highlighting to indicators past the first pair",
@@ -153,68 +162,5 @@
 	"hotkeys:\n>> <tab> key is now the <widget-key>, and some activations were moved to the <omni-key> instead",
 	">> replaced the main toolbar with a dynamic menu-widget (long-press <esc> to access it)(/highlight)",
 	">> seed-explorer feature removed (3rd-party data no longer maintained)"
-  ],
-  [
-	["1.59.8", 15908],
-	"october 8, 2025",
-	"clone-frames:\n>> added grouping functionality (editing multiple frames at once)\n>> enabled the <infopanel> auto-toggle to hide frames when fullscreen in-game menus are open",
-	"item-info:\n>> fixed base-stats for expectional items, fixed roll-ranges on global/ilvl scale",
-	"omni-key:\n>> added <craft of exile 2> link to the context-menu",
-	"sanctum/sekhema:\n>> improved scanning for crowded pathing",
-	"vaal street:\n>> fixed ratio-calculator pasting"
-  ],
-  [
-	["1.59.7", 15907],
-	"september 13, 2025",
-	"act-tracker:\n>> alignment hotkey for pob-tree overlay moved from <space> to <middle mouse>\n>> added an optional hotkey to close in-game tree and tree overlay simultaneously",
-	"map-tracker:\n>> fixed a tracking bug when dying in a map, then entering abyssal depths",
-	"stash-ninja:\n>> now poe2 compatible (poe.ninja 2 is still under development, may cause issues)"
-  ],
-  [
-	["1.59.6", 15906],
-	"september 9, 2025",
-	"act-tracker:\n>> poe2 guide improvements (requires progress reset)",
-	"item-info:\n>> fixed abyss mods, improved support for essence and abyss mods",
-	"map-tracker:\n>> added support for tracking abyssal depths",
-	"statlas:\n>> fixed stats for tagged maps, added a few new images"
-  ],
-  [
-	["1.59.5", 15905],
-	"september 3, 2025",
-	"act-tracker:\n>> initial support for act 4 and interludes (requires progress reset), added support for 0.3 gems",
-	"item-info:\n>> updated item bases and mods",
-	">> updated map-tracker & statlas to support newly-added maps"
-  ],
-  [
-	["1.59.4", 15904],
-	"august 29, 2025",
-	"act-tracker:\n>> guide updated to 0.3, ends after a3 doryani fight\n>> added new gem-cutting overlay",
-	">> item-info + map-info updated to 0.3",
-	">> glhf"
-  ],
-  [
-	["1.59.3", 15903],
-	"august 24, 2025",
-	">> added a news/announcements feed with notifications for important news regarding bugs, fixes, etc.",
-	"vaal street:\n>> added poe2 compatibility"
-  ],
-  [
-	["1.59.2", 15902],
-	"august 19, 2025",
-	"hotfix 1\n>> fixed regex strings in gem-setup overlay\n>> anoint calculator now resets after modifying available stock",
-	"clone-frames:\n>> fixed setup (some clicks weren't registering)",
-	"act-tracker:\n>> added bullet-points to major lines in the guide, optionals now marked with a plus-sign\n>> major tweaks to poe2 guide, some re-routing, fixed gem regex",
-	"sanctum/sekhema:\n>> relic manager now auto-adjusts to the in-game relic altar"
-  ],
-  [
-	["1.59.1", 15901],
-	"august 8, 2025",
-	"act-tracker:\n>> improved routing to skip irrelevant gem-quests and reduce backtracking\n>> timer can now be reset in the first town, added afk auto-pause after 10 seconds\n>> added a <gems> toggle to enable/disable gem-quests, added a gem-pickup configurator to adjust when gems should be picked up"
-  ],
-  [
-	["1.59.0", 15900],
-	"july 30, 2025",
-	"act-tracker:\n>> stylistic rewrite of poe1 guide, guide-panel auto hides in lab\n>> added earlier ascension options, skip siosa/lilly if not required (pob)",
-	">> guide editor received a major redesign"
   ]
 ]
