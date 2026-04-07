@@ -484,7 +484,7 @@ Lab(mode := "", override := 0)
 
 	If (mode = "import" || mode = "link")
 	{
-		WinWaitNotActive, ahk_group poe_window, 2
+		WinWaitNotActive, ahk_group poe_window,, 2
 		Clipboard := ""
 		While !WinActive("ahk_group poe_window")
 		{
