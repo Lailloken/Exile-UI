@@ -5047,7 +5047,7 @@ Settings_updater()
 		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_updater_recent")
 		Gui, %GUI%: Font, norm
 
-		features := {}, remove := []
+		features := {"0major changes": []}, remove := []
 		For iVersion, aVersion in vars.updater.changelog
 			For iLine, vLine in aVersion
 			{
@@ -5060,7 +5060,7 @@ Settings_updater()
 				Else change := vLine, feature := ""
 
 				If InStr(vLine, "/highlight")
-					change := (feature ? feature ":`n" : "") change, feature := "0major changes"
+					features["0major changes"].Push((date ? version " (" date ")`n" : "") . (feature ? feature ":`n" : "") change)
 				If date
 					change := version " (" date ")`n" change
 				If !feature || (iLine < 3)
@@ -5080,8 +5080,8 @@ Settings_updater()
 		For key, array in features
 		{
 			vars.help.settings["recentchanges " (key := StrReplace(key, 0))] := array.Clone(), outer := A_Index
-			While !Blank(vars.help.settings["recentchanges " key].8)
-				vars.help.settings["recentchanges " key].RemoveAt(8)
+			While !Blank(vars.help.settings["recentchanges " key].9)
+				vars.help.settings["recentchanges " key].RemoveAt(9)
 			Loop 2
 			{
 				Gui, %GUI%: Add, Text, % (outer = 1 || A_Index = 2 ? "Section xs" : "ys") " Border HWNDhwnd" (RegExMatch(key, "i)major.changes|new.feature") ? " cFF8000" : ""), % " " StrReplace(key, "&", "&&") " "
