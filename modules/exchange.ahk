@@ -76,7 +76,7 @@
 			If (target_key := object.sold)
 			{
 				If (target_key = 1)
-					target_key := object_new.prices[object_new.prices.MaxIndex()].1
+					target_key := object_new.prices[object_new.prices.MaxIndex()].1, object_new.sold := target_key
 				vars.async[object.league].sold[target_key " " object_new.name] := object_new
 			}
 			Else vars.async[object.league][object.type][key] := object_new
@@ -158,7 +158,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 				ClipWait, 0.1
 				KeyWait, LButton
 				WinActivate, % "ahk_id " vars.hwnd.poe_client
-				WinWaitActive, % "ahk_id " vars.hwnd.poe_client, 2
+				WinWaitActive, % "ahk_id " vars.hwnd.poe_client,, 2
 				If ErrorLevel
 					Return
 				SendInput, ^{f}
