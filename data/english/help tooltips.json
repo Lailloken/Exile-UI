@@ -515,6 +515,11 @@
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
       "credits:\n- default guide originally derived from exile-leveling by heartofphos\n- contains several act optimizations based on cyclondefinitiv's guide"
     ],
+    "leveltracker guide info 2": [
+      "there are up to nine individual guide slots you can use and switch between",
+      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
+      "credits: acts 1-3 originally derived from u/xebtria's quick-guide"
+    ],
     "leveltracker gems": [
       "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
       "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
@@ -524,11 +529,6 @@
     "leveltracker gems all": [
       "by default, the guide skips gem-quests that don't have relevant rewards for the imported build",
       "click this button to override this behavior and instead include every gem-quest (except a3 library)"
-    ],
-    "leveltracker guide info 2": [
-      "there are up to nine individual guide slots you can use and switch between",
-      "each slot has its own data for: guide & progress, gear, skill-tree, timer",
-      "credits: acts 1-3 originally derived from u/xebtria's quick-guide"
     ],
     "leveltracker guide format info": [
       "each line has one or more steps you need to complete",
@@ -614,6 +614,10 @@
     "leveltracker hotkeys": [
       "type in a key-name and press <enter>",
       "don't bind it to modifier-keys or keys used for chatting"
+    ],
+    "leveltracker auto tracking": [
+      "1) if the guide-overlay is active, new characters will be automatically tracked and added to the active guide-slot upon reaching level 2",
+      "2) when you write something into local chat, tracking will automatically switch to the guide-slot with that character's name"
     ],
     "lootfilter enable": [
       "provides an interface to modify your lootfilter and apply changes on the fly",

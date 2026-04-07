@@ -435,6 +435,7 @@
 		lvltracker_header			=	"skilltree configuration"
 		lvltracker_deleteall		=	"del all"
 
+		lvltracker_autotrack		=	"now tracking:"				;## used when character-tracking dynamically switches to a different char, e.g. "now tracking: Lailloken (17)"
 
 		lvltracker_gemnotes			=	"not included in PoB"
 		lvltracker_gemfail			=	"no gems in PoB"
@@ -485,7 +486,7 @@
 		lvltracker_format_twink		=	"twinkrun:"					;## same as above but related to non-league-start tasks/steps
 
 
-		lvltracker_editor			=	"guide editor"					;## PoE2 only (whole block)
+		lvltracker_editor			=	"guide editor"
 		lvltracker_editor_slot		=	"slot"						;## the act-tracker has multiple slots to save guides into
 		lvltracker_editor_acts		=	"acts:"
 		lvltracker_editor_save		=	"unsaved changes:"
@@ -1045,13 +1046,14 @@
 		m_lvltracker_incompatible	=	"incompatible guide-data,;update required"
 		m_lvltracker_treeclear		=	"delete data"
 		m_lvltracker_leaguestart		=	"league-start"
-		m_lvltracker_optionals		=	"optionals"			;## refers to optional loot, quests, etc.
+		m_lvltracker_optionals		=	"optionals"						;## refers to optional loot, quests, etc.
 		m_lvltracker_bandit			=	"bandit"
 		m_lvltracker_bandits		=	"alira"
 		m_lvltracker_bandits		=	"kraityn"
 		m_lvltracker_bandits		=	"oak"
-		m_lvltracker_treehotkey		=	"hotkey to close trees:"	;## optional setting for users who don't close the in-game tree with ESC
-		m_lvltracker_gemquests		=	"gem-quests"			;## quests that unlock skill-gems
+		m_lvltracker_treehotkey		=	"hotkey to close trees:"				;## optional setting for users who don't close the in-game tree with ESC
+		m_lvltracker_gemquests		=	"gem-quests"						;## quests that unlock gems
+		m_lvltracker_autotrack		=	"enable dynamic character tracking"
 
 
 

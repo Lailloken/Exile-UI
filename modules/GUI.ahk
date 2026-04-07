@@ -152,7 +152,7 @@ Gui_HelpToolTip(HWND_key)
 	If (control = "leveltracker profile select")
 	{
 		profile := LLK_ControlGet(vars.general.cMouse), profile := (profile = 1 ? "" : profile), ini := IniBatchRead("ini" vars.poe_version "\leveling guide" profile ".ini", "info")
-		If (name := ini.info.name)
+		If (name := ini.info.name) || (character := ini.info.character)
 			target_array.InsertAt(1, Trim(ini.info.character ":`n" name, "`n:") "(/underline)(/bold)")
 	}
 

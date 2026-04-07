@@ -27,6 +27,14 @@
 	Else If vars.poe_version && !ini["current run" profile].HasKey("act 7")
 		IniWrite, % (ini["current run" profile]["act 7"] := ""), % "ini" vars.poe_version "\leveling tracker.ini", % "current run" profile, act 7
 
+	vars.leveltracker.characters := []
+	Loop, Files, % "ini" vars.poe_version "\leveling guide*.ini"
+	{
+		slot := StrReplace(A_LoopFileShortName, ".ini"), slot := (IsNumber(SubStr(slot, 0)) ? SubStr(slot, 0) : 1)
+		read := IniBatchRead(A_LoopFilePath, "info")
+		vars.leveltracker.characters[slot] := {"character": read.info.character, "build": read.info.name}
+	}
+
 	vars.leveltracker.acts := []
 	If vars.poe_version
 	{
@@ -99,6 +107,7 @@
 	settings.leveltracker.hotkey_1 := !Blank(check := ini.settings["hotkey 1"]) ? check : "F3"
 	settings.leveltracker.hotkey_2 := !Blank(check := ini.settings["hotkey 2"]) ? check : "F4"
 	settings.leveltracker.tree_hotkey := tree_hotkey := !Blank(check := ini.settings["tree hotkey"]) ? check : "space"
+	settings.leveltracker.autotrack := !Blank(check := ini.settings.autotrack) ? check : 0
 
 	tree_hotkey := (!GetKeyVK(tree_hotkey) ? "" : tree_hotkey)
 	If !Blank(tree_hotkey)

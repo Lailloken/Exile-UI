@@ -51,7 +51,7 @@
 			vars.log[A_LoopField] := ""
 	}
 	If settings.general.character && !Blank(log_character.1)
-		Log_Parse(log_character, bla, bla, bla, bla, bla, bla, level, bla, character_class)
+		Log_Parse(log_character, bla, bla, bla, bla, bla, bla, level, bla, character_class, bla)
 
 	If mode
 	{
@@ -59,7 +59,7 @@
 		Return
 	}
 
-	Log_Parse(log_content, areaID, areaname, areaseed, arealevel, areatier, act, bla, date_time, bla)
+	Log_Parse(log_content, areaID, areaname, areaseed, arealevel, areatier, act, bla, date_time, bla, bla)
 
 	Loop, Parse, % vars.log.parsing, `,, %A_Space%
 		If Blank(vars.log[A_LoopField]) && !Blank(%A_LoopField%)
@@ -182,7 +182,7 @@ Log_Backup()
 	}
 }
 
-Log_CharacterInfo(line)
+Log_CharacterInfo(line, any_character := 0)
 {
 	local
 	global vars, settings
@@ -192,8 +192,9 @@ Log_CharacterInfo(line)
 		parse := SubStr(line, InStr(line, ":",, 0) + 1)
 		Loop, Parse, parse
 			level .= (IsNumber(A_LoopField) ? A_LoopField : "")
-		If InStr(line, settings.general.character " " Lang_Trans("system_parenthesis")) || InStr(line, settings.general.character . Lang_Trans("system_parenthesis"))
+		If any_character || InStr(line, settings.general.character " " Lang_Trans("system_parenthesis")) || InStr(line, settings.general.character . Lang_Trans("system_parenthesis"))
 			class := SubStr(line, InStr(line, Lang_Trans("system_parenthesis")) + 1), class := LLK_StringCase(SubStr(class, 1, InStr(class, Lang_Trans("system_parenthesis", 2)) - 1))
+			, character := SubStr(parse, 1, InStr(parse, Lang_Trans("system_parenthesis")) - 1), character := Trim(character, " ")
 	}
 	Else If Lang_Match(line, vars.lang.log_whois)
 	{
@@ -215,7 +216,7 @@ Log_CharacterInfo(line)
 		}
 	}
 	If level && class
-		Return [level, class]
+		Return [level, class, character]
 }
 
 Log_Get(log_text, data)
@@ -332,7 +333,8 @@ Log_Loop(mode := 0)
 
 	If log_content.Count()
 	{
-		Log_Parse(log_content, areaID, areaname, areaseed, arealevel, areatier, act, level, date_time, character_class)
+		auto_track := "a"
+		Log_Parse(log_content, areaID, areaname, areaseed, arealevel, areatier, act, level, date_time, character_class, auto_track)
 		Loop, Parse, % vars.log.parsing, `,, %A_Space%
 		{
 			If Blank(%A_LoopField%)
@@ -345,6 +347,9 @@ Log_Loop(mode := 0)
 					vars.log.areaname := "" ;make it blank because there sometimes is a desync between it and areaID, i.e. they are parsed in two separate loop-ticks
 				Else vars.log.areaname := Log_Get(areaID, "areaname")
 		}
+		If (auto_track = 1)
+			level0 := 0
+
 		If (settings.features.leveltracker * settings.leveltracker.geartracker) && IsNumber(level) && (level0 != level)
 			Geartracker_GUI(WinExist("ahk_id " vars.hwnd.geartracker.main) ? "" : "refresh")
 
@@ -383,7 +388,23 @@ Log_Loop(mode := 0)
 					}
 		}
 
-		If character_class && WinExist("ahk_id " vars.hwnd.settings.main) && RegExMatch(vars.settings.active, "i)general|leveling.tracker")
+		If (auto_track = 2)
+		{
+			timer := vars.leveltracker.timer
+			If IsNumber(timer.current_split) && (timer.current_split != timer.current_split0)
+				IniWrite, % (timer.current_split0 := timer.current_split), % "ini" vars.poe_version "\leveling tracker.ini", % "current run" settings.leveltracker.profile, time
+			vars.leveltracker.timer.pause := -1
+
+			If vars.leveltracker.skilltree_schematics.GUI
+				Leveltracker_PobSkilltree("close")
+			Init_log("refresh"), Init_leveltracker(), Leveltracker_Load()
+			If LLK_Overlay(vars.hwnd.leveltracker.main, "check") && vars.leveltracker.guide.import.Count()
+				Leveltracker_Progress(1)
+			Else Leveltracker_Toggle("destroy"), vars.hwnd.leveltracker.main := ""
+		}
+		If IsNumber(auto_track)
+			LLK_ToolTip(Lang_Trans("lvltracker_autotrack") "`n" LLK_StringCase(settings.general.character) " (" vars.log.level ")", 3, vars.monitor.x + vars.monitor.w/2, vars.monitor.y,, "Lime", settings.general.fSize * 2,, 150, 1,, 1)
+		If (character_class || IsNumber(auto_track)) && WinExist("ahk_id " vars.hwnd.settings.main) && RegExMatch(vars.settings.active, "i)general|leveling.tracker")
 			Settings_menu(vars.settings.active,, 0)
 	}
 
@@ -393,7 +414,7 @@ Log_Loop(mode := 0)
 	If settings.qol.lab && InStr(vars.log.areaID, "labyrinth_") && !InStr(vars.log.areaID, "Airlock") && vars.log.areaseed && vars.lab.rooms.Count() && !vars.lab.rooms[vars.lab.room.1].seed
 		vars.lab.rooms[vars.lab.room.1].seed := vars.log.areaseed, vars.lab.room.3 := vars.log.areaseed
 
-	If settings.features.leveltracker && (A_TickCount > vars.leveltracker.last_manual + 2000) && vars.hwnd.leveltracker.main && (vars.log.areaID = vars.leveltracker.guide.target_area) && !vars.leveltracker.fast ;advance the guide when entering target-location
+	If settings.features.leveltracker && (A_TickCount >= vars.leveltracker.last_manual + 2000) && vars.hwnd.leveltracker.main && (vars.log.areaID = vars.leveltracker.guide.target_area) && !vars.leveltracker.fast ;advance the guide when entering target-location
 		vars.leveltracker.guide.target_area := "", Leveltracker("+")
 
 	If !vars.poe_version && settings.features.mapinfo && vars.mapinfo.expedition_areas && vars.log.areaname && !Blank(LLK_HasVal(vars.mapinfo.expedition_areas, vars.log.areaname)) && !vars.mapinfo.active_map.expedition_filter
@@ -411,7 +432,7 @@ Log_Loop(mode := 0)
 	Leveltracker_Timer()
 }
 
-Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel, ByRef areatier, ByRef act, ByRef level, ByRef date_time, ByRef character_class)
+Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel, ByRef areatier, ByRef act, ByRef level, ByRef date_time, ByRef character_class, ByRef auto_track)
 {
 	local
 	global vars, settings, db
@@ -438,7 +459,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		Else If InStr(loopfield, " connected to ") && InStr(loopfield, ".login.") || InStr(loopfield, "*****")
 			areaID := "login"
 
-		/*
+		/* this log-msg was removed at some point from PoE2 but is still present in PoE1
 		Else If InStr(loopfield, "current input mode = ")
 		{
 			timestamp := SubStr(loopfield, 1, InStr(loopfield, " ",,, 2) - 1)
@@ -454,11 +475,34 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		}
 		*/
 
+		If (auto_track = "a") && (settings.leveltracker.autotrack * settings.features.leveltracker)
+		{
+			parse := SubStr(loopfield, InStr(loopfield, "]",, 0) + 2), char_name := SubStr(parse, 1, (check := InStr(parse, ": ")) - 1)
+			If check && (check != 1) && (char_name != settings.general.character) && !InStr(char_name, " ") && !RegExMatch(char_name, "@|#|%|&|\$")
+				For iChars, oChars in vars.leveltracker.characters
+					If oChars.character && (oChars.character = char_name)
+					{
+						auto_track := 2
+						IniWrite, % (settings.general.character := char_name), % "ini" vars.poe_version "\config.ini", Settings, active character
+						IniWrite, % """" (settings.general.build := oChars.build) """", % "ini" vars.poe_version "\config.ini", Settings, active build
+						IniWrite, % (iChars = 1 ? "" : iChars), % "ini" vars.poe_version "\leveling tracker.ini", Settings, profile
+						Break
+					}
+		}
+
 		If !vars.poe_version && RegExMatch(loopfield, "i)set.source.\[(?!\(|.*\d)")
 			parse := SubStr(loopfield, InStr(loopfield, "[",, 0)), areaname := LLK_StringCase(Trim(parse, " []`r`n"))
 
 		If !Blank(settings.general.character) && InStr(loopfield, settings.general.character) && IsObject((character_info := Log_CharacterInfo(loopfield)))
 			level := character_info.1, character_class := character_info.2
+		Else If (settings.leveltracker.autotrack * settings.features.leveltracker) && (vars.log.areaID = "1_1_1" || vars.log.areaID = "g1_1") && vars.hwnd.leveltracker.main && InStr(loopfield, Lang_Trans("log_level"))
+		{
+			parse := SubStr(loopfield, InStr(loopfield, ":",, 0) + 1), character_info := Log_CharacterInfo(loopfield, 1), profile := settings.leveltracker.profile
+			IniWrite, % (settings.general.character := character_info.3), % "ini" vars.poe_version "\config.ini", Settings, active character
+			IniWrite, % """" (settings.general.build := settings.leveltracker["guide" profile].info.name) """", % "ini" vars.poe_version "\config.ini", Settings, active build
+			IniWrite, % """" (settings.leveltracker["guide" profile].info.character := character_info.3) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, character
+			level := character_info.1, character_class := character_info.2, auto_track := 1
+		}
 
 		If settings.features.maptracker && (vars.log.areaID = vars.maptracker.map.id) && (Lang_Match(loopfield, vars.lang.log_slain) || Lang_Match(loopfield, vars.lang.log_suicide))
 			vars.maptracker.map.deaths += 1, vars.maptracker.map.died := 1

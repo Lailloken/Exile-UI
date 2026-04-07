@@ -2071,6 +2071,9 @@ Settings_leveltracker()
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
 
+	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_leveltracker2 Checked" settings.leveltracker.autotrack, % Lang_Trans("m_lvltracker_autotrack")
+	vars.hwnd.settings.autotrack := vars.hwnd.help_tooltips["settings_leveltracker auto tracking"] := hwnd
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs y+"vars.settings.spacing " Section x" x_anchor, % Lang_Trans("m_lvltracker_guide")
 	Gui, %GUI%: Font, norm
@@ -2345,6 +2348,8 @@ Settings_leveltracker2(cHWND := "")
 		GuiControl, % "+Hidden", % vars.hwnd.settings.tree_hotkey_save
 		GuiControl, % "movedraw", % vars.hwnd.settings.tree_hotkey_save
 	}
+	Else If (check = "autotrack")
+		IniWrite, % (settings.leveltracker.autotrack := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\leveling tracker.ini", Settings, autotrack 
 	Else If InStr(check, "hotkey_")
 	{
 		GuiControl, % "+c" (LLK_ControlGet(cHWND) != settings.leveltracker[check] ? "Red" : "Black"), % cHWND
@@ -2435,6 +2440,7 @@ Settings_leveltracker2(cHWND := "")
 				IniWrite, % (settings.leveltracker.profile := new_file), % "ini" vars.poe_version "\leveling tracker.ini", Settings, profile
 				Init_leveltracker(), Leveltracker_Load()
 			}
+			Else vars.leveltracker.characters.Delete((target_profile ? target_profile : 1))
 			Settings_menu("leveling tracker")
 			Return
 		}
@@ -5342,6 +5348,7 @@ Settings_CharTracking2(cHWND)
 		{
 			IniWrite, % """" (settings.leveltracker["guide" profile].info.character := charinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, character
 			IniWrite, % """" (settings.leveltracker["guide" profile].info.name := buildinfo) """", % "ini" vars.poe_version "\leveling guide" profile ".ini", info, name
+			vars.leveltracker.characters[(profile ? profile : 1)] := {"character": charinfo, "build": buildinfo}
 		}
 		IniWrite, % """" (settings.general.character := charinfo) """", % "ini" vars.poe_version "\config.ini", settings, active character
 		IniWrite, % """" (settings.general.build := (Blank(charinfo) ? "" : buildinfo)) """", % "ini" vars.poe_version "\config.ini", settings, active build
