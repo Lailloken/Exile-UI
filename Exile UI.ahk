@@ -182,7 +182,11 @@ Init_client()
 		LLK_Log("game-client is local client")
 		;load client-config location and double-check
 		ini := IniBatchRead("ini" vars.poe_version "\config.ini")
-		poe_config_file := !Blank(check := ini.settings["poe config-file"]) ? check : A_MyDocuments "\My Games\Path of Exile" (vars.poe_version ? " 2\poe2_" : "\") "production_Config.ini"
+
+		If vars.system.config_prelim && FileExist(vars.system.config_prelim . (vars.poe_version ? "poe2_" : "") "production_Config.ini")
+			poe_config_file := vars.system.config_prelim . (vars.poe_version ? "poe2_" : "") "production_Config.ini"
+		Else poe_config_file := !Blank(check := ini.settings["poe config-file"]) ? check : A_MyDocuments "\My Games\Path of Exile" (vars.poe_version ? " 2\poe2_" : "\") "production_Config.ini"
+
 		If !FileExist(poe_config_file)
 		{
 			FileSelectFile, poe_config_file, 3, %A_MyDocuments%\My Games\\production_Config.ini, % "Please locate the '" (vars.poe_version ? "poe2_" : "") "production_Config.ini' file which is stored in the same folder as loot-filters", config files (*.ini)
@@ -253,7 +257,7 @@ Init_client()
 
 	If !monitor_override
 	{
-		;determine native resolution of the active monitor
+		;restore game-client to locate the active monitor
 		WinGet, minmax, MinMax, ahk_group poe_window
 		If (minmax = -1)
 		{
@@ -269,7 +273,6 @@ Init_client()
 	Gui, Screen_Test: Show, % "NA x" x + w//2 " y" y + h//2 " Maximize"
 	WinGetPos, xScreenOffset_monitor, yScreenOffSet_monitor, width_native, height_native
 	Gui, Screen_Test: Destroy
-	;WinGetPos, x, y, w, h, ahk_class Shell_TrayWnd
 	vars.monitor := {"x": xScreenOffset_monitor, "y": yScreenOffSet_monitor, "w": width_native, "h": height_native, "xc": xScreenOffset_monitor + width_native / 2, "yc": yScreenOffSet_monitor + height_native / 2}
 	LLK_Log("measured monitor resolution and position: " width_native "x" height_native ", " xScreenOffset_monitor ", " yScreenOffSet_monitor)
 
@@ -1048,13 +1051,23 @@ Startup()
 
 	;get the location of the client.txt file
 	WinGet, poe_log_file, ProcessPath, ahk_group poe_window
-	If FileExist(SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt")
-		poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Client.txt"
-	Else poe_log_file := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0)) "logs\Kakaoclient.txt"
+	logs_folder := SubStr(poe_log_file, 1, InStr(poe_log_file, "\",, 0))
+	If FileExist(logs_folder "logs\Client.txt")
+		poe_log_file := logs_folder "logs\Client.txt"
+	Else poe_log_file := logs_folder "logs\Kakaoclient.txt"
 	LLK_Log("game's log-file: " poe_log_file)
 
-	If FileExist(poe_log_file) ;parse client.txt at startup to get basic location info
+	If FileExist(poe_log_file)
+	{
 		vars.log.file_location := poe_log_file, LLK_Log("found game's log-file")
+		Loop, Files, % logs_folder "logs\latestclient.txt"
+		{
+			Loop, Parse, % LLK_FileRead(A_LoopFilePath), `n, % " `r"
+				If (check := InStr(A_LoopField, "settings directory:"))
+					parse := SubStr(A_LoopField, check + 19), vars.system.config_prelim := Trim(parse, " `t`n`r.")
+			Break
+		}
+	}
 	Else vars.log.file_location := 0, LLK_Log("couldn't find game's log-file")
 
 	Init_client(), Init_Lang()
