@@ -439,6 +439,8 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 
 	For index, loopfield in content
 	{
+		If Blank(loopfield)
+			Continue
 		If InStr(loopfield, "Generating level ", 1)
 		{
 			parse := SubStr(loopfield, InStr(loopfield, "area """) + 6), areaID := SubStr(parse, 1, InStr(parse, """") -1) ;store PoE-internal location name in var
@@ -475,10 +477,13 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		}
 		*/
 
-		If (auto_track = "a") && (settings.leveltracker.autotrack * settings.features.leveltracker)
+		If (auto_track = "a") && (settings.leveltracker.autotrack * settings.features.leveltracker) && InStr(loopfield, "[info")
 		{
-			parse := SubStr(loopfield, InStr(loopfield, "]",, 0) + 2), char_name := SubStr(parse, 1, (check := InStr(parse, ": ")) - 1)
-			If check && (check != 1) && (char_name != settings.general.character) && !InStr(char_name, " ") && !RegExMatch(char_name, "@|#|%|&|\$")
+			char_name := "", parse := SubStr(loopfield, InStr(loopfield, "]",, 0))
+			If InStr(parse, ":")
+				parse := SubStr(parse, 1, InStr(parse, ":") - 1), char_name := SubStr(parse, InStr(parse, " ",, 0) + 1)
+
+			If char_name && (char_name != settings.general.character) && !RegexMatch(char_name, "i)\.|\s") && !RegExMatch(char_name, "@|#|%|&|\$")
 				For iChars, oChars in vars.leveltracker.characters
 					If oChars.character && (oChars.character = char_name)
 					{
