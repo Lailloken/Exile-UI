@@ -494,8 +494,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 						Break
 					}
 		}
-
-		If !vars.poe_version && RegExMatch(loopfield, "i)set.source.\[(?!\(|.*\d)")
+		If !vars.poe_version && RegExMatch(loopfield, "i)set.source.\[(?!\(|" Lang_Trans("log_act") ".\d)")
 			parse := SubStr(loopfield, InStr(loopfield, "[",, 0)), areaname := LLK_StringCase(Trim(parse, " []`r`n"))
 
 		If !Blank(settings.general.character) && InStr(loopfield, settings.general.character) && IsObject((character_info := Log_CharacterInfo(loopfield)))

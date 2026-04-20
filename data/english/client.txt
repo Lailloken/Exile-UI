@@ -139,6 +139,7 @@
 		log_slain			=	"has been slain"			;## when your character dies
 		log_suicide		=	"has committed suicide"		;## when your character dies from self-damage
 		log_killed		=	"You have killed # monsters"	;## when activating the "/kills" command
+		log_act			=	"act"					;## required to filter out certain log-events
 
 
 ;## these strings are required to make tracking in the lab-overlay possible on non-English clients

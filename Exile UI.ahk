@@ -203,26 +203,25 @@ Init_client()
 			}
 		}
 		IniWrite, % """" poe_config_file """", % "ini" vars.poe_version "\config.ini", Settings, PoE config-file
-		vars.system.config := poe_config_file, vars.client.stream := 0
+		vars.system.config := poe_config_file, vars.system.config_folder := SubStr(poe_config_file, 1, InStr(poe_config_file, "\",, 0) - 1), vars.client.stream := 0
 		LLK_Log("found game's config-file")
 
 		;check the contents of the client-config
-		FileRead, poe_config_check, % poe_config_file
-		If (poe_config_check = "")
+		game_config := IniBatchRead(poe_config_file)
+		If !game_config.Count()
 			LLK_Error("Cannot read the PoE config-file. Please restart the game-client and then the script. If you get this error repeatedly, please report the issue.`n`nError-message (for reporting): PoE-config returns empty")
 
 		;check if the client is currently running in exclusive-fullscreen mode
-		exclusive_fullscreen := InStr(poe_config_check, "`nfullscreen=true") ? "true" : InStr(poe_config_check, "fullscreen=false") ? "false" : ""
-		If (exclusive_fullscreen = "")
+		If !game_config.display.fullscreen
 		{
 			IniDelete, % "ini" vars.poe_version "\config.ini", Settings, PoE config-file
 			LLK_Error("Cannot read the PoE config-file.`n`nThe script will restart and reset the first-time setup. If you still get this error repeatedly, please report the issue.`n`nError-message (for reporting): Cannot read state of exclusive fullscreen", 1)
 		}
-		Else If (exclusive_fullscreen = "true")
+		Else If (game_config.display.fullscreen = "true")
 			LLK_Error("The game-client is set to exclusive fullscreen.`nPlease set it to windowed fullscreen.")
 
 		;check if the client is currently running in fullscreen or windowed mode
-		vars.client.fullscreen := InStr(poe_config_check, "borderless_windowed_fullscreen=true") ? "true" : InStr(poe_config_check, "borderless_windowed_fullscreen=false") ? "false" : ""
+		vars.client.fullscreen := game_config.display.borderless_windowed_fullscreen
 		If (vars.client.fullscreen = "")
 		{
 			IniDelete, % "ini" vars.poe_version "\config.ini", Settings, PoE config-file
@@ -240,10 +239,9 @@ Init_client()
 			ini.settings["custom-width"] := ini.settings["custom-resolution"] := "", ini.settings["remove window-borders"] := 0
 		}
 
-		If !InStr(poe_config_check, "`nlanguage=") || InStr(poe_config_check, "`nlanguage=en")
-			settings.general.lang_client0 := (!InStr(poe_config_check, "`nlanguage=") && InStr(vars.log.file_location, "kakao") ? "ko-kr" : "english")
-		Else parse := SubStr(poe_config_check, InStr(poe_config_check, "`nlanguage=") + 10), parse := SubStr(parse, 1, ((check := InStr(parse, "`r")) ? check : InStr(parse, "`n")) - 1)
-			, settings.general.lang_client0 := parse
+		If !game_config.language.language || (game_config.language.language = "en")
+			settings.general.lang_client0 := (!game_config.language.language && InStr(vars.log.file_location, "kakao") ? "ko-kr" : "english")
+		Else settings.general.lang_client0 := game_config.language.language
 	}
 	Else vars.client.stream := 1, vars.client.fullscreen := "true"
 

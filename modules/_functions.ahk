@@ -208,7 +208,7 @@ IniBatchRead(file, section := "", encoding := "1200")
 	If Blank(section) && !InStr(file, "[") && !InStr(file, "]") || !Blank(section) && (file = " " || file = "")
 		Return ini
 
-	Loop, Parse, file, `n, `r
+	Loop, Parse, file, `n, % " `r"
 	{
 		If Blank(A_LoopField)
 			Continue
@@ -222,7 +222,9 @@ IniBatchRead(file, section := "", encoding := "1200")
 		Else key := A_LoopField, val := ""
 
 		val := (SubStr(val, 1, 1) = """" && SubStr(val, 0, 1) = """") ? SubStr(val, 2, -1) : val
-		ini[section][key] := val
+
+		If section
+			ini[section][key] := val
 	}
 	Return ini
 }
