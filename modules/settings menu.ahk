@@ -4782,13 +4782,6 @@ Settings_stash2(cHWND)
 	}
 	Else If (check = "exalt")
 		IniWrite, % (settings.stash.show_exalt := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, show exalt conversion
-	Else If (check = "bulk_trade")
-	{
-		IniWrite, % (settings.stash.bulk_trade := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\stash-ninja.ini", settings, show bulk-sale suggestions
-		If !settings.stash.bulk_trade && WinExist("ahk_id " vars.hwnd.stash_picker.main)
-			Stash_PricePicker("destroy"), vars.stash.enter := 0
-		Init_stash("bulk_trade"), Settings_menu("stash-ninja")
-	}
 	Else If (check = "min_trade")
 	{
 		GuiControl, +cRed, % cHWND

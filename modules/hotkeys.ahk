@@ -153,15 +153,8 @@ Hotkeys_ESC()
 		If !vars.sanctum.scanning
 			Sanctum("close")
 	}
-	Else If WinExist("ahk_id " vars.hwnd.stash_index.main)
-		Stash_PriceIndex("destroy")
 	Else If WinExist("ahk_id " vars.hwnd.stash.main)
 		Stash_Close()
-	Else If WinExist("ahk_id " vars.hwnd.stash_picker.main) || vars.stash.enter
-	{
-		Stash_PricePicker("destroy"), vars.stash.enter := 0
-		SendInput, {ESC}
-	}
 	Else If WinExist("ahk_id " vars.hwnd.compat_test)
 	{
 		Gui, compat_test: Destroy
@@ -502,15 +495,10 @@ MButton::Stash_PricePicker("reset")
 *SC004::Stash_Hotkeys(3)
 *SC005::Stash_Hotkeys(4)
 *SC006::Stash_Hotkeys(5)
-~+LButton::Stash_Hotkeys("LButton")
-~RButton::Stash_Hotkeys("RButton")
 
 #If vars.hwnd.stash.main && vars.stash.hover && !InStr(vars.stash.hover, "tab_") && WinActive("ahk_id " vars.hwnd.poe_client) && WinExist("ahk_id " vars.hwnd.stash.main)
 SC039::Stash_Hotkeys("Space")
 SC038::Stash_Hotkeys("LAlt")
-
-#If WinActive("ahk_id " vars.hwnd.poe_client) && vars.stash.enter
-~*SC01C::vars.stash.enter := 0, Stash_PricePicker("destroy")
 
 #If vars.general.wMouse && (vars.general.wMouse = vars.hwnd.ClientFiller) ;prevent clicking and activating the filler GUI
 *MButton::

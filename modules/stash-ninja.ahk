@@ -376,25 +376,6 @@ Stash_Hotkeys(mode := "")
 		IniWrite, % """" json.dump(settings.stash[tab].bookmarks[bookmark_profile]) """", % "ini" vars.poe_version "\stash-ninja.ini", % tab, % "bookmarks " bookmark_profile
 		Stash("refresh")
 	}
-	Else If InStr(hotkey, "Button") && vars.stash.hover
-	{
-		Clipboard := ""
-		SendInput, ^{c}
-		ClipWait, 0.1
-		If !vars.client.stream && (!Clipboard || InStr(hotkey, "LButton") && (InStr(Clipboard, Lang_Trans("items_stack") " 1/") || !InStr(Clipboard, Lang_Trans("items_stack"))))
-		{
-			KeyWait, % hotkey0
-			Sleep 100
-			in_progress := 0
-			Return
-		}
-		If settings.stash.bulk_trade && InStr(hotkey, "RButton") && vars.stash[vars.stash.active][vars.stash.hover].prices.1
-			Stash_PricePicker()
-		LLK_Overlay(vars.hwnd.stash.main, "hide"), vars.stash.GUI := 0, vars.stash.enter := 1
-		While vars.stash.enter
-			Sleep 1
-		LLK_Overlay(vars.hwnd.stash.main, "show")
-	}
 	KeyWait, % hotkey0
 	Sleep 100
 	in_progress := 0
