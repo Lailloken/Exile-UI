@@ -1460,6 +1460,62 @@
     ]
   },
   "lootfilter": {
+    "colors": [
+      "click to open the color palette, right-click to revert to the basefilter color"
+    ],
+    "expand": [
+      "expand every section that is currently collapsed"
+    ],
+    "filter apply": [
+      "applies your modifications to the filter and applies it in game",
+      "(/highlight)make sure the in-game chat box is closed but accessible"
+    ],
+    "filter select": [
+      "!local! copies of your online filters (and when they were last updated)",
+      "(/highlight)the game doesn't delete leftover files when you delete online filters, so this list may be very long",
+      "(/highlight)right-click a filter on the list to delete its local copy"
+    ],
+    "list reload": [
+      "refresh the list of local copies of your online filters",
+      "you have to activate online filters at least once in game to get a local copy"
+    ],
+    "modhistory": [
+      "the boxes show the modifications you have applied to the base filter:\nhover over them for more info",
+      "you can click this bar to collapse this section"
+    ],
+    "rollback": [
+      "click to browse the tier that was modified",
+      "hold right-click to go back to this point and delete !every! modification after it"
+    ],
+    "search field": [
+      "the search has basic regex functionality and supports multi-keyword searches via comma separation",
+      "it will display matches in item basetypes and classes, but you can also use 'type:' and 'tier:' to search within those",
+      "(/highlight)alternatively, press the omni-key over an item to find the specific match"
+    ],
+    "search history": [
+      "lets you go back and forth in your search/browse history"
+    ],
+    "rule hide": [
+      "drops that belong to this tier will be hidden"
+    ],
+    "rule show": [
+      "drops that belong to this tier will be visible"
+    ],
+    "types": [
+      "these bars show how the filter sorts items by groups/types",
+      "click them to collapse (or right-click to browse) the whole group",
+      "",
+      "the boxes on the left show the tiers within the group",
+      "click them to collapse (or right-click to view and customize) the whole tier"
+    ],
+    "update check": [
+      "sync the local copy with the online filter",
+      "(/highlight)this reapplies the !base! online filter, which forces an update check (make sure the in-game chat box is closed but accessible)",
+      "(/highlight)you'll have to click <apply> afterwards to reload your custom filter",
+      "there is a server-side cooldown if the online filter has been updated multiple times recently"
+    ]
+  },
+  "lootfilter2": {
     "add stack": [
       "enter a stack size, then click this label to add a custom stack rule for this base type"
     ],
