@@ -621,7 +621,7 @@
     ],
     "lootfilter enable": [
       "provides an editor to modify your neversink or filterblade filter and apply changes on the fly",
-      "it can be accessed via the menu-widget or by pressing a <modifier> + <omni-key> over an item",
+      "it can be accessed via the menu-widget or by pressing a <modifier-key> + <omni-key> over an item",
       "when it's already open, normal omni-key presses over items will start a new search",
       "(/highlight)item filtering has a high chance of user error, so be careful"
     ],
