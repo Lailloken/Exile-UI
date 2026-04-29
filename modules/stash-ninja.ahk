@@ -444,11 +444,10 @@ Stash_PriceFetch(tab)
 
 			For iTrend, vTrend in val.sparkline.data
 				trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
-			If name
-				ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
-			Else Continue
+			
+			ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
 
-			If check
+			If check && name
 				vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
 				, vars.stash[check][name].trend := Blank(trend) ? [0, 0, 0, 0, 0, 0, 0] : StrSplit(trend, ",", A_Space, 7)
 		}
