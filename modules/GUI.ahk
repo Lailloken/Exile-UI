@@ -891,7 +891,7 @@ RGB_Picker(RGB := "")
 	Gui, RGB_palette: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border HWNDhwnd +E0x02000000 +E0x00080000 HWNDhwnd_palette, Exile UI: RGB-Picker
 	Gui, RGB_palette: Color, Black
 	Gui, RGB_palette: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
-	Gui, RGB_palette: Margin, % settings.general.fWidth, % settings.general.fWidth
+	Gui, RGB_palette: Margin, % settings.general.fHeight, % settings.general.fHeight
 
 	For index0, val0 in palette
 		For index, val in val0
@@ -907,7 +907,7 @@ RGB_Picker(RGB := "")
 	For index, val in RGB_Convert(RGB)
 	{
 		letter := (index = 1 ? "R" : (index = 2 ? "G" : "B"))
-		Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fWidth " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
+		Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fHeight " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
 		Gui, RGB_palette: Add, Slider, % "ys x+-1 hp Border Range0-255 Tooltip gRGB_Picker HWNDhwnd_" letter " w" settings.general.fWidth*20 - 9, % val
 		Gui, RGB_palette: Font, % "s" settings.general.fSize - 4
 		Gui, RGB_palette: Add, Edit, % "ys Number Right Limit3 x+-1 hp cBlack gRGB_Picker HWNDhwnd_edit_" letter " w" settings.general.fWidth*3 - 1, % val
@@ -918,19 +918,12 @@ RGB_Picker(RGB := "")
 
 	Gui, RGB_palette: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, ahk_id %hwnd_palette%
-	xPos := vars.general.xMouse - (vars.general.xMouse - vars.monitor.x + w >= vars.monitor.w ? w - settings.general.fWidth : settings.general.fWidth)
-	yPos := vars.general.yMouse - (vars.general.yMouse - vars.monitor.y + h >= vars.monitor.h ? h - settings.general.fWidth : settings.general.fWidth)
+	xPos := vars.general.xMouse - w/2, yPos := vars.general.yMouse - h/2, Gui_CheckBounds(xPos, yPos, w, h)
 
 	ControlFocus,, ahk_id %hwnd_save%
 	Gui, RGB_palette: Show, % "x" xPos " y" yPos
-	While (vars.general.wMouse != hwnd_palette) && !timeout
-	{
-		If !start
-			start := A_TickCount
-		If (A_TickCount >= start + 1000) && (vars.general.wMouse != hwnd_palette)
-			timeout := 1
-		Sleep 10
-	}
+	WinWait, ahk_id %hwnd_palette%,, 2
+
 	While Blank(picked_rgb) && (vars.general.wMouse = hwnd_palette) && !vars.RGB_picker.cancel
 	{
 		KeyWait, LButton, D T0.1
