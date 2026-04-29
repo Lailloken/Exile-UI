@@ -206,6 +206,8 @@ Iteminfo(refresh := 0) ; refresh: 1 to refresh it normally, 2 for clipboard pars
 
 	If InStr(clip, Lang_Trans("items_quality") . " +")
 		item.quality := SubStr(clip, InStr(clip, Lang_Trans("items_quality") . " +") + StrLen(Lang_Trans("items_quality") . " +")), item.quality := SubStr(item.quality, 1, InStr(item.quality, "%") - 1)
+	Else If InStr(clip, Lang_Trans("items_quality2"))
+		item.quality := SubStr(clip, InStr(clip, Lang_Trans("items_quality2"))), item.quality := SubStr(item.quality, InStr(item.quality, "+") + 1), item.quality := SubStr(item.quality, 1, InStr(item.quality, "%") - 1)
 
 	If !item.itembase ;if base-type couldn't be directly determined from the first lines, derive it from the item's characteristics or database
 	{

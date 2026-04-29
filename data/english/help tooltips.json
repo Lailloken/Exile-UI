@@ -66,7 +66,7 @@
     ],
     "active character whois": [
       "click this button to use the \"/whois\" in-game command to force-refresh character info",
-      "make sure the in-game chat box is closed but available(/highlight)"
+      "make sure the in-game chat box is closed but accessible(/highlight)"
     ],
     "ascendancy": [
       "the game only logs ascendancies when a character levels up",
@@ -620,8 +620,29 @@
       "2) when you write something into local chat, tracking will automatically switch to the guide-slot with that character's name"
     ],
     "lootfilter enable": [
-      "provides an interface to modify your lootfilter and apply changes on the fly",
-      "shift-omni-click items to access it"
+      "provides an editor to modify your neversink or filterblade filter and apply changes on the fly",
+      "it can be accessed via the menu-widget or by pressing a <modifier> + <omni-key> over an item",
+      "when it's already open, normal omni-key presses over items will start a new search",
+      "(/highlight)item filtering has a high chance of user error, so be careful"
+    ],
+    "lootfilter filter-tester": [
+      "optional testing/fine-tuning for global presets in the editor",
+      "drop the currencies shown on the right, then adjust presets and click <test>"
+    ],
+    "lootfilter filter-tester apply": [
+      "applies a custom item filter in game that can be used to test/preview various settings",
+      "(/highlight)make sure the in-game chat box is closed but accessible"
+    ],
+    "lootfilter filter-tester presets": [
+      "pick a preset and fine-tune the value by using the slider below, then click <test> below"
+    ],
+    "lootfilter filter-tester restore": [
+      "(/highlight)click this button after you're done testing: it re-applies your customized filter in game",
+      "(/highlight)make sure the in-game chat box is closed but accessible"
+    ],
+    "lootfilter modifier keys": [
+      "hover over items, hold down the modifier-key, and press the the omni-key to open the lootfilter editor for that specific item",
+      "alternatively, you can open the editor via the menu-widget"
     ],
     "macros animations": [
       "disable menu-widget animations"
@@ -1460,20 +1481,63 @@
     ]
   },
   "lootfilter": {
-    "colors": [
+    "cancel": [
+      "discard unsaved/pending modifications and go back to when you last clicked <apply>"
+    ],
+    "color background": [
+      "background color",
+      "click to open the color palette, right-click to revert to the basefilter color"
+    ],
+    "color border": [
+      "border color",
+      "click to open the color palette, right-click to revert to the basefilter color"
+    ],
+    "color text": [
+      "text color",
       "click to open the color palette, right-click to revert to the basefilter color"
     ],
     "expand": [
       "expand every section that is currently collapsed"
     ],
-    "filter apply": [
-      "applies your modifications to the filter and applies it in game",
+    "filter apply modifications": [
+      "applies your modifications to the filter and loads it into the game",
+      "(/highlight)make sure the in-game chat box is closed but accessible"
+    ],
+    "filter apply update": [
+      "reloads the base filter, then applies your modifications and loads it into game",
       "(/highlight)make sure the in-game chat box is closed but accessible"
     ],
     "filter select": [
       "!local! copies of your online filters (and when they were last updated)",
       "(/highlight)the game doesn't delete leftover files when you delete online filters, so this list may be very long",
-      "(/highlight)right-click a filter on the list to delete its local copy"
+      "(/highlight)right-click a filter on the list to delete the local copy"
+    ],
+    "global setting select": [
+      "click to collapse, right-click to browse"
+    ],
+    "global setting general": [
+      "global quick-settings are not affected by chronological order",
+      "click to configure them on the main/home screen"
+    ],
+    "global setting gems": [
+      "streamlined toggle to change how gems are filtered",
+      "off: use base filter's rules\non: override base filter, use a single value instead",
+      "dropped gems below the minimum value will be hidden. max out the sliders to hide everything"
+    ],
+    "global setting maps": [
+      "streamlined toggle to change how regular maps are filtered",
+      "off: use base filter's rules\non: override base filter, use a single value instead",
+      "dropped maps below the minimum value will be hidden. max out the sliders to hide everything"
+    ],
+    "global setting strands": [
+      "streamlined toggle to change how memory strands are highlighted",
+      "off: use base filter's rules\non: override base filter, use two fixed values instead",
+      "neversink filters have separate highlighting for 'high strand' items. items below the minimum value will not be highlighted based on strands.",
+      "max out the 'min' slider to only highlight 'high strand' items, or max out both to ignore strands as a highlighting aspect."
+    ],
+    "home button": [
+      "open the main/home screen with global settings",
+      "you can also middle click while hovering over the editor"
     ],
     "list reload": [
       "refresh the list of local copies of your online filters",
@@ -1483,9 +1547,28 @@
       "the boxes show the modifications you have applied to the base filter:\nhover over them for more info",
       "you can click this bar to collapse this section"
     ],
+    "opacity": [
+      "opacity customization is reduced to three fixed presets that can be adjusted in the settings",
+      "defaults: 100  |  150  |  255"
+    ],
+    "profiles": [
+      "you can switch between three different profiles to set up different sets of filter modifications"
+    ],
+    "size": [
+      "size customization is reduced to three fixed presets that can be adjusted in the settings",
+      "defaults: 24  |  32  |  45"
+    ],
+    "types": [
+      "these bars represent how the filter is divided into groups",
+      "click to collapse this group, right-click to browse it"
+    ],
+    "tiers": [
+      "these sections represent how groups are further divided into tiers",
+      "click to collapse this tier, right-click to browse it"
+    ],
     "rollback": [
       "click to browse the tier that was modified",
-      "hold right-click to go back to this point and delete !every! modification after it"
+      "hold right-click to go back to this point and delete !every! modification after it: make sure the in-game chat box is closed but accessible"
     ],
     "search field": [
       "the search has basic regex functionality and supports multi-keyword searches via comma separation",
@@ -1493,26 +1576,17 @@
       "(/highlight)alternatively, press the omni-key over an item to find the specific match"
     ],
     "search history": [
-      "lets you go back and forth in your search/browse history"
+      "lets you go back and forth in your search/browse history",
+      "you can also scroll the mouse wheel while hovering over the editor"
     ],
-    "rule hide": [
-      "drops that belong to this tier will be hidden"
-    ],
-    "rule show": [
-      "drops that belong to this tier will be visible"
-    ],
-    "types": [
-      "these bars show how the filter sorts items by groups/types",
-      "click them to collapse (or right-click to browse) the whole group",
-      "",
-      "the boxes on the left show the tiers within the group",
-      "click them to collapse (or right-click to view and customize) the whole tier"
+    "rule hideshow": [
+      "this toggle affects !every! item in this section"
     ],
     "update check": [
-      "sync the local copy with the online filter",
-      "(/highlight)this reapplies the !base! online filter, which forces an update check (make sure the in-game chat box is closed but accessible)",
-      "(/highlight)you'll have to click <apply> afterwards to reload your custom filter",
-      "there is a server-side cooldown if the online filter has been updated multiple times recently"
+      "sync the local copy with the online filter: this applies the !base! filter in game, which forces an update check",
+      "(/highlight)make sure the in-game chat box is closed but accessible",
+      "(/highlight)you'll have to click <apply> afterwards to reload your customizations",
+      "there is a server-side sync cooldown if the online filter has been updated multiple times recently"
     ]
   },
   "maptracker": {

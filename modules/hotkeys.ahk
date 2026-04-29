@@ -134,7 +134,7 @@ Hotkeys_ESC()
 	Else If vars.leveltracker.skilltree_schematics.GUI
 		Leveltracker_PobSkilltree("close")
 	Else If WinExist("ahk_id " vars.hwnd.lootfilter.main)
-		Lootfilter_GUI("close")
+		Lootfilter_Editor("close")
 	Else If WinExist("ahk_id " vars.hwnd.recombination.main)
 	{
 		LLK_Overlay(vars.hwnd.recombination.main, "destroy"), vars.hwnd.recombination.main := ""
@@ -378,6 +378,20 @@ Hotkeys_Tab()
 #If (vars.log.areaID = vars.maptracker.map.id) && settings.features.maptracker && settings.maptracker.mechanics && settings.maptracker.portal_reminder && vars.maptracker.map.content.Count() && WinActive("ahk_id " vars.hwnd.poe_client)
 #If vars.leveltracker.skilltree_schematics.GUI && WinActive("ahk_group poe_ahk_window")
 #If vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
+
+#If vars.lootfilter.update_pending.1 && (vars.general.wMouse = vars.hwnd.lootfilter.main)
+LButton::
+RButton::LLK_ToolTip(Lang_Trans("global_updateinprogress"), 2,,,, "FF8000")
+
+#If vars.lootfilter.update_applied && (vars.general.wMouse && vars.general.wMouse = vars.hwnd.lootfilter.main)
+&& vars.general.cMouse && !InStr(vars.hwnd.lootfilter.update_check "," vars.hwnd.lootfilter.filter_apply "," vars.hwnd.lootfilter.filter_apply_bar, vars.general.cMouse)
+LButton::
+RButton::LLK_ToolTip(Lang_Trans("global_updateinprogress", 2), 2,,,, "FF8000")
+
+#If vars.hwnd.lootfilter.main && (vars.general.wMouse && vars.general.wMouse = vars.hwnd.lootfilter.main)
+WheelUp:: Lootfilter_Editor("searchhistory_minus")
+WheelDown:: Lootfilter_Editor("searchhistory_plus")
+MButton::Lootfilter_Editor("home")
 
 #If vars.actdecoder.tab
 *SC002::

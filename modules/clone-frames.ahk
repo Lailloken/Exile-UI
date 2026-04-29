@@ -65,7 +65,7 @@ Cloneframes_Check()
 	location := vars.log.areaID
 	If vars.cloneframes.enabled
 	&& (!LLK_StringCompare(location, ["hideout"]) && !LLK_PatternMatch(location, "", ["_town", "heisthub", "KalguuranSettlersLeague", "incursionhub", "abyss_hub", "g2_13"],,, 0))
-	&& !vars.sanctum.active && (location != "login")
+	&& !vars.sanctum.active && (location != "login") && !vars.hwnd.lootfilter.main
 	|| (vars.settings.active = "clone-frames") ;accessing the clone-frames section of the settings
 		Cloneframes_Show()
 	Else Cloneframes_Hide()

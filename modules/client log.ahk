@@ -326,6 +326,27 @@ Log_Loop(mode := 0)
 		Return
 	}
 
+	If vars.lootfilter.update_pending.1 && (A_TickCount >= vars.lootfilter.update_pending.2 + 5000)
+		vars.lootfilter.update_pending := "", LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")
+
+	If (vars.lootfilter.update_applied || vars.lootfilter.modifications_pending.Count() > 1) && WinExist("ahk_id " vars.hwnd.lootfilter.main)
+	{
+		tick := SubStr(Floor(A_TickCount/1000), 0)
+		GuiControl, % "+c" (Mod(tick, 2) ? settings.lootfilter.color_accent : "White"), % vars.hwnd.lootfilter.filter_apply
+		GuiControl, % "movedraw", % vars.hwnd.lootfilter.filter_apply
+		GuiControl, % "+Background" (Mod(tick, 2) ? "White" : settings.lootfilter.color_accent), % vars.hwnd.lootfilter.filter_apply_bar
+		GuiControl, % "movedraw", % vars.hwnd.lootfilter.filter_apply_bar
+	}
+
+	If vars.lootfilter.tester_applied && WinExist("ahk_id " vars.hwnd.settings.main)
+	{
+		tick := SubStr(Floor(A_TickCount/1000), 0)
+		GuiControl, % "+c" (Mod(tick, 2) ? "Black" : "White"), % vars.hwnd.settings.tester_restore
+		GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore
+		GuiControl, % "+c" (Mod(tick, 2) ? "White" : "Black"), % vars.hwnd.settings.tester_restore_bar
+		GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore_bar
+	}
+
 	If IsObject(vars.maptracker)
 		vars.maptracker.hideout := Maptracker_Towncheck() ? 1 : 0 ;flag to determine if the player is using a portal to re-enter the map (as opposed to re-entering from side-content)
 
@@ -476,6 +497,14 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 			}
 		}
 		*/
+
+		If (filter_tag := vars.lootfilter.update_pending.1)
+			If InStr(loopfield, "Finished reloading online filter " filter_tag)
+			{
+				vars.lootfilter.update_pending := "", vars.lootfilter.update_applied := 1, filter := settings.lootfilter.active_filter, vars.lootfilter.modifications_pending := [], vars.lootfilter.modifications_pending.0 := ""
+				Lootfilter_Load("init_" filter)
+				Lootfilter_Editor(), LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
+			}
 
 		If (auto_track = "a") && (settings.leveltracker.autotrack * settings.features.leveltracker) && InStr(loopfield, "[info")
 		{

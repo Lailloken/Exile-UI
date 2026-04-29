@@ -110,11 +110,11 @@ Gui_HelpToolTip(HWND_key)
 	If (check = "lab" && InStr(control, "square"))
 		vars.help.lab[control] := [vars.lab.compass.rooms[StrReplace(control, "square")].name], vars.help.lab[control].1 .= (vars.help.lab[control].1 = vars.lab.room.2) ? " (" Lang_Trans("lab_movemarker") ")" : ""
 
-	If (check = "lootfilter" && InStr(control, "tooltip"))
-		database := vars.lootfilter.filter, lootfilter := 1
+	If (check = "lootfilter") && RegexMatch(control, "i)^dummy|tier\s")
+		lootfilter := settings.lootfilter.profile, database := (!IsObject(vars.help.lootfilter.rollback) ? vars.help2 : vars.help)
 	Else If (check = "leveltrackergems") && InStr(control, "gem ")
 		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
-	Else database := donation ? vars.settings.donations : !IsObject(vars.help[check][control]) ? vars.help2 : vars.help
+	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
 	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
@@ -126,6 +126,8 @@ Gui_HelpToolTip(HWND_key)
 		tooltip_width := vars.monitor.h * 0.4, xWin := xWin + wWin/2 - tooltip_width/2
 	Else If (check = "radial")
 		tooltip_width := wWin * 2
+	Else If (check = "lootfilter")
+		tooltip_width := wWin/2
 
 	If !tooltip_width
 		Return
@@ -137,15 +139,7 @@ Gui_HelpToolTip(HWND_key)
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.help_tooltips.main, vars.hwnd.help_tooltips.main := tooltip, vars.general.active_tooltip := vars.general.cMouse
 
-	;LLK_PanelDimensions(vars.help[check][control], settings.general.fSize, width, height,,, 0)
-	If lootfilter
-	{
-		target_array := Lootfilter_ChunkCompare(database[StrReplace(control, "tooltip ")],,, lootfilter_chunk), target_array := StrSplit(lootfilter_chunk, "`n", "`r`t")
-		Loop, % (count := target_array.Count())
-			If LLK_StringCompare(target_array[count - (A_Index - 1)], ["class", "#"])
-				target_array.RemoveAt(count - (A_Index - 1))
-	}
-	Else If gempickups
+	If gempickups
 		target_array := database[SubStr(control, 5)]
 	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
 
@@ -169,6 +163,54 @@ Gui_HelpToolTip(HWND_key)
 					Gui, %GUI_name%: Add, Text, % "HWNDhwnd xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (InStr(text, "(/highlight)") ? " cFF8000" : ""), % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
 				}
 		}
+	Else If lootfilter
+	{
+		Loop, Parse, control
+			If IsNumber(A_LoopField) || (A_LoopField = "-")
+				index_mod .= A_LoopField
+
+		If InStr(control, "tier ")
+			text := [[SubStr(control, 6)], [Lang_Trans("lootfilter_tierbrowse")]], alignment := " Center"
+		Else
+		{
+			If (index_mod = 0)
+				text := [[Lang_Trans("lootfilter_fullrollback")]]
+			Else
+			{
+				mod := (!InStr(control, "pending") ? vars.lootfilter.modifications["profile" lootfilter][index_mod] : vars.lootfilter.modifications_pending[index_mod])
+				If !IsObject(mod) || vars.lootfilter.modifications_pending[index_mod]
+					mod := vars.lootfilter.modifications_pending[index_mod]
+				text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") " " mod.tier : ""))]]
+			}
+			For key, val in mod.modifications
+				key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val), (InStr(key, "color") ? RGB_Convert(string) : "")])
+			If mod.warning
+				text.Push(["warning: " mod.warning, "FF8000"])
+
+			If (index_mod >= 0)
+				For index, val in database.lootfilter.rollback
+					If !(index_mod = 0 && index = 1)
+						text.Push([val])
+
+			If InStr(control, "pending")
+				text.Pop(), text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
+			If InStr(mod.action, "global ")
+			{
+				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting"), "Fuchsia"])
+				For index, val in database.lootfilter["global setting general"]
+					If !(index_mod = 0 && index = 1)
+						text.Push([val])
+			}
+			If InStr(mod.action, "global ") && IsObject(vars.lootfilter.modifications_pending[index_mod])
+				text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
+		}
+		For index, val in text
+		{
+			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w" tooltip_width - settings.general.fWidth, % val.1
+			Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+" settings.general.fWidth " w" tooltip_width, % ""
+			Gui, %GUI_name%: Add, Text, % "xp+" settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w" tooltip_width - settings.general.fWidth . (val.2 ? " c" val.2 : "") . alignment, % val.1
+		}
+	}
 	Else
 		For index, text in target_array
 		{
@@ -188,7 +230,7 @@ Gui_HelpToolTip(HWND_key)
 	yPos := InStr(control, "updater changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
 
 	If (check = "lootfilter")
-		yPos := vars.lootfilter.yPos - height, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos
+		xPos := xWin - width, yPos := y
 	Else If (check = "statlas")
 		yPos := yWin + hWin
 	Else If (check = "exchange")
@@ -221,7 +263,7 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 	If !IsObject(mode)
 	{
 		selection := {5: "settings"}, added := 1
-		For index, feature in ["leveltracker", "maptracker", "notepad", "anoints"]
+		For index, feature in ["leveltracker", "maptracker", "notepad", "lootfilter", "anoints"]
 			If !settings.general.dev && (feature = "anoints" && !vars.client.stream)
 				Continue
 			Else If settings.features[feature] || settings.qol[feature]
@@ -271,6 +313,15 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 					Leveltracker(vars.general.cMouse, 1)
 				Case "settings":
 					Settings_menu("leveling tracker")
+			}
+
+		Case "lootfilter":
+			If !longpress
+				Lootfilter_Editor()
+			Else Switch Gui_RadialMenu({2: "settings", 5: "lootfilter"}, "LButton")
+			{
+				Case "settings":
+					Settings_menu("filterspoon")
 			}
 
 		Case "maptracker":
@@ -348,7 +399,7 @@ Gui_RadialMenu(selection := "", longpress := 0)
 	WinSet, TransColor, Purple
 	Gui, %GUI%: Margin, % (margin := Round(height/6)), % margin
 	Gui, %GUI%: Font, % "s" settings[(active = "menu" ? "general" : "macros")].sMenu " cWhite", % vars.system.font
-	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := []
+	hwnd_old := vars.hwnd.radial.main, vars.hwnd.radial := {"main": radial_menu, "indexed": {}}, positions := [], poe2 := {"anoints": 1, "lootfilter": 1}
 
 	Loop 9
 	{
@@ -359,7 +410,7 @@ Gui_RadialMenu(selection := "", longpress := 0)
 			If (val = "settings") && (click && (click != "settings") || InStr("fasttravel, custommacros", vars.radial.active))
 				img := "settings_bg"
 			Else img := (val = "close" && click = "notepad" ? "notepad_close" : (val = "close" && click = "leveltracker" ? "leveltracker_close" : val))
-			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (val = "anoints" ? vars.poe_version : "")
+			file := (val = "leveltracker" && !(vars.hwnd.leveltracker.main || vars.leveltracker.toggle)) ? "0" : (poe2[val] ? vars.poe_version : "")
 			file := (val = "maptracker" && vars.maptracker.pause) ? 0 : file
 			If !vars.pics.radial[active][img . file]
 				vars.pics.radial[active][img . file] := LLK_ImageCache("img\GUI\radial menu\" img . file ".png", height)
@@ -491,7 +542,7 @@ LLK_ControlGet(cHWND, GUI_name := "", subcommand := "")
 	Return parse
 }
 
-LLK_ControlGetPos(cHWND, return_val)
+LLK_ControlGetPos(cHWND, return_val := "")
 {
 	local
 
@@ -506,6 +557,8 @@ LLK_ControlGetPos(cHWND, return_val)
 			Return width
 		Case "h":
 			Return height
+		Default:
+			Return {"x": x, "y": y, "w": width, "h": height, "xMax": x + width, "yMax": y + height}
 	}
 }
 
@@ -756,7 +809,7 @@ LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", he
 		height += 1
 }
 
-LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1) ;HWND_bar = HWND of the progress bar, key = key that is held down to fill the progress bar, HWND_control = HWND of the button (to undo clipping)
+LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0) ;HWND_bar = HWND of the progress bar, key = key that is held down to fill the progress bar, HWND_control = HWND of the button (to undo clipping)
 {
 	local
 
@@ -766,7 +819,7 @@ LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1) ;HWND_bar = HWND 
 		GuiControl,, %HWND_bar%, % A_TickCount - start
 		If (A_TickCount >= start + 600)
 		{
-			GuiControl,, %HWND_bar%, 0 ;reset the progress bar to 0
+			GuiControl,, %HWND_bar%, % reset_state
 			If HWND_control
 				GuiControl, movedraw, %HWND_control% ;redraw the button that was held down (otherwise the progress bar will remain on top of it)
 			If key_wait
@@ -775,7 +828,7 @@ LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1) ;HWND_bar = HWND 
 		}
 		Sleep 20
 	}
-	GuiControl,, %HWND_bar%, 0
+	GuiControl,, %HWND_bar%, % reset_state
 	If HWND_control
 		GuiControl, movedraw, %HWND_control%
 	Return 0

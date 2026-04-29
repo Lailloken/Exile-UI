@@ -261,6 +261,7 @@
 		items_ward			=	"Ward:"
 		items_aps				=	"Attacks per Second:"
 		items_quality			=	"Quality:"
+		items_quality2			=	"Quality ("					;## special quality, e.g. on rings + amulets
 		items_phys_dmg			=	"Physical Damage:"
 		items_dmg				=	"# Damage:"
 		items_chaos_dmg		=	"Chaos Damage:"

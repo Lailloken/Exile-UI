@@ -1806,10 +1806,10 @@ Maptracker_Timer()
 		mapname_add := {"heist": Lang_Trans("maps_heist"), "expedition": Lang_Trans("maps_logbook"), "affliction": Lang_Trans("maps_delirium")}
 	}
 
-	If !(settings.maptracker.hide && vars.maptracker.pause) && !Maptracker_Check(2) && !WinExist("ahk_id "vars.hwnd.maptracker.main) && !WinExist("ahk_id " vars.hwnd.maptracker_logs.main) && !vars.hwnd.recombination.main
+	If !(settings.maptracker.hide && vars.maptracker.pause) && !Maptracker_Check(2) && !WinExist("ahk_id "vars.hwnd.maptracker.main) && !WinExist("ahk_id " vars.hwnd.maptracker_logs.main) && !vars.hwnd.recombination.main && !vars.hwnd.lootfilter.main
 	&& (WinActive("ahk_group poe_window") || WinActive("ahk_id "vars.hwnd.maptracker_logs.main) || vars.settings.active = "mapping tracker") || vars.maptracker.toggle ;when in hideout or holding down TAB, show tracker GUI
 		Maptracker_GUI(), inactive := 0
-	Else If WinExist("ahk_id "vars.hwnd.maptracker.main) && (Maptracker_Check(2) && !vars.maptracker.toggle && !vars.maptracker.pause || settings.maptracker.hide && vars.maptracker.pause || WinExist("ahk_id " vars.hwnd.maptracker_logs.main) || vars.hwnd.recombination.main) ;else hide it
+	Else If WinExist("ahk_id "vars.hwnd.maptracker.main) && (Maptracker_Check(2) && !vars.maptracker.toggle && !vars.maptracker.pause || settings.maptracker.hide && vars.maptracker.pause || WinExist("ahk_id " vars.hwnd.maptracker_logs.main) || vars.hwnd.recombination.main || vars.hwnd.lootfilter.main) ;else hide it
 		inactive += 1
 	Else inactive := 0
 

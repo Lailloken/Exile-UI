@@ -65,6 +65,7 @@ If WinExist("ahk_exe GeForceNOW.exe")
 	Init_geforce(), LLK_Log("initialized geforce now settings")
 Init_iteminfo(), LLK_Log("initialized item-info settings")
 Init_legion(), LLK_Log("initialized seed-explorer settings")
+Init_Lootfilter(), LLK_Log("initialized FilterSpoon settings")
 Init_macros(), LLK_Log("initialized chat-macro settings")
 Init_mapinfo(), LLK_Log("initialized map-info settings")
 Init_OCR(), LLK_Log("initialized ocr settings")
@@ -466,7 +467,7 @@ Init_general()
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
-	settings.features.lootfilter := 0 ;!Blank(check := ini.features["enable filterspoon"]) ? check : 0
+	settings.features.lootfilter := (vars.poe_version ? 0 : !Blank(check := ini.features["enable filterspoon"]) ? check : 0)
 	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
 	settings.features.iteminfo := !Blank(check := ini.features["enable item-info"]) ? check : 0
@@ -481,8 +482,8 @@ Init_general()
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "screen_checks": {}, "search_strings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home":LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "screen_checks": {}, "search_strings": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1)), settings.general.league0 := StrSplit("sc|trade" (vars.poe_version ? "" : "|normal") "|standard", "|")
 	settings.general.league := league := !Blank(check := ini.settings.league) ? StrSplit(check, "|", " ", 4) : settings.general.league0.Clone()
@@ -725,10 +726,6 @@ Loop_main()
 		Else vars.pixels.inventory := 0
 	}
 
-	If !vars.general.drag && vars.hwnd.lootfilter.main && WinActive("ahk_id " vars.hwnd.lootfilter.main) && (vars.general.wMouse = vars.hwnd.poe_client)
-		&& !LLK_IsBetween(vars.general.xMouse, vars.lootfilter.xPos, vars.lootfilter.xPos + vars.lootfilter.width)
-		WinActivate, % "ahk_id " vars.hwnd.poe_client
-
 	If vars.cloneframes.editing && (vars.settings.active != "clone-frames") ;in case the user closes the settings menu without saving changes, reset clone-frames settings to previous state
 	{
 		vars.cloneframes.editing := ""
@@ -854,7 +851,7 @@ Loop_main()
 	tick_helptooltips += 1
 	If !vars.radial.wait && (!Mod(tick_helptooltips, 3) || check_help)
 	{
-		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || InStr(control, "updater changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip") || check = "leveltrackergems" && InStr(control, "gem ")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
+		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || (check = "lootfilter") && (InStr(control, "dummy") || InStr(control, "tier")) || InStr(control, "updater changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip") || check = "leveltrackergems" && InStr(control, "gem ")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
 			Gui_HelpToolTip(check_help)
 		Else If (vars.general.drag || !check_help || WinExist("ahk_id "vars.hwnd.screencheck_info.main)) && WinExist("ahk_id " vars.hwnd.help_tooltips.main)
 			LLK_Overlay(vars.hwnd.help_tooltips.main, "destroy"), vars.general.active_tooltip := "", vars.hwnd.help_tooltips.main := ""

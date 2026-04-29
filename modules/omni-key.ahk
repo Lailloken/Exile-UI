@@ -93,21 +93,7 @@
 			Case "context_menu":
 				Omni_ContextMenu()
 			Case "lootfilter":
-				input := LLK_ControlGet(vars.hwnd.lootfilter.search), item := vars.omnikey.item, shift := GetKeyState("Shift", "P")
-				If (item.rarity = Lang_Trans("items_magic")) && !item.itembase && WinExist("ahk_id " vars.hwnd.lootfilter.main)
-				{
-					Omni_Release()
-					Return
-				}
-				If !InStr(input, """" (item.itembase ? item.itembase : item.name) """") || !shift && InStr(input, ",")
-				{
-					If shift && !Blank(input)
-						input .= ", """ LLK_StringCase(item.itembase ? item.itembase : item.name) """"
-					Else input := """" LLK_StringCase(item.itembase ? item.itembase : item.name) """"
-					If WinExist("ahk_id " vars.hwnd.lootfilter.main)
-						GuiControl,, % vars.hwnd.lootfilter.search, % input
-					Lootfilter_GUI("search", "dock_" (vars.general.xMouse >= vars.monitor.x + vars.client.xc ? "1" : "2"), "omnikey")
-				}
+				Lootfilter_Clipboard()
 			Case "mapinfo":
 				If Mapinfo_Parse(1, vars.poe_version)
 					Mapinfo_GUI()
@@ -148,12 +134,16 @@ Omnikey2()
 				continue
 			If Cheatsheet_Search(cheatsheet)
 			{
-				Cheatsheet_Activate(cheatsheet)
+				Cheatsheet_Activate(cheatsheet), cheatsheet_on := 1
 				Break
 			}
 		}
-		Gdip_DisposeImage(vars.cheatsheets.pHaystack), Omni_Release()
-		Return
+		Gdip_DisposeImage(vars.cheatsheets.pHaystack)
+		If cheatsheet_on
+		{
+			Omni_Release()
+			Return
+		}
 	}
 
 	Screenchecks_ImageSearch()
@@ -278,7 +268,7 @@ Omni_Context(mode := 0)
 	If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "^(Diluted|Liquid|Concentrated)\s.*|.*\sOil$")
 		Return "anoints_stock"
 
-	If settings.features.lootfilter && !vars.general.shift_trigger && (item.name || item.itembase) && (WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState("Shift", "P"))
+	If (item.name || item.itembase) && (vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState(settings.lootfilter.modifier_key, "P"))
 		Return "lootfilter"
 	If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 		Return "recombination"

@@ -229,6 +229,18 @@ IniBatchRead(file, section := "", encoding := "1200")
 	Return ini
 }
 
+LLK_ArrayDump(array, separator := " ", filler := "")
+{
+	local
+
+	string := ""
+	If !IsObject(array)
+		Return array
+	For index, val in array
+		string .= (Blank(string) ? "" : separator) . (Blank(val) ? filler : val)
+	Return string
+}
+
 LLK_ArraySort(array)
 {
 	local
@@ -420,6 +432,16 @@ LLK_MaxIndex(array)
 	local
 
 	Return array[array.MaxIndex()]
+}
+
+LLK_ObjectSum(object)
+{
+	local
+
+	sum := 0
+	For key, val in object
+		sum += val
+	Return sum
 }
 
 LLK_PatternMatch(text, string, object, swap := 0, value := 1, case := 1) ;swap param switches the order around, val param determines if values or keys of the object are used

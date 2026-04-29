@@ -99,6 +99,7 @@
 		global_scan			=	"scan"
 		global_match			=	"no match"
 		global_match			=	"not specific enough"
+		global_match			=	"too many matches"		;## when search results don't fit on screen
 		global_window			=	"settings menu"
 		global_general			=	"general settings:"
 		global_ui				=	"ui settings:"
@@ -248,6 +249,22 @@
 		global_clear			=	"clear"			;## remove everything, as in "clear a list"
 		global_view			=	"view:"			;## in the sense of layout or appearance, e.g. split/unified view
 		global_expand			=	"expand"			;## in the sense of lists or tables where specific sections can be collapsed/expanded to (un)hide information
+		global_sync			=	"sync"
+		global_errorpaste		=	"couldn't paste;chat command"
+		global_updateinprogress	=	"update in progress"
+		global_updateinprogress	=	"apply updates first!"
+		global_minimum			=	"minimum"
+		global_minimum			=	"min"
+		global_medium			=	"medium"
+		global_medium			=	"med"
+		global_maximum			=	"maximum"
+		global_maximum			=	"max"
+		global_high			=	"high"
+		global_restore			=	"restore"			;## as in restore a previous state/setting
+		global_size			=	"size"
+		global_memorystrands	=	"memory strands"
+		global_memorystrands	=	"strands"
+		global_campaign		=	"campaign"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -516,11 +533,25 @@
 
 ;## these strings are displayed/required when using the lootfilter / filterspoon feature
 		lootfilter_basefilter		=	"filter:"
-		lootfilter_modifications		=	"current modifications:"
-		lootfilter_unsaved			=	"long-press to discard"
-		lootfilter_update			=	"apply base filter updates"
-		lootfilter_addstack			=	"add stack:"
-		lootfilter_selection		=	"current selection:"
+		lootfilter_duplicatefiles	=	"There are multiple online filters with the same name."
+		lootfilter_duplicatefiles	=	"Please delete duplicate filters from your profile and local folder."
+		lootfilter_duplicatefiles	=	"Do you want to open your profile page and the local folder?"
+		lootfilter_presetup			=	"Before you continue, open the filter list in the in-game settings and make sure 'FilterSpoon' is on it."
+		lootfilter_presetup			=	"(Don't select it yet, it's an empty file)"
+		lootfilter_ingameitem		=	"in-game item"
+		lootfilter_selections		=	"selected tier"
+		lootfilter_selections		=	"selected item (in tier)"
+		lootfilter_modhistory		=	"modification history"						;## similar to a browser/file history
+		lootfilter_fullrollback		=	"unmodified online filter (full reset)"			;## an option to reset back to the unmodified filter you started with
+		lootfilter_movetier			=	"move to different tier:"
+		lootfilter_tierbrowse		=	"right-click to browse tier"
+		lootfilter_pending			=	"unsaved/pending modification"
+		lootfilter_newtier			=	"new tier"
+		lootfilter_globalsetting		=	"global quick-setting"
+		lootfilter_globalsetting		=	"global quick-settings"
+		lootfilter_minquality		=	"min qual:"
+		lootfilter_minlevel			=	"min level:"
+		lootfilter_mintier			=	"min tier:"
 
 
 
@@ -1021,6 +1052,8 @@
 
 ;## these strings are displayed/required in the "filterspoon" section of the settings menu
 		m_lootfilter_enable		=	"enable the filterspoon feature (experimental)"
+		m_lootfilter_colors		=	"ui & button colors:"
+		m_lootfilter_tester		=	"filter-tester:"			;## a section in the settings menu to test/preview various filter settings (opacity, sound, etc.)
 
 
 
@@ -1195,14 +1228,10 @@
 		m_stash_leagues		=	"league:"
 		m_stash_tabs			=	"stash tab configuration:"
 		m_stash_limits			=	"price-range profiles:"
-		m_stash_profiles		=	"apply trade value to profiles 1-4"
 		m_stash_history		=	"show price history"
 		m_stash_use_global		=	"use global price-range profiles"
 		m_stash_exalt			=	"show exalt rates"
-		m_stash_mintrade		=	"minimum trade value (chaos):"
 		m_stash_folder			=	"this tab is in a stash folder"
-		m_stash_bulk			=	"enable bulk-sale management"
-		m_stash_margins		=	"margins (%):"
 		m_stash_active			=	"active tab:"
 		m_stash_bookmarking		=	"enable bookmarking"
 		m_stash_grid			=	"fine-tune grid alignment:"
