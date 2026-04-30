@@ -333,18 +333,14 @@ Log_Loop(mode := 0)
 	{
 		tick := SubStr(Floor(A_TickCount/1000), 0)
 		GuiControl, % "+c" (Mod(tick, 2) ? settings.lootfilter.color_accent : "White"), % vars.hwnd.lootfilter.filter_apply
-		GuiControl, % "movedraw", % vars.hwnd.lootfilter.filter_apply
-		GuiControl, % "+Background" (Mod(tick, 2) ? "White" : settings.lootfilter.color_accent), % vars.hwnd.lootfilter.filter_apply_bar
-		GuiControl, % "movedraw", % vars.hwnd.lootfilter.filter_apply_bar
+		GuiControl, % "+c" (Mod(tick, 2) ? "White" : settings.lootfilter.color_accent) " +BackgroundFF8000", % vars.hwnd.lootfilter.filter_apply_bar
 	}
 
 	If vars.lootfilter.tester_applied && WinExist("ahk_id " vars.hwnd.settings.main)
 	{
 		tick := SubStr(Floor(A_TickCount/1000), 0)
 		GuiControl, % "+c" (Mod(tick, 2) ? "Black" : "White"), % vars.hwnd.settings.tester_restore
-		GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore
-		GuiControl, % "+c" (Mod(tick, 2) ? "White" : "Black"), % vars.hwnd.settings.tester_restore_bar
-		GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore_bar
+		GuiControl, % "+c" (Mod(tick, 2) ? "White" : "Black") " +BackgroundFF8000", % vars.hwnd.settings.tester_restore_bar
 	}
 
 	If IsObject(vars.maptracker)

@@ -274,15 +274,14 @@ Lootfilter_Editor(cHWND := "")
 			file_name := vars.lootfilter.filters_list[input].1
 			FileDelete, % vars.system.config_folder "\OnlineFilters\" file_name
 			vars.lootfilter.filters_list.Delete(input)
-			If (input = settings.lootfilter.active_filter)
-				settings.lootfilter.active_filter := ""
 		}
 		;######################################################
 		Case InStr(check, "profile_"):
 		If (control = profile)
 			Return
 		IniWrite, % (profile := settings.lootfilter.profile := control), % "ini" vars.poe_version "\lootfilter.ini", settings, profile
-		Lootfilter_Load("init_" settings.lootfilter.active_filter), vars.lootfilter.update_applied := 1
+		If settings.lootfilter.active_filter
+			Lootfilter_Load("init_" settings.lootfilter.active_filter), vars.lootfilter.update_applied := 1
 		;######################################################
 		Case (check = "cancel"):
 		vars.lootfilter.modifications_pending := [], vars.lootfilter.modifications_pending.0 := "", Lootfilter_Load("init_" settings.lootfilter.active_filter)
@@ -356,25 +355,22 @@ Lootfilter_Editor(cHWND := "")
 		If (vars.system.click = 1) && control
 		{
 			data := (!InStr(control, "pending") ? vars.lootfilter.modifications["profile" profile] : vars.lootfilter.modifications_pending), control := StrReplace(control, "pending")
-			new_search := (control < 0 ? [] : [data[control].type, data[control].tier])
+			new_search := (control < 0 ? [] : [data[control].type, StrReplace(data[control].tier, "_", ".")])
 		}
 		Else If !LLK_Progress(vars.hwnd.lootfilter[check "_bar"], "RButton",,, 500)
 			Return
 		Else
 		{
-			If (control = "0")
-				IniDelete, % "ini" vars.poe_version "\lootfilter.ini", % "modifications - profile " profile
-			Else If InStr(control, "pending")
+			If InStr(control, "pending")
 			{
 				Loop, Parse, control
 					If IsNumber(A_LoopField)
 						iMod .= A_LoopField
 				vars.lootfilter.modifications_pending.RemoveAt(iMod + 1, 9999)
 			}
-			Else
-				Loop, % vars.lootfilter.modifications["profile" profile].Length()
-					If (A_Index > control)
-						IniDelete, % "ini" vars.poe_version "\lootfilter.ini", % "modifications - profile " profile, % A_Index
+			Else Loop, % vars.lootfilter.modifications["profile" profile].Length()
+				If (A_Index > control)
+					IniDelete, % "ini" vars.poe_version "\lootfilter.ini", % "modifications - profile " profile, % A_Index
 
 			If !InStr(control, "pending")
 				vars.lootfilter.modifications_pending := [], vars.lootfilter.modifications_pending.0 := ""
@@ -519,7 +515,7 @@ Lootfilter_Editor(cHWND := "")
 	}
 	search := vars.lootfilter.search
 	Gui, %GUI%: Add, Text, % "ys hp Border Center gLootfilter_Editor BackgroundTrans HWNDhwnd1 cWhite w" wSyncApply . (show_apply ? "" : " Hidden"), % Lang_Trans("global_apply")
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 Background" accent_color . (show_apply ? "" : " Hidden"), 0
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 Border Background" accent_color " c" accent_color . (show_apply ? "" : " Hidden"), 100
 	vars.hwnd.lootfilter.filter_apply := hwnd1, vars.hwnd.lootfilter.filter_apply_bar := vars.hwnd.help_tooltips["lootfilter_filter apply " (vars.lootfilter.update_applied ? "update" : "modifications")] := hwnd2
 
 	Gui, %GUI%: Add, Text, % "xp yp wp hp Border gLootfilter_Editor Center HWNDhwnd3 w" wSyncApply . (show_apply ? " Hidden" : ""), % Lang_Trans("global_sync")
@@ -1487,7 +1483,7 @@ Lootfilter_Modify(object)
 				Return "type '" object.type "' doesn't exist anymore (global setting cannot be applied)"
 			Else If !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "qt", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "lt", 1,,, 1)
 				Return "type '" object.type "' no longer has quality or level tiers (global setting cannot be applied)"
-
+			;######################################################
 			Case "global maps":
 			If !vars.lootfilter.active_filter.structure.HasKey(object.type)
 				Return "type '" object.type "' doesn't exist anymore (global setting cannot be applied)"
@@ -1499,7 +1495,7 @@ Lootfilter_Modify(object)
 				If (maptier_count != 16)
 					Return "type '" object.type "' has changed in structure (global setting cannot be applied)"
 			}
-
+			;######################################################
 			Case "global strands":
 			If !vars.lootfilter.active_filter.structure.HasKey(object.type)
 				Return "type '" object.type "' doesn't exist anymore (global setting cannot be applied)"
@@ -1597,16 +1593,16 @@ Lootfilter_Modify(object)
 			For index, oLine in lines
 				For key, val in oLine
 					If RegexMatch(key, "i)border|background")
-						lines[index][key] := "0 0 0 255"
+						lines[index][key] := "0 0 0 " settings.lootfilter.opacity_medium
 					Else If InStr(key, "textcolor")
 						lines[index][key] := "190 178 135 255"
 					Else If InStr(key, "fontsize")
-						lines[index][key] := "32"
+						lines[index][key] := settings.lootfilter.size_medium
 					Else If InStr(key, "basetype")
 						lines[index][key] := """" object.modifications.newtier """"
 
 			vars.lootfilter.active_filter.final.InsertAt(iChunk - lookback + 1, {"type": object.type, "tier": object.tier, "lines": lines})
-			vars.lootfilter.active_filter.structure[object.type].Push({"name": object.type, "basetypes": """" object.modifications.newtier """"}), skip := iChunk + 1
+			vars.lootfilter.active_filter.structure[object.type].Push({"name": object.tier, "basetypes": """" object.modifications.newtier """"}), skip := iChunk + 1
 
 			Case InStr(object.action, "tier") && (vChunk.type && vChunk.type = object.type):
 				For iLine, vLine in vChunk.lines

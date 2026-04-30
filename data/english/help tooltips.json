@@ -1544,8 +1544,8 @@
       "you have to activate online filters at least once in game to get a local copy"
     ],
     "modhistory": [
-      "the boxes show the modifications you have applied to the base filter:\nhover over them for more info",
-      "you can click this bar to collapse this section"
+      "the white box is the starting point, and those on the right represent the sequence of modifications you have applied to the filter",
+      "hover over the boxes for more info. you can click this bar to collapse this section."
     ],
     "opacity": [
       "opacity customization is reduced to three fixed presets that can be adjusted in the settings",

@@ -2801,9 +2801,7 @@ Settings_lootfilter2(cHWND := "")
 		{
 			vars.lootfilter.tester_applied := 0
 			GuiControl, % "+cWhite", % vars.hwnd.settings.tester_restore
-			GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore
-			GuiControl, % "+cBlack", % vars.hwnd.settings.tester_restore_bar
-			GuiControl, % "movedraw", % vars.hwnd.settings.tester_restore_bar
+			GuiControl, % "+cBlack +BackgroundBlack", % vars.hwnd.settings.tester_restore_bar
 		}
 		Clipboard := "/itemfilter FilterSpoon" (control = "test" ? "_tester" : "")
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
