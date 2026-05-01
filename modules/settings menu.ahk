@@ -2659,7 +2659,7 @@ Settings_lootfilter()
 	vars.hwnd.help_tooltips["settings_font-size"] := hwnd
 	Gui, %GUI%: Add, Text, % "ys gSettings_lootfilter2 Border Center HWNDhwnd w" settings.general.fWidth*2, % "–"
 	vars.hwnd.settings.font_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
-	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys gSettings_lootfilter2 Border Center HWNDhwnd", % " " settings.lootfilter.fSize " "
+	Gui, %GUI%: Add, Text, % "x+" settings.general.fwidth / 4 " ys Border Center gSettings_lootfilter2 HWNDhwnd w" settings.general.fWidth*3, % settings.lootfilter.fSize
 	vars.hwnd.settings.font_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
 	Gui, %GUI%: Add, Text, % "wp x+" settings.general.fwidth / 4 " ys gSettings_lootfilter2 Border Center HWNDhwnd w" settings.general.fWidth*2, % "+"
 	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
@@ -2672,8 +2672,7 @@ Settings_lootfilter()
 	vars.hwnd.settings.color_background := hwnd, vars.hwnd.settings.color_background_bar := vars.hwnd.help_tooltips["settings_generic color"] := hwnd1
 	vars.hwnd.settings.color_accent := hwnd2, vars.hwnd.settings.color_accent_bar := vars.hwnd.help_tooltips["settings_generic color|"] := hwnd3
 
-	FileGetSize, filesize, % vars.system.config_folder "\FilterSpoon.filter", K
-	If !FileExist(vars.system.config_folder "\FilterSpoon_tester.filter") || (filesize < 100)
+	If !settings.lootfilter.active_filter
 		Return
 
 	Gui, %GUI%: Font, bold underline
@@ -2689,30 +2688,24 @@ Settings_lootfilter()
 		Gui, %GUI%: Add, Pic, % (index = 1 ? "x+" vars.settings.spacing : "x+0") " ys", % "HBitmap:*" vars.pics.settings[val]
 	}
 
-	For index, val in ["minimum", "medium", "maximum"]
-		dimensions.Push(Lang_Trans("global_" val, 2) . Lang_Trans("global_colon") " 7777")
-	LLK_PanelDimensions(dimensions, settings.general.fSize, wMinMedMax, height)
-
 	If !vars.lootfilter_tester.Count()
 		vars.lootfilter_tester := {"opacity": "maximum", "size": "maximum"}
-	tester := vars.lootfilter_tester, types := ["size", "opacity"], dimensions := [], ranges := {"size": "1-45", "opacity": "50-255"}
+	tester := vars.lootfilter_tester, types := ["size", "opacity"], dimensions := [], ranges := {"size": "10-45", "opacity": "50-255"}
 	For outer, type in types
 		dimensions.Push(Lang_Trans("global_" type))
 	LLK_PanelDimensions(dimensions, settings.general.fSize, wType, height)
 
 	For outer, type in types
 	{
-		Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " 0x200 Border w" wType " h" settings.general.fHeight * 2 - 1, % " " StrReplace(Lang_Trans("global_" type), Lang_Trans("global_colon"))
-		For index, val in ["minimum", "medium", "maximum"]
+		Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " 0x200 Border w" wType, % " " StrReplace(Lang_Trans("global_" type), Lang_Trans("global_colon"))
+		For key, val in {"i": "minimum", "ii": "medium", "iii": "maximum"}
 		{
 			label := Lang_Trans("global_" val, 2) . Lang_Trans("global_colon") " " settings.lootfilter[type "_" val]
-			Gui, %GUI%: Add, Text, % (index = 1 ? "Section " : "") "ys x+-1 Center Border gSettings_lootfilter2 HWNDhwnd w" wMinMedMax . (val = vars.lootfilter_tester[type] ? " cLime" : ""), % label
-			;Gui, %GUI%: Add, Text, % "ys x+-1 hp Center Border HWNDhwnd1 w" settings.general.fWidth * 4, % settings.lootfilter["opacity_" val]
+			Gui, %GUI%: Add, Text, % "ys x+-1 Center Border gSettings_lootfilter2 HWNDhwnd w" Round(settings.general.fWidth * 2.5) . (val = vars.lootfilter_tester[type] ? " cLime" : ""), % key
 			vars.hwnd.settings[type "preset_" val] := vars.hwnd.help_tooltips["settings_lootfilter filter-tester presets" preset_handle] := hwnd, preset_handle .= "|"
-			;vars.hwnd.settings["opacitytext_" val] := hwnd1
 		}
-		Gui, %GUI%: Add, Slider, % "xs y+-1 hp Center NoTicks Range" ranges[type] " ToolTip Border gSettings_lootfilter2 HWNDhwnd w" 3 * wMinMedMax - 2, % settings.lootfilter[type "_" tester[type]]
-		Gui, %GUI%: Add, Text, % "ys x+-1 h" settings.general.fHeight * 2 - 1 " Border 0x200 HWNDhwnd1 gSettings_lootfilter2", % " " Lang_Trans("global_reset") " "
+		Gui, %GUI%: Add, Slider, % "ys x+-1 hp Center NoTicks Range" ranges[type] " ToolTip Border gSettings_lootfilter2 HWNDhwnd w" 18 * settings.general.fWidth, % settings.lootfilter[type "_" tester[type]]
+		Gui, %GUI%: Add, Text, % "ys x+-1 hp Border 0x200 HWNDhwnd1 gSettings_lootfilter2", % " " Lang_Trans("global_reset") " "
 		vars.hwnd.settings[type "value"] := hwnd, vars.hwnd.settings["reset_" type] := hwnd1
 	}
 	
@@ -2787,9 +2780,12 @@ Settings_lootfilter2(cHWND := "")
 		vars.lootfilter_tester[type] := control
 		GuiControl,, % vars.hwnd.settings[type "value"], % settings.lootfilter[type "_" control]
 	Case InStr(check, "value"):
-		type := SubStr(check, 1, InStr(check, "value") - 1)
-		IniWrite, % (settings.lootfilter[type "_" vars.lootfilter_tester[type]] := input := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\lootfilter.ini", UI, % vars.lootfilter_tester[type] " " type 
-		GuiControl, Text, % vars.hwnd.settings[type "preset_" vars.lootfilter_tester[type]], % Lang_Trans("global_" vars.lootfilter_tester[type], 2) . Lang_Trans("global_colon") " " input
+		type := SubStr(check, 1, InStr(check, "value") - 1), input := LLK_ControlGet(cHWND)
+		If (input = settings.lootfilter[type "_" vars.lootfilter_tester[type]])
+			Return
+		IniWrite, % (settings.lootfilter[type "_" vars.lootfilter_tester[type]] := input), % "ini" vars.poe_version "\lootfilter.ini", UI, % vars.lootfilter_tester[type] " " type
+		If WinExist("ahk_id " vars.hwnd.lootfilter.main)
+			Lootfilter_Editor()
 	Case InStr(check, "reset_"):
 		For index, val in ["minimum", "medium", "maximum"]
 			IniWrite, % (settings.lootfilter[control "_" val] := settings.lootfilter.defaults[control][val]), % "ini" vars.poe_version "\lootfilter.ini", UI, % val " " control
@@ -2803,7 +2799,7 @@ Settings_lootfilter2(cHWND := "")
 			GuiControl, % "+cWhite", % vars.hwnd.settings.tester_restore
 			GuiControl, % "+cBlack +BackgroundBlack", % vars.hwnd.settings.tester_restore_bar
 		}
-		Clipboard := "/itemfilter FilterSpoon" (control = "test" ? "_tester" : "")
+		Clipboard := "/itemfilter " (control = "test" || vars.lootfilter.modifications["profile" settings.lootfilter.profile].Count() > 1 ? "FilterSpoon" (control = "test" ? "_tester" : "") : settings.lootfilter.active_filter)
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client,, 2
 		If ErrorLevel
