@@ -254,11 +254,6 @@
 		global_updateinprogress	=	"update in progress"
 		global_updateinprogress	=	"apply updates first!"
 		global_minimum			=	"minimum"
-		global_minimum			=	"min"
-		global_medium			=	"medium"
-		global_medium			=	"med"
-		global_maximum			=	"maximum"
-		global_maximum			=	"max"
 		global_high			=	"high"
 		global_restore			=	"restore"			;## as in restore a previous state/setting
 		global_size			=	"size"
@@ -549,9 +544,12 @@
 		lootfilter_newtier			=	"new tier"
 		lootfilter_globalsetting		=	"global quick-setting"
 		lootfilter_globalsetting		=	"global quick-settings"
-		lootfilter_minquality		=	"min qual:"
-		lootfilter_minlevel			=	"min level:"
-		lootfilter_mintier			=	"min tier:"
+		lootfilter_minquality		=	"min qual"
+		lootfilter_minlevel			=	"min level"
+		lootfilter_mintier			=	"min tier"
+		lootfilter_visuals			=	"visuals"									;## as an umbrella term for everything regarding visual presentation
+		lootfilter_maps			=	"regular maps"								;## as opposed to special maps (conquerors, guardians, originator, etc.)
+		lootfilter_gems			=	"regular gems"								;## as opposed to special gems (exceptional, transfigured, overlvl/qual, etc.)
 
 
 

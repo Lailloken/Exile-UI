@@ -180,7 +180,9 @@ Gui_HelpToolTip(HWND_key)
 				mod := (!InStr(control, "pending") ? vars.lootfilter.modifications["profile" lootfilter][index_mod] : vars.lootfilter.modifications_pending[index_mod])
 				If !IsObject(mod) || vars.lootfilter.modifications_pending[index_mod]
 					mod := vars.lootfilter.modifications_pending[index_mod]
-				text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") " " mod.tier : ""))]]
+				If mod.type
+					text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") " " mod.tier : ""))]]
+				Else text := []
 			}
 			For key, val in mod.modifications
 				key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val), (InStr(key, "color") ? RGB_Convert(string) : "")])
@@ -193,7 +195,7 @@ Gui_HelpToolTip(HWND_key)
 						text.Push([val])
 
 			If InStr(control, "pending")
-				text.Pop(), text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
+				text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
 			If InStr(mod.action, "global ")
 			{
 				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting"), "Fuchsia"])
@@ -322,6 +324,8 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 			{
 				Case "settings":
 					Settings_menu("filterspoon")
+				Case "lootfilter":
+					Lootfilter_Editor()
 			}
 
 		Case "maptracker":

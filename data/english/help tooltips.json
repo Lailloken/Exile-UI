@@ -627,14 +627,14 @@
     ],
     "lootfilter filter-tester": [
       "optional testing/fine-tuning for global presets in the editor",
-      "drop the currencies shown on the right, then adjust presets and click <test>"
+      "drop the currencies shown on the right, then adjust the presets and click <test>"
     ],
     "lootfilter filter-tester apply": [
       "applies a custom item filter in game that can be used to test/preview various settings",
       "(/highlight)make sure the in-game chat box is closed but accessible"
     ],
     "lootfilter filter-tester presets": [
-      "pick a preset and fine-tune the value by using the slider below, then click <test> below"
+      "pick a preset and fine-tune the value by using the slider, then click <test> below"
     ],
     "lootfilter filter-tester restore": [
       "(/highlight)click this button after you're done testing: it re-applies your customized filter in game",
@@ -1512,28 +1512,49 @@
       "(/highlight)the game doesn't delete leftover files when you delete online filters, so this list may be very long",
       "(/highlight)right-click a filter on the list to delete the local copy"
     ],
-    "global setting select": [
-      "click to collapse, right-click to browse"
-    ],
     "global setting general": [
       "global quick-settings are not affected by chronological order",
       "click to configure them on the main/home screen"
     ],
-    "global setting gems": [
-      "streamlined toggle to change how gems are filtered",
-      "off: use base filter's rules\non: override base filter, use a single value instead",
-      "dropped gems below the minimum value will be hidden. max out the sliders to hide everything"
-    ],
     "global setting maps": [
-      "streamlined toggle to change how regular maps are filtered",
-      "off: use base filter's rules\non: override base filter, use a single value instead",
-      "dropped maps below the minimum value will be hidden. max out the sliders to hide everything"
+      "lets you set a tier cut-off for regular maps (i.e. not influenced, blighted, etc.)",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting maps toggles": [
+      "0: use base filter's rules",
+      "x: hide maps below tier x",
+      "17: hide all regular maps"
     ],
     "global setting strands": [
-      "streamlined toggle to change how memory strands are highlighted",
-      "off: use base filter's rules\non: override base filter, use two fixed values instead",
-      "neversink filters have separate highlighting for 'high strand' items. items below the minimum value will not be highlighted based on strands.",
-      "max out the 'min' slider to only highlight 'high strand' items, or max out both to ignore strands as a highlighting aspect."
+      "lets you set a cut-off for memory-strand items",
+      "neversink filters have extra highlighting for high-strand items",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting strands toggles": [
+      "0: use base filter's rules",
+      "x (high): items with x or more strands have extra highlighting\nx (minimum): items with x or more strands will be highlighted",
+      "max out the <minimum> slider to only highlight high-strand items, or max both to ignore strands as a highlighting aspect."
+    ],
+    "global setting gems": [
+      "lets you set a cut-off for leveled/quality regular gems (i.e. not exceptional, transfigured, etc.)",
+      "the filter only checks one value at a time: gems at or above either cut-off will be shown",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting gems toggles": [
+      "0: use base filter's rules",
+      "x: hide gems below x levels or quality",
+      "max out the sliders to hide every leveled/quality regular gem"
+    ],
+    "global setting unavailable": [
+      "the selected filter has an unexpected structure: this quick-setting cannot be applied"
+    ],
+    "global setting visuals": [
+      "lets you set up unified size and opacity settings for the whole filter",
+      "click this label to open the settings menu and adjust presets i to iii"
+    ],
+    "global setting visuals toggles": [
+      "off: use base filter's visuals",
+      "i-iii: use a fixed value for every item"
     ],
     "home button": [
       "open the main/home screen with global settings",
@@ -1544,7 +1565,7 @@
       "you have to activate online filters at least once in game to get a local copy"
     ],
     "modhistory": [
-      "the white box is the starting point, and those on the right represent the sequence of modifications you have applied to the filter",
+      "the sequence of boxes below represents the modifications you applied to the filter: global quick-settings are always applied first",
       "hover over the boxes for more info. you can click this bar to collapse this section."
     ],
     "opacity": [
