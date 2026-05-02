@@ -279,3 +279,8 @@ News(mode := "")
 {
 	Return
 }
+
+Economy_Update()
+{
+	Return
+}

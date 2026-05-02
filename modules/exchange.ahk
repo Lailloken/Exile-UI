@@ -38,7 +38,7 @@
 	settings.async.logweek := (!settings.async.logweek ? 1 : settings.async.logweek)
 
 	If !IsObject(vars.async)
-		vars.async := {"conversions": {}, "dIcon": settings.async.fHeight * 2 - 4}, vars.pics.async := {}
+		vars.async := {"dIcon": settings.async.fHeight * 2 - 4}, vars.pics.async := {}
 	vars.async.currencies := {"chaos": "chaos", "exalted": "exalted", "transmut": "transmute", "aug": "aug", "regal": "regal"}
 
 	If FileExist("ini" vars.poe_version "\vaal street log.ini")
@@ -239,8 +239,8 @@ AsyncTrade(cHWND := "", hotkey := "")
 	sorting := settings.async["sorting_" mode]
 	If InStr(sorting, "price")
 	{
-		UpdateConversions()
-		If (vars.async.conversions.timestamp.2 = "failed")
+		Economy_Update()
+		If (vars.economy.currency.timestamp.2 = "failed")
 			unavailable := 1, sorting := settings.async["sorting_" mode] := ""
 	}
 
@@ -300,7 +300,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 					Continue
 			}
 			If InStr(sorting, "price")
-				prefix := Format("{:012}", StrReplace(Round(object.prices[object.prices.MaxIndex()].2 * vars.async.conversions[object.prices[object.prices.MaxIndex()].3], 2), "."))
+				prefix := Format("{:012}", StrReplace(Round(object.prices[object.prices.MaxIndex()].2 * vars.economy.currency[object.prices[object.prices.MaxIndex()].3], 2), "."))
 			Else If (sorting = "age")
 				prefix := object.prices[object.prices.MaxIndex()].1
 			key := (prefix ? prefix " " : "") . object.timestamp " " object.name, listings0[key] := object
@@ -445,7 +445,7 @@ AsyncTradeLogs(cHWND := "")
 	search := (Blank(search) ? Lang_Trans("global_search") : search), search_price := (Blank(search_price) ? Lang_Trans("global_price") . Lang_Trans("global_colon") : search_price)
 	search_default := (search = Lang_Trans("global_search") && search_price = Lang_Trans("global_price") . Lang_Trans("global_colon") ? 1 : 0)
 	If (search_price != Lang_Trans("global_price") . Lang_Trans("global_colon"))
-		UpdateConversions()
+		Economy_Update()
 
 	For key, object in vars.async[league].sold
 	{
@@ -531,7 +531,7 @@ AsyncTradeLogs(cHWND := "")
 	Gui, %GUI_name%: Font, % "s" settings.async.fSize
 	If !search_default
 		Gui, %GUI_name%: Add, Text, % "ys Border hp cRed Center gAsyncTradeLogs HWNDhwnd3 w" settings.async.fWidth * 2, x
-	If (vars.async.conversions.timestamp.2 = "failed")
+	If (vars.economy.currency.timestamp.2 = "failed")
 		Gui, %GUI_name%: Add, Text, % "ys hp BackgroundTrans cFF8000 x+" margin, % Lang_Trans("async_pricefailed", 3)
 	vars.hwnd.async_logs.search_edit := vars.hwnd.help_tooltips["asynclogs_search field"] := hwnd,
 	vars.hwnd.async_logs.search_price := vars.hwnd.help_tooltips["asynclogs_search price"] := hwnd1, vars.hwnd.async_logs.search_ok := hwnd2
@@ -617,10 +617,10 @@ AsyncTradeLogs(cHWND := "")
 				{
 					last_price := object.prices[object.prices.MaxIndex()]
 					If (object.prices.1.3 != last_price.3)
-						UpdateConversions()
+						Economy_Update()
 					If (object.prices.1.3 = last_price.3)
 						price_diff := Round((last_price.2 / object.prices.1.2) * 100 - 100) "%"
-					Else If (converted1 := vars.async.conversions[object.prices.1.3]) && (converted2 := vars.async.conversions[last_price.3])
+					Else If (converted1 := vars.economy.currency[object.prices.1.3]) && (converted2 := vars.economy.currency[last_price.3])
 						price_diff := Round(((last_price.2 * converted2) / (object.prices.1.2 * converted1)) * 100 - 100) "%"
 					Else price_diff := "n/a"
 
@@ -670,7 +670,7 @@ AsyncTradeLogsSearch(search, search_price, object)
 		currency := currencies[currency], final_price := object.prices[object.prices.MaxIndex()]
 		If (currency = final_price.3 && final_price.2 >= price)
 			price0 := 1
-		Else If (converted := vars.async.conversions[final_price.3]) && (converted2 := vars.async.conversions[currency]) && (final_price.2 * converted >= price * converted2)
+		Else If (converted := vars.economy.currency[final_price.3]) && (converted2 := vars.economy.currency[currency]) && (final_price.2 * converted >= price * converted2)
 			price0 := 1
 	}
 	Return (search0 * price0)
@@ -697,8 +697,8 @@ AsyncTradeLogsTooltip(type, key)
 		timestamp += timezone, Hours
 		Gui, %GUI%: Add, Text, % "Section", % LLK_StringCase(LLK_FormatTime(timestamp, "dddd") " (" LLK_FormatTime(timestamp, "ShortDate") ")")
 		Gui, %GUI%: Add, Text, % "Section xs wp Center y+0", % " " LLK_FormatTime(timestamp, "Time") " "
-		UpdateConversions()
-		If (vars.async.conversions.timestamp.2 != "failed")
+		Economy_Update()
+		If (vars.economy.currency.timestamp.2 != "failed")
 		{
 			price := object.prices[object.prices.MaxIndex()].2, currency := object.prices[object.prices.MaxIndex()].3, added := 0
 			For index, val in ["divine", (vars.poe_version ? "exalted" : "chaos")]
@@ -707,7 +707,7 @@ AsyncTradeLogsTooltip(type, key)
 					If !vars.pics.async[val]
 						vars.pics.async[val] := LLK_ImageCache("img\GUI\currency\" val . vars.poe_version ".png",, dIcon)
 					label_currency := (InStr(currency, "greater-") ? "ii" : (InStr(currency, "perfect-") ? "iii" : ""))
-					converted := price * vars.async.conversions[currency], converted2 := vars.async.conversions[val], converted3 := Round(converted/converted2, (converted/converted2 >= 10 ? 0 : 2))
+					converted := price * vars.economy.currency[currency], converted2 := vars.economy.currency[val], converted3 := Round(converted/converted2, (converted/converted2 >= 10 ? 0 : 2))
 					Gui, %GUI%: Add, Text, % "Section " (added ? "ys x+" 2*margin : "xs") " 0x200 BackgroundTrans h" dIcon, % (converted3 >= 1000 ? StrReplace(Round(converted3/1000, 1), ".0") "k" : converted3)
 					Gui, %GUI%: Add, Pic, % "ys x+0", % "HBitmap:*" vars.pics.async[val]
 					added += 1
@@ -864,10 +864,10 @@ AsyncTradeReprice(mode := "", tooltip := "")
 			Else item := vars.async[league].sold[tooltip], count := item.prices.Count()
 
 			If (item.prices.1.3 != item.prices[item.prices.MaxIndex()].3)
-				UpdateConversions()
+				Economy_Update()
 			If (item.prices.1.3 = item.prices[item.prices.MaxIndex()].3)
 				price_diff := Round((item.prices[item.prices.MaxIndex()].2 / item.prices.1.2) * 100 - 100, 1)
-			Else If (converted1 := vars.async.conversions[item.prices.1.3]) && (converted2 := vars.async.conversions[item.prices[item.prices.MaxIndex()].3])
+			Else If (converted1 := vars.economy.currency[item.prices.1.3]) && (converted2 := vars.economy.currency[item.prices[item.prices.MaxIndex()].3])
 				price_diff := Round(((item.prices[item.prices.MaxIndex()].2 * converted2) / (item.prices.1.2 * converted1)) * 100 - 100, 1)
 			Else price_diff := ""
 
@@ -919,13 +919,13 @@ AsyncTradeReprice(mode := "", tooltip := "")
 		Gui, %GUI_name%: Font, % "s" settings.async.fSize2
 		For outer in [1, 2]
 		{
-			loop := (outer = 1 ? price0.1 : Round(price0.1 * vars.async.conversions[currency])), options := []
+			loop := (outer = 1 ? price0.1 : Round(price0.1 * vars.economy.currency[currency])), options := []
 			If (loop = 1) || (outer = 2) && !offer_alt
 			{
 				If (price0.2 != alt_currency)
 				{
 					If (loop = 1)
-						UpdateConversions()
+						Economy_Update()
 					offer_alt := 1
 				}
 				Continue
@@ -934,7 +934,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 			If offer_alt
 				currency := alt_currency
 
-			If (outer = 2) && (vars.async.conversions.timestamp.2 = "failed")
+			If (outer = 2) && (vars.economy.currency.timestamp.2 = "failed")
 			{
 				Gui, %GUI_name%: Add, Text, % "Section xs HWNDhwnd cFF8000", % Lang_Trans("async_pricefailed")
 				Gui, %GUI_name%: Add, Text, % "Section xs cFF8000", % Lang_Trans("async_pricefailed", 3)
@@ -967,7 +967,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 						Else options[A_Index - 1] := loop - A_Index + 1, last_diff := price_diff1
 
 						If (last_diff >= 2*minchange)
-							UpdateConversions(), offer_alt := (price0.1 < price0.1 * vars.async.conversions[currency] ? 1 : 0)
+							Economy_Update(), offer_alt := (price0.1 < price0.1 * vars.economy.currency[currency] ? 1 : 0)
 						last_diff := Round(last_diff) // 5 * 5
 					}
 				}
@@ -1199,8 +1199,8 @@ Exchange(cHWND := "", hotkey := "")
 	{
 		If RegexMatch(check, "i)chaos|exalt")
 		{
-			UpdateConversions()
-			If (vars.async.conversions.timestamp.2 = "failed")
+			Economy_Update()
+			If (vars.economy.currency.timestamp.2 = "failed")
 			{
 				GuiControl, -Hidden, % vars.hwnd.exchange.chaos_div
 				If vars.poe_version
@@ -1364,7 +1364,7 @@ Exchange(cHWND := "", hotkey := "")
 
 	ControlGetPos, xChaos1, yChaos1, wChaos1, hChaos1,, % "ahk_id " vars.hwnd.exchange.chaos1
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize - 2
-	hidden := (vars.async.conversions.timestamp.2 = "failed" && RegExMatch(vars.exchange.selected_currency, "i)exalt|chaos") ? "" : " Hidden")
+	hidden := (vars.economy.currency.timestamp.2 = "failed" && RegExMatch(vars.exchange.selected_currency, "i)exalt|chaos") ? "" : " Hidden")
 	Gui, %GUI_name%: Add, Edit, % "x" xChaos1 " y" yChaos1 + hChaos1 " Number r1 gExchange HWNDhwnd cBlack Center w" hIcons * 1.5 . hidden, % settings.exchange.chaos_div
 	vars.hwnd.help_tooltips["exchange_chaos-div"] := vars.hwnd.exchange.chaos_div := hwnd
 	If vars.poe_version
@@ -1596,32 +1596,4 @@ Exchange_coords()
 		Return "amount2"
 	Else If LLK_IsBetween(vars.general.xMouse, vars.exchange.coords.order.1, vars.exchange.coords.order.2) && LLK_IsBetween(vars.general.yMouse, vars.exchange.coords.order.3, vars.exchange.coords.order.4)
 		Return "order"
-}
-
-UpdateConversions()
-{
-	local
-	global vars, settings
-
-	timestamp := vars.async.conversions.timestamp, league := settings.general.league.Clone(), league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4])
-	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > 60)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 15)
-	{
-		If !IsNumber(vars.stash.currency.timestamp) || (vars.stash.currency.league != league) || (LLK_TimeElapsed(vars.stash.currency.timestamp) > 60)
-			success := Stash_PriceFetch("currency")
-		If success || IsNumber(vars.stash.currency.timestamp) && (LLK_TimeElapsed(vars.stash.currency.timestamp) <= 60)
-		{
-			vars.async.conversions := {}, ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", "currency")
-			For key, val in ini.currency
-				If !InStr(key, "_trend")
-					vars.async.conversions[key] := StrSplit(val, ",", " ")[(vars.poe_version ? 2 : 1)]
-			If vars.poe_version
-				vars.async.conversions.exalted := 1
-			Else vars.async.conversions.chaos := 1
-
-			IniWrite, % (settings.exchange.chaos_div := Round(StrSplit(ini.currency.divine, ",", " ").1)), % "ini" vars.poe_version "\vaal street.ini", settings, chaos-div ratio
-			IniWrite, % (settings.exchange.exalt_div := Round(StrSplit(ini.currency.divine, ",", " ").2)), % "ini" vars.poe_version "\vaal street.ini", settings, exalt-div ratio
-		}
-		Else If !success
-			vars.async.conversions := {"timestamp": [A_NowUTC, "failed"]}
-	}
 }

@@ -167,6 +167,37 @@ Exit()
 		Maptracker_Save()
 }
 
+Economy_Update(type := "currency")
+{
+	local
+	global vars, settings
+
+	timestamp := vars.economy[type].timestamp, league := settings.general.league.Clone(), league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4])
+	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > 60)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 15)
+	{
+		If !IsNumber(vars.stash[type].timestamp) || (vars.stash[type].league != league) || (LLK_TimeElapsed(vars.stash[type].timestamp) > 60)
+			success := Stash_PriceFetch(type)
+		If success || IsNumber(vars.stash[type].timestamp) && (LLK_TimeElapsed(vars.stash[type].timestamp) <= 60)
+		{
+			vars.economy[type] := {"timestamp": A_NowUTC}, ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", type)
+			For key, val in ini[type]
+				If !InStr(key, "_trend")
+					vars.economy[type][key] := StrSplit(val, ",", " ")[(vars.poe_version ? 2 : 1)]
+			If (type = "currency")
+			{
+				If vars.poe_version
+					vars.economy.currency.exalted := 1
+				Else vars.economy.currency.chaos := 1
+
+				IniWrite, % (settings.exchange.chaos_div := Round(StrSplit(ini.currency.divine, ",", " ").1)), % "ini" vars.poe_version "\vaal street.ini", settings, chaos-div ratio
+				IniWrite, % (settings.exchange.exalt_div := Round(StrSplit(ini.currency.divine, ",", " ").2)), % "ini" vars.poe_version "\vaal street.ini", settings, exalt-div ratio
+			}
+		}
+		Else If !success
+			vars.economy[type] := {"timestamp": [A_NowUTC, "failed"]}
+	}
+}
+
 Init_client()
 {
 	local
@@ -507,6 +538,7 @@ Init_vars()
 	vars.betrayal := {}
 	vars.cheatsheets := {}
 	vars.client := {}
+	vars.economy := {}
 	vars.GUI := []
 	vars.omnikey := {}
 	vars.omnikey.poedb := {"Claws": 1, "Daggers": 1, "Wands": 1, "One Hand Swords": 1, "One Hand Axes": 1, "One Hand Maces": 1, "Sceptres": 1, "Spears": 1, "Flails": 1

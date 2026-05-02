@@ -5573,7 +5573,7 @@ Settings_LeagueSelection2(cHWND := "")
 		For index, val in settings.general.league
 			string .= (string ? "|" : "") val
 		IniWrite, % """" string """", % "ini" vars.poe_version "\config.ini", settings, league
-		Stash_PriceFetch("flush"), vars.async.conversions := {}
+		Stash_PriceFetch("flush"), vars.economy := {}
 		If WinExist("ahk_id " vars.hwnd.stash.main)
 			Stash("refresh")
 		If WinExist("ahk_id " vars.hwnd.async.main)
