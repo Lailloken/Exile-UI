@@ -637,7 +637,7 @@
       "pick a preset and fine-tune the value by using the slider, then click <test> below"
     ],
     "lootfilter filter-tester restore": [
-      "(/highlight)click this button after you're done testing: it re-applies your customized filter in game",
+      "(/highlight)click this button after you're done testing: it re-applies your previous in-game filter",
       "(/highlight)make sure the in-game chat box is closed but accessible"
     ],
     "lootfilter modifier keys": [
@@ -1496,11 +1496,21 @@
       "text color",
       "click to open the color palette, right-click to revert to the basefilter color"
     ],
+    "economy cut-offs": [
+      "enter a value x and click <apply/update> to hide everything under x chaos. enter 0 to revert to defaults",
+      "(/highlight)sometimes, there's a discrepancy in categorization between poe.ninja and neversink filters (currency vs fragment)",
+      "(/highlight)these economy-checks will only move items according to poe.ninja's categories (e.g. currency)"
+    ],
+    "economy cut-offs 2": [
+      "enter a value x and click <apply/update> to hide everything under x exalts. enter 0 to revert to defaults",
+      "(/highlight)sometimes, there's a discrepancy in categorization between poe.ninja and neversink filters (currency vs fragment)",
+      "(/highlight)these economy-checks will only move items according to poe.ninja's categories (e.g. currency)"
+    ],
     "expand": [
       "expand every section that is currently collapsed"
     ],
     "filter apply modifications": [
-      "applies your modifications to the filter and loads it into the game",
+      "applies unsaved/pending modifications to the filter and loads it into the game",
       "(/highlight)make sure the in-game chat box is closed but accessible"
     ],
     "filter apply update": [
@@ -1512,9 +1522,13 @@
       "(/highlight)the game doesn't delete leftover files when you delete online filters, so this list may be very long",
       "(/highlight)right-click a filter on the list to delete the local copy"
     ],
-    "global setting general": [
-      "global quick-settings are not affected by chronological order",
-      "click to configure them on the main/home screen"
+    "global setting info": [
+      "global quick-settings are always applied first, before normal modifications",
+      "this lets you make broad changes first, and more specific changes on top"
+    ],
+    "global setting economy": [
+      "lets you hide items based on current poe.ninja prices",
+      "click this label to open the settings menu and select your current league"
     ],
     "global setting maps": [
       "lets you set a tier cut-off for regular maps (i.e. not influenced, blighted, etc.)",
@@ -1565,8 +1579,8 @@
       "you have to activate online filters at least once in game to get a local copy"
     ],
     "modhistory": [
-      "the sequence of boxes below represents the modifications you applied to the filter: global quick-settings are always applied first",
-      "hover over the boxes for more info. you can click this bar to collapse this section."
+      "the sequence of boxes below represents the modifications you applied to the filter",
+      "hover over the boxes for more info. click this bar to collapse this section."
     ],
     "opacity": [
       "opacity customization is reduced to three fixed presets that can be adjusted in the settings",
@@ -1575,39 +1589,42 @@
     "profiles": [
       "you can switch between three different profiles to set up different sets of filter modifications"
     ],
+    "section browse": [
+      "click this label to open the corresponding section in the filter"
+    ],
     "size": [
       "size customization is reduced to three fixed presets that can be adjusted in the settings",
-      "defaults: 24  |  32  |  45"
+      "defaults: 25  |  35  |  45"
     ],
     "types": [
-      "these bars represent how the filter is divided into groups",
-      "click to collapse this group, right-click to browse it"
+      "these bars show how the filter is divided into types",
+      "click this bar to collapse this type, right-click to browse it"
     ],
     "tiers": [
-      "these sections represent how groups are further divided into tiers",
-      "click to collapse this tier, right-click to browse it"
+      "these sections show how types are further divided into tiers",
+      "click items for more specific options, right-click them to start a global search",
+      "click this bar to collapse this tier, right-click to browse it"
     ],
     "rollback": [
       "click to browse the tier that was modified",
       "hold right-click to go back to this point and delete !every! modification after it: make sure the in-game chat box is closed but accessible"
     ],
     "search field": [
-      "the search has basic regex functionality and supports multi-keyword searches via comma separation",
-      "it will display matches in item basetypes and classes, but you can also use 'type:' and 'tier:' to search within those",
-      "(/highlight)alternatively, press the omni-key over an item to find the specific match"
+      "press the omni-key over an item to find the specific match",
+      "manual searching has basic regex functionality and supports multi-keyword searches via comma separation"
     ],
     "search history": [
       "lets you go back and forth in your search/browse history",
       "you can also scroll the mouse wheel while hovering over the editor"
     ],
     "rule hideshow": [
-      "this toggle affects !every! item in this section"
+      "this toggle affects !every! item in this tier"
     ],
     "update check": [
       "sync the local copy with the online filter: this applies the !base! filter in game, which forces an update check",
       "(/highlight)make sure the in-game chat box is closed but accessible",
       "(/highlight)you'll have to click <apply> afterwards to reload your customizations",
-      "there is a server-side sync cooldown if the online filter has been updated multiple times recently"
+      "there is a server-side sync cooldown if the online filter has been updated multiple times recently (e.g. via filterblade)"
     ]
   },
   "maptracker": {

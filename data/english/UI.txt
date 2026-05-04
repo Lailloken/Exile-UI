@@ -260,6 +260,7 @@
 		global_memorystrands	=	"memory strands"
 		global_memorystrands	=	"strands"
 		global_campaign		=	"campaign"
+		global_update			=	"update"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -550,6 +551,12 @@
 		lootfilter_visuals			=	"visuals"									;## as an umbrella term for everything regarding visual presentation
 		lootfilter_maps			=	"regular maps"								;## as opposed to special maps (conquerors, guardians, originator, etc.)
 		lootfilter_gems			=	"regular gems"								;## as opposed to special gems (exceptional, transfigured, overlvl/qual, etc.)
+		lootfilter_economy			=	"economy"
+		lootfilter_economy			=	"economy-check: poe.ninja"
+		lootfilter_lowcutoff		=	"cut-off too low"							;## cut-off in the sense of threshold, i.e. anything below a value X
+		lootfilter_currency			=	"general currency (unstacked)"
+		lootfilter_essences			=	"essences"
+		lootfilter_divcards			=	"divination cards (unstacked)"
 
 
 

@@ -185,7 +185,8 @@ Gui_HelpToolTip(HWND_key)
 				Else text := []
 			}
 			For key, val in mod.modifications
-				key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val), (InStr(key, "color") ? RGB_Convert(string) : "")])
+				If !IsNumber(key)
+					key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val), (InStr(key, "color") ? RGB_Convert(string) : "")])
 			If mod.warning
 				text.Push(["warning: " mod.warning, "FF8000"])
 
@@ -196,14 +197,14 @@ Gui_HelpToolTip(HWND_key)
 
 			If InStr(control, "pending")
 				text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
-			If InStr(mod.action, "global ")
+			If RegExMatch(mod.action, "i)global\s|economy")
 			{
-				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting"), "Fuchsia"])
-				For index, val in database.lootfilter["global setting general"]
+				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting") . (InStr(mod.action, "economy") ? Lang_Trans("global_colon") " " Lang_Trans("lootfilter_economy") : ""), "Fuchsia"])
+				For index, val in database.lootfilter["global setting info"]
 					If !(index_mod = 0 && index = 1)
 						text.Push([val])
 			}
-			If InStr(mod.action, "global ") && IsObject(vars.lootfilter.modifications_pending[index_mod])
+			If RegExMatch(mod.action, "i)global\s|economy") && IsObject(vars.lootfilter.modifications_pending[index_mod])
 				text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
 		}
 		For index, val in text

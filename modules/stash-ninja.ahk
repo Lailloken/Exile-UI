@@ -97,6 +97,7 @@
 		For tab in json_data
 			If !InStr("currency2, breach", tab)
 				tab := InStr(tab, "currency") ? "currency" : tab, vars.stash[tab].timestamp := ini[tab].timestamp, vars.stash[tab].league := ini[tab].league
+		vars.stash.divcards := {"timestamp": ini.divcards.timestamp, "league": ini.divcards.league}
 	}
 	tabs := vars.stash.tabs
 	For tab, array in json_data
@@ -390,7 +391,7 @@ Stash_PriceFetch(tab)
 	If !types
 		If vars.poe_version
 			types := {"currency": ["Currency"], "delirium": ["Delirium"], "essences": ["Essences"], "ritual": ["Ritual"], "socketables": ["Runes", "Ultimatum", "Idols"]}
-		Else types :=  {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency", "Astrolabe"]
+		Else types :=  {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency", "Astrolabe"], "divcards": ["DivinationCard"]
 			, "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]}
 
 	If (tab = "flush") ; when changing leagues, flush prices first to avoid old prices carrying over
@@ -426,11 +427,14 @@ Stash_PriceFetch(tab)
 		If !prices.lines.Count()
 			Return 0
 		If (A_Index = 1)
-			ini_dump := "timestamp=" timestamp "`nleague=" StrReplace(league, "+", " ")
+			ini_dump := "timestamp=" timestamp "`nleague=" StrReplace(league, "+", " "), ini_dump2 := ""
 		If !vars.poe_version && !prices.lines.Count() || vars.poe_version && !prices.items.Count()
 			Return 0
 		If (A_Index = 1)
+		{
 			IniDelete, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab
+			IniDelete, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab " names"
+		}
 
 		core := prices.core
 		For index, val in prices.lines
@@ -446,6 +450,12 @@ Stash_PriceFetch(tab)
 				trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
 			
 			ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
+			For iNames, oNames in prices.items
+				If (oNames.id = val.id)
+				{
+					ini_dump2 .= (ini_dump2 ? "`n" : "") val.id "=""" oNames.name """"
+					Break
+				}
 
 			If check && name
 				vars.stash[check][name].prices := StrSplit(price, ",", A_Space, 3), vars.stash[check][name].source := ["ninja", []]
@@ -455,6 +465,7 @@ Stash_PriceFetch(tab)
 		If (A_Index = loop_count)
 		{
 			IniWrite, % ini_dump, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab
+			IniWrite, % ini_dump2, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab " names"
 			vars.stash[tab].timestamp := timestamp, vars.stash[tab].league := StrReplace(league, "+", " ")
 		}
 	}

@@ -176,7 +176,11 @@ Economy_Update(type := "currency")
 	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > 60)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 15)
 	{
 		If !IsNumber(vars.stash[type].timestamp) || (vars.stash[type].league != league) || (LLK_TimeElapsed(vars.stash[type].timestamp) > 60)
+		{
+			LLK_ToolTip(Lang_Trans("stash_update"), 10000,,, "stashprices", "lime")
 			success := Stash_PriceFetch(type)
+			vars.tooltip[vars.hwnd["tooltipstashprices"]] := A_TickCount
+		}
 		If success || IsNumber(vars.stash[type].timestamp) && (LLK_TimeElapsed(vars.stash[type].timestamp) <= 60)
 		{
 			vars.economy[type] := {"timestamp": A_NowUTC}, ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", type)
@@ -192,6 +196,11 @@ Economy_Update(type := "currency")
 				IniWrite, % (settings.exchange.chaos_div := Round(StrSplit(ini.currency.divine, ",", " ").1)), % "ini" vars.poe_version "\vaal street.ini", settings, chaos-div ratio
 				IniWrite, % (settings.exchange.exalt_div := Round(StrSplit(ini.currency.divine, ",", " ").2)), % "ini" vars.poe_version "\vaal street.ini", settings, exalt-div ratio
 			}
+			If !IsObject(vars.economy.names)
+				vars.economy.names := {}
+			ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", type " names")
+			For key, val in ini[type " names"]
+				vars.economy.names[key] := val
 		}
 		Else If !success
 			vars.economy[type] := {"timestamp": [A_NowUTC, "failed"]}

@@ -497,7 +497,8 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		If (filter_tag := vars.lootfilter.update_pending.1)
 			If InStr(loopfield, "Finished reloading online filter " filter_tag)
 			{
-				vars.lootfilter.update_pending := "", vars.lootfilter.update_applied := 1, filter := settings.lootfilter.active_filter, vars.lootfilter.modifications_pending := [], vars.lootfilter.modifications_pending.0 := ""
+				vars.lootfilter.update_pending := "", vars.lootfilter.update_applied := (vars.lootfilter.modifications["profile" settings.lootfilter.profile].Count() > 1 ? 1 : 0), filter := settings.lootfilter.active_filter
+				vars.lootfilter.modifications_pending := [], vars.lootfilter.modifications_pending.0 := ""
 				Lootfilter_Load("init_" filter)
 				Lootfilter_Editor(), LLK_ToolTip(Lang_Trans("global_success"),,,,, "Lime")
 			}

@@ -389,8 +389,8 @@ LButton::
 RButton::LLK_ToolTip(Lang_Trans("global_updateinprogress", 2), 2,,,, "FF8000")
 
 #If vars.hwnd.lootfilter.main && (vars.general.wMouse && vars.general.wMouse = vars.hwnd.lootfilter.main)
-WheelUp:: Lootfilter_Editor("searchhistory_minus")
-WheelDown:: Lootfilter_Editor("searchhistory_plus")
+WheelUp::Lootfilter_Editor("searchhistory_minus")
+WheelDown::Lootfilter_Editor("searchhistory_plus")
 MButton::Lootfilter_Editor("home")
 
 #If vars.actdecoder.tab

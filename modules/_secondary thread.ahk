@@ -280,7 +280,7 @@ News(mode := "")
 	Return
 }
 
-Economy_Update()
+Economy_Update(type := "")
 {
 	Return
 }
