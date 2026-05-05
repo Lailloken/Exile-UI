@@ -552,7 +552,7 @@
 		lootfilter_maps			=	"regular maps"								;## as opposed to special maps (conquerors, guardians, originator, etc.)
 		lootfilter_gems			=	"regular gems"								;## as opposed to special gems (exceptional, transfigured, overlvl/qual, etc.)
 		lootfilter_economy			=	"economy"
-		lootfilter_economy			=	"economy-check: poe.ninja"
+		lootfilter_economy			=	"economy-check (poe.ninja):"
 		lootfilter_lowcutoff		=	"cut-off too low"							;## cut-off in the sense of threshold, i.e. anything below a value X
 		lootfilter_currency			=	"general currency (unstacked)"
 		lootfilter_essences			=	"essences"
@@ -1058,7 +1058,7 @@
 ;## these strings are displayed/required in the "filterspoon" section of the settings menu
 		m_lootfilter_enable		=	"enable the filterspoon feature (experimental)"
 		m_lootfilter_colors		=	"ui & button colors:"
-		m_lootfilter_tester		=	"filter-tester:"			;## a section in the settings menu to test/preview various filter settings (opacity, sound, etc.)
+		m_lootfilter_tester		=	"preset-tester:"					;## a section in the settings menu to test/preview various filter settings (size, opacity, etc.)
 
 
 

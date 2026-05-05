@@ -1606,7 +1606,7 @@
       "click this bar to collapse this tier, right-click to browse it"
     ],
     "rollback": [
-      "click to browse the tier that was modified",
+      "click this box to browse the tier that was modified",
       "hold right-click to go back to this point and delete !every! modification after it: make sure the in-game chat box is closed but accessible"
     ],
     "search field": [

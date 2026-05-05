@@ -6,7 +6,7 @@
 	If !FileExist("ini" vars.poe_version "\lootfilter.ini")
 		IniWrite, % settings.general.fSize, % "ini" vars.poe_version "\lootfilter.ini", settings, font-size
 
-	If !vars.lootfilter
+	If !IsObject(vars.lootfilter)
 		vars.lootfilter := {"search": [""], "modifications": {}, "modifications_pending": []
 		, "xPos": [vars.monitor.x + vars.client.x + vars.client.w - Floor(vars.client.h * 0.6155), vars.monitor.x + vars.client.x + Floor(vars.client.h * 0.6155)]
 		, "yPos": [vars.monitor.y + vars.client.y + vars.client.h*0.53, vars.monitor.y + vars.client.y + vars.client.h*0.17]}
@@ -201,13 +201,26 @@ Lootfilter_Customize(cHWND := "")
 		Lootfilter_Modify(object)
 		;######################################################
 		Case InStr(check, "toggle_"):
-		parse := Trim(SubStr(check, InStr(check, "|")), " |"), parse := StrSplit(parse, "|", " "), type := parse.1, tier := parse.2, chunk := parse.3, toggle := SubStr(control, 1, InStr(control, "|") - 1)
+		parse := Trim(SubStr(check, InStr(check, "|")), " |"), parse := StrSplit(parse, "|", " "), type := parse.1, tier := parse.2, toggle := SubStr(control, 1, InStr(control, "|") - 1)
 		For index, object in vars.lootfilter.modifications_pending
 			If (object.action = "presentation") && (object.type = type) && (object.tier = tier)
 			{
+				If (vars.lootfilter.modifications_pending[index].modifications.visibility = toggle)
+					Return
 				vars.lootfilter.modifications_pending[index].modifications.visibility := toggle, check := 1, Lootfilter_Modify(vars.lootfilter.modifications_pending[index])
+				vars.lootfilter.modifications_pending[index].modifications.Delete("visibility")
+				If !vars.lootfilter.modifications_pending[index].modifications.Count()
+					vars.lootfilter.modifications_pending.RemoveAt(index)
 				Break
 			}
+		If (check != 1)
+			For index, chunk in vars.lootfilter.active_filter.final
+				If (chunk.type = type && chunk.tier = tier)
+				{
+					If RegExMatch(chunk.lines.1, "i)^.{0,2}" toggle)
+						Return
+					Break
+				}
 		If (check != 1)
 			object := {"action": "presentation", "type": type, "tier": tier, "modifications": {"visibility": toggle}}, vars.lootfilter.modifications_pending.Push(object), Lootfilter_Modify(object)
 		;######################################################
@@ -666,9 +679,9 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 		Gui, %GUI%: Add, Text, % "Section xs Center BackgroundTrans Border HWNDhwnd w" wMax - margin - 1, % Lang_Trans("lootfilter_globalsetting", 2)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-		wSettings := (wMax - 3*margin)//3
+		wSettings := (wMax - 3*margin)//3, league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
 		;######################################################
-		Gui, %GUI%: Add, Text, % "Section xs Border Center HWNDhwnd gLootfilter_Editor w" wSettings * 2 + margin, % Lang_Trans("lootfilter_economy", 2)
+		Gui, %GUI%: Add, Text, % "Section xs Border Center HWNDhwnd gLootfilter_Editor w" wSettings * 2 + margin, % Lang_Trans("lootfilter_economy", 2) " " league
 		vars.hwnd.lootfilter["browsesetting_economy"] := vars.hwnd.help_tooltips["lootfilter_global setting economy"] := hwnd
 		labels := [Lang_Trans("lootfilter_currency"), Lang_Trans("lootfilter_divcards"), Lang_Trans("lootfilter_essences")]
 		For index, val in [["currency", "currency"], ["divcards", "divination"], ["essences", "currency > essence"]]
@@ -677,11 +690,12 @@ Lootfilter_Editor(cHWND := "")
 				oCurrent := vars.lootfilter.modifications_pending[-101 - (index - 1)]
 			Else oCurrent := vars.lootfilter.modifications["profile" profile][-101 - (index - 1)]
 
+			available := vars.lootfilter.active_filter.structure.HasKey(val.2)
 			wLabel := wSettings * 2 + margin - settings.lootfilter.fWidth2 * 4 - wApplyUpdate
-			style := (oCurrent.action && !oCurrent.modifications.toggle ? " cLime gLootfilter_Editor" : " BackgroundTrans" (oCurrent.modifications.toggle ? " cYellow" : ""))
+			style := (!available ? " cFF8000 BackgroundTrans" : (oCurrent.action && !oCurrent.modifications.toggle ? " cLime gLootfilter_Editor" : " BackgroundTrans" (oCurrent.modifications.toggle ? " cYellow" : "")))
 			Gui, %GUI%: Add, Text, % "xs y+-1 Border HWNDhwnd w" wLabel . style, % " " labels[index]
 			vars.hwnd.lootfilter["economy_" val.2 "|exui_hide"] := hwnd
-			If Blank(oCurrent.action) || oCurrent.modifications.toggle
+			If Blank(oCurrent.action) || oCurrent.modifications.toggle || !available
 				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
 			Else vars.hwnd.help_tooltips["lootfilter_section browse" handle_tooltip] := hwnd
 
@@ -719,56 +733,50 @@ Lootfilter_Editor(cHWND := "")
 		available := vars.lootfilter.active_filter.structure.HasKey("maps")
 		Gui, %GUI%: Add, Text, % "Section xs x" margin " y" hMax + margin - 1 " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_maps")
 		vars.hwnd.lootfilter["browsesetting_maps"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable" : "maps")] := hwnd
-		If available
-		{
-			If IsObject(vars.lootfilter.modifications_pending[-21])
-				maps := vars.lootfilter.modifications_pending[-21]
-			Else maps := vars.lootfilter.modifications["profile" profile][-21]
 
-			value := (maps.modifications.tier ? maps.modifications.tier : 0)
-			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wMapTier . (maps.modifications.tier ? " cLime" : ""), % " " Lang_Trans("lootfilter_mintier")
-			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-17 NoTicks ToolTip HWNDhwnd w" wSettings - wMapTier + 1, % value
-			vars.hwnd.lootfilter["globalsetting_map|tier"] := vars.hwnd.help_tooltips["lootfilter_global setting maps toggles"] := hwnd
-		}
+		If IsObject(vars.lootfilter.modifications_pending[-21])
+			maps := vars.lootfilter.modifications_pending[-21]
+		Else maps := vars.lootfilter.modifications["profile" profile][-21]
+
+		value := (maps.modifications.tier ? maps.modifications.tier : 0)
+		Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wMapTier . (maps.modifications.tier ? " cLime" : ""), % " " Lang_Trans("lootfilter_mintier")
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+		Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-17 NoTicks ToolTip HWNDhwnd w" wSettings - wMapTier + 1, % value
+		vars.hwnd.lootfilter["globalsetting_map|tier"] := vars.hwnd.help_tooltips["lootfilter_global setting maps toggles"] := hwnd
 		;######################################################
 		available := vars.lootfilter.active_filter.structure.HasKey("gems > generic")
 		Gui, %GUI%: Add, Text, % "Section ys x" wSettings + 2*margin " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_gems")
 		vars.hwnd.lootfilter["browsesetting_gems > generic"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable||" : "gems")] := hwnd
-		If available
-		{
-			If IsObject(vars.lootfilter.modifications_pending[-11])
-				gems := vars.lootfilter.modifications_pending[-11]
-			Else gems := vars.lootfilter.modifications["profile" profile][-11]
 
-			For index, val in ["quality", "level"]
-			{
-				value := (gems.modifications[val] ? gems.modifications[val] : 0)
-				Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wQualityLevel . (gems.modifications[val] ? " cLime" : ""), % " " Lang_Trans("lootfilter_min" val)
-				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-				Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-2" (index = 1 ? 4 : 2) " NoTicks ToolTip HWNDhwnd w" wSettings - wQualityLevel + 1, % value
-				vars.hwnd.lootfilter["globalsetting_gem|" val] := vars.hwnd.help_tooltips["lootfilter_global setting gems toggles" (index = 2 ? "|" : "")] := hwnd
-				cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
-			}
+		If IsObject(vars.lootfilter.modifications_pending[-11])
+			gems := vars.lootfilter.modifications_pending[-11]
+		Else gems := vars.lootfilter.modifications["profile" profile][-11]
+
+		For index, val in ["quality", "level"]
+		{
+			value := (gems.modifications[val] ? gems.modifications[val] : 0)
+			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wQualityLevel . (gems.modifications[val] ? " cLime" : ""), % " " Lang_Trans("lootfilter_min" val)
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-2" (index = 1 ? 4 : 2) " NoTicks ToolTip HWNDhwnd w" wSettings - wQualityLevel + 1, % value
+			vars.hwnd.lootfilter["globalsetting_gem|" val] := vars.hwnd.help_tooltips["lootfilter_global setting gems toggles" (index = 2 ? "|" : "")] := hwnd
+			cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		}
 		;######################################################
 		available := vars.lootfilter.active_filter.structure.HasKey("gear > memorystrand")
 		Gui, %GUI%: Add, Text, % "Section ys x" wMax - wSettings - 1 " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("global_memorystrands")
 		vars.hwnd.lootfilter["browsesetting_gear > memorystrand"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable|" : "strands")] := hwnd
-		If available
-		{
-			If IsObject(vars.lootfilter.modifications_pending[-31])
-				strands := vars.lootfilter.modifications_pending[-31]
-			Else strands := vars.lootfilter.modifications["profile" profile][-31]
 
-			For index, val in ["strands high", "strands"]
-			{
-				value := (strands.modifications[val] ? strands.modifications[val] : 0), label := Lang_Trans("global_" (index = 1 ? "high" : "minimum"))
-				Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wStrands . (strands.modifications[val] ? " cLime" : ""), % " " label
-				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-				Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-101 NoTicks ToolTip HWNDhwnd w" wSettings - wStrands + 1, % value
-				vars.hwnd.lootfilter["globalsetting_strand|" val] := vars.hwnd.help_tooltips["lootfilter_global setting strands toggles" (index = 2 ? "|" : "")] := hwnd
-			}
+		If IsObject(vars.lootfilter.modifications_pending[-31])
+			strands := vars.lootfilter.modifications_pending[-31]
+		Else strands := vars.lootfilter.modifications["profile" profile][-31]
+
+		For index, val in ["strands high", "strands"]
+		{
+			value := (strands.modifications[val] ? strands.modifications[val] : 0), label := Lang_Trans("global_" (index = 1 ? "high" : "minimum"))
+			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wStrands . (strands.modifications[val] ? " cLime" : ""), % " " label
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-101 NoTicks ToolTip HWNDhwnd w" wSettings - wStrands + 1, % value
+			vars.hwnd.lootfilter["globalsetting_strand|" val] := vars.hwnd.help_tooltips["lootfilter_global setting strands toggles" (index = 2 ? "|" : "")] := hwnd
 		}
 		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		Gosub, Label_Show
@@ -854,8 +862,8 @@ Lootfilter_Editor(cHWND := "")
 					{
 						Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd_show gLootfilter_Customize c" ((show := RegexMatch(vChunk.lines.1, "i)^.{0,2}show")) ? "Lime" : "Gray"), % " " Lang_Trans("global_show") " "
 						Gui, %GUI%: Add, Text, % "ys x+-1 Border HWNDhwnd_hide gLootfilter_Customize c" (!show ? "Lime" : "Gray"), % " " Lang_Trans("global_hide") " "
-						vars.hwnd.lootfilter["toggle_Show|" type "|" tier "|" last_chunk] := vars.hwnd.help_tooltips["lootfilter_rule hideshow" handle_showhide] := hwnd_show
-						vars.hwnd.lootfilter["toggle_Hide|" type "|" tier "|" last_chunk] := vars.hwnd.help_tooltips["lootfilter_rule hideshow" handle_showhide "|"] := hwnd_hide, handle_showhide .= "||"
+						vars.hwnd.lootfilter["toggle_Show|" type "|" tier] := vars.hwnd.help_tooltips["lootfilter_rule hideshow" handle_showhide] := hwnd_show
+						vars.hwnd.lootfilter["toggle_Hide|" type "|" tier] := vars.hwnd.help_tooltips["lootfilter_rule hideshow" handle_showhide "|"] := hwnd_hide, handle_showhide .= "||"
 
 						tags := [], campaign := 0
 						For iLine, oLine in vChunk.lines
@@ -896,8 +904,6 @@ Lootfilter_Editor(cHWND := "")
 						Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans", % " " Lang_Trans("global_global") " "
 						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundFuchsia c" background_color, 100
 					}
-
-					;Gui, %GUI%: Add, Text, % "Section xs y+0 w2 h10 HWNDhwnd_tierbrace"
 					Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 				}
 
@@ -929,7 +935,7 @@ Lootfilter_Editor(cHWND := "")
 						outer := A_Index, vars.lootfilter.last_item := StrReplace(item, """")
 						Loop 2
 						{
-							label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(item, [[" support", " Supp."], ["awakened ", "Awake. "]]), " """) . (style.maptier && !clip_mode ? " (Tier " style.maptier ")" : "")
+							label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(item, [[" support", " Supp."], ["awakened ", "Awake. "], [" essence of ", " | "]]), " """) . (style.maptier && !clip_mode ? " (Tier " style.maptier ")" : "")
 							label := StrReplace(label, " support", " Supp")
 							Gui, %GUI%: Add, Text, % (outer = 1 ? (outer_tier = 2 ? "Section xs" : "Section xs x" 2*margin + 2) : (A_Index = 2 ? "Section xs" : "ys")) " BackgroundTrans gLootfilter_Editor HWNDhwnd1 0x200 h" hItems%tag% " c" style.settextcolor, % " " label " "
 							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 Background" style.setbordercolor " c" style.setbackgroundcolor, 100
@@ -982,8 +988,8 @@ Lootfilter_Editor(cHWND := "")
 			show := RegExMatch(vars.lootfilter.active_filter.final[last_chunk].lines.1, "i)^.{0,2}show")
 			Gui, %GUI%: Add, Text, % "Section HWNDhwnd gLootfilter_Customize xs x" margin " Center Border w" wShowHide " c" (show ? "Lime" : "Gray"), % Lang_Trans("global_show")
 			Gui, %GUI%: Add, Text, % "ys x+-1 HWNDhwnd1 gLootfilter_Customize Border Center c" (show ? "Gray" : "Lime"), % " " Lang_Trans("global_hide") " "
-			vars.hwnd.lootfilter["toggle_Show|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier "|" last_chunk] := hwnd
-			vars.hwnd.lootfilter["toggle_Hide|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier "|" last_chunk] := hwnd1
+			vars.hwnd.lootfilter["toggle_Show|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier] := hwnd
+			vars.hwnd.lootfilter["toggle_Hide|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier] := hwnd1
 
 			Gui, %GUI%: Add, Text, % "ys hp Border BackgroundTrans", % " " StrReplace(Lang_Trans("global_color", 2), Lang_Trans("global_colon")) " "
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" accent_color " c" background_color, 100

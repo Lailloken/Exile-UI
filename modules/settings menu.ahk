@@ -2672,7 +2672,7 @@ Settings_lootfilter()
 	vars.hwnd.settings.color_background := hwnd, vars.hwnd.settings.color_background_bar := vars.hwnd.help_tooltips["settings_generic color"] := hwnd1
 	vars.hwnd.settings.color_accent := hwnd2, vars.hwnd.settings.color_accent_bar := vars.hwnd.help_tooltips["settings_generic color|"] := hwnd3
 
-	If !settings.lootfilter.active_filter
+	If !settings.lootfilter.active_filter || !vars.lootfilter.filters_list.Count()
 		Return
 
 	Gui, %GUI%: Font, bold underline
@@ -5580,6 +5580,8 @@ Settings_LeagueSelection2(cHWND := "")
 			AsyncTrade()
 		If WinExist("ahk_id " vars.hwnd.exchange.main)
 			Exchange()
+		If WinExist("ahk_id " vars.hwnd.lootfilter.main)
+			Lootfilter_Editor()
 		Settings_menu()
 	}
 	Else If (check = "league_update")

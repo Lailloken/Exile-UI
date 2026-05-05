@@ -178,7 +178,7 @@ Gui_HelpToolTip(HWND_key)
 			Else
 			{
 				mod := (!InStr(control, "pending") ? vars.lootfilter.modifications["profile" lootfilter][index_mod] : vars.lootfilter.modifications_pending[index_mod])
-				If !IsObject(mod) || vars.lootfilter.modifications_pending[index_mod]
+				If !IsObject(mod) || (index_mod < 0) && vars.lootfilter.modifications_pending[index_mod]
 					mod := vars.lootfilter.modifications_pending[index_mod]
 				If mod.type
 					text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") " " mod.tier : ""))]]
