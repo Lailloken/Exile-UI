@@ -1,5 +1,11 @@
 [
   [
+	["1.62.5", 16205],
+	"may 5, 2026",
+	"act-tracker:\n>> 'dynamic character tracking' didn't work if you had a guild-tag in your name",
+	"new feature:\n>> rebuilt and re-enabled FilterSpoon for PoE1 (lootfilter editor, PoE2 version soon)"
+  ],
+  [
 	["1.62.4", 16204, 1],
 	"april 7, 2026",
 	"fixed scaling inconsistencies for the menu-widget and chat-macros menus",
