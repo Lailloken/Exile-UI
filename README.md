@@ -126,6 +126,13 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | flexible filter:<br>regex/keywords | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/anoints_102.jpg) |
 <br>
 
+### [FilterSpoon](https://github.com/Lailloken/Exile-UI/wiki/FilterSpoon): quick-access "in-client" lootfilter editor
+| | Path of Exile | Path of Exile 2 |
+|---|---|---|
+| rule-matching on hover | ![img](https://github.com/user-attachments/assets/cf335e64-1f92-4489-803c-0238110bc963) | soon™ |
+| manual searching/browsing | ![img](https://github.com/user-attachments/assets/283eabd6-13b1-48e3-9f1f-c7fc1e72cd18) | soon™ |
+<br>
+
 ### [Recombination Simulator](https://github.com/Lailloken/Lailloken-UI/wiki/Recombination-Simulator): in-game overlay that simulates outcomes in a few clicks
 | example 1: single mod transfer | example 2: runic + zeffre + archmage's wand |
 |---|---|
