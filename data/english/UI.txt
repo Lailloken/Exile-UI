@@ -552,11 +552,17 @@
 		lootfilter_maps			=	"regular maps"								;## as opposed to special maps (conquerors, guardians, originator, etc.)
 		lootfilter_gems			=	"regular gems"								;## as opposed to special gems (exceptional, transfigured, overlvl/qual, etc.)
 		lootfilter_economy			=	"economy"
-		lootfilter_economy			=	"economy-check (poe.ninja):"
+		lootfilter_economy			=	"economy-check:"
 		lootfilter_lowcutoff		=	"cut-off too low"							;## cut-off in the sense of threshold, i.e. anything below a value X
 		lootfilter_currency			=	"general currency (unstacked)"
 		lootfilter_essences			=	"essences"
 		lootfilter_divcards			=	"divination cards (unstacked)"
+
+		lootfilter_gems			=	"uncut gems"								;## PoE2 only (whole block)
+		lootfilter_minskilllevel		=	"min skill"								;## min level for skill gems
+		lootfilter_minspiritlevel	=	"min spirit"								;## min level for spirit gems
+		lootfilter_minsupportlevel	=	"min supp."								;## min level for support gems
+		lootfilter_socketables		=	"socketables"
 
 
 

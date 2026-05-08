@@ -507,7 +507,7 @@ Init_general()
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
-	settings.features.lootfilter := (vars.poe_version ? 0 : !Blank(check := ini.features["enable filterspoon"]) ? check : 0)
+	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
 	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
 	settings.features.iteminfo := !Blank(check := ini.features["enable item-info"]) ? check : 0

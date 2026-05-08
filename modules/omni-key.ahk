@@ -607,7 +607,7 @@ Omni_ItemInfo()
 		If InStr(A_LoopField, Lang_Trans("mods_cluster_passive"))
 			item.cluster_enchant := StrReplace(StrReplace(SubStr(A_LoopField, StrLen(Lang_Trans("mods_cluster_passive")) + 2), "+"), " (enchant)")
 
-		If !InStr("rings,belts,amulets", item.class) && LLK_PatternMatch(SubStr(A_LoopField, 0), "", ["R", "G", "B", "W", "A"])
+		If !InStr("rings,belts,amulets", item.class) && LLK_PatternMatch(SubStr(A_LoopField, 0), "", ["R", "G", "B", "W", "A", "S"])
 			item.sockets := StrLen(StrReplace(StrReplace(SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), " "), "-"))
 
 		If InStr(A_LoopField, Lang_Trans("items_maptier"))

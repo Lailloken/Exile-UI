@@ -68,8 +68,10 @@ Lootfilter_Customize(cHWND := "")
 	Switch
 	{
 		Case InStr(check, "globalsetting_"):
-		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "economy1": -101, "economy2": -102, "economy3": -103}
-		types := {"gem": "gems > generic", "map": "maps", "strand": "gear > memorystrand", "economy1": "currency", "economy2": "divination", "economy3": "currency > essence"}
+		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "economy1": -101, "economy2": -102, "economy3": -103, "economy4": -104}
+		If !vars.poe_version
+			types := {"gem": "gems > generic", "map": "maps", "strand": "gear > memorystrand", "economy1": "currency", "economy2": "divination", "economy3": "currency > essence"}
+		Else types := {"gem": "gems > uncut", "economy1": "currency", "economy3": "currency > essence", "economy4": "sockets > general"}
 		params := StrSplit(control, "|"), setting := params.1, type := params.2, iTarget := indexes[setting]
 
 		If params.3
@@ -117,7 +119,8 @@ Lootfilter_Customize(cHWND := "")
 
 		If economy && (vars.lootfilter.modifications_pending[iTarget].modifications.toggle = "off") && !vars.lootfilter.modifications["profile" profile][iTarget].modifications.Count()
 			match := 1
-		Else For kSetting, array in {"gem": ["quality", "level"], "map": ["tier"], "strand": ["strands high", "strands"], "visual": ["size", "opacity"]}
+		Else For kSetting, array in (!vars.poe_version ? {"gem": ["quality", "level"], "map": ["tier"], "strand": ["strands high", "strands"], "visual": ["size", "opacity"]}
+			: {"gem": ["skilllevel", "spiritlevel", "supportlevel"], "visual": ["size", "opacity"]})
 			If (setting = kSetting)
 			{
 				match := 1
@@ -281,7 +284,7 @@ Lootfilter_Economy(type, input)
 {
 	local
 	global vars, settings
-	static types := {"currency": "currency", "divcards": "divination", "essences": "currency > essence"}
+	static types := {"currency": "currency", "divcards": "divination", "essences": "currency > essence", "socketables": "sockets > general"}
 
 	If !IsNumber(input)
 		Return -1
@@ -530,7 +533,9 @@ Lootfilter_Editor(cHWND := "")
 		LLK_PanelDimensions([Lang_Trans("global_sync"), Lang_Trans("global_apply"), Lang_Trans("global_cancel")], fSize, wSyncApply, hSyncApply)
 		LLK_PanelDimensions([Lang_Trans("global_expand")], fSize - 2, wExpand, hExpand)
 		LLK_PanelDimensions([Lang_Trans("global_show"), Lang_Trans("global_hide")], fSize - 2, wShowHide, hShowHide)
-		LLK_PanelDimensions([Lang_Trans("lootfilter_minquality"), Lang_Trans("lootfilter_minlevel")], fSize - 2, wQualityLevel, hQualityLevel)
+		If !vars.poe_version
+			LLK_PanelDimensions([Lang_Trans("lootfilter_minquality"), Lang_Trans("lootfilter_minlevel")], fSize - 2, wQualityLevel, hQualityLevel)
+		Else LLK_PanelDimensions([Lang_Trans("lootfilter_minskilllevel"), Lang_Trans("lootfilter_minspiritlevel"), Lang_Trans("lootfilter_minsupportlevel")], fSize - 2, wQualityLevel, hQualityLevel)
 		LLK_PanelDimensions([Lang_Trans("lootfilter_mintier")], fSize - 2, wMapTier, hMapTier)
 		LLK_PanelDimensions([Lang_Trans("global_high"), Lang_Trans("global_minimum")], fSize - 2, wStrands, hStrands)
 		LLK_PanelDimensions([Lang_Trans("global_off")], fSize - 2, wOff, hOff)
@@ -654,7 +659,7 @@ Lootfilter_Editor(cHWND := "")
 						{
 							background := (outer = 2 && object.warning ? "FF0000" : (RegexMatch(object.action, "i)global\s|economy") ? "Fuchsia" : "Black"))
 							If (index < 0) && IsObject(vars.lootfilter.modifications_pending[index])
-								color := "Yellow"
+								color := (vars.lootfilter.modifications_pending[index].warning ? "FF8000" : "Yellow")
 							Else color := (outer = 1 && object.warning ? "FF8000" : (outer = 1 ? (!index ? "White" : "Green") : "Yellow"))
 							style := (A_Index = 2 ? "Section xs y+-1" : (!count ? "Section xs x" margin + (modifications + 1 > modboxes ? Floor(offset/2) : 0) : "ys x+-1")), count += 1
 							Gui, %GUI%: Add, Text, % style " Border BackgroundTrans" (index < 0 ? "" : " gLootfilter_Editor") " HWNDhwnd w" wModbox " h" wModbox
@@ -683,9 +688,12 @@ Lootfilter_Editor(cHWND := "")
 		;######################################################
 		Gui, %GUI%: Add, Text, % "Section xs Border Center HWNDhwnd gLootfilter_Editor w" wSettings * 2 + margin, % Lang_Trans("lootfilter_economy", 2) " " league
 		vars.hwnd.lootfilter["browsesetting_economy"] := vars.hwnd.help_tooltips["lootfilter_global setting economy"] := hwnd
-		labels := [Lang_Trans("lootfilter_currency"), Lang_Trans("lootfilter_divcards"), Lang_Trans("lootfilter_essences")]
-		For index, val in [["currency", "currency"], ["divcards", "divination"], ["essences", "currency > essence"]]
+		labels := [Lang_Trans("lootfilter_currency"), Lang_Trans("lootfilter_divcards"), Lang_Trans("lootfilter_essences"), Lang_Trans("lootfilter_socketables")]
+		For index, val in [["currency", "currency"], ["divcards", "divination"], ["essences", "currency > essence"], ["socketables", "sockets > general"]]
 		{
+			If vars.poe_version && (index = 2) || !vars.poe_version && (index = 4)
+				Continue
+
 			If IsObject(vars.lootfilter.modifications_pending[-101 - (index - 1)])
 				oCurrent := vars.lootfilter.modifications_pending[-101 - (index - 1)]
 			Else oCurrent := vars.lootfilter.modifications["profile" profile][-101 - (index - 1)]
@@ -728,57 +736,64 @@ Lootfilter_Editor(cHWND := "")
 				vars.hwnd.lootfilter["globalsetting_visual|" val "|" scale] := vars.hwnd.help_tooltips["lootfilter_global setting visuals toggles" handle_visuals] := hwnd, handle_visuals .= "|"
 			}
 		}
-		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
+		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax), style := "Section xs x" margin " y" hMax + margin - 1
 		;######################################################
-		available := vars.lootfilter.active_filter.structure.HasKey("maps")
-		Gui, %GUI%: Add, Text, % "Section xs x" margin " y" hMax + margin - 1 " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_maps")
-		vars.hwnd.lootfilter["browsesetting_maps"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable" : "maps")] := hwnd
+		If !vars.poe_version
+		{
+			available := vars.lootfilter.active_filter.structure.HasKey("maps")
+			Gui, %GUI%: Add, Text, % style " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_maps")
+			vars.hwnd.lootfilter["browsesetting_maps"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable" : "maps")] := hwnd
 
-		If IsObject(vars.lootfilter.modifications_pending[-21])
-			maps := vars.lootfilter.modifications_pending[-21]
-		Else maps := vars.lootfilter.modifications["profile" profile][-21]
+			If IsObject(vars.lootfilter.modifications_pending[-21])
+				maps := vars.lootfilter.modifications_pending[-21]
+			Else maps := vars.lootfilter.modifications["profile" profile][-21]
 
-		value := (maps.modifications.tier ? maps.modifications.tier : 0)
-		Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wMapTier . (maps.modifications.tier ? " cLime" : ""), % " " Lang_Trans("lootfilter_mintier")
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-		Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-17 NoTicks ToolTip HWNDhwnd w" wSettings - wMapTier + 1, % value
-		vars.hwnd.lootfilter["globalsetting_map|tier"] := vars.hwnd.help_tooltips["lootfilter_global setting maps toggles"] := hwnd
+			value := (maps.modifications.tier ? maps.modifications.tier : 0)
+			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wMapTier . (maps.modifications.tier ? " cLime" : ""), % " " Lang_Trans("lootfilter_mintier")
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-17 NoTicks ToolTip HWNDhwnd w" wSettings - wMapTier + 1, % value
+			vars.hwnd.lootfilter["globalsetting_map|tier"] := vars.hwnd.help_tooltips["lootfilter_global setting maps toggles"] := hwnd
+			style := "Section ys x" wSettings + 2*margin 
+		}
 		;######################################################
-		available := vars.lootfilter.active_filter.structure.HasKey("gems > generic")
-		Gui, %GUI%: Add, Text, % "Section ys x" wSettings + 2*margin " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_gems")
-		vars.hwnd.lootfilter["browsesetting_gems > generic"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable||" : "gems")] := hwnd
+		available := vars.lootfilter.active_filter.structure.HasKey(!vars.poe_version ? "gems > generic" : "gems > uncut")
+		Gui, %GUI%: Add, Text, % style " Border Center HWNDhwnd w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_gems", vars.poe_version)
+		vars.hwnd.lootfilter["browsesetting_" (!vars.poe_version ? "gems > generic" : "gems > uncut")] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable||" : "gems" vars.poe_version)] := hwnd
 
 		If IsObject(vars.lootfilter.modifications_pending[-11])
 			gems := vars.lootfilter.modifications_pending[-11]
 		Else gems := vars.lootfilter.modifications["profile" profile][-11]
 
-		For index, val in ["quality", "level"]
+		For index, val in (!vars.poe_version ? ["quality", "level"] : ["skilllevel", "spiritlevel", "supportlevel"])
 		{
 			value := (gems.modifications[val] ? gems.modifications[val] : 0)
 			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wQualityLevel . (gems.modifications[val] ? " cLime" : ""), % " " Lang_Trans("lootfilter_min" val)
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-2" (index = 1 ? 4 : 2) " NoTicks ToolTip HWNDhwnd w" wSettings - wQualityLevel + 1, % value
-			vars.hwnd.lootfilter["globalsetting_gem|" val] := vars.hwnd.help_tooltips["lootfilter_global setting gems toggles" (index = 2 ? "|" : "")] := hwnd
+			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range" (!vars.poe_version ? "0-2" (index = 1 ? 4 : 2) : (index < 3 ? "0-20" : "0-5")) " NoTicks ToolTip HWNDhwnd w" wSettings - wQualityLevel + 1, % value
+			vars.hwnd.lootfilter["globalsetting_gem|" val] := vars.hwnd.help_tooltips["lootfilter_global setting gems toggles" vars.poe_version . (index = 2 ? "|" : (index = 3 ? "||" : ""))] := hwnd
 			cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		}
 		;######################################################
-		available := vars.lootfilter.active_filter.structure.HasKey("gear > memorystrand")
-		Gui, %GUI%: Add, Text, % "Section ys x" wMax - wSettings - 1 " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("global_memorystrands")
-		vars.hwnd.lootfilter["browsesetting_gear > memorystrand"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable|" : "strands")] := hwnd
-
-		If IsObject(vars.lootfilter.modifications_pending[-31])
-			strands := vars.lootfilter.modifications_pending[-31]
-		Else strands := vars.lootfilter.modifications["profile" profile][-31]
-
-		For index, val in ["strands high", "strands"]
+		If !vars.poe_version
 		{
-			value := (strands.modifications[val] ? strands.modifications[val] : 0), label := Lang_Trans("global_" (index = 1 ? "high" : "minimum"))
-			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wStrands . (strands.modifications[val] ? " cLime" : ""), % " " label
-			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
-			Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-101 NoTicks ToolTip HWNDhwnd w" wSettings - wStrands + 1, % value
-			vars.hwnd.lootfilter["globalsetting_strand|" val] := vars.hwnd.help_tooltips["lootfilter_global setting strands toggles" (index = 2 ? "|" : "")] := hwnd
+			available := vars.lootfilter.active_filter.structure.HasKey("gear > memorystrand")
+			Gui, %GUI%: Add, Text, % "Section ys x" wMax - wSettings - 1 " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("global_memorystrands")
+			vars.hwnd.lootfilter["browsesetting_gear > memorystrand"] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable|" : "strands")] := hwnd
+
+			If IsObject(vars.lootfilter.modifications_pending[-31])
+				strands := vars.lootfilter.modifications_pending[-31]
+			Else strands := vars.lootfilter.modifications["profile" profile][-31]
+
+			For index, val in ["strands high", "strands"]
+			{
+				value := (strands.modifications[val] ? strands.modifications[val] : 0), label := Lang_Trans("global_" (index = 1 ? "high" : "minimum"))
+				Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wStrands . (strands.modifications[val] ? " cLime" : ""), % " " label
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+				Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-101 NoTicks ToolTip HWNDhwnd w" wSettings - wStrands + 1, % value
+				vars.hwnd.lootfilter["globalsetting_strand|" val] := vars.hwnd.help_tooltips["lootfilter_global setting strands toggles" (index = 2 ? "|" : "")] := hwnd
+			}
+			cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		}
-		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		Gosub, Label_Show
 		Return
 	}
@@ -870,12 +885,18 @@ Lootfilter_Editor(cHWND := "")
 							For kLine, vLine in oLine
 								If InStr(kLine, "memorystrands")
 									tags.Push(" " Lang_Trans("global_memorystrands", 2) " >= " vLine " ")
-								Else If RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.[1-6]\d{0,1}|>= 2)")
+								Else If !vars.poe_version && RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.[1-6]\d{0,1}|>= 2)")
+								|| vars.poe_version && RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.([1-9]|[1-5]\d|6[0-4])|>= 2)$")
 									campaign := 1
 								Else If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem")
-									tags.Push(" " LLK_StringCase(Trim(kLine, " `t") (vLine != "true" ? " " vLine : "")) " ")
+									tags.Push(" " LLK_StringCase(Trim(LLK_StringReplace(kLine, [["gemlevel", "level"], ["arealevel", "area"]]), " `t") (vLine != "true" ? " " vLine : "")) " ")
 						If campaign
+						{
+							Loop, % tags.Count()
+								If campaign && InStr(tags[tags.Count() - (A_Index - 1)], "arealevel")
+									tags.RemoveAt(tags.Count() - (A_Index - 1))
 							tags.Push(" " Lang_Trans("global_campaign") " ")
+						}
 
 						For index, val in tags
 						{
@@ -883,23 +904,8 @@ Lootfilter_Editor(cHWND := "")
 							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundCCCC00 c" background_color, 100
 						}
 					}
-					For key, val in {-11: {"type": "gems > generic", "mods": ["level", "quality"], "regex": ["^lt\d", "^qt\d"]}, -21: {"type": "maps", "mods": ["tier"], "regex": ["^maps_._t\d{1,2}$"]}
-						, -31: {"type": "gear > memorystrand", "mods": ["strands high", "strands"], "regex": ["high$", "^(?!.*(fractured|high|veiled)).*$"]}}
-					{
-						If (val.type != vChunk.type)
-							Continue
-						current := (IsObject(vars.lootfilter.modifications_pending[key]) ? vars.lootfilter.modifications_pending[key] : vars.lootfilter.modifications["profile" profile][key]), global_count := 0
-						Loop, % val.mods.Count()
-						{
-							regex := (!Blank(val.regex[A_Index]) ? val.regex[A_Index] : val.regex.1), maptier := (key = -21 ? (SubStr(vChunk.tier, (IsNumber(SubStr(vChunk.tier, -1)) ? -1 : 0))) : "")
-							If current.modifications[val.mods[A_Index]] && RegExMatch(vChunk.tier, "i)" regex) && (key != -21 || key = -21 && maptier < current.modifications[val.mods[A_Index]])
-							{
-								global_count := 1
-								Break 2
-							}
-						}
-					}
-					If global_count
+
+					If vChunk.global
 					{
 						Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans", % " " Lang_Trans("global_global") " "
 						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundFuchsia c" background_color, 100
@@ -1031,11 +1037,13 @@ Lootfilter_Editor(cHWND := "")
 
 			For iLine, oLine in vars.lootfilter.active_filter.final[last_chunk].lines
 				For kLine, vLine in oLine
-					If RegexMatch(kLine, "i)arealevel|gemlevel|transfiguredgem")
+					If RegexMatch(kLine, "i)arealevel|gemlevel|transfiguredgem|rarity|itemlevel")
 						Loop 2
 						{
 							If !hwnd_condition
 								Gui, %GUI%: Add, Progress, % "Disabled Section xs x" 5*margin " h3 w" wMax - 9*margin - 1 " Background" accent_color " c606060", 100
+							kLine .= (InStr(kLine, "rarity") ? Lang_Trans("global_colon") : ""), kLine := (InStr(kLine, "itemlevel") ? StrReplace(kLine, "itemlevel", "ilvl") : kLine)
+							vLine := (InStr(kLine, "rarity") ? StrReplace(vLine, " ", "/") : vLine)
 							Gui, %GUI%: Add, Text, % (!hwnd_condition || A_Index = 2 ? "Section xs x" margin : "ys") " Border BackgroundTrans HWNDhwnd", % " " LLK_StringCase(Trim(kLine, " `t") (vLine != "true" ? " " vLine : "")) " "
 							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd_condition BackgroundCCCC00 c" background_color, 100
 							If (LLK_ControlGetPos(hwnd).xMax <= wMax)
@@ -1051,7 +1059,7 @@ Lootfilter_Editor(cHWND := "")
 		Else If item_view
 		{
 			Gui, %GUI%: Add, Text, % "Section xs x" margin " 0x200 BackgroundTrans HWNDhwnd", % Lang_Trans("lootfilter_movetier")
-			style := vars.lootfilter.last_style.Clone(), style_defaults := {"setbackgroundcolor": "000000", "setbordercolor": "FF0000", "settextcolor": "BEB287"}, count := 0
+			style := vars.lootfilter.last_style.Clone(), style_defaults := {"setbackgroundcolor": "000000", "setbordercolor": "000000", "settextcolor": "BEB287"}, count := 0
 			oLast_chunk := vars.lootfilter.active_filter.final[last_chunk], strand_check := 0
 
 			For iChunk, vChunk in vars.lootfilter.active_filter.final
@@ -1104,7 +1112,7 @@ Lootfilter_Editor(cHWND := "")
 				{
 					Gui, %GUI%: Font, strike
 					Gui, %GUI%: Add, Text, % (A_Index = 2 ? "Section xs x" margin : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems " c" style_defaults.settextcolor, % " " Lang_Trans("lootfilter_newtier") " "
-					Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Background" style_defaults.setbordercolor " c" style_defaults.setbackgroundcolor, 100
+					Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundRed c" style_defaults.setbackgroundcolor, 100
 					cPos := LLK_ControlGetPos(hwnd)
 					If (cPos.xMax <= wMax)
 						Break
@@ -1203,10 +1211,11 @@ Lootfilter_Load(mode := "", dev_check := 0)
 					{
 						If (index2 = 1)
 						{
+							type := tier := ""
 							Loop, Parse, line, % " "
-								If InStr(A_LoopField, "type")
+								If InStr(A_LoopField, "type") && !type
 									type := SubStr(A_LoopField, InStr(A_LoopField, ">") + 1), type := StrReplace(type, "->", " > ")
-								Else If InStr(A_LoopField, "tier")
+								Else If InStr(A_LoopField, "tier") && !tier
 									tier := SubStr(A_LoopField, InStr(A_LoopField, ">") + 1), tier := StrReplace(tier, "->", " > ")
 							filter[index].type := type, filter[index].tier := tier, filter2[index].type := type, filter2[index].tier := tier
 							Continue
@@ -1282,9 +1291,14 @@ Lootfilter_LoadStructure()
 Lootfilter_Match(array, dev_check := 0)
 {
 	local
-	global vars, settings
+	global vars, settings, db
+	static vaal_uniques := {"Apep's Supremacy": 1, "Atziri's Acuity": 1, "Atziri's Contempt": 1, "Atziri's Disdain": 1, "Atziri's Rule": 1, "Atziri's Splendour": 1, "Atziri's Step": 1, "Belly of the Beast": 1, "Bloodbarrier": 1
+	, "Constricting Command": 1, "Cornathaum": 1, "Corona of the Red Sun": 1, "Coward's Legacy": 1, "Demon Stitcher": 1, "Doryani's Prototype": 1, "Dream Fragments": 1, "Drillneck": 1, "Glimpse of Chaos": 1, "Greed's Embrace": 1
+	, "Hateforge": 1, "Idle Hands": 1, "Mahuxotl's Machination": 1, "Mask of the Stitched Demon": 1, "Plaguefinger": 1, "Powertread": 1, "Quatl's Molt": 1, "Quecholli": 1, "Rathpith Globe": 1, "Rearguard": 1, "Redflare Conduit": 1
+	, "Rise of the Phoenix": 1, "Saitha's Spear": 1, "Seed of Cataclysm": 1, "Serpent's Egg": 1, "Serpent's Lesson": 1, "Shackles of the Wretched": 1, "Snakebite": 1, "Snakepit": 1, "Soul Mantle": 1, "Soul Tether": 1
+	, "Tetzlapokal's Desire": 1, "The Adorned": 1, "The Covenant": 1, "The Flesh Poppet": 1, "The Vertex": 1, "Zerphi's Genesis": 1, "Zerphi's Serape": 1}
 
-	object := {"matches": {}, "setbackgroundcolor": "0 0 0", "setbordercolor": "0 0 0", "settextcolor": "190 178 135"}, search := vars.lootfilter.search[vars.lootfilter.search.0]
+	object := {"matches": {}, "setbackgroundcolor": "0 0 0 255", "setbordercolor": "0 0 0 255", "settextcolor": "190 178 135 255"}, search := vars.lootfilter.search[vars.lootfilter.search.0]
 	For index, line in array.lines
 		If IsObject(line)
 			For key, val in line
@@ -1446,8 +1460,13 @@ Lootfilter_Match(array, dev_check := 0)
 						}
 						sockets := 1
 					Case (key = "gemlevel"):
-						gemlevel := 0, gemlevel_item := SubStr(search.clipboard, (check := InStr(search.clipboard, "`nlevel: ") + 8))
-						gemlevel_item := ((check1 := InStr(gemlevel_item, "(")) ? SubStr(gemlevel_item, 1, check1 - 2) : SubStr(gemlevel_item, 1, InStr(gemlevel_item, "`n") - 1))
+						gemlevel := 0
+						If !vars.poe_version
+							gemlevel_item := SubStr(search.clipboard, (check := InStr(search.clipboard, "`nlevel: ") + 8))
+							, gemlevel_item := ((check1 := InStr(gemlevel_item, "(")) ? SubStr(gemlevel_item, 1, check1 - 2) : SubStr(gemlevel_item, 1, InStr(gemlevel_item, "`n") - 1))
+						Else gemlevel_item := SubStr(search.clipboard, (check := InStr(search.clipboard, " (level ") + 8))
+							, gemlevel_item := SubStr(gemlevel_item, 1, InStr(gemlevel_item, ")") - 1)
+
 						If (!check || !IsNumber(gemlevel_item) || (operator = ">=" && gemlevel_item < value) || (operator = "<=" && gemlevel_item > value) || (!operator && gemlevel_item != value)) && !dev_check
 							Return
 						gemlevel := value
@@ -1477,7 +1496,7 @@ Lootfilter_Match(array, dev_check := 0)
 							Return
 						blight := 1
 					Case (key = "maptier"):
-						maptier := 0, maptier_item := SubStr(search.clipboard, (check := InStr(search.clipboard, "`nmap (tier")) + 11), maptier_item := SubStr(maptier_item, 1, InStr(maptier_item, ")") - 1)
+						maptier := 0, maptier_item := SubStr(search.clipboard, (check := InStr(search.clipboard, "map (tier")) + 10), maptier_item := SubStr(maptier_item, 1, InStr(maptier_item, ")") - 1)
 						If (!check || (operator = ">=" && maptier_item < value) || (operator = "<=" && maptier_item > value) || (!operator && maptier_item != value)) && !dev_check
 							Return
 						maptier := 1
@@ -1530,6 +1549,46 @@ Lootfilter_Match(array, dev_check := 0)
 						If (!value && count || (operator = ">=" && count < value) || (operator = "<=" && count > value) || (!operator && count != value)) && !dev_check
 							Return
 						corruptedmods := 1
+					Case (key = "twicecorrupted"):
+						If !InStr(search.clipboard, "---`ncorrupted")
+							Return
+						object.multimatches := 1
+					Case (key = "UnidentifiedItemTier"):
+						unidentifiedtier := 0, unidtier_item := InStr(search.clipboard, "---`nunidentified ("), unidtier_item := (!unidtier_item ? 0 : SubStr(search.clipboard, unidtier_item + 20, 1))
+						If (operator = ">=" && unidtier_item < value || operator = "<=" && unidtier_item > value || !operator && unidtier_item != value) && !dev_check
+							Return
+						unidentifiedtier := 1
+					Case RegexMatch(key, "i)^base(evasion|energyshield|armour)"):
+						%key% := 0
+						If !IsObject(db.item_bases)
+							DB_Load("item_bases")
+						defense := StrReplace(key, "base"), defense := (defense = "evasion" ? "EV" : (defense = "armour" ? "AR" : "ES"))
+						For kClass, oClass in db.item_bases
+							If oClass.HasKey(basename)
+							{
+								defense_value := (oClass[basename][defense] ? oClass[basename][defense] : 0)
+								If (operator = ">" && defense_value < value || operator = "<" && defense_value > value || !operator && defense_value != value) && !dev_check
+									Return
+								%key% := 1
+								Break
+							}
+					Case (key = "waystonetier"):
+						waystonetier := 0, waystonetier_item := SubStr(search.clipboard, (check := InStr(search.clipboard, "waystone (tier")) + 15), waystonetier_item := SubStr(waystonetier_item, 1, InStr(waystonetier_item, ")") - 1)
+						If (!check || (operator = ">=" && waystonetier_item < value) || (operator = "<=" && waystonetier_item > value) || (!operator && waystonetier_item != value)) && !dev_check
+							Return
+						waystonetier := 1
+					Case (key = "hasvaaluniquemod"):
+						hasvaaluniquemod := 0
+						If !InStr(search.clipboard, "{ Vaal Unique Modifier") && !dev_check
+							Return
+						hasvaaluniquemod := 1
+					Case (key = "isvaalunique"):
+						isvaalunique := 0
+						If !vaal_uniques[basename]
+							Return
+						isvaalunique := 1
+					Case (key = "alwaysshow"):
+						Return
 					Case RegexMatch(key, "i)^(set|play|minimap|disabledropsound)"):
 					Case (key = "enchantmentpassivenode"):
 						If !dev_check
@@ -1551,7 +1610,8 @@ Lootfilter_Match(array, dev_check := 0)
 		If basetype
 			object.matches[basetype] := 1
 		Else If class || mirrored || corrupted || links || ilvl || influence || eaterexarch || rarity || IDed || quality || fractured || memstrands || imbued || synth || anyenchantment || hascruciblepassivetree || sockets || gemlevel
-		|| transfigured || replica || foulborn || blight_ravaged || blight || maptier || implicit || stacksize || explicit || passivenum || socketgroup || corruptedmods
+		|| transfigured || replica || foulborn || blight_ravaged || blight || maptier || implicit || stacksize || explicit || passivenum || socketgroup || corruptedmods || unidentifiedtier || baseevasion || baseenergyshield
+		|| basearmour || waystonetier || hasvaaluniquemod || isvaalunique
 			object.matches[basename] := 1
 	}
 
@@ -1559,7 +1619,7 @@ Lootfilter_Match(array, dev_check := 0)
 		Return object
 }
 
-Lootfilter_Modify(object)
+Lootfilter_Modify(object, global := 0)
 {
 	local
 	global vars, settings
@@ -1569,50 +1629,52 @@ Lootfilter_Modify(object)
 		If (object.action = "movetier") && !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], object.tier,,,, 1)
 			Return "`n- target tier no longer exists (item wasn't moved)"
 		Else If !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], """" object.modifications[object.action] """", 1,,, 1)
-			Return "`n- item is no longer in type <" object.type "> (item wasn't moved)"
+			Return "`n- item is no longer in type """ object.type """ (item wasn't moved)"
 
 	If (object.modifications.toggle != "off")
 		Switch object.action
 		{
 			Case "global gems":
 			If !vars.lootfilter.active_filter.structure.HasKey(object.type)
-				Return "`n- type <" object.type "> doesn't exist anymore (global setting cannot be applied)"
-			Else If !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "qt", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "lt", 1,,, 1)
-				Return "`n- type <" object.type "> no longer has quality or level tiers (global setting cannot be applied)"
+				Return "`n- type """ object.type """ doesn't exist anymore (global setting cannot be applied)"
+			Else If !vars.poe_version && (!LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "qt", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "lt", 1,,, 1))
+			|| vars.poe_version && (!LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "spirit19", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "skill19", 1,,, 1)
+				|| !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "supportcampaign", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "exhide", 1,,, 1))
+				Return "`n- type """ object.type """ has changed in structure (global setting cannot be applied)"
 			;######################################################
 			Case "global maps":
 			If !vars.lootfilter.active_filter.structure.HasKey(object.type)
-				Return "`n- type <" object.type "> doesn't exist anymore (global setting cannot be applied)"
+				Return "`n- type """ object.type """ doesn't exist anymore (global setting cannot be applied)"
 			Else
 			{
 				For index, val in vars.lootfilter.active_filter.structure[object.type]
 					If RegexMatch(val.tier, "i)^maps_._t\d{1,2}$")
 						maptier_count += 1
 				If (maptier_count != 16)
-					Return "`n- type <" object.type "> has changed in structure (global setting cannot be applied)"
+					Return "`n- type """ object.type """ has changed in structure (global setting cannot be applied)"
 			}
 			;######################################################
 			Case "global strands":
 			If !vars.lootfilter.active_filter.structure.HasKey(object.type)
-				Return "`n- type <" object.type "> doesn't exist anymore (global setting cannot be applied)"
+				Return "`n- type """ object.type """ doesn't exist anymore (global setting cannot be applied)"
 			Else
 			{
 				For index, val in vars.lootfilter.active_filter.structure[object.type]
 					If RegExMatch(val.tier, "i)high$|^(?!.*(fractured|high|veiled)).*$")
 						strand_count += 1
 				If !strand_count
-					Return "`n- type <" object.type "> has changed in structure (global setting cannot be applied)"
+					Return "`n- type """ object.type """ has changed in structure (global setting cannot be applied)"
 			}
 			;######################################################
 			Default:
 			If InStr(object.action, "economy") && !vars.lootfilter.active_filter.structure.HasKey(object.type)
-				Return "`n- type <" object.type "> doesn't exist anymore (global setting cannot be applied)"
+				Return "`n- type """ object.type """ doesn't exist anymore (global setting cannot be applied)"
 		}
 
 	If InStr(object.action, "economy")
 	{
 		For iMod, oMod in object.modifications
-			Lootfilter_Modify(oMod)
+			Lootfilter_Modify(oMod, 1)
 		Return
 	}
 
@@ -1623,10 +1685,14 @@ Lootfilter_Modify(object)
 	For iChunk, vChunk in vars.lootfilter.active_filter.final
 		Switch
 		{
-			Case (object.modifications.toggle = "off"):
+			Case !IsObject(vChunk) || (object.modifications.toggle = "off") || RegexMatch(vChunk.lines.1, "i)^.{0,2}#"):
 			Continue
 			;######################################################
 			Case (object.action = "global visuals"):
+			If (object.modifications.opacity) && !LLK_HasKey(vChunk.lines, "setbackgroundcolor", 1,,, 1)
+				key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") "SetBackgroundColor", iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
+				, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "0 0 0 255"})
+
 			For iLine, oLine in vChunk.lines
 				For kLine, vLine in oLine
 				{
@@ -1642,45 +1708,70 @@ Lootfilter_Modify(object)
 				For iLine, oLine in vChunk.lines
 					For kLine, vLine in oLine
 						If InStr(kLine, "memorystrand")
-							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications["strands high"]
+							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications["strands high"], vars.lootfilter.active_filter.final[iChunk].global := 1
 			}
 			Else If object.modifications.strands && (!IsObject(pending[-31]) || !Blank(pending[-31].modifications.strands)) && !RegexMatch(vChunk.tier, "i)(fractured|veiled|high)$")
 				For iLine, oLine in vChunk.lines
 					For kLine, vLine in oLine
 						If InStr(kLine, "memorystrand")
-							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.strands
+							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.strands, vars.lootfilter.active_filter.final[iChunk].global := 1
 			;######################################################
 			Case (object.action = "global maps") && (vChunk.type && object.type = vChunk.type):
 			If (!IsObject(pending[-21]) || !Blank(pending[-21].modifications.tier)) && RegexMatch(vChunk.tier, "i)^maps_._t\d{1,2}$")
 			{
 				tier := SubStr(vChunk.tier, (IsNumber(SubStr(vChunk.tier, -1)) ? -1 : 0))
 				If (tier < object.modifications.tier) && !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}hide")
-					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "show", "Hide",, 1)
+					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "show", "Hide",, 1), vars.lootfilter.active_filter.final[iChunk].global := 1
+				Else If (tier >= object.modifications.tier) && !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}show")
+					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "hide", "Show",, 1), vars.lootfilter.active_filter.final[iChunk].global := 1
 			}
 			;######################################################
 			Case (object.action = "global gems") && (vChunk.type && object.type = vChunk.type):
-			If object.modifications.quality && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.quality)) && RegExMatch(vChunk.tier, "i)^qt1")
-			|| object.modifications.level && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.level)) && RegExMatch(vChunk.tier, "i)^lt1")
-			{
-				If !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}show")
-					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "hide", "Show",, 1)
-				For iLine, oLine in vChunk.lines
-					For kLine, vLine in oLine
-						If object.modifications.quality && InStr(kLine, "quality")
-							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.quality
-						Else If object.modifications.level && InStr(kLine, "level")
-							vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.level
-			}
-			Else If (object.modifications.quality && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.quality)) && RegExMatch(vChunk.tier, "i)^qt\d")
-				|| object.modifications.level && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.level)) && RegExMatch(vChunk.tier, "i)^lt\d"))
-			&& !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}hide")
-				vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "show", "Hide",, 1)
+			If !vars.poe_version
+				If object.modifications.quality && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.quality)) && RegExMatch(vChunk.tier, "i)^qt1")
+				|| object.modifications.level && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.level)) && RegExMatch(vChunk.tier, "i)^lt1")
+				{
+					If !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}show")
+						vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "hide", "Show",, 1)
+					For iLine, oLine in vChunk.lines
+						For kLine, vLine in oLine
+							If object.modifications.quality && InStr(kLine, "quality")
+								vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.quality
+							Else If object.modifications.level && InStr(kLine, "level")
+								vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.level
+					vars.lootfilter.active_filter.final[iChunk].global := 1
+				}
+				Else If (object.modifications.quality && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.quality)) && RegExMatch(vChunk.tier, "i)^qt\d")
+					|| object.modifications.level && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications.level)) && RegExMatch(vChunk.tier, "i)^lt\d"))
+				&& !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}hide")
+					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "show", "Hide",, 1), vars.lootfilter.active_filter.final[iChunk].global := 1
+
+			If vars.poe_version
+				For iType, vType in ["skill", "spirit", "support"]
+					If (iType < 3 && vChunk.tier = vType "19" || iType = 3 && vChunk.tier = vType "campaign") && object.modifications[vType "level"] && (!IsObject(pending[-11]) || !Blank(pending[-11].modifications[vType "level"]))
+					{
+						If !RegExMatch(vars.lootfilter.active_filter.final[iChunk].lines.1, "i)^.{0,2}show")
+							vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vChunk.lines.1, "hide", "Show",, 1)
+						If (iTarget := LLK_HasKey(vChunk.lines, "gemlevel", 1,,, 1))
+							vars.lootfilter.active_filter.final[iChunk].lines.RemoveAt(iTarget), vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iTarget, {"`tGemLevel >=": object.modifications[vType "level"]})
+						Else vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(2, {"`tGemLevel >=": object.modifications[vType "level"]})
+						If (iTarget := LLK_HasKey(vChunk.lines, "arealevel", 1,,, 1))
+							vars.lootfilter.active_filter.final[iChunk].lines.RemoveAt(iTarget)
+						vars.lootfilter.active_filter.final[iChunk].global := 1
+					}
+					Else If object.modifications[vType "level"] && !InStr(vChunk.tier, "20") && !(iType < 3 && vChunk.tier = vType "19" || iType = 3 && vChunk.tier = vType "campaign")
+					&& InStr(vChunk.tier, vType) && RegexMatch(vChunk.lines.1, "i)^.{0,2}show")
+						vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vars.lootfilter.active_filter.final[iChunk].lines.1, "Show", "Hide",, 1), vars.lootfilter.active_filter.final[iChunk].global := 1
 			;######################################################
 			Case (object.action = "presentation") && (vChunk.type && object.type = vChunk.type) && (vChunk.tier && object.tier = vChunk.tier):
 			For kCustomization, vCustomization in object.modifications
 				If (kCustomization = "visibility")
-					current := vars.lootfilter.active_filter.final[iChunk].lines.1, vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(current, (vCustomization = "Show" ? "Hide" : "Show"), vCustomization), presentation := 1
+					current := vars.lootfilter.active_filter.final[iChunk].lines.1, vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(current, (vCustomization = "Show" ? "Hide" : "Show"), vCustomization,, 1), presentation := 1
 				Else
+				{
+					If (kCustomization = "setbackgroundcolor") && !LLK_HasKey(vChunk.lines, kCustomization, 1,,, 1)
+						key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") . kCustomization, iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
+						, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "0 0 0 255"})
 					If !LLK_HasKey(vChunk.lines, kCustomization, 1,,, 1)
 						key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") . kCustomization
 						, vars.lootfilter.active_filter.final[iChunk].lines.Push({(key_name): (IsObject(vCustomization) ? LLK_ArrayDump(vCustomization) : vCustomization)}), presentation := 1
@@ -1695,9 +1786,10 @@ Lootfilter_Modify(object)
 											parse[index] := val
 									vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := (IsObject(vCustomization) ? LLK_ArrayDump(parse) : vCustomization), presentation := 1
 								}
+				}
 			Break
 			;######################################################
-			Case (object.action = "newtier") && !new_tier && (vChunk.type = object.type) && (nChunk := vars.lootfilter.active_filter.final[iChunk + 1]) && (nChunk.type != object.type) && !RegexMatch(nChunk, "i)^#.\!\!.Waypoint.*\""$"):
+			Case (object.action = "newtier") && !new_tier && (vChunk.type = object.type) && (vars.lootfilter.active_filter.final[iChunk + 1].type != object.type) && (vars.lootfilter.active_filter.final[iChunk + 2].type != object.type):
 			lookback := 0, lines := []
 			While RegExMatch(vars.lootfilter.active_filter.final[iChunk - lookback].lines.1, "i)^.{0,2}#|tier->rest")
 				lookback += 1
@@ -1712,6 +1804,9 @@ Lootfilter_Modify(object)
 					For key, val in oLine
 						If !RegExMatch(key, "i)^.{0,2}(play|minimap)")
 							key := (InStr(key, "`t") ? "" : "`t") key, lines.Push({(key): val})
+
+			If !LLK_HasKey(lines, "border", 1,,, 1)
+				lines.InsertAt(lines.MaxIndex(), {"`tSetBorderColor": "255 0 0 255"})
 
 			For index, oLine in lines
 				For key, val in oLine
@@ -1728,8 +1823,10 @@ Lootfilter_Modify(object)
 			
 			If !LLK_HasKey(lines, "basetype", 1,,, 1)
 				iTarget := LLK_HasKey(lines, "class", 1,,, 1), lines.InsertAt(iTarget + 1, {"`tBaseType ==": """" object.modifications.newtier """"})
+			If !LLK_HasKey(lines, "disabledropsound", 1,,, 1)
+				lines.Push({"`tDisableDropSound": "True"})
 
-			vars.lootfilter.active_filter.final.InsertAt(iChunk - lookback + 1, {"type": object.type, "tier": object.tier, "lines": lines}), new_tier := 1
+			vars.lootfilter.active_filter.final.InsertAt(iChunk - lookback + 1, {"type": object.type, "tier": object.tier, "lines": lines, "global": global}), new_tier := 1
 			vars.lootfilter.active_filter.structure[object.type].Push({"tier": object.tier, "basetypes": """" object.modifications.newtier """"})
 			;######################################################
 			Case InStr(object.action, "tier") && (vChunk.type && vChunk.type = object.type):
@@ -1765,15 +1862,15 @@ Lootfilter_Modify(object)
 		vars.lootfilter.active_filter.final.RemoveAt(A_LoopField)
 
 	If (object.action = "presentation") && !presentation
-		warning .= "`n- couldn't find the tier <" object.tier "> (modification wasn't applied)"
+		warning .= "`n- couldn't find the tier """ object.tier """ (modification wasn't applied)"
 	Else If InStr(object.action, "tier")
 	{
 		If empty_tier
-			warning .= "`n- original tier <" empty_tier "> didn't have any basetypes left after the move (it had to be deleted)"
+			warning .= "`n- original tier """ empty_tier """ didn't have any basetypes left after the move (it had to be deleted)"
 		If !removed
 			warning .= "`n- item wasn't moved from any tier (not found, or didn't have to be moved)"
 		If (object.action = "movetier") && !added
-			warning .= "`n- item wasn't moved to <" object.tier "> (tier doesn't exist, or already has the item)"
+			warning .= "`n- item wasn't added to """ object.tier """ (tier doesn't exist, or already has the item)"
 	}
 	Return warning
 }
