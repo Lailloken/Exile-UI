@@ -51,7 +51,7 @@
 			vars.maptracker := {"keywords": [], "mechanics": {"blight": 1, "delirium": 1, "expedition": 1, "legion": 2, "ritual": 2, "harvest": 1, "incursion": 1, "bestiary": 1, "betrayal": 1, "delve": 1, "ultimatum": 1, "maven": 1, "seer": 0, "mist": 0}}
 		Else vars.maptracker := {"keywords": [], "mechanics": {"delirium": 1, "expedition": 1, "ritual": 2}}
 		If vars.poe_version
-			vars.maptracker.leagues := [["ea standard", 20241206, 20250403], ["ea dawn", 20250404, 20250828], ["ea abyss", 20250829, 20251211], ["ea vaal", 20251212, 20261231]]
+			vars.maptracker.leagues := [["ea standard", 20241206, 20250403], ["ea dawn", 20250404, 20250828], ["ea abyss", 20250829, 20251211], ["ea vaal", 20251212, 20261231], ["ea ancients", 20260529, 20261231]]
 		Else vars.maptracker.leagues := [["crucible", 20230407, 20230815], ["ancestor", 20230818, 20231205], ["affliction", 20231208, 20240326], ["necropolis", 20240329, 20240723], ["settlers", 20240726, 20250609], ["mercenaries", 20250613, 20251027], ["keepers", 20251031, 20260302], ["mirage", 20260306, 20261212]]
 	}
 
@@ -1714,7 +1714,7 @@ Maptracker_Save(mode := 0)
 	local
 	global vars, settings
 
-	map := vars.maptracker.map ;short-cut variable
+	map := vars.maptracker.map, backlog_kills := map.kills.Clone()
 	If settings.maptracker.kills
 		vars.maptracker.map.kills := (vars.maptracker.map.kills.Count() = 2) ? vars.maptracker.map.kills.2 - vars.maptracker.map.kills.1 : 0
 	Else vars.maptracker.map.kills := 0
@@ -1785,6 +1785,9 @@ Maptracker_Save(mode := 0)
 			LLK_Overlay(vars.hwnd.maptracker_logs.main, "destroy")
 		}
 	}
+	If IsObject(vars.maptracker.map) && (vars.maptracker.map_prev != -1)
+		vars.maptracker.map_prev := {"date_time": vars.maptracker.map.date_time, "kills": backlog_kills}
+	Else vars.maptracker.map_prev := {}
 	vars.maptracker.map := {"date_time": vars.log.date_time, "id": vars.log.areaID, "seed": vars.log.areaseed, "tier": vars.log.areatier, "level": vars.log.arealevel, "portals": 1, "time": -1, "deaths": 0, "loot": {}, "content": []}
 	Maptracker_Loot("clear")
 	If WinExist("ahk_id "vars.hwnd.maptracker_logs.main)
@@ -1830,8 +1833,8 @@ Maptracker_Timer()
 		GuiControl, +BackgroundBlack, % vars.hwnd.maptracker.delbar
 	}
 
-	If vars.maptracker.last_kills && vars.log.areaID && !Maptracker_Check(2) && !Maptracker_Towncheck() && !InStr(vars.log.areaID, "_town")
-		vars.maptracker.last_kills := ""
+	If (vars.maptracker.last_kills || IsObject(vars.maptracker.map_prev)) && vars.log.areaID && !Maptracker_Check(2) && !Maptracker_Towncheck() && !InStr(vars.log.areaID, "_town")
+		vars.maptracker.last_kills := "", vars.maptracker.map_prev := -1
 
 	If !Maptracker_Check(2) || !settings.maptracker.sidecontent && Maptracker_Check(1) || vars.maptracker.pause ;when outside a map, don't advance the timer (or track character-movement between maps/HO)
 	{
@@ -1911,6 +1914,6 @@ Maptracker_Towncheck()
 	local
 	global vars, settings
 
-	If LLK_StringCompare(vars.log.areaID, ["hideout"]) || InStr(vars.log.areaID, "heisthub") || InStr(vars.log.areaID, "menagerie") || InStr(vars.log.areaID, "sanctumfoyer")
+	If RegExMatch(vars.log.areaID, "i)^hideout|heisthub|menagerie|sanctumfoyer|abyss_hub")
 		Return 1
 }

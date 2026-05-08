@@ -544,7 +544,15 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 				parse := (A_Index = 1) ? "" : parse, parse .= IsNumber(A_LoopField) ? A_LoopField : ""
 
 			If (vars.maptracker.refresh_kills = 1)
+			{
+				If IsNumber(vars.maptracker.map_prev.kills.1)
+				{
+					IniWrite, % (backlog_kills := parse - vars.maptracker.map_prev.kills.1), % "ini" vars.poe_version "\map tracker log.ini", % vars.maptracker.map_prev.date_time, kills
+					If IsObject(vars.maptracker.entries)
+						vars.maptracker.entries[SubStr(vars.maptracker.map_prev.date_time, 1, InStr(vars.maptracker.map_prev.date_time, " ") - 1)].1.kills := backlog_kills, LLK_Overlay(vars.hwnd.maptracker_logs.main, "destroy")
+				}
 				vars.maptracker.map.kills := [parse], LLK_ToolTip(Lang_Trans("maptracker_kills", 2),,,,, "Lime"), vars.tooltip_mouse := "", vars.maptracker.refresh_kills := 2
+			}
 			Else If (vars.maptracker.refresh_kills > 1) && Maptracker_Towncheck()
 				vars.maptracker.map.kills.2 := parse, LLK_ToolTip(Lang_Trans("maptracker_kills", 2),,,,, "Lime"), vars.maptracker.refresh_kills := 3, vars.maptracker.last_kills := parse
 		}
