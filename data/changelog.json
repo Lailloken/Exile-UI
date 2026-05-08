@@ -1,9 +1,15 @@
 [
   [
+	["1.62.6", 16206],
+	"may 8, 2026",
+	"filterspoon:\n>> initial support for poe2",
+	"map-tracker:\n>> well of souls is now treated as a town (kill-count won't reset)\n>> kill-count can now be updated retroactively in the next map"
+  ],
+  [
 	["1.62.5", 16205],
 	"may 5, 2026",
 	"act-tracker:\n>> 'dynamic character tracking' didn't work if you had a guild-tag in your name",
-	"new feature:\n>> rebuilt and re-enabled FilterSpoon for PoE1 (lootfilter editor, PoE2 version soon)"
+	"new feature:\n>> rebuilt and re-enabled FilterSpoon for PoE1 (lootfilter editor)"
   ],
   [
 	["1.62.4", 16204, 1],
