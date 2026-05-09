@@ -129,8 +129,8 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 ### [FilterSpoon](https://github.com/Lailloken/Exile-UI/wiki/FilterSpoon): quick-access "in-client" lootfilter editor
 | | Path of Exile | Path of Exile 2 |
 |---|---|---|
-| rule-matching on hover | ![img](https://github.com/user-attachments/assets/cf335e64-1f92-4489-803c-0238110bc963) | soon™ |
-| manual searching/browsing | ![img](https://github.com/user-attachments/assets/283eabd6-13b1-48e3-9f1f-c7fc1e72cd18) | soon™ |
+| rule-matching on hover | ![img](https://github.com/user-attachments/assets/cf335e64-1f92-4489-803c-0238110bc963) | ![img](https://github.com/user-attachments/assets/71e19b15-485e-4b51-b3fe-9b80d6eaffc6) |
+| manual searching/browsing | ![img](https://github.com/user-attachments/assets/283eabd6-13b1-48e3-9f1f-c7fc1e72cd18) | ![img](https://github.com/user-attachments/assets/2871c7d2-0e8a-4ecc-af36-6848900c1ad9) |
 <br>
 
 ### [Recombination Simulator](https://github.com/Lailloken/Lailloken-UI/wiki/Recombination-Simulator): in-game overlay that simulates outcomes in a few clicks
