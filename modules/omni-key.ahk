@@ -268,7 +268,7 @@ Omni_Context(mode := 0)
 	If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "^(Diluted|Liquid|Concentrated)\s.*|.*\sOil$")
 		Return "anoints_stock"
 
-	If (item.name || item.itembase) && (vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState(settings.lootfilter.modifier_key, "P"))
+	If settings.features.lootfilter && (item.name || item.itembase) && (vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState(settings.lootfilter.modifier_key, "P"))
 		Return "lootfilter"
 	If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 		Return "recombination"
