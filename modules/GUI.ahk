@@ -170,7 +170,7 @@ Gui_HelpToolTip(HWND_key)
 				index_mod .= A_LoopField
 
 		If InStr(control, "tier ")
-			text := [[SubStr(control, 6)], [Lang_Trans("lootfilter_tierbrowse")]], alignment := " Center"
+			text := [[(StrLen(SubStr(control, 6)) = 1 ? SubStr(control, 6) "-tier" : SubStr(control, 6))], [Lang_Trans("lootfilter_tierbrowse")]], alignment := " Center"
 		Else
 		{
 			If (index_mod = 0)
@@ -757,7 +757,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	{
 		ControlGetPos, x,,,,, % "ahk_id " val.dummy
 		If Blank(x)
-			remove .= index ";"
+			remove := index ";" remove
 	}
 	Loop, Parse, remove, `;
 		If IsNumber(A_LoopField)

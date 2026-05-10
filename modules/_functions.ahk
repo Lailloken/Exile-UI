@@ -508,6 +508,29 @@ LLK_StringReplace(string, array)
 	Return string
 }
 
+LLK_StrSplit(string, type := "array", quotes := 1)
+{
+	local
+
+	array := [], object := {}
+	Loop, Parse, string, % " "
+	{
+		If (!InStr(A_LoopField, """") || RegexMatch(A_LoopField, "i)^"".*""$")) && !new_val
+			array.Push((quotes ? """" : "") . StrReplace(A_LoopField, """") . (quotes ? """" : ""))
+		Else If !InStr(A_LoopField, """") && new_val
+			new_val .= " " A_LoopField
+		Else If RegexMatch(A_LoopField, "i)^""")
+			new_val := A_LoopField
+		Else If RegexMatch(A_LoopField, "i)""$")
+			array.Push((quotes ? """" : "") . StrReplace(new_val " " A_LoopField, """") . (quotes ? """" : "")), new_val := ""
+	}
+	If (type = "array")
+		Return array
+	For index, val in array
+		object[val] := 1
+	Return object
+}
+
 LLK_TimeElapsed(timestamp, unit := "minutes")
 {
 	local

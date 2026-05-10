@@ -1522,13 +1522,39 @@
       "(/highlight)the game doesn't delete leftover files when you delete online filters, so this list may be very long",
       "(/highlight)right-click a filter on the list to delete the local copy"
     ],
-    "global setting info": [
-      "global quick-settings are always applied first, before normal modifications",
-      "this lets you make broad changes first, and more specific changes on top"
-    ],
     "global setting economy": [
       "lets you hide items based on current poe.ninja prices",
       "click this label to open the settings menu and select your current league"
+    ],
+    "global setting flasks": [
+      "lets you set a cut-off for quality flasks",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting flasks toggles": [
+      "0: use base filter's rules",
+      "x: hide flasks below x% quality"
+    ],
+    "global setting gems": [
+      "lets you set a cut-off for leveled/quality regular gems (i.e. not exceptional, transfigured, etc.)",
+      "the filter only checks one value at a time: gems at or above either cut-off will be shown",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting gems 2": [
+      "lets you set a level cut-off for uncut gems",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting gems toggles": [
+      "0: use base filter's rules",
+      "x: hide gems below level x or x% quality",
+      "max out the sliders to hide every leveled/quality regular gem"
+    ],
+    "global setting gems toggles 2": [
+      "0: use base filter's rules",
+      "x: hide gems below level x"
+    ],
+    "global setting info": [
+      "global quick-settings are always applied first, before normal modifications",
+      "this lets you make broad changes first, and more specific changes on top"
     ],
     "global setting maps": [
       "lets you set a tier cut-off for regular maps (i.e. not influenced, blighted, etc.)",
@@ -1548,24 +1574,6 @@
       "0: use base filter's rules",
       "x (high): items with x or more strands have extra highlighting\nx (minimum): items with x or more strands will be highlighted",
       "max out the <minimum> slider to only highlight high-strand items, or max both to ignore strands as a highlighting aspect."
-    ],
-    "global setting gems": [
-      "lets you set a cut-off for leveled/quality regular gems (i.e. not exceptional, transfigured, etc.)",
-      "the filter only checks one value at a time: gems at or above either cut-off will be shown",
-      "click this label to browse the corresponding section in the filter"
-    ],
-    "global setting gems 2": [
-      "lets you set a level cut-off for uncut gems",
-      "click this label to browse the corresponding section in the filter"
-    ],
-    "global setting gems toggles": [
-      "0: use base filter's rules",
-      "x: hide gems below level x or x% quality",
-      "max out the sliders to hide every leveled/quality regular gem"
-    ],
-    "global setting gems toggles 2": [
-      "0: use base filter's rules",
-      "x: hide gems below level x"
     ],
     "global setting unavailable": [
       "the selected filter has an unexpected structure: this quick-setting cannot be applied"

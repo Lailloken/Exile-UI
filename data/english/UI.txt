@@ -557,6 +557,7 @@
 		lootfilter_currency			=	"general currency (unstacked)"
 		lootfilter_essences			=	"essences"
 		lootfilter_divcards			=	"divination cards (unstacked)"
+		lootfilter_qualflasks		=	"quality flasks"
 
 		lootfilter_gems			=	"uncut gems"								;## PoE2 only (whole block)
 		lootfilter_minskilllevel		=	"min skill"								;## min level for skill gems
