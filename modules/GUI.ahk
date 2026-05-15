@@ -181,12 +181,12 @@ Gui_HelpToolTip(HWND_key)
 				If !IsObject(mod) || (index_mod < 0) && vars.lootfilter.modifications_pending[index_mod]
 					mod := vars.lootfilter.modifications_pending[index_mod]
 				If mod.type
-					text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") " " mod.tier : ""))]]
+					text := [[LLK_StringCase(Lang_Trans("global_type") " " mod.type (mod.tier ? "`n" Lang_Trans("global_tier") . Lang_Trans("global_colon") . (mod.source.tier ? " " mod.source.tier " –>" : "") " " mod.tier : ""))]]
 				Else text := []
 			}
 			For key, val in mod.modifications
 				If !IsNumber(key)
-					key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val), (InStr(key, "color") ? RGB_Convert(string) : "")])
+					key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([LLK_StringCase(key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val)), (InStr(key, "color") ? RGB_Convert(string) : "")])
 			If mod.warning
 				text.Push(["warning: " mod.warning, "FF8000"])
 
@@ -199,7 +199,7 @@ Gui_HelpToolTip(HWND_key)
 				text.InsertAt(1, [Lang_Trans("lootfilter_pending"), "Yellow"])
 			If RegExMatch(mod.action, "i)global\s|economy")
 			{
-				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting") . (InStr(mod.action, "economy") ? Lang_Trans("global_colon") " " Lang_Trans("lootfilter_economy") : ""), "Fuchsia"])
+				text.InsertAt(1, [Lang_Trans("lootfilter_globalsetting") . (InStr(mod.action, "economy") ? Lang_Trans("global_colon") " " Lang_Trans("lootfilter_economy") : ""), "Aqua"])
 				For index, val in database.lootfilter["global setting info"]
 					If !(index_mod = 0 && index = 1)
 						text.Push([val])
@@ -214,18 +214,17 @@ Gui_HelpToolTip(HWND_key)
 			Gui, %GUI_name%: Add, Text, % "xp+" settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w" tooltip_width - settings.general.fWidth . (val.2 ? " c" val.2 : "") . alignment, % val.1
 		}
 	}
-	Else
-		For index, text in target_array
-		{
-			font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
-			color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
-			For index0, remove in ["underline", "bold", "highlight"]
-				text := StrReplace(text, "(/" remove ")")
-			Gui, %GUI_name%: Font, % font
-			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % LLK_StringCase(text)
-			Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
-			Gui, %GUI_name%: Add, Text, % (InStr(control, "recentchanges") ? "" : "Center ") "xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color), % LLK_StringCase(text)
-		}
+	Else For index, text in target_array
+	{
+		font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
+		color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
+		For index0, remove in ["underline", "bold", "highlight"]
+			text := StrReplace(text, "(/" remove ")")
+		Gui, %GUI_name%: Font, % font
+		Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % LLK_StringCase(text)
+		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
+		Gui, %GUI_name%: Add, Text, % (InStr(control, "recentchanges") ? "" : "Center ") "xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color), % LLK_StringCase(text)
+	}
 
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000
 	WinGetPos,,, width, height, ahk_id %tooltip%
@@ -903,13 +902,20 @@ RGB_Convert(RGB)
 	Return [red, green, blue]
 }
 
-RGB_Picker(RGB := "")
+RGB_Picker(RGB := "", colors := "")
 {
 	local
 	global vars, settings
 	static palette, hwnd_r, hwnd_g, hwnd_b, hwnd_edit_r, hwnd_edit_g, hwnd_edit_b, hwnd_final, sliders
 
-	If !palette
+	If IsObject(colors)
+	{
+		palette := []
+		For hex in colors
+			palette.Push([hex])
+		;palette := [palette]
+	}
+	Else If !palette
 	{
 		palette := []
 		palette.Push(["330000", "660000", "990000", "CC0000", "FF0000", "FF3333", "FF6666", "FF9999", "FFCCCC"])
@@ -955,24 +961,27 @@ RGB_Picker(RGB := "")
 		For index, val in val0
 		{
 			style := (A_Index = 1) ? "Section " (index0 != 1 ? "ys x+-1" : "") : "xs y+" (LLK_IsBetween(index, 5, 6) ? settings.general.fWidth / 5 : -1), columns := index0
-			Gui, RGB_palette: Add, Text, % style " Center 0x200 BackgroundTrans HWNDhwnd_" val " w" settings.general.fWidth * 2 " h" settings.general.fWidth * 2 " c" (index >= 5 ? "Black" : "White"), % (RGB = val) ? "X" : ""
+			Gui, RGB_palette: Add, Text, % style " Center 0x200 BackgroundTrans HWNDhwnd_" val " w" settings.general.fWidth * 2 " h" settings.general.fWidth * 2 " c" (index >= 5 || RegExMatch(val, "i)00FF00|00FFFF|FFA500|FFFF00|FFFFFF") ? "Black" : "White"), % (RGB = val) ? "X" : ""
 			If (RGB = val)
 				marked := val
 			Gui, RGB_palette: Add, Progress, % "xp yp Disabled Background646464 c" val " w" settings.general.fWidth * 2 " h" settings.general.fWidth * 2 " HWNDhwnd", 100
 			hwnd_GUI[hwnd] := """" val """"
 		}
 
-	For index, val in RGB_Convert(RGB)
+	If !colors
 	{
-		letter := (index = 1 ? "R" : (index = 2 ? "G" : "B"))
-		Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fHeight " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
-		Gui, RGB_palette: Add, Slider, % "ys x+-1 hp Border Range0-255 Tooltip gRGB_Picker HWNDhwnd_" letter " w" settings.general.fWidth*20 - 9, % val
-		Gui, RGB_palette: Font, % "s" settings.general.fSize - 4
-		Gui, RGB_palette: Add, Edit, % "ys Number Right Limit3 x+-1 hp cBlack gRGB_Picker HWNDhwnd_edit_" letter " w" settings.general.fWidth*3 - 1, % val
-		Gui, RGB_palette: Font, % "s" settings.general.fSize
+		For index, val in RGB_Convert(RGB)
+		{
+			letter := (index = 1 ? "R" : (index = 2 ? "G" : "B"))
+			Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fHeight " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
+			Gui, RGB_palette: Add, Slider, % "ys x+-1 hp Border Range0-255 Tooltip gRGB_Picker HWNDhwnd_" letter " w" settings.general.fWidth*20 - 9, % val
+			Gui, RGB_palette: Font, % "s" settings.general.fSize - 4
+			Gui, RGB_palette: Add, Edit, % "ys Number Right Limit3 x+-1 hp cBlack gRGB_Picker HWNDhwnd_edit_" letter " w" settings.general.fWidth*3 - 1, % val
+			Gui, RGB_palette: Font, % "s" settings.general.fSize
+		}
+		Gui, RGB_palette: Add, Progress, % "Disabled xs y+-1 Section hp HWNDhwnd_final Background646464 c" (Blank(RGB) ? "000000" : RGB) " w" settings.general.fWidth*3, 100
 	}
-	Gui, RGB_palette: Add, Progress, % "Disabled xs y+-1 Section hp HWNDhwnd_final Background646464 c" (Blank(RGB) ? "000000" : RGB) " w" settings.general.fWidth*3, 100
-	Gui, RGB_palette: Add, Text, % "ys x+-1 Border HWNDhwnd_save 0x200", % " " Lang_Trans("global_apply") " "
+	Gui, RGB_palette: Add, Text, % (colors ? "hp " : "") "ys x+-1 Border HWNDhwnd_save 0x200", % " " Lang_Trans("global_apply") " "
 
 	Gui, RGB_palette: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, ahk_id %hwnd_palette%
@@ -991,17 +1000,22 @@ RGB_Picker(RGB := "")
 			picked_rgb := current_rgb
 		Else
 		{
-			current_rgb := ""
-			Loop, Parse, % "rgb"
-				current_rgb .= Format("{:02X}", LLK_ControlGet(hwnd_%A_LoopField%))
-			GuiControl, +c%current_rgb%, % hwnd_final
-			If (current_rgb != marked)
-				GuiControl, Text, % hwnd_%marked%, % ""
-			If (hwnd_%current_rgb%)
+			If !colors
 			{
-				GuiControl, Text, % hwnd_%current_rgb%, % "X"
-				marked := current_rgb
+				current_rgb := ""
+				Loop, Parse, % "rgb"
+					current_rgb .= Format("{:02X}", LLK_ControlGet(hwnd_%A_LoopField%))
+				GuiControl, +c%current_rgb%, % hwnd_final
+
+				If (current_rgb != marked)
+					GuiControl, Text, % hwnd_%marked%, % ""
+				If (hwnd_%current_rgb%)
+				{
+					GuiControl, Text, % hwnd_%current_rgb%, % "X"
+					marked := current_rgb
+				}
 			}
+			Else current_rgb := marked
 			Sleep 10
 			Continue
 		}
@@ -1011,8 +1025,11 @@ RGB_Picker(RGB := "")
 			rgb_last := rgb, sliders := RGB_Convert(rgb)
 			For index, val in ["r", "g", "b"]
 			{
-				GuiControl,, % hwnd_%val%, % sliders[index]
-				GuiControl,, % hwnd_edit_%val%, % sliders[index]
+				If !colors
+				{
+					GuiControl,, % hwnd_%val%, % sliders[index]
+					GuiControl,, % hwnd_edit_%val%, % sliders[index]
+				}
 				GuiControl, Text, % hwnd_%marked%, % ""
 				GuiControl, Text, % hwnd_%rgb%, % "X"
 				marked := rgb
@@ -1022,6 +1039,8 @@ RGB_Picker(RGB := "")
 	KeyWait, LButton
 	Gui, RGB_palette: Destroy
 	vars.Delete("RGB_picker")
+	If colors
+		palette := ""
 	Return picked_rgb
 }
 

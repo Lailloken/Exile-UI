@@ -2689,30 +2689,54 @@ Settings_lootfilter()
 	}
 
 	If !vars.lootfilter_tester.Count()
-		vars.lootfilter_tester := {"opacity": "maximum", "size": "maximum"}
-	tester := vars.lootfilter_tester, types := ["size", "opacity"], dimensions := [], ranges := {"size": "10-45", "opacity": "50-255"}
+		vars.lootfilter_tester := {"opacity": "maximum", "size": "maximum", "volume": "maximum", "sound": 1}
+	tester := vars.lootfilter_tester, types := ["size", "opacity", "volume"], dimensions := [Lang_Trans("global_sound", 2), Lang_Trans("global_test"), Lang_Trans("global_restore")]
+	ranges := {"size": "10-45", "opacity": "50-255", "volume": "0-300"}
 	For outer, type in types
 		dimensions.Push(Lang_Trans("global_" type))
 	LLK_PanelDimensions(dimensions, settings.general.fSize, wType, height)
 
 	For outer, type in types
 	{
-		Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " 0x200 Border w" wType, % " " StrReplace(Lang_Trans("global_" type), Lang_Trans("global_colon"))
+		Gui, %GUI%: Add, Text, % "Section xs 0x200 Border w" wType, % " " StrReplace(Lang_Trans("global_" type), Lang_Trans("global_colon"))
 		For key, val in {"i": "minimum", "ii": "medium", "iii": "maximum"}
 		{
 			label := Lang_Trans("global_" val, 2) . Lang_Trans("global_colon") " " settings.lootfilter[type "_" val]
-			Gui, %GUI%: Add, Text, % "ys x+-1 Center Border gSettings_lootfilter2 HWNDhwnd w" Round(settings.general.fWidth * 2.5) . (val = vars.lootfilter_tester[type] ? " cLime" : ""), % key
+			Gui, %GUI%: Add, Text, % "ys x+-1 Center Border gSettings_lootfilter2 HWNDhwnd w" settings.general.fHeight . (val = vars.lootfilter_tester[type] ? " cLime" : ""), % key
 			vars.hwnd.settings[type "preset_" val] := vars.hwnd.help_tooltips["settings_lootfilter filter-tester presets" preset_handle] := hwnd, preset_handle .= "|"
 		}
-		Gui, %GUI%: Add, Slider, % "ys x+-1 hp Center NoTicks Range" ranges[type] " ToolTip Border gSettings_lootfilter2 HWNDhwnd w" 18 * settings.general.fWidth, % settings.lootfilter[type "_" tester[type]]
+		Gui, %GUI%: Add, Slider, % "ys x+-1 hp Center NoTicks Range" ranges[type] " ToolTip Border gSettings_lootfilter2 HWNDhwnd w" 9 * settings.general.fHeight, % settings.lootfilter[type "_" tester[type]]
 		Gui, %GUI%: Add, Text, % "ys x+-1 hp Border 0x200 HWNDhwnd1 gSettings_lootfilter2", % " " Lang_Trans("global_reset") " "
 		vars.hwnd.settings[type "value"] := hwnd, vars.hwnd.settings["reset_" type] := hwnd1
 	}
-	
 
-	Gui, %GUI%: Font, % "s" settings.general.fSize + 4
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " Border HWNDhwnd gSettings_lootfilter2", % " " Lang_Trans("global_test") " "
-	Gui, %GUI%: Add, Text, % "ys Border HWNDhwnd1 gSettings_lootfilter2 BackgroundTrans", % " " Lang_Trans("global_restore") " "
+	cReset := LLK_ControlGetPos(hwnd1), dimensions := []
+	If !settings.lootfilter.sound_tags.HasKey(tester.sound)
+		vars.lootfilter_tester.sound := LLK_HasVal(settings.lootfilter.sound_tags, tester.sound)
+	vars.lootfilter_tester.sound_index := settings.lootfilter.sound_tags[tester.sound], length := 0
+
+	For key, val in settings.lootfilter.sound_tags
+		ddl := (IsNumber(key) ? ddl . (ddl ? "|" key : key) : key . (ddl ? "|" ddl : ddl)), length := Max(length, StrLen(key)), dimensions.Push(key "777")
+	Loop, Parse, ddl, % "|"
+		If (A_LoopField = vars.lootfilter_tester.sound)
+			choice := A_Index
+	LLK_PanelDimensions(dimensions, settings.general.fSize - 4, wDDL, hDDL)
+
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, DDL, % "Section xs Hidden", bla
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "xp yp hp Border w" wType, % " " Lang_Trans("global_sound", 2)
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, DDL, % "ys x+0 gSettings_lootfilter2 HWNDhwnd w" wDDL . (choice ? " Choose" choice : ""), % ddl
+	cDDL := LLK_ControlGetPos(hwnd)
+	Gui, %GUI%: Add, Edit, % "ys x+0 hp Limit15 cBlack gSettings_lootfilter2 HWNDhwnd1 w" cReset.xMax - cDDL.xMax, % (IsNumber(vars.lootfilter_tester.sound) ? "" : vars.lootfilter_tester.sound)
+	Gui, %GUI%: Add, Button, % "xp hp Hidden Default gSettings_lootfilter2 HWNDhwnd2", a
+	vars.hwnd.settings.sound_pick := vars.hwnd.help_tooltips["settings_lootfilter filter-tester sounds"] := hwnd
+	vars.hwnd.settings.sound_tag := vars.hwnd.help_tooltips["settings_lootfilter filter-tester sound tags"] := hwnd1, vars.hwnd.settings.sound_ok := hwnd2
+
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Center Border HWNDhwnd gSettings_lootfilter2 w" wType, % Lang_Trans("global_test")
+	Gui, %GUI%: Add, Text, % "Section xs wp Border Center HWNDhwnd1 gSettings_lootfilter2 BackgroundTrans", % Lang_Trans("global_restore")
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd2 BackgroundBlack cBlack", 100
 	vars.hwnd.settings.tester_test := vars.hwnd.help_tooltips["settings_lootfilter filter-tester apply"] := hwnd
 	vars.hwnd.settings.tester_restore := hwnd1, vars.hwnd.settings.tester_restore_bar := vars.hwnd.help_tooltips["settings_lootfilter filter-tester restore"] := hwnd2
@@ -2729,6 +2753,11 @@ Settings_lootfilter2(cHWND := "")
 		KeyWait, LButton
 		KeyWait, RButton
 	}
+	If (check = "sound_pick")
+	{
+		vars.lootfilter_tester.sound := input := LLK_ControlGet(cHWND), vars.lootfilter_tester.sound_index := settings.lootfilter.sound_tags[input], check := "tester_test", control := "test"
+		GuiControl,, % vars.hwnd.settings.sound_tag, % (IsNumber(input) ? "" : input)
+	}
 	Switch
 	{
 	Case (check = "enable"):
@@ -2736,12 +2765,14 @@ Settings_lootfilter2(cHWND := "")
 		If !settings.features.lootfilter && WinExist("ahk_id " vars.hwnd.lootfilter.main)
 			Lootfilter_Editor("close")
 		Settings_menu("filterspoon")
+	;######################################################
 	Case InStr(check, "modifierkey_"):
 		IniWrite, % (settings.lootfilter.modifier_key := control), % "ini" vars.poe_version "\lootfilter.ini", settings, modifier key
 		GuiControl, +cLime, % cHWND
 		GuiControl, movedraw, % cHWND
 		GuiControl, +cGray, % vars.hwnd.settings["modifierkey_" (control = "ctrl" ? "alt" : "ctrl")]
 		GuiControl, movedraw, % vars.hwnd.settings["modifierkey_" (control = "ctrl" ? "alt" : "ctrl")]
+	;######################################################
 	Case InStr(check, "font_"):
 		While GetKeyState("LButton", "P")
 		{
@@ -2756,6 +2787,7 @@ Settings_lootfilter2(cHWND := "")
 		LLK_FontDimensions(settings.lootfilter.fSize - 2, height, width), settings.lootfilter.fWidth2 := width, settings.lootfilter.fHeight2 := height
 		If WinExist("ahk_id " vars.hwnd.lootfilter.main)
 			Lootfilter_Editor()
+	;######################################################
 	Case InStr(check, "color_"):
 		If (vars.system.click = 2)
 			RGB := settings.lootfilter["color_" control "_default"]
@@ -2769,6 +2801,7 @@ Settings_lootfilter2(cHWND := "")
 		GuiControl, % "movedraw", % vars.hwnd.settings["color_" control "_bar"]
 		If WinExist("ahk_id " vars.hwnd.lootfilter.main)
 			Lootfilter_Editor()
+	;######################################################
 	Case InStr(check, "preset_"):
 		type := SubStr(check, 1, InStr(check, "preset_") - 1)
 		For key, hwnd in vars.hwnd.settings
@@ -2779,6 +2812,7 @@ Settings_lootfilter2(cHWND := "")
 			}
 		vars.lootfilter_tester[type] := control
 		GuiControl,, % vars.hwnd.settings[type "value"], % settings.lootfilter[type "_" control]
+	;######################################################
 	Case InStr(check, "value"):
 		type := SubStr(check, 1, InStr(check, "value") - 1), input := LLK_ControlGet(cHWND)
 		If (input = settings.lootfilter[type "_" vars.lootfilter_tester[type]])
@@ -2786,10 +2820,34 @@ Settings_lootfilter2(cHWND := "")
 		IniWrite, % (settings.lootfilter[type "_" vars.lootfilter_tester[type]] := input), % "ini" vars.poe_version "\lootfilter.ini", UI, % vars.lootfilter_tester[type] " " type
 		If WinExist("ahk_id " vars.hwnd.lootfilter.main)
 			Lootfilter_Editor()
+	;######################################################
 	Case InStr(check, "reset_"):
 		For index, val in ["minimum", "medium", "maximum"]
 			IniWrite, % (settings.lootfilter[control "_" val] := settings.lootfilter.defaults[control][val]), % "ini" vars.poe_version "\lootfilter.ini", UI, % val " " control
 		Settings_menu("filterspoon")
+	;######################################################
+	Case (check = "sound_tag"):
+	input := LLK_ControlGet(cHWND)
+	If !Blank(input)
+	{
+		GuiControl, % "+c" (input != LLK_HasVal(settings.lootfilter.sound_tags, vars.lootfilter_tester.sound_index) ? "Red" : "Black"), % vars.hwnd.settings.sound_tag
+		GuiControl, % "movedraw", % vars.hwnd.settings.sound_tag
+	}
+	;######################################################
+	Case (check = "sound_ok"):
+	input := LLK_ControlGet(vars.hwnd.settings.sound_tag)
+	If IsNumber(input)
+	{
+		LLK_ToolTip(Lang_Trans("global_errorname", 2),,,,, "Red")
+		Return
+	}
+	input := (Blank(input) ? vars.lootfilter_tester.sound_index : input)
+	settings.lootfilter.sound_tags.Delete(vars.lootfilter_tester.sound), settings.lootfilter.sound_tags[input] := vars.lootfilter_tester.sound_index
+	IniWrite, % """" input """", % "ini" vars.poe_version "\lootfilter.ini", sounds, % vars.lootfilter_tester.sound_index
+	vars.lootfilter_tester.sound := input, Settings_menu("filterspoon")
+	If vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main)
+		Lootfilter_Editor()
+	;######################################################
 	Case InStr(check, "tester_"):
 		If (control = "test")
 			Lootfilter_TesterDump(), vars.lootfilter.tester_applied := 1
@@ -2810,6 +2868,7 @@ Settings_lootfilter2(cHWND := "")
 		SendInput, {ENTER}
 		Sleep, 100
 		SendInput, ^{a}^{v}{ENTER}
+	;######################################################
 	Case check:
 		LLK_ToolTip("no action")
 		Return

@@ -12,6 +12,7 @@
 		, "yPos": [vars.monitor.y + vars.client.y + vars.client.h*0.53, vars.monitor.y + vars.client.y + vars.client.h*0.17]}
 		, settings.lootfilter := {}, vars.lootfilter.search.0 := 1, vars.lootfilter_tester := {}, vars.lootfilter.modifications_pending.0 := ""
 
+	vars.lootfilter.beamcolors := {"000000": "off", "FF0000": "Red", "00FF00": "Green", "0000FF": "Blue", "8B4513": "Brown", "FFFFFF": "White", "FFFF00": "Yellow", "00FFFF": "Cyan", "808080": "Grey", "FFA500": "Orange", "FF1493": "Pink", "800080": "Purple"}
 	ini := IniBatchRead("ini" vars.poe_version "\lootfilter.ini")
 	settings.lootfilter.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.lootfilter.fSize, font_height, font_width), settings.lootfilter.fHeight := font_height, settings.lootfilter.fWidth := font_width
@@ -24,13 +25,41 @@
 	settings.lootfilter.color_accent := !Blank(check := ini.UI["accent color"]) ? check : settings.lootfilter.color_accent_default
 	settings.lootfilter.modifier_key := !Blank(check := ini.settings["modifier key"]) ? check : "alt"
 
-	settings.lootfilter.defaults := defaults := {"opacity": {"minimum": 100, "medium": 150, "maximum": 255}, "size": {"minimum": 25, "medium": 35, "maximum": 45}}
+	settings.lootfilter.defaults := defaults := {"opacity": {"minimum": 100, "medium": 150, "maximum": 255}, "size": {"minimum": 25, "medium": 35, "maximum": 45}, "volume": {"minimum": 100, "medium": 200, "maximum": 300}}
 	settings.lootfilter.opacity_minimum := !Blank(check := ini.UI["minimum opacity"]) ? check : defaults.opacity.minimum
 	settings.lootfilter.opacity_medium := !Blank(check := ini.UI["medium opacity"]) ? check : defaults.opacity.medium
 	settings.lootfilter.opacity_maximum := !Blank(check := ini.UI["maximum opacity"]) ? check : defaults.opacity.maximum
 	settings.lootfilter.size_minimum := !Blank(check := ini.UI["minimum size"]) ? check : defaults.size.minimum
 	settings.lootfilter.size_medium := !Blank(check := ini.UI["medium size"]) ? check : defaults.size.medium
 	settings.lootfilter.size_maximum := !Blank(check := ini.UI["maximum size"]) ? check : defaults.size.maximum
+	settings.lootfilter.volume_minimum := !Blank(check := ini.UI["minimum volume"]) ? check : defaults.volume.minimum
+	settings.lootfilter.volume_medium := !Blank(check := ini.UI["medium volume"]) ? check : defaults.volume.medium
+	settings.lootfilter.volume_maximum := !Blank(check := ini.UI["maximum volume"]) ? check : defaults.volume.maximum
+
+	settings.lootfilter.sound_tags := {}
+	Loop 16
+		tag := (!Blank(check := ini.sounds[A_Index]) ? check : (A_Index = 6 ? "tink" : A_Index)), settings.lootfilter.sound_tags[tag] := A_Index
+}
+
+Lootfilter_ChunkCompare(filter_lines, mod_lines)
+{
+	local
+	global vars, settings
+
+	filter_lines := filter_lines.Clone(), filter_lines.RemoveAt(1)
+	If !IsObject(mod_lines.1)
+		mod_lines := mod_lines.Clone(), mod_lines.RemoveAt(1)
+	For outer in [1, 2]
+		For index1, line1 in (outer = 1 ? filter_lines : mod_lines)
+			For key1, val1 in line1
+				If !RegExMatch(key1, "i)basetype|play|set|minimap|disable")
+					If !LLK_HasKey((outer = 2 ? filter_lines : mod_lines), Trim(key1, "`t "), 1,,, 1)
+						Return 0
+					Else For index2, line2 in (outer = 2 ? filter_lines : mod_lines)
+						For key2, val2 in line2
+							If InStr(key2, Trim(key1, "`t ")) && (val1 != val2)
+								Return 0
+	Return 1
 }
 
 Lootfilter_Clipboard()
@@ -57,8 +86,10 @@ Lootfilter_Customize(cHWND := "")
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.lootfilter, cHWND), control := Substr(check, InStr(check, "_") + 1), profile := settings.lootfilter.profile
+	If InStr(check, "toggle_")
+		parse := Trim(SubStr(check, InStr(check, "|")), " |"), parse := StrSplit(parse, "|", " "), type := parse.1, tier := parse.2
 	For index, object in vars.lootfilter.modifications_pending
-		If (object.action = "presentation") && (object.type = vars.lootfilter.last_type && object.tier = vars.lootfilter.last_tier)
+		If (object.action = "presentation") && (parse && object.type = type && object.tier = tier || object.type = vars.lootfilter.last_type && object.tier = vars.lootfilter.last_tier)
 		{
 			target_index := index
 			Break
@@ -69,9 +100,10 @@ Lootfilter_Customize(cHWND := "")
 	Switch
 	{
 		Case InStr(check, "globalsetting_"):
-		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "flask": -41, "economy1": -101, "economy2": -102, "economy3": -103, "economy4": -104}
+		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "flask": -41, "economy1": -101, "economy2": -102, "economy3": -103, "economy4": -104, "economy5": -105}
 		If !vars.poe_version
-			types := {"gem": "gems > generic", "map": "maps", "strand": "gear > memorystrand", "flask": "endgameflasks", "economy1": "currency", "economy2": "divination", "economy3": "currency > essence"}
+			types := {"gem": "gems > generic", "map": "maps", "strand": "gear > memorystrand", "flask": "endgameflasks", "economy1": "currency", "economy2": "divination", "economy3": "currency > essence"
+			, "economy5": "fragments > scarabs"}
 		Else types := {"gem": "gems > uncut", "flask": "endgame > salvagable", "economy1": "currency", "economy3": "currency > essence", "economy4": "sockets > general"}
 		params := StrSplit(control, "|"), setting := params.1, type := params.2, iTarget := indexes[setting]
 
@@ -80,10 +112,14 @@ Lootfilter_Customize(cHWND := "")
 		Else input := LLK_ControlGet(cHWND)
 
 		current := LLK_CloneObject(IsObject(vars.lootfilter.modifications_pending[iTarget]) ? vars.lootfilter.modifications_pending[iTarget] : vars.lootfilter.modifications["profile" profile][iTarget])
+		If InStr(control, "stacks")
+			If current.stacks
+				current.Delete("stacks")
+			Else current.stacks := 1
 		If (economy := InStr(control, "economy"))
 		{
 			input := LLK_ControlGet(vars.hwnd.lootfilter["cutoff_" type]), input := (input = "" ? 0 : Trim(StrReplace(input, ",", "."), " ")), input := (SubStr(input, 1, 1) = "." ? "0" input : input)
-			If !Blank(input) && (input != 0) && (!IsObject(modifications := Lootfilter_Economy(type, input)) || !modifications.Count())
+			If !Blank(input) && (input != 0) && (!IsObject(modifications := Lootfilter_Economy(type, input, current.stacks)) || !modifications.Count())
 			{
 				LLK_ToolTip(Lang_Trans((modifications = -1 ? "global_errorname" : (!modifications.Count() ? "lootfilter_lowcutoff" : "async_pricefailed")), (modifications = -1 ? 2 : 1)), 2,,,, "FF8000")
 				Return 
@@ -108,7 +144,7 @@ Lootfilter_Customize(cHWND := "")
 			Else
 			{
 				If economy
-					vars.lootfilter.modifications_pending[iTarget].modifications := "", vars.lootfilter.modifications_pending[iTarget].action := "economy|"
+					vars.lootfilter.modifications_pending[iTarget].modifications := "", vars.lootfilter.modifications_pending[iTarget].Delete("stacks"), vars.lootfilter.modifications_pending[iTarget].action := "economy|"
 				Else If vars.lootfilter.modifications_pending[iTarget].modifications[type]
 					vars.lootfilter.modifications_pending[iTarget].modifications.Delete(type)
 				If !vars.lootfilter.modifications_pending[iTarget].modifications.Count()
@@ -120,8 +156,8 @@ Lootfilter_Customize(cHWND := "")
 
 		If economy && (vars.lootfilter.modifications_pending[iTarget].modifications.toggle = "off") && !vars.lootfilter.modifications["profile" profile][iTarget].modifications.Count()
 			match := 1
-		Else For kSetting, array in (!vars.poe_version ? {"flask": ["quality"], "gem": ["quality", "level"], "map": ["tier"], "strand": ["strands high", "strands"], "visual": ["size", "opacity"]}
-			: {"gem": ["skilllevel", "spiritlevel", "supportlevel"], "visual": ["size", "opacity"]})
+		Else For kSetting, array in (!vars.poe_version ? {"flask": ["quality"], "gem": ["quality", "level"], "map": ["tier"], "strand": ["strands high", "strands"], "visual": ["size", "opacity", "volume"]}
+			: {"gem": ["skilllevel", "spiritlevel", "supportlevel"], "visual": ["size", "opacity", "volume"]})
 			If (setting = kSetting)
 			{
 				match := 1
@@ -170,34 +206,77 @@ Lootfilter_Customize(cHWND := "")
 		Else vars.lootfilter.modifications_pending[target_index].modifications.MemoryStrands := input, object := vars.lootfilter.modifications_pending[target_index]
 		Lootfilter_Modify(object)
 		;######################################################
+		Case (check = "customize_sound"):
+		input := LLK_ControlGet(cHWND), sound := settings.lootfilter.sound_tags[input]
+		If !Blank(sound) && RegexMatch(vars.lootfilter.last_style.playalertsound, "^" sound "\s\d{1,3}")
+			Return
+		If !target_index
+			object := {"action": "presentation", "type": vars.lootfilter.last_type, "tier": vars.lootfilter.last_tier, "modifications": {"PlayAlertSound": (sound ? [sound] : "off")}}, vars.lootfilter.modifications_pending.Push(object)
+		Else If sound
+		{
+			If !IsObject(vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound)
+				vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound := []
+			vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound.1 := sound, object := vars.lootfilter.modifications_pending[target_index]
+		}
+		Else vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound := "off", object := vars.lootfilter.modifications_pending[target_index]
+		Lootfilter_Modify(object)
+		;######################################################
+		Case InStr(check, "customize_volume"):
+		volume := settings.lootfilter["volume_" StrSplit(control, "|").2]
+		If RegexMatch(vars.lootfilter.last_style.playalertsound, "\d{1,2}\s" volume "$")
+			Return
+
+		If !target_index
+			object := {"action": "presentation", "type": vars.lootfilter.last_type, "tier": vars.lootfilter.last_tier, "modifications": {"PlayAlertSound": ["", volume]}}, vars.lootfilter.modifications_pending.Push(object)
+		Else If IsObject(vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound)
+			vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound.2 := volume, object := vars.lootfilter.modifications_pending[target_index]
+		Else vars.lootfilter.modifications_pending[target_index].modifications.PlayAlertSound := ["", volume], object := vars.lootfilter.modifications_pending[target_index]
+		Lootfilter_Modify(object)
+		;######################################################
 		Case InStr(check, "customize_"):
-		If (vars.system.click = 1)
-		{
-			RGB := RGB_Picker(vars.lootfilter.last_style["Set" control "Color"])
-			If Blank(RGB)
-				Return
-		}
-		Else
-		{
-			For iChunk, vChunk in vars.lootfilter.active_filter.stock
-				If (vChunk.type && vChunk.type = vars.lootfilter.last_type) && (vChunk.tier && vChunk.tier = vars.lootfilter.last_tier)
-					For iLine, vLine in vChunk.lines
-						For key, val in vLine
-							If InStr(key, "Set" control "Color")
-								RGB := RGB_Convert(val)
-			If Blank(RGB)
+		colors := vars.lootfilter.beamcolors, beam := InStr(check, "_beam"), tempbeam := InStr(check, "_tempbeam")
+
+		If !tempbeam
+			If (vars.system.click = 1)
 			{
-				LLK_ToolTip(Lang_Trans("global_match"),,,,, "FF8000")
-				Return
+				RGB := (beam ? RGB_Picker(StrSplit(control, "|").2, colors) : RGB_Picker(vars.lootfilter.last_style["Set" control "Color"]))
+				If Blank(RGB)
+					Return
 			}
-		}
+			Else
+			{
+				For iChunk, vChunk in vars.lootfilter.active_filter.stock
+					If (vChunk.type && vChunk.type = vars.lootfilter.last_type) && (vChunk.tier && vChunk.tier = vars.lootfilter.last_tier)
+						For iLine, vLine in vChunk.lines
+							For key, val in vLine
+								If !beam && InStr(key, "Set" control "Color")
+									RGB := RGB_Convert(val)
+								Else If beam && InStr(key, "playeffect")
+									RGB := LLK_HasVal(colors, StrSplit(val, " ").1)
+				If !beam && Blank(RGB)
+				{
+					LLK_ToolTip(Lang_Trans("global_match"),,,,, "FF8000")
+					Return
+				}
+			}
 
 		If !target_index
 			object := {"action": "presentation", "type": vars.lootfilter.last_type, "tier": vars.lootfilter.last_tier, "modifications": {}}, vars.lootfilter.modifications_pending.Push(object)
 			, target_index := vars.lootfilter.modifications_pending.MaxIndex()
 
 		object := vars.lootfilter.modifications_pending[target_index]
-		If !object.modifications["Set" control "Color"]
+		For key in vars.hwnd.lootfilter
+			If InStr(key, "_beam")
+				current := StrSplit(key, "|").2
+		If beam && (Blank(RGB) || RGB = "000000")
+			object.modifications.PlayEffect := "off"
+		Else If beam || tempbeam
+		{
+			If IsObject(object.modifications.PlayEffect)
+				object.modifications.PlayEffect[beam ? 1 : 2] := (beam ? colors[RGB] : (InStr(control, "|temp") ? "perma" : "Temp"))
+			Else object.modifications.PlayEffect := (beam ? [colors[RGB]] : [colors[current], (InStr(control, "|temp") ? "perma" : "Temp")])
+		}
+		Else If !object.modifications["Set" control "Color"]
 			object.modifications["Set" control "Color"] := RGB_Convert(RGB), object.modifications["Set" control "Color"].4 := ""
 		Else
 			For index, val in RGB_Convert(RGB)
@@ -206,18 +285,20 @@ Lootfilter_Customize(cHWND := "")
 		;######################################################
 		Case InStr(check, "toggle_"):
 		parse := Trim(SubStr(check, InStr(check, "|")), " |"), parse := StrSplit(parse, "|", " "), type := parse.1, tier := parse.2, toggle := SubStr(control, 1, InStr(control, "|") - 1)
-		For index, object in vars.lootfilter.modifications_pending
-			If (object.action = "presentation") && (object.type = type) && (object.tier = tier)
-			{
-				If (vars.lootfilter.modifications_pending[index].modifications.visibility = toggle)
-					Return
-				vars.lootfilter.modifications_pending[index].modifications.visibility := toggle, check := 1, Lootfilter_Modify(vars.lootfilter.modifications_pending[index])
-				vars.lootfilter.modifications_pending[index].modifications.Delete("visibility")
-				If !vars.lootfilter.modifications_pending[index].modifications.Count()
-					vars.lootfilter.modifications_pending.RemoveAt(index)
-				Break
-			}
-		If (check != 1)
+		If target_index && (vars.lootfilter.modifications_pending[target_index].modifications.visibility)
+		{
+			If (vars.lootfilter.modifications_pending[target_index].modifications.visibility = toggle)
+				Return
+			vars.lootfilter.modifications_pending[target_index].modifications.visibility := toggle, Lootfilter_Modify(vars.lootfilter.modifications_pending[target_index])
+			vars.lootfilter.modifications_pending[target_index].modifications.Delete("visibility")
+			If !vars.lootfilter.modifications_pending[target_index].modifications.Count()
+				vars.lootfilter.modifications_pending.RemoveAt(target_index)
+		}
+		Else If target_index
+			vars.lootfilter.modifications_pending[target_index].modifications.visibility := toggle, Lootfilter_Modify(vars.lootfilter.modifications_pending[target_index])
+
+		If !target_index
+		{
 			For index, chunk in vars.lootfilter.active_filter.final
 				If (chunk.type = type && chunk.tier = tier)
 				{
@@ -225,28 +306,37 @@ Lootfilter_Customize(cHWND := "")
 						Return
 					Break
 				}
-		If (check != 1)
 			object := {"action": "presentation", "type": type, "tier": tier, "modifications": {"visibility": toggle}}, vars.lootfilter.modifications_pending.Push(object), Lootfilter_Modify(object)
-		;######################################################
-		Case InStr(check, "movetier_newtier|"):
-		target_chunk := SubStr(control, InStr(control, "|") + 1), count := 0
-		While LLK_Haskey(vars.lootfilter.structure[vars.lootfilter.last_type], "exui_hide" (count ? count : ""),,,, 1)
-			count += 1
-		object := {"action": "newtier", "type": vars.lootfilter.last_type, "tier": "exui_hide" (count ? count : ""), "modifications": {"newtier": vars.lootfilter.last_item}}
-		If (warning := Lootfilter_Modify(object))
-			object.warning := warning
-		vars.lootfilter.modifications_pending.Push(object), vars.lootfilter.search.Pop(), vars.lootfilter.search.0 -= 1
+		}
 		;######################################################
 		Case InStr(check, "movetier_"):
-		If (vars.system.click = 2)
+		lines := vars.lootfilter.active_filter.final[vars.lootfilter.last_chunk].lines.Clone(), remove := [1]
+		For index, line in lines
+			For key, val in line
+				If RegExMatch(key, "i)basetype|play|set|minimap")
+					remove.InsertAt(1, index)
+		For index, val in remove
+			lines.RemoveAt(val)
+
+		If (newtier := InStr(check, "newtier"))
 		{
-			GuiControl,, % vars.hwnd.lootfilter.search_edit, % "type: """ vars.lootfilter.last_type """, tier: """ control """"
-			Lootfilter_Editor("search")
-			Return
+			count := 0
+			While LLK_HasVal(vars.lootfilter.structure[vars.lootfilter.last_type], "exui_hide" (count ? count : ""),,,, 1)
+				count += 1
 		}
-		Else If (control = vars.lootfilter.last_tier)
-			Return
-		object := {"action": "movetier", "type": vars.lootfilter.last_type, "tier": control, "modifications": {"movetier": vars.lootfilter.last_item}}
+		Else
+		{
+			If (vars.system.click = 2)
+			{
+				GuiControl,, % vars.hwnd.lootfilter.search_edit, % "type: """ vars.lootfilter.last_type """, tier: """ control """"
+				Lootfilter_Editor("search")
+				Return
+			}
+			Else If (control = vars.lootfilter.last_tier)
+				Return
+		}
+		object := {"action": (newtier ? "newtier" : "movetier"), "type": vars.lootfilter.last_type, "tier": (newtier ? "exui_hide" (count ? count : "") : control)
+		, "modifications": {(newtier ? "newtier" : "movetier"): vars.lootfilter.last_item}, "source": {"lines": lines, "type": vars.lootfilter.last_type, "tier": vars.lootfilter.last_tier}}
 		If (warning := Lootfilter_Modify(object))
 			object.warning := warning
 		vars.lootfilter.modifications_pending.Push(object), vars.lootfilter.search.Pop(), vars.lootfilter.search.0 -= 1
@@ -281,25 +371,72 @@ Lootfilter_Dump()
 	new_file.Write(dump "`n"), new_file.Close()
 }
 
-Lootfilter_Economy(type, input)
+Lootfilter_Economy(type, input, stacks := 0)
 {
 	local
 	global vars, settings
-	static types := {"currency": "currency", "divcards": "divination", "essences": "currency > essence", "socketables": "sockets > general"}
+	static types := {"currency": "currency", "divcards": "divination", "essences": "currency > essence", "socketables": "sockets > general", "scarabs": "fragments > scarabs"}, style_tiers
 
 	If !IsNumber(input)
 		Return -1
 
-	Economy_Update(type), modifications := []
+	Economy_Update(type, 10), modifications := []
 	If (vars.economy[type].timestamp.2 = "failed")
 		Return 0
 
+	If !style_tiers
+		style_tiers := (vars.poe_version ? {"currency": "c", "essences": "c", "socketables": "c"} : {"currency": "t4chaos", "divcards": "t4", "essences": "t3", "scarabs": "t4"})
+
+	stack_sizes := [{}], stack_style := []
 	For item, price in vars.economy[type]
 		If !(item := vars.economy.names[item]) || !LLK_HasVal(vars.lootfilter.active_filter.structure[types[type]], """" item """", 1,,, 1)
 			Continue
 		Else If (price < input)
-			modifications.Push({"action": (modifications.Count() ? "movetier" : "newtier"), "type": types[type], "tier": "exui_hide", "modifications": {(modifications.Count() ? "movetier" : "newtier"): item}})
+		{
+			stack_sizes.1[item] := 1, size := ((Round(input/price, 2) <= (input//price) * 1.11) ? Round(input//price) : Ceil(input / price))
+			If !stacks || (size > 6)
+				Continue
+			If !IsObject(stack_sizes[size])
+				stack_sizes[size] := {}
+			stack_sizes[size][item] := 1
+		}
 
+	If stacks
+	{
+		For iChunk, vChunk in vars.lootfilter.active_filter.final
+			If (vChunk.type = types[type] && vChunk.tier = style_tiers[type])
+			{
+				For iLine, oLine in vChunk.lines
+					For key, val in oLine
+						If RegexMatch(key, "i)^.{0,2}(set|play|minimap)")
+							stack_style.Push({(key): val})
+				Break
+			}
+		If !stack_style.Count()
+			stack_style := [{"SetFontSize": 45}, {"SetTextColor": "0 0 0 255"}, {"SetBorderColor": "0 0 0 255"}, {"SetBackgroundColor": "240 90 35 255"}, {"PlayAlertSound": "2 300"}, {"PlayEffect": "Yellow"}
+			, {"MinimapIcon": "1 Yellow Circle"}]
+	}
+
+	Loop, % stack_sizes.Length()
+	{
+		index := stack_sizes.Length() - (A_Index - 1)
+		If !IsObject(stack_sizes[index])
+			Continue
+
+		type1 := "exui_economy > " type, tier1 := (index = 1 ? "hidden" : index "-" Lang_Trans("lootfilter_stack")), dump := ""
+		For item in stack_sizes[index]
+			dump .= (dump ? " " : "") """" item """"
+
+		If (index != 1)
+			lines := stack_style.Clone()
+		Else lines := []
+		lines.InsertAt(1, (index = 1 ? "Hide" : "Show") " # $type->" StrReplace(type1, " > ", "->") " $tier->" tier1, {"`tBaseType ==": dump})
+
+		If (index != 1)
+			lines.InsertAt(2, {"`tStackSize >=": index})
+		Else lines.Push({"`tSetBorderColor": "255 0 0"}), lines.Push({"`tDisableDropSound": "True"})
+		modifications.Push({"action": (modifications.Count() ? "dumptier" : "newtype"), "type": type1, "tier": tier1, "modifications": lines.Clone()})
+	}
 	Return modifications
 }
 
@@ -307,7 +444,7 @@ Lootfilter_Editor(cHWND := "")
 {
 	local
 	global vars, settings, json
-	static toggle := 0, fSize, wLabels, wExpand, hItems, hItems2, wSyncApply, wShowHide, wQualityLevel, wMapTier, wStrands, wOff, wApplyUpdate
+	static toggle := 0, fSize, wLabels, wExpand, hItems, hItems2, wSyncApply, wShowHide, wQualityLevel, wMapTier, wStrands, wOff, wApplyUpdate, wStacks
 	, background, collapsed_tiers := {}, collapsed_types := {}, last_chunk, modbox_div := 40
 
 	If (cHWND = "close")
@@ -363,6 +500,7 @@ Lootfilter_Editor(cHWND := "")
 			{
 				If (index > 0)
 					vars.lootfilter.modifications["profile" profile].Push(val)
+				val.Delete("warning")
 				IniWrite, % """" json.dump(val) """", % "ini" vars.poe_version "\lootfilter.ini", % "modifications - profile " profile, % (index < 0 ? index : vars.lootfilter.modifications["profile" profile].MaxIndex())
 			}
 			Else If (val.modifications.toggle = "off")
@@ -457,11 +595,8 @@ Lootfilter_Editor(cHWND := "")
 
 			If InStr(control, "pending") || skip_reapply
 			{
-				Loop, % Abs(vars.lootfilter.modifications_pending.MinIndex())
-					If IsObject(object := vars.lootfilter.modifications_pending[-A_Index])
-						Lootfilter_Modify(object)
-				Loop, % vars.lootfilter.modifications_pending.Length()
-					If IsObject(object := vars.lootfilter.modifications_pending[A_Index])
+				For index, object in vars.lootfilter.modifications_pending
+					If !InStr(object.action, "economy")
 						Lootfilter_Modify(object)
 			}
 			Else
@@ -541,6 +676,7 @@ Lootfilter_Editor(cHWND := "")
 		LLK_PanelDimensions([Lang_Trans("global_high"), Lang_Trans("global_minimum")], fSize - 2, wStrands, hStrands)
 		LLK_PanelDimensions([Lang_Trans("global_off")], fSize - 2, wOff, hOff)
 		LLK_PanelDimensions([Lang_Trans("global_update"), Lang_Trans("global_apply")], fSize - 2, wApplyUpdate, hApplyUpdate)
+		LLK_PanelDimensions([Lang_Trans("lootfilter_stack", 2)], fSize - 2, wStacks, hStacks)
 	}
 
 	toggle := !toggle, GUI := vars.lootfilter.GUI := "lootfilter_editor" toggle, margin := settings.lootfilter.fWidth//2
@@ -581,11 +717,12 @@ Lootfilter_Editor(cHWND := "")
 	While !Mod(3 * wProfiles - 2, 2)
 		wProfiles += 1
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
-	Gui, %GUI%: Add, DDL, % "ys w" wDDL " HWNDhwnd gLootfilter_Editor" (show_apply ? " Disabled" : ""), % StrReplace(ddl, "|||", "||")
+	Gui, %GUI%: Add, Text, % "ys w" wDDL " hp Border BackgroundTrans"
+	Gui, %GUI%: Add, DDL, % "xp yp w" wDDL " HWNDhwnd gLootfilter_Editor" (show_apply ? " Disabled" : ""), % StrReplace(ddl, "|||", "||")
 	vars.hwnd.lootfilter.filter_select := hwnd, vars.hwnd.help_tooltips["lootfilter_filter select"] := (vars.lootfilter.modifications_pending.Count() > 1 ? "" : hwnd)
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 
-	Gui, %GUI%: Add, Pic, % "ys x+0 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
+	Gui, %GUI%: Add, Pic, % "ys x+-1 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
 	vars.hwnd.lootfilter.list_reload := vars.hwnd.help_tooltips["lootfilter_list reload"] := hwnd
 
 	If settings.lootfilter.active_filter
@@ -598,7 +735,6 @@ Lootfilter_Editor(cHWND := "")
 
 	If Blank(active_filter := settings.lootfilter.active_filter)
 	{
-		cPos := LLK_ControlGetPos(hwnd), wMax := cPos.xMax
 		Gosub, Label_Show
 		Return
 	}
@@ -621,10 +757,11 @@ Lootfilter_Editor(cHWND := "")
 	Gui, %GUI%: Add, Text, % "Section xs hp Right BackgroundTrans w" wLabels, % Lang_Trans("global_search")
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
 	clip_mode := IsObject(search[vars.lootfilter.search.0]), history := (vars.lootfilter.search.Count() - 1 > 1)
-	Gui, %GUI%: Add, Edit, % "ys w" wDDL " cBlack HWNDhwnd hp" (clip_mode ? " Disabled" : ""), % (clip_mode ? Lang_Trans("lootfilter_ingameitem") : search[Max(1, vars.lootfilter.search.0)])
+	Gui, %GUI%: Add, Text, % "ys hp w" wDDL " Border BackgroundTrans"
+	Gui, %GUI%: Add, Edit, % "xp yp w" wDDL " cBlack HWNDhwnd hp" (clip_mode ? " Disabled" : ""), % (clip_mode ? Lang_Trans("lootfilter_ingameitem") : search[Max(1, vars.lootfilter.search.0)])
 	vars.hwnd.lootfilter.search_edit := vars.hwnd.help_tooltips["lootfilter_search field"] := hwnd
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize
-	Gui, %GUI%: Add, Pic, % "ys x+0 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd1", % "HBitmap:*" vars.pics.global.home
+	Gui, %GUI%: Add, Pic, % "ys x+-1 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd1", % "HBitmap:*" vars.pics.global.home
 	Gui, %GUI%: Add, Button, % "xp yp wp hp HWNDhwnd2 gLootfilter_Editor Hidden Default" (clip_mode ? " Disabled" : ""), a
 	vars.hwnd.lootfilter.search_reset := vars.hwnd.help_tooltips["lootfilter_home button"] := hwnd1
 	vars.hwnd.lootfilter.search_ok := hwnd2
@@ -658,10 +795,10 @@ Lootfilter_Editor(cHWND := "")
 					If (outer = 1 || index > 0) && (IsObject(object) || !index)
 						Loop 2
 						{
-							background := (outer = 2 && object.warning ? "FF0000" : (RegexMatch(object.action, "i)global\s|economy") ? "Fuchsia" : "Black"))
+							background := (outer = 2 && object.warning ? "FF0000" : (RegexMatch(object.action, "i)global\s|economy") ? "Aqua" : "Black"))
 							If (index < 0) && IsObject(vars.lootfilter.modifications_pending[index])
-								color := (vars.lootfilter.modifications_pending[index].warning ? "FF8000" : "Yellow")
-							Else color := (outer = 1 && object.warning ? "FF8000" : (outer = 1 ? (!index ? "White" : "Green") : "Yellow"))
+								color := (vars.lootfilter.modifications_pending[index].warning ? "FF8000" : "EEEE00")
+							Else color := (outer = 1 && object.warning ? "FF8000" : (outer = 1 ? (!index ? "White" : "Green") : "EEEE00"))
 							style := (A_Index = 2 ? "Section xs y+-1" : (!count ? "Section xs x" margin + (modifications + 1 > modboxes ? Floor(offset/2) : 0) : "ys x+-1")), count += 1
 							Gui, %GUI%: Add, Text, % style " Border BackgroundTrans" (index < 0 ? "" : " gLootfilter_Editor") " HWNDhwnd w" wModbox " h" wModbox
 							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" background " Range0-500 Vertical HWNDhwnd1 c" color, 500
@@ -679,7 +816,7 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize
 	}
 
-	cPos := LLK_ControlGetPos(hwnd), tiers := {}, background_color := settings.lootfilter.color_background, result_count := 0
+	tiers := {}, background_color := settings.lootfilter.color_background, result_count := 0
 	If !search[vars.lootfilter.search.0]
 	{
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
@@ -689,42 +826,49 @@ Lootfilter_Editor(cHWND := "")
 		;######################################################
 		Gui, %GUI%: Add, Text, % "Section xs Border Center HWNDhwnd gLootfilter_Editor w" wSettings * 2 + margin, % Lang_Trans("lootfilter_economy", 2) " " league
 		vars.hwnd.lootfilter["browsesetting_economy"] := vars.hwnd.help_tooltips["lootfilter_global setting economy"] := hwnd
-		labels := [Lang_Trans("lootfilter_currency"), Lang_Trans("lootfilter_divcards"), Lang_Trans("lootfilter_essences"), Lang_Trans("lootfilter_socketables")]
-		For index, val in [["currency", "currency"], ["divcards", "divination"], ["essences", "currency > essence"], ["socketables", "sockets > general"]]
+		labels := [Lang_Trans("lootfilter_currency"), Lang_Trans("lootfilter_divcards"), Lang_Trans("lootfilter_essences"), Lang_Trans("lootfilter_socketables"), Lang_Trans("lootfilter_scarabs")]
+		For index, val in [["currency", "currency"], ["divcards", "divination"], ["essences", "currency > essence"], ["socketables", "sockets > general"], ["scarabs", "fragments > scarabs"]]
 		{
-			If vars.poe_version && (index = 2) || !vars.poe_version && (index = 4)
+			If vars.poe_version && InStr("25", index) || !vars.poe_version && (index = 4)
 				Continue
 
 			If IsObject(vars.lootfilter.modifications_pending[-101 - (index - 1)])
 				oCurrent := vars.lootfilter.modifications_pending[-101 - (index - 1)]
 			Else oCurrent := vars.lootfilter.modifications["profile" profile][-101 - (index - 1)]
 
-			available := vars.lootfilter.active_filter.structure.HasKey(val.2)
-			wLabel := wSettings * 2 + margin - settings.lootfilter.fWidth2 * 4 - wApplyUpdate
-			style := (!available ? " cFF8000 BackgroundTrans" : (oCurrent.action && !oCurrent.modifications.toggle ? " cLime gLootfilter_Editor" : " BackgroundTrans" (oCurrent.modifications.toggle ? " cYellow" : "")))
+			available := vars.lootfilter.active_filter.structure.HasKey(val.2), disabled := (Blank(oCurrent.action) || oCurrent.modifications.toggle || !available)
+			wLabel := wSettings * 2 + margin - settings.lootfilter.fWidth2 * 4 - wApplyUpdate + 2 - (!disabled ? wStacks - 1 : 0)
+			style := (!available ? " cFF8000 BackgroundTrans" : (oCurrent.action && !oCurrent.modifications.toggle ? " cLime gLootfilter_Editor" : " BackgroundTrans" (oCurrent.modifications.toggle ? " cEEEE00" : "")))
 			Gui, %GUI%: Add, Text, % "xs y+-1 Border HWNDhwnd w" wLabel . style, % " " labels[index]
-			vars.hwnd.lootfilter["economy_" val.2 "|exui_hide"] := hwnd
-			If Blank(oCurrent.action) || oCurrent.modifications.toggle || !available
+			vars.hwnd.lootfilter["economy_exui_economy > " val.1] := hwnd
+			If disabled
 				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
 			Else vars.hwnd.help_tooltips["lootfilter_section browse" handle_tooltip] := hwnd
 
+			If !disabled
+			{
+				Gui, %GUI%: Add, Text, % "ys yp x+-1 Border Center HWNDhwnd gLootfilter_Customize w" wStacks . (oCurrent.stacks ? " cLime" : ""), % Lang_Trans("lootfilter_stack", 2)
+				vars.hwnd.lootfilter["globalsetting_economy" index "|" val.1 "|stacks"] := vars.hwnd.help_tooltips["lootfilter_economy stacks" handle_stacks] := hwnd, handle_stacks .= "|"
+			}
+
 			Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
-			Gui, %GUI%: Add, Edit, % "ys yp x+0 hp HWNDhwnd cBlack Center Limit5 w" settings.lootfilter.fWidth2 * 4, % (oCurrent.modifications.Count() ? StrSplit(oCurrent.action, "|").2 : "")
+			Gui, %GUI%: Add, Text, % "ys yp x+-1 hp Border BackgroundTrans w" settings.lootfilter.fWidth2 * 4
+			Gui, %GUI%: Add, Edit, % "xp yp hp HWNDhwnd cBlack Center Limit5 w" settings.lootfilter.fWidth2 * 4, % (oCurrent.modifications.Count() ? StrSplit(oCurrent.action, "|").2 : "")
 			vars.hwnd.lootfilter["cutoff_" val.1] := vars.hwnd.help_tooltips["lootfilter_economy cut-offs" vars.poe_version . handle_tooltip] := hwnd
 			Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
-			Gui, %GUI%: Add, Text, % "ys yp Center Border x+0 gLootfilter_Customize HWNDhwnd w" wApplyUpdate, % Lang_Trans("global_" ((oCurrent.modifications.Count() && !oCurrent.modifications.toggle ? "update" : "apply")))
+			Gui, %GUI%: Add, Text, % "ys x+-1 yp Center Border gLootfilter_Customize HWNDhwnd w" wApplyUpdate, % Lang_Trans("global_" ((oCurrent.modifications.Count() && !oCurrent.modifications.toggle ? "update" : "apply")))
 			vars.hwnd.lootfilter["globalsetting_economy" index "|" val.1] := hwnd, handle_tooltip .= "|"
 		}
 		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
 		;######################################################
-		Gui, %GUI%: Add, Text, % "Section ys x" wMax - wSettings - 1 " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (collapsed ? " BackgroundTrans" : ""), % Lang_Trans("lootfilter_visuals")
+		Gui, %GUI%: Add, Text, % "Section ys x" wMax - wSettings - 1 " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (collapsed ? " BackgroundTrans" : ""), % Lang_Trans("lootfilter_presentation")
 		vars.hwnd.lootfilter["browsesetting_visuals"] := vars.hwnd.help_tooltips["lootfilter_global setting visuals"] := hwnd
 
 		If IsObject(vars.lootfilter.modifications_pending[-1])
 			visuals := vars.lootfilter.modifications_pending[-1]
 		Else visuals := vars.lootfilter.modifications["profile" profile][-1]
 
-		For index, val in ["size", "opacity"]
+		For index, val in ["size", "opacity", "volume"]
 		{
 			value := (visuals.modifications[val] ? visuals.modifications[val] : 0), label := StrReplace(Lang_Trans("global_" val), Lang_Trans("global_colon"))
 			Gui, %GUI%: Add, Text, % "xs y+-1 Border BackgroundTrans w" wSettings - 3 * settings.lootfilter.fHeight2 - wOff + 4 . (visuals.modifications[val] ? " cLime" : ""), % " " label
@@ -849,7 +993,7 @@ Lootfilter_Editor(cHWND := "")
 					If !prev_type && !any_view
 					{
 						Gui, %GUI%: Add, Text, % "Section xs x" margin " Border Center BackgroundTrans gLootfilter_Editor HWNDhwnd Hidden w" Max(wTiers, wExpand), % Lang_Trans("global_expand")
-						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundAqua HWNDhwnd1 Hidden c" accent_color, 100
+						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundSilver HWNDhwnd1 Hidden c" accent_color, 100
 						vars.hwnd.lootfilter.uncollapse := hwnd, vars.hwnd.lootfilter.uncollapse_bar := vars.hwnd.help_tooltips["lootfilter_expand"] := hwnd1
 						Gui, %GUI%: Add, Text, % "Section xp yp Center Border gLootfilter_Editor HWNDhwnd_typeheader w" wMax - margin - 1, % type
 					}
@@ -860,13 +1004,14 @@ Lootfilter_Editor(cHWND := "")
 						searchtype_handle .= "|"
 					vars.hwnd.lootfilter["searchtype_" type . searchtype_handle] := hwnd_typeheader
 					vars.hwnd.lootfilter["typeheader" typeheader_handle] := vars.hwnd.help_tooltips["lootfilter_types" typeheader_handle] := hwnd_typeheader, typeheader_handle .= "|"
-					cPos := LLK_ControlGetPos(hwnd_typeheader)
 				}
 				If collapsed_types[type]
 				{
 					prev_type := type
 					GuiControl, -Hidden, % vars.hwnd.lootfilter.uncollapse
 					GuiControl, -Hidden, % vars.hwnd.lootfilter.uncollapse_bar
+					If clip_mode && style.matches.Count()
+						Break
 					Continue
 				}
 
@@ -883,10 +1028,10 @@ Lootfilter_Editor(cHWND := "")
 
 					If collapsed_tiers[type "|" tier]
 					{
-						prev_type := type, cPos := LLK_ControlGetPos(hwnd_tier)
+						prev_type := type
 						GuiControl, -Hidden, % vars.hwnd.lootfilter.uncollapse
 						GuiControl, -Hidden, % vars.hwnd.lootfilter.uncollapse_bar
-						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundAqua HWNDhwnd_bar c" accent_color, 100
+						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundSilver HWNDhwnd_bar c" accent_color, 100
 						vars.hwnd.help_tooltips["lootfilter_tiers" StrReplace(handle_tiers, "|",,, 1)] := hwnd_bar
 						If clip_mode && !style.multimatches
 							Break 2
@@ -904,11 +1049,10 @@ Lootfilter_Editor(cHWND := "")
 							For kLine, vLine in oLine
 								If InStr(kLine, "memorystrands")
 									tags.Push(" " Lang_Trans("global_memorystrands", 2) " >= " vLine " ")
-								Else If !vars.poe_version && RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.[1-6]\d{0,1}|>= 2)")
-								|| vars.poe_version && RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.([1-9]|[1-5]\d|6[0-4])|>= 2)$")
+								Else If RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.([1-9]|[1-5]\d|6[0-" (vars.poe_version ? "4" : "7") "])|>= 2)$")
 									campaign := 1
-								Else If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem")
-									tags.Push(" " LLK_StringCase(Trim(LLK_StringReplace(kLine, [["gemlevel", "level"], ["arealevel", "area"]]), " `t") . (vLine != "true" ? " " vLine : "")) " ")
+								Else If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|itemlevel")
+									tags.Push(" " LLK_StringCase(Trim(LLK_StringReplace(kLine, [["gemlevel", "level"], ["arealevel", "area"], ["itemlevel", "ilvl"]]), " `t") . (vLine != "true" ? " " vLine : "")) " ")
 						If campaign
 						{
 							Loop, % tags.Count()
@@ -920,14 +1064,14 @@ Lootfilter_Editor(cHWND := "")
 						For index, val in tags
 						{
 							Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans", % val
-							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundCCCC00 c" background_color, 100
+							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundEEEE00 c" background_color, 100
 						}
 					}
 
 					If vChunk.global
 					{
 						Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans", % " " Lang_Trans("global_global") " "
-						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundFuchsia c" background_color, 100
+						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundAqua c" background_color, 100
 					}
 					Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 				}
@@ -955,7 +1099,7 @@ Lootfilter_Editor(cHWND := "")
 						outer := A_Index, vars.lootfilter.last_item := StrReplace(item, """")
 						Loop 2
 						{
-							label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(item, [[" support", " Supp."], ["awakened ", "Awake. "], [" essence of ", " | "]]), " """) . (style.maptier && !clip_mode ? " (Tier " style.maptier ")" : "")
+							label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(item, [[" support", " Supp."], ["awakened ", "Awake. "], [" essence of ", " | "], [" scarab of ", " | "]]), " """) . (style.maptier && !clip_mode ? " (Tier " style.maptier ")" : "")
 							label := StrReplace(label, " support", " Supp")
 							Gui, %GUI%: Add, Text, % (outer = 1 ? (outer_tier = 2 ? "Section xs" : "Section xs x" 2*margin + 2) : (A_Index = 2 ? "Section xs" : "ys")) " BackgroundTrans gLootfilter_Editor HWNDhwnd1 0x200 h" hItems%tag% " c" style.settextcolor, % " " label " "
 							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd2 Background" style.setbordercolor " c" style.setbackgroundcolor, 100
@@ -970,7 +1114,7 @@ Lootfilter_Editor(cHWND := "")
 										Break 3
 								}
 						}
-						If (cPos.yMax >= vars.monitor.h * 0.89) || tier_view && (cPos.yMax >= vars.monitor.h * 0.84)
+						If (cPos.yMax >= vars.monitor.h * 0.89)
 							break := 1
 						vars.hwnd.lootfilter["itemtext_" type "|" tier "|" Trim(item, " """) . handle_items] := hwnd1, handle_items .= "|"
 					}
@@ -993,26 +1137,22 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Font, % "bold s" settings.lootfilter.fSize - 4
 		Gui, %GUI%: Add, Text, % "Section xs x" margin " Border cRed Center BackgroundTrans HWNDhwnd w" wMax - margin - 1, % Lang_Trans("global_match", 3)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundRed cWhite", 100
-		cPos := LLK_ControlGetPos(hwnd)
 		Gui, %GUI%: Font, % "norm s" settings.lootfilter.fSize
 	}
 
 	If !result_count
-	{
 		Gui, %GUI%: Add, Text, % "Section xs x" margin " BackgroundTrans Center HWNDhwnd w" wMax - margin - 1, % Lang_Trans("global_match")
-		cPos := LLK_ControlGetPos(hwnd)
-	}
-	Else If typeheader_handle && (tier_view || item_view && LLK_HasKey(vars.lootfilter.last_style, "basetype", 1))
+	Else If !break && typeheader_handle && (tier_view || item_view && !InStr(vars.lootfilter.last_type, "exui_economy") && LLK_HasKey(vars.lootfilter.last_style, "basetype", 1) || !any_view && result_count = 1)
 	{
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
-		Gui, %GUI%: Add, Text, % "Section xs x" margin " Border BackgroundTrans Center HWNDhwnd w" wMax - margin - 1, % Lang_Trans("lootfilter_selections", (tier_view ? 1 : 2))
+		Gui, %GUI%: Add, Text, % "Section xs x" margin " Border BackgroundTrans Center HWNDhwnd w" wMax - margin - 1, % Lang_Trans("lootfilter_selections", (tier_view || !any_view && result_count = 1 ? 1 : 3))
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" accent_color " c" background_color " HWNDhwnd_selectionheader_bar", 100
 		hwnd_selectionheader := hwnd 
 
-		If tier_view
+		If tier_view || !any_view && (result_count = 1)
 		{
 			show := RegExMatch(vars.lootfilter.active_filter.final[last_chunk].lines.1, "i)^.{0,2}show")
-			Gui, %GUI%: Add, Text, % "Section HWNDhwnd gLootfilter_Customize xs x" margin " Center Border w" wShowHide . (show ? " cLime" : ""), % Lang_Trans("global_show")
+			Gui, %GUI%: Add, Text, % "Section xs x" 2*margin + 2 " HWNDhwnd gLootfilter_Customize Center Border w" wShowHide . (show ? " cLime" : ""), % Lang_Trans("global_show")
 			Gui, %GUI%: Add, Text, % "ys x+-1 HWNDhwnd1 gLootfilter_Customize Border Center" (show ? "" : " cLime"), % " " Lang_Trans("global_hide") " "
 			vars.hwnd.lootfilter["toggle_Show|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier] := hwnd
 			vars.hwnd.lootfilter["toggle_Hide|" vars.lootfilter.last_type "|" vars.lootfilter.last_tier] := hwnd1
@@ -1045,13 +1185,80 @@ Lootfilter_Editor(cHWND := "")
 				}
 			}
 
+			If show
+			{
+				For iLine, vLine in vars.lootfilter.active_filter.final[last_chunk].lines
+					For key, val in vLine
+						If InStr(key, "playeffect")
+							beam := StrSplit(val, " ")
+				For index, object in vars.lootfilter.modifications_pending
+					If (object.action = "presentation" && object.type = vars.lootfilter.last_type && object.tier = vars.lootfilter.last_tier)
+						For key, val in object.modifications
+							If InStr(key, "playeffect")
+								beam := val.Clone()
+
+				beamcolor := LLK_HasVal(vars.lootfilter.beamcolors, beam.1)
+				Gui, %GUI%: Add, Text, % "ys hp Border BackgroundTrans HWNDhwnd_beam", % " " Lang_Trans("lootfilter_beam") " "
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" accent_color " c" background_color, 100
+				cBeam := LLK_ControlGetPos(hwnd_beam)
+				Gui, %GUI%: Add, Text, % "ys x+-1 hp Border BackgroundTrans HWNDhwnd gLootfilter_Customize w" Floor(settings.lootfilter.fHeight2 * 0.65)
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" (!beamcolor ? "Black" : beamcolor), 100
+				vars.hwnd.lootfilter["customize_beam|" (!beamcolor ? "000000" : beamcolor)] := hwnd, vars.hwnd.help_tooltips["lootfilter_beams"] := hwnd1
+				If IsObject(beam)
+				{
+					Gui, %GUI%: Add, Text, % "ys x+-1 hp Border HWNDhwnd2 gLootfilter_Customize" (beam.2 = "temp" ? " cLime" : ""), % " " Lang_Trans("global_temp") " "
+					vars.hwnd.lootfilter["customize_tempbeam|" beam.2] := vars.hwnd.help_tooltips["lootfilter_beams temp"] := hwnd2
+				}
+
+				Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 5
+				Gui, %GUI%: Add, DDL, % "Section xs Hidden", bla
+				Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
+				Gui, %GUI%: Add, Text, % "Section xp yp hp 0x200 Border BackgroundTrans HWNDhwnd", % " " Lang_Trans("global_sound") " "
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
+
+				dimensions := [Lang_Trans("global_none")], ddl := "", hRow := LLK_ControlGetPos(hwnd).h
+				For key, val in settings.lootfilter.sound_tags
+				{
+					ddl := (IsNumber(key) ? ddl . (ddl ? "|" key : key) : key . (ddl ? "|" ddl : ddl)), length := Max(length, StrLen(key))
+					If !IsNumber(key)
+						dimensions.Push(key)
+				}
+				ddl := Lang_Trans("global_none") "|" ddl
+				For iLine, oLine in vars.lootfilter.active_filter.final[last_chunk].lines
+					For kLine, vLine in oLine
+						If InStr(kLine, "playalertsound")
+							sound := StrSplit(vLine, " ").1, volume := StrSplit(vLine, " ").2
+
+				If !sound
+					choice := 1
+				Else Loop, Parse, ddl, % "|"
+					If (settings.lootfilter.sound_tags[A_LoopField] = sound)
+						choice := A_Index
+				LLK_PanelDimensions(dimensions, settings.lootfilter.fSize, wDDL2, hDDL)
+
+				Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 5
+				Gui, %GUI%: Add, Text, % "ys x+-1 w" wDDL2 " hp Border BackgroundTrans"
+				Gui, %GUI%: Add, DDL, % "xp yp wp HWNDhwnd_ddl gLootfilter_Customize Choose" choice, % ddl
+				vars.hwnd.lootfilter.customize_sound := vars.hwnd.help_tooltips["lootfilter_sounds pick"] := hwnd_ddl, handle := ""
+				Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
+
+				If last_style.HasKey("playalertsound")
+					For key, val in {"i": "minimum", "ii": "medium", "iii": "maximum"}
+					{
+						Gui, %GUI%: Add, Text, % "ys hp x+-1 0x200 Border Center HWNDhwnd gLootfilter_Customize w" hRow . (volume = settings.lootfilter["volume_" val] ? " cLime" : ""), % key
+						vars.hwnd.lootfilter["customize_volume|" val] := vars.hwnd.help_tooltips["lootfilter_sounds volume" handle] := hwnd, handle .= "|"
+					}
+			}
+
 			If last_style.memorystrands
 			{
-				Gui, %GUI%: Add, Text, % "ys hp Border BackgroundTrans HWNDhwnd", % " " Lang_Trans("global_memorystrands", 2) " "
-				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" accent_color " c" background_color, 100
+				Gui, %GUI%: Add, Text, % "Section xs x" margin " Border BackgroundTrans Center w" wMax - margin - 1, % Lang_Trans("lootfilter_selections", 2)
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd_divider c" background_color, 100
+				Gui, %GUI%: Add, Text, % "Section xs x" 2*margin + 2 " Border BackgroundTrans", % " " Lang_Trans("global_memorystrands", 2) " "
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundEEEE00 HWNDhwnd_condition c" background_color, 100
 				;Gui, %GUI%: Add, Text, % "ys x+-1 hp Border Center BackgroundTrans HWNDhwnd w" settings.lootfilter.fWidth2 * 3, % last_style.memorystrands
 				;Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" accent_color " c" background_color, 100
-				Gui, %GUI%: Add, Slider, % "ys x+-1 hp Border Range1-100 Center NoTicks Tooltip HWNDhwnd1 BackgroundTrans gLootfilter_Customize w" wMax - LLK_ControlGetPos(hwnd).xMax + 1, % last_style.memorystrands
+				Gui, %GUI%: Add, Slider, % "ys x+-1 hp Border Range1-100 Center NoTicks Tooltip HWNDhwnd1 BackgroundTrans gLootfilter_Customize w" settings.lootfilter.fHeight * 5, % last_style.memorystrands
 				vars.hwnd.lootfilter.customize_MemoryStrands_text := hwnd, vars.hwnd.lootfilter.customize_MemoryStrands := hwnd1
 			}
 
@@ -1060,12 +1267,15 @@ Lootfilter_Editor(cHWND := "")
 					If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|rarity|itemlevel")
 						Loop 2
 						{
-							If !hwnd_condition
-								Gui, %GUI%: Add, Progress, % "Disabled Section xs x" 5*margin " h3 w" wMax - 9*margin - 1 " Background" accent_color " c606060", 100
+							If !hwnd_divider
+							{
+								Gui, %GUI%: Add, Text, % "Section xs x" margin " Border BackgroundTrans Center w" wMax - margin - 1, % Lang_Trans("lootfilter_selections", 2)
+								Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd_divider c" background_color, 100
+							}
 							kLine .= (InStr(kLine, "rarity") ? Lang_Trans("global_colon") : ""), kLine := (InStr(kLine, "itemlevel") ? StrReplace(kLine, "itemlevel", "ilvl") : kLine)
 							vLine := (InStr(kLine, "rarity") ? StrReplace(vLine, " ", "/") : vLine)
-							Gui, %GUI%: Add, Text, % (!hwnd_condition || A_Index = 2 ? "Section xs x" margin : "ys") " Border BackgroundTrans HWNDhwnd", % " " LLK_StringCase(Trim(kLine, " `t") (vLine != "true" ? " " vLine : "")) " "
-							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd_condition BackgroundCCCC00 c" background_color, 100
+							Gui, %GUI%: Add, Text, % (!hwnd_condition || A_Index = 2 ? "Section xs x" 2*margin + 2 : "ys") " Border BackgroundTrans HWNDhwnd", % " " LLK_StringCase(Trim(kLine, " `t") (vLine != "true" ? " " vLine : "")) " "
+							Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd_condition BackgroundEEEE00 c" background_color, 100
 							If (LLK_ControlGetPos(hwnd).xMax <= wMax)
 								Break
 							Else
@@ -1077,9 +1287,9 @@ Lootfilter_Editor(cHWND := "")
 		}
 		Else If item_view
 		{
-			Gui, %GUI%: Add, Text, % "Section xs x" margin " 0x200 BackgroundTrans HWNDhwnd", % Lang_Trans("lootfilter_movetier")
 			style := vars.lootfilter.last_style.Clone(), style_defaults := {"setbackgroundcolor": "000000", "setbordercolor": "000000", "settextcolor": "BEB287"}, count := 0
 			oLast_chunk := vars.lootfilter.active_filter.final[last_chunk], strand_check := 0, hwnd_movetier := hwnd
+			Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
 
 			For iChunk, vChunk in vars.lootfilter.active_filter.final
 				If (vChunk.type = vars.lootfilter.last_type) && !RegExMatch(vChunk.lines.1, "i)^.{0,2}#") && !LLK_HasVal(vChunk.lines, "Continue", 1, 1) && LLK_HasKey(vChunk.lines, "basetype ==", 1,,, 1)
@@ -1087,12 +1297,8 @@ Lootfilter_Editor(cHWND := "")
 					For key, val in style_defaults
 						style[key] := val
 
-					For outer in [1, 2]
-						For iLine, oLine in (outer = 1 ? oLast_chunk.lines : vChunk.lines)
-							For kLine, vLine in oLine
-								If !RegExMatch(kLine, "i)^.{0,2}(set|play|minimap|basetype|disable)") && (!(iMatch := LLK_HasKey((outer = 2 ? oLast_chunk.lines : vChunk.lines), kLine,,,, 1))
-								|| (outer = 2 && oLast_chunk.lines[iMatch][kLine] != vLine || outer = 1 && vChunk.lines[iMatch][kLine] != vLine))
-									Continue 4
+					If !Lootfilter_ChunkCompare(vChunk.lines, oLast_chunk.lines)
+						Continue
 
 					For iLine, oLine in vChunk.lines
 						For kLine, vLine in oLine
@@ -1108,9 +1314,9 @@ Lootfilter_Editor(cHWND := "")
 					}
 					Loop 2
 					{
-						label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(vars.lootfilter.last_item, [[" support", " Supp."], ["Awakened ", "Awake. "]]), " """)
+						label := (style.stacksize ? style.stacksize "x " : "") . Trim(LLK_StringReplace(vars.lootfilter.last_item, [[" support", " Supp."], ["awakened ", "Awake. "], [" essence of ", " | "], [" scarab of ", " | "]]), " """)
 						label .= (style.maptier && !clip_mode ? " (Tier " style.maptier ")" : "")
-						Gui, %GUI%: Add, Text, % (A_Index = 2 || !count ? "Section xs x" margin . (count ? " y" cPos.yMax + margin - 1 : "") : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems " c" style.settextcolor, % " " label " "
+						Gui, %GUI%: Add, Text, % (A_Index = 2 || !count ? "Section xs x" 2*margin + 2 . (count ? " y" cPos.yMax + margin - 1 : "") : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems2 " c" style.settextcolor, % " " label " "
 						Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Background" style.setbordercolor " c" style.setbackgroundcolor, 100
 						cPos := LLK_ControlGetPos(hwnd)
 						If (cPos.xMax <= wMax)
@@ -1130,7 +1336,7 @@ Lootfilter_Editor(cHWND := "")
 				Loop 2
 				{
 					Gui, %GUI%: Font, strike
-					Gui, %GUI%: Add, Text, % (A_Index = 2 ? "Section xs x" margin : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems " c" style_defaults.settextcolor, % " " Lang_Trans("lootfilter_newtier") " "
+					Gui, %GUI%: Add, Text, % (A_Index = 2 ? "Section xs x" margin : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems2 " c" style_defaults.settextcolor, % " " Lang_Trans("lootfilter_newtier") " "
 					Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundRed c" style_defaults.setbackgroundcolor, 100
 					cPos := LLK_ControlGetPos(hwnd)
 					If (cPos.xMax <= wMax)
@@ -1148,16 +1354,14 @@ Lootfilter_Editor(cHWND := "")
 				GuiControl, +Hidden, % hwnd_selectionheader
 			}
 		}
-		Gui, %GUI%: Font, % "norm s" settings.lootfilter.fSize
-		cPos := LLK_ControlGetPos(item_view && !count ? hwnd_tierbraceclose : hwnd)
 	}
 
 	Label_Show:
-	Gui, %GUI%: Margin, 0, 0
-	Gui, %GUI%: Add, Progress, % "Disabled Background" settings.lootfilter.color_background " x0 y0 w" wMax + margin - 1 " h" Max(cPos.yMax, hMax) + margin - 1, 0
-
 	Gui, %GUI%: Show, % "NA AutoSize x10000 y10000"
 	WinGetPos,,, width, height, ahk_id %hwnd_editor%
+
+	Gui, %GUI%: Margin, 0, 0
+	Gui, %GUI%: Add, Progress, % "Disabled x0 y0 w" width " h" height " Background" background_color, 0
 
 	xPos := vars.client.x + vars.client.w - width, yPos := vars.client.y + vars.client.h * 0.53 - height
 	Gui_CheckBounds(xPos, yPos, width, height)
@@ -1654,9 +1858,13 @@ Lootfilter_Modify(object, global := 0)
 	global vars, settings
 
 	removed := added := empty_tier := presentation := maptier_count := strand_count := 0
-	If InStr(object.action, "tier")
+	If !InStr(object.action, "dump") && InStr(object.action, "tier")
 		If (object.action = "movetier") && !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], object.tier,,,, 1)
-			Return "`n- target tier no longer exists (item wasn't moved)"
+		{
+			If (object.tier = "exui_hide")
+				object.action := "newtier", object.modifications.newtier := object.modifications.movetier, object.modifications.Delete("movetier")
+			Else Return "`n- target tier no longer exists (item wasn't moved)"
+		}
 		Else If !LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], """" object.modifications[object.action] """", 1,,, 1)
 			Return "`n- item is no longer in type """ object.type """ (item wasn't moved)"
 
@@ -1715,13 +1923,14 @@ Lootfilter_Modify(object, global := 0)
 	{
 		For iMod, oMod in object.modifications
 			Lootfilter_Modify(oMod, 1)
+		Lootfilter_LoadStructure()
 		Return
 	}
 
-	If (object.action = "newtier") && vars.lootfilter.active_filter.structure[object.type].HasKey("exui_hide")
+	If global && (object.action = "newtier") && LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], "exui_hide",,,, 1)
 		object.action := "movetier", object.modifications.movetier := object.modifications.newtier, object.modifications.Delete("newtier")
 
-	pending := vars.lootfilter.modifications_pending
+	pending := vars.lootfilter.modifications_pending, remove := []
 	For iChunk, vChunk in vars.lootfilter.active_filter.final
 		Switch
 		{
@@ -1740,6 +1949,8 @@ Lootfilter_Modify(object, global := 0)
 						vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := object.modifications.size
 					Else If object.modifications.opacity && InStr(kLine, "backgroundcolor") && (!IsObject(pending[-1]) || !Blank(pending[-1].modifications.opacity))
 						parse := StrSplit(vLine, " "), parse.4 := object.modifications.opacity, vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := LLK_ArrayDump(parse, " ")
+					Else If object.modifications.volume && InStr(kLine, "playalertsound") && (!IsObject(pending[-1]) || !Blank(pending[-1].modifications.volume))
+						parse := StrSplit(vLine, " "), parse.2 := object.modifications.volume, vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := LLK_ArrayDump(parse, " ")
 				}
 			;######################################################
 			Case (object.action = "global strands") && (vChunk.type && object.type = vChunk.type):
@@ -1841,12 +2052,17 @@ Lootfilter_Modify(object, global := 0)
 				{
 					For iOld, oOld in vChunk.lines
 						If !IsObject(oOld)
-							new_line := (!InStr(vChunk.tier, "2") && !RegExMatch(vChunk.lines.1, "i)^.{0,2}#") ? "#" oOld
-							: (InStr(vChunk.tier, "2") && RegExMatch(vChunk.lines.1, "i)^.{0,2}#") ? StrReplace(oOld, "#",,, 1) : oOld)), new_array.Push(new_line)
+						{
+							If !InStr(vChunk.tier, "2")
+								new_array.Push((!RegExMatch(vChunk.lines.1, "i)^.{0,2}#") ? "#" : "") . oOld)
+							Else If InStr(vChunk.tier, "2")
+								new_line := StrReplace(oOld, "hide", "Show",, 1), new_array.Push(RegExMatch(vChunk.lines.1, "i)^.{0,2}#") ? StrReplace(new_line, "#",,, 1) : new_line)
+						}
 						Else For kOld, vOld in oOld
 							If !InStr(kOld, "arealevel")
-								new_array.Push(InStr(vChunk.tier, "2") && RegExMatch(kOld, "i)^.{0,2}#") ? {(StrReplace(kOld, "#")): (InStr(kOld, "quality") ? quality : vOld)}
+								new_array.Push(InStr(vChunk.tier, "2") && RegExMatch(kOld, "i)^.{0,2}#") ? {(StrReplace(kOld, "#",,, 1)): (InStr(kOld, "quality") ? quality : vOld)}
 								: {(!InStr(vChunk.tier, "2") && !RegExMatch(kOld, "i)^.{0,2}#") ? "#" kOld : kOld): (InStr(kOld, "quality") ? quality : vOld)})
+
 					vars.lootfilter.active_filter.final[iChunk].lines := new_array.Clone(), vars.lootfilter.active_filter.final[iChunk].global := 1
 				}
 			}
@@ -1854,44 +2070,71 @@ Lootfilter_Modify(object, global := 0)
 			Case (object.action = "presentation") && (vChunk.type && object.type = vChunk.type) && (vChunk.tier && object.tier = vChunk.tier):
 			For kCustomization, vCustomization in object.modifications
 				If (kCustomization = "visibility")
-					current := vars.lootfilter.active_filter.final[iChunk].lines.1, vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(current, (vCustomization = "Show" ? "Hide" : "Show"), vCustomization,, 1), presentation := 1
+				{
+					vars.lootfilter.active_filter.final[iChunk].lines.1 := StrReplace(vars.lootfilter.active_filter.final[iChunk].lines.1, (vCustomization = "Show" ? "Hide" : "Show"), vCustomization,, 1), presentation := 1
+					If (vCustomization = "Show") && (iTarget := LLK_HasKey(vars.lootfilter.active_filter.final[iChunk].lines, "disabledropsound", 1,,, 1))
+						vars.lootfilter.active_filter.final[iChunk].lines.RemoveAt(iTarget)
+					Else If (vCustomization = "Hide") && !LLK_HasKey(vars.lootfilter.active_filter.final[iChunk].lines, "disabledropsound", 1,,, 1)
+						vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex(), {"`tDisableDropSound": "True"})
+				}
 				Else
 				{
+					iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
 					If (kCustomization = "setbackgroundcolor") && !LLK_HasKey(vChunk.lines, kCustomization, 1,,, 1)
-						key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") . kCustomization, iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
-						, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "0 0 0 255"})
-					If !LLK_HasKey(vChunk.lines, kCustomization, 1,,, 1)
+						key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") . kCustomization, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "0 0 0 255"})
+					If InStr(kCustomization, "playalertsound") && (vCustomization = "off")
+					{
+						If (iTarget := LLK_HasKey(vChunk.lines, "playalertsound", 1,,, 1))
+							vars.lootfilter.active_filter.final[iChunk].lines.RemoveAt(iTarget), presentation := 1
+						Break
+					}
+					Else If !LLK_HasKey(vChunk.lines, kCustomization, 1,,, 1)
 						key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") . kCustomization
-						, vars.lootfilter.active_filter.final[iChunk].lines.Push({(key_name): (IsObject(vCustomization) ? LLK_ArrayDump(vCustomization) : vCustomization)}), presentation := 1
+						, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): (IsObject(vCustomization) ? Trim(LLK_ArrayDump(vCustomization), " ") : vCustomization)}), presentation := 1
 					Else
 						For iLine, vLine in vChunk.lines
 							For kLine, string in vLine
 								If InStr(kLine, kCustomization)
 								{
+									If (kCustomization = "playeffect" && vCustomization = "off")
+									{
+										vars.lootfilter.active_filter.final[iChunk].lines.RemoveAt(iLine), presentation := 1
+										Break
+									}
 									parse := StrSplit(string, " ")
 									For index, val in vCustomization
 										If !Blank(val)
-											parse[index] := val
-									vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := (IsObject(vCustomization) ? LLK_ArrayDump(parse) : vCustomization), presentation := 1
+											parse[index] := (val = "perma" ? "" : val)
+									vars.lootfilter.active_filter.final[iChunk].lines[iLine][kLine] := (IsObject(vCustomization) ? Trim(LLK_ArrayDump(parse), " ") : vCustomization), presentation := 1
 								}
 				}
+			If !object.modifications.HasKey("visibility")
+				Break
+			;######################################################
+			Case (object.action = "dumptier") && !dump_tier && (vChunk.type = object.type) && (vars.lootfilter.active_filter.final[iChunk + 1].type != object.type):
+			vars.lootfilter.active_filter.final.InsertAt(iChunk + 1, {"lines": object.modifications.Clone(), "type": object.type, "tier": object.tier}), dump_tier := 1
 			Break
 			;######################################################
 			Case (object.action = "newtier") && !new_tier && (vChunk.type = object.type) && (vars.lootfilter.active_filter.final[iChunk + 1].type != object.type) && (vars.lootfilter.active_filter.final[iChunk + 2].type != object.type):
 			lookback := 0, lines := []
-			While RegExMatch(vars.lootfilter.active_filter.final[iChunk - lookback].lines.1, "i)^.{0,2}#|tier->rest")
+			While !IsObject(vars.lootfilter.active_filter.final[iChunk - lookback]) || RegExMatch(vars.lootfilter.active_filter.final[iChunk - lookback].lines.1, "i)^.{0,2}#|tier->rest")
 				lookback += 1
-			lines0 := vars.lootfilter.active_filter.final[iChunk - lookback].lines.Clone()
 
-			For index, oLine in lines0
-				If (index = 1)
-					lines.Push("Hide # $type->" StrReplace(object.type, " > ", "->") " $tier->" StrReplace(object.tier, " > ", "->"))
-				Else If !IsObject(oLine)
-					lines.Push(oLine)
-				Else
-					For key, val in oLine
+			If !global || IsObject(object.source)
+			{
+				lines0 := LLK_CloneObject(object.source.lines)
+				For index, oLine in lines0
+				{
+					If (index = 1)
+						lines.Push("Hide # $type->" StrReplace(object.type, " > ", "->") " $tier->" StrReplace(object.tier, " > ", "->"))
+					If !IsObject(oLine)
+						lines.Push(oLine)
+					Else For key, val in oLine
 						If !RegExMatch(key, "i)^.{0,2}(play|minimap)")
 							key := (InStr(key, "`t") ? "" : "`t") key, lines.Push({(key): val})
+				}
+			}
+			Else lines.Push("Hide # $type->" StrReplace(object.type, " > ", "->") " $tier->" StrReplace(object.tier, " > ", "->"))
 
 			If !LLK_HasKey(lines, "border", 1,,, 1)
 				lines.InsertAt(lines.MaxIndex(), {"`tSetBorderColor": "255 0 0 255"})
@@ -1908,46 +2151,56 @@ Lootfilter_Modify(object, global := 0)
 						lines[index][key] := settings.lootfilter.size_medium
 					Else If InStr(key, "basetype")
 						lines[index][key] := """" object.modifications.newtier """"
-			
-			If !LLK_HasKey(lines, "basetype", 1,,, 1)
-				iTarget := LLK_HasKey(lines, "class", 1,,, 1), lines.InsertAt(iTarget + 1, {"`tBaseType ==": """" object.modifications.newtier """"})
-			If !LLK_HasKey(lines, "disabledropsound", 1,,, 1)
-				lines.Push({"`tDisableDropSound": "True"})
 
+			If !LLK_HasKey(lines, "basetype", 1,,, 1)
+				iTarget := LLK_HasKey(lines, "class", 1,,, 1), lines.InsertAt((iTarget ? iTarget : 1) + 1, {"`tBaseType ==": """" object.modifications.newtier """"})
+			If !LLK_HasKey(lines, "disabledropsound", 1,,, 1)
+				lines.InsertAt(lines.MaxIndex(), {"`tDisableDropSound": "True"})
 			vars.lootfilter.active_filter.final.InsertAt(iChunk - lookback + 1, {"type": object.type, "tier": object.tier, "lines": lines, "global": global}), new_tier := 1
 			vars.lootfilter.active_filter.structure[object.type].Push({"tier": object.tier, "basetypes": """" object.modifications.newtier """"})
 			;######################################################
 			Case InStr(object.action, "tier") && (vChunk.type && vChunk.type = object.type):
+			If !InStr(object.type, "exui_economy") && (vChunk.tier != object.tier) && (global || IsObject(object.source) && (vChunk.tier = object.source.tier || Lootfilter_ChunkCompare(vChunk.lines, object.source.lines)))
+			&& LLK_HasVal(vChunk.lines, """" object.modifications[object.action] """", 1,,, 1)
 				For iLine, vLine in vChunk.lines
 					For key, val in vLine
-						If InStr(val, """" object.modifications[object.action] """") && (vChunk.tier != object.tier)
+						If InStr(val, """" object.modifications[object.action] """")
 						{
 							val := StrReplace(val, """" object.modifications[object.action] """"), val := Trim(StrReplace(val, "  ", " "), " "), removed := 1
 							If val
 							{
-								vars.lootfilter.active_filter.final[iChunk].lines[iLine][key] := val, iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1)
-								If iTarget
+								vars.lootfilter.active_filter.final[iChunk].lines[iLine][key] := val
+								If (iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1))
 									vars.lootfilter.active_filter.structure[object.type][iTarget].basetypes := val
 							}
 							Else
 							{
-								remove .= (remove ? "," : "") iChunk, empty_tier := vChunk.tier, iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1)
-								If iTarget
+								remove.InsertAt(1, iChunk), empty_tier := vChunk.tier
+								If (iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1))
 									vars.lootfilter.active_filter.structure[object.type].RemoveAt(iTarget)
 							}
 						}
-						Else If (object.action = "movetier") && (vChunk.tier && vChunk.tier = object.tier) && InStr(key, "basetype") && !InStr(val, """" object.modifications.movetier """")
+			If (object.action = "movetier") && (vChunk.tier && vChunk.tier = object.tier) && LLK_HasKey(vChunk.lines, "basetype", 1,,, 1) && !LLK_HasVal(vChunk.lines, """" object.modifications.movetier """", 1,,, 1)
+				For iLine, vLine in vChunk.lines
+					For key, val in vLine
+						If InStr(key, "basetype")
 						{
 							vars.lootfilter.active_filter.final[iChunk].lines[iLine][key] .= " """ object.modifications.movetier """", added := 1
-							iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1)
-							If iTarget
+							If (iTarget := LLK_HasVal(vars.lootfilter.active_filter.structure[object.type], vChunk.tier,,,, 1))
 								vars.lootfilter.active_filter.structure[object.type][iTarget].basetypes .= " """ object.modifications.movetier """"
 						}
+			;######################################################
+			Case !new_type && (object.action = "newtype") && IsObject(vChunk):
+			vars.lootfilter.active_filter.final.InsertAt(iChunk - 1
+			, "#===============================================================================================================`n"
+			. "# Exile UI economy-check: " SubStr(object.type, (InStr(object.type, ">") + 2)) "`n"
+			. "#===============================================================================================================")
+			vars.lootfilter.active_filter.final.InsertAt(iChunk, {"lines": object.modifications.Clone(), "type": object.type, "tier": object.tier}), new_type := 1
+			Break
 		}
 
-	Sort, remove, % "N R D,"
-	Loop, Parse, remove, % ","
-		vars.lootfilter.active_filter.final.RemoveAt(A_LoopField)
+	For index, val in remove
+		vars.lootfilter.active_filter.final.RemoveAt(val)
 
 	If (object.action = "presentation") && !presentation
 		warning .= "`n- couldn't find the tier """ object.tier """ (modification wasn't applied)"
@@ -1956,7 +2209,7 @@ Lootfilter_Modify(object, global := 0)
 		If empty_tier
 			warning .= "`n- original tier """ empty_tier """ didn't have any basetypes left after the move (it had to be deleted)"
 		If !removed
-			warning .= "`n- item wasn't moved from any tier (not found, or didn't have to be moved)"
+			warning .= "`n- item wasn't removed from any existing tier (not found, or was already in the target tier)"
 		If (object.action = "movetier") && !added
 			warning .= "`n- item wasn't added to """ object.tier """ (tier doesn't exist, or already has the item)"
 	}
@@ -1968,9 +2221,9 @@ Lootfilter_TesterDump()
 	local
 	global vars, settings
 
-	tester := vars.lootfilter_tester, size := settings.lootfilter["size_" tester.size], opacity := settings.lootfilter["opacity_" tester.opacity]
+	tester := vars.lootfilter_tester, size := settings.lootfilter["size_" tester.size], opacity := settings.lootfilter["opacity_" tester.opacity], volume := settings.lootfilter["volume_" tester.volume]
 	dump := "Show`nBaseType == ""Orb of Transmutation""`nSetFontSize " size "`nSetTextColor 255 0 0 255`nSetBorderColor 255 0 0 255`nSetBackgroundColor 255 255 255 " opacity "`n`n"
-	dump .= "Show`nBaseType == ""Scroll of Wisdom""`nSetFontSize " size "`nSetTextColor 0 0 0 255`nSetBorderColor 0 0 0 255`nSetBackgroundColor 240 90 35 " opacity "`n`n"
+	dump .= "Show`nBaseType == ""Scroll of Wisdom""`nSetFontSize " size "`nSetTextColor 0 0 0 255`nSetBorderColor 0 0 0 255`nSetBackgroundColor 240 90 35 " opacity "`nPlayAlertSound " vars.lootfilter_tester.sound_index " " volume "`n`n"
 	dump .= "Show`nBaseType == ""Orb of Augmentation""`nSetFontSize " size "`nSetTextColor 190 178 135 255`nSetBorderColor 190 178 135 255`nSetBackgroundColor 0 0 0 " opacity "`n`n"
 	dump .= "Show`nBaseType == ""Blacksmith's Whetstone""`nSetFontSize " size "`nSetTextColor 255 255 255 255`nSetBorderColor 255 255 255 255`nSetBackgroundColor 240 90 35 " opacity "`n`n"
 	dump .= "Show`nBaseType == ""Armourer's Scrap""`nSetFontSize " size "`nSetTextColor 0 0 0 255`nSetBorderColor 0 0 0 255`nSetBackgroundColor 249 150 25 " opacity "`n`n"

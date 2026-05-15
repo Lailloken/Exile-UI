@@ -640,6 +640,14 @@
       "(/highlight)click this button after you're done testing: it re-applies your previous in-game filter",
       "(/highlight)make sure the in-game chat box is closed but accessible"
     ],
+    "lootfilter filter-tester sounds": [
+      "pick a sound effect from the list to apply it to scrolls of wisdom and hear it in game",
+      "(/highlight)make sure the in-game chat box is closed but accessible"
+    ],
+    "lootfilter filter-tester sound tags": [
+      "optionally, you can tag/rename sound effects 1-16 to make them easier to remember",
+      "type in a tag/name, then press <enter>"
+    ],
     "lootfilter modifier keys": [
       "hover over items, hold down the modifier-key, and press the the omni-key to open the lootfilter editor for that specific item",
       "alternatively, you can open the editor via the menu-widget"
@@ -1481,6 +1489,13 @@
     ]
   },
   "lootfilter": {
+    "beams": [
+      "beam of light that can be added to dropped items (black = off)",
+      "click to open the color palette, right-click to revert to the basefilter color"
+    ],
+    "beams temp": [
+      "toggles whether the beam is temporary or permanent"
+    ],
     "cancel": [
       "discard unsaved/pending modifications and go back to when you last clicked <apply>"
     ],
@@ -1499,12 +1514,17 @@
     "economy cut-offs": [
       "enter a value x and click <apply/update> to hide everything under x chaos. enter 0 to revert to defaults",
       "(/highlight)sometimes, there's a discrepancy in categorization between poe.ninja and neversink filters (currency vs fragment)",
-      "(/highlight)these economy-checks will only move items according to poe.ninja's categories (e.g. currency)"
+      "(/highlight)filter rules will be created according to poe.ninja's categories"
     ],
     "economy cut-offs 2": [
       "enter a value x and click <apply/update> to hide everything under x exalts. enter 0 to revert to defaults",
       "(/highlight)sometimes, there's a discrepancy in categorization between poe.ninja and neversink filters (currency vs fragment)",
-      "(/highlight)these economy-checks will only move items according to poe.ninja's categories (e.g. currency)"
+      "(/highlight)filter rules will be created according to poe.ninja's categories"
+    ],
+    "economy stacks": [
+      "optionally, you can create additional rules for items below the cut-off so that higher stacks will still show",
+      "example: if your cut-off is 1 and an item is worth 0.6, it will be hidden, but stacks of 2+ will be shown",
+      "(/highlight)these rules max out at stack sizes of 6 and have 10% leeway"
     ],
     "expand": [
       "expand every section that is currently collapsed"
@@ -1579,11 +1599,11 @@
       "the selected filter has an unexpected structure: this quick-setting cannot be applied"
     ],
     "global setting visuals": [
-      "lets you set up unified size and opacity settings for the whole filter",
+      "lets you set up unified style settings for the whole filter",
       "click this label to open the settings menu and adjust presets i to iii"
     ],
     "global setting visuals toggles": [
-      "off: use base filter's visuals",
+      "off: use base filter's presentation",
       "i-iii: use a fixed value for every item"
     ],
     "home button": [
@@ -1618,8 +1638,8 @@
     ],
     "tiers": [
       "these sections show how types are further divided into tiers",
-      "click items for more specific options, right-click them to start a global search",
-      "click this bar to collapse this tier, right-click to browse it"
+      "click this bar to collapse the tier, right-click to access tier customization",
+      "click items for more options, right-click them to start a global search"
     ],
     "rollback": [
       "click this box to browse the tier that was modified",
@@ -1632,6 +1652,14 @@
     "search history": [
       "lets you go back and forth in your search/browse history",
       "you can also scroll the mouse wheel while hovering over the editor"
+    ],
+    "sounds pick": [
+      "select a sound effect for this rule",
+      "sound effects can be previewed and tagged/renamed in the settings menu"
+    ],
+    "sounds volume": [
+      "volume customization is reduced to three fixed presets that can be adjusted in the settings",
+      "defaults: 100  |  200  |  300"
     ],
     "rule hideshow": [
       "this toggle affects !every! item in this tier"

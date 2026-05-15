@@ -261,6 +261,10 @@
 		global_memorystrands	=	"strands"
 		global_campaign		=	"campaign"
 		global_update			=	"update"
+		global_temp			=	"temp"			;## temporary
+		global_volume			=	"volume"			;## refers to sound
+		global_sound			=	"sound"			;## refers to different types of sound effects
+		global_sound			=	"sounds"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -535,11 +539,11 @@
 		lootfilter_presetup			=	"Before you continue, open the filter list in the in-game settings and make sure 'FilterSpoon' is on it."
 		lootfilter_presetup			=	"(Don't select it yet, it's an empty file)"
 		lootfilter_ingameitem		=	"in-game item"
-		lootfilter_selections		=	"selected tier"
-		lootfilter_selections		=	"selected item (in tier)"
+		lootfilter_selections		=	"filter rule: customization"
+		lootfilter_selections		=	"filter rule: conditions"
+		lootfilter_selections		=	"move to different tier"
 		lootfilter_modhistory		=	"modification history"						;## similar to a browser/file history
 		lootfilter_fullrollback		=	"unmodified online filter (full reset)"			;## an option to reset back to the unmodified filter you started with
-		lootfilter_movetier			=	"move to different tier:"
 		lootfilter_tierbrowse		=	"right-click to browse tier"
 		lootfilter_pending			=	"unsaved/pending modification"
 		lootfilter_newtier			=	"new tier"
@@ -548,16 +552,20 @@
 		lootfilter_minquality		=	"min qual"
 		lootfilter_minlevel			=	"min level"
 		lootfilter_mintier			=	"min tier"
-		lootfilter_visuals			=	"visuals"									;## as an umbrella term for everything regarding visual presentation
+		lootfilter_presentation		=	"presentation"
 		lootfilter_maps			=	"regular maps"								;## as opposed to special maps (conquerors, guardians, originator, etc.)
 		lootfilter_gems			=	"regular gems"								;## as opposed to special gems (exceptional, transfigured, overlvl/qual, etc.)
 		lootfilter_economy			=	"economy"
 		lootfilter_economy			=	"economy-check:"
 		lootfilter_lowcutoff		=	"cut-off too low"							;## cut-off in the sense of threshold, i.e. anything below a value X
-		lootfilter_currency			=	"general currency (unstacked)"
+		lootfilter_currency			=	"general currency"
 		lootfilter_essences			=	"essences"
-		lootfilter_divcards			=	"divination cards (unstacked)"
+		lootfilter_divcards			=	"divination cards"
 		lootfilter_qualflasks		=	"quality flasks"
+		lootfilter_beam			=	"beam"									;## refers to the colored light-beam you can add to dropped items
+		lootfilter_scarabs			=	"scarabs"
+		lootfilter_stack			=	"stack"
+		lootfilter_stack			=	"stacks"
 
 		lootfilter_gems			=	"uncut gems"								;## PoE2 only (whole block)
 		lootfilter_minskilllevel		=	"min skill"								;## min level for skill gems
