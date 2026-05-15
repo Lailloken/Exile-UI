@@ -925,7 +925,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 				If (price0.2 != alt_currency)
 				{
 					If (loop = 1)
-						Economy_Update()
+						Economy_Update("", 10)
 					offer_alt := 1
 				}
 				Continue
@@ -967,7 +967,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 						Else options[A_Index - 1] := loop - A_Index + 1, last_diff := price_diff1
 
 						If (last_diff >= 2*minchange)
-							Economy_Update(), offer_alt := (price0.1 < price0.1 * vars.economy.currency[currency] ? 1 : 0)
+							Economy_Update("", 10), offer_alt := (price0.1 < price0.1 * vars.economy.currency[currency] ? 1 : 0)
 						last_diff := Round(last_diff) // 5 * 5
 					}
 				}
@@ -1199,7 +1199,7 @@ Exchange(cHWND := "", hotkey := "")
 	{
 		If RegexMatch(check, "i)chaos|exalt")
 		{
-			Economy_Update()
+			Economy_Update("", 30)
 			If (vars.economy.currency.timestamp.2 = "failed")
 			{
 				GuiControl, -Hidden, % vars.hwnd.exchange.chaos_div

@@ -167,21 +167,21 @@ Exit()
 		Maptracker_Save()
 }
 
-Economy_Update(type := "currency")
+Economy_Update(type := "currency", minutes := 60)
 {
 	local
 	global vars, settings
 
 	timestamp := vars.economy[type].timestamp, league := settings.general.league.Clone(), league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4])
-	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > 60)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 15)
+	If (timestamp.2 != "failed" && (!IsNumber(timestamp) || LLK_TimeElapsed(timestamp) > minutes)) || (timestamp.2 = "failed" && LLK_TimeElapsed(timestamp.1) > 10)
 	{
-		If !IsNumber(vars.stash[type].timestamp) || (vars.stash[type].league != league) || (LLK_TimeElapsed(vars.stash[type].timestamp) > 60)
+		If !IsNumber(vars.stash[type].timestamp) || (vars.stash[type].league != league) || (LLK_TimeElapsed(vars.stash[type].timestamp) > minutes)
 		{
 			LLK_ToolTip(Lang_Trans("stash_update"), 10000,,, "stashprices", "lime")
 			success := Stash_PriceFetch(type)
 			vars.tooltip[vars.hwnd["tooltipstashprices"]] := A_TickCount
 		}
-		If success || IsNumber(vars.stash[type].timestamp) && (LLK_TimeElapsed(vars.stash[type].timestamp) <= 60)
+		If success || IsNumber(vars.stash[type].timestamp) && (LLK_TimeElapsed(vars.stash[type].timestamp) <= minutes)
 		{
 			vars.economy[type] := {"timestamp": A_NowUTC}, ini := IniBatchRead("data\global\[stash-ninja] prices" vars.poe_version ".ini", type)
 			For key, val in ini[type]
