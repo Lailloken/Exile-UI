@@ -670,8 +670,7 @@
     ],
     [
       "optional: (img:checkpoint) (color:cc99ff)rune_vendor: ferry pier (center)",
-      "(color:ff00ff)find_2 areas (edge): (img:in-out2), then (img:arena)",
-      "(color:ff00ff)find_2_(edge): (img:in-out2) exit_1, (img:arena) exit_2",
+      "(color:ff00ff)find_2 (img:arena) exits along the edge:",
       "(hint)_ - areaidp1_5: kill oswin for (quest:book) ;; wolvenhold",
       "(hint)_ - areaidp1_6: kill elswyth/wulfric ;; holten estate",
       "after 2nd arena:fight, (img:portal) to areaidp1_town ;; the refuge"
