@@ -69,6 +69,51 @@ Gui_CreateGraph(width, height, graph, color)
 	Return hbmBitmap
 }
 
+Gui_DropDownList(object, coord_array)
+{
+	local
+	global vars, settings, json
+
+	type := object.type
+	Gui, DDL: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border +E0x02000000 +E0x00080000 HWNDhwnd_ddl, Exile UI: Drop-Down List
+	Gui, DDL: Color, % object.color
+	Gui, DDL: Font, % "s" object.fSize " cWhite", % vars.system.font
+	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
+
+	If !object.list.Count()
+		Return
+
+	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, wList := Max(wList, coord_array.3 - 2)
+	For index, val in object.list
+	{
+		If (type = "minimap")
+		{
+			If !vars.pics.lootfilter[val]
+				vars.pics.lootfilter[val] := LLK_ImageCache("img\GUI\lootfilter\" val ".png",, settings.lootfilter.fHeight2 - 2)
+			Gui, DDL: Add, Pic, % (A_Index = 1 ? "Section" : "ys") " HWNDhwnd", % "HBitmap:*" vars.pics.lootfilter[val]
+		}
+		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : "") " w" wList " HWNDhwnd" (val = object.current ? " cLime" : ""), % " " val
+		controls[hwnd] := val
+	}
+
+	Gui, DDL: Show, % "NA x10000 y10000"
+	WinGetPos, x, y, w, h, % "ahk_id " hwnd_ddl
+
+	xPos := (type = "minimap" ? coord_array.1 + coord_array.3//2 - w//2 : coord_array.1), yPos := coord_array.2, Gui_CheckBounds(xPos, yPos, w, h)
+	Gui, DDL: Show, % "x" xPos " y" yPos
+	WinWaitActive, ahk_id %hwnd_ddl%
+
+	While Blank(input) && (vars.general.wMouse = hwnd_ddl) && WinActive("ahk_id " hwnd_ddl)
+	{
+		KeyWait, LButton, D T0.25
+		If vars.general.cMouse && !ErrorLevel
+			input := controls[vars.general.cMouse]
+	}
+	KeyWait, LButton
+	Gui, DDL: Destroy
+	Return input
+}
+
 Gui_Dummy(hwnd) ;used for A_Gui checks: "If (A_Gui = hwnd)" doesn't work reliably if the hwnd is blank, so this function returns -1 instead
 {
 	local
@@ -189,6 +234,19 @@ Gui_HelpToolTip(HWND_key)
 					key := LLK_StringCase(key), val := LLK_StringCase(val), text.Push([LLK_StringCase(key ": " (IsObject(val) ? (string := LLK_ArrayDump(val, " ", "x")) : val)), (InStr(key, "color") ? RGB_Convert(string) : "")])
 			If mod.warning
 				text.Push(["warning: " mod.warning, "FF8000"])
+			For index, array in text
+				If InStr(array.1, "playalertsound")
+				{
+					parse := SubStr(array.1, InStr(array.1, ":") + 2), parse := StrSplit(parse, " ")
+					If (parse.Count() = 1 || parse.Count() = 2) && IsNumber(parse.1)
+						text[index].1 := StrReplace(text[index].1, parse.1, LLK_HasVal(settings.lootfilter.sound_tags, parse.1),, 1)
+				}
+				Else If InStr(array.1, "minimapicon")
+				{
+					parse := SubStr(array.1, InStr(array.1, ":") + 2), parse := StrSplit(parse, " "), sizes := ["medium", "small"], sizes.0 := "large"
+					If IsNumber(parse.1)
+						text[index].1 := StrReplace(text[index].1, parse.1, Lang_Trans("global_" sizes[parse.1]),, 1)
+				}
 
 			If (index_mod >= 0)
 				For index, val in database.lootfilter.rollback
@@ -902,7 +960,7 @@ RGB_Convert(RGB)
 	Return [red, green, blue]
 }
 
-RGB_Picker(RGB := "", colors := "")
+RGB_Picker(RGB := "", colors := "", color := "Black")
 {
 	local
 	global vars, settings
@@ -952,10 +1010,10 @@ RGB_Picker(RGB := "", colors := "")
 	}
 
 	hwnd_GUI := {}, vars.RGB_picker := {"cancel": 0}
-	Gui, RGB_palette: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border HWNDhwnd +E0x02000000 +E0x00080000 HWNDhwnd_palette, Exile UI: RGB-Picker
-	Gui, RGB_palette: Color, Black
+	Gui, RGB_palette: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border +E0x02000000 +E0x00080000 HWNDhwnd_palette, Exile UI: RGB-Picker
+	Gui, RGB_palette: Color, % color
 	Gui, RGB_palette: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
-	Gui, RGB_palette: Margin, % settings.general.fHeight, % settings.general.fHeight
+	Gui, RGB_palette: Margin, % settings.general.fWidth, % settings.general.fWidth
 
 	For index0, val0 in palette
 		For index, val in val0
@@ -973,7 +1031,7 @@ RGB_Picker(RGB := "", colors := "")
 		For index, val in RGB_Convert(RGB)
 		{
 			letter := (index = 1 ? "R" : (index = 2 ? "G" : "B"))
-			Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fHeight " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
+			Gui, RGB_palette: Add, Text, % "Section Border Center " (index = 1 ? "x" settings.general.fWidth " y+-1" : "xs y+-1") " w" settings.general.fWidth*3, % letter
 			Gui, RGB_palette: Add, Slider, % "ys x+-1 hp Border Range0-255 Tooltip gRGB_Picker HWNDhwnd_" letter " w" settings.general.fWidth*20 - 9, % val
 			Gui, RGB_palette: Font, % "s" settings.general.fSize - 4
 			Gui, RGB_palette: Add, Edit, % "ys Number Right Limit3 x+-1 hp cBlack gRGB_Picker HWNDhwnd_edit_" letter " w" settings.general.fWidth*3 - 1, % val

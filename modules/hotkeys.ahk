@@ -109,6 +109,8 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If WinExist("Exile UI: Drop-Down List")
+		Gui, DDL: Hide
 	Else If WinExist("Exile UI: RGB-Picker")
 		vars.RGB_picker.cancel := 1
 	Else If vars.hwnd.async.main && !vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async.main)

@@ -1614,12 +1614,22 @@
       "refresh the list of local copies of your online filters",
       "you have to activate online filters at least once in game to get a local copy"
     ],
+    "minimap color": [
+      "color of the minimap icon (black = off)",
+      "click to open the color palette, right-click to revert to the basefilter color"
+    ],
+    "minimap icon": [
+      "minimap icon"
+    ],
+    "minimap size": [
+      "size of the minimap icon"
+    ],
     "modhistory": [
       "the sequence of boxes below represents the modifications you applied to the filter",
       "hover over the boxes for more info. click this bar to collapse this section."
     ],
     "opacity": [
-      "opacity customization is reduced to three fixed presets that can be adjusted in the settings",
+      "opacity customization is streamlined to three fixed presets that can be adjusted in the settings",
       "defaults: 100  |  150  |  255"
     ],
     "profiles": [
@@ -1629,7 +1639,7 @@
       "click this label to open the corresponding section in the filter"
     ],
     "size": [
-      "size customization is reduced to three fixed presets that can be adjusted in the settings",
+      "size customization is streamlined to three fixed presets that can be adjusted in the settings",
       "defaults: 25  |  35  |  45"
     ],
     "types": [
@@ -1658,7 +1668,7 @@
       "sound effects can be previewed and tagged/renamed in the settings menu"
     ],
     "sounds volume": [
-      "volume customization is reduced to three fixed presets that can be adjusted in the settings",
+      "volume customization is streamlined to three fixed presets that can be adjusted in the settings",
       "defaults: 100  |  200  |  300"
     ],
     "rule hideshow": [

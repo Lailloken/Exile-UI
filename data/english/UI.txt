@@ -263,8 +263,12 @@
 		global_update			=	"update"
 		global_temp			=	"temp"			;## temporary
 		global_volume			=	"volume"			;## refers to sound
-		global_sound			=	"sound"			;## refers to different types of sound effects
+		global_sound			=	"sound"			;## these refer to different types of sound files/effects, e.g. sound 6
 		global_sound			=	"sounds"
+		global_sound			=	"effect"
+		global_small			=	"small"
+		global_medium			=	"medium"
+		global_large			=	"large"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -566,6 +570,7 @@
 		lootfilter_scarabs			=	"scarabs"
 		lootfilter_stack			=	"stack"
 		lootfilter_stack			=	"stacks"
+		lootfilter_minimap			=	"map"
 
 		lootfilter_gems			=	"uncut gems"								;## PoE2 only (whole block)
 		lootfilter_minskilllevel		=	"min skill"								;## min level for skill gems

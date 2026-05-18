@@ -2713,10 +2713,14 @@ Settings_lootfilter()
 	cReset := LLK_ControlGetPos(hwnd1), dimensions := []
 	If !settings.lootfilter.sound_tags.HasKey(tester.sound)
 		vars.lootfilter_tester.sound := LLK_HasVal(settings.lootfilter.sound_tags, tester.sound)
-	vars.lootfilter_tester.sound_index := settings.lootfilter.sound_tags[tester.sound], length := 0
+	vars.lootfilter_tester.sound_index := settings.lootfilter.sound_tags[tester.sound]
 
-	For key, val in settings.lootfilter.sound_tags
-		ddl := (IsNumber(key) ? ddl . (ddl ? "|" key : key) : key . (ddl ? "|" ddl : ddl)), length := Max(length, StrLen(key)), dimensions.Push(key "777")
+	For outer in [1, 2]
+		For key, val in settings.lootfilter.sound_tags
+			If (outer = 1) && !IsNumber(key) || (outer = 2) && IsNumber(key)
+				ddl .= (ddl ? "|" : "") key
+		
+	dimensions.Push(key "777")
 	Loop, Parse, ddl, % "|"
 		If (A_LoopField = vars.lootfilter_tester.sound)
 			choice := A_Index
@@ -2729,7 +2733,7 @@ Settings_lootfilter()
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	Gui, %GUI%: Add, DDL, % "ys x+0 gSettings_lootfilter2 HWNDhwnd w" wDDL . (choice ? " Choose" choice : ""), % ddl
 	cDDL := LLK_ControlGetPos(hwnd)
-	Gui, %GUI%: Add, Edit, % "ys x+0 hp Limit15 cBlack gSettings_lootfilter2 HWNDhwnd1 w" cReset.xMax - cDDL.xMax, % (IsNumber(vars.lootfilter_tester.sound) ? "" : vars.lootfilter_tester.sound)
+	Gui, %GUI%: Add, Edit, % "ys x+0 hp Limit16 cBlack gSettings_lootfilter2 HWNDhwnd1 w" cReset.xMax - cDDL.xMax, % (IsNumber(vars.lootfilter_tester.sound) ? "" : vars.lootfilter_tester.sound)
 	Gui, %GUI%: Add, Button, % "xp hp Hidden Default gSettings_lootfilter2 HWNDhwnd2", a
 	vars.hwnd.settings.sound_pick := vars.hwnd.help_tooltips["settings_lootfilter filter-tester sounds"] := hwnd
 	vars.hwnd.settings.sound_tag := vars.hwnd.help_tooltips["settings_lootfilter filter-tester sound tags"] := hwnd1, vars.hwnd.settings.sound_ok := hwnd2

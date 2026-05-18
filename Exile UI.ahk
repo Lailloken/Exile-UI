@@ -547,6 +547,7 @@ Init_vars()
 	vars.betrayal := {}
 	vars.cheatsheets := {}
 	vars.client := {}
+	vars.ddl := {}
 	vars.economy := {}
 	vars.GUI := []
 	vars.omnikey := {}
