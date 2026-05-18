@@ -104,6 +104,8 @@
 		maps_xesht			=	"twisted domain"		;## the map-name of the xesht fight
 		maps_arbiter			=	"arbiter of ash"
 		maps_arbiter			=	"the burning monolith"		;## the map-name of the arbiter fight
+		maps_saresh			=	"saresh"
+		maps_saresh			=	"the black barya"		;## the map-name of the saresh fight
 
 
 		maps_hideout			=	"hideout"			;## PoE2 only (whole block), claimable hideout on the atlas (separate key/value pair in case more hideouts are added in the future)

@@ -226,7 +226,7 @@ Log_Get(log_text, data)
 	static unique_maps := {"merchant": "seer", "vault": "vaults"}
 
 	If (data = "areaname")
-		If !LLK_StringCompare(log_text, ["map", "breach", "ritual"])
+		If !LLK_StringCompare(log_text, ["map", "breach", "ritual", "FaridunLeagueBoss"])
 			%data% := log_text
 		Else
 		{
@@ -247,6 +247,12 @@ Log_Get(log_text, data)
 				If settings.maptracker.rename
 					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_arbiter")
 				Else Return Lang_Trans("maps_arbiter", 2) " (" Lang_Trans("maps_boss") ")"
+			}
+			Else If (log_text = "FaridunLeagueBoss")
+			{
+				If settings.maptracker.rename
+					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_saresh")
+				Else Return Lang_Trans("maps_saresh", 2) " (" Lang_Trans("maps_boss") ")"
 			}
 			Else If RegExMatch(log_text, "Hideout.*_Claimable")
 			{
