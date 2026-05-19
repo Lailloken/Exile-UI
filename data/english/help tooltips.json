@@ -1585,6 +1585,16 @@
       "x: hide maps below tier x",
       "17: hide all regular maps"
     ],
+    "global setting sockets 2": [
+      "lets you set an item-size cut-off for socketed gear (salvage bench: artificer's orb)",
+      "click this label to browse the corresponding section in the filter"
+    ],
+    "global setting sockets toggles": [
+      "off: use base filter's rules",
+      "none: don't highlight socketed gear",
+      "small: only highlight small items",
+      "all: highlight every socketed item"
+    ],
     "global setting strands": [
       "lets you set a cut-off for memory-strand items",
       "neversink filters have extra highlighting for high-strand items",

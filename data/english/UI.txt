@@ -571,6 +571,7 @@
 		lootfilter_stack			=	"stack"
 		lootfilter_stack			=	"stacks"
 		lootfilter_minimap			=	"map"
+		lootfilter_socketgear		=	"socketed gear"							;## refers to socket-related vendor recipes, e.g. jeweller's/chromes in PoE1 and artificer's in PoE2
 
 		lootfilter_gems			=	"uncut gems"								;## PoE2 only (whole block)
 		lootfilter_minskilllevel		=	"min skill"								;## min level for skill gems

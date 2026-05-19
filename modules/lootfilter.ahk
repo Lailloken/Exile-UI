@@ -100,15 +100,15 @@ Lootfilter_Customize(cHWND := "")
 	Switch
 	{
 		Case InStr(check, "globalsetting_"):
-		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "flask": -41, "economy1": -101, "economy2": -102, "economy3": -103, "economy4": -104, "economy5": -105}
+		indexes := {"visual": -1, "gem": -11, "map": -21, "strand": -31, "flask": -41, "socket": -51, "economy1": -101, "economy2": -102, "economy3": -103, "economy4": -104, "economy5": -105}
 		If !vars.poe_version
 			types := {"gem": "gems > generic", "map": "maps", "strand": "gear > memorystrand", "flask": "endgameflasks", "economy1": "currency", "economy2": "divination", "economy3": "currency > essence"
 			, "economy5": "fragments > scarabs"}
-		Else types := {"gem": "gems > uncut", "flask": "endgame > salvagable", "economy1": "currency", "economy3": "currency > essence", "economy4": "sockets > general"}
+		Else types := {"gem": "gems > uncut", "flask": "endgame > salvagable", "socket": "endgame > salvagable", "economy1": "currency", "economy3": "currency > essence", "economy4": "sockets > general"}
 		params := StrSplit(control, "|"), setting := params.1, type := params.2, iTarget := indexes[setting]
 
 		If params.3
-			input := (params.3 = "off" ? 0 : (params.3 = "on" ? 1 : settings.lootfilter[params.2 "_" params.3]))
+			input := (params.3 = "off" ? 0 : (params.3 = "on" ? 1 : (params.1 = "socket" ? params.3 : settings.lootfilter[params.2 "_" params.3])))
 		Else input := LLK_ControlGet(cHWND)
 
 		current := LLK_CloneObject(IsObject(vars.lootfilter.modifications_pending[iTarget]) ? vars.lootfilter.modifications_pending[iTarget] : vars.lootfilter.modifications["profile" profile][iTarget])
@@ -157,7 +157,7 @@ Lootfilter_Customize(cHWND := "")
 		If economy && (vars.lootfilter.modifications_pending[iTarget].modifications.toggle = "off") && !vars.lootfilter.modifications["profile" profile][iTarget].modifications.Count()
 			match := 1
 		Else For kSetting, array in (!vars.poe_version ? {"flask": ["quality"], "gem": ["quality", "level"], "map": ["tier"], "strand": ["strands high", "strands"], "visual": ["size", "opacity", "volume"]}
-			: {"gem": ["skilllevel", "spiritlevel", "supportlevel"], "visual": ["size", "opacity", "volume"]})
+			: {"flask": ["quality"], "gem": ["skilllevel", "spiritlevel", "supportlevel"], "socket": ["sockets"], "visual": ["size", "opacity", "volume"]})
 			If (setting = kSetting)
 			{
 				match := 1
@@ -999,7 +999,25 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" background_color, 100
 		Gui, %GUI%: Add, Slider, % "yp x+-1 hp Border gLootfilter_Customize Center Range0-21 NoTicks ToolTip HWNDhwnd w" wSettings - LLK_ControlGetPos(bla, "w") + 1, % (flasks.modifications.quality ? flasks.modifications.quality : 0)
 		vars.hwnd.lootfilter["globalsetting_flask|quality"] := vars.hwnd.help_tooltips["lootfilter_global setting flasks toggles"] := hwnd
-		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax)
+		cPos := LLK_ControlGetPos(hwnd), hMax := Max(hMax, cPos.yMax), style := "Section ys x+" margin " x" wMax - wSettings - 1
+
+		If vars.poe_version
+		{
+			available := vars.lootfilter.active_filter.structure.HasKey(vars.poe_version ? "endgame > salvagable" : "PLACEHOLDER"), handle := ""
+			Gui, %GUI%: Add, Text, % style " Border Center HWNDhwnd gLootfilter_Editor w" wSettings . (available ? " gLootfilter_Editor" : " cFF8000"), % Lang_Trans("lootfilter_socketgear")
+			vars.hwnd.lootfilter["browsesetting_" (vars.poe_version ? ";sockets(small|others).*" : "PLACEHOLDER")] := vars.hwnd.help_tooltips["lootfilter_global setting " (!available ? "unavailable|" : "sockets" vars.poe_version)] := hwnd
+
+			If IsObject(vars.lootfilter.modifications_pending[-51])
+				sockets := vars.lootfilter.modifications_pending[-51]
+			Else sockets := vars.lootfilter.modifications["profile" profile][-51]
+
+			For index, val in ["off", "none", "small", "all"]
+			{
+				color := (val = "off" && (sockets.modifications.toggle || !sockets.Count()) || val = sockets.modifications.sockets ? " cLime" : "")
+				Gui, %GUI%: Add, Text, % (index = 1 ? "xs y+" : "ys yp x+") "-1 Border Center HWNDhwnd gLootfilter_Customize" color . (index = 4 ? " w" wMax + 1 - LLK_ControlGetPos(hwnd).xMax : ""), % " " Lang_Trans("global_" val) " "
+				vars.hwnd.lootfilter["globalsetting_socket|sockets|" val] := vars.hwnd.help_tooltips["lootfilter_global setting sockets toggles" handle] := hwnd, handle .= "|"
+			}
+		}
 		Gosub, Label_Show
 		Return
 	}
@@ -1097,8 +1115,8 @@ Lootfilter_Editor(cHWND := "")
 									tags.Push(" " Lang_Trans("global_memorystrands", 2) " >= " vLine " ")
 								Else If RegexMatch(Trim(kLine, " `t") " " vLine, "i)arealevel\s(1|<=.([1-9]|[1-5]\d|6[0-" (vars.poe_version ? "4" : "7") "])|>= 2)$")
 									campaign := 1
-								Else If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|itemlevel")
-									tags.Push(" " LLK_StringCase(Trim(LLK_StringReplace(kLine, [["gemlevel", "level"], ["arealevel", "area"], ["itemlevel", "ilvl"]]), " `t") . (vLine != "true" ? " " vLine : "")) " ")
+								Else If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|itemlevel|UnidentifiedItemTier")
+									tags.Push(" " LLK_StringCase(Trim(LLK_StringReplace(kLine, [["gemlevel", "level"], ["arealevel", "area"], ["itemlevel", "ilvl"], ["UnidentifiedItemTier", "tier"]]), " `t") . (vLine != "true" ? " " vLine : "")) " ")
 						If campaign
 						{
 							Loop, % tags.Count()
@@ -1318,7 +1336,7 @@ Lootfilter_Editor(cHWND := "")
 
 			For iLine, oLine in vars.lootfilter.active_filter.final[last_chunk].lines
 				For kLine, vLine in oLine
-					If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|rarity|itemlevel")
+					If RegexMatch(kLine, "i)arealevel|gemlevel|quality|transfiguredgem|rarity|itemlevel|UnidentifiedItemTier")
 						Loop 2
 						{
 							If !hwnd_divider
@@ -1967,6 +1985,10 @@ Lootfilter_Modify(object, global := 0)
 					Return "`n- type """ object.type """ has changed in structure (global setting cannot be applied)"
 			}
 			;######################################################
+			Case "global sockets":
+			If !LLK_HasVal(vars.lootfilter.active_filter.structure, "socketssmall", 1,,, 1) || !LLK_HasVal(vars.lootfilter.active_filter.structure, "socketsothers", 1,,, 1)
+				Return "`n- filter has an unexpected structure (global setting cannot be applied)"
+			;######################################################
 			Default:
 			If InStr(object.action, "economy") && !vars.lootfilter.active_filter.structure.HasKey(object.type)
 				Return "`n- type """ object.type """ doesn't exist anymore (global setting cannot be applied)"
@@ -2118,6 +2140,29 @@ Lootfilter_Modify(object, global := 0)
 
 					vars.lootfilter.active_filter.final[iChunk].lines := new_array.Clone(), vars.lootfilter.active_filter.final[iChunk].global := 1
 				}
+			}
+			;######################################################
+			Case (object.action = "global sockets") && vChunk.tier && (!IsObject(pending[-51]) || !Blank(pending[-51].modifications.sockets)) && RegexMatch(vChunk.tier, "i)sockets(small|others)"):
+			sockets := object.modifications.sockets
+			If (sockets = "none" || sockets = "small" && InStr(vChunk.tier, "others")) && !RegexMatch(vChunk.lines.1, "i)^.{0,2}#")
+			{
+				new_array := []
+				For iLine, oLine in vChunk.lines
+					If !IsObject(oLine)
+						new_array.Push("#" oLine)
+					Else For kLine, vLine in oLine
+						new_array.Push({("#" kLine): vLine})
+				vars.lootfilter.active_filter.final[iChunk].lines := new_array.Clone()
+			}
+			Else If (sockets = "small" && InStr(vChunk.tier, "small") || sockets = "all") && RegexMatch(vChunk.lines.1, "i)^.{0,2}#")
+			{
+				new_array := []
+				For iLine, oLine in vChunk.lines
+					If !IsObject(oLine)
+						new_array.Push(StrReplace(oLine, "#",,, 1))
+					Else For kLine, vLine in oLine
+						new_array.Push({(StrReplace(kLine, "#",,, 1)): vLine})
+				vars.lootfilter.active_filter.final[iChunk].lines := new_array.Clone(), vars.lootfilter.active_filter.final[iChunk].global := 1
 			}
 			;######################################################
 			Case (object.action = "presentation") && (vChunk.type && object.type = vChunk.type) && (vChunk.tier && object.tier = vChunk.tier):
