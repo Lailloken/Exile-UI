@@ -449,7 +449,7 @@
     ],
     "leveltracker recommendation 2": [
       "shows level recommendations for highly-optimized act 1-4 runs in the bottom-left corner",
-      "it shows two numbers:\nrecommended level when entering a zone\nrecommended level when leaving a zone"
+      "it shows two numbers:\n1: recommended lvl when entering a zone\n2: recommended lvl when leaving a zone\n(if you're tracking your lvl, it'll show that in between)"
     ],
     "leveltracker geartracker": [
       "notifies you when you meet gear or gem requirements after lvl-ups (mainly a twink feature):\nthe guide overlay will display <gear rdy>",
@@ -508,7 +508,8 @@
       "it will also reset gem-pickup customizations(/highlight)"
     ],
     "leveltracker editor": [
-      "open the editor to edit the guide in this slot"
+      "open the editor to edit the guide in this slot",
+      "(/highlight)guide slots with custom edits will be protected from updates, but you should store the exports in a separate file just to be safe"
     ],
     "leveltracker guide info": [
       "there are up to nine individual guide slots you can use and switch between",

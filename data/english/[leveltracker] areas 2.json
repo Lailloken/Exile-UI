@@ -79,14 +79,14 @@
     {
       "id": "g1_15",
       "name": "ogham manor",
-      "recommendation": "12 | 13"
+      "recommendation": "12 | 13+"
     }
   ],
   [
     {
       "id": "g2_1",
       "name": "vastiri outskirts",
-      "recommendation": "13 | 14"
+      "recommendation": "13+ | 14"
     },
     {
       "id": "g2_town",
@@ -279,42 +279,42 @@
     {
       "id": "g4_1_1",
       "name": "isle of kin",
-      "recommendation": "43 | 44"
+      "recommendation": "41 | 41.5"
     },
     {
       "id": "g4_1_2",
       "name": "volcanic warrens",
-      "recommendation": "44 | 44"
+      "recommendation": "41.5 | 42"
     },
     {
       "id": "g4_2_1",
       "name": "kedge bay",
-      "recommendation": "41 | 41"
+      "recommendation": "42 | 42.5"
     },
     {
       "id": "g4_2_2",
       "name": "journey's end",
-      "recommendation": "41 | 42"
+      "recommendation": "42.5 | 43"
     },
     {
       "id": "g4_3_1",
       "name": "whakapanu island",
-      "recommendation": "42 | 42"
+      "recommendation": "43 | 43"
     },
     {
       "id": "g4_3_2",
       "name": "singing caverns",
-      "recommendation": "42 | 42"
+      "recommendation": "43 | 43"
     },
     {
       "id": "g4_4_1",
       "name": "eye of hinekora",
-      "recommendation": "45 | 45"
+      "recommendation": "45 | 46"
     },
     {
       "id": "g4_4_2",
       "name": "halls of the dead",
-      "recommendation": "45 | 46"
+      "recommendation": "46 | 47"
     },
     {
       "id": "g4_4_3",
@@ -323,12 +323,12 @@
     {
       "id": "g4_5_1",
       "name": "abandoned prison",
-      "recommendation": "42 | 43"
+      "recommendation": "43 | 44"
     },
     {
       "id": "g4_5_2",
       "name": "solitary confinement",
-      "recommendation": "43 | 43"
+      "recommendation": "44 | 44"
     },
     {
       "id": "g4_7",
@@ -342,12 +342,12 @@
     {
       "id": "g4_8b",
       "name": "arastas (hostile)",
-      "recommendation": "46 | 46"
+      "recommendation": "47 | 47"
     },
     {
       "id": "g4_10",
       "name": "the excavation",
-      "recommendation": "46 | 47"
+      "recommendation": "47 | 48"
     },
     {
       "id": "g4_11_1a",
@@ -356,12 +356,12 @@
     {
       "id": "g4_11_1b",
       "name": "ngakanu (hostile)",
-      "recommendation": "47 | 47"
+      "recommendation": "48 | 48"
     },
     {
       "id": "g4_11_2",
       "name": "heart of the tribe",
-      "recommendation": "47 | 48"
+      "recommendation": "49 | 49"
     },
     {
       "id": "g4_13",

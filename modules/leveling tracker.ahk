@@ -3155,7 +3155,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	Gui, %GUI_name_controls1%: Add, Text, % "ys hp 0x200 Border HWNDhwnd Center w"wButtons, % ""
 	vars.hwnd.leveltracker["+"] := hwnd, check := 0
 	Gui, %GUI_name_controls1%: Add, Text, % "ys wp hp 0x200 Border HWNDhwnd Center w"wPanels, % ""
-	vars.hwnd.leveltracker.dummy2 := hwnd
+	vars.hwnd.leveltracker.dummy2 := hwnd, cButton := LLK_ControlGetPos(hwnd)
 
 	Gui, %GUI_name_controls2%: New, % "-DPIScale +E0x20 +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_controls2 +Owner" GUI_name_controls1
 	Gui, %GUI_name_controls2%: Color, Black
@@ -3187,8 +3187,10 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If vars.poe_version && settings.leveltracker.recommend
 		iArea := LLK_HasVal(db.leveltracker.areas[vars.log.act], vars.log.areaID,,,, 1), recommendation := db.leveltracker.areas[vars.log.act][iArea].recommendation
 
-	Gui, %GUI_name_controls2%: Add, Text, % "Section xs " (settings.leveltracker.timer ? "xs y+-1" : "") " Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels . (recommendation ? "" : " cLime")
+	Gui, %GUI_name_controls2%: Font, % "s" settings.leveltracker.fSize - 2
+	Gui, %GUI_name_controls2%: Add, Text, % "Section xs " (settings.leveltracker.timer ? "xs y+-1" : "") " h" cButton.h " Border 0x200 BackgroundTrans HWNDhwnd Center w"wPanels . (recommendation ? "" : " cLime")
 	, % (recommendation ? StrReplace(recommendation, "|", "| " vars.log.level " |") : (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : ""))
+	Gui, %GUI_name_controls2%: Font, % "s" settings.leveltracker.fSize
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % "?"
 	Gui, %GUI_name_controls2%: Add, Text, % "ys hp Border 0x200 BackgroundTrans Center w" wButtons, % ">"
