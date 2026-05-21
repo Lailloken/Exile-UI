@@ -19,7 +19,7 @@
       "optional: flasks + (img:support) <witch> in (img:checkpoint) (color:cc99ff)hut",
       "optional: transmute: (color:cc99ff)league || (img:skill) arena:bramble",
       "(color:ff00ff)2_tasks: get (img:waypoint) _|| (img:in-out2) areaidg1_6: (img:waypoint) ;; the grim tangle",
-      "enter (img:checkpoint) areaidg1_5 (often near arena:bramble) ;; the red vale"
+      "enter areaidg1_5 (often near arena:bramble) ;; the red vale"
     ],
     [
       "optional: (img:skill) (color:cc99ff)league || atk weapons: (color:cc99ff)racks",
@@ -50,7 +50,7 @@
     ],
     [
       "optional: amulet: (color:cc99ff)league",
-      "optional: (img:support) <knight> near (img:checkpoint) (color:cc99ff)treasure",
+      "optional: (img:support) <knight> in (img:checkpoint) (color:cc99ff)treasure",
       "kill (img:checkpoint) asinia for (quest:key_piece)",
       "enter areaidg1_7 ;; cemetery of the eternals"
     ],
@@ -102,8 +102,19 @@
       "optional: (img:exa) (color:cc99ff)league || (img:support) <dryad> || (img:skill) ritual",
       "follow edge for (color:ff00ff)2_tasks:",
       "(hint)_ - kill (img:checkpoint) crowbell for (quest:book)",
-      "(hint)_ - (img:in-out2) areaidg1_13_1 for (img:waypoint) ;; ogham farmlands",
-      "follow edge to (img:checkpoint) areaidg1_12 ;; freythorn"
+      "(hint)_ - (img:in-out2) areaidg1_12 for (img:waypoint) ;; freythorn",
+      "follow edge: areaidg1_13_1 ;; ogham farmlands"
+    ],
+    [
+      "optional: (img:skill) (color:cc99ff)league || (img:skill) in (img:checkpoint) (color:cc99ff)crop_circle",
+      "road leads straight to (img:checkpoint) (color:cc99ff)hut (quest:(lute))",
+      "find & enter (img:checkpoint) areaidg1_13_2 ;; ogham village",
+      "(hint)__ one of the roads after (color:cc99ff)hut leads there"
+    ],
+    [
+      "(img:waypoint) to areaidg1_town (img:town) ;; clearfell encampment",
+      "leaguestart: optional: check vendors",
+      "(img:quest_2) una: (quest:book) || (img:waypoint) to areaidg1_12 ;; freythorn"
     ],
     [
       "optional: (img:support) (color:cc99ff)league",
@@ -114,48 +125,27 @@
     ],
     [
       "leaguestart: (img:quest_2) finn: (color:cc99ff)ele-res_charm",
-      "leaguestart: optional: check vendors",
-      "(img:waypoint) to areaidg1_13_1 ;; ogham farmlands"
+      "(img:waypoint) to areaidg1_13_2 ;; ogham village"
     ],
-    [
-      "optional: (img:skill) (color:cc99ff)league || (img:skill) in (img:checkpoint) (color:cc99ff)crop_circle",
-      "road leads straight to (img:checkpoint) (color:cc99ff)hut (quest:(lute))",
-      "find & enter (img:checkpoint) areaidg1_13_2 ;; ogham village",
-      "(hint)__ one of the roads after (color:cc99ff)hut leads there"
-    ],
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "(img:waypoint) to areaidg1_town (img:town) ;; clearfell encampment"
-      ]
-    },
-    {
-      "condition": [
-        "league-start",
-        "yes"
-      ],
-      "lines": [
-        "(img:quest_2) una: (quest:book)",
-        "(img:waypoint) to areaidg1_13_2 ;; ogham village"
-      ]
-    },
     [
       "leaguestart: optional: (img:artificer) (color:cc99ff)league",
       "leaguestart: find (img:checkpoint) (color:cc99ff)workshop: (quest:tools) & <chest>",
-      "twinkrun: optional: (img:artificer) (color:cc99ff)league || (img:rune) + (img:artificer) in (img:checkpoint) (color:cc99ff)workshop",
+      "twinkrun: optional: (img:artificer) (color:cc99ff)league || blank (img:rune) + (img:artificer) in (img:checkpoint) (color:cc99ff)shop",
       "find & kill (img:checkpoint) executioner",
-      "(img:quest_2) leitis || (img:portal) areaidg1_town ;; clearfell encampment"
+      "leaguestart: (img:quest_2) leitis || (img:portal) areaidg1_town ;; clearfell encampment",
+      "twinkrun: (img:quest_2) leitis || enter areaidg1_14 ;; manor ramparts"
     ],
-    [
-      "leaguestart: (img:quest_2) leitis: (img:skill) || (img:quest_2) renly: (img:rune) + (quest:bench)",
-      "leaguestart: optional: check vendors",
-      "twinkrun: (img:quest_2) leitis: (img:skill) || (img:quest_2) una: (quest:book)",
-      "twinkrun: optional: (img:quest_2) renly: (img:rune)",
-      "(img:waypoint) to areaidg1_14 ;; manor ramparts"
-    ],
+    {
+      "condition": [
+        "league-start",
+        "yes"
+      ],
+      "lines": [
+        "(img:quest_2) leitis: (img:skill) || (img:quest_2) renly: (img:rune) + (quest:bench)",
+        "optional: check vendors",
+        "(img:waypoint) to areaidg1_14 ;; manor ramparts"
+      ]
+    },
     [
       "optional: (img:skill) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)gallows (edge)",
       "inner edge leads to areaidg1_15 ;; ogham manor"
@@ -169,13 +159,15 @@
     ],
     [
       "leaguestart: optional: check vendors",
+      "twinkrun: (img:quest_2) leitis: (img:skill)",
+      "twinkrun: optional: (img:quest_2) renly: (img:rune)",
       "(img:quest_2) hooded one: areaidg2_1 ;; vastiri outskirts"
     ]
   ],
   [
     [
       "optional: (img:exa) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)raider_camp",
-      "kill (img:checkpoint) rathbreaker || (img:portal) out",
+      "find & kill (img:checkpoint) rathbreaker || (img:portal) out",
       "(hint)__ search for long passage along edge",
       "(img:quest_2) zarka: (img:skill) || enter areaidg2_town ;; the ardura caravan"
     ],
@@ -186,7 +178,7 @@
     ],
     [
       "optional: (img:spirit) (color:cc99ff)league || (img:artificer) in (img:checkpoint) (color:cc99ff)cache (edge)",
-      "find & enter (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
+      "reach (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
       "optional: (img:support) (color:cc99ff)league",
@@ -228,12 +220,13 @@
     [
       "optional: (img:gcp) (color:cc99ff)league || (color:66b2ff)amulet: check 2 (img:arena) stairs",
       "(color:ff00ff)kill_2: (color:cc99ff)snakes (color:lime)(relic) || (img:checkpoint) arena:kabala (color:lime)(book)",
+      "(hint)__ plan b: (quest:relic) also drops next zone",
       "follow edge, find bridge to areaidg2_4_2 ;; the lost city"
     ],
     [
       "optional: alch orb: (color:cc99ff)league",
       "optional: (img:spirit) in (img:checkpoint) (color:cc99ff)tomb || (color:66b2ff)jewel from <scarab>",
-      "find & enter (img:checkpoint) areaidg2_4_3 ;; buried shrines",
+      "(quest:relic?) || enter (img:checkpoint) areaidg2_4_3 ;; buried shrines",
       "(hint)_ - 1st corridor shows gen. direction",
       "(hint)_ - find (img:checkpoint) (color:aqua)v-shaped_bridge along edge"
     ],
@@ -293,11 +286,10 @@
       "late (quest:ascension?): find (img:checkpoint) (color:cc99ff)corpses",
       "(hint)__ kill (color:yellow)2_vultures for (color:cc99ff)djinn_barya",
       "find (quest:letter) on (img:quest_2) (quest:fallen_dekhara)",
-      "(hint)__ search around tower structures",
       "enter (img:checkpoint) areaidg2_9_1 ;; path of mourning"
     ],
     [
-      "leaguestart: dmg issues?: (img:waypoint) to town",
+      "leaguestart: optional: dmg issues?: (img:waypoint) to town",
       "(hint)__ give (quest:letter) to (color:cc99ff)shambrin: (quest:book)",
       "optional: (img:support) + <items> in (img:checkpoint) (color:cc99ff)hushed_urn",
       "reach (img:checkpoint) areaidg2_9_2 ;; the spires of deshar"
@@ -324,8 +316,10 @@
       "(img:portal) to areaidg2_town ;; the ardura caravan"
     ],
     [
-      "leaguestart: optional: check vendors",
       "go (img:7): (img:quest_2) hooded one",
+      "(hint)_ - wait for transformation",
+      "(hint)_ - (color:cc99ff)esc:_character_selection",
+      "leaguestart: optional: check vendors",
       "(img:quest_2) asala: areaidg3_1 ;; sandswept marsh"
     ]
   ],
@@ -486,8 +480,8 @@
     ],
     [
       "optional: (img:support) (color:cc99ff)league || (color:ff0000)fire / (color:ffff00)light (img:ring) in (img:checkpoint) (color:cc99ff)nest",
-      "(hint)_ - element based on (color:cc99ff)2nd_kill",
-      "(hint)_ - can roll multiple ele. mods",
+      "(hint)_ - element = (color:cc99ff)monster_killed_last",
+      "(hint)_ - has qual, can roll multiple ele-mods",
       "follow lava upstream to (img:checkpoint) arena:krutog",
       "makoru (ship): areaidg4_2_1 ;; kedge bay"
     ],
@@ -516,14 +510,14 @@
       "enter (img:portal) areaidg4_3_1 ;; whakapanu island"
     ],
     [
-      "optional: (img:artificer) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)cavern",
+      "optional: (img:artificer) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)crab_cavern",
       "optional: gem: (img:checkpoint) arena:shark  || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)pirate",
       "(hint)__ hand in (quest:shark_fin) in areaidg4_11_1a ;; ngakanu",
       "reach (img:checkpoint) areaidg4_3_2 ;; singing caverns"
     ],
     [
       "optional: (color:66b2ff)charm: (color:cc99ff)league",
-      "optional: <all-res_amu>: find (quest:pearl) in (img:checkpoint) (color:cc99ff)clam",
+      "optional: <all-res_amu>: get (quest:pearl) in (img:checkpoint) (color:cc99ff)clam",
       "(hint)__ then: (img:portal), talk to (img:quest_2) rog || enter (img:portal)",
       "find & kill (img:checkpoint) diamora",
       "makoru (ship): areaidg4_5_1 ;; abandoned prison"
@@ -643,8 +637,8 @@
       "enter areaidp3_1 ;; ashen forest"
     ],
     [
-      "optional: (img:skill) in (img:checkpoint) (color:cc99ff)monument || <belt>: (color:cc99ff)league",
-      "find & enter (img:checkpoint) areaidp3_2 ;; kriar village"
+      "optional: <belt>: (color:cc99ff)league || (img:skill) in (img:checkpoint) (color:cc99ff)monument",
+      "reach (img:checkpoint) areaidp3_2 ;; kriar village"
     ],
     [
       "optional: greater (img:rune): (color:cc99ff)league",
@@ -711,13 +705,14 @@
     [
       "optional: (img:exa) (color:cc99ff)league || (img:checkpoint) strongboxes",
       "(quest:buff): (img:checkpoint) (color:cc99ff)7_pillars (corners/edges)",
-      "(hint)_ - follow (img:0) edge up to the (img:arena) (color:cc99ff)exit",
+      "(hint)_ - follow (img:0) edge to the (img:arena) (color:cc99ff)exit",
       "(hint)_ - not there? it's (img:3) of (img:arena) exit_/_start",
       "(img:quest_2) jado || enter (img:checkpoint) areaidp2_7 ;; qimah reservoir"
     ],
     [
       "optional: greater transmute: (color:cc99ff)league",
       "optional: currency: find (quest:2_vials) + (color:cc99ff)2 (img:checkpoint) (color:cc99ff)wells",
+      "(hint)__ 1st drops, 2nd in (img:checkpoint) (color:cc99ff)side-room <chest>",
       "kill (img:checkpoint) azmadi || (img:quest_2) grand barya",
       "(img:quest_2) jado || (img:portal) to areaidp2_town ;; the khari bazaar"
     ],
@@ -739,8 +734,9 @@
     [
       "optional: (img:exa) (color:cc99ff)league",
       "find 6 (img:checkpoint) (color:cc99ff)megaliths || kill siora",
-      "(img:quest_2) una (color:ff0000)(listen_to_the_end) || (img:portal) out",
-      "enter (img:checkpoint) areaidp1_1 ;; scorched farmlands"
+      "(img:quest_2) una",
+      "go back to areaidp1_1 ;; scorched farmlands",
+      "(hint)__ (color:red)wait_for_quest-state: \"return to\""
     ],
     [
       "(img:checkpoint) -travel to (color:cc99ff)wall_of_darkness",
@@ -754,7 +750,7 @@
     [
       "optional: greater (img:rune): (color:cc99ff)league",
       "optional: (img:checkpoint) (color:cc99ff)rune_vendor: (img:6) of (color:cc99ff)bridge",
-      "(hint)__ (color:cc99ff)bridge on the way to areaidp1_5 ;; wolvenhold",
+      "(hint)__ (color:cc99ff)bridge is on the way to areaidp1_5 ;; wolvenhold",
       "(img:1) edge leads to  (img:checkpoint) areaidp1_5 ;; wolvenhold"
     ],
     [
