@@ -725,7 +725,7 @@ Lootfilter_Editor(cHWND := "")
 		vars.pics.lootfilter := {}
 	}
 
-	toggle := !toggle, GUI := vars.lootfilter.GUI := "lootfilter_editor" toggle, margin := settings.lootfilter.fWidth//2
+	toggle := !toggle, GUI := vars.lootfilter.GUI := "lootfilter_editor" toggle, margin := settings.lootfilter.fWidth//2, background_color := settings.lootfilter.color_background
 	Gui, %GUI%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDhwnd_editor", LLK-UI: lootfilter editor
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize " cWhite", % vars.system.font
 	Gui, %GUI%: Margin, % -1, % -1
@@ -862,7 +862,7 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize
 	}
 
-	tiers := {}, background_color := settings.lootfilter.color_background, result_count := 0
+	tiers := {}, result_count := 0
 	If !search[vars.lootfilter.search.0]
 	{
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
@@ -1408,7 +1408,7 @@ Lootfilter_Editor(cHWND := "")
 				Loop 2
 				{
 					Gui, %GUI%: Font, strike
-					Gui, %GUI%: Add, Text, % (A_Index = 2 ? "Section xs x" margin : "ys") " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems2 " c" style_defaults.settextcolor, % " " Lang_Trans("lootfilter_newtier") " "
+					Gui, %GUI%: Add, Text, % (A_Index = 2 ? "Section xs x" margin : "ys x+" margin) " BackgroundTrans gLootfilter_Customize HWNDhwnd 0x200 h" hItems2 " c" style_defaults.settextcolor, % " " Lang_Trans("lootfilter_newtier") " "
 					Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 BackgroundRed c" style_defaults.setbackgroundcolor, 100
 					cPos := LLK_ControlGetPos(hwnd)
 					If (cPos.xMax <= wMax)

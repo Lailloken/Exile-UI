@@ -8,6 +8,7 @@
       "(color:red)info: optional rewards",
       "(hint)_ - examples: currency, gems, gear",
       "(hint)_ - to include them, enable (quest:optionals)",
+      "(color:red)info:_not_yet_ready_for_0.5",
       "(img:quest_2) renly: (img:skill) || enter areaidg1_2 ;; clearfell"
     ],
     [
