@@ -1,5 +1,11 @@
 [
   [
+	["1.62.7", 16207, 1],
+	"may 21, 2026",
+	"act-tracker:\n>> added many optionals, A1 + A4 routing tweaks, major interlude re-routing (see full notes)\n>> updates will be applied the next time you reset your guide-slot (don't do it if you're currenly on a run!)\n>> guide-slots with custom edits are not affected (create a new slot or delete the previous one to get the updates, after making a backup)(/highlight)",
+	"filterspoon:\n>> added economy checks for scarabs (poe1)\n>> added customization for beams, minimap icons, sound effects\n>> added stack-filtering to poe.ninja economy checks\n>> added global quick-settings for qual flasks and socketed gear (poe2 artificer salvaging)"
+  ],
+  [
 	["1.62.6", 16206],
 	"may 8, 2026",
 	"filterspoon:\n>> initial support for poe2",
