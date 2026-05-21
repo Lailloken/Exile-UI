@@ -2074,7 +2074,7 @@ Settings_leveltracker()
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
 
-	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_leveltracker2 Checked" settings.leveltracker.autotrack, % Lang_Trans("m_lvltracker_autotrack")
+	Gui, %GUI%: Add, Checkbox, % "xs Section x" x_anchor " HWNDhwnd gSettings_leveltracker2 Checked" settings.leveltracker.autotrack, % Lang_Trans("m_lvltracker_autotrack")
 	vars.hwnd.settings.autotrack := vars.hwnd.help_tooltips["settings_leveltracker auto tracking"] := hwnd
 
 	Gui, %GUI%: Font, bold underline

@@ -377,7 +377,7 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 
 		Case "lootfilter":
 			If !longpress
-				Lootfilter_Editor()
+				Lootfilter_Editor(Blank(vars.lootfilter.search[vars.lootfilter.search.0]) ? "" : "home")
 			Else Switch Gui_RadialMenu({2: "settings", 5: "lootfilter"}, "LButton")
 			{
 				Case "settings":
