@@ -635,7 +635,7 @@ Iteminfo_Stats2()
 			phys%A_Index% := Round((phys%A_Index% / ((100 + phys_inc + phys_rune_inc)/100)) / ((100 + item.quality)/100))
 
 		item.damage := {"phys": [Round((Round(phys1 * (100 + phys_inc)/100) + Round(phys2 * (100 + phys_inc)/100))/2 * (1 + Max(20, item.quality)/100) * speed)]}
-		Loop, % Max(RegExMatch(item.class, "i)quarterstav|two.hand|bow") ? 2 : 1, item.sockets)
+		Loop, % Max(RegExMatch(item.class, "i)quarterstav|two.hand|bow|talisman") ? 2 : 1, item.sockets)
 			item.damage.phys.Push(Round((phys1 * (100 + (A_Index * 18) + phys_inc)/100 + phys2 * (100 + (A_Index * 18) + phys_inc)/100)/2 * (1 + Max(20, item.quality)/100) * speed))
 
 		item.dps := {"total": Format("{:0.2f}", pdps + edps0 + cdps), "phys": pdps, "ele": edps0, "chaos": cdps, "speed": speed}
@@ -1851,7 +1851,7 @@ Iteminfo_GUI()
 	If qual_scaling && !RegExMatch(item.name, "i)morior|tabula") && (item.type = "attack" && item.damage.phys.1 || item.type = "defense")
 	{
 		colors := {"armour": "804040", "evasion": "408040", "energy": "404080", "phys": "black"}, object := (item.type = "attack") ? item.damage : item.defenses
-		sockets := Max(RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow") ? 2 : 1, item.sockets)
+		sockets := Max(RegExMatch(item.class, "i)body.armour|quarterstaves|two.hand|bow|talisman") ? 2 : 1, item.sockets)
 		Gui, %GUI_name%: Add, Text, % "Section xs Border Right w" Max(UI.Segments - (sockets + 1)/2 - (sockets + 1) * object.Count(), 0) * UI.wSegment " h" UI.hSegment, % Lang_Trans("iteminfo_qual_scaling") " "
 		For outer, currency in [(item.type = "defense" ? "scraps" : "whetstone"), "greater_iron", "greater_iron2", "greater_iron3", "greater_iron4"]
 		{
