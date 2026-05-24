@@ -557,6 +557,7 @@
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
       "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
+      "(hint)__ (img:skill2): it's the 1st time a gem of this level is available as an optional",
       "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold down the widget-key to see an image",
       "(hint)__",

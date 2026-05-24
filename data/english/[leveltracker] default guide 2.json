@@ -13,7 +13,7 @@
     ],
     [
       "optional: (img:skill) in (img:checkpoint) (color:cc99ff)camp || transmute: (color:cc99ff)league",
-      "optional: (img:skill) arena:boss in areaidg1_3, (img:support) (img:quest_2) renly ;; mud burrow",
+      "optional: (img:skill2) arena:boss in areaidg1_3, (img:support2) (img:quest_2) renly ;; mud burrow",
       "kill (img:checkpoint) beira || enter (img:checkpoint) areaidg1_4 ;; the grelwood"
     ],
     [
@@ -41,7 +41,7 @@
       "(img:waypoint) to areaidg1_6 ;; the grim tangle"
     ],
     [
-      "optional: (img:skill) (color:cc99ff)league || (img:support) arena:rotten_druid",
+      "optional: (img:skill2) (color:cc99ff)league || (img:support) arena:rotten_druid",
       "enter (img:checkpoint) areaidg1_7 ;; cemetery of the eternals"
     ],
     [
@@ -100,7 +100,7 @@
       ]
     },
     [
-      "optional: (img:exa) (color:cc99ff)league || (img:support) <dryad> || (img:skill) ritual",
+      "optional: (img:exa) (color:cc99ff)league || (img:support) <dryad> || (img:skill2) ritual",
       "follow edge for (color:ff00ff)2_tasks:",
       "(hint)_ - kill (img:checkpoint) crowbell for (quest:book)",
       "(hint)_ - (img:in-out2) areaidg1_12 for (img:waypoint) ;; freythorn",
@@ -148,7 +148,7 @@
       ]
     },
     [
-      "optional: (img:skill) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)gallows (edge)",
+      "optional: (img:skill2) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)gallows (edge)",
       "inner edge leads to areaidg1_15 ;; ogham manor"
     ],
     [
@@ -167,7 +167,7 @@
   ],
   [
     [
-      "optional: (img:exa) (color:cc99ff)league || (img:support) in (img:checkpoint) (color:cc99ff)raider_camp",
+      "optional: (img:exa) (color:cc99ff)league || (img:support2) in (img:checkpoint) (color:cc99ff)raider_camp",
       "find & kill (img:checkpoint) rathbreaker || (img:portal) out",
       "(hint)__ search for long passage along edge",
       "(img:quest_2) zarka: (img:skill) || enter areaidg2_town ;; the ardura caravan"
@@ -178,7 +178,7 @@
       "(color:cc99ff)desert_map: areaidg2_10_1 ;; mawdun quarry"
     ],
     [
-      "optional: (img:spirit) (color:cc99ff)league || (img:artificer) in (img:checkpoint) (color:cc99ff)cache (edge)",
+      "optional: (img:spirit2) (color:cc99ff)league || (img:artificer) in (img:checkpoint) (color:cc99ff)cache (edge)",
       "reach (img:checkpoint) areaidg2_10_2 ;; mawdun mine"
     ],
     [
@@ -200,7 +200,7 @@
       "(color:cc99ff)desert_map: areaidg2_2 ;; traitor's passage"
     ],
     [
-      "optional: (img:artificer) (color:cc99ff)league || (img:skill) in (img:checkpoint) (color:cc99ff)bell_chest",
+      "optional: (img:artificer) (color:cc99ff)league || (img:skill2) in (img:checkpoint) (color:cc99ff)bell_chest",
       "early (quest:ascension?): kill (img:checkpoint) balbala",
       "(hint)_ - build-dependent: (color:cc99ff)2nd_option_later",
       "(hint)_ - find & follow paper talismans",
@@ -226,7 +226,7 @@
     ],
     [
       "optional: alch orb: (color:cc99ff)league",
-      "optional: (img:spirit) in (img:checkpoint) (color:cc99ff)tomb || (color:66b2ff)jewel from <scarab>",
+      "optional: (img:spirit2) in (img:checkpoint) (color:cc99ff)tomb || (color:66b2ff)jewel from <scarab>",
       "(quest:relic?) || enter (img:checkpoint) areaidg2_4_3 ;; buried shrines",
       "(hint)_ - 1st corridor shows gen. direction",
       "(hint)_ - find (img:checkpoint) (color:aqua)v-shaped_bridge along edge"
@@ -326,8 +326,8 @@
   ],
   [
     [
-      "optional: (img:skill) arena:rootdredge || (img:ring) in (img:checkpoint) (color:cc99ff)hang._tree",
-      "optional: (img:support) (color:cc99ff)league || (img:jeweller) in (img:checkpoint) (color:cc99ff)camp near exit",
+      "optional: (img:skill2) arena:rootdredge || (img:ring) in (img:checkpoint) (color:cc99ff)hang._tree",
+      "optional: (img:support2) (color:cc99ff)league || (img:jeweller) in (img:checkpoint) (color:cc99ff)camp near exit",
       "reach (img:checkpoint) areaidg3_town ;; ziggurat encampment"
     ],
     [
@@ -401,7 +401,7 @@
       "enter areaidg3_2_2 ;; the matlan waterways"
     ],
     [
-      "optional: (img:spirit) (color:cc99ff)league || <caster_weap>: (img:checkpoint) (color:cc99ff)hut",
+      "optional: (img:spirit2) (color:cc99ff)league || <caster_weap>: (img:checkpoint) (color:cc99ff)hut",
       "reach (color:cc99ff)reservoir_mechanism",
       "(img:portal) to areaidg3_town ;; ziggurat encampment"
     ],
@@ -432,7 +432,7 @@
       "go (img:3), open (color:cc99ff)door: areaidg3_12 ;; temple of kopec"
     ],
     [
-      "optional: (img:spirit) (color:cc99ff)league",
+      "optional: (img:spirit2) (color:cc99ff)league",
       "find corner (img:arena) exits, kill ketzuli",
       "(img:quest_2) alva: areaidg3_town ;; ziggurat encampment",
       "(hint)__ opt. skip: (img:portal) when she says \"wait\""
@@ -449,7 +449,7 @@
       "find & enter (img:checkpoint) areaidg3_16 ;; aggorat"
     ],
     [
-      "optional: (img:skill) (color:cc99ff)league",
+      "optional: (img:skill2) (color:cc99ff)league",
       "find plaza and (img:checkpoint) || farm (quest:heart)?",
       "go (img:0), use (quest:heart) in (img:checkpoint) (color:cc99ff)sacrifice",
       "find & enter (img:checkpoint) areaidg3_17 ;; the black chambers",
@@ -474,7 +474,7 @@
       "(img:quest_2) makoru (ship): areaidg4_1_1 ;; isle of kin"
     ],
     [
-      "optional: (img:gcp) (color:cc99ff)league || (img:skill) (img:support) in (img:checkpoint) (color:cc99ff)beast_pen",
+      "optional: (img:gcp) (color:cc99ff)league || (img:skill) (img:support2) in (img:checkpoint) (color:cc99ff)beast_pen",
       "optional: (img:jeweller) in (img:checkpoint) (color:cc99ff)delve || (img:quest_2) (quest:map): (img:checkpoint) (color:cc99ff)sailor",
       "optional: blank t3 (img:rune) from (img:checkpoint) arena:blind_beast",
       "reach (img:checkpoint) areaidg4_1_2 ;; volcanic warrens"
@@ -567,7 +567,7 @@
     ],
     [
       "follow (img:quest_2) lorandis || go outside",
-      "optional: (img:skill) (color:cc99ff)league || 3 (img:exa) + 3 (img:regal) in (color:cc99ff)2 (img:checkpoint) (color:cc99ff)bells",
+      "optional: (img:skill2) (color:cc99ff)league || 3 (img:exa) + 3 (img:regal) in (color:cc99ff)2 (img:checkpoint) (color:cc99ff)bells",
       "kill torvian || enter areaidg4_10 ;; the excavation"
     ],
     [
