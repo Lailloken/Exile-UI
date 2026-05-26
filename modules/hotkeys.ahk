@@ -263,7 +263,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.actdecoder && Blank(settings.actdecoder.hotkey) && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.actdecoder && (Blank(settings.actdecoder.hotkey) || InStr(vars.log.areaid, "_town")) && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			vars.actdecoder.tab := 1
