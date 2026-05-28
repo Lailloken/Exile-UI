@@ -149,12 +149,12 @@
     {
       "id": "g2_9_1",
       "name": "path of mourning",
-      "recommendation": "25 | 25"
+      "recommendation": "25 | 26"
     },
     {
       "id": "g2_9_2",
       "name": "spires of deshar",
-      "recommendation": "25 | 26"
+      "recommendation": "26 | 27"
     },
     {
       "id": "g2_10_1",
@@ -169,11 +169,6 @@
     {
       "id": "g2_12_1",
       "name": "the dreadnought",
-      "recommendation": "26 | 27"
-    },
-    {
-      "id": "g2_12_2",
-      "name": "dreadnought vanguard",
       "recommendation": "27 | 28.5"
     },
     {
@@ -194,7 +189,7 @@
     {
       "id": "g3_2_1",
       "name": "infested barrens",
-      "recommendation": "30 | 31"
+      "recommendation": "31 | 32"
     },
     {
       "id": "g3_2_2",
@@ -204,7 +199,7 @@
     {
       "id": "g3_4",
       "name": "venom crypts",
-      "recommendation": "31 | 31"
+      "recommendation": "30 | 31"
     },
     {
       "id": "g3_3",
@@ -229,12 +224,12 @@
     {
       "id": "g3_7",
       "name": "azak bog",
-      "recommendation": "31 | 32"
+      "recommendation": "35 | 36"
     },
     {
       "id": "g3_8",
       "name": "drowned city",
-      "recommendation": "35 | 36"
+      "recommendation": "36 | 36"
     },
     {
       "id": "g3_9",

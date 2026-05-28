@@ -40,7 +40,7 @@ DB_Load(database)
 			, "trees": {"supported": ["3_28"]}}
 		Else
 			db.leveltracker := {"areaIDs": {}, "areas": json.load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas 2.json") ? lang : "english") "\[leveltracker] areas 2.json"))
-			, "trees": {"supported": ["0_4"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
+			, "trees": {"supported": ["0_4", "0_5"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
 
 		If db.leveltracker.gems.HasKey("renamed")
 			db.leveltracker.renamed_gems := LLK_CloneObject(db.leveltracker.gems.renamed), db.leveltracker.gems.Delete("renamed")
