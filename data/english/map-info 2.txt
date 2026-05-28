@@ -260,9 +260,9 @@ type	=	monsters
 text	=	inc stun: +%
 ID	=	043
 
-[Monsters have # increased Freeze Buildup|Monsters inflict # increased Flammability Magnitude|Monsters have # increased Shock Chance]
+[Monsters have # increased Elemental Ailment Application]
 type	=	monsters
-text	=	freeze/ignite/shock: +%
+text	=	ele ailments: +%
 ID	=	044
 
 [Monsters fire # additional Projectiles]
