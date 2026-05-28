@@ -2393,12 +2393,8 @@ Iteminfo_GearParse(slot) ;parse the info of an equipped item and save it for ite
 	Clipboard := ""
 	If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
 		SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-	Else SendInput, !^{c}
+	Else SendInput, % (vars.poe_version ? "" : "!") "^{c}"
 	ClipWait, 0.1
-	If vars.poe_version && !settings.general.dev
-		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
-			SendInput, % "{" settings.hotkeys.item_descriptions " up}"
-		Else SendInput, {ALT up}
 
 	If !Clipboard
 	{
@@ -2864,12 +2860,8 @@ Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the 
 		Sleep 350
 		If settings.hotkeys.rebound_alt && settings.hotkeys.item_descriptions
 			SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-		Else SendInput, !^{c}
+		Else SendInput, % (vars.poe_version ? "" : "!") "^{c}"
 		ClipWait, 0.1
-		If vars.poe_version && !settings.general.dev
-			If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
-				SendInput, % "{" settings.hotkeys.item_descriptions " up}"
-			Else SendInput, {ALT up}
 
 		If Clipboard
 		{

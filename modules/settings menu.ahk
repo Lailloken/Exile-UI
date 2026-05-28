@@ -1453,7 +1453,7 @@ Settings_hotkeys()
 		Gui, %GUI%: Font, norm
 	}
 
-	If !vars.client.stream
+	If !vars.client.stream && !vars.poe_version
 	{
 		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked"settings.hotkeys.rebound_alt, % Lang_Trans("m_hotkeys_descriptions")
 		vars.hwnd.settings.rebound_alt := hwnd, vars.hwnd.help_tooltips["settings_hotkeys ingame-keybinds"] := hwnd0
@@ -1465,7 +1465,10 @@ Settings_hotkeys()
 			vars.hwnd.help_tooltips["settings_hotkeys formatting"] := hwnd0, vars.hwnd.settings.item_descriptions := vars.hwnd.help_tooltips["settings_hotkeys formatting|"] := hwnd
 			Gui, %GUI%: font, % "s"settings.general.fSize
 		}
-		Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.rebound_c " x" x_anchor . (settings.hotkeys.rebound_c ? " cAqua" : ""), % Lang_Trans("m_hotkeys_ckey")
+	}
+	If !vars.client.stream
+	{
+		Gui, %GUI%: Add, Checkbox, % "xs Section x" x_anchor " HWNDhwnd gSettings_hotkeys2 Checked" settings.hotkeys.rebound_c . (settings.hotkeys.rebound_c ? " cAqua" : ""), % Lang_Trans("m_hotkeys_ckey")
 		vars.hwnd.settings.rebound_c := hwnd
 	}
 

@@ -10,8 +10,8 @@
 		vars.hotkeys := {"scan_codes": {"00A": 9, "00B": 0}}
 
 	settings.hotkeys := {}, ini := IniBatchRead("ini" vars.poe_version "\hotkeys.ini")
-	settings.hotkeys.rebound_alt := !Blank(check := ini.settings["advanced item-info rebound"]) ? check : 0
-	settings.hotkeys.item_descriptions := !Blank(check := ini.hotkeys["item-descriptions key"]) ? check : ""
+	settings.hotkeys.rebound_alt := !vars.poe_version && !Blank(check := ini.settings["advanced item-info rebound"]) ? check : 0
+	settings.hotkeys.item_descriptions := !vars.poe_version && !Blank(check := ini.hotkeys["item-descriptions key"]) ? check : ""
 	If !settings.hotkeys.item_descriptions
 		settings.hotkeys.rebound_alt := 0
 	settings.hotkeys.rebound_c := !Blank(check := ini.settings["c-key rebound"]) ? check : 0
