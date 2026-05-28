@@ -630,13 +630,8 @@ Sanctum_RelicsClick()
 	Clipboard := ""
 	If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
 		SendInput, % "{" settings.hotkeys.item_descriptions " down}^{c}{" settings.hotkeys.item_descriptions " up}"
-	Else SendInput, !^{c}
-
+	Else SendInput, % (vars.poe_version ? "" : "!") "^{c}"
 	ClipWait, 0.1
-	If vars.poe_version && !settings.general.dev
-		If settings.hotkeys.item_descriptions && settings.hotkeys.rebound_alt
-			SendInput, % "{" settings.hotkeys.item_descriptions " up}"
-		Else SendInput, {ALT up}
 
 	For key, val in items
 		If InStr(Clipboard, key)

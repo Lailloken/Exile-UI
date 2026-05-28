@@ -132,7 +132,7 @@
     "actdecoder hotkey": [
       "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
       "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton 1/2) on the mouse",
-      "holding this key will only activate the act-decoder, tapping it will use its normal function(/highlight)"
+      "holding this key will only activate the act-decoder, tapping it will use its normal function (e.g. a skill)(/highlight)"
     ],
     "actdecoder layouts opacity": [
       "the opacity (1 to 10) of the zone-layouts overlay in locked mode"
@@ -557,6 +557,7 @@
       "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
       "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
+      "(hint)__ (img:skill2): it's the 1st time a gem of this level is available as an optional",
       "(hint)__",
       "if text is (color:00FFFF)highlighted_like_this, hold down the widget-key to see an image",
       "(hint)__",

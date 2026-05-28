@@ -10,8 +10,8 @@
 		vars.hotkeys := {"scan_codes": {"00A": 9, "00B": 0}}
 
 	settings.hotkeys := {}, ini := IniBatchRead("ini" vars.poe_version "\hotkeys.ini")
-	settings.hotkeys.rebound_alt := !Blank(check := ini.settings["advanced item-info rebound"]) ? check : 0
-	settings.hotkeys.item_descriptions := !Blank(check := ini.hotkeys["item-descriptions key"]) ? check : ""
+	settings.hotkeys.rebound_alt := !vars.poe_version && !Blank(check := ini.settings["advanced item-info rebound"]) ? check : 0
+	settings.hotkeys.item_descriptions := !vars.poe_version && !Blank(check := ini.hotkeys["item-descriptions key"]) ? check : ""
 	If !settings.hotkeys.item_descriptions
 		settings.hotkeys.rebound_alt := 0
 	settings.hotkeys.rebound_c := !Blank(check := ini.settings["c-key rebound"]) ? check : 0
@@ -263,7 +263,7 @@ Hotkeys_Tab()
 			Break
 		}
 
-	While settings.features.actdecoder && Blank(settings.actdecoder.hotkey) && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
+	While settings.features.actdecoder && (Blank(settings.actdecoder.hotkey) || InStr(vars.log.areaid, "_town")) && !(settings.qol.lab && InStr(vars.log.areaID, "labyrinth") && !InStr(vars.log.areaID, "_trials_")) && GetKeyState(vars.hotkeys.tab, "P")
 		If (A_TickCount >= start + 200)
 		{
 			vars.actdecoder.tab := 1

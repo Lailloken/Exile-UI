@@ -1347,7 +1347,7 @@ Leveltracker_Hints()
 	Gui, leveltracker_hints: Margin, -1, -1
 	Gui, leveltracker_hints: Font, % "s"settings.general.fSize " cWhite", % vars.system.font
 
-	If pic && (settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder)
+	If pic && (settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder || InStr(vars.log.areaid, "_town"))
 	{
 		pBitmap := Gdip_CreateBitmapFromFile("img\GUI\leveling tracker\hints" vars.poe_version "\" pic ".jpg")
 		pBitmap_resize := Gdip_ResizeBitmap(pBitmap, vars.leveltracker.coords.w, 10000, 1,, 1), Gdip_DisposeBitmap(pBitmap)
@@ -2044,7 +2044,7 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 					For key in vars.leveltracker.hints
 						If InStr(StrReplace(part, "_", " "), key)
 							text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text, hint_img := 1
-					If hint_img && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder)
+					If hint_img && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder || InStr(vars.log.areaid, "_town"))
 						color := "Aqua"
 
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
@@ -2144,7 +2144,10 @@ Leveltracker_PobGemCutting(cHWND := "")
 		dimensions := ["all skill gems", "all support gems", "all spirit gems"], profile0 := profile, skillset0 := skillset
 		For index, group in pob.gems[vars.leveltracker_gemcutting.skillset].groups
 			For index1, gem in group.gems
-				gem_trimmed := Trim(gem, " |–"), renamed := db.leveltracker.renamed_gems[gem_trimmed], dimensions.Push(renamed ? StrReplace(gem, gem_trimmed, renamed) : gem)
+			{
+				gem_trimmed := Trim(gem, " |–"), renamed := db.leveltracker.renamed_gems[gem_trimmed], gem_type := LLK_HasKey(db.leveltracker.gems, gem_trimmed,,,, 1)
+				translated := db.leveltracker.gems[gem_type][gem_trimmed].3, dimensions.Push(renamed ? StrReplace(gem, gem_trimmed, renamed) : (translated ? (InStr(gem, "|") ? " |–" : "") translated : gem))
+			}
 		LLK_PanelDimensions(dimensions, settings.leveltracker_gemcutting.fSize, width, height)
 		vars.leveltracker_gemcutting.wSelection := width, vars.leveltracker_gemcutting.regex := []
 	}
@@ -2196,10 +2199,10 @@ Leveltracker_PobGemCutting(cHWND := "")
 			If (group.gems.Count() > 1)
 				Continue
 
-		renamed := db.leveltracker.renamed_gems[gem]
-		While groups[(renamed ? renamed : gem) . handle]
+		renamed := db.leveltracker.renamed_gems[gem], gem_type := LLK_HasKey(db.leveltracker.gems, gem,,,, 1), translated := db.leveltracker.gems[gem_type][gem].3
+		While groups[(renamed ? renamed : (translated ? translated : gem)) . handle]
 			handle .= "|"
-		groups[(renamed ? renamed : gem) . handle] := LLK_CloneObject(group)
+		groups[(renamed ? renamed : (translated ? translated : gem)) . handle] := LLK_CloneObject(group)
 	}
 
 	For key, group in groups
@@ -2207,10 +2210,10 @@ Leveltracker_PobGemCutting(cHWND := "")
 		regex := "", index := A_Index
 		For index1, gem in group.gems
 		{
-			gem_trimmed := Trim(gem, " |–")
+			gem_trimmed := Trim(gem, " |–"), gem_type := LLK_HasKey(db.leveltracker.gems, gem_trimmed,,,, 1), translated := db.leveltracker.gems[gem_type][gem_trimmed].3
 			type := LLK_HasKey(db.leveltracker.gems, gem_trimmed,,,, 1), color := (IsNumber(db.leveltracker.gems[type][gem_trimmed].2) ? stat_colors[db.leveltracker.gems[type][gem_trimmed].2] : "White")
 			renamed := db.leveltracker.renamed_gems[gem_trimmed]
-			Gui, %GUI_name%: Add, Text, % (index1 = 1 ? "y+" settings.leveltracker_gemcutting.fHeight//4 + 1 " " : "y+-" Ceil(settings.leveltracker_gemcutting.fHeight/5)) "xs x1 BackgroundTrans HWNDhwnd w" width - 2 " c" color, % " " (renamed ? StrReplace(gem, gem_trimmed, renamed) : gem)
+			Gui, %GUI_name%: Add, Text, % (index1 = 1 ? "y+" settings.leveltracker_gemcutting.fHeight//4 + 1 " " : "y+-" Ceil(settings.leveltracker_gemcutting.fHeight/5)) "xs x1 BackgroundTrans HWNDhwnd w" width - 2 " c" color, % " " (renamed ? StrReplace(gem, gem_trimmed, renamed) : (translated ? (InStr(gem, "|") ? " |–" : "") translated : gem))
 			Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp BackgroundBlack", 0
 			If (index1 = 1)
 				ControlGetPos, xFirst, yFirst,,,, % "ahk_id " hwnd
@@ -2432,7 +2435,7 @@ Leveltracker_PobImport(b64, profile)
 
 	If !classes
 		If vars.poe_version
-			classes := {"mercenary": ["tactician", "witchhunter", "gemling legionnaire"], "monk": ["invoker", "acolyte of chayula"], "ranger": ["deadeye", "pathfinder"], "sorceress": ["stormweaver", "chronomancer", "disciple of varashta"], "warrior": ["titan", "warbringer", "smith of kitava"], "witch": ["infernalist", "blood mage", "lich", "abyssal lich"], "huntress": ["amazon", "ritualist"], "druid": ["oracle", "shaman"]}
+			classes := {"mercenary": ["tactician", "witchhunter", "gemling legionnaire"], "monk": ["invoker", "acolyte of chayula", "martial artist"], "ranger": ["deadeye", "pathfinder"], "sorceress": ["stormweaver", "chronomancer", "disciple of varashta"], "warrior": ["titan", "warbringer", "smith of kitava"], "witch": ["infernalist", "blood mage", "lich", "abyssal lich"], "huntress": ["amazon", "ritualist", "spirit walker"], "druid": ["oracle", "shaman"]}
 		Else classes := {"scion": ["ascendant", "reliquarian"], "marauder": ["juggernaut", "berserker", "chieftain"], "ranger": ["warden", "deadeye", "pathfinder"], "witch": ["occultist", "elementalist", "necromancer"]
 		, "duelist": ["slayer", "gladiator", "champion"], "templar": ["inquisitor", "hierophant", "guardian"], "shadow": ["assassin", "trickster", "saboteur"]}
 

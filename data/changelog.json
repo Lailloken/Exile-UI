@@ -1,5 +1,10 @@
 [
   [
+	["1.63.0", 16300, 1],
+	"may 28, 2026",
+	"early 0.5 release (limited functionality in 0.4.x, please read full notes!)(/highlight)"
+  ],
+  [
 	["1.62.7", 16207, 1],
 	"may 21, 2026",
 	"act-tracker:\n>> added many optionals, A1 + A4 routing tweaks, major interlude re-routing (see full notes)\n>> updates will be applied the next time you reset your guide-slot (don't do it if you're currenly on a run!)\n>> guide-slots with custom edits are not affected (create a new slot or delete the previous one to get the updates, after making a backup)(/highlight)",
