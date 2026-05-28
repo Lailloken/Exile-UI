@@ -248,7 +248,7 @@ Init_client()
 		LLK_Log("found game's config-file")
 
 		;check the contents of the client-config
-		game_config := IniBatchRead(poe_config_file)
+		game_config := IniBatchRead(poe_config_file,, "blank")
 		If !game_config.Count()
 			LLK_Error("Cannot read the PoE config-file. Please restart the game-client and then the script. If you get this error repeatedly, please report the issue.`n`nError-message (for reporting): PoE-config returns empty")
 

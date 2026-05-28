@@ -293,7 +293,7 @@ LLK_FileRead(file, keep_case := 0, encoding := "65001")
 {
 	local
 
-	FileRead, read, % (!Blank(encoding) ? "*P" encoding " " : "") file
+	FileRead, read, % (!Blank(encoding) && encoding != "blank" ? "*P" encoding " " : "") file
 	If !keep_case
 		StringLower, read, read
 	Return Trim(read, " `r`n`t")
