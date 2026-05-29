@@ -2,7 +2,9 @@
   [
 	["1.63.0", 16300, 1],
 	"may 28, 2026",
-	"early 0.5 release (limited functionality in 0.4.x, please read full notes!)(/highlight)"
+	"act-tracker:\n>> added the campaign changes that have been teased so far\n>> added extra highlighting to gem optionals when a new tier is available\n>> updated a4 for the seasonal matiki shuffle",
+	"act-decoder:\n>> may be moderately to severely outdated for the foreseeable future\n>> make sure to rebind it (or disable it) so hint images are accessible in the guide(/highlight)",
+	"item-info:\n>> fixed potentially inaccurate iron rune scaling on talismans"
   ],
   [
 	["1.62.7", 16207, 1],
