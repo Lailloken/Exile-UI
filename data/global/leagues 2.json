@@ -1,18 +1,22 @@
 {
   "sc": {
     "ssf": {
-      "standard": "Solo Self-Found"
+      "standard": "Solo Self-Found",
+      "aldur": "SSF Runes of Aldur"
     },
     "trade": {
-      "standard": "Standard"
+      "standard": "Standard",
+      "aldur": "Runes of Aldur"
     }
   },
   "hc": {
     "ssf": {
-      "standard": "Hardcore SSF"
+      "standard": "Hardcore SSF",
+      "aldur": "HC SSF Runes of Aldur"
     },
     "trade": {
-      "standard": "Hardcore"
+      "standard": "Hardcore",
+      "aldur": "HC Runes of Aldur"
     }
   }
 }
