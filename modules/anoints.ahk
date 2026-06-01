@@ -8,7 +8,7 @@
 	If !FileExist("ini" vars.poe_version "\anoints.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\anoints.ini", settings
 	If vars.poe_version
-		vars.anoints.currencies := ["ire", "guilt", "greed", "paranoia", "envy", "disgust", "despair", "fear", "suffering", "isolation"]
+		vars.anoints.currencies := ["ire", "guilt", "greed", "paranoia", "envy", "disgust", "despair", "fear", "suffering", "isolation", "melancholy", "ferocity", "contempt"]
 	Else vars.anoints.currencies := ["clear", "sepia", "amber", "verdant", "teal", "azure", "indigo", "violet", "crimson", "black", "opalescent", "silver", "golden", "prismatic"]
 
 	ini := IniBatchRead("ini" vars.poe_version "\anoints.ini")
@@ -39,10 +39,11 @@ Anoints(cHWND := "")
 {
 	local
 	global vars, settings, db, json
-	static toggle := 0, fSize, wIcons, wCost := {}, wUnhide, hwnd_last, results, keyword_list, RGBs, and_or := [], block := [], hide := {}
+	static toggle := 0, fSize, wIcons, wCost := {}, wUnhide, hwnd_last, results, keyword_list, RGBs, RGBs_2, and_or := [], block := [], hide := {}
 
 	If !RGBs
-		RGBs := vars.poe_version ? ["Maroon", "990099", "CC6600", "999900", "Green", "344A00", "20367C", "4C0099", "505050", "Silver"] : ["FFFFFF", "663300", "FF8000", "Lime", "Aqua", "Blue", "Purple", "Fuchsia", "Red", "Black", "579DC0", "Gray", "FFD700", "FFC0CB"]
+		RGBs := (vars.poe_version ? ["Maroon", "990099", "CC6600", "999900", "Green", "344A00", "20367C", "4C0099", "505050", "Silver", "Silver", "Silver", "Silver"] : ["FFFFFF", "663300", "FF8000", "Lime", "Aqua", "Blue", "Purple", "Fuchsia", "Red", "Black", "579DC0", "Gray", "FFD700", "FFC0CB"])
+		, RGBs_2 := (vars.poe_version ? ["", "", "", "", "", "", "", "", "", "", "Lime", "Yellow", "Red"] : [])
 		, vars.anoints.keywords := []
 
 	If !vars.anoints.dictionary
@@ -129,7 +130,7 @@ Anoints(cHWND := "")
 		Else If (check = "stock_reset")
 		{
 			If LLK_Progress(vars.hwnd.anoints.stock_reset_bar, "LButton")
-				For index, val in vars.anoints.stock
+				For index, val in vars.anoints.currencies
 					vars.anoints.stock[index] := 0, vars.anoints.stock_check := 0
 			Else Return
 
@@ -284,7 +285,7 @@ Anoints(cHWND := "")
 		Gui, %GUI_name%: Add, Pic, % "xp+1 yp+1 wp hp HWNDhwnd2 BackgroundTrans", % "HBitmap:*" vars.pics.global.black_trans
 		Gui, %GUI_name%: Add, Pic, % "xp-1 yp-1 Border HWNDhwnd3", % "HBitmap:*" hbmBitmap
 		Gui, %GUI_name%: Add, Text, % "Disabled xp y+-1 wp h" margin*2 " Border BackgroundTrans HWNDhwnd_mats"
-		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" RGBs[index], 100
+		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border Background" (RGBs_2[index] ? RGBs_2[index] : "Black") " c" RGBs[index], 100
 		vars.hwnd.anoints[index "_text"] := hwnd, vars.hwnd.anoints[index] := hwnd2, vars.hwnd.anoints[index "_2"] := hwnd3
 	}
 	ControlGetPos, xMats, yMats, wMats, hMats,, ahk_id %hwnd_mats%
@@ -527,7 +528,7 @@ Anoints(cHWND := "")
 				Loop, Parse, % data[val].recipe, % ",", % " "
 				{
 					Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? (!added ? "Section xs x" margin0 + margin : "xs y+" margin) " HWNDhwnd" (HWNDs += 1) : "yp x+-1 HWNDhwnd" (HWNDs += 1)) " BackgroundTrans Border w" settings.anoints.fHeight * 0.66 " h" settings.anoints.fHeight - 2
-					Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" RGBs[A_LoopField] " HWNDhwnd" (HWNDs += 1), 100
+					Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border Background" (RGBs_2[A_LoopField] ? RGBs_2[A_LoopField] : "Black") " c" RGBs[A_LoopField] " HWNDhwnd" (HWNDs += 1), 100
 				}
 				Gui, %GUI_name%: Add, Text, % "yp x+" margin " cFFCC99 HWNDhwnd" (HWNDs += 1), % (IsNumber(val) ? "" : LLK_StringCase(val)) . (reforges ? " (" reforges ")" : "")
 				ControlGetPos, xNode, yNode, wNode, hNode,, ahk_id %hwnd1%
@@ -568,7 +569,7 @@ Anoints(cHWND := "")
 		}
 	}
 	ControlFocus,, % "ahk_id " vars.hwnd.anoints.search
-	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x " y" vars.monitor.y " w" wMax + margin0 . (continue ? " h" vars.monitor.h - 2 : "")
+	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + Round(vars.client.h*0.62) " y" vars.monitor.y " w" wMax + margin0 . (continue ? " h" vars.monitor.h - 2 : "")
 	LLK_Overlay(hwnd_anoints, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	Clipboard := json.dump(keyword_list,, "  ")
 }
@@ -581,7 +582,7 @@ Anoints_Check(recipe, ByRef reforges)
 	stock := vars.anoints.stock.Clone()
 	For index, currency in StrSplit(recipe, ",", " ")
 	{
-		While settings.anoints.reforge && !stock[currency] && (currency != 14)
+		While settings.anoints.reforge && !stock[currency] && (!vars.poe_version && currency != 14 || vars.poe_version && currency < 11)
 		{
 			While (stock[currency - 1] < 3)
 				If (stock[currency - 2] < 3)

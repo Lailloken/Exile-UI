@@ -260,7 +260,7 @@ Omni_Context(mode := 0)
 			If (A_TickCount >= vars.omnikey.start + 200)
 				Return "essences"
 
-	If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "^(Diluted|Liquid|Concentrated)\s.*|.*\sOil$")
+	If vars.hwnd.anoints.main && RegExMatch(vars.omnikey.item.name, "^(Potent\s){0,1}(Diluted|Liquid|Concentrated)\s.*|.*\sOil$")
 		Return "anoints_stock"
 
 	If settings.features.lootfilter && (item.name || item.itembase) && (vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState(settings.lootfilter.modifier_key, "P"))
@@ -386,11 +386,11 @@ Omni_ContextMenu()
 			}
 
 			If (item.rarity != Lang_Trans("items_unique")) && !Blank(item.class)
-			&& (settings.general.lang_client = "english" && !InStr(item.class, "currency") || (LLK_HasVal(db.item_bases._classes, item.class) || vars.poe_version && (vars.omnikey.poedb[item.class] || item.class = "augment")) || LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])) || RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s")
+			&& (settings.general.lang_client = "english" && !InStr(item.class, "currency") || (LLK_HasVal(db.item_bases._classes, item.class) || vars.poe_version && (vars.omnikey.poedb[item.class] || item.class = "augment")) || LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])) || RegExMatch(item.name, "^(Potent\s){0,1}(Diluted|Liquid|Concentrated)\s")
 			{
 				If !Blank(LLK_HasVal(db.item_bases._classes, item.class))
 					class := db.item_bases._classes[LLK_HasVal(db.item_bases._classes, item.class)]
-				Else If RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s")
+				Else If RegExMatch(item.name, "^(Potent\s){0,1}(Diluted|Liquid|Concentrated)\s")
 					class := "Liquid emotion"
 				Else If LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])
 					class := LLK_PatternMatch(item.name, "", ["Essence of", "Scarab", "Catalyst", " Oil", "Memory of "])
@@ -413,7 +413,7 @@ Omni_ContextMenu()
 				}
 				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
-				If settings.features.anoints && RegExMatch(item.name, "^(Diluted|Liquid|Concentrated)\s|\sOil$")
+				If settings.features.anoints && RegExMatch(item.name, "^(Potent\s){0,1}(Diluted|Liquid|Concentrated)\s|\sOil$")
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
 
 				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "augment") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_idol")) ? "idol" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
