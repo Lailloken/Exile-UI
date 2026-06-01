@@ -600,7 +600,7 @@ Mapinfo_Parse2(mode)
 		{
 			map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1, map.mods += 1
 			If mode && settings.general.dev
-				MsgBox, % "unknown mod:`n" mod_group
+				LLK_ToolTip("unknown mod:`n" mod_group, 2)
 		}
 	}
 
