@@ -1,5 +1,11 @@
 [
   [
+	["1.63.2", 16302],
+	"june 3, 2026",
+	"stash-ninja:\n>> updated to 0.5",
+	"statlas:\n>> added a couple of 0.5 maps"
+  ],
+  [
 	["1.63.1", 16301],
 	"june 1, 2026",
 	"act-tracker:\n>> updated guaranteed league-rewards\n>> switched around mastodon badlands and keth\n>> fixed guide being stuck at the end of a2\n>> act 4 shark and map-hunt quest are no longer optional\n>> aldur quest-line will be added next release (need to figure out campaign runs after first)",
