@@ -16,6 +16,10 @@
       "name": "alpine ridge",
       "boss": "beira + ignagduk"
     },
+    "aridplains": {
+      "name": "arid plains",
+      "boss": "anundr + akthi"
+    },
     "augury": {
       "name": "augury",
       "boss": "uxmal"
@@ -87,6 +91,10 @@
       "name": "decay",
       "boss": "rotten druid"
     },
+    "deforestation": {
+      "name": "deforestation",
+      "boss": "lythara"
+    },
     "derelictmansion": {
       "name": "derelict mansion",
       "boss": "elswyth + wulfric"
@@ -118,6 +126,10 @@
     "frozenfalls": {
       "name": "frozen falls",
       "boss": "rakkar"
+    },
+    "greenhouse": {
+      "name": "greenhouse",
+      "boss": "brambleghast"
     },
     "grimhaven": {
       "name": "grimhaven",
@@ -189,6 +201,10 @@
       "name": "penitentiary",
       "boss": "executioner"
     },
+    "plantation": {
+      "name": "plantation",
+      "boss": "wulfric"
+    },
     "ravine": {
       "name": "ravine",
       "boss": "zicoatl"
@@ -196,6 +212,10 @@
     "razedfields": {
       "name": "razed fields",
       "boss": "beira + ignagduk"
+    },
+    "reservoir": {
+      "name": "reservoir",
+      "boss": "rootdredge"
     },
     "riverhold": {
       "name": "riverhold",
@@ -221,6 +241,10 @@
       "name": "rustbowl",
       "boss": "rust king"
     },
+    "sanctuary": {
+      "name": "sanctuary",
+      "boss": "balbala"
+    },
     "sandspit": {
       "name": "sandspit",
       "boss": "great white one"
@@ -241,9 +265,17 @@
       "name": "sinkhole",
       "boss": "yama"
     },
+    "sinterrift": {
+      "name": "sinter rift",
+      "boss": "krutog"
+    },
     "slick": {
       "name": "slick",
       "boss": "rudja"
+    },
+    "snowfall": {
+      "name": "snowfall",
+      "boss": "siora"
     },
     "spiderwoods": {
       "name": "spider woods",
