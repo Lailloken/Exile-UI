@@ -214,7 +214,7 @@
       "follow blank walls: areaidg2_3 ;; the halani gates"
     ],
     [
-      "optional: (img:gcp) (color:cc99ff)league || <atk_weapon> in (img:checkpoint) (color:cc99ff)tent",
+      "optional: (img:gcp) (color:cc99ff)league || <atk_weap> in (img:checkpoint) (color:cc99ff)tent",
       "kill jamanra || use (img:arena) stairs",
       "find (img:checkpoint) || (img:portal) areaidg2_town ;; the ardura caravan"
     ],

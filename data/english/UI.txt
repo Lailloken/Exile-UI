@@ -1251,7 +1251,12 @@
 		m_stash_scarabs		=	"scarab"
 		m_stash_ultimatum		=	"ultimatum"
 		m_stash_ritual			=	"ritual"
-		m_stash_socketables		=	"socketables"
+
+		m_stash_runes1			=	"runes"				;## the sub-tabs in the PoE2 fragments tab
+		m_stash_runes2			=	"kalguuran runes"
+		m_stash_soulcores		=	"soul cores"
+		m_stash_idols			=	"idols"
+
 		m_stash_leagues		=	"league:"
 		m_stash_tabs			=	"stash tab configuration:"
 		m_stash_limits			=	"price-range profiles:"

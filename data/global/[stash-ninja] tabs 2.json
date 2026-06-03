@@ -201,14 +201,26 @@
   ],
   "delirium": [
     [
-      407,
-      237,
+      357,
+      245,
       "simulacrum splinter",
       "simulacrum-splinter"
     ],
     [
-      223,
+      465,
+      0,
+      "simulacrum",
+      "simulacrum"
+    ],
+    [
       409,
+      335,
+      "raven-touched shard",
+      "raven-touched-shard"
+    ],
+    [
+      112,
+      434,
       "diluted liquid ire",
       "diluted-liquid-ire"
     ],
@@ -225,20 +237,8 @@
       "diluted-liquid-greed"
     ],
     [
+      526,
       0,
-      0,
-      "liquid paranoia",
-      "liquid-paranoia"
-    ],
-    [
-      0,
-      0,
-      "liquid envy",
-      "liquid-envy"
-    ],
-    [
-      223,
-      505,
       "liquid disgust",
       "liquid-disgust"
     ],
@@ -255,7 +255,19 @@
       "concentrated-liquid-fear"
     ],
     [
+      157,
+      524,
+      "liquid paranoia",
+      "liquid-paranoia"
+    ],
+    [
       0,
+      0,
+      "liquid envy",
+      "liquid-envy"
+    ],
+    [
+      571,
       0,
       "concentrated liquid suffering",
       "concentrated-liquid-suffering"
@@ -265,6 +277,102 @@
       0,
       "concentrated liquid isolation",
       "concentrated-liquid-isolation"
+    ],
+    [
+      112,
+      636,
+      "ancient diluted liquid ire",
+      "ancient-diluted-liquid-ire"
+    ],
+    [
+      0,
+      0,
+      "ancient diluted liquid guilt",
+      "ancient-diluted-liquid-guilt"
+    ],
+    [
+      0,
+      0,
+      "ancient diluted liquid greed",
+      "ancient-diluted-liquid-greed"
+    ],
+    [
+      526,
+      0,
+      "ancient liquid disgust",
+      "ancient-liquid-disgust"
+    ],
+    [
+      0,
+      0,
+      "ancient liquid despair",
+      "ancient-liquid-despair"
+    ],
+    [
+      0,
+      0,
+      "ancient concentrated liquid fear",
+      "ancient-concentrated-liquid-fear"
+    ],
+    [
+      157,
+      726,
+      "ancient liquid paranoia",
+      "ancient-liquid-paranoia"
+    ],
+    [
+      0,
+      0,
+      "ancient liquid envy",
+      "ancient-liquid-envy"
+    ],
+    [
+      571,
+      0,
+      "ancient concentrated liquid suffering",
+      "ancient-concentrated-liquid-suffering"
+    ],
+    [
+      0,
+      0,
+      "ancient concentrated liquid isolation",
+      "ancient-concentrated-liquid-isolation"
+    ],
+    [
+      130,
+      843,
+      "potent liquid melancholy",
+      "potent-liquid-melancholy"
+    ],
+    [
+      0,
+      0,
+      "potent liquid ferocity",
+      "potent-liquid-ferocity"
+    ],
+    [
+      0,
+      0,
+      "potent liquid contempt",
+      "potent-liquid-contempt"
+    ],
+    [
+      499,
+      0,
+      "ancient potent liquid melancholy",
+      "ancient-potent-liquid-melancholy"
+    ],
+    [
+      0,
+      0,
+      "ancient potent liquid ferocity",
+      "ancient-potent-liquid-ferocity"
+    ],
+    [
+      0,
+      0,
+      "ancient potent liquid contempt",
+      "ancient-potent-liquid-contempt"
     ]
   ],
   "essences": [
@@ -749,27 +857,309 @@
       "perfect-essence-of-ruin"
     ],
     [
-      413,
+      379,
       0,
       "essence of the abyss",
-      "essence-of-abyss"
+      "essence-of-the-abyss"
+    ],
+    [
+      0,
+      0,
+      "essence of the breach",
+      "essence-of-the-breach"
+    ]
+  ],
+  "fragments": [
+    [
+      328,
+      313,
+      "ancient crisis fragment",
+      "ancient-crisis-fragment"
+    ],
+    [
+      409,
+      0,
+      "weathered crisis fragment",
+      "weathered-crisis-fragment"
+    ],
+    [
+      490,
+      0,
+      "faded crisis fragment",
+      "faded-crisis-fragment"
+    ],
+    [
+      113,
+      430,
+      "breach splinter",
+      "breach-splinter"
+    ],
+    [
+      0,
+      0,
+      "breachstone",
+      "breachstone"
+    ],
+    [
+      158,
+      592,
+      "breachlord sac",
+      "breachlord-sac"
+    ],
+    [
+      202,
+      726,
+      "head of the king",
+      "head-of-the-king"
+    ],
+    [
+      444,
+      0,
+      "simulacrum splinter",
+      "simulacrum-splinter"
+    ],
+    [
+      0,
+      0,
+      "simulacrum",
+      "simulacrum"
+    ],
+    [
+      0,
+      0,
+      "raven-touched shard",
+      "raven-touched-shard"
+    ],
+    [
+      741,
+      0,
+      "kulemak's invitation",
+      "kulemaks-invitation"
+    ],
+    [
+      328,
+      861,
+      "deadly fate",
+      "deadly-fate"
+    ],
+    [
+      409,
+      0,
+      "cowardly fate",
+      "cowardly-fate"
+    ],
+    [
+      490,
+      0,
+      "victorious fate",
+      "victorious-fate"
+    ]
+  ],
+  "idols": [
+    [
+      243,
+      176,
+      "tab_runes1"
+    ],
+    [
+      326,
+      0,
+      "tab_runes2"
+    ],
+    [
+      409,
+      0,
+      "tab_soulcores"
+    ],
+    [
+      491,
+      0,
+      "tab_idols"
+    ],
+    [
+      94,
+      300,
+      "snake idol",
+      "snake-idol"
+    ],
+    [
+      0,
+      0,
+      "primate idol",
+      "primate-idol"
+    ],
+    [
+      0,
+      0,
+      "owl idol",
+      "owl-idol"
+    ],
+    [
+      0,
+      0,
+      "cat idol",
+      "cat-idol"
+    ],
+    [
+      0,
+      0,
+      "wolf idol",
+      "wolf-idol"
+    ],
+    [
+      0,
+      0,
+      "boar idol",
+      "boar-idol"
+    ],
+    [
+      0,
+      0,
+      "bear idol",
+      "bear-idol"
+    ],
+    [
+      0,
+      0,
+      "ox idol",
+      "ox-idol"
+    ],
+    [
+      184,
+      408,
+      "stag idol",
+      "stag-idol"
+    ],
+    [
+      0,
+      0,
+      "rabbit idol",
+      "rabbit-idol"
+    ],
+    [
+      0,
+      0,
+      "fox idol",
+      "fox-idol"
+    ],
+    [
+      139,
+      561,
+      "idol of sirrius",
+      "idol-of-sirrius"
+    ],
+    [
+      0,
+      0,
+      "idol of thruldana",
+      "idol-of-thruldana"
+    ],
+    [
+      0,
+      0,
+      "idol of grold",
+      "idol-of-grold"
+    ],
+    [
+      0,
+      0,
+      "idol of eeshta",
+      "idol-of-eeshta"
+    ],
+    [
+      0,
+      0,
+      "idol of egrin",
+      "idol-of-egrin"
+    ],
+    [
+      0,
+      0,
+      "idol of maxarius",
+      "idol-of-maxarius"
+    ],
+    [
+      0,
+      0,
+      "idol of ralakesh",
+      "idol-of-ralakesh"
+    ],
+    [
+      139,
+      714,
+      "idol of greust",
+      "idol-of-greust"
+    ],
+    [
+      0,
+      0,
+      "idol of yeena",
+      "idol-of-yeena"
+    ],
+    [
+      0,
+      0,
+      "idol of eramir",
+      "idol-of-eramir"
+    ],
+    [
+      0,
+      0,
+      "idol of oak",
+      "idol-of-oak"
+    ],
+    [
+      0,
+      0,
+      "idol of alira",
+      "idol-of-alira"
+    ],
+    [
+      0,
+      0,
+      "idol of kraityn",
+      "idol-of-kraityn"
+    ],
+    [
+      0,
+      0,
+      "idol of silk",
+      "idol-of-silk"
+    ],
+    [
+      319,
+      867,
+      "idol of the sycophant",
+      "idol-of-the-sycophant"
+    ],
+    [
+      0,
+      0,
+      "idol of the martyr",
+      "idol-of-the-martyr"
+    ],
+    [
+      0,
+      0,
+      "idol of the pharisee",
+      "idol-of-the-pharisee"
     ]
   ],
   "ritual": [
     [
-      409,
+      408,
       204,
-      "petition splinter",
-      "petition-splinter"
+      "head of the king",
+      "head-of-the-king"
     ],
     [
-      251,
+      274,
       339,
       "omen of homogenising coronation",
       "omen-of-homogenising-coronation"
     ],
     [
-      368,
+      468,
       0,
       "omen of gambling",
       "omen-of-gambling"
@@ -779,12 +1169,6 @@
       0,
       "omen of bartering",
       "omen-of-bartering"
-    ],
-    [
-      566,
-      0,
-      "omen of corruption",
-      "omen-of-corruption"
     ],
     [
       148,
@@ -853,6 +1237,12 @@
       "omen-of-chaotic-monsters"
     ],
     [
+      0,
+      0,
+      "omen of chaotic effectiveness",
+      "omen-of-chaotic-effectiveness"
+    ],
+    [
       170,
       654,
       "omen of sinistral annulment",
@@ -901,12 +1291,6 @@
       "omen-of-sinistral-crystallisation"
     ],
     [
-      566,
-      0,
-      "omen of recombination",
-      "omen-of-recombination"
-    ],
-    [
       148,
       906,
       "omen of resurgence",
@@ -949,10 +1333,30 @@
       "omen-of-reinforcements"
     ]
   ],
-  "socketables": [
+  "runes1": [
     [
-      58,
-      194,
+      243,
+      176,
+      "tab_runes1"
+    ],
+    [
+      326,
+      0,
+      "tab_runes2"
+    ],
+    [
+      409,
+      0,
+      "tab_soulcores"
+    ],
+    [
+      491,
+      0,
+      "tab_idols"
+    ],
+    [
+      49,
+      268,
       "lesser desert rune",
       "lesser-desert-rune"
     ],
@@ -969,7 +1373,7 @@
       "greater-desert-rune"
     ],
     [
-      256,
+      328,
       0,
       "lesser glacial rune",
       "lesser-glacial-rune"
@@ -987,7 +1391,7 @@
       "greater-glacial-rune"
     ],
     [
-      454,
+      607,
       0,
       "lesser storm rune",
       "lesser-storm-rune"
@@ -1005,8 +1409,8 @@
       "greater-storm-rune"
     ],
     [
-      652,
-      0,
+      49,
+      358,
       "lesser iron rune",
       "lesser-iron-rune"
     ],
@@ -1023,8 +1427,8 @@
       "greater-iron-rune"
     ],
     [
-      58,
-      266,
+      328,
+      0,
       "lesser body rune",
       "lesser-body-rune"
     ],
@@ -1041,7 +1445,7 @@
       "greater-body-rune"
     ],
     [
-      256,
+      607,
       0,
       "lesser mind rune",
       "lesser-mind-rune"
@@ -1059,7 +1463,25 @@
       "greater-mind-rune"
     ],
     [
-      454,
+      49,
+      448,
+      "lesser vision rune",
+      "lesser-vision-rune"
+    ],
+    [
+      0,
+      0,
+      "vision rune",
+      "vision-rune"
+    ],
+    [
+      0,
+      0,
+      "greater vision rune",
+      "greater-vision-rune"
+    ],
+    [
+      328,
       0,
       "lesser rebirth rune",
       "lesser-rebirth-rune"
@@ -1077,7 +1499,7 @@
       "greater-rebirth-rune"
     ],
     [
-      652,
+      607,
       0,
       "lesser inspiration rune",
       "lesser-inspiration-rune"
@@ -1095,8 +1517,8 @@
       "greater-inspiration-rune"
     ],
     [
-      58,
-      338,
+      49,
+      538,
       "lesser robust rune",
       "lesser-robust-rune"
     ],
@@ -1113,7 +1535,7 @@
       "greater-robust-rune"
     ],
     [
-      256,
+      328,
       0,
       "lesser adept rune",
       "lesser-adept-rune"
@@ -1131,7 +1553,7 @@
       "greater-adept-rune"
     ],
     [
-      454,
+      607,
       0,
       "lesser resolve rune",
       "lesser-resolve-rune"
@@ -1149,26 +1571,8 @@
       "greater-resolve-rune"
     ],
     [
-      652,
-      0,
-      "lesser vision rune",
-      "lesser-vision-rune"
-    ],
-    [
-      0,
-      0,
-      "vision rune",
-      "vision-rune"
-    ],
-    [
-      0,
-      0,
-      "greater vision rune",
-      "greater-vision-rune"
-    ],
-    [
-      58,
-      410,
+      49,
+      628,
       "lesser stone rune",
       "lesser-stone-rune"
     ],
@@ -1185,442 +1589,768 @@
       "greater-stone-rune"
     ],
     [
-      562,
+      328,
       0,
+      "lesser ward rune",
+      "lesser-ward-rune"
+    ],
+    [
+      0,
+      0,
+      "ward rune",
+      "ward-rune"
+    ],
+    [
+      0,
+      0,
+      "greater ward rune",
+      "greater-ward-rune"
+    ],
+    [
+      607,
+      0,
+      "lesser charging rune",
+      "lesser-charging-rune"
+    ],
+    [
+      0,
+      0,
+      "charging rune",
+      "charging-rune"
+    ],
+    [
+      0,
+      0,
+      "greater charging rune",
+      "greater-charging-rune"
+    ],
+    [
+      49,
+      736,
       "greater rune of leadership",
       "greater-rune-of-leadership"
     ],
     [
-      634,
+      139,
       0,
       "greater rune of tithing",
       "greater-rune-of-tithing"
     ],
     [
-      706,
+      229,
       0,
       "greater rune of alacrity",
       "greater-rune-of-alacrity"
     ],
     [
-      778,
+      319,
       0,
       "greater rune of nobility",
       "greater-rune-of-nobility"
     ],
     [
-      58,
-      482,
+      589,
+      0,
       "farrul's rune of the hunt",
       "farruls-rune-of-the-hunt"
     ],
     [
-      130,
+      679,
       0,
       "thane myrk's rune of summer",
       "thane-myrks-rune-of-summer"
     ],
     [
-      202,
+      769,
       0,
       "lady hestra's rune of winter",
       "lady-hestras-rune-of-winter"
     ],
     [
-      274,
-      0,
+      49,
+      826,
       "thane leld's rune of spring",
       "thane-lelds-rune-of-spring"
     ],
     [
-      346,
+      139,
       0,
       "fenumus' rune of agony",
       "fenumus-rune-of-agony"
     ],
     [
-      418,
+      229,
       0,
       "thane girt's rune of wildness",
       "thane-girts-rune-of-wildness"
     ],
     [
-      490,
+      319,
       0,
       "hedgewitch assandra's rune of wisdom",
       "hedgewitch-assandras-rune-of-wisdom"
     ],
     [
-      562,
+      409,
       0,
       "saqawal's rune of the sky",
       "saqawals-rune-of-the-sky"
     ],
     [
-      634,
+      499,
       0,
       "the greatwolf's rune of willpower",
       "the-greatwolfs-rune-of-willpower"
     ],
     [
-      706,
+      589,
       0,
       "craiceann's rune of recovery",
       "craiceanns-rune-of-recovery"
     ],
     [
-      778,
+      679,
       0,
       "craiceann's rune of warding",
       "craiceanns-rune-of-warding"
     ],
     [
-      94,
-      554,
+      769,
+      0,
       "countess seske's rune of archery",
       "countess-seskes-rune-of-archery"
     ],
     [
-      166,
-      0,
+      49,
+      916,
       "saqawal's rune of erosion",
       "saqawals-rune-of-erosion"
     ],
     [
-      238,
+      139,
       0,
       "saqawal's rune of memory",
       "saqawals-rune-of-memory"
     ],
     [
-      310,
+      229,
       0,
       "the greatwolf's rune of claws",
       "the-greatwolfs-rune-of-claws"
     ],
     [
-      382,
+      319,
       0,
       "courtesan mannan's rune of cruelty",
       "courtesan-mannans-rune-of-cruelty"
     ],
     [
-      454,
+      409,
       0,
       "thane grannell's rune of mastery",
       "thane-grannells-rune-of-mastery"
     ],
     [
-      526,
+      499,
       0,
       "fenumus' rune of spinning",
       "fenumus-rune-of-spinning"
     ],
     [
-      598,
+      589,
       0,
       "fenumus' rune of draining",
       "fenumus-rune-of-draining"
     ],
     [
-      670,
+      679,
       0,
       "farrul's rune of grace",
       "farruls-rune-of-grace"
     ],
     [
-      742,
+      769,
       0,
       "farrul's rune of the chase",
       "farruls-rune-of-the-chase"
+    ]
+  ],
+  "runes2": [
+    [
+      243,
+      176,
+      "tab_runes1"
     ],
     [
-      58,
-      635,
+      326,
+      0,
+      "tab_runes2"
+    ],
+    [
+      409,
+      0,
+      "tab_soulcores"
+    ],
+    [
+      491,
+      0,
+      "tab_idols"
+    ],
+    [
+      184,
+      268,
+      "warding rune of reinforcement",
+      "warding-rune-of-reinforcement"
+    ],
+    [
+      0,
+      0,
+      "warding rune of protection",
+      "warding-rune-of-protection"
+    ],
+    [
+      0,
+      0,
+      "warding rune of disintegration",
+      "warding-rune-of-disintegration"
+    ],
+    [
+      0,
+      0,
+      "warding rune of desperation",
+      "warding-rune-of-desperation"
+    ],
+    [
+      0,
+      0,
+      "warding rune of courage",
+      "warding-rune-of-courage"
+    ],
+    [
+      0,
+      0,
+      "warding rune of nourishment",
+      "warding-rune-of-nourishment"
+    ],
+    [
+      184,
+      359,
+      "warding rune of symbiosis",
+      "warding-rune-of-symbiosis"
+    ],
+    [
+      0,
+      0,
+      "warding rune of stability",
+      "warding-rune-of-stability"
+    ],
+    [
+      0,
+      0,
+      "warding rune of glancing",
+      "warding-rune-of-glancing"
+    ],
+    [
+      0,
+      0,
+      "warding rune of heart",
+      "warding-rune-of-heart"
+    ],
+    [
+      0,
+      0,
+      "warding rune of annihilation",
+      "warding-rune-of-annihilation"
+    ],
+    [
+      0,
+      0,
+      "warding rune of salvaging",
+      "warding-rune-of-salvaging"
+    ],
+    [
+      229,
+      448,
+      "warding rune of armature",
+      "warding-rune-of-armature"
+    ],
+    [
+      0,
+      0,
+      "warding rune of obsession",
+      "warding-rune-of-obsession"
+    ],
+    [
+      0,
+      0,
+      "warding rune of equinox",
+      "warding-rune-of-equinox"
+    ],
+    [
+      0,
+      0,
+      "warding rune of bodyguards",
+      "warding-rune-of-bodyguards"
+    ],
+    [
+      0,
+      0,
+      "warding rune of hollowing",
+      "warding-rune-of-hollowing"
+    ],
+    [
+      49,
+      547,
+      "ancient rune of splinters",
+      "ancient-rune-of-splinters"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of dueling",
+      "ancient-rune-of-dueling"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of the titan",
+      "ancient-rune-of-the-titan"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of shattering",
+      "ancient-rune-of-shattering"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of prowess",
+      "ancient-rune-of-prowess"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of control",
+      "ancient-rune-of-control"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of discovery",
+      "ancient-rune-of-discovery"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of decay",
+      "ancient-rune-of-decay"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of witchcraft",
+      "ancient-rune-of-witchcraft"
+    ],
+    [
+      49,
+      637,
+      "ancient rune of the horde",
+      "ancient-rune-of-the-horde"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of animosity",
+      "ancient-rune-of-animosity"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of detonation",
+      "ancient-rune-of-detonation"
+    ],
+    [
+      0,
+      0,
+      "ancient rune of retaliation",
+      "ancient-rune-of-retaliation"
+    ],
+    [
+      499,
+      0,
+      "rune of vitality",
+      "rune-of-vitality"
+    ],
+    [
+      499,
+      0,
+      "rune of vitality",
+      "rune-of-vitality"
+    ],
+    [
+      0,
+      0,
+      "rune of the hunt",
+      "rune-of-the-hunt"
+    ],
+    [
+      0,
+      0,
+      "rune of acrobatics",
+      "rune-of-acrobatics"
+    ],
+    [
+      0,
+      0,
+      "rune of culmination",
+      "rune-of-culmination"
+    ],
+    [
+      49,
+      727,
+      "rune of renown",
+      "rune-of-renown"
+    ],
+    [
+      0,
+      0,
+      "rune of accumulation",
+      "rune-of-accumulation"
+    ],
+    [
+      0,
+      0,
+      "rune of foundations",
+      "rune-of-foundations"
+    ],
+    [
+      0,
+      0,
+      "rune of the prism",
+      "rune-of-the-prism"
+    ],
+    [
+      0,
+      0,
+      "rune of the blossom",
+      "rune-of-the-blossom"
+    ],
+    [
+      0,
+      0,
+      "rune of consistency",
+      "rune-of-consistency"
+    ],
+    [
+      0,
+      0,
+      "rune of reach",
+      "rune-of-reach"
+    ],
+    [
+      0,
+      0,
+      "rune of vital flame",
+      "rune-of-vital-flame"
+    ],
+    [
+      0,
+      0,
+      "rune of confrontation",
+      "rune-of-confrontation"
+    ],
+    [
+      139,
+      826,
+      "passion of aldur",
+      "passion-of-aldur"
+    ],
+    [
+      0,
+      0,
+      "breath of aldur",
+      "breath-of-aldur"
+    ],
+    [
+      0,
+      0,
+      "ire of aldur",
+      "ire-of-aldur"
+    ],
+    [
+      0,
+      0,
+      "betrayal of aldur",
+      "betrayal-of-aldur"
+    ],
+    [
+      0,
+      0,
+      "serle's triumph",
+      "serles-triumph"
+    ],
+    [
+      0,
+      0,
+      "cadigan's epiphany",
+      "cadigans-epiphany"
+    ],
+    [
+      0,
+      0,
+      "astrid's creativity",
+      "astrids-creativity"
+    ],
+    [
+      49,
+      916,
+      "uhtred's sidereus",
+      "uhtreds-sidereus"
+    ],
+    [
+      0,
+      0,
+      "kolr's hunt",
+      "kolrs-hunt"
+    ],
+    [
+      0,
+      0,
+      "vorana's carnage",
+      "voranas-carnage"
+    ],
+    [
+      0,
+      0,
+      "thrud's might",
+      "thruds-might"
+    ],
+    [
+      0,
+      0,
+      "medved's tending",
+      "medveds-tending"
+    ],
+    [
+      0,
+      0,
+      "katla's gloom",
+      "katlas-gloom"
+    ],
+    [
+      0,
+      0,
+      "masterwork rune",
+      "masterwork-rune"
+    ],
+    [
+      769,
+      0,
+      "aldur's legacy",
+      "aldurs-legacy"
+    ]
+  ],
+  "soulcores": [
+    [
+      243,
+      176,
+      "tab_runes1"
+    ],
+    [
+      326,
+      0,
+      "tab_runes2"
+    ],
+    [
+      409,
+      0,
+      "tab_soulcores"
+    ],
+    [
+      491,
+      0,
+      "tab_idols"
+    ],
+    [
+      94,
+      426,
       "soul core of topotante",
       "soul-core-of-topotante"
     ],
     [
-      130,
+      0,
       0,
       "soul core of tacati",
       "soul-core-of-tacati"
     ],
     [
-      202,
+      0,
       0,
       "soul core of opiloti",
       "soul-core-of-opiloti"
     ],
     [
-      274,
+      0,
       0,
       "soul core of jiquani",
       "soul-core-of-jiquani"
     ],
     [
-      346,
+      0,
       0,
       "soul core of zalatl",
       "soul-core-of-zalatl"
     ],
     [
-      418,
+      0,
       0,
       "soul core of citaqualotl",
       "soul-core-of-citaqualotl"
     ],
     [
-      490,
+      0,
       0,
       "soul core of puhuarte",
       "soul-core-of-puhuarte"
     ],
     [
-      562,
+      0,
       0,
       "soul core of tzamoto",
       "soul-core-of-tzamoto"
     ],
     [
-      634,
-      0,
+      139,
+      516,
       "soul core of xopec",
       "soul-core-of-xopec"
     ],
     [
-      706,
+      0,
       0,
       "soul core of quipolatl",
       "soul-core-of-quipolatl"
     ],
     [
-      778,
+      0,
       0,
       "soul core of ticaba",
       "soul-core-of-ticaba"
     ],
     [
-      58,
-      707,
+      0,
+      0,
       "soul core of atmohua",
       "soul-core-of-atmohua"
     ],
     [
-      130,
+      0,
       0,
       "soul core of cholotl",
       "soul-core-of-cholotl"
     ],
     [
-      202,
+      0,
       0,
       "soul core of zantipi",
       "soul-core-of-zantipi"
     ],
     [
-      274,
+      0,
       0,
       "soul core of azcapa",
       "soul-core-of-azcapa"
     ],
     [
-      562,
-      0,
+      94,
+      669,
       "atmohua's soul core of retreat",
       "atmohuas-soul-core-of-retreat"
     ],
     [
-      634,
+      0,
       0,
       "hayoxi's soul core of heatproofing",
       "hayoxis-soul-core-of-heatproofing"
     ],
     [
-      706,
+      0,
       0,
       "zalatl's soul core of insulation",
       "zalatls-soul-core-of-insulation"
     ],
     [
-      778,
+      0,
       0,
       "topotante's soul core of dampening",
       "topotantes-soul-core-of-dampening"
     ],
     [
-      58,
-      780,
-      "opiloti's soul core of assault",
-      "opilotis-soul-core-of-assault"
-    ],
-    [
-      130,
       0,
-      "guatelitzi's soul core of endurance",
-      "guatelitzis-soul-core-of-endurance"
-    ],
-    [
-      202,
-      0,
-      "xopec's soul core of power",
-      "xopecs-soul-core-of-power"
-    ],
-    [
-      274,
-      0,
-      "xipocado's soul core of dominion",
-      "xipocados-soul-core-of-dominion"
-    ],
-    [
-      346,
-      0,
-      "citaqualotl's soul core of foulness",
-      "citaqualotls-soul-core-of-foulness"
-    ],
-    [
-      418,
       0,
       "cholotl's soul core of war",
       "cholotls-soul-core-of-war"
     ],
     [
-      490,
       0,
-      "tacati's soul core of affliction",
-      "tacatis-soul-core-of-affliction"
-    ],
-    [
-      562,
       0,
       "quipolatl's soul core of flow",
       "quipolatls-soul-core-of-flow"
     ],
     [
-      634,
+      0,
       0,
       "tzamoto's soul core of ferocity",
       "tzamotos-soul-core-of-ferocity"
     ],
     [
-      706,
+      0,
       0,
       "uromoti's soul core of attenuation",
       "uromotis-soul-core-of-attenuation"
     ],
     [
-      778,
+      139,
+      759,
+      "opiloti's soul core of assault",
+      "opilotis-soul-core-of-assault"
+    ],
+    [
+      0,
+      0,
+      "guatelitzi's soul core of endurance",
+      "guatelitzis-soul-core-of-endurance"
+    ],
+    [
+      0,
+      0,
+      "xopec's soul core of power",
+      "xopecs-soul-core-of-power"
+    ],
+    [
+      0,
       0,
       "estazunti's soul core of convalescence",
       "estazuntis-soul-core-of-convalescence"
     ],
     [
-      58,
-      860,
-      "snake idol",
-      "serpent-idol"
-    ],
-    [
-      130,
       0,
-      "primate idol",
-      "primate-idol"
-    ],
-    [
-      202,
       0,
-      "owl idol",
-      "owl-idol"
+      "tacati's soul core of affliction",
+      "tacatis-soul-core-of-affliction"
     ],
     [
-      274,
       0,
-      "cat idol",
-      "cat-idol"
-    ],
-    [
-      346,
       0,
-      "wolf idol",
-      "wolf-idol"
+      "xipocado's soul core of dominion",
+      "xipocados-soul-core-of-dominion"
     ],
     [
-      418,
       0,
-      "stag idol",
-      "stag-idol"
-    ],
-    [
-      490,
       0,
-      "boar idol",
-      "boar-idol"
-    ],
-    [
-      562,
-      0,
-      "bear idol",
-      "bear-idol"
-    ],
-    [
-      634,
-      0,
-      "ox idol",
-      "ox-idol"
-    ],
-    [
-      706,
-      0,
-      "rabbit idol",
-      "rabbit-idol"
-    ],
-    [
-      778,
-      0,
-      "fox idol",
-      "fox-idol"
-    ],
-    [
-      202,
-      932,
-      "idol of thruldana",
-      "idol-of-thruldana"
-    ],
-    [
-      274,
-      0,
-      "idol of maxarius",
-      "idol-of-maxarius"
-    ],
-    [
-      346,
-      0,
-      "idol of eeshta",
-      "idol-of-eeshta"
-    ],
-    [
-      418,
-      0,
-      "idol of egrin",
-      "idol-of-egrin"
-    ],
-    [
-      490,
-      0,
-      "idol of ralakesh",
-      "idol-of-ralakesh"
-    ],
-    [
-      562,
-      0,
-      "idol of sirrius",
-      "idol-of-sirrius"
-    ],
-    [
-      634,
-      0,
-      "idol of grold",
-      "idol-of-grold"
+      "citaqualotl's soul core of foulness",
+      "citaqualotls-soul-core-of-foulness"
     ]
   ]
 }
