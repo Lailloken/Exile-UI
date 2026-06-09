@@ -675,8 +675,10 @@ Loop()
 		If !vars.hwnd.poe_client
 			If (vars.poe_version != CheckClient())
 			{
-				MsgBox, The wrong game-client is running. Start the correct game, then close this message.
-				Return
+				MsgBox, 4,, % "You have switched to a different game-client, do you want the tool to switch/restart as well?`n(If not, launch the correct client and then click 'no')"
+				IfMsgBox Yes
+					LLK_Restart()
+				Else Return
 			}
 			Else vars.hwnd.poe_client := WinExist("ahk_class POEWindowClass")
 
