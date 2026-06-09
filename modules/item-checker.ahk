@@ -573,16 +573,16 @@ Iteminfo_Stats2()
 			}
 
 			If InStr(A_LoopField, Lang_Trans("items_phys_dmg"))
-				phys_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
+				phys_dmg := SubStr(LLK_StringReplace(A_LoopField, [[" (augmented)", ""], [Lang_Trans("items_dmg_minmax"), "-"]]), InStr(A_LoopField, ":") + 2)
 			Else If InStr(A_LoopField, Lang_Trans("items_chaos_dmg"))
 			{
-				chaos_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
+				chaos_dmg := SubStr(LLK_StringReplace(A_LoopField, [[" (augmented)", ""], [Lang_Trans("items_dmg_minmax"), "-"]]), InStr(A_LoopField, ":") + 2)
 				If InStr(chaos_dmg, "(")
 					chaos_dmg := SubStr(chaos_dmg, 1, InStr(chaos_dmg, "(") - 2)
 			}
 			Else If Lang_Match(A_LoopField, vars.lang.items_dmg)
 			{
-				ele_dmg := SubStr(StrReplace(A_LoopField, " (augmented)"), InStr(A_LoopField, ":") + 2)
+				ele_dmg := SubStr(LLK_StringReplace(A_LoopField, [[" (augmented)", ""], [Lang_Trans("items_dmg_minmax"), "-"]]), InStr(A_LoopField, ":") + 2)
 				Loop, Parse, ele_dmg, `,
 				{
 					If InStr(A_LoopField, "(")

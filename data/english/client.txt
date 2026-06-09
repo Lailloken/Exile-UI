@@ -265,6 +265,7 @@
 		items_phys_dmg			=	"Physical Damage:"
 		items_dmg				=	"# Damage:"
 		items_chaos_dmg		=	"Chaos Damage:"
+		items_dmg_minmax		=	" or "						;## there are items that only roll the min or max value and nothing in between: X or Y
 
 		items_ele_dmg			=	"Elemental Damage:"				;## PoE1 only, ele-dmg is displayed differently
 
