@@ -901,16 +901,34 @@
       "breachstone"
     ],
     [
+      409,
+      0,
+      "origin spark",
+      "origin-spark"
+    ],
+    [
       158,
       592,
       "breachlord sac",
       "breachlord-sac"
     ],
     [
+      409,
+      0,
+      "origin cradle",
+      "origin-cradle"
+    ],
+    [
       202,
       726,
       "head of the king",
       "head-of-the-king"
+    ],
+    [
+      327,
+      0,
+      "call of the shadows",
+      "call-of-the-shadows"
     ],
     [
       444,
@@ -1151,6 +1169,12 @@
       204,
       "head of the king",
       "head-of-the-king"
+    ],
+    [
+      543,
+      0,
+      "call of the shadows",
+      "call-of-the-shadows"
     ],
     [
       274,
