@@ -1858,7 +1858,7 @@ Lootfilter_Match(array, dev_check := 0)
 							Return
 						object.multimatches := 1
 					Case (key = "UnidentifiedItemTier"):
-						unidentifiedtier := 0, unidtier_item := InStr(search.clipboard, "---`nunidentified ("), unidtier_item := (!unidtier_item ? 0 : SubStr(search.clipboard, unidtier_item + 20, 1))
+						unidentifiedtier := 0, unidtier_item := InStr(search.clipboard, "---`nunidentified ("), unidtier_item := (!unidtier_item ? 0 : SubStr(search.clipboard, unidtier_item + 23, 1))
 						If (operator = ">=" && unidtier_item < value || operator = "<=" && unidtier_item > value || !operator && unidtier_item != value) && !dev_check
 							Return
 						unidentifiedtier := 1
