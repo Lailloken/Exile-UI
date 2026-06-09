@@ -2046,6 +2046,8 @@ Leveltracker_PageDraw(name_main, name_back, preview, ByRef width, ByRef height, 
 							text := IsNumber(SubStr(text, 0)) ? SubStr(text, 1, -1) : text, hint_img := 1
 					If hint_img && (preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder || InStr(vars.log.areaid, "_town"))
 						color := "Aqua"
+					Else If (color = "Aqua") && !(preview || settings.features.actdecoder && !Blank(settings.actdecoder.hotkey) || !settings.features.actdecoder || InStr(vars.log.areaid, "_town"))
+						color := "White"
 
 					If InStr(part, "<" StrReplace(text, " ", "_") ">") && IsNumber(SubStr(text, 0))
 						text := SubStr(text, 1, -1)
