@@ -14,7 +14,7 @@ Gui_ClientFiller(mode := "") ;creates a black full-screen GUI to fill blank spac
 
 	If Blank(mode)
 	{
-		Gui, ClientFiller: New, % "-Caption +ToolWindow +LastFound" (settings.general.ClientFillerTaskbar ? " +AlwaysOnTop" : "") " HWNDhwnd"
+		Gui, ClientFiller: New, % "-DPIScale -Caption +ToolWindow +LastFound" (settings.general.ClientFillerTaskbar ? " +AlwaysOnTop" : "") " HWNDhwnd"
 		Gui, ClientFiller: Color, Black
 		WinSet, TransColor, Fuchsia
 		Gui, ClientFiller: Add, Progress, % "Disabled BackgroundFuchsia x" vars.client.x - vars.monitor.x " y" vars.client.y - vars.monitor.y " w" vars.client.w " h" vars.client.h, 0
