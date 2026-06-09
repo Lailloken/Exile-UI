@@ -1,5 +1,15 @@
 [
   [
+	["1.63.3", 16303],
+	"june 9, 2026",
+	"act-tracker:\n>> added aldur quests to the league-start route",
+	"filterspoon:\n>> fixed an issue with unidentified tiers",
+	"item-info:\n>> fixed dps calculations for items that only roll the minimum or maximum dmg value",
+	"map-tracker:\n>> moved expedition to screen-tracked content",
+	"stash-ninja:\n>> now supports fragments that were recently added to poe.ninja",
+	"statlas:\n>> added new maps, removed biome bonuses"
+  ],
+  [
 	["1.63.2", 16302],
 	"june 3, 2026",
 	"stash-ninja:\n>> updated to 0.5",
