@@ -1090,10 +1090,6 @@
     "statlas maptracker": [
       "the overlay will show stats collected via the map-tracker feature"
     ],
-    "statlas notable": [
-      "the atlas notable <local knowledge> provides loot-drop bonuses for different biomes",
-      "if enabled, the overlay will show the bonuses for the map you're hovering over"
-    ],
     "updater check": [
       "checks for updates on tool launch and in the background while running",
       "the menu-widget will blink if there is an update available"

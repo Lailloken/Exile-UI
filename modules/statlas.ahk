@@ -15,7 +15,6 @@
 	settings.statlas.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	settings.statlas.tier := settings.statlas.tier0 := !Blank(check := ini.settings["filter tier"]) ? check : 15
 	settings.statlas.maptracker := !Blank(check := ini.settings["include map-tracker data"]) ? check : (settings.features.maptracker ? 1 : 0)
-	settings.statlas.notable := !Blank(check := ini.settings["show atlas-notable effect"]) ? check : 1
 	settings.statlas.zoom := settings.statlas.zoom0 := !Blank(check := ini.settings.zoom) ? check : 0.25
 	LLK_FontDimensions(settings.statlas.fSize, font_height, font_width), settings.statlas.fWidth := font_width, settings.statlas.fHeight := font_height
 }
@@ -31,7 +30,7 @@ Statlas()
 	Gui, statlas_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: statlas"
 	WinSet, Trans, 1
 	Gui, statlas_comms: Add, Text,, % "client: " vars.hwnd.poe_client
-	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//8 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//4 "|" Round(vars.client.h/(settings.statlas.notable ? 10 : 12)) "`n"
+	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//6 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//3 "|" Round(vars.client.h/12) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
 	Gui, statlas_comms: Show, NA x10000 y10000
 
@@ -68,13 +67,6 @@ Statlas()
 					}
 				Continue
 			}
-			If !vars.statlas.biome && RegExMatch(StrReplace(A_LoopField, " "), "i)^" Lang_Trans("maps_biome"))
-				For key, val in db.maps.biomes
-					If RegExMatch(StrReplace(line, " "), "i)" key "$")
-					{
-						vars.statlas.biome := key
-						Continue 2
-					}
 		}
 
 	If !vars.statlas.map
@@ -110,7 +102,7 @@ Statlas_GUI(mode := "")
 		Else settings.statlas.zoom += InStr(mode, "plus") ? 0.05 : -0.05, mode := ""
 
 	toggle := !toggle, GUI_name := "statlas" toggle
-	map := vars.statlas.map, boss := vars.statlas.boss, biome := vars.statlas.biome
+	map := vars.statlas.map, boss := vars.statlas.boss
 	league := LLK_MaxIndex(vars.maptracker.leagues)
 	Gui, %GUI_name%: New, % "-Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_statlas"
 	Gui, %GUI_name%: Font, % "s" settings.statlas.fSize " cWhite", % vars.system.font
@@ -189,12 +181,6 @@ Statlas_GUI(mode := "")
 				dimensions.Push(stats.legacy[val])
 		}
 		LLK_PanelDimensions(dimensions, settings.statlas.fSize, wColumns, hColumns)
-	}
-
-	If settings.statlas.notable && vars.statlas.biome
-	{
-		Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans xs y+-1 Border Center cYellow w" wPics * 2 + 4, % Lang_Trans("maps_biome") " " biome " (" db.maps.biomes[biome] ")"
-		Gui, %GUI_name%: Add, Progress, % "Disabled BackgroundBlack xp yp wp hp", 0
 	}
 
 	If !wColumn || (fSize != settings.statlas.fSize)

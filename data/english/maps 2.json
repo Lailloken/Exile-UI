@@ -1,12 +1,4 @@
 {
-  "biomes": {
-    "desert": "+40% trial keys",
-    "forest": "+40% jewels",
-    "grass": "+40% socket currency",
-    "mountain": "+40% gold",
-    "swamp": "+40% basic currency",
-    "water": "+40% basic currency"
-  },
   "maps": {
     "abyss": {
       "name": "abyss",
@@ -26,7 +18,7 @@
     },
     "azmerianranges": {
       "name": "azmerian ranges",
-      "boss": "morwyn"
+      "boss": "lythara"
     },
     "backwash": {
       "name": "backwash",
@@ -113,7 +105,7 @@
     },
     "flotsam": {
       "name": "flotsam",
-      "boss": "torrek"
+      "boss": "hartlin"
     },
     "forge": {
       "name": "forge",
@@ -201,9 +193,17 @@
       "name": "penitentiary",
       "boss": "executioner"
     },
+    "pit": {
+      "name": "pit",
+      "boss": "torvian"
+    },
     "plantation": {
       "name": "plantation",
       "boss": "wulfric"
+    },
+    "port": {
+      "name": "port",
+      "boss": "hartlin"
     },
     "ravine": {
       "name": "ravine",
@@ -335,14 +335,14 @@
     },
     "uniquecastaway": {
       "name": "castaway",
-      "boss": "torrek"
+      "boss": "hartlin"
     },
     "uniquelake": {
       "name": "the fractured lake"
     },
     "uniquemegalith": {
       "name": "the ezomyte megaliths",
-      "boss": "megalith bosses"
+      "boss": "10 random bosses"
     },
     "uniqueselenite": {
       "name": "the silent cave",

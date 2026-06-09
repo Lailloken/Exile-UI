@@ -1277,7 +1277,6 @@
 ;## these strings are displayed/required in the "statlas" section of the settings menu
 		m_statlas_enable		=	"enable the statlas feature"
 		m_statlas_maptracker	=	"show map-tracker data"
-		m_statlas_localknowledge	=	"show <local knowledge> notable effect"
 
 
 

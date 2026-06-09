@@ -5160,8 +5160,6 @@ Settings_statlas()
 
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_statlas2 Checked" settings.statlas.maptracker, % Lang_Trans("m_statlas_maptracker")
 	vars.hwnd.settings.maptracker := vars.hwnd.help_tooltips["settings_statlas maptracker"] := hwnd
-	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_statlas2 Checked" settings.statlas.notable, % Lang_Trans("m_statlas_localknowledge")
-	vars.hwnd.settings.notable := vars.hwnd.help_tooltips["settings_statlas notable"] := hwnd
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " x" x_anchor, % Lang_Trans("global_ui")
@@ -5189,8 +5187,6 @@ Settings_statlas2(cHWND)
 	}
 	Else If (check = "maptracker")
 		IniWrite, % (settings.statlas.maptracker := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\statlas.ini", settings, include map-tracker data
-	Else If (check = "notable")
-		IniWrite, % (settings.statlas.notable := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\statlas.ini", settings, show atlas-notable effect
 	Else If InStr(check, "font_")
 	{
 		While GetKeyState("LButton", "P")
