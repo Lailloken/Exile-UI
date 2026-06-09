@@ -199,7 +199,7 @@ Anoints(cHWND := "")
 				SendInput, ^{f}
 				Sleep 100
 				SendInput, {DEL}^{v}{Enter}
-				Return
+				alt_position := 1
 			}
 		}
 		Else If (check = "nodes_reset")
@@ -569,7 +569,7 @@ Anoints(cHWND := "")
 		}
 	}
 	ControlFocus,, % "ahk_id " vars.hwnd.anoints.search
-	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + Round(vars.client.h*0.62) " y" vars.monitor.y " w" wMax + margin0 . (continue ? " h" vars.monitor.h - 2 : "")
+	Gui, %GUI_name%: Show, % "NA x" vars.monitor.x + (alt_position ? 0 : Round(vars.client.h*0.62)) " y" vars.monitor.y " w" wMax + margin0 . (continue ? " h" vars.monitor.h - 2 : "")
 	LLK_Overlay(hwnd_anoints, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 	Clipboard := json.dump(keyword_list,, "  ")
 }
