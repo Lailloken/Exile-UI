@@ -20,9 +20,12 @@
 	vars.cheatsheets.count_advanced := 0 ;save number of advanced sheets (used in the settings menu to determine if list of advanced sheets will be shown or not)
 
 	;rebuild list of cheat-sheets
-	vars.cheatsheets.list := {}
+	vars.cheatsheets.list := {}, vars.cheatsheets.samples := []
+	Loop, Files, % "cheat-sheets" vars.poe_version "\[sample]*", D
+		vars.cheatsheets.samples.Push({"folder": A_LoopFilePath, "version": LLK_IniRead(A_LoopFilePath "\info.ini", "general", "version")})
 	Loop, Files, % "cheat-sheets" vars.poe_version "\*", D
-		vars.cheatsheets.list[A_LoopFileName] := {}
+		If !InStr(A_LoopFileName, "[")
+			vars.cheatsheets.list[A_LoopFileName] := {}
 
 	For key in vars.cheatsheets.list
 	{
@@ -33,6 +36,7 @@
 		vars.cheatsheets.list[key].area := !Blank(check := ini.general["image search"]) ? check : "static"
 		vars.cheatsheets.list[key].type := !Blank(check := ini.general.type) ? check : "images"
 		vars.cheatsheets.list[key].activation := !Blank(check := ini.general.activation) ? check : "hold"
+		vars.cheatsheets.list[key].version := !Blank(check := ini.general.version) ? check : 0
 		vars.cheatsheets.list[key].scale := !Blank(check := ini.UI.scale) ? check : 1
 		vars.cheatsheets.list[key].pos := !Blank(check := ini.UI.position) ? check : "2,2"
 		vars.cheatsheets.list[key].pos := [SubStr(vars.cheatsheets.list[key].pos, 1, 1), SubStr(vars.cheatsheets.list[key].pos, 3, 1)]

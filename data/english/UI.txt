@@ -970,6 +970,7 @@
 		m_cheat_app			=	"app"
 		m_cheat_advanced		=	"advanced"
 		m_cheat_list			=	"list of available cheat-sheets:"
+		m_cheat_samples		=	"available sample cheat-sheets:"
 
 
 

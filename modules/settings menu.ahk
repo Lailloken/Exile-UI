@@ -438,6 +438,24 @@ Settings_cheatsheets()
 	Gui, %GUI%: Add, Text, % "ys hp Border gSettings_cheatsheets2 HWNDhwnd", % " " Lang_Trans("global_add") " "
 	vars.hwnd.settings.add := hwnd, handle := ""
 
+	For index, object in vars.cheatsheets.samples
+	{
+		name := SubStr(object.folder, InStr(object.folder, "]") + 2)
+		If vars.cheatsheets.list[name] && (object.version = vars.cheatsheets.list[name].version)
+			Continue
+		If !valid_samples
+		{
+			LLK_PanelDimensions([Lang_Trans("global_update"), Lang_Trans("global_enable")], settings.general.fSize, wSample, hSample)
+			Gui, %GUI%: Font, bold underline
+			Gui, %GUI%: Add, Text, % "Section xs BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_cheat_samples")
+			Gui, %GUI%: Font, norm
+			valid_samples := 1
+		}
+		Gui, %GUI%: Add, Text, % "Section xs gSettings_cheatsheets2 HWNDhwnd Border Center w" wSample . (vars.cheatsheets.list[name] ? " cLime" : ""), % Lang_Trans("global_" (vars.cheatsheets.list[name] ? "update" : "enable"))
+		Gui, %GUI%: Add, Text, % "ys", % name
+		vars.hwnd.settings["sampleget_" index] := vars.hwnd.help_tooltips["settings_cheatsheets samples " (vars.cheatsheets.list[name] ? "update" : "get") handle_samples] := hwnd, handle_samples .= "|"
+	}
+
 	For cheatsheet in vars.cheatsheets.list
 	{
 		If (A_Index = 1)
@@ -525,6 +543,22 @@ Settings_cheatsheets2(cHWND)
 		IniWrite, % settings.cheatsheets.fSize, % "ini" vars.poe_version "\cheat-sheets.ini", settings, font-size
 		LLK_FontDimensions(settings.cheatsheets.fSize, font_width, font_height), settings.cheatsheets.fWidth := font_width, settings.cheatsheets.fHeight := font_height
 		LLK_ToolTip("sample text:`nle toucan has arrived", 2, vars.general.xMouse, vars.general.yMouse,,, settings.cheatsheets.fSize, "center")
+	}
+	Else If InStr(check, "sampleget_")
+	{
+		KeyWait, LButton
+		folder := vars.cheatsheets.samples[control].folder, name := SubStr(folder, InStr(folder, "]") + 2)
+		If !vars.cheatsheets.list[name]
+			FileCopyDir, % folder, % "cheat-sheets" vars.poe_version "\" name
+		Else
+		{
+			Loop, Files, % folder "\*"
+				If (A_LoopFileName != "info.ini")
+					FileCopy, % A_LoopFilePath, % "cheat-sheets" vars.poe_version "\" name "\", 1
+			ini := IniBatchRead(folder "\info.ini")
+			IniWrite, % ini.general.version, % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, version
+		}
+		Settings_menu("cheat-sheets")
 	}
 	Else If InStr(check, "calibrate_") ;clicking calibrate
 	{

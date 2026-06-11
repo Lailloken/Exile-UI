@@ -194,6 +194,12 @@
       "for the tool to know which sheet is the correct one, manual calibration is required",
       "opens the clipping tool: use it to clip a unique element from the in-game ui"
     ],
+    "cheatsheets samples get": [
+      "add this sample cheat-sheet to the list of active ones"
+    ],
+    "cheatsheets samples update": [
+      "a newer version of this sample cheat-sheet is available: click this button to update your copy"
+    ],
     "cheatsheets test": [
       "click while the specific in-game ui is on screen, the test should return positive",
       "click while the specific ui is not on screen, the test should return negative",
