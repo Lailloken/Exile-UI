@@ -1,352 +1,385 @@
 {
   "maps": {
     "abyss": {
-      "name": "abyss",
-      "boss": "tor gul"
+      "boss": "tor gul",
+      "name": "abyss"
     },
     "alpineridge": {
-      "name": "alpine ridge",
-      "boss": "beira + ignagduk"
+      "boss": "beira + ignagduk",
+      "name": "alpine ridge"
     },
     "aridplains": {
-      "name": "arid plains",
-      "boss": "anundr + akthi"
+      "boss": "anundr + akthi",
+      "name": "arid plains"
     },
     "augury": {
-      "name": "augury",
-      "boss": "uxmal"
+      "boss": "uxmal",
+      "name": "augury"
     },
     "azmerianranges": {
-      "name": "azmerian ranges",
-      "boss": "lythara"
+      "boss": "lythara",
+      "name": "azmerian ranges"
     },
     "backwash": {
-      "name": "backwash",
-      "boss": "queen of filth"
+      "boss": "queen of filth",
+      "name": "backwash"
     },
     "bastille": {
-      "name": "bastille",
-      "boss": "oswin"
+      "boss": "oswin",
+      "name": "bastille"
     },
     "bloodwood": {
-      "name": "bloodwood",
-      "boss": "devourer"
+      "boss": "devourer",
+      "name": "bloodwood"
     },
     "bloomingfield": {
-      "name": "blooming field",
-      "boss": "crowbell"
+      "boss": "crowbell",
+      "name": "blooming field"
     },
     "bluff": {
-      "name": "bluff",
-      "boss": "uxmal"
+      "boss": "uxmal",
+      "name": "bluff"
     },
     "burialbog": {
-      "name": "burial bog",
-      "boss": "rootdredge"
+      "boss": "rootdredge",
+      "name": "burial bog"
     },
     "caldera": {
-      "name": "caldera",
-      "boss": "blind beast"
+      "boss": "blind beast",
+      "name": "caldera"
     },
     "canyon": {
-      "name": "canyon",
-      "boss": "vornas"
+      "boss": "vornas",
+      "name": "canyon"
     },
     "caverncity": {
-      "name": "sacred reservoir",
-      "boss": "azmadi"
+      "boss": "azmadi",
+      "name": "sacred reservoir"
     },
     "cenotes": {
       "name": "cenotes"
     },
     "channel": {
-      "name": "channel",
-      "boss": "hask"
+      "boss": "hask",
+      "name": "channel"
     },
     "cliffside": {
-      "name": "cliffside",
-      "boss": "torvian"
+      "boss": "torvian",
+      "name": "cliffside"
     },
     "creek": {
-      "name": "creek",
-      "boss": "bloated miller"
+      "boss": "bloated miller",
+      "name": "creek"
     },
     "crimsonshores": {
-      "name": "crimson shores",
-      "boss": "rattlecage"
+      "boss": "rattlecage",
+      "name": "crimson shores"
     },
     "crypt": {
-      "name": "crypt",
-      "boss": "candlemass"
+      "boss": "candlemass",
+      "name": "crypt"
     },
     "decay": {
-      "name": "decay",
-      "boss": "rotten druid"
+      "boss": "rotten druid",
+      "name": "decay"
     },
     "deforestation": {
-      "name": "deforestation",
-      "boss": "lythara"
+      "boss": "lythara",
+      "name": "deforestation"
     },
     "derelictmansion": {
-      "name": "derelict mansion",
-      "boss": "elswyth + wulfric"
+      "boss": "elswyth + wulfric",
+      "name": "derelict mansion"
     },
     "deserted": {
-      "name": "deserted",
-      "boss": "lord of the pit"
+      "boss": "lord of the pit",
+      "name": "deserted"
     },
     "epitaph": {
-      "name": "epitaph",
-      "boss": "asinia"
+      "boss": "asinia",
+      "name": "epitaph"
     },
     "excavation": {
-      "name": "digsite",
-      "boss": "benedictus"
+      "boss": "benedictus",
+      "name": "digsite"
+    },
+    "expeditionlogbook_atoll": {
+      "name": "barren atoll"
+    },
+    "expeditionlogbook_basin": {
+      "name": "stagnant basin"
+    },
+    "expeditionlogbook_digsite": {
+      "name": "exhumed ruins"
+    },
+    "expeditionlogbook_gully": {
+      "name": "sloughed gully"
+    },
+    "expeditionlogbook_heath": {
+      "name": "moor of fallen skies"
+    },
+    "expeditionlogbook_peninsula": {
+      "name": "craggy peninsula"
+    },
+    "expeditionlogbook_prairie": {
+      "name": "grazed prairie"
+    },
+    "expeditionlogbook_reef": {
+      "name": "bleached shoals"
+    },
+    "expeditionlogbook_tropical": {
+      "name": "lush isle"
+    },
+    "expeditionlogbook_tundra": {
+      "name": "frigid bluffs"
+    },
+    "expeditionlogbook_wastes": {
+      "name": "scorched cay"
     },
     "flotsam": {
-      "name": "flotsam",
-      "boss": "hartlin"
+      "boss": "hartlin",
+      "name": "flotsam"
     },
     "forge": {
-      "name": "forge",
-      "boss": "zalmarath"
+      "boss": "zalmarath",
+      "name": "forge"
     },
     "fortress": {
-      "name": "fortress",
-      "boss": "balbala"
+      "boss": "balbala",
+      "name": "fortress"
     },
     "frozenfalls": {
-      "name": "frozen falls",
-      "boss": "rakkar"
+      "boss": "rakkar",
+      "name": "frozen falls"
     },
     "greenhouse": {
-      "name": "greenhouse",
-      "boss": "brambleghast"
+      "boss": "brambleghast",
+      "name": "greenhouse"
     },
     "grimhaven": {
-      "name": "grimhaven",
-      "boss": "asinia"
+      "boss": "asinia",
+      "name": "grimhaven"
     },
     "headland": {
-      "name": "headland",
-      "boss": "hask"
+      "boss": "hask",
+      "name": "headland"
     },
     "hiddengrotto": {
-      "name": "hidden grotto",
-      "boss": "tor gul"
+      "boss": "tor gul",
+      "name": "hidden grotto"
     },
     "hive": {
-      "name": "hive",
-      "boss": "rotten druid"
+      "boss": "rotten druid",
+      "name": "hive"
     },
     "icecave": {
-      "name": "ice cave",
-      "boss": "yeti"
+      "boss": "yeti",
+      "name": "ice cave"
     },
     "inferno": {
       "name": "inferno"
     },
     "loftysummit": {
-      "name": "lofty summit",
-      "boss": "blackjaw"
+      "boss": "blackjaw",
+      "name": "lofty summit"
     },
     "losttowers": {
-      "name": "lost towers",
-      "boss": "chetza"
+      "boss": "chetza",
+      "name": "lost towers"
     },
     "marrow": {
-      "name": "marrow",
-      "boss": "tor gul"
+      "boss": "tor gul",
+      "name": "marrow"
     },
     "mesa": {
-      "name": "mesa",
-      "boss": "karash"
+      "boss": "karash",
+      "name": "mesa"
     },
     "mineshaft": {
-      "name": "mineshaft",
-      "boss": "rudja"
+      "boss": "rudja",
+      "name": "mineshaft"
     },
     "mire": {
-      "name": "mire",
-      "boss": "beira"
+      "boss": "beira",
+      "name": "mire"
     },
     "necropolis": {
-      "name": "necropolis",
-      "boss": "draven"
+      "boss": "draven",
+      "name": "necropolis"
     },
     "oasis": {
-      "name": "oasis",
-      "boss": "jamanra"
+      "boss": "jamanra",
+      "name": "oasis"
     },
     "ornatechambers": {
-      "name": "ornate chambers",
-      "boss": "elzarah"
+      "boss": "elzarah",
+      "name": "ornate chambers"
     },
     "outlands": {
       "name": "outlands"
     },
     "overgrown": {
-      "name": "overgrown",
-      "boss": "zicoatl"
+      "boss": "zicoatl",
+      "name": "overgrown"
     },
     "penitentiary": {
-      "name": "penitentiary",
-      "boss": "executioner"
+      "boss": "executioner",
+      "name": "penitentiary"
     },
     "pit": {
-      "name": "pit",
-      "boss": "torvian"
+      "boss": "torvian",
+      "name": "pit"
     },
     "plantation": {
-      "name": "plantation",
-      "boss": "wulfric"
+      "boss": "wulfric",
+      "name": "plantation"
     },
     "port": {
-      "name": "port",
-      "boss": "hartlin"
+      "boss": "hartlin",
+      "name": "port"
     },
     "ravine": {
-      "name": "ravine",
-      "boss": "zicoatl"
+      "boss": "zicoatl",
+      "name": "ravine"
     },
     "razedfields": {
-      "name": "razed fields",
-      "boss": "beira + ignagduk"
+      "boss": "beira + ignagduk",
+      "name": "razed fields"
     },
     "reservoir": {
-      "name": "reservoir",
-      "boss": "rootdredge"
+      "boss": "rootdredge",
+      "name": "reservoir"
     },
     "riverhold": {
-      "name": "riverhold",
-      "boss": "siora"
+      "boss": "siora",
+      "name": "riverhold"
     },
     "riverside": {
-      "name": "riverside",
-      "boss": "silverfist"
+      "boss": "silverfist",
+      "name": "riverside"
     },
     "rockpools": {
-      "name": "rockpools",
-      "boss": "krutog"
+      "boss": "krutog",
+      "name": "rockpools"
     },
     "rugosa": {
-      "name": "rugosa",
-      "boss": "diamora"
+      "boss": "diamora",
+      "name": "rugosa"
     },
     "rupture": {
-      "name": "rupture",
-      "boss": "silverfist"
+      "boss": "silverfist",
+      "name": "rupture"
     },
     "rustbowl": {
-      "name": "rustbowl",
-      "boss": "rust king"
+      "boss": "rust king",
+      "name": "rustbowl"
     },
     "sanctuary": {
-      "name": "sanctuary",
-      "boss": "balbala"
+      "boss": "balbala",
+      "name": "sanctuary"
     },
     "sandspit": {
-      "name": "sandspit",
-      "boss": "great white one"
+      "boss": "great white one",
+      "name": "sandspit"
     },
     "savanna": {
-      "name": "savannah",
-      "boss": "hyena"
+      "boss": "hyena",
+      "name": "savannah"
     },
     "seepage": {
-      "name": "seepage",
-      "boss": "rotten druid"
+      "boss": "rotten druid",
+      "name": "seepage"
     },
     "sevenwaters": {
-      "name": "confluence",
-      "boss": "kabala"
+      "boss": "kabala",
+      "name": "confluence"
     },
     "sinkhole": {
-      "name": "sinkhole",
-      "boss": "yama"
+      "boss": "yama",
+      "name": "sinkhole"
     },
     "sinterrift": {
-      "name": "sinter rift",
-      "boss": "krutog"
+      "boss": "krutog",
+      "name": "sinter rift"
     },
     "slick": {
-      "name": "slick",
-      "boss": "rudja"
+      "boss": "rudja",
+      "name": "slick"
     },
     "snowfall": {
-      "name": "snowfall",
-      "boss": "siora"
+      "boss": "siora",
+      "name": "snowfall"
     },
     "spiderwoods": {
-      "name": "spider woods",
-      "boss": "brambleghast"
+      "boss": "brambleghast",
+      "name": "spider woods"
     },
     "spring_": {
-      "name": "spring",
-      "boss": "kabala"
+      "boss": "kabala",
+      "name": "spring"
     },
     "steamingsprings": {
-      "name": "steaming springs",
-      "boss": "kabala"
+      "boss": "kabala",
+      "name": "steaming springs"
     },
     "steppe": {
-      "name": "steppe",
-      "boss": "rust king"
+      "boss": "rust king",
+      "name": "steppe"
     },
     "stronghold": {
-      "name": "stronghold",
-      "boss": "the prisoner"
+      "boss": "the prisoner",
+      "name": "stronghold"
     },
     "sulphuriccaverns": {
-      "name": "sulphuric caverns",
-      "boss": "lord of the pit + bone colossus"
+      "boss": "lord of the pit + bone colossus",
+      "name": "sulphuric caverns"
     },
     "sump": {
-      "name": "sump",
-      "boss": "ignagduk"
+      "boss": "ignagduk",
+      "name": "sump"
     },
     "suntemple": {
-      "name": "sun temple",
-      "boss": "ketzuli"
+      "boss": "ketzuli",
+      "name": "sun temple"
     },
     "swamptower": {
-      "name": "sinking spire",
-      "boss": "blackjaw2"
+      "boss": "blackjaw2",
+      "name": "sinking spire"
     },
     "trenches": {
-      "name": "trenches",
-      "boss": "devourer"
+      "boss": "devourer",
+      "name": "trenches"
     },
     "uberboss_coppercitadel": {
-      "name": "the copper citadel",
-      "boss": "jamanra2"
+      "boss": "jamanra2",
+      "name": "the copper citadel"
     },
     "uberboss_ironcitadel": {
-      "name": "the iron citadel",
-      "boss": "geonor"
+      "boss": "geonor",
+      "name": "the iron citadel"
     },
     "uberboss_jadecitadel": {
-      "name": "the jade isles",
-      "boss": "tavakai"
+      "boss": "tavakai",
+      "name": "the jade isles"
     },
     "uberboss_stonecitadel": {
-      "name": "the stone citadel",
-      "boss": "doryani"
+      "boss": "doryani",
+      "name": "the stone citadel"
     },
     "uniquecastaway": {
-      "name": "castaway",
-      "boss": "hartlin"
+      "boss": "hartlin",
+      "name": "castaway"
     },
     "uniquelake": {
       "name": "the fractured lake"
     },
     "uniquemegalith": {
-      "name": "the ezomyte megaliths",
-      "boss": "10 random bosses"
+      "boss": "10 random bosses",
+      "name": "the ezomyte megaliths"
     },
     "uniqueselenite": {
-      "name": "the silent cave",
-      "boss": "random boss"
+      "boss": "random boss",
+      "name": "the silent cave"
     },
     "uniqueuntaintedparadise": {
       "name": "untainted paradise"
@@ -355,39 +388,39 @@
       "name": "the viridian wildwood"
     },
     "vaalcity": {
-      "name": "vaal city",
-      "boss": "viper"
+      "boss": "viper",
+      "name": "vaal city"
     },
     "vaalfactory": {
-      "name": "the assembly",
-      "boss": "zicoatl"
+      "boss": "zicoatl",
+      "name": "the assembly"
     },
     "vaalfoundry": {
-      "name": "molten vault",
-      "boss": "mektul"
+      "boss": "mektul",
+      "name": "molten vault"
     },
     "vaalvault": {
-      "name": "sealed vault",
-      "boss": "zelina + zolin"
+      "boss": "zelina + zolin",
+      "name": "sealed vault"
     },
     "vaalvillage": {
       "name": "vaal village"
     },
     "waywardisle": {
-      "name": "wayward isle",
-      "boss": "lord of the pit"
+      "boss": "lord of the pit",
+      "name": "wayward isle"
     },
     "wetlands": {
-      "name": "wetlands",
-      "boss": "hyena"
+      "boss": "hyena",
+      "name": "wetlands"
     },
     "willow": {
-      "name": "willow",
-      "boss": "lachlann"
+      "boss": "lachlann",
+      "name": "willow"
     },
     "woodland": {
-      "name": "woodland",
-      "boss": "bloated miller"
+      "boss": "bloated miller",
+      "name": "woodland"
     }
   }
 }

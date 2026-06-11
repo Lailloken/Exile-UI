@@ -226,7 +226,7 @@ Log_Get(log_text, data)
 	static unique_maps := {"merchant": "seer", "vault": "vaults"}
 
 	If (data = "areaname")
-		If !LLK_StringCompare(log_text, ["map", "breach", "ritual"])
+		If !LLK_StringCompare(log_text, ["map", "breach", "ritual", "expeditionlogbook_"])
 			%data% := log_text
 		Else
 		{
@@ -247,6 +247,15 @@ Log_Get(log_text, data)
 				If settings.maptracker.rename
 					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_arbiter")
 				Else Return Lang_Trans("maps_arbiter", 2) " (" Lang_Trans("maps_boss") ")"
+			}
+			Else If InStr(log_text, "expeditionlogbook_")
+			{
+				If !IsObject(db.maps)
+					DB_Load("maps")
+				If (map_name := db.maps.maps[log_text].name)
+					%data% := map_name
+				Else %data% := SubStr(log_text, InStr(log_text, "_") + 1)
+				Return LLK_StringCase(%data%)
 			}
 			Else If RegExMatch(log_text, "Hideout.*_Claimable")
 			{
@@ -277,8 +286,7 @@ Log_Get(log_text, data)
 				%data% := Lang_Trans("maps_" %data%)
 			Else If map_name
 				%data% := map_name
-
-			Loop, Parse, % %data%
+			Else Loop, Parse, % %data%
 				%data% := (A_Index = 1) ? "" : %data%, %data% .= (A_Index != 1 && (SubStr(%data%, 0) != " ") && RegExMatch(A_LoopField, "[A-Z]") ? " " : "") . A_LoopField
 		}
 	Return LLK_StringCase(%data%)
