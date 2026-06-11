@@ -74,7 +74,7 @@
 ;## these strings will be used in the mapping-tracker to add more information to log-entries
 ;## these strings will be added, so instead of only displaying "bunker", the entry will read "heist: bunker"
 		maps_heist			=	"heist"				;## PoE1 only
-		maps_logbook			=	"logbook"			;## PoE1 and PoE2
+		maps_logbook			=	"logbook"				;## PoE1 and PoE2
 		maps_delirium			=	"simulacrum"			;## PoE1 and PoE2
 		maps_boss				=	"boss"				;## PoE1 and PoE2
 		maps_tower			=	"tower"				;## PoE2 only, used to tag tower-maps, e.g. <sinking spire (tower)> instead of just <sinking spire>
@@ -302,13 +302,14 @@
 
 
 ;## these strings are displayed in the in-game tooltip when hovering over an item and holding the hotkey for advanced item descriptions (usually ALT)
-		items_prefix			=	"Prefix Modifier"			;## PoE1 only (whole block), either missing from PoE2 at the moment, or not relevant
+		items_prefix			=	"Prefix Modifier"
 		items_prefix_allowed	=	"Prefix Modifier# allowed"	;## implicit that modifies affix-counts (it's important to place the placeholder in a way that matches singular and plural forms)
 		items_suffix			=	"Suffix Modifier"
 		items_suffix_allowed	=	"Suffix Modifier# allowed"
 		items_affix			=	""#""					;## in my limited testing, I only found Japanese to use something other than quotation marks (「#」)
 		items_uniquemod		=	"Unique Modifier"
 		items_implicit			=	"Implicit Modifier"
+		items_implicit_corrupt	=	"Corruption Enhancement"
 		items_implicit_exarch	=	"Searing Exarch Implicit Modifier"
 		items_implicit_eater	=	"Eater of Worlds Implicit Modifier"
 		items_implicit_vaal		=	"Corruption Implicit Modifier"
