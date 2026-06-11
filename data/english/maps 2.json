@@ -136,6 +136,22 @@
     "expeditionlogbook_wastes": {
       "name": "scorched cay"
     },
+    "expeditionsubarea_medvedboss": {
+      "boss": "medved",
+      "name": "sprawling jungle"
+    },
+    "expeditionsubarea_voranaboss": {
+      "boss": "vorana",
+      "name": "mournful cliffside"
+    },
+    "expeditionsubarea_uhtredboss": {
+      "boss": "uhtred",
+      "name": "secluded temple"
+    },
+    "expeditionsubarea_olrothboss": {
+      "boss": "olroth",
+      "name": "obscure island"
+    },
     "flotsam": {
       "boss": "hartlin",
       "name": "flotsam"

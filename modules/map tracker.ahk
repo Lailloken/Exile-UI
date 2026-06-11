@@ -145,8 +145,8 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	local
 	global vars, settings
 
-	mode_check := (vars.poe_version ? ["abyss_depths", "abyss_boss", "expeditionsubarea"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0, "abyss_boss": 0, "ExpeditionLogBook": 0, "expeditionsubarea": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0, "ChayulaLeagueTowerBoss": 0})
+	mode_check := (vars.poe_version ? ["abyss_depths", "abyss_boss"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0, "abyss_boss": 0, "Expedition": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0, "ChayulaLeagueTowerBoss": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -1458,7 +1458,7 @@ Maptracker_MechanicsCheck()
 	check := 0, start := A_TickCount
 	For mechanic, type in vars.maptracker.mechanics
 		If (type = 2)
-			check += !settings.maptracker[mechanic] || !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? 0 : 1
+			check += (!settings.maptracker[mechanic] || !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? 0 : 1)
 	If wait || !check ;|| !LLK_IsBetween(vars.general.xMouse - vars.client.x, vars.client.x, vars.client.x + vars.client.w) || !LLK_IsBetween(vars.general.yMouse - vars.client.y, vars.client.y, vars.client.y + vars.client.h)
 		Return
 	wait := 1, pScreen := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
@@ -1467,7 +1467,7 @@ Maptracker_MechanicsCheck()
 
 	For mechanic, type in vars.maptracker.mechanics
 	{
-		If (type != 2) || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic))
+		If (type != 2) || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic)) || (mechanic = "expedition" && InStr(vars.log.areaID, "expedition"))
 			Continue
 
 		If !vars.pics.maptracker_checks[mechanic]
@@ -1877,7 +1877,7 @@ Maptracker_Timer()
 			Maptracker_Save(), new := 1
 
 		vars.maptracker.map.portals += vars.maptracker.hideout && !new ? 1 : 0 ;entering through a portal from hideout? -> increase portal-count
-		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal boss": "abyss_boss", "abyssal depths": (vars.poe_version ? "abyss_depths" : "abyssleague"), "vaal area": "mapsidearea", "expedition boss": "expeditionsubarea", "starfall crater": "SettlersBossFallenStar"}
+		side_areas := {"lab trial": "endgame_labyrinth_trials_", "abyssal boss": "abyss_boss", "abyssal depths": (vars.poe_version ? "abyss_depths" : "abyssleague"), "vaal area": "mapsidearea", "starfall crater": "SettlersBossFallenStar"}
 
 		If Maptracker_Check(1)
 			For key, val in side_areas

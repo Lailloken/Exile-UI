@@ -97,13 +97,17 @@
 
 
 		maps_ritualboss		=	"king in the mists"		;## PoE1 and PoE2
-		maps_ritualboss		=	"crux of nothingness"		;## PoE1 and PoE2, the map-name of the king fight
+		maps_ritualboss		=	"crux of nothingness"	;## PoE1 and PoE2, the map-name of the king fight
 
 
 		maps_xesht			=	"xesht"				;## PoE2 only (whole block)
 		maps_xesht			=	"twisted domain"		;## the map-name of the xesht fight
 		maps_arbiter			=	"arbiter of ash"
-		maps_arbiter			=	"the burning monolith"		;## the map-name of the arbiter fight
+		maps_arbiter			=	"the burning monolith"	;## the map-name of the arbiter fight
+		maps_medved			=	"medved"				;## the expedition bosses
+		maps_vorana			=	"vorana"
+		maps_uhtred			=	"uhtred"
+		maps_olroth			=	"olroth"
 
 
 		maps_hideout			=	"hideout"			;## PoE2 only (whole block), claimable hideout on the atlas (separate key/value pair in case more hideouts are added in the future)

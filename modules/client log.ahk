@@ -226,7 +226,7 @@ Log_Get(log_text, data)
 	static unique_maps := {"merchant": "seer", "vault": "vaults"}
 
 	If (data = "areaname")
-		If !LLK_StringCompare(log_text, ["map", "breach", "ritual", "expeditionlogbook_"])
+		If !LLK_StringCompare(log_text, ["map", "breach", "ritual", "expedition"])
 			%data% := log_text
 		Else
 		{
@@ -248,14 +248,19 @@ Log_Get(log_text, data)
 					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_arbiter")
 				Else Return Lang_Trans("maps_arbiter", 2) " (" Lang_Trans("maps_boss") ")"
 			}
-			Else If InStr(log_text, "expeditionlogbook_")
+			Else If InStr(log_text, "expedition")
 			{
 				If !IsObject(db.maps)
 					DB_Load("maps")
 				If (map_name := db.maps.maps[log_text].name)
-					%data% := map_name
+					%data% := map_name, boss := db.maps.maps[log_text].boss
 				Else %data% := SubStr(log_text, InStr(log_text, "_") + 1)
-				Return LLK_StringCase(%data%)
+
+				If boss && settings.maptracker.rename
+					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_" boss)
+				Else If boss
+					Return LLK_StringCase(%data%) " (" Lang_Trans("maps_boss") ")"
+				Else Return LLK_StringCase(%data%)
 			}
 			Else If RegExMatch(log_text, "Hideout.*_Claimable")
 			{
