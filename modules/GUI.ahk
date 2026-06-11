@@ -23,8 +23,7 @@ Gui_ClientFiller(mode := "") ;creates a black full-screen GUI to fill blank spac
 	Else If (mode = "show")
 	{
 		WinSet, AlwaysOnTop, On, % "ahk_id " vars.hwnd.poe_client
-		Gui, ClientFiller: Show, % "NA x10000 y10000" (settings.general.ClientFillerTaskbar ? " w" vars.monitor.w " h" vars.monitor.h : " Maximize")
-		Gui, ClientFiller: Show, % "NA x" vars.monitor.x " y" vars.monitor.y
+		Gui, ClientFiller: Show, % "NA x" vars.monitor.x " y" vars.monitor.y . (settings.general.ClientFillerTaskbar ? " w" vars.monitor.w " h" vars.monitor.h : " Maximize")
 		WinWait, % "ahk_id " vars.hwnd.ClientFiller
 		WinSet, AlwaysOnTop, Off, % "ahk_id " vars.hwnd.poe_client
 	}
