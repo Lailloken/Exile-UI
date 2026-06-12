@@ -98,7 +98,10 @@
 		For tab in json_data
 			If !InStr("currency2, breach", tab)
 				tab := (InStr(tab, "currency") ? "currency" : (InStr(tab, "runes") ? "runes" : tab)), vars.stash[tab].timestamp := ini[tab].timestamp, vars.stash[tab].league := ini[tab].league
-		vars.stash.divcards := {"timestamp": ini.divcards.timestamp, "league": ini.divcards.league}
+		If !vars.poe_version
+			vars.stash.divcards := {"timestamp": ini.divcards.timestamp, "league": ini.divcards.league}
+		Else vars.stash.expedition := {"timestamp": ini.expedition.timestamp, "league": ini.expedition.league}, vars.stash.verisium := {"timestamp": ini.verisium.timestamp, "league": ini.verisium.league}
+			, vars.stash.uncutgems := {"timestamp": ini.uncutgems.timestamp, "league": ini.uncutgems.league}
 	}
 	tabs := vars.stash.tabs
 	For tab, array in json_data
@@ -393,8 +396,8 @@ Stash_PriceFetch(tab)
 
 	If !types
 		If vars.poe_version
-			types := {"currency": ["Currency"], "delirium": ["Delirium", "Fragments", "Ritual"], "essences": ["Essences"], "fragments": ["Fragments", "Breach", "Ritual"], "idols": ["Idols"]
-			, "ritual": ["Ritual"], "runes": ["Runes"], "soulcores": ["SoulCores"]}
+			types := {"currency": ["Currency"], "delirium": ["Delirium", "Fragments", "Ritual"], "essences": ["Essences"], "expedition": ["Expedition"], "fragments": ["Fragments", "Breach", "Ritual"], "idols": ["Idols"]
+			, "ritual": ["Ritual"], "runes": ["Runes"], "soulcores": ["SoulCores"], "verisium": ["Verisium"], "uncutgems": ["UncutGems"]}
 		Else types :=  {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency", "Astrolabe"], "divcards": ["DivinationCard"]
 			, "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]}
 

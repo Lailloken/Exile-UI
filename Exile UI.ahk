@@ -78,6 +78,7 @@ Init_recombination(), LLK_Log("initialized recombination settings")
 Init_sanctum(), LLK_Log("initialized sanctum planner settings")
 Init_stash(), LLK_Log("initialized stash-ninja settings")
 Init_statlas(), LLK_Log("initialized statlas settings")
+Init_Runeshape(), LLK_Log("initialized rune-ninja settings")
 Init_hotkeys(), LLK_Log("initialized hotkey settings")
 Resolution_check()
 
@@ -136,6 +137,7 @@ Return
 #Include modules\omni-key.ahk
 #Include modules\qol tools.ahk
 #Include modules\recombination.ahk
+#Include modules\rune-ninja.ahk
 #Include modules\sanctum.ahk
 #Include modules\screen-checks.ahk
 #Include modules\search-strings.ahk
@@ -505,6 +507,7 @@ Init_general()
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
 	settings.general.animations := !Blank(check := ini.settings.animations) ? check : 1
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
+	settings.features.runeshaping := !Blank(check := ini.features["enable rune-ninja"]) ? check : 0
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
 	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
@@ -523,7 +526,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home":LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "screen_checks": {}, "search_strings": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1)), settings.general.league0 := StrSplit("sc|trade" (vars.poe_version ? "" : "|normal") "|standard", "|")
 	settings.general.league := league := !Blank(check := ini.settings.league) ? StrSplit(check, "|", " ", 4) : settings.general.league0.Clone()
@@ -1149,6 +1152,6 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 
 	StringAddress := NumGet(string + 2*A_PtrSize), string := StrGet(StringAddress)
 	If InStr(string, "OCR ")
-		vars.statlas.text := LLK_StringCase(string)
+		vars.ocr_comms.text := LLK_StringCase(string)
 	Return true
 }

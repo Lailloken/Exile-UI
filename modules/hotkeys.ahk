@@ -109,6 +109,8 @@ Hotkeys_ESC()
 
 	If WinExist("LLK-UI: Clone-Frames Borders")
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
+	Else If WinExist("OCR debug")
+		WinClose, OCR debug
 	Else If WinExist("Exile UI: Drop-Down List")
 		Gui, DDL: Hide
 	Else If WinExist("Exile UI: RGB-Picker")

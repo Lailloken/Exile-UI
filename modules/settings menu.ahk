@@ -3670,7 +3670,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	{
 		If !vars.poe_version
 			vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "search-strings", "stash-ninja", "sanctum", "statlas", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "runeshaping", "search-strings", "stash-ninja", "sanctum", "statlas", "exchange"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 	}
@@ -3715,8 +3715,8 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width, vars.hwnd.settings["background_general"] := hwnd1
 	vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints"}
-	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1}
+	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints", "runeshaping": "runeshaping"}
+	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1, "runeshaping": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode
 		For key, val in vars.settings.sections
@@ -3848,6 +3848,8 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_qol()
 		Case "news":
 			Settings_news()
+		Case "runeshaping":
+			Settings_runeshaping()
 		Case "sanctum":
 			Settings_sanctum()
 		Case "screen-checks":
@@ -4392,6 +4394,152 @@ Settings_qol2(cHWND)
 	Else LLK_ToolTip("no action")
 }
 
+Settings_runeshaping()
+{
+	local
+	global vars, settings
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Rune‐Ninja">wiki page</a>
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_runeshaping2 y+" vars.settings.spacing " Checked" settings.features.runeshaping, % Lang_Trans("m_runeshaping_enable")
+	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_runeshaping enable"] := hwnd
+
+	If !settings.features.runeshaping
+		Return
+
+	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd gSettings_runeshaping2 Checked" settings.runeshaping.debug, % Lang_Trans("global_ocr_debug")
+	vars.hwnd.settings.debug := vars.hwnd.help_tooltips["settings_runeshaping debug"] := hwnd
+
+	If settings.runeshaping.debug
+	{
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("m_runeshaping_correction")
+		Gui, %GUI%: Font, % "norm s" settings.general.fSize - 4
+
+		Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+		vars.hwnd.help_tooltips["settings_runeshaping dictionary"] := hwnd
+
+		Gui, %GUI%: Add, Button, % "Hidden ys hp Default HWNDhwnd gSettings_runeshaping2", ok
+		vars.hwnd.settings.ok := hwnd, count := 0
+
+		Gui, %GUI%: Add, Edit, % "Hidden Section xs", bla
+		For index, array in (settings.runeshaping.autocorrect.Count() ? settings.runeshaping.autocorrect : [["", ""]])
+			Loop, % (index = settings.runeshaping.autocorrect.MaxIndex() && settings.runeshaping.autocorrect.Count() ? 2 : 1)
+			{
+				Gui, %GUI%: Add, Text, % (index = 1 && A_Index != 2 ? "xp yp" : "xs y+-1") " Section w" settings.general.fWidth * 2 " hp Center 0x200 Border BackgroundTrans", % count + 1
+				Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 17 " hp Border BackgroundTrans"
+				Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd Lowercase gSettings_runeshaping2", % (A_Index = 1 ? array.1 : "")
+				Gui, %GUI%: Add, Text, % "ys x+-1 wp hp Border BackgroundTrans"
+				Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd1 gSettings_runeshaping2", % (A_Index = 1 ? array.2 : "")
+				vars.hwnd.settings["acInput_" index + (A_Index - 1)] := vars.hwnd.help_tooltips["settings_runeshaping auto-correct input" ac_handle] := hwnd
+				vars.hwnd.settings["acOutput_" index + (A_Index - 1)] := vars.hwnd.help_tooltips["settings_runeshaping auto-correct output" ac_handle] := hwnd1
+				ac_handle .= "|", count += 1
+			}
+
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+	}
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_font")
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "–"
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*3, % settings.runeshaping.fSize
+	vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "+"
+	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+
+	Gui, %GUI%: Add, Text, % "ys x+" vars.settings.spacing, % Lang_Trans("m_runeshaping_colors")
+	For index, val in ["high", "stack", "unknown"]
+	{
+		Gui, %GUI%: Add, Text, % "ys" (index = 1 ? "" : " x+-1") " w" settings.general.fWidth * 1.5 " gSettings_runeshaping2 hp Border BackgroundTrans HWNDhwnd"
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd1 c" settings.runeshaping["color_" val], 100
+
+		vars.hwnd.settings["pricecolor_" val] := hwnd, vars.hwnd.settings["pricecolor_" val "_bar"] := vars.hwnd.help_tooltips["settings_runeshaping color " val] := hwnd1
+	}
+}
+
+Settings_runeshaping2(cHWND := "")
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	Switch
+	{
+		Case (check = "enable"):
+		IniWrite, % (settings.features.runeshaping := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", features, enable rune-ninja
+		Settings_menu("runeshaping")
+		;######################################################
+		Case (check = "debug"):
+		IniWrite, % (settings.runeshaping.debug := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\rune-ninja.ini", settings, enable trouble-shooting
+		If !settings.runeshaping.debug && WinExist("OCR debug")
+			WinClose, OCR debug
+		Settings_menu("runeshaping")
+		;######################################################
+		Case (check = "ok"):
+		For outer in [1, 2]
+			For key, hwnd in vars.hwnd.settings
+				If InStr(key, "acInput_")
+				{
+					index := SubStr(key, InStr(key, "_") + 1), input := LLK_ControlGet(hwnd), output := LLK_ControlGet(vars.hwnd.settings["acOutput_" index])
+					If (Blank(input) + Blank(output) = 1)
+					{
+						WinGetPos, xPos, yPos, width, height, % "ahk_id " vars.hwnd.settings["acOutput_" index]
+						LLK_ToolTip("<- " Lang_Trans("global_errorname", 2),, xPos + width, yPos,, "FF8000")
+						Return
+					}
+					Else If (outer = 1)
+						Continue
+					If Blank(input . output) && !Blank(settings.runeshaping.autocorrect[index].1 . settings.runeshaping.autocorrect[index].2)
+					{
+						IniDelete, % "ini" vars.poe_version "\rune-ninja.ini", autocorrect, % index
+						settings.runeshaping.autocorrect.Delete(index), edited := 1
+					}
+					Else If (input != settings.runeshaping.autocorrect[index].1 || output != settings.runeshaping.autocorrect[index].2)
+					{
+						If !IsObject(settings.runeshaping.autocorrect[index])
+							settings.runeshaping.autocorrect[index] := []
+						IniWrite, % """" (settings.runeshaping.autocorrect[index].1 := input) "§" (settings.runeshaping.autocorrect[index].2 := output) """", % "ini" vars.poe_version "\rune-ninja.ini", autocorrect, % index
+						edited := 1
+					}
+				}
+		If edited
+			Settings_menu("runeshaping")
+		;######################################################
+		Case RegexMatch(check, "i)ac(in|out)put_"):
+		input := LLK_ControlGet(cHWND), index := SubStr(check, InStr(check, "_") + 1), type := (InStr(check, "in") ? 1 : 2)
+		GuiControl, % "+c" (input != settings.runeshaping.autocorrect[index][type] ? "FF8111" : "Black"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+		
+		;######################################################
+		Case InStr(check, "pricecolor_"):
+		RGB := (vars.system.click = 2 ? settings.runeshaping.colors_default[control] : RGB_Picker(settings.runeshaping["color_" control]))
+		If Blank(RGB)
+			Return
+		IniWrite, % """" (settings.runeshaping["color_" control] := RGB) """", % "ini" vars.poe_version "\rune-ninja.ini", settings, % "color " control
+		GuiControl, % "+c" RGB, % vars.hwnd.settings["pricecolor_" control "_bar"]
+		;######################################################
+		Case InStr(check, "font_"):
+		While GetKeyState("LButton", "P")
+		{
+			If (control = "reset")
+				settings.runeshaping.fSize := settings.general.fSize
+			Else settings.runeshaping.fSize += (control = "plus") ? 1 : (settings.runeshaping.fSize > 6 ? -1 : 0)
+			GuiControl, Text, % vars.hwnd.settings.font_reset, % settings.runeshaping.fSize
+			Sleep 200
+		}
+		IniWrite, % settings.runeshaping.fSize, % "ini" vars.poe_version "\rune-ninja.ini", settings, font-size
+		LLK_FontDimensions(settings.runeshaping.fSize, fHeight, fWidth), settings.runeshaping.fWidth := fWidth, settings.runeshaping.fHeight := fHeight
+		;######################################################
+		Case check:
+		LLK_ToolTip("no action")
+	}
+}
+
 Settings_sanctum()
 {
 	local
@@ -4534,7 +4682,7 @@ Settings_screenchecks()
 		vars.hwnd.settings["cImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-calibration"handle] := hwnd
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " border gSettings_screenchecks2 HWNDhwnd" (Blank(vars.imagesearch[key].x1) ? " cRed" : ""), % " " Lang_Trans("global_test") " "
 		vars.hwnd.settings["tImage_"key] := vars.hwnd.help_tooltips["settings_screenchecks image-test"handle] := hwnd, handle .= "|"
-		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((RegExMatch(key, "i)sanctum|async") ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
+		Gui, %GUI%: Add, Text, % "ys", % Lang_Trans((RegExMatch(key, "i)sanctum|async|runeshaping") ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
 	}
 
 	If active_image.Count()
@@ -4669,6 +4817,7 @@ Settings_ScreenChecksValid(type := "")
 	For key, val in vars.imagesearch.list
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
 		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key] || InStr(key, "async") && !settings.features.async
+		|| (key = "runeshaping") && !settings.features.runeshaping
 			Continue
 		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 

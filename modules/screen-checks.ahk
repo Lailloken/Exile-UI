@@ -44,11 +44,12 @@
 	}
 	Else
 	{
-		vars.imagesearch.search := ["skilltree", "atlas", "sanctum", "exchange", "async1", "async2"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
-		vars.imagesearch.list := {"atlas": 1, "exchange": 1, "skilltree": 1, "sanctum": 1, "async1": 1, "async2": 1} ;this object is parsed when listing image-checks in the settings menu
+		vars.imagesearch.search := ["skilltree", "atlas", "runeshaping", "sanctum", "exchange", "async1", "async2"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
+		vars.imagesearch.list := {"atlas": 1, "exchange": 1, "skilltree": 1, "sanctum": 1, "async1": 1, "async2": 1, "runeshaping": 1} ;this object is parsed when listing image-checks in the settings menu
 		vars.imagesearch.checks := {"skilltree": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
 		, "atlas": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
-		, "async2": {"x": vars.client.w/2 - Round(0.36 * vars.client.h), "y": Round(0.14 * vars.client.h), "w": Round(0.1 * vars.client.h), "h": Round(0.01 * vars.client.h)}}
+		, "async2": {"x": vars.client.w/2 - Round(0.36 * vars.client.h), "y": Round(0.14 * vars.client.h), "w": Round(0.1 * vars.client.h), "h": Round(0.01 * vars.client.h)}
+		, "runeshaping": {"x": Round(vars.client.h * (3/16)), "y": Round(vars.client.h * (1/9)), "w": Round(vars.client.h * (13/80)), "h": Round(vars.client.h * (1/48))}}
 	}
 	vars.imagesearch.variation := 15
 	vars.imagesearch.checks.exchange := {"x": Round(vars.client.w/2 - vars.client.h/8), "y": Round(vars.client.h/9), "w": Round(vars.client.h * (17/72)), "h": Round(vars.client.h * 0.023)}

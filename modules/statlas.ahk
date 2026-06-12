@@ -27,29 +27,36 @@ Statlas()
 	start := A_TickCount
 	If !IsObject(db.maps)
 		DB_Load("maps")
-	Gui, statlas_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: statlas"
+	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
-	Gui, statlas_comms: Add, Text,, % "client: " vars.hwnd.poe_client
-	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//6 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//3 "|" Round(vars.client.h/12) "`n"
+	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client
+	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//6 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//3 "|" Round(vars.client.h/22) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
-	Gui, statlas_comms: Show, NA x10000 y10000
+	Gui, ocr_comms: Show, NA x10000 y10000
 
-	vars.statlas := {}
-	Run, modules\_ocr thread.ahk,, UseErrorLevel
+	vars.statlas := {}, vars.ocr_comms := {}
+	Run, % """" A_AhkPath """ """ A_ScriptDir "\modules\_ocr thread.ahk""", % A_ScriptDir, UseErrorLevel
 
 	If ErrorLevel
+	{
+		LLK_ToolTip(Lang_Trans("ocr_fail"), 2,,,, "Red")
 		Return
-	Else
-		While !ocr_failed && Blank(vars.statlas.text)
+	}
+	Else If !GetKeyState("ALT", "P")
+		While !ocr_failed && Blank(vars.ocr_comms.text)
 		{
-			If (A_TickCount >= start + 1000) || (vars.statlas.text = "OCR failed")
+			If (A_TickCount >= start + 1000)
 				ocr_failed := 1
 			Sleep 25
 		}
 
-	If ocr_failed
+	If ocr_failed || (vars.ocr_comms.text = "OCR failed") || GetKeyState("ALT", "P")
+	{
+		If (vars.ocr_comms.text = "OCR failed") || !GetKeyState("ALT", "P")
+			LLK_ToolTip(Lang_Trans("global_fail"), 1,,,, "Red")
 		Return
-	text := SubStr(vars.statlas.text, InStr(vars.statlas.text, ":") + 2), text := StrReplace(text, "  ", " ")
+	}
+	text := SubStr(vars.ocr_comms.text, InStr(vars.ocr_comms.text, ":") + 2), text := StrReplace(text, "  ", " ")
 	vars.statlas := {}
 
 	Loop, Parse, text, `n, " `r`t"

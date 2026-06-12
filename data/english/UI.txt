@@ -70,12 +70,13 @@
 		ms_map-info			=	"map-info"
 		ms_minor qol tools		=	"minor qol tools"
 		ms_news				=	"announcements"
+		ms_runeshaping			=	"rune-ninja"
 		ms_sanctum			=	"sanctum planner"
 		ms_sanctum			=	"sekhema planner"
 		ms_screen-checks		=	"screen-checks"
 		ms_search-strings		=	"search-strings"
 		ms_stash-ninja			=	"stash-ninja"
-		ms_statlas			=	"statlas"		;## blend of "stats" and "atlas"
+		ms_statlas			=	"statlas"			;## blend of "stats" and "atlas"
 		ms_stream-clients		=	"stream-clients"
 		ms_tldr-tooltips		=	"tldr-tooltips"
 		ms_exchange			=	"vaal street"		;## reference to Wall Street
@@ -270,6 +271,7 @@
 		global_small			=	"small"
 		global_medium			=	"medium"
 		global_large			=	"large"
+		global_ocr_debug		=	"enable trouble-shooting"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -675,6 +677,7 @@
 		ocr_vaalplayer			=	"player"
 		ocr_vaalvessel			=	"vessel"
 		ocr_vaalunclear		=	"unclear"
+		ocr_fail				=	"couldn't launch;ocr process"
 
 
 
@@ -1192,6 +1195,17 @@
 
 
 ;#####################################################
+;## settings menu: rune-ninja
+;#####################################################
+
+;## these strings are displayed/required in the "rune-ninja" section of the settings menu
+		m_runeshaping_enable	=	"enable the rune-ninja overlay (experimental)"
+		m_runeshaping_correction	=	"auto-correct dictionary:"					;## a list of strings that can be set up to fix recurring scan issues
+		m_runeshaping_colors	=	"highlight colors:"
+
+
+
+;#####################################################
 ;## settings menu: sanctum planner
 ;#####################################################
 
@@ -1214,6 +1228,7 @@
 		m_screen_gamescreen		=	"infopanel"									;## refers to the small panel in the top-right corner that shows area-name, server, league, etc.
 		m_screen_close_button	=	"close button"
 		m_screen_instructions	=	"read the instructions on;the <info> button!"
+		m_screen_runeshaping	=	"runeshaping"
 		m_screen_sanctum		=	"sanctum floor map"
 		m_screen_sanctum		=	"sekhema floor map"
 		m_screen_async1		=	"async trade (sell)"
