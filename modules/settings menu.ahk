@@ -4440,6 +4440,14 @@ Settings_runeshaping()
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 	}
 
+	Gui, %GUI%: Font, underline bold
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	vars.hwnd.settings.league_select := vars.hwnd.help_tooltips["settings_league selection other"] := hwnd
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
@@ -4468,6 +4476,13 @@ Settings_runeshaping2(cHWND := "")
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If !InStr(check, "font_")
+	{
+		KeyWait, LButton
+		KeyWait, RButton
+		KeyWait, Enter
+	}
+	
 	Switch
 	{
 		Case (check = "enable"):
@@ -4515,6 +4530,9 @@ Settings_runeshaping2(cHWND := "")
 		GuiControl, % "+c" (input != settings.runeshaping.autocorrect[index][type] ? "FF8111" : "Black"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		
+		;######################################################
+		Case (check = "league_select"):
+		Settings_menu("general")
 		;######################################################
 		Case InStr(check, "pricecolor_"):
 		RGB := (vars.system.click = 2 ? settings.runeshaping.colors_default[control] : RGB_Picker(settings.runeshaping["color_" control]))
@@ -5032,7 +5050,7 @@ Settings_stash()
 
 	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
 	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border gSettings_stash2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
-	vars.hwnd.settings.league_select := vars.hwnd.help_tooltips["settings_stash league"] := hwnd
+	vars.hwnd.settings.league_select := vars.hwnd.help_tooltips["settings_league selection other"] := hwnd
 
 	If vars.client.stream
 	{

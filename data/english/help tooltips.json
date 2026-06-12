@@ -80,6 +80,9 @@
       "select the league you're currently playing in",
       "this information can be used in various features for price-checking and logging purposes"
     ],
+    "league selection other": [
+      "this is a global setting: click this button to open the <general> tab and select your current league"
+    ],
     "league update": [
       "check for new leagues/events"
     ],
