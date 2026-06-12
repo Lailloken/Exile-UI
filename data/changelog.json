@@ -1,5 +1,13 @@
 [
   [
+	["1.63.4", 16304],
+	"june 12, 2026",
+	"cheat-sheets:\n>> added support for 'sample' cheat-sheets (optional, pre-installed sheets for specific mechanics)\n>> added a sample sheet for expedition island rumors",
+	"item-info:\n>> fixed items with corruption implicits",
+	"map-tracker:\n>> added support for logbook content",
+	"new feature:\n>> added 'rune-ninja' for scanning and price checking the rewards offered on runic remnants"
+  ],
+  [
 	["1.63.3", 16303],
 	"june 9, 2026",
 	"act-tracker:\n>> added aldur quests to the league-start route",
@@ -152,63 +160,5 @@
 	"act-tracker:\n>> general tweaks, a4 restructure, many new optionals\n>> lvl-diff color more accurate, added lvl recommendations (highly-optimized runs)",
 	"act-decoder:\n>> can now be moved outside main monitor (beta), improved tooltips",
 	"item-info:\n>> added support for talismans"
-  ],
-  [
-	["1.60.7", 16007],
-	"december 8, 2025",
-	"act-decoder:\n>> added a new type (<sample layouts>, orange border) to give a rough idea of a zone\n>> added <full layouts> to several zones, and every zone now has at least one <sample layout>",
-	"act-tracker:\n>> hints are now available when using a dedicated hotkey for the act-decoder"
-  ],
-  [
-	["1.60.6", 16006],
-	"december 1, 2025",
-	"act-decoder:\n>> added an alternative hotkey, fixed some selection and resetting issues",
-	"act-tracker:\n>> major rewrite of poe2 guide, major a4 restructuring for upcoming quest rotations",
-	"alarm timer:\n>> right-click < + > button for easier stopwatch, and they can now be paused/resumed",
-	"map-events:\n>> notifications can now be individually toggled and customized",
-	"minor qol:\n>> added new context-menu options for inscribed ultimatums"
-  ],
-  [
-	["1.60.5", 16005],
-	"november 11, 2025",
-	"stash-ninja:\n>> fixed ultimatum issues",
-	"new feature:\n>> chat macros for fast-travel and custom chat commands",
-	">> added a <recent changes> section to the updater",
-	"map-events:\n>> added support for graftblood warnings",
-	"item-info:\n>> foulborn unique support, updated unique drop-tiers"
-  ],
-  [
-	["1.60.4", 16004],
-	"november 3, 2025",
-	"stash-ninja:\n>> now uses poe.ninja's currency exchange api\n>> added support for 3.27 tabs and keepers leagues",
-	"act-tracker:\n>> fixed kinetic fusillade import, fixed a10 bannon/weylam mix-up",
-	"item-info:\n>> temporarily disabled ilvl affix-info\n>> updated items to 3.27, added support for grafts",
-	">> fixed inventory pixel-check and vaal street tooltips on 4k setups"
-  ],
-  [
-	["1.60.3", 16003],
-	"october 31, 2025",
-	"act-tracker:\n>> added support for 3.27 passive trees and gems",
-	"hotkeys:\n>> added an alternative key to access the menu-widget (F2 by default, can be rebound or disabled)",
-	"item-info:\n>> added support for 3.27 item bases",
-	">> horizons tooltip updated to 3.27"
-  ],
-  [
-	["1.60.2", 16002, 1],
-	"october 30, 2025",
-	"act-decoder:\n>> custom layout images are not supported anymore(/highlight)\n>> added hotkeys for layout selection while moving, added/updated layouts up to a3 sewers"
-  ],
-  [
-	["1.60.1", 16001],
-	"october 27, 2025",
-	"act-tracker:\n>> major poe1 guide changes (new routes, improved town visits, fewer detours)"
-  ],
-  [
-	["1.60.0", 16000, 1],
-	"october 19, 2025",
-	">> omni-key is now <capslock> by default and only registered by the tool(/highlight)",
-	"hotkeys:\n>> <tab> key is now the <widget-key>, and some activations were moved to the <omni-key> instead",
-	">> replaced the main toolbar with a dynamic menu-widget (long-press <esc> to access it)(/highlight)",
-	">> seed-explorer feature removed (3rd-party data no longer maintained)"
   ]
 ]
