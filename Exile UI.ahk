@@ -638,9 +638,13 @@ LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 		If FileExist("img\GUI\leveling tracker\hints\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints\" val ".jpg"
 
-	For index, val in ["the_wall_with_notes", "a_large_spiral", "form_a_triangle", "but_you_have_to_loop_around", "altar-locked_room_with_stairs", "the_plaza_and_the", "follow_the_road_straight", "diamond-shaped", "follow_road_straight", "the_wall_with_paper_talismans", "locked_room_with_stairs", "the_plaza_and", "check_the_surroundings"]
+	For index, val in ["the_wall_with_notes", "a_large_spiral", "form_a_triangle", "but_you_have_to_loop_around", "altar-locked_room_with_stairs", "the_plaza_and_the", "follow_the_road_straight", "diamond-shaped", "follow_road_straight", "the_wall_with_paper_talismans", "locked_room_with_stairs", "the_plaza_and", "check_the_surroundings", "follow_this_edge", "check_surroundings", "crescent-shaped", "diamond-shape", "paper_talismans", "pillar_structures", "the_wall_with_paper_talismans - Copy", "tower_structures", "waterway_edge", "swirls_that_point_to_missing_ones"]
 		If FileExist("img\GUI\leveling tracker\hints 2\" val ".jpg")
 			FileDelete, % "img\GUI\leveling tracker\hints 2\" val ".jpg"
+
+	For index, val in ["megalith bosses", "morwyn"]
+		If FileExist("img\GUI\statlas\" val ".jpg")
+			FileDelete, % "img\GUI\statlas\" val ".jpg"
 
 	For index, val in ["necropolis.ahk"]
 		If FileExist("modules\" val)
