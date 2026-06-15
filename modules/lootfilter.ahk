@@ -422,26 +422,32 @@ Lootfilter_Economy(type, input, stacks := 0)
 	If !IsNumber(input)
 		Return -1
 
-	Economy_Update(type, 10), modifications := []
-	If (vars.economy[type].timestamp.2 = "failed")
-		Return 0
+	batch := (type = "socketables" ? ["runes", "idols", "soulcores"] : [type])
+	For index, currency_type in batch
+	{
+		Economy_Update(currency_type, 10)
+		If (vars.economy[currency_type].timestamp.2 = "failed")
+			Return 0
+	}
+	modifications := []
 
 	If !style_tiers
 		style_tiers := (vars.poe_version ? {"currency": "c", "essences": "c", "socketables": "c"} : {"currency": "t4chaos", "divcards": "t4", "essences": "t3", "scarabs": "t4"})
 
 	stack_sizes := [{}], stack_style := []
-	For item, price in vars.economy[type]
-		If !(item := vars.economy.names[item]) || !LLK_HasVal(vars.lootfilter.active_filter.structure[types[type]], """" item """", 1,,, 1)
-			Continue
-		Else If (price < input)
-		{
-			stack_sizes.1[item] := 1, size := ((Round(input/price, 2) <= (input//price) * 1.11) ? Round(input//price) : Ceil(input / price))
-			If !stacks || (size > 6)
+	For index, currency_type in batch
+		For item, price in vars.economy[currency_type]
+			If !(item := vars.economy.names[item]) || !LLK_HasVal(vars.lootfilter.active_filter.structure[types[type]], """" item """", 1,,, 1)
 				Continue
-			If !IsObject(stack_sizes[size])
-				stack_sizes[size] := {}
-			stack_sizes[size][item] := 1
-		}
+			Else If (price < input)
+			{
+				stack_sizes.1[item] := 1, size := ((Round(input/price, 2) <= (input//price) * 1.11) ? Round(input//price) : Ceil(input / price))
+				If !stacks || (size > 6)
+					Continue
+				If !IsObject(stack_sizes[size])
+					stack_sizes[size] := {}
+				stack_sizes[size][item] := 1
+			}
 
 	If stacks
 	{
@@ -1200,7 +1206,7 @@ Lootfilter_Editor(cHWND := "")
 	If break
 	{
 		Gui, %GUI%: Font, % "bold s" settings.lootfilter.fSize - 4
-		Gui, %GUI%: Add, Text, % "Section y+" margin " xs x" margin " Border cRed Center BackgroundTrans HWNDhwnd w" wMax - margin - 1, % Lang_Trans("global_match", 3)
+		Gui, %GUI%: Add, Text, % "Section y+" margin " xs x" margin " Border cRed Center BackgroundTrans HWNDhwnd w" wMax - margin - 1, % Lang_Trans("lootfilter_matches")
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundRed cWhite", 100
 		Gui, %GUI%: Font, % "norm s" settings.lootfilter.fSize
 	}
