@@ -184,6 +184,7 @@
 ;## don't leave out the punctuation mark because it's important for accuracy and to avoid unwanted matches (especially Rog)
 ;## REMINDER: case-sensitivity, match text in chat-window
 		log_delirium			=	"Strange Voice:"			;## PoE1 and PoE2
+		log_delirium			=	"The Raven:"
 
 		log_blight			=	"Sister Cassia:"			;## PoE1 only (whole block)
 		log_harvest			=	"Oshabi:"
