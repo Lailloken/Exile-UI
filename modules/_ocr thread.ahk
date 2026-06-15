@@ -40,7 +40,7 @@ Runeshaping()
 {
 	global
 
-	pBitmap := Gdip_BitmapFromHWND(poe_client.1, 1), yLast := 0, HBMs := []
+	start := A_TickCount, pBitmap := Gdip_BitmapFromHWND(poe_client.1, 1), yLast := 0, HBMs := [], aText := []
 	If blackbars
 		pBitmap_copy := Gdip_CloneBitmapArea(pBitmap, blackbars.1, blackbars.2, blackbars.3, blackbars.4,, 1), Gdip_DisposeImage(pBitmap), pBitmap := pBitmap_copy
 	pBitmap_cropped := Gdip_CloneBitmapArea(pBitmap, clip.1, clip.2, clip.3, clip.4,, 1)
@@ -70,7 +70,7 @@ Runeshaping()
 				Break
 			}
 		}
-		Else yLast += hClip, text_all .= (text_all ? "`n" : "") . Trim(text, "`n`t ") . (high_tier ? " [1]" : "") , HBMs.Push(hbmBitmap_clone), high_tier := ""
+		Else yLast += hClip, aText.Push(Trim(text, "`n`t ") . (high_tier ? " [1]" : "")), HBMs.Push(hbmBitmap_clone), high_tier := "", text_all .= (!text_all ? "" : "`n") . aText[aText.MaxIndex()]
 	}
 
 	Gdip_DisposeImage(pBitmap)
@@ -79,10 +79,17 @@ Runeshaping()
 	{
 		WinGetPos, xWin, yWin, wWin, hWin, ahk_class POEWindowClass
 		Gui, test: New, -DPIScale +LastFound +AlwaysOnTop +ToolWindow, OCR debug
+		Gui, test: Margin, 5, 5
+		Gui, test: Font, s14
+		Gui, test: Add, Text, % "Hidden HWNDhwnd", bla
+		ControlGetPos,,,, hControl,, ahk_id %hwnd%
 		For index, hbm in HBMs
-			Gui, test: Add, Pic, Section, % "HBitmap:*" hbm
-		Gui, test: Add, Text, xs, % "OCR result:`n" text_all
-		Gui, test: Show, % "x" xWin + wWin * 0.4 " y" yWin
+		{
+			Gui, test: Add, Pic, % "Section " (index = 1 ? "xp yp" : "xs") " w" width " h" poe_client.2 * (InStr(aText[index], "[") ? 3/40 : 2/45), % "HBitmap:*" hbm
+			Gui, test: Add, Text, % "ys yp+" (poe_client.2 * (InStr(aText[index], "[") ? 3/40 : 2/45))//2 - hControl//2, % aText[index]
+		}
+		Gui, test: Add, Text, % "Section xs", % "scan time: " A_TickCount - start " ms"
+		Gui, test: Show, % "NA x" xWin + Round(poe_client.2//2 * 1.1) " y" yWin
 		WinWaitClose, OCR debug
 	}
 	Else StringSend(text_all ? "OCR successful:`n" text_all : "OCR failed")

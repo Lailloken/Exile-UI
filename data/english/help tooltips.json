@@ -922,13 +922,16 @@
       "enter the string that replaces the ones on the left"
     ],
     "runeshaping color high": [
-      "color used to highlight the highest price"
+      "color used to highlight the highest price",
+      "click to open the palette, r-click to reset to default"
     ],
     "runeshaping color stack": [
-      "color used to highlight stack-size issues"
+      "color used to highlight stack-size issues",
+      "click to open the palette, r-click to reset to default"
     ],
     "runeshaping color unknown": [
-      "color used to highlight pricing issues"
+      "color used to highlight pricing issues",
+      "click to open the palette, r-click to reset to default"
     ],
     "runeshaping debug": [
       "pressing <alt> + <omni-key> will open the screen-cap and ocr results",

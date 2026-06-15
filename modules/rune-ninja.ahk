@@ -54,6 +54,7 @@ Runeshape_OCR()
 
 	If ocr_failed || (vars.ocr_comms.text = "OCR failed") || settings.runeshaping.debug && GetKeyState("ALT", "P")
 	{
+		WinWaitClose, OCR debug
 		If (vars.ocr_comms.text = "OCR failed") || !GetKeyState("ALT", "P")
 			LLK_ToolTip(Lang_Trans("global_fail"), 1,,,, "Red")
 		Return
@@ -97,10 +98,8 @@ Runeshape_GUI()
 
 	For index, object in text
 	{
-		If RegexMatch(object.line, "i)flux|saga|logbook")
+		If RegexMatch(object.line, "\sore$")
 			check := "expedition", Economy_Update(check)
-		Else If RegExMatch(object.line, "i)alloy$|\screst\s|\sore$")
-			check := "verisium", Economy_Update(check)
 		Else If RegExMatch(object.line, "i)uncut.*gem \(")
 			check := "uncutgems", Economy_Update(check)
 
