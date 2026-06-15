@@ -318,6 +318,10 @@
       "boss": "krutog",
       "name": "sinter rift"
     },
+    "slash": {
+      "boss": "crowbell",
+      "name": "slash"
+    },
     "slick": {
       "boss": "rudja",
       "name": "slick"
