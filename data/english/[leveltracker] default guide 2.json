@@ -453,7 +453,7 @@
       "optional: (img:quest_2) (color:cc99ff)flameskin_ritual",
       "(hint)__ (color:red)25%_fire_res for rest of zone",
       "kill (img:checkpoint) ignagduk for (quest:2_items)",
-      "(hint)__ (img:quest_2) (color:cc99ff)flameskin_ritual reveals arena",
+      "(hint)__ (img:quest_2) (color:cc99ff)flameskin_ritual points to her",
       "(img:portal) to areaidg3_town ;; ziggurat encampment"
     ],
     {
