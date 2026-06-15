@@ -84,11 +84,17 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 | full<br>layouts | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/actdecoder_102.jpg) |
 <br>
 
-### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja price-overlay
+### [Stash-Ninja](https://github.com/Lailloken/Lailloken-UI/wiki/Stash%E2%80%90Ninja): poe.ninja price-overlay for fixed stash tabs
 | | Path of Exile | Path of Exile 2 |
 |---|---|---|
 | customizable<br>price-tags<br>& profiles | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_001.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_101.jpg) |
 | conversions<br>& price history | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_002.jpg) | ![image](https://raw.githubusercontent.com/Lailloken/Lailloken-UI/main/img/readme/stashninja_102.jpg) |
+<br>
+
+### [Rune-Ninja](https://github.com/Lailloken/Exile-UI/wiki/Rune%E2%80%90Ninja): poe.ninja price-overlay for runic remnants
+**`Path of Exile 2 ONLY`**
+| ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/runeninja_101.jpg) |
+|---|
 <br>
 
 ### [Chat Macros](https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros): quick-access macros and "chat wheels"
