@@ -901,14 +901,13 @@ Settings_donations()
 		vars.settings.donations[val.2].0 := 1
 	}
 
-	LLK_PanelDimensions(dimensions, settings.general.fSize - 2, width, height), LLK_PanelDimensions([placeholder], settings.general.fSize, wPlaceholder, hPlaceholder,,, 0)
-	columns := wPlaceholder//width
+	LLK_PanelDimensions(dimensions, settings.general.fSize - 2, width, height), columns := 4
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.yselection, special thanks to these people for donating:
+	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.yselection, special thanks to these exiles who help me stay sane:
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 	For key, val in vars.settings.donations
 	{
-		pos := (A_Index = 1) || !Mod(A_Index - 1, columns) ? "xs Section" (A_Index = 1 ? " y+" vars.settings.spacing : "") : "ys"
+		pos := (A_Index = 1) || !Mod(A_Index - 1, columns) ? "xs Section" : "ys"
 		Gui, %GUI%: Add, Text, % pos " Center Border HWNDhwnd BackgroundTrans w" width " h" height " c" patterns[val.1].1 . (!InStr(key, "`n") ? " 0x200" : ""), % StrReplace(key, "|")
 		Gui, %GUI%: Add, Progress, % "xp+3 yp+3 wp-6 hp-6 Disabled HWNDhwnd Background" patterns[val.1].2, 0
 		Gui, %GUI%: Add, Progress, % "xp-3 yp-3 wp+6 hp+6 Disabled Background" patterns[val.1].1, 0
@@ -1253,8 +1252,9 @@ Settings_general()
 			{
 				Gui, %GUI%: Add, DDL, % "ys hp r3 HWNDhwnd gSettings_general2" (wCheck < vars.monitor.w ? " wp" : " w"settings.general.fWidth * 6.5), % StrReplace(Lang_Trans("m_general_postop") "|" Lang_Trans("m_general_poscenter") "|" Lang_Trans("m_general_posbottom") "|", Lang_Trans("m_general_pos" vars.client.docked2) "|", Lang_Trans("m_general_pos" vars.client.docked2) "||")
 				vars.hwnd.settings.dock2 := hwnd, vars.hwnd.help_tooltips["settings_window position||"] := hwnd
-				Gui, %GUI%: Font, % "s"settings.general.fsize
 			}
+			Gui, %GUI%: Font, % "s"settings.general.fsize
+
 			If (vars.client.fullscreen = "false")
 			{
 				Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd Checked"vars.client.borderless " gSettings_general2", % Lang_Trans("m_general_borderless")
