@@ -493,8 +493,9 @@ Init_general()
 	settings.general.dev := !Blank(check := ini.settings["dev"]) ? check : 0
 	settings.general.dev_env := settings.general.dev * (!Blank(check := ini.settings["dev env"]) ? check : 0)
 	settings.general.warning_ultrawide := !Blank(check := ini.versions["ultrawide warning"]) ? check : 0
-	settings.general.ClientFiller := !settings.general.FillerAvailable ? 0 : !Blank(check := ini.settings["client background filler"]) ? check : 0
-	settings.general.ClientFillerTaskbar := !Blank(check := ini.settings["cover taskbar"]) ? check : 0
+	settings.general.ClientFiller := (!settings.general.FillerAvailable ? 0 : (!Blank(check := ini.settings["client background filler"]) ? check : 0))
+	settings.general.ClientFillerTaskbar := (!Blank(check := ini.settings["cover taskbar"]) ? check : 0)
+	settings.general.ClientFillerSplit := (!settings.general.ClientFillerTaskbar ? 0 : (!Blank(check := ini.settings["split-screen mode"]) ? check : 0))
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
 
 	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
@@ -691,11 +692,8 @@ Loop()
 
 		If vars.client.closed
 		{
-			If (vars.client.fullscreen = "true")
-			{
-				WinWaitActive, ahk_group poe_window
-				Sleep, 4000
-			}
+			WinWaitActive, ahk_group poe_window
+			Sleep, 4000
 			Init_client(), Init_Lang(), Init_screenchecks()
 		}
 		vars.client.closed := 0

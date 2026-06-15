@@ -16,8 +16,14 @@ Gui_ClientFiller(mode := "") ;creates a black full-screen GUI to fill blank spac
 	{
 		Gui, ClientFiller: New, % "-DPIScale -Caption +ToolWindow +LastFound" (settings.general.ClientFillerTaskbar ? " +AlwaysOnTop" : "") " HWNDhwnd"
 		Gui, ClientFiller: Color, Black
+		Gui, ClientFiller: Margin, 0, 0
 		WinSet, TransColor, Fuchsia
-		Gui, ClientFiller: Add, Progress, % "Disabled BackgroundFuchsia x" vars.client.x - vars.monitor.x " y" vars.client.y - vars.monitor.y " w" vars.client.w " h" vars.client.h, 0
+		Gui, ClientFiller: Add, Progress, % "Disabled BackgroundFuchsia x" (settings.general.ClientFillerSplit ? 0 : vars.client.x - vars.monitor.x) " y" vars.client.y - vars.monitor.y " w" (settings.general.ClientFillerSplit ? vars.monitor.w : vars.client.w) " h" vars.client.h, 0
+		If settings.general.ClientFillerSplit
+		{
+			Gui, ClientFiller: Add, Progress, % "Disabled BackgroundFuchsia x0 y0 w" (vars.client.x - vars.monitor.x) " h" vars.monitor.h
+			Gui, ClientFiller: Add, Progress, % "Disabled BackgroundFuchsia x" (vars.client.x - vars.monitor.x) + vars.client.w " y0 w" (vars.monitor.w - vars.client.w - (vars.client.x - vars.monitor.x)) " h" vars.monitor.h
+		}
 		vars.hwnd.ClientFiller := hwnd
 	}
 	Else If (mode = "show")

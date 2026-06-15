@@ -1268,6 +1268,11 @@ Settings_general()
 			vars.hwnd.settings.ClientFiller := vars.hwnd.help_tooltips["settings_client filler"] := hwnd
 			Gui, %GUI%: Add, Checkbox, % "ys x+0 gSettings_general2 HWNDhwnd Checked" settings.general.ClientFillerTaskbar . (settings.general.ClientFiller ? "" : " Hidden"), % Lang_Trans("m_general_filler", 2)
 			vars.hwnd.settings.ClientFillerTaskbar := vars.hwnd.help_tooltips["settings_client filler taskbar"] := hwnd
+			If settings.general.ClientFillerTaskbar && (vars.client.w < vars.monitor.w)
+			{
+				Gui, %GUI%: Add, Checkbox, % "Section xs gSettings_general2 HWNDhwnd Checked" settings.general.ClientFillersplit, % Lang_Trans("m_general_filler", 3)
+				vars.hwnd.settings.ClientFillerSplit := vars.hwnd.help_tooltips["settings_client filler split"] := hwnd
+			}
 		}
 
 		If (vars.client.h0 / vars.client.w0 < (5/12))
@@ -1386,12 +1391,6 @@ Settings_general2(cHWND := "")
 			IniWrite, % height, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
 			IniWrite, % width, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 			IniWrite, % LLK_ControlGet(vars.hwnd.settings.remove_borders), % "ini" vars.poe_version "\config.ini", settings, remove window-borders
-			If vars.hwnd.settings.ClientFiller
-			{
-				IniWrite, % (input := LLK_ControlGet(vars.hwnd.settings.ClientFiller)), % "ini" vars.poe_version "\config.ini", Settings, client background filler
-				If input
-					IniWrite, % LLK_ControlGet(vars.hwnd.settings.ClientFillerTaskbar), % "ini" vars.poe_version "\config.ini", Settings, cover taskbar
-			}
 			If vars.hwnd.settings.blackbars
 				IniWrite, % LLK_ControlGet(vars.hwnd.settings.blackbars), % "ini" vars.poe_version "\config.ini", Settings, black-bar compensation
 			IniWrite, % vars.settings.active, % "ini" vars.poe_version "\config.ini", Versions, reload settings
@@ -1400,13 +1399,31 @@ Settings_general2(cHWND := "")
 			ExitApp
 		Case "ClientFiller":
 			input := LLK_ControlGet(cHWND)
-			GuiControl, -Hidden, % vars.hwnd.settings.apply
-			GuiControl, movedraw, % vars.hwnd.settings.apply
-			GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.ClientFillerTaskbar
-			GuiControl, movedraw, % vars.hwnd.settings.ClientFillerTaskbar
+			IniWrite, % (settings.general.ClientFiller := input), % "ini" vars.poe_version "\config.ini", Settings, client background filler
+			If !input
+			{
+				Gui, ClientFiller: Destroy
+				IniWrite, % (settings.general.ClientFillerTaskbar := 0), % "ini" vars.poe_version "\config.ini", Settings, cover taskbar
+				IniWrite, % (settings.general.ClientFillerSplit := 0), % "ini" vars.poe_version "\config.ini", Settings, split-screen mode
+			}
+			Else
+			{
+				Gui_ClientFiller()
+				WinActivate, % "ahk_id " vars.hwnd.poe_client
+			}
+			Settings_menu("general")
 		Case "ClientFillerTaskbar":
-			GuiControl, -Hidden, % vars.hwnd.settings.apply
-			GuiControl, movedraw, % vars.hwnd.settings.apply
+			input := LLK_ControlGet(cHWND)
+			IniWrite, % (settings.general.ClientFillerTaskbar := input), % "ini" vars.poe_version "\config.ini", Settings, cover taskbar
+			If !input
+				IniWrite, % (settings.general.ClientFillerSplit := 0), % "ini" vars.poe_version "\config.ini", Settings, split-screen mode
+			Gui_ClientFiller()
+			WinActivate, % "ahk_id " vars.hwnd.poe_client
+			Settings_menu("general")
+		Case "ClientFillerSplit":
+			IniWrite, % (settings.general.ClientFillerSplit := LLK_ControlGet(cHWND)), % "ini" vars.poe_version "\config.ini", Settings, split-screen mode
+			Gui_ClientFiller()
+			WinActivate, % "ahk_id " vars.hwnd.poe_client
 		Case "dock":
 			GuiControl, -Hidden, % vars.hwnd.settings.apply
 			GuiControl, movedraw, % vars.hwnd.settings.apply
