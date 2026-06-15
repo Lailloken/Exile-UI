@@ -1,4 +1,308 @@
 {
+  "abyss": [
+    [
+      408,
+      246,
+      "Kulemak's Invitation",
+      "kulemaks-invitation"
+    ],
+    [
+      408,
+      379,
+      "Preserved Cranium",
+      "preserved-cranium"
+    ],
+    [
+      320,
+      467,
+      "Gnawed Jawbone",
+      "gnawed-jawbone"
+    ],
+    [
+      0,
+      0,
+      "Preserved Jawbone",
+      "preserved-jawbone"
+    ],
+    [
+      0,
+      0,
+      "Ancient Jawbone",
+      "ancient-jawbone"
+    ],
+    [
+      276,
+      556,
+      "Gnawed Collarbone",
+      "gnawed-collarbone"
+    ],
+    [
+      0,
+      0,
+      "preserved Collarbone",
+      "preserved-collarbone"
+    ],
+    [
+      0,
+      0,
+      "ancient Collarbone",
+      "ancient-collarbone"
+    ],
+    [
+      0,
+      0,
+      "altered Collarbone",
+      "altered-collarbone"
+    ],
+    [
+      320,
+      644,
+      "gnawed rib",
+      "gnawed-rib"
+    ],
+    [
+      0,
+      0,
+      "preserved rib",
+      "preserved-rib"
+    ],
+    [
+      0,
+      0,
+      "ancient rib",
+      "ancient-rib"
+    ],
+    [
+      408,
+      732,
+      "Preserved Vertebrae",
+      "preserved-vertebrae"
+    ],
+    [
+      100,
+      863,
+      "Omen of Abyssal Echoes",
+      "omen-of-abyssal-echoes"
+    ],
+    [
+      0,
+      0,
+      "Omen of the sovereign",
+      "omen-of-the-sovereign"
+    ],
+    [
+      0,
+      0,
+      "Omen of the liege",
+      "omen-of-the-liege"
+    ],
+    [
+      364,
+      0,
+      "Omen of the blackblooded",
+      "omen-of-the-blackblooded"
+    ],
+    [
+      0,
+      0,
+      "Omen of putrefaction",
+      "omen-of-putrefaction"
+    ],
+    [
+      0,
+      0,
+      "Omen of the light",
+      "omen-of-light"
+    ],
+    [
+      629,
+      0,
+      "Omen of sinistral necromancy",
+      "omen-of-sinistral-necromancy"
+    ],
+    [
+      0,
+      0,
+      "Omen of dextral necromancy",
+      "omen-of-dextral-necromancy"
+    ]
+  ],
+  "breach": [
+    [
+      364,
+      305,
+      "breach splinter",
+      "breach-splinter"
+    ],
+    [
+      0,
+      0,
+      "breachstone",
+      "breachstone"
+    ],
+    [
+      408,
+      465,
+      "breachlord sac",
+      "breachlord-sac"
+    ],
+    [
+      184,
+      583,
+      "flesh catalyst",
+      "flesh-catalyst"
+    ],
+    [
+      0,
+      0,
+      "neural catalyst",
+      "neural-catalyst"
+    ],
+    [
+      0,
+      0,
+      "adaptive catalyst",
+      "adaptive-catalyst"
+    ],
+    [
+      0,
+      0,
+      "uul-netol's catalyst",
+      "uul-netols-catalyst"
+    ],
+    [
+      0,
+      0,
+      "xoph's catalyst",
+      "xophs-catalyst"
+    ],
+    [
+      0,
+      0,
+      "tul's catalyst",
+      "tuls-catalyst"
+    ],
+    [
+      139,
+      673,
+      "esh's catalyst",
+      "eshs-catalyst"
+    ],
+    [
+      0,
+      0,
+      "chayula's catalyst",
+      "chayulas-catalyst"
+    ],
+    [
+      0,
+      0,
+      "carapace catalyst",
+      "carapace-catalyst"
+    ],
+    [
+      0,
+      0,
+      "reaver catalyst",
+      "reaver-catalyst"
+    ],
+    [
+      0,
+      0,
+      "sibilant catalyst",
+      "sibilant-catalyst"
+    ],
+    [
+      0,
+      0,
+      "skittering catalyst",
+      "skittering-catalyst"
+    ],
+    [
+      0,
+      0,
+      "necrotic catalyst",
+      "necrotic-catalyst"
+    ],
+    [
+      184,
+      790,
+      "refined flesh catalyst",
+      "refined-flesh-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined neural catalyst",
+      "refined-neural-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined adaptive catalyst",
+      "refined-adaptive-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined uul-netol's catalyst",
+      "refined-uul-netols-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined xoph's catalyst",
+      "refined-xophs-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined tul's catalyst",
+      "refined-tuls-catalyst"
+    ],
+    [
+      139,
+      880,
+      "refined esh's catalyst",
+      "refined-eshs-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined chayula's catalyst",
+      "refined-chayulas-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined carapace catalyst",
+      "refined-carapace-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined reaver catalyst",
+      "refined-reaver-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined sibilant catalyst",
+      "refined-sibilant-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined skittering catalyst",
+      "refined-skittering-catalyst"
+    ],
+    [
+      0,
+      0,
+      "refined necrotic catalyst",
+      "refined-necrotic-catalyst"
+    ]
+  ],
   "currency1": [
     [
       49,
@@ -869,6 +1173,182 @@
       "essence-of-the-breach"
     ]
   ],
+  "expedition": [
+    [
+      184,
+      239,
+      "expedition logbook",
+      "expedition-logbook"
+    ],
+    [
+      0,
+      0,
+      "aldur's saga",
+      "aldurs-saga"
+    ],
+    [
+      0,
+      0,
+      "medved's saga",
+      "medveds-saga"
+    ],
+    [
+      0,
+      0,
+      "vorana's saga",
+      "voranas-saga"
+    ],
+    [
+      0,
+      0,
+      "uhtred's saga",
+      "uhtreds-saga"
+    ],
+    [
+      0,
+      0,
+      "olroth's saga",
+      "olroths-saga"
+    ],
+    [
+      364,
+      536,
+      "verisium",
+      "verisium"
+    ],
+    [
+      0,
+      0,
+      "exceptional verisium",
+      "exceptional-verisium"
+    ],
+    [
+      274,
+      626,
+      "Medved's Crest of the Circle",
+      "medveds-crest-of-the-circle"
+    ],
+    [
+      0,
+      0,
+      "Vorana's Crest of the Scythe",
+      "voranas-crest-of-the-scythe"
+    ],
+    [
+      0,
+      0,
+      "Uhtred's Crest of the Chalice",
+      "uhtreds-crest-of-the-chalice"
+    ],
+    [
+      0,
+      0,
+      "Olroth's Crest of the Sun",
+      "olroths-crest-of-the-sun"
+    ],
+    [
+      139,
+      725,
+      "Runic Alloy",
+      "runic-alloy"
+    ],
+    [
+      0,
+      0,
+      "adaptive Alloy",
+      "adaptive-alloy"
+    ],
+    [
+      0,
+      0,
+      "protective Alloy",
+      "protective-alloy"
+    ],
+    [
+      0,
+      0,
+      "expansive Alloy",
+      "expansive-alloy"
+    ],
+    [
+      0,
+      0,
+      "swift Alloy",
+      "swift-alloy"
+    ],
+    [
+      0,
+      0,
+      "cyclonic Alloy",
+      "cyclonic-alloy"
+    ],
+    [
+      0,
+      0,
+      "prismatic Alloy",
+      "prismatic-alloy"
+    ],
+    [
+      184,
+      815,
+      "mystic Alloy",
+      "mystic-alloy"
+    ],
+    [
+      0,
+      0,
+      "sovereign Alloy",
+      "sovereign-alloy"
+    ],
+    [
+      0,
+      0,
+      "celestial Alloy",
+      "celestial-alloy"
+    ],
+    [
+      0,
+      0,
+      "transcendent Alloy",
+      "transcendent-alloy"
+    ],
+    [
+      0,
+      0,
+      "the runebinder's Alloy",
+      "the-runebinders-alloy"
+    ],
+    [
+      0,
+      0,
+      "the runefather's Alloy",
+      "the-runefathers-alloy"
+    ],
+    [
+      274,
+      914,
+      "blazing flux",
+      "blazing-flux"
+    ],
+    [
+      0,
+      0,
+      "chilling flux",
+      "chilling-flux"
+    ],
+    [
+      0,
+      0,
+      "crackling flux",
+      "crackling-flux"
+    ],
+    [
+      0,
+      0,
+      "void flux",
+      "void-flux"
+    ]
+  ],
   "fragments": [
     [
       328,
@@ -919,8 +1399,14 @@
       "origin-cradle"
     ],
     [
-      202,
+      76,
       726,
+      "an audience the king",
+      "an-audience-with-the-king"
+    ],
+    [
+      202,
+      0,
       "head of the king",
       "head-of-the-king"
     ],
@@ -1165,8 +1651,14 @@
   ],
   "ritual": [
     [
-      408,
+      274,
       204,
+      "an audience with the king",
+      "an-audience-with-the-king"
+    ],
+    [
+      408,
+      0,
       "head of the king",
       "head-of-the-king"
     ],
