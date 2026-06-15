@@ -1,5 +1,13 @@
 [
   [
+	["1.63.5", 16305],
+	"june 15, 2026",
+	"filterspoon:\n>> updated economy-checks for socketables",
+	"map-tracker:\n>> updated content tracking so it parses 'the raven' voice-lines",
+	"rune-ninja:\n>> tweaked the trouble-shooting window",
+	"stash-ninja:\n>> added support for the abyss, breach, and expedition stash tabs"
+  ],
+  [
 	["1.63.4", 16304],
 	"june 12, 2026",
 	"cheat-sheets:\n>> added support for 'sample' cheat-sheets (optional, pre-installed sheets for specific mechanics)\n>> added a sample sheet for expedition island rumors",
