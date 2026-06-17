@@ -45,11 +45,12 @@
 	Else
 	{
 		vars.imagesearch.search := ["skilltree", "atlas", "runeshaping", "sanctum", "exchange", "async1", "async2"] ;this array is parsed when doing image-checks: order is important (place static checks in front for better performance)
-		vars.imagesearch.list := {"atlas": 1, "exchange": 1, "skilltree": 1, "sanctum": 1, "async1": 1, "async2": 1, "runeshaping": 1} ;this object is parsed when listing image-checks in the settings menu
+		vars.imagesearch.list := {"atlas": 1, "exchange": 1, "skilltree": 1, "sanctum": 1, "async1": 1, "async2": 1, "runeshaping": 1, "runeshaping2": 1} ;this object is parsed when listing image-checks in the settings menu
 		vars.imagesearch.checks := {"skilltree": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
 		, "atlas": {"x": vars.client.w//2 - vars.client.h//16, "y": Round(0.018 * vars.client.h), "w": vars.client.h//8, "h": Round(0.02 * vars.client.h)}
 		, "async2": {"x": vars.client.w/2 - Round(0.36 * vars.client.h), "y": Round(0.14 * vars.client.h), "w": Round(0.1 * vars.client.h), "h": Round(0.01 * vars.client.h)}
-		, "runeshaping": {"x": Round(vars.client.h * (3/16)), "y": Round(vars.client.h * (1/9)), "w": Round(vars.client.h * (13/80)), "h": Round(vars.client.h * (1/48))}}
+		, "runeshaping": {"x": Round(vars.client.h * (3/16)), "y": Round(vars.client.h * (1/9)), "w": Round(vars.client.h * (13/80)), "h": Round(vars.client.h * (1/48))}
+		, "runeshaping2": {"x": Round(vars.client.h * (3/16)), "y": Round(vars.client.h * (17/80)), "w": Round(vars.client.h * (13/80)), "h": Round(vars.client.h * (1/48))}}
 	}
 	vars.imagesearch.variation := 15
 	vars.imagesearch.checks.exchange := {"x": Round(vars.client.w/2 - vars.client.h/8), "y": Round(vars.client.h/9), "w": Round(vars.client.h * (17/72)), "h": Round(vars.client.h * 0.023)}
@@ -192,7 +193,8 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 		If name ;if parameter was passed to function, override val
 			val := name
 
-		If (val != name) && ((settings.features[val] = 0) || (val = "skilltree" && !settings.features.leveltracker) || (val = "stash" && (!settings.features.maptracker || !settings.maptracker.loot)))
+		If (val != name) && ((settings.features[val] = 0) || (val = "skilltree" && !settings.features.leveltracker) || (val = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
+			|| InStr(val, "runeshaping") && (!settings.features.runeshaping || InStr(val, "2") && !settings.runeshaping.controller || !InStr(val, "2") && settings.runeshaping.controller))
 			continue ;skip check if the connected feature is not enabled
 
 		If !vars.pics.screen_checks[val]
@@ -244,6 +246,7 @@ Screenchecks_Info(name) ;holding the <info> button to view instructions
 	local
 	global vars, settings
 
+	name := (InStr(name, "runeshaping") ? "runeshaping" : name)
 	If !IsObject(vars.help.screenchecks[name])
 		Return
 

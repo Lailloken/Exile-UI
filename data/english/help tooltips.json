@@ -951,6 +951,10 @@
       "the overlay will hide automatically upon releasing the <omni-key>(/highlight)",
       "requires the <runeshaping> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
+    "runeshaping input": [
+      "click this button to toggle between keyboard and controller mode",
+      "controller mode requires a separate screen-check, so make sure to set it up as well(/highlight)"
+    ],
     "sanctum enable": [
       "analyzes rooms and connections on the floor map and provides tools for highlighting and planning",
       "while you're in the sanctum/trial and the floor plan is on screen, hold down the <omni-key> to show the overlay",

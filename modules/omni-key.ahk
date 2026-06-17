@@ -183,7 +183,7 @@ Omnikey2()
 		If (settings.statlas.zoom0 != settings.statlas.zoom)
 			IniWrite, % (settings.statlas.zoom0 := settings.statlas.zoom), % "ini" vars.poe_version "\statlas.ini", settings, zoom
 	}
-	Else If settings.features.runeshaping && vars.imagesearch.runeshaping.check
+	Else If settings.features.runeshaping && vars.imagesearch["runeshaping" (settings.runeshaping.controller ? "2" : "")].check
 	{
 		If !WinExist("OCR debug")
 			Runeshape_OCR()

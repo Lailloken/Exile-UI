@@ -893,7 +893,8 @@
 		m_general_admin		=	"restart as admin"
 		m_general_menuwidget	=	"menu-widget size:"
 		m_general_animations	=	"disable ui animations"
-		m_general_input		=	"input method:"
+		m_general_input		=	"input method:"						;## keyboard or controller
+		m_general_input		=	"input:"
 
 
 
@@ -1232,6 +1233,7 @@
 		m_screen_close_button	=	"close button"
 		m_screen_instructions	=	"read the instructions on;the <info> button!"
 		m_screen_runeshaping	=	"runeshaping"
+		m_screen_runeshaping2	=	"runeshaping (controller)"
 		m_screen_sanctum		=	"sanctum floor map"
 		m_screen_sanctum		=	"sekhema floor map"
 		m_screen_async1		=	"async trade (sell)"

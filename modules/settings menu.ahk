@@ -4461,21 +4461,32 @@ Settings_runeshaping()
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
-	vars.hwnd.settings.league_select := vars.hwnd.help_tooltips["settings_league selection other"] := hwnd
+	Gui, %GUI%: Add, Text, % "Section xs 0x200 h" settings.general.fHeight, % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 hp HWNDhwnd cLime Border 0x200 BackgroundTrans gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c353535", 100
+	vars.hwnd.settings.league_select := hwnd, vars.hwnd.help_tooltips["settings_league selection other"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "ys x+" vars.settings.spacing " hp 0x200", % Lang_Trans("m_general_input", 2) " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans 0x200 gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c353535", 100
+	vars.hwnd.settings.input := hwnd, vars.hwnd.help_tooltips["settings_runeshaping input"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("global_font")
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "–"
-	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := vars.hwnd.help_tooltips["settings_font-size|"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*3, % settings.runeshaping.fSize
-	vars.hwnd.settings.font_reset := vars.hwnd.help_tooltips["settings_font-size||"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "+"
-	vars.hwnd.settings.font_plus := vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Center Border BackgroundTrans gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "–"
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c353535", 100
+	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*3, % settings.runeshaping.fSize
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c353535", 100
+	vars.hwnd.settings.font_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Center Border BackgroundTrans gSettings_runeshaping2 HWNDhwnd w"settings.general.fWidth*2, % "+"
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c353535", 100
+	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd1
 
 	Gui, %GUI%: Add, Text, % "ys x+" vars.settings.spacing, % Lang_Trans("m_runeshaping_colors")
 	For index, val in ["high", "stack", "unknown"]
@@ -4546,10 +4557,22 @@ Settings_runeshaping2(cHWND := "")
 		input := LLK_ControlGet(cHWND), index := SubStr(check, InStr(check, "_") + 1), type := (InStr(check, "in") ? 1 : 2)
 		GuiControl, % "+c" (input != settings.runeshaping.autocorrect[index][type] ? "FF8111" : "Black"), % cHWND
 		GuiControl, % "movedraw", % cHWND
-		
 		;######################################################
 		Case (check = "league_select"):
 		Settings_menu("general")
+		;######################################################
+		Case (check = "input"):
+		index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
+		If Blank(index)
+		{
+			LLK_ToolTip("global_error")
+			Return
+		}
+		IniWrite, % (settings.runeshaping.controller := !settings.runeshaping.controller), % "ini" vars.poe_version "\rune-ninja.ini", settings, controller mode
+		If settings.runeshaping.controller
+			vars.imagesearch.search[index] := "runeshaping2"
+		Else vars.imagesearch.search[index] := "runeshaping"
+		Settings_menu()
 		;######################################################
 		Case InStr(check, "pricecolor_"):
 		RGB := (vars.system.click = 2 ? settings.runeshaping.colors_default[control] : RGB_Picker(settings.runeshaping["color_" control]))
@@ -4852,7 +4875,7 @@ Settings_ScreenChecksValid(type := "")
 	For key, val in vars.imagesearch.list
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
 		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key] || InStr(key, "async") && !settings.features.async
-		|| (key = "runeshaping") && !settings.features.runeshaping
+		|| InStr(key, "runeshaping") && (!settings.features.runeshaping || InStr(key, "2") && !settings.runeshaping.controller || !InStr(key, "2") && settings.runeshaping.controller)
 			Continue
 		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 

@@ -14,6 +14,12 @@
 	LLK_FontDimensions(settings.runeshaping.fSize, fHeight, fWidth), settings.runeshaping.fWidth := fWidth, settings.runeshaping.fHeight := fHeight
 	settings.runeshaping.debug := (!Blank(check := ini.settings["enable trouble-shooting"]) ? check : 0)
 	settings.runeshaping.colors_default := {"high": "00FF00", "stack": "FFFF00", "unknown": "FF8000"}
+	settings.runeshaping.controller := (!Blank(check := ini.settings["controller mode"]) ? check : 0)
+	index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
+	If !Blank(index)
+		If settings.runeshaping.controller
+			vars.imagesearch.search[index] := "runeshaping2"
+		Else vars.imagesearch.search[index] := "runeshaping"
 
 	For key, val in settings.runeshaping.colors_default
 		settings.runeshaping["color_" key] := (!Blank(check := ini.settings["color " key]) ? check : val)
@@ -27,11 +33,11 @@ Runeshape_OCR()
 	local
 	global vars, settings, JSON
 
-	start := A_TickCount
+	start := A_TickCount, cont := settings.runeshaping.controller
 	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client "|" vars.client.h
-	. "`nclip: " Round(vars.client.h * (337/1440)) "|" Round(vars.client.h * (11/80)) "|" Round(vars.client.h * (13/48)) "|" Round(vars.client.h * 0.52) "`n"
+	. "`nclip: " Round(vars.client.h * (cont ? 19/120 : 337/1440)) "|" Round(vars.client.h * (cont ? 23/96 : 11/80)) "|" Round(vars.client.h * (cont ? 25/72 : 13/48)) "|" Round(vars.client.h * 0.52) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
 	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "") . (settings.general.lang_client = "english" ? "`nenglish" : "")
 	Gui, ocr_comms: Show, NA x10000 y10000
@@ -97,9 +103,9 @@ Runeshape_GUI()
 
 	For index, object in text
 	{
-		If RegexMatch(object.line, "\sore$")
+		If RegexMatch(object.line, "thaumaturgic.flux.\(|\sore$")
 			check := "expedition", Economy_Update(check)
-		Else If RegExMatch(object.line, "i)uncut.*gem \(")
+		Else If RegExMatch(object.line, "i)uncut.*gem.\(")
 			check := "uncutgems", Economy_Update(check)
 
 		If (check_economy := LLK_HasVal(vars.economy.names, object.line)) || (check := LLK_HasKey(vars.stash, object.line,,,, 1))
@@ -132,6 +138,7 @@ Runeshape_GUI()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border cBlack Background" color, 100
 		Gui, %GUI%: Add, Text, % "Hidden xp yp-" offset " w2 h" hText
 	}
-	Gui, %GUI%: Show, % "NA x" vars.client.x + (Round(vars.client.h//2 * 1.01)) " y" vars.client.y + Round(vars.client.h * (5/36))
+	controller := settings.runeshaping.controller
+	Gui, %GUI%: Show, % "NA x" vars.client.x + (Round(vars.client.h//2 * 1.01)) " y" vars.client.y + Round(vars.client.h * (controller ? 11/45 : 5/36))
 	LLK_Overlay(hwnd_runeshaping, "show",, GUI)
 }
