@@ -32,6 +32,7 @@ Statlas()
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client
 	. "`nclip: " vars.general.xMouse - vars.client.x - vars.client.h//6 "|" vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03) "|" vars.client.h//3 "|" Round(vars.client.h/22) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
+	. (settings.general.lang_client = "english" ? "`nenglish" : "")
 	Gui, ocr_comms: Show, NA x10000 y10000
 
 	vars.statlas := {}, vars.ocr_comms := {}

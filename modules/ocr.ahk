@@ -140,7 +140,7 @@ OCR(mode := "GUI")
 	pEffect := Gdip_CreateEffect(5, 0, 35), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)
 	;pEffect := Gdip_CreateEffect(2, 0, 100), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)
 	hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), pIRandomAccessStream := HBitmapToRandomAccessStream(hBitmap), Gdip_DisposeImage(pBitmap)
-	text := ocr_uwp(pIRandomAccessStream), ObjRelease(pIRandomAccessStream), text := LLK_StringCase(text)
+	text := ocr_uwp(pIRandomAccessStream, (settings.general.lang_client = "english" ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream), text := LLK_StringCase(text)
 
 	vars.OCR.text_check := {}
 	If (mode = "compat")

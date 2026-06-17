@@ -10172,17 +10172,21 @@ ocr_uwp(IRandomAccessStream, language := "FirstAvailable")
 			ObjRelease(OcrEngineObject)
 			LanguageObject := OcrEngineObject := ""
 		}
-		/*
-		CreateHString(language, hString)
-		DllCall(NumGet(NumGet(LanguageClass+0)+6*A_PtrSize), "ptr", LanguageClass, "ptr", hString, "ptr*", LanguageObject)   ; CreateLanguage
-		DeleteHString(hString)
-		DllCall(NumGet(NumGet(OcrEngineClass+0)+9*A_PtrSize), "ptr", OcrEngineClass, ptr, LanguageObject, "ptr*", OcrEngineObject)   ; TryCreateFromLanguage
-		*/
-		DllCall(NumGet(NumGet(OcrEngineClass+0)+10*A_PtrSize), "ptr", OcrEngineClass, "ptr*", OcrEngineObject)   ; TryCreateFromUserProfileLanguages
+
+		If (language != "FirstAvailable")
+		{
+			CreateHString(language, hString)
+			DllCall(NumGet(NumGet(LanguageClass+0)+6*A_PtrSize), "ptr", LanguageClass, "ptr", hString, "ptr*", LanguageObject)   ; CreateLanguage
+			DeleteHString(hString)
+			DllCall(NumGet(NumGet(OcrEngineClass+0)+9*A_PtrSize), "ptr", OcrEngineClass, ptr, LanguageObject, "ptr*", OcrEngineObject)   ; TryCreateFromLanguage
+		}
+		Else DllCall(NumGet(NumGet(OcrEngineClass+0)+10*A_PtrSize), "ptr", OcrEngineClass, "ptr*", OcrEngineObject)   ; TryCreateFromUserProfileLanguages
+
 		if (OcrEngineObject = 0)
 		{
-			MsgBox, Can not use language "%language%" for OCR, please install language pack.`nThe script will restart.
-         Reload
+			MsgBox, % "Cannot use language """ language """ for OCR because it's not installed on the system." (!InStr(A_ScriptName, "_ocr thread") ? " The tool will restart." : "")
+			If !InStr(A_ScriptName, "_ocr thread")
+				Reload
 			ExitApp
 		}
 		CurrentLanguage := language
@@ -10195,10 +10199,10 @@ ocr_uwp(IRandomAccessStream, language := "FirstAvailable")
 	if (width > MaxDimension) or (height > MaxDimension)
 	{
 		MsgBox, Image is too big: %width%x%height%.`nIt should be no larger than %MaxDimension% pixels.
-      ObjRelease(BitmapDecoderObject)
-      ObjRelease(BitmapDecoderObject1)
-      ObjRelease(BitmapFrame)
-      Return
+		ObjRelease(BitmapDecoderObject)
+		ObjRelease(BitmapDecoderObject1)
+		ObjRelease(BitmapFrame)
+		Return
 	}
 	SoftwareBitmap := ComObjQuery(BitmapDecoderObject1, IBitmapFrameWithSoftwareBitmap := "{FE287C9A-420C-4963-87AD-691436E08383}")
 	DllCall(NumGet(NumGet(SoftwareBitmap+0)+6*A_PtrSize), "ptr", SoftwareBitmap, "ptr*", BitmapFrame1)   ; GetSoftwareBitmapAsync
@@ -10266,11 +10270,9 @@ WaitForAsync(Object, ByRef ObjectResult)
 		{
 			if (status != 1)
 			{
+				MsgBox, % "AsyncInfo status error." (!InStr(A_ScriptName, "_ocr thread") ? " The tool will restart." : "")
 				If !InStr(A_ScriptName, "_ocr thread")
-            {
-               MsgBox, AsyncInfo status error. The script will restart.
-               Reload
-            }
+					Reload
 				ExitApp
 			}
 			ObjRelease(AsyncInfo)

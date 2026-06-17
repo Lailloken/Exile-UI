@@ -33,7 +33,7 @@ Runeshape_OCR()
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client "|" vars.client.h
 	. "`nclip: " Round(vars.client.h * (337/1440)) "|" Round(vars.client.h * (11/80)) "|" Round(vars.client.h * (13/48)) "|" Round(vars.client.h * 0.52) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
-	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "")
+	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "") . (settings.general.lang_client = "english" ? "`nenglish" : "")
 	Gui, ocr_comms: Show, NA x10000 y10000
 
 	vars.runeshaping := {"text": []}, vars.ocr_comms := {}
@@ -76,7 +76,6 @@ Runeshape_OCR()
 			object.stack := "?", line := SubStr(line, InStr(line, "x ") + 2)
 		object.line := line, vars.runeshaping.text.Push(object)
 	}
-	
 	Runeshape_GUI()
 }
 

@@ -14,7 +14,7 @@ poe_client := SubStr(vars, 9), poe_client := SubStr(poe_client, 1, InStr(poe_cli
 clip := SubStr(vars, InStr(vars, "clip: ") + 6), clip := SubStr(clip, 1, InStr(clip, "`n") - 1), clip := StrSplit(clip, "|")
 If (check := InStr(vars, "blackbars:"))
 	blackbars := SubStr(vars, check + 11), blackbars := SubStr(blackbars, 1, InStr(blackbars, "`n") - 1), blackbars := StrSplit(blackbars, "|")
-runeshaping := InStr(vars, "runeshaping"), debug := InStr(vars, "debug")
+runeshaping := InStr(vars, "runeshaping"), debug := InStr(vars, "debug"), english := InStr(vars, "english")
 
 For index, val in clip
 	If !IsNumber(val)
@@ -57,7 +57,7 @@ Runeshaping()
 			Break
 		pBitmap_clone := Gdip_CloneBitmapArea(pBitmap, 0, yLast, width*2, hClip,, 1)
 		hbmBitmap_clone := Gdip_CreateHBITMAPFromBitmap(pBitmap_clone, 0), Gdip_DisposeImage(pBitmap_clone)
-		pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap_clone), text := ocr_uwp(pIRandomAccessStream), ObjRelease(pIRandomAccessStream)
+		pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap_clone), text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
 
 		If (StrLen(text) <= 5)
 		{
@@ -114,7 +114,7 @@ Statlas()
 	;pEffect := Gdip_CreateEffect(5, 0, 25), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)
 	;pEffect := Gdip_CreateEffect(2, 0, 100), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)
 	hbmBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap, 0), pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap), Gdip_DisposeImage(pBitmap)
-	text := ocr_uwp(pIRandomAccessStream), ObjRelease(pIRandomAccessStream)
+	text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
 	If GetKeyState("ALT", "P")
 	{
 		Gui, test: New, -DPIScale +LastFound +AlwaysOnTop +ToolWindow, OCR debug
