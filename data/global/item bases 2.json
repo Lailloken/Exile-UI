@@ -125,12 +125,6 @@
         "amulet",
         "default"
       ]
-    },
-    "veridical chain": {
-      "tags": [
-        "amulet",
-        "default"
-      ]
     }
   },
   "belts": {
@@ -2839,20 +2833,6 @@
       "dps": 61,
       "phys": 79,
       "speed": 92,
-      "tags": [
-        "bow",
-        "default",
-        "ranged",
-        "two_hand_weapon",
-        "twohand",
-        "weapon"
-      ]
-    },
-    "heartwood shortbow": {
-      "crit": 76,
-      "dps": 55,
-      "phys": 66,
-      "speed": 100,
       "tags": [
         "bow",
         "default",
@@ -6779,6 +6759,16 @@
     }
   },
   "jewels": {
+    "diamond": {
+      "tags": [
+        "default",
+        "dexjewel",
+        "intjewel",
+        "jewel",
+        "not_for_sale",
+        "strjewel"
+      ]
+    },
     "emerald": {
       "tags": [
         "default",
@@ -6798,6 +6788,17 @@
         "default",
         "intjewel",
         "jewel"
+      ]
+    },
+    "time-lost diamond": {
+      "tags": [
+        "default",
+        "dex_radius_jewel",
+        "int_radius_jewel",
+        "jewel",
+        "not_for_sale",
+        "radius_jewel",
+        "str_radius_jewel"
       ]
     },
     "time-lost emerald": {
@@ -9472,20 +9473,6 @@
         "twohand"
       ]
     },
-    "perching staff": {
-      "tags": [
-        "default",
-        "staff",
-        "twohand"
-      ]
-    },
-    "permafrost staff": {
-      "tags": [
-        "default",
-        "staff",
-        "twohand"
-      ]
-    },
     "pyrophyte staff": {
       "tags": [
         "default",
@@ -9511,13 +9498,6 @@
         "no_cold_spell_mods",
         "no_fire_spell_mods",
         "no_lightning_spell_mods",
-        "staff",
-        "twohand"
-      ]
-    },
-    "reflecting staff": {
-      "tags": [
-        "default",
         "staff",
         "twohand"
       ]
@@ -10250,19 +10230,6 @@
     }
   },
   "two hand maces": {
-    "aberrant sledge": {
-      "crit": 62,
-      "dps": 88,
-      "phys": 75,
-      "speed": 100,
-      "tags": [
-        "default",
-        "mace",
-        "two_hand_weapon",
-        "twohand",
-        "weapon"
-      ]
-    },
     "anvil maul": {
       "crit": 62,
       "dps": 80,
@@ -10890,13 +10857,6 @@
         "wand"
       ]
     },
-    "runic fork": {
-      "tags": [
-        "default",
-        "onehand",
-        "wand"
-      ]
-    },
     "siphoning wand": {
       "tags": [
         "default",
@@ -10905,13 +10865,6 @@
       ]
     },
     "torture wand": {
-      "tags": [
-        "default",
-        "onehand",
-        "wand"
-      ]
-    },
-    "twisted wand": {
       "tags": [
         "default",
         "onehand",
