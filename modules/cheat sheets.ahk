@@ -6,6 +6,13 @@
 	If !FileExist("ini" vars.poe_version "\cheat-sheets.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\cheat-sheets.ini", settings
 
+	If FileExist("cheat-sheets 2\[sample] expedition island rumors\")
+	{
+		FileRemoveDir, % "cheat-sheets 2\[sample] expedition island rumors\", 1
+		If FileExist("cheat-sheets 2\expedition island rumors\")
+			FileMoveDir, % "cheat-sheets 2\expedition island rumors\", % "cheat-sheets 2\expedition rumors\", 2
+	}
+
 	settings.cheatsheets := {}, ini := IniBatchRead("ini" vars.poe_version "\cheat-sheets.ini")
 	settings.cheatsheets.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.cheatsheets.fSize, font_height, font_width), settings.cheatsheets.fHeight := font_height, settings.cheatsheets.fWidth := font_width
