@@ -326,7 +326,16 @@ Init_client()
 
 	If !vars.client.stream
 	{
-		vars.client.docked := !Blank(check := ini.settings["window-position"]) ? check : "center", vars.client.docked2 := !Blank(check := ini.settings["window-position vertical"]) ? check : "top"
+		vars.client.docked := !Blank(check := ini.settings["window-position"]) ? check : 2, vars.client.docked2 := !Blank(check := ini.settings["window-position vertical"]) ? check : 1
+		For index, val in ["", "2"]
+			If !IsNumber(vars.client["docked" val])
+				For index2, val2 in (!val ? ["left", "center", "right"] : ["top", "center", "bottom", "taskbar"])
+					If (vars.client["docked" val] = val2)
+						vars.client["docked" val] := index2
+		If !IsNumber(vars.client.docked)
+			vars.client.docked := 2
+		If !IsNumber(vars.client.docked2)
+			vars.client.docked2 := 1
 		vars.client.borderless := (vars.client.fullscreen = "true") ? 1 : !Blank(check := ini.settings["remove window-borders"]) ? check : 0
 		vars.client.customres := [ini.settings["custom-width"], ini.settings["custom-resolution"]]
 	}
@@ -355,12 +364,19 @@ Init_client()
 	}
 
 	WinGetPos, x, y, w, h, ahk_group poe_window
+	If (vars.client.docked2 = 4)
+	{
+		WinGetPos,,,, hTaskbar, ahk_class Shell_TrayWnd
+		If !IsNumber(hTaskbar) || (h + hTaskbar > vars.monitor.h)
+			vars.client.docked2 := 1
+	}
 	vars.client.x_offset := (vars.client.fullscreen = "false" && !vars.client.borderless) ? vars.system.xborder : 0
-	xTarget := (vars.client.docked = "left") ? vars.monitor.x - vars.client.x_offset : (vars.client.docked = "center") ? vars.monitor.x + (vars.monitor.w - w) / 2 : vars.monitor.x + vars.monitor.w - (w - vars.client.x_offset)
-	yTarget := (vars.client.docked2 = "top") ? vars.monitor.y : (vars.client.docked2 = "center") ? vars.monitor.y + (vars.monitor.h - h)/2 : vars.monitor.y + vars.monitor.h - (h - (vars.client.borderless ? 0 : vars.system.yBorder))
+	xTarget := (vars.client.docked = 1) ? vars.monitor.x - vars.client.x_offset : (vars.client.docked = 2) ? vars.monitor.x + (vars.monitor.w - w) / 2 : vars.monitor.x + vars.monitor.w - (w - vars.client.x_offset)
+	yTarget := (vars.client.docked2 = 1) ? vars.monitor.y : (vars.client.docked2 = 2) ? vars.monitor.y + (vars.monitor.h - h)/2 : vars.monitor.y + vars.monitor.h - (h - (vars.client.borderless ? 0 : vars.system.yBorder))
+
 	If !vars.client.stream && ((vars.client.fullscreen = "false") || (vars.client.w < vars.monitor.w) || (vars.client.h < vars.monitor.h))
 	{
-		WinMove, ahk_group poe_window,, % xTarget, % yTarget
+		WinMove, ahk_group poe_window,, % xTarget, % yTarget - (vars.client.docked2 = 4 ? hTaskbar : 0)
 		WinGetPos, x, y, w, h, ahk_group poe_window
 		LLK_Log("repositioned game-client")
 	}
