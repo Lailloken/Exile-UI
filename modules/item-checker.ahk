@@ -39,6 +39,9 @@
 	settings.iteminfo.dColors_ilvl := ["FFFFFF", "00FF00", "006600", "FFFF00", "FF8000", "FF3333", "990000", "FF00FF"]
 	settings.iteminfo.ilevels := ["80", "70", "60", "50", "40", "30", "20", "10"]
 
+	Loop 5
+		settings.iteminfo["profile_name" A_Index] := ini.settings["profile " A_Index " name"]
+
 	Loop 8 ;load custom colors
 	{
 		settings.iteminfo.colors_tier[A_Index - 1] := !Blank(check := ini.UI[(A_Index = 8) ? "fractured" : "tier " A_Index - 1]) ? check : settings.iteminfo.dColors_tier[A_Index - 1]
