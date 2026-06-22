@@ -1,5 +1,26 @@
 {
   "settings": {
+    "selection general": [
+      "general"
+    ],
+    "selection client": [
+      "game-client"
+    ],
+    "selection hotkeys": [
+      "hotkeys"
+    ],
+    "selection screen-checks": [
+      "screen-checks"
+    ],
+    "selection news": [
+      "announcements"
+    ],
+    "selection updater": [
+      "updater"
+    ],
+    "selection donations": [
+      "donations"
+    ],
     "multi-threading 0": [
       "advanced features and performance options are not available",
       "examples:\n- clone-frames fps options"
@@ -36,7 +57,7 @@
       "– and + can be held down, the middle button resets the size"
     ],
     "animations": [
-      "disable animations/transitions used in some menus and interfaces"
+      "toggles animations/transitions used in some menus and interfaces"
     ],
     "generic color": [
       "click to open the color-palette, right click to reset"
@@ -105,11 +126,11 @@
       "this is mainly for situations when the tool is forcing an incorrect resolution after switching monitors"
     ],
     "client filler": [
-      "blacks out the empty screen area around the client window and makes it unclickable",
-      "this black area can be used to place overlays outside the client area, and it also prevents misclicks on background windows"
+      "covers the empty screen area around the client window and makes it unclickable",
+      "this area can be used to place overlays outside the client area, and it also prevents misclicks on background windows"
     ],
     "client filler split": [
-      "only blacks out the area(s) above and/or below the game client",
+      "only covers the area(s) above and/or below the game client",
       "this means the area(s) to the left and/or right can still be used for something else"
     ],
     "client filler taskbar": [
@@ -138,7 +159,7 @@
     ],
     "actdecoder hotkey": [
       "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
-      "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton 1/2) on the mouse",
+      "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton1/2) on the mouse",
       "holding this key will only activate the act-decoder, tapping it will use its normal function (e.g. a skill)(/highlight)"
     ],
     "actdecoder layouts opacity": [
@@ -189,7 +210,7 @@
     ],
     "cheatsheets color": [
       "click a button to open the color-palette, right click to reset",
-      "hover over a note and press a number key to apply color, or press space to remove it"
+      "when using advanced sheets:\nhover over a note and press a number key to apply color, or press space to remove it"
     ],
     "cheatsheets types": [
       "images: import/capture images and display them in an overlay, switch between them, or rearrange the information on them",
@@ -225,8 +246,8 @@
       "enables/disables the cheat sheet"
     ],
     "cloneframes toggle-info": [
-      "clone-frames can be toggled on/off automatically to avoid blocking in-game content",
-      "global: settings will apply to every clone-frame\ncustom: each frame can have its own settings",
+      "clone-frames can hide automatically to avoid blocking in-game content",
+      "click this button to toggle between modes\nglobal: settings will apply to every clone-frame\ncustom: each frame can have its own settings",
       "below, you can choose how clone-frames behave when certain in-game interfaces are on screen",
       "requires additional setup in the <screen-checks> section(/highlight)"
     ],
@@ -245,7 +266,7 @@
       "try to balance the number of clone-frames and the target fps so that the measured performance stays green"
     ],
     "cloneframes new": [
-      "to create a new frame, enter a name and press enter"
+      "to create a new frame, type in a name and press <enter>"
     ],
     "cloneframes edit": [
       "enters edit-mode, which activates the section below and allows you to adjust the frame's settings"
@@ -262,8 +283,8 @@
       "enable/disable this clone-frame"
     ],
     "cloneframes corners": [
-      "in edit-mode, source and target frames have colored corners that correspond to a mouse-button (boxes on the right)",
-      "click a button to move the corner to the cursor's current position, press <esc> or click <discard> to exit edit-mode",
+      "in edit-mode, source and target frames have colored corners that correspond to a mouse-button",
+      "click a mouse-button to move the corner to the cursor's position, press <esc> or click <discard> to exit edit-mode",
       "you can also adjust the values below for fine-tuning and more control"
     ],
     "cloneframes scroll": [
@@ -312,7 +333,7 @@
       "example: not activating on-hover overlays while moving the character"
     ],
     "hotkeys omnikey-info": [
-      "context-sensitive hotkey that activates the majority of features\n(default: capslock)",
+      "context-sensitive hotkey that activates the majority of features (default: capslock)",
       "instead of specifying hotkeys for every feature, you calibrate screen-checks to help this hotkey interpret which feature has to be activated when pressed"
     ],
     "hotkeys omnikey2": [
@@ -338,15 +359,19 @@
     "iteminfo enable": [
       "provides a customizable item tooltip which adds glance value to loot you pick up"
     ],
+    "iteminfo profile name": [
+      "optional: type in a name and press <enter>"
+    ],
     "iteminfo profiles": [
       "customized highlighting can be saved in individual profiles",
       "if the tooltip is on screen when selecting a profile, the changes will be applied on the fly"
     ],
     "iteminfo reset": [
-      "long-click one of the buttons to reset specific highlighting in the currently-selected profile"
+      "long-click one of the buttons to reset specific highlighting in the active profile"
     ],
     "iteminfo toggle": [
-      "long-press the <omni-key> over items to activate the tooltip: if already active, normal <omni-key> presses over items will activate/refresh it again",
+      "hold down the <omni-key> over items to open the tooltip",
+      "if it's already open, normal <omni-key> presses over other items will suffice",
       "click into the game or press <esc> to close it"
     ],
     "iteminfo hold": [
@@ -395,7 +420,7 @@
       "this can be used to check how close affixes are to the ilvl-restricted maximum tier"
     ],
     "iteminfo affix-info off": [
-      "don't show any information about affixes in the last column"
+      "don't show anything in the last column"
     ],
     "iteminfo base-info": [
       "adds a section that shows how the item's stats compare to the best-in-class stats",
@@ -535,10 +560,9 @@
       "credits: acts 1-3 originally derived from u/xebtria's quick-guide"
     ],
     "leveltracker gems": [
-      "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
+      "right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign(/highlight)",
       "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
-      "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)",
-      "this toggle is forced to on if <league-start> is on (/highlight)"
+      "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)"
     ],
     "leveltracker gems all": [
       "by default, the guide skips gem-quests that don't have relevant rewards for the imported build",
@@ -603,7 +627,13 @@
       "examples: jeweller's/artificer's orbs, league rewards, gems, jewelry, flasks, a4 treasure map"
     ],
     "leveltracker reset": [
-      "long-click to reset the progress in this guide slot and start over"
+      "long-click to reset the progress in this guide slot and start over",
+      "this will also update the guide to a newer version if available"
+    ],
+    "leveltracker reset custom": [
+      "long-click to reset the progress in this guide slot",
+      "the guide in this slot was edited: it will not be updated to a newer version(/highlight)",
+      "to update to a newer version of the default guide, use the editor or create a new slot(/highlight)"
     ],
     "leveltracker character info": [
       "optional: enter the name of the character you will play while using this guide",
@@ -668,7 +698,7 @@
       "alternatively, you can open the editor via the menu-widget"
     ],
     "macros animations": [
-      "disable menu-widget animations"
+      "toggles menu-widget animations"
     ],
     "macros fast-travel": [
       "commands are bound to a single hotkey",
@@ -690,6 +720,9 @@
     ],
     "macros command": [
       "enter the chat command you want to use"
+    ],
+    "macros enable": [
+      "click this button to toggle the command on/off"
     ],
     "macros kingsmarch": [
       "kingsmarch"
@@ -783,12 +816,15 @@
       "refreshing kills only has to be done if you have finished the map and won't go back in"
     ],
     "maptracker mapinfo": [
-      "map-mods from the <map-info> feature will be logged\n(separate feature, has to be enabled and actively used)",
+      "map-mods from the <map-info> feature will be logged. (separate feature, has to be enabled and actively used)",
       "this also includes information such as:\nelder guardians, conquerors, type of maven invitation, blight(-ravaged), contract/blueprint"
+    ],
+    "maptracker mapinfo 2": [
+      "map-mods from the <map-info> feature will be logged. (separate feature, has to be enabled and actively used)"
     ],
     "maptracker notes": [
       "adds an icon to the tracker panel to log custom notes for individual map runs",
-      "also enables you to easily log items with a single click, e.g. map-device items used, special drops found in a run, etc."
+      "also enables you to easily log items with a single omni-click, e.g. map-device items used, special drops found in a run, etc."
     ],
     "maptracker color unselected": [
       "used for highlighted cells in the log-viewer, and for non-league dates in the date selection",
@@ -825,8 +861,7 @@
       "requires the <inventory> pixel-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "mapinfo tab": [
-      "hold down the <widget-key> to view a compact version of the panel on the right of the screen",
-      "only works in hideouts and the map that was loaded into the panel"
+      "hold down the <widget-key> to view a compact version of the panel on the right of the screen"
     ],
     "mapinfo colors": [
       "click a button to open the color-palette, right click to reset"
@@ -1004,7 +1039,7 @@
     ],
     "screenchecks folder": [
       "opens the folder with calibration files",
-      "if tests keep failing, open the img-files to check if they represent the correct image-clip"
+      "if tests keep failing, open the img-files to check if they contain the correct image-clip"
     ],
     "screenchecks variance": [
       "since streaming-clients have variable image quality, the tool may not be able to accurately check the screen for certain ui elements",
@@ -1052,7 +1087,7 @@
     ],
     "searchstrings universal": [
       "optionally, you can use a separate hotkey that doesn't require calibrated screen-checks",
-      "this is mainly for situations where screen-checks don't work, or for users who only have one use-case (e.g. vendor) and want a more streamlined setup"
+      "this is mainly for users who only have one use-case (e.g. vendor) and want a more streamlined setup"
     ],
     "stash color tag1": [
       "this is what price tags with poe.ninja-prices look like"
@@ -1082,7 +1117,7 @@
       "it's a timeline with bars that each represent a day and display the change in price compared to the first day"
     ],
     "stash global profiles": [
-      "use a unified set of profiles that applies to every tab"
+      "use one set of (up to) 5 profiles that applies to every tab, instead of separate sets for each individual tab"
     ],
     "stash exalt": [
       "also shows exalt-equivalent prices when hovering over highlighted items or pricing items"
@@ -1096,40 +1131,46 @@
       "you can specify an \"i don't want to trade below x chaos\" value here:\ntype in a number and press <enter>",
       "bulk-sale configurations in chaos will auto-adjust to start at this value"
     ],
-    "stash autoprofiles": [
-      "this setting is meant to help you find (stacks of) items that are worth trading",
-      "profiles 1-4 will be set up automatically according to your preferred trade value",
-      ">> rule of thumb <<\nhighlighted items are worth trading if:\nstack-size >= profile-number",
-      "profile 5 will be left untouched in order to allow creating a trash/vendor tier"
-    ],
     "stash config": [
       "to configure individual tabs, open them in game and long-press the <omni-key> over an item in the tab",
       "once the stash-ninja overlay is active, settings for the active tab will appear below"
     ],
     "stash gap": [
-      "if price tags don't align with the in-game grid, fine-tune this value to improve positioning"
+      "if price tags don't align with the in-game grid, fine-tune this value to improve positioning",
+      "click the button in the middle to reset to default"
     ],
     "stash in folder": [
       "the overlay's position has to be offset if this specific tab is in a stash folder",
-      "check this box if this tab is in a folder"
+      "check this option if this tab is in a folder"
     ],
     "stash bookmarking": [
-      "adds a bookmark-list next to the price-profile panel",
+      "adds a bookmark-list for this stash tab",
       "press space while hovering over an item to add 1x to the current list, or press alt to remove 1x",
       "bookmarked items will always be highlighted on the grid, regardless of active price-profile",
       "each tab has 5 separate lists: hold down <control> or <shift>, and press number-keys to switch"
     ],
     "stash limits": [
       "you can configure up to 5 price-range profiles for each individual tab",
-      "input-box structure:\nprofile # | max value\nunit: c, d, % | min value     ",
-      "leaving min/max price blank will treat them as unlimited, leaving the unit blank will disable the profile entirely",
       "while the overlay is on screen, press number-keys 1 to 5 to switch between profiles"
     ],
-    "stash limits 2": [
-      "you can configure up to 5 price-range profiles for each individual tab",
-      "input-box structure:\nprofile # | max value\nunit: c, e, d, % | min value        ",
-      "leaving min/max price blank will treat them as unlimited, leaving the unit blank will disable the profile entirely",
-      "while the overlay is on screen, press number-keys 1 to 5 to switch between profiles"
+    "stash currencies": [
+      "enter c or d if you want to display chaos or divine prices",
+      "enter % if you want to display price trends"
+    ],
+    "stash currencies 2": [
+      "enter c, e, or d if you want to display chaos, exalt, or divine prices",
+      "enter % if you want to display price trends"
+    ],
+    "stash profiles": [
+      "the number (and hotkey) of this profile"
+    ],
+    "stash bot": [
+      "the lower limit of this profile's price range",
+      "leave it blank if you don't want to limit it"
+    ],
+    "stash top": [
+      "the upper limit of this profile's price range",
+      "leave it blank if you don't want to limit it"
     ],
     "statlas enable": [
       "atlas feature that displays various information about maps on the atlas",

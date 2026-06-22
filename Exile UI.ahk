@@ -518,7 +518,7 @@ Init_general()
 	If (settings.general.fSize < 6)
 		settings.general.fSize := 6
 	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
-	LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
+	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
@@ -543,7 +543,7 @@ Init_general()
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home":LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
-	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
+	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1)), settings.general.league0 := StrSplit("sc|trade" (vars.poe_version ? "" : "|normal") "|standard", "|")
 	settings.general.league := league := !Blank(check := ini.settings.league) ? StrSplit(check, "|", " ", 4) : settings.general.league0.Clone()
@@ -714,7 +714,7 @@ Loop()
 		}
 		vars.client.closed := 0
 
-		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1200000)
+		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1800000)
 			vars.general.updatetick := A_TickCount, UpdateCheck(1)
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
@@ -728,15 +728,9 @@ Loop()
 			If WinExist("ahk_id " vars.hwnd.settings.main)
 			{
 				If vars.news.unread
-				{
-					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.news
-					GuiControl, % "movedraw", % vars.hwnd.settings.news
-				}
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : "Lime"), % vars.hwnd.settings.background_news
 				If vars.update.1
-				{
-					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.updater
-					GuiControl, % "movedraw", % vars.hwnd.settings.updater
-				}
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
 			}
 		}
 	}

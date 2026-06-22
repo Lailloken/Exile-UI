@@ -111,6 +111,7 @@
 		global_color			=	"color"
 		global_color			=	"colors:"
 		global_opacity			=	"opacity:"
+		global_zoom			=	"zoom:"
 		global_tier			=	"tier"
 		global_ilvl			=	"ilvl"
 		global_name			=	"name:"
@@ -164,7 +165,7 @@
 		global_setup			=	"setup"
 		global_variance		=	"variance (0-255)"
 		global_hotkey			=	"hotkey:"
-		global_hotkey			=	"alt. hotkey:"		;## alternative hotkey
+		global_hotkey			=	"optional hotkey:"
 		global_panelsize		=	"panel-size:"
 		global_uisize			=	"ui-size:"
 		global_auto			=	"auto"
@@ -185,6 +186,7 @@
 		global_toggle			=	"toggle"			;## pressing a hotkey opens a feature
 		global_hold			=	"hold"			;## feature stays open while holding a hotkey, then closes on release
 		global_hide			=	"hide"
+		global_hide			=	"hide text"
 		global_unhide			=	"unhide"
 		global_revert			=	"revert"
 		global_apply			=	"apply"
@@ -272,6 +274,10 @@
 		global_medium			=	"medium"
 		global_large			=	"large"
 		global_ocr_debug		=	"enable trouble-shooting"
+		global_active			=	"active:"			;## as in currently active/selected
+		global_meta			=	"meta:"			;## as in meta info/knowledge/data
+		global_animations		=	"ui animations"	;## as in UI transitions, movement, etc.
+		global_animations		=	"animations"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -877,7 +883,7 @@
 		m_general_display		=	"windowed"
 		m_general_display		=	"borderless windowed"
 		m_general_resolution	=	"custom resolution:"
-		m_general_filler		=	"black out empty screen space"
+		m_general_filler		=	"cover empty screen space"
 		m_general_filler		=	"and taskbar"							;## separate toggle, in addition to previous line
 		m_general_filler		=	"split-screen mode"						;## separate toggle, in addition to previous line
 		m_general_position		=	"window-position:"
@@ -886,12 +892,13 @@
 		m_general_posright		=	"right"
 		m_general_postop		=	"top"
 		m_general_posbottom		=	"bottom"
+		m_general_postaskbar	=	"taskbar"
 		m_general_borderless	=	"apply borderless-windowed mode"
 		m_general_blackbars		=	"the client has black bars on the sides"	;## black bars as in letterboxes
 		m_general_permissions	=	"write-permissions test:"
 		m_general_start		=	"start test"
 		m_general_admin		=	"restart as admin"
-		m_general_menuwidget	=	"menu-widget size:"
+		m_general_menuwidget	=	"menu-widget:"
 		m_general_animations	=	"disable ui animations"
 		m_general_input		=	"input method:"						;## keyboard or controller
 		m_general_input		=	"input:"
@@ -934,8 +941,6 @@
 
 ;## these strings are displayed/required in the "act-decoder" section of the settings menu
 		m_actdecoder_enable		=	"enable the act-decoder overlay"
-		m_actdecoder_opacity	=	"opacity when locked:"
-		m_actdecoder_zoom		=	"zoom when locked:"
 		m_actdecoder_simple		=	"only show generic layouts"
 		m_actdecoder_missing	=	"act-decoder:;no layouts"
 
@@ -986,7 +991,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "clone-frames" section of the settings menu
-		m_clone_toggle			=	"auto-toggle:"
+		m_clone_hide			=	"auto-hide:"
 		m_clone_performance		=	"performance (fps) settings:"		;## frames per second
 		m_clone_performance		=	"measured fps:"
 		m_clone_performance		=	"low"
@@ -1015,7 +1020,7 @@
 		m_exchange_enable		=	"enable currency exchange features"
 		m_exchange_graphs		=	"show balance graphs"
 		m_async_enable			=	"enable async trading features"
-		m_async_name			=	"show full item names"
+		m_async_name			=	"full item names"
 		m_async_minchange		=	"min. price change:"				;## used for 'quick reprice' feature: new price needs to be at least x% lower than the current price
 
 
@@ -1039,7 +1044,7 @@
 		m_hotkeys_widget		=	"widget-key:"
 		m_hotkeys_emergency		=	"force-restart:"											;## hotkey to force-restart the tool in case of crash/hang
 		m_hotkeys_winkey		=	"win-key"													;## Windows-key
-		m_hotkeys_menuwidget	=	"menu-widget (alt. key):"
+		m_hotkeys_menuwidget	=	"menu-widget:"
 		m_hotkeys_error		=	"invalid hotkey"
 		m_hotkeys_error		=	"duplicate keybinds detected"
 		m_hotkeys_error		=	"alt-key is rebound, but no;alternative key is set up"				;## if certain tickboxes are ticked, the user has to provide an alternative hotkey
@@ -1055,12 +1060,12 @@
 		m_iteminfo_enable		=	"enable the item-info feature"
 		m_iteminfo_profiles		=	"profile settings:"
 		m_iteminfo_profiles		=	"profile selection:"
-		m_iteminfo_profiles		=	"reset the profile's:"				;## you can choose between two options: a profile's desired, or undesired mods
+		m_iteminfo_profiles		=	"reset profile's:"					;## you can choose between two options: a profile's desired, or undesired mods
 		m_iteminfo_desired		=	"desired"
 		m_iteminfo_undesired	=	"undesired"
 		m_iteminfo_undesired	=	"(un)desired:"
 		m_iteminfo_modbars		=	"roll-range:"
-		m_iteminfo_hiderange	=	"hide affix roll-range"
+		m_iteminfo_hiderange	=	"hide roll-range"
 		m_iteminfo_league		=	"enable league-start mode"
 		m_iteminfo_base		=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg
 		m_iteminfo_class		=	"item-class"
@@ -1087,7 +1092,7 @@
 
 ;## these strings are displayed/required in the "filterspoon" section of the settings menu
 		m_lootfilter_enable		=	"enable the filterspoon feature (experimental)"
-		m_lootfilter_colors		=	"ui & button colors:"
+		m_lootfilter_colors		=	"ui & buttons:"
 		m_lootfilter_tester		=	"preset-tester:"					;## a section in the settings menu to test/preview various filter settings (size, opacity, etc.)
 
 
@@ -1141,15 +1146,15 @@
 
 ;## these strings are displayed/required in the "map-tracker" section of the settings menu
 		m_maptracker_enable			=	"enable the map-tracker feature"
-		m_maptracker_hide			=	"hide the panel when the tracker is paused"
+		m_maptracker_tracking		=	"tracking settings:"
+		m_maptracker_hide			=	"hide panel when the tracker is paused"
 		m_maptracker_loot			=	"loot"
 		m_maptracker_kills			=	"kills"
-		m_maptracker_mapinfo		=	"map-info data"						;## option to include data from the map-info feature
 		m_maptracker_notes			=	"notes"								;## option to add notes to map runs
 		m_maptracker_sidearea		=	"side-areas"
 		m_maptracker_rename			=	"tag & rename boss maps"					;## adds a "boss:"-tag to logged map-runs
-		m_maptracker_character		=	"character/build info"
-		m_maptracker_league			=	"league info"
+		m_maptracker_character		=	"char/build"
+		m_maptracker_league			=	"league"
 		m_maptracker_content		=	"track atlas mechanics"
 		m_maptracker_dialogue		=	"–> dialogue tracking:"					;## tracking is done via in-game dialogue in the chat-box
 		m_maptracker_screen			=	"–> screen tracking:"					;## tracking is done via screen-reading
@@ -1193,8 +1198,8 @@
 		m_qol_map_events		=	"map-event notifications:"
 		m_qol_notepad			=	"notepad:"
 		m_qol_widget			=	"widget opacity:"
-		m_qol_widgetcolor		=	"default widget colors:"
-		m_qol_lab				=	"lab overlay:"
+		m_qol_widgetcolor		=	"widget colors:"
+		m_qol_lab				=	"lab overlay"
 
 
 
@@ -1205,7 +1210,6 @@
 ;## these strings are displayed/required in the "rune-ninja" section of the settings menu
 		m_runeshaping_enable	=	"enable the rune-ninja overlay (experimental)"
 		m_runeshaping_correction	=	"auto-correct dictionary:"					;## a list of strings that can be set up to fix recurring scan issues
-		m_runeshaping_colors	=	"highlight colors:"
 
 
 
@@ -1272,6 +1276,8 @@
 		m_stash_scarabs		=	"scarab"
 		m_stash_ultimatum		=	"ultimatum"
 		m_stash_ritual			=	"ritual"
+		m_stash_abyss			=	"abyss"
+		m_stash_expedition		=	"expedition"
 
 		m_stash_runes1			=	"runes"				;## the sub-tabs in the PoE2 fragments tab
 		m_stash_runes2			=	"kalguuran runes"
@@ -1284,10 +1290,10 @@
 		m_stash_history		=	"show price history"
 		m_stash_use_global		=	"use global price-range profiles"
 		m_stash_exalt			=	"show exalt rates"
-		m_stash_folder			=	"this tab is in a stash folder"
+		m_stash_infolder		=	"in folder"
 		m_stash_active			=	"active tab:"
-		m_stash_bookmarking		=	"enable bookmarking"
-		m_stash_grid			=	"fine-tune grid alignment:"
+		m_stash_bookmarking		=	"bookmarks"
+		m_stash_grid			=	"grid:"
 
 
 
