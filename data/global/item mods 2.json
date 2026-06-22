@@ -5320,6 +5320,27 @@
         ]
       }
     ],
+    "AbyssModStaffAmanamuPrefixDamageAsChaos": [
+      {
+        "level": 65,
+        "name": "amanamu's",
+        "text": [
+          [
+            "Gain .*% of Damage as Extra Chaos Damage",
+            [
+              40,
+              50
+            ]
+          ]
+        ],
+        "weights": [
+          [
+            "staff",
+            1
+          ]
+        ]
+      }
+    ],
     "AbyssModStaffAmanamuPrefixFlatSpirit": [
       {
         "level": 65,
@@ -5391,8 +5412,8 @@
           [
             ".*% to Block chance",
             [
-              12,
-              16
+              20,
+              25
             ]
           ]
         ],
@@ -5504,6 +5525,27 @@
         "weights": [
           [
             "wand",
+            1
+          ]
+        ]
+      }
+    ],
+    "AbyssModStaffKurgalSuffixPuppetMasterStacks": [
+      {
+        "level": 65,
+        "name": "of kurgal",
+        "text": [
+          [
+            ".* maximum stacks of Puppet Master",
+            [
+              3,
+              4
+            ]
+          ]
+        ],
+        "weights": [
+          [
+            "staff",
             1
           ]
         ]
@@ -20659,6 +20701,33 @@
             [
               11,
               16
+            ]
+          ]
+        ],
+        "weights": [
+          [
+            "default"
+          ]
+        ]
+      }
+    ],
+    "AlloyCastSpeedDamageAsExtraColdHybridOneHand": [
+      {
+        "level": 65,
+        "name": "of the stars",
+        "text": [
+          [
+            ".*% increased Cast Speed",
+            [
+              26,
+              31
+            ]
+          ],
+          [
+            "Gain .*% of Elemental Damage as Extra Cold Damage",
+            [
+              7,
+              11
             ]
           ]
         ],
