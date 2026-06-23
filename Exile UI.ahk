@@ -281,6 +281,7 @@ Init_client()
 			IniDelete, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 			ini.settings["custom-width"] := ini.settings["custom-resolution"] := "", ini.settings["remove window-borders"] := 0
 		}
+		Else IniWrite, % vars.client.fullscreen, % "ini" vars.poe_version "\config.ini", Settings, fullscreen
 
 		If !game_config.language.language || (game_config.language.language = "en")
 			settings.general.lang_client0 := (!game_config.language.language && InStr(vars.log.file_location, "kakao") ? "ko-kr" : "english")

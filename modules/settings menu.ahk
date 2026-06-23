@@ -725,6 +725,7 @@ Settings_client()
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd Hidden cRed gSettings_client2", % " " Lang_Trans("global_restart") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Hidden Border BackgroundBlack c" vars.settings.cButtons, 100
+	Gui, %GUI%: Add, Text, % "yp x+0", % " "
 	vars.hwnd.settings.apply := hwnd, vars.hwnd.settings.apply_bar := hwnd1
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
