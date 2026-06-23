@@ -2419,7 +2419,7 @@ Settings_leveltracker()
 
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wEdit . hDDL, % Lang_Trans("global_edit")
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd1 c" vars.settings.cButtons, 100
-		vars.hwnd.settings["editprofile"] := vars.hwnd.help_tooltips["settings_leveltracker editor"] := hwnd
+		vars.hwnd.settings["editprofile"] := hwnd, vars.hwnd.help_tooltips["settings_leveltracker editor"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wReset . hDDL, % Lang_Trans("global_reset")
 		color := (settings.leveltracker["guide" profile].info.custom ? "FF8000" : "Black")
