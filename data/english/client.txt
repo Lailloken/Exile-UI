@@ -94,6 +94,7 @@
 		maps_atziri			=	"uber atziri"
 		maps_sirus			=	"sirus"
 		maps_cortex			=	"cortex"
+		maps_saresh			=	"saresh (black barya)"		
 
 
 		maps_ritualboss		=	"king in the mists"		;## PoE1 and PoE2

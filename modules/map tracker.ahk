@@ -146,7 +146,7 @@ Maptracker_Check(mode := 0) ;checks if player is in a map or map-related content
 	global vars, settings
 
 	mode_check := (vars.poe_version ? ["abyss_depths", "abyss_boss"] : ["abyssleague", "endgame_labyrinth_trials", "mapsidearea", "SettlersBossFallenStar"])
-	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0, "abyss_boss": 0, "Expedition": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0, "ChayulaLeagueTowerBoss": 0})
+	For key, val in (vars.poe_version ? {"map": 0, "breach": 0, "ritual": 0, "abyss_depths": 0, "abyss_boss": 0, "Expedition": 0} : {"mapworlds": 0, "maven": 0, "betrayal": 0, "incursion": 0, "heist": "heisthub", "mapatziri": 0, "legionleague": 0, "expedition": 0, "atlasexilesboss": 0, "breachboss": 0, "affliction": 0, "bestiary": 0, "sanctum": "sanctumfoyer", "synthesis": 0, "abyssleague": 0, "endgame_labyrinth_trials": 0, "mapsidearea": 0, "azmeri": 0, "SettlersBossFallenStar": 0, "HarvestLeagueBoss": 0, "ChayulaLeagueTowerBoss": 0, "FaridunLeagueBoss": 0})
 	{
 		If !mode && !Blank(LLK_HasVal(mode_check, key)) || (mode = 1) && Blank(LLK_HasVal(mode_check, key))
 			Continue
@@ -1805,7 +1805,7 @@ Maptracker_Timer()
 
 	If !mapname_replace
 	{
-		mapname_replace := {"azmerileagueboss": "the king in the mists", "mavenboss": Lang_Trans("maps_maven"), "mavenhub": Lang_Trans("maps_maven_invitation"), "MapWorldsPrimordialBoss1": Lang_Trans("maps_hunger"), "MapWorldsPrimordialBoss2": Lang_Trans("maps_blackstar"), "MapWorldsPrimordialBoss3": Lang_Trans("maps_exarch"), "MapWorldsPrimordialBoss4": Lang_Trans("maps_eater"), "MapWorldsShapersRealm": Lang_Trans("maps_shaper"), "MapWorldsElderArena": Lang_Trans("maps_elder"), "MapWorldsElderArenaUber": Lang_Trans("maps_elder", 2), "harvestleagueboss": Lang_Trans("maps_oshabi"), "mapatziri1": Lang_Trans("maps_atziri"), "mapatziri2": Lang_Trans("maps_atziri", 2), "atlasexilesboss5": Lang_Trans("maps_sirus"), "synthesis_mapboss": Lang_Trans("maps_cortex")}
+		mapname_replace := {"azmerileagueboss": "the king in the mists", "mavenboss": Lang_Trans("maps_maven"), "mavenhub": Lang_Trans("maps_maven_invitation"), "MapWorldsPrimordialBoss1": Lang_Trans("maps_hunger"), "MapWorldsPrimordialBoss2": Lang_Trans("maps_blackstar"), "MapWorldsPrimordialBoss3": Lang_Trans("maps_exarch"), "MapWorldsPrimordialBoss4": Lang_Trans("maps_eater"), "MapWorldsShapersRealm": Lang_Trans("maps_shaper"), "MapWorldsElderArena": Lang_Trans("maps_elder"), "MapWorldsElderArenaUber": Lang_Trans("maps_elder", 2), "harvestleagueboss": Lang_Trans("maps_oshabi"), "mapatziri1": Lang_Trans("maps_atziri"), "mapatziri2": Lang_Trans("maps_atziri", 2), "atlasexilesboss5": Lang_Trans("maps_sirus"), "synthesis_mapboss": Lang_Trans("maps_cortex"), "faridunleagueboss": Lang_Trans("maps_saresh")}
 		mapname_add := {"heist": Lang_Trans("maps_heist"), "expedition": Lang_Trans("maps_logbook"), "affliction": Lang_Trans("maps_delirium")}
 	}
 
