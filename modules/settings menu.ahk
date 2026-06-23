@@ -6315,11 +6315,11 @@ Settings_LeagueSelection(ByRef yCoord)
 {
 	local
 	global vars, settings
-	static fSize, wLeague
+	static fSize, wLeague, widths
 
 	If (fSize != settings.general.fSize)
 	{
-		fSize := settings.general.fSize
+		fSize := settings.general.fSize, widths := []
 		LLK_PanelDimensions([Lang_Trans("m_general_character") . Lang_Trans("global_colon"), Lang_Trans("global_league") . Lang_Trans("global_colon")], fSize, wLeague, hLeague)
 	}
 
@@ -6332,11 +6332,18 @@ Settings_LeagueSelection(ByRef yCoord)
 	objects := [leagues, leagues[league.1], leagues[league.1][league.2], leagues[league.1][league.2][league.3], leagues[league.1][league.2][league.3][league.4]]
 	Loop, % (vars.poe_version ? 3 : 4)
 	{
-		outer := A_Index, LLK_PanelDimensions(objects[outer], settings.general.fSize, width, height,,,,, 1)
+		outer := A_Index
+		If Blank(widths[outer])
+		{
+			dimensions := []
+			For key in objects[outer]
+				dimensions.Push(Lang_Trans("global_league_" key))
+			LLK_PanelDimensions(dimensions, settings.general.fSize, width, height), widths[outer] := width
+		}
 		For key in objects[outer]
 		{
 			color := (key = league[outer] ? " cLime" : "")
-			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "Section ys x+" (outer = 1 ? 0 : -1) : "xs y+-1") " Border BackgroundTrans Center HWNDhwnd gSettings_LeagueSelection2 w" width . color, % Lang_Trans("global_league_" key)
+			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "Section ys x+" (outer = 1 ? 0 : -1) : "xs y+-1") " Border BackgroundTrans Center HWNDhwnd gSettings_LeagueSelection2 w" widths[outer] . color, % Lang_Trans("global_league_" key)
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
 			vars.hwnd.settings["leagueselect_" outer "|" key] := hwnd
 		}

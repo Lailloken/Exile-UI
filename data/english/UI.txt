@@ -212,6 +212,7 @@
 		global_league_vaal		=	"vaal"
 		global_league_aldur		=	"aldur"
 		global_league_mirage	=	"mirage"
+		global_league_rota		=	"RotA event"
 		global_league_ssf		=	"ssf"
 		global_league_trade		=	"trade"
 		global_league_ruthless	=	"ruthless"
