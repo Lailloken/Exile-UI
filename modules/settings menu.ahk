@@ -2424,7 +2424,7 @@ Settings_leveltracker()
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wReset . hDDL, % Lang_Trans("global_reset")
 		color := (settings.leveltracker["guide" profile].info.custom ? "FF8000" : "Black")
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 Vertical Range0-500 Background" color " c" vars.settings.cButtons, 500
-		vars.hwnd.settings["reset"] := hwnd, vars.hwnd.settings["resetbar"] := vars.hwnd.help_tooltips["settings_leveltracker reset" (color != "Black" ? " custom" : "")] := hwnd1
+		vars.hwnd.settings["reset"] := hwnd, vars.hwnd.settings.resetbar := vars.hwnd.help_tooltips["settings_leveltracker reset" (color != "Black" ? " custom" : "")] := hwnd1
 
 		If vars.leveltracker["pob" profile].Count()
 		{
@@ -2464,14 +2464,14 @@ Settings_leveltracker()
 				hidden := (settings.leveltracker["guide" profile].info.gems ? "" : " Hidden")
 				
 				Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "White") . hDDL . hidden, % " " Lang_Trans("global_all") " "
-				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
-				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
+				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons . hidden, 100
+				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.settings.gems_all_bar := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
 			}
 			Else
 			{
 				Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "White"), % " " Lang_Trans("m_lvltracker_gemquests") " "
 				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
-				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
+				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.settings.gems_all_bar := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
 			}
 
 		Settings_CharTracking("leveltracker", xOptionals + wOptionals - x_anchor)
@@ -2779,7 +2779,7 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_GuideEditor("default#" settings.leveltracker.profile)
 	Else If InStr(check, "reset") && !InStr(check, "font")
 	{
-		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings.resetbar, "LButton",,, 500, "Red", vars.settings.cButtons)
+		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings.resetbar, "LButton",,, 500, "Red", vars.settings.cButtons, "Black", "FF8000")
 			Leveltracker_ProgressReset(settings.leveltracker.profile)
 		Else Return
 	}
@@ -2855,12 +2855,13 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress(1)
-		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (input ? "Lime" : "White"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		GuiControl, % "+Background" (input && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), % vars.hwnd.help_tooltips["settings_leveltracker gems"]
 
 		GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.gems_all
-		GuiControl, % "+cGray", % vars.hwnd.settings.gems_all
+		GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.gems_all_bar
+		GuiControl, % "+cWhite", % vars.hwnd.settings.gems_all
 		GuiControl, % "movedraw", % vars.hwnd.settings.gems_all
 	}
 	Else If (check = "gems_all")
@@ -2871,7 +2872,7 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress(1)
-		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (input ? "Lime" : "White"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
 	Else If (check = "bandit")

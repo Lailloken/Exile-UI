@@ -886,13 +886,15 @@ LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", he
 		height += 1
 }
 
-LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0, color := "", reset_color := "") ;HWND_bar = HWND of the progress bar, key = key that is held down to fill the progress bar, HWND_control = HWND of the button (to undo clipping)
+LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0, color := "", reset_color := "", background := "", reset_background := "") ;HWND_bar = HWND of the progress bar, key = key that is held down to fill the progress bar, HWND_control = HWND of the button (to undo clipping)
 {
 	local
 
 	start := A_TickCount
 	If !Blank(color)
 		GuiControl, % "+c" color, %HWND_bar%
+	If !Blank(background)
+		GuiControl, % "+Background" background, %HWND_bar%
 	While GetKeyState(key, "P")
 	{
 		GuiControl,, %HWND_bar%, % A_TickCount - start
@@ -912,6 +914,8 @@ LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0,
 	GuiControl,, %HWND_bar%, % reset_state
 	If !Blank(reset_color)
 		GuiControl, % "+c" reset_color, % HWND_bar
+	If !Blank(reset_background)
+		GuiControl, % "+Background" reset_background, % HWND_bar
 	If HWND_control
 		GuiControl, movedraw, %HWND_control%
 	Return 0
