@@ -341,7 +341,7 @@ Anoints(cHWND := "")
 									Break
 								}
 							If !found && settings.general.dev
-								MsgBox, % "not found: " word
+								MsgBox,, Exile UI, % "not found: " word
 						}
 						Else If (keywords.Count() || dic[word] > 2 || vars.anoints.rings)
 							keyword_list0[word] := !keyword_list0[word] ? 1 : keyword_list0[word] + 1

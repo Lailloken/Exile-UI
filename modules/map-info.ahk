@@ -372,7 +372,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 				If mode && settings.general.dev
 				{
 					Clipboard := check
-					MsgBox, % check
+					MsgBox,, Exile UI, % check
 				}
 				map_mods["unknown mod"] := !map_mods["unknown mod"] ? 1 : map_mods["unknown mod"] + 1
 			}

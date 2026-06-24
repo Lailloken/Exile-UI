@@ -105,7 +105,7 @@ If (check := LLK_IniRead("ini" vars.poe_version "\config.ini", "versions", "relo
 }
 If vars.ini_integrity
 {
-	MsgBox, % "The tool tried to fix misconfigured config-files in order to resolve an AHK bug, but there was an error.`n`nTo fix this manually, you have to open the files listed below (left) in a text-editor and copy their contents into the fixed files (right), replacing everything inside:`n`n" vars.ini_integrity "`n`nThis list is also stored in ""ini\file check.ini"" in case you want to do it later.`nIf you skip this manual fix, you'll have to reconfigure those features that rely on the files listed above."
+	MsgBox,, Exile UI, % "The tool tried to fix misconfigured config-files in order to resolve an AHK bug, but there was an error.`n`nTo fix this manually, you have to open the files listed below (left) in a text-editor and copy their contents into the fixed files (right), replacing everything inside:`n`n" vars.ini_integrity "`n`nThis list is also stored in ""ini\file check.ini"" in case you want to do it later.`nIf you skip this manual fix, you'll have to reconfigure those features that rely on the files listed above."
 	Reload
 	ExitApp
 }
@@ -344,7 +344,7 @@ Init_client()
 	{
 		If (vars.client.customres.1 > vars.monitor.w) || (vars.client.customres.2 > vars.monitor.h) ;check resolution in case of manual .ini edit
 		{
-			MsgBox, Incorrect settings for forced resolution detected.`nThe script will reset the settings and restart.
+			MsgBox,, Exile UI, Incorrect settings for forced resolution detected.`nThe script will reset the settings and restart.
 			IniWrite, % vars.monitor.h, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
 			IniWrite, % vars.monitor.w, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 			Reload
@@ -451,7 +451,7 @@ Init_general()
 	{
 		FileDelete, % "img\Recognition (" vars.client.h "p)\GUI\betrayal.bmp"
 		If ini.features["enable betrayal-info"]
-			MsgBox, % "The betrayal image-check was changed in v1.53.3 and needs to be recalibrated."
+			MsgBox,, Exile UI, % "The betrayal image-check was changed in v1.53.3 and needs to be recalibrated."
 	}
 	If (ini_version < 15304)
 		FileDelete, data\global\[stash-ninja] prices.ini
@@ -700,7 +700,7 @@ Loop()
 		If !vars.hwnd.poe_client
 			If (vars.poe_version != CheckClient())
 			{
-				MsgBox, 4,, % "You have switched to a different game-client, do you want the tool to switch/restart as well?`n(If not, launch the correct client and then click 'no')"
+				MsgBox, 4, Exile UI, % "You have switched to a different game-client, do you want the tool to switch/restart as well?`n(If not, launch the correct client and then click 'no')"
 				IfMsgBox Yes
 					LLK_Restart()
 				Else Return
@@ -1023,7 +1023,7 @@ Resolution_check()
 			You have to run the client with a custom resolution, which you can set up in the following window.
 			)
 		}
-		MsgBox, % text
+		MsgBox,, Exile UI, % text
 		vars.general.safe_mode := 1
 		settings_menu("general")
 		sleep, 2000
@@ -1031,7 +1031,7 @@ Resolution_check()
 		{
 			If !WinExist("ahk_id " vars.hwnd.settings.main)
 			{
-				MsgBox, The script will now shut down.
+				MsgBox,, Exile UI, The script will now shut down.
 				ExitApp
 			}
 			Sleep, 100

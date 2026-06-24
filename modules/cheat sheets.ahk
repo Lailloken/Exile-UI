@@ -598,7 +598,7 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		pBitmap := Gdip_LoadImageFromFile(file)
 		If (pBitmap <= 0)
 		{
-			MsgBox, % Lang_Trans("cheat_loaderror") " " file
+			MsgBox,, Exile UI, % Lang_Trans("cheat_loaderror") " " file
 			If !InStr(hotkey0, "wheel")
 				KeyWait, % hotkey0
 			Return
@@ -1405,7 +1405,7 @@ Cheatsheet_Search(name)
 
 	If (pNeedle <= 0)
 	{
-		MsgBox, % Lang_Trans("cheat_loaderror") " " name
+		MsgBox,, Exile UI, % Lang_Trans("cheat_loaderror") " " name
 		Gdip_DisposeImage(pHaystack)
 		Return 0
 	}

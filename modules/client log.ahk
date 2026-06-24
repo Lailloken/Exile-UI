@@ -82,7 +82,7 @@ Log_Backup()
 	WinWaitClose, % "ahk_id " vars.hwnd.poe_client,, 3
 	If WinExist("ahk_id " vars.hwnd.poe_client)
 	{
-		MsgBox, % "Backup failed:`nCannot close the game-client."
+		MsgBox,, Exile UI, % "Backup failed:`nCannot close the game-client."
 		Return
 	}
 	file := StrReplace(vars.log.file_location, "client.txt", "Client (old).txt")
@@ -99,7 +99,7 @@ Log_Backup()
 		If ErrorLevel
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nCannot move the old file.`nThe tool will restart."
+			MsgBox,, Exile UI, % "Backup failed:`nCannot move the old file.`nThe tool will restart."
 			LLK_Restart()
 			Return
 		}
@@ -107,7 +107,7 @@ Log_Backup()
 		If !IsObject(dest_file)
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nCannot create the new file.`n`nRestart the game to let it create the new file.`nYou'll have to waypoint-travel around a few times before relaunching the tool."
+			MsgBox,, Exile UI, % "Backup failed:`nCannot create the new file.`n`nRestart the game to let it create the new file.`nYou'll have to waypoint-travel around a few times before relaunching the tool."
 			ExitApp
 		}
 		append := source_file.Read(), append := SubStr(append, InStr(append, "`n") + 1) . (vars.log.character_last ? vars.log.character_last "`r`n" : "")
@@ -116,9 +116,9 @@ Log_Backup()
 		If !FileExist(vars.log.file_location) || !FileExist(file)
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nSomething went wrong while copying the file. The game's log folder will open after closing this message."
+			MsgBox,, Exile UI, % "Backup failed:`nSomething went wrong while copying the file. The game's log folder will open after closing this message."
 			Run, % "explore " SubStr(vars.log.file_location, 1, InStr(vars.log.file_location, "\",, 0) - 1)
-			MsgBox, % "Trouble-shooting steps:`n- If ""Client (old).txt"" doesn't exist, nothing happened and the original log-file wasn't changed.`n`n- If only ""Client (old).txt"" exists, the old file was moved but a new one wasn't created. Launching the game will create a new one, but you have to waypoint-travel around a bit before relaunching the tool."
+			MsgBox,, Exile UI, % "Trouble-shooting steps:`n- If ""Client (old).txt"" doesn't exist, nothing happened and the original log-file wasn't changed.`n`n- If only ""Client (old).txt"" exists, the old file was moved but a new one wasn't created. Launching the game will create a new one, but you have to waypoint-travel around a bit before relaunching the tool."
 			ExitApp
 		}
 	}
@@ -129,7 +129,7 @@ Log_Backup()
 		If !IsObject(source_file) || !IsObject(dest_file)
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nCannot access the current or backup file.`nThe tool will restart."
+			MsgBox,, Exile UI, % "Backup failed:`nCannot access the current or backup file.`nThe tool will restart."
 			LLK_Restart()
 		}
 		Loop
@@ -156,7 +156,7 @@ Log_Backup()
 		If FileExist(vars.log.file_location)
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nCannot delete the ""Client.txt"" log-file.`n. You'll have to delete it manually (the folder will open once you close this message).`n`nAfter deleting, restart the game, waypoint-travel around a few times, then restart the tool."
+			MsgBox,, Exile UI, % "Backup failed:`nCannot delete the ""Client.txt"" log-file.`n. You'll have to delete it manually (the folder will open once you close this message).`n`nAfter deleting, restart the game, waypoint-travel around a few times, then restart the tool."
 			Run, % "explore " SubStr(vars.log.file_location, 1, InStr(vars.log.file_location, "\",, 0) - 1)
 			ExitApp
 		}
@@ -164,7 +164,7 @@ Log_Backup()
 		If !IsObject(source_file)
 		{
 			LLK_Overlay(vars.hwnd.tooltip1, "destroy")
-			MsgBox, % "Backup failed:`nCannot create the new file.`n`nRestart the game to let it create the new file.`nYou'll have to waypoint-travel around a few times before relaunching the tool."
+			MsgBox,, Exile UI, % "Backup failed:`nCannot create the new file.`n`nRestart the game to let it create the new file.`nYou'll have to waypoint-travel around a few times before relaunching the tool."
 			ExitApp
 		}
 

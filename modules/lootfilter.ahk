@@ -749,7 +749,7 @@ Lootfilter_Editor(cHWND := "")
 		{
 			LLK_Overlay(hwnd_old, "destroy"), vars.hwnd.lootfilter := ""
 			Gui, %GUI%: Destroy
-			MsgBox, 4,, % Lang_Trans("lootfilter_duplicatefiles") "`n" Lang_Trans("lootfilter_duplicatefiles", 2) "`n`n" Lang_Trans("lootfilter_duplicatefiles", 3)
+			MsgBox, 4, Exile UI, % Lang_Trans("lootfilter_duplicatefiles") "`n" Lang_Trans("lootfilter_duplicatefiles", 2) "`n`n" Lang_Trans("lootfilter_duplicatefiles", 3)
 			IfMsgBox, Yes
 			{
 				Run, % vars.system.config_folder "\OnlineFilters"
@@ -1576,14 +1576,14 @@ Lootfilter_LoadStructure()
 			type := val.type, tier := val.tier, basetype := ""
 			If settings.general.dev && !(type || tier)
 			{
-				MsgBox, % "block with missing type/tier: " index
+				MsgBox,, Exile UI, % "block with missing type/tier: " index
 				Continue
 			}
 			If !IsObject(structure[type])
 				structure[type] := []
 			If settings.general.dev && LLK_HasKey(structure[type], tier,,,, 1)
 			{
-				MsgBox, % "duplicate tier in type """ type """"
+				MsgBox,, Exile UI, % "duplicate tier in type """ type """"
 				Continue
 			}
 			For iLine, oLine in val.lines
@@ -1913,7 +1913,7 @@ Lootfilter_Match(array, dev_check := 0)
 					Case (key = "width"):
 					Case (key = "height"):
 					Case settings.general.dev:
-						MsgBox, % "unknown filter condition:`n!" (Clipboard := LLK_StringCase(key)) "!"
+						MsgBox,, Exile UI, % "unknown filter condition:`n!" (Clipboard := LLK_StringCase(key)) "!"
 					}
 				}
 
