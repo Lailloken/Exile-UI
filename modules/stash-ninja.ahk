@@ -158,9 +158,11 @@ Stash(mode, test := 0)
 			If !check
 			{
 				LLK_ToolTip(Lang_Trans("stash_updateerror", 2), 2,,,, "red"), now := A_NowUTC
+				league := settings.general.league.Clone(), league := (vars.poe_version ? vars.leagues[league.1].trade[league.3] : vars.leagues[league.1].trade.normal[league.4])
 				EnvAdd, now, -50, Minutes
 				IniWrite, % now, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab, timestamp
-				vars.stash[tab].timestamp := now
+				IniWrite, % league, % "data\global\[stash-ninja] prices" vars.poe_version ".ini", % tab, league
+				vars.stash[tab].timestamp := now, vars.stash[tab].league := league
 			}
 		}
 	}
