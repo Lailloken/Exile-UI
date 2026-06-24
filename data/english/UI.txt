@@ -219,6 +219,7 @@
 		global_league_normal	=	"normal"			;## unofficial term, used as an opposite for ruthless
 		global_copy			=	"copy"
 		global_icon			=	"icon"
+		global_on				=	"on"
 		global_off			=	"off"
 		global_keywords		=	"keywords"		;## related to search-results: words that come up often
 		global_matches			=	"matches"			;## matches of a search-result
@@ -279,6 +280,7 @@
 		global_meta			=	"meta:"			;## as in meta info/knowledge/data
 		global_animations		=	"ui animations"	;## as in UI transitions, movement, etc.
 		global_animations		=	"animations"
+		global_hold_ctrl		=	"hold ctrl"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"

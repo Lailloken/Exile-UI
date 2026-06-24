@@ -4849,6 +4849,7 @@ Settings_runeshaping()
 {
 	local
 	global vars, settings
+	static fSize, wOnOff
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Rune‐Ninja">wiki page</a>
@@ -4858,6 +4859,12 @@ Settings_runeshaping()
 
 	If !settings.features.runeshaping
 		Return
+
+	If (fSize != settings.general.fSize)
+	{
+		fSize := settings.general.fSize
+		LLK_PanelDimensions([Lang_Trans("global_on"), Lang_Trans("global_off")], fSize, wOnOff, hOnOff)
+	}
 
 	Gui, %GUI%: Add, Checkbox, % "Section xs 0x400 HWNDhwnd gSettings_runeshaping2 Checked" settings.runeshaping.debug, % Lang_Trans("global_ocr_debug")
 	vars.hwnd.settings.debug := vars.hwnd.help_tooltips["settings_runeshaping debug"] := hwnd
@@ -4894,15 +4901,20 @@ Settings_runeshaping()
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Section xs 0x200 Border", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border 0x200 BackgroundTrans gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	Gui, %GUI%: Add, Text, % "Section xs Border", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border BackgroundTrans gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.league_select := hwnd, vars.hwnd.help_tooltips["settings_league selection other"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "ys Border 0x200", % " " Lang_Trans("m_general_input", 2) " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans 0x200 gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
+	Gui, %GUI%: Add, Text, % "ys Border", % " " Lang_Trans("m_general_input", 2) " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.input := hwnd, vars.hwnd.help_tooltips["settings_runeshaping input"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "Section xs Border", % " " Lang_Trans("global_hold_ctrl") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 w" wOnOff " Border BackgroundTrans HWNDhwnd Center gSettings_runeshaping2" (settings.runeshaping.hold_ctrl ? " cLime" : ""), % Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off"))
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+	vars.hwnd.settings.hold_ctrl := hwnd, vars.hwnd.help_tooltips["settings_runeshaping hold ctrl"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
@@ -5006,6 +5018,12 @@ Settings_runeshaping2(cHWND := "")
 			vars.imagesearch.search[index] := "runeshaping2"
 		Else vars.imagesearch.search[index] := "runeshaping"
 		Settings_menu()
+		;######################################################
+		Case (check = "hold_ctrl"):
+		IniWrite, % (settings.runeshaping.hold_ctrl := !settings.runeshaping.hold_ctrl), % "ini" vars.poe_version "\rune-ninja.ini", settings, hold down ctrl-key
+		GuiControl, % "+c" (settings.runeshaping.hold_ctrl ? "Lime" : "White"), % cHWND
+		GuiControl, % "Text", % cHWND, % Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off"))
+		GuiControl, % "movedraw", % cHWND
 		;######################################################
 		Case InStr(check, "pricecolor_"):
 		RGB := (vars.system.click = 2 ? settings.runeshaping.colors_default[control] : RGB_Picker(settings.runeshaping["color_" control]))

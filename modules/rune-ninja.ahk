@@ -15,6 +15,7 @@
 	settings.runeshaping.debug := (!Blank(check := ini.settings["enable trouble-shooting"]) ? check : 0)
 	settings.runeshaping.colors_default := {"high": "00FF00", "stack": "FFFF00", "unknown": "FF8000"}
 	settings.runeshaping.controller := (!Blank(check := ini.settings["controller mode"]) ? check : 0)
+	settings.runeshaping.hold_ctrl := (!Blank(check := ini.settings["hold down ctrl-key"]) ? check : 0)
 	index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
 	If !Blank(index)
 		If settings.runeshaping.controller
