@@ -613,7 +613,7 @@ Settings_cheatsheets2(cHWND)
 			Loop, Files, % folder "\*"
 				If (A_LoopFileName != "info.ini")
 					FileCopy, % A_LoopFilePath, % "cheat-sheets" vars.poe_version "\" name "\", 1
-			ini := IniBatchRead(folder "\info.ini")
+			ini := IniBatchRead(folder "\info.ini"), vars.cheatsheets.list[name].version := ini.general.version
 			IniWrite, % ini.general.version, % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, version
 		}
 		Settings_menu("cheat-sheets")
@@ -4112,6 +4112,10 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 			color := (val = "donations" ? " cCCCC00" : (val = "news" && vars.news.unread ? " cLime" : color))
 			color := (val = "macros" ? (!Blank(settings.macros.hotkey_fasttravel) || !Blank(settings.macros.hotkey_custommacros) ? " cWhite" : " cGray") : color)
 			color := (val = "exchange" && !(settings.features.exchange + settings.features.async) ? " cGray" : color)
+			If (val = "cheat-sheets")
+				For sheet, object in vars.cheatsheets.list
+					If object.version && (sheet_check := LLK_HasVal(vars.cheatsheets.samples, sheet, 1,,, 1)) && (object.version < vars.cheatsheets.samples[sheet_check].version)
+						color := " cLime"
 
 			If !main_section && FileExist("img\GUI\settings\" val "*")
 			{
