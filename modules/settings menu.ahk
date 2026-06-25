@@ -613,7 +613,7 @@ Settings_cheatsheets2(cHWND)
 			Loop, Files, % folder "\*"
 				If (A_LoopFileName != "info.ini")
 					FileCopy, % A_LoopFilePath, % "cheat-sheets" vars.poe_version "\" name "\", 1
-			ini := IniBatchRead(folder "\info.ini")
+			ini := IniBatchRead(folder "\info.ini"), vars.cheatsheets.list[name].version := ini.general.version
 			IniWrite, % ini.general.version, % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, version
 		}
 		Settings_menu("cheat-sheets")
@@ -725,6 +725,7 @@ Settings_client()
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd Hidden cRed gSettings_client2", % " " Lang_Trans("global_restart") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Hidden Border BackgroundBlack c" vars.settings.cButtons, 100
+	Gui, %GUI%: Add, Text, % "yp x+0", % " "
 	vars.hwnd.settings.apply := hwnd, vars.hwnd.settings.apply_bar := hwnd1
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
@@ -2418,12 +2419,12 @@ Settings_leveltracker()
 
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wEdit . hDDL, % Lang_Trans("global_edit")
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd1 c" vars.settings.cButtons, 100
-		vars.hwnd.settings["editprofile"] := vars.hwnd.help_tooltips["settings_leveltracker editor"] := hwnd
+		vars.hwnd.settings["editprofile"] := hwnd, vars.hwnd.help_tooltips["settings_leveltracker editor"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "ys x+" margin " Center Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd w" wReset . hDDL, % Lang_Trans("global_reset")
 		color := (settings.leveltracker["guide" profile].info.custom ? "FF8000" : "Black")
 		Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 Vertical Range0-500 Background" color " c" vars.settings.cButtons, 500
-		vars.hwnd.settings["reset"] := hwnd, vars.hwnd.settings["resetbar"] := vars.hwnd.help_tooltips["settings_leveltracker reset" (color != "Black" ? " custom" : "")] := hwnd1
+		vars.hwnd.settings["reset"] := hwnd, vars.hwnd.settings.resetbar := vars.hwnd.help_tooltips["settings_leveltracker reset" (color != "Black" ? " custom" : "")] := hwnd1
 
 		If vars.leveltracker["pob" profile].Count()
 		{
@@ -2463,14 +2464,14 @@ Settings_leveltracker()
 				hidden := (settings.leveltracker["guide" profile].info.gems ? "" : " Hidden")
 				
 				Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "White") . hDDL . hidden, % " " Lang_Trans("global_all") " "
-				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
-				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
+				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons . hidden, 100
+				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.settings.gems_all_bar := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
 			}
 			Else
 			{
 				Gui, %GUI%: Add, Text, % "ys x+" margin " Border hp BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "White"), % " " Lang_Trans("m_lvltracker_gemquests") " "
 				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
-				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
+				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.settings.gems_all_bar := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
 			}
 
 		Settings_CharTracking("leveltracker", xOptionals + wOptionals - x_anchor)
@@ -2778,7 +2779,7 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_GuideEditor("default#" settings.leveltracker.profile)
 	Else If InStr(check, "reset") && !InStr(check, "font")
 	{
-		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings.resetbar, "LButton",,, 500, "Red", vars.settings.cButtons)
+		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings.resetbar, "LButton",,, 500, "Red", vars.settings.cButtons, "Black", "FF8000")
 			Leveltracker_ProgressReset(settings.leveltracker.profile)
 		Else Return
 	}
@@ -2854,12 +2855,13 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress(1)
-		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (input ? "Lime" : "White"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		GuiControl, % "+Background" (input && vars.leveltracker["PoB" profile].vendors.Count() ? "Fuchsia" : "Black"), % vars.hwnd.help_tooltips["settings_leveltracker gems"]
 
 		GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.gems_all
-		GuiControl, % "+cGray", % vars.hwnd.settings.gems_all
+		GuiControl, % (input ? "-" : "+") "Hidden", % vars.hwnd.settings.gems_all_bar
+		GuiControl, % "+cWhite", % vars.hwnd.settings.gems_all
 		GuiControl, % "movedraw", % vars.hwnd.settings.gems_all
 	}
 	Else If (check = "gems_all")
@@ -2870,7 +2872,7 @@ Settings_leveltracker2(cHWND := "")
 		Leveltracker_Load()
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker_Progress(1)
-		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (input ? "Lime" : "White"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 	}
 	Else If (check = "bandit")
@@ -4110,6 +4112,10 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 			color := (val = "donations" ? " cCCCC00" : (val = "news" && vars.news.unread ? " cLime" : color))
 			color := (val = "macros" ? (!Blank(settings.macros.hotkey_fasttravel) || !Blank(settings.macros.hotkey_custommacros) ? " cWhite" : " cGray") : color)
 			color := (val = "exchange" && !(settings.features.exchange + settings.features.async) ? " cGray" : color)
+			If (val = "cheat-sheets")
+				For sheet, object in vars.cheatsheets.list
+					If object.version && (sheet_check := LLK_HasVal(vars.cheatsheets.samples, sheet, 1,,, 1)) && (object.version < vars.cheatsheets.samples[sheet_check].version)
+						color := " cLime"
 
 			If !main_section && FileExist("img\GUI\settings\" val "*")
 			{
@@ -4843,6 +4849,7 @@ Settings_runeshaping()
 {
 	local
 	global vars, settings
+	static fSize, wOnOff
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Rune‐Ninja">wiki page</a>
@@ -4852,6 +4859,12 @@ Settings_runeshaping()
 
 	If !settings.features.runeshaping
 		Return
+
+	If (fSize != settings.general.fSize)
+	{
+		fSize := settings.general.fSize
+		LLK_PanelDimensions([Lang_Trans("global_on"), Lang_Trans("global_off")], fSize, wOnOff, hOnOff)
+	}
 
 	Gui, %GUI%: Add, Checkbox, % "Section xs 0x400 HWNDhwnd gSettings_runeshaping2 Checked" settings.runeshaping.debug, % Lang_Trans("global_ocr_debug")
 	vars.hwnd.settings.debug := vars.hwnd.help_tooltips["settings_runeshaping debug"] := hwnd
@@ -4888,15 +4901,20 @@ Settings_runeshaping()
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Section xs 0x200 Border", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border 0x200 BackgroundTrans gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
+	Gui, %GUI%: Add, Text, % "Section xs Border", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd cLime Border BackgroundTrans gSettings_runeshaping2", % " " Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4]) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.league_select := hwnd, vars.hwnd.help_tooltips["settings_league selection other"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "ys Border 0x200", % " " Lang_Trans("m_general_input", 2) " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans 0x200 gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
+	Gui, %GUI%: Add, Text, % "ys Border", % " " Lang_Trans("m_general_input", 2) " "
+	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.input := hwnd, vars.hwnd.help_tooltips["settings_runeshaping input"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "Section xs Border", % " " Lang_Trans("global_hold_ctrl") " "
+	Gui, %GUI%: Add, Text, % "ys x+0 w" wOnOff " Border BackgroundTrans HWNDhwnd Center gSettings_runeshaping2" (settings.runeshaping.hold_ctrl ? " cLime" : ""), % Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off"))
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+	vars.hwnd.settings.hold_ctrl := hwnd, vars.hwnd.help_tooltips["settings_runeshaping hold ctrl"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
@@ -5000,6 +5018,12 @@ Settings_runeshaping2(cHWND := "")
 			vars.imagesearch.search[index] := "runeshaping2"
 		Else vars.imagesearch.search[index] := "runeshaping"
 		Settings_menu()
+		;######################################################
+		Case (check = "hold_ctrl"):
+		IniWrite, % (settings.runeshaping.hold_ctrl := !settings.runeshaping.hold_ctrl), % "ini" vars.poe_version "\rune-ninja.ini", settings, hold down ctrl-key
+		GuiControl, % "+c" (settings.runeshaping.hold_ctrl ? "Lime" : "White"), % cHWND
+		GuiControl, % "Text", % cHWND, % Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off"))
+		GuiControl, % "movedraw", % cHWND
 		;######################################################
 		Case InStr(check, "pricecolor_"):
 		RGB := (vars.system.click = 2 ? settings.runeshaping.colors_default[control] : RGB_Picker(settings.runeshaping["color_" control]))
@@ -6314,11 +6338,11 @@ Settings_LeagueSelection(ByRef yCoord)
 {
 	local
 	global vars, settings
-	static fSize, wLeague
+	static fSize, wLeague, widths
 
 	If (fSize != settings.general.fSize)
 	{
-		fSize := settings.general.fSize
+		fSize := settings.general.fSize, widths := []
 		LLK_PanelDimensions([Lang_Trans("m_general_character") . Lang_Trans("global_colon"), Lang_Trans("global_league") . Lang_Trans("global_colon")], fSize, wLeague, hLeague)
 	}
 
@@ -6331,11 +6355,18 @@ Settings_LeagueSelection(ByRef yCoord)
 	objects := [leagues, leagues[league.1], leagues[league.1][league.2], leagues[league.1][league.2][league.3], leagues[league.1][league.2][league.3][league.4]]
 	Loop, % (vars.poe_version ? 3 : 4)
 	{
-		outer := A_Index, LLK_PanelDimensions(objects[outer], settings.general.fSize, width, height,,,,, 1)
+		outer := A_Index
+		If Blank(widths[outer])
+		{
+			dimensions := []
+			For key in objects[outer]
+				dimensions.Push(Lang_Trans("global_league_" key))
+			LLK_PanelDimensions(dimensions, settings.general.fSize, width, height), widths[outer] := width
+		}
 		For key in objects[outer]
 		{
 			color := (key = league[outer] ? " cLime" : "")
-			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "Section ys x+" (outer = 1 ? 0 : -1) : "xs y+-1") " Border BackgroundTrans Center HWNDhwnd gSettings_LeagueSelection2 w" width . color, % Lang_Trans("global_league_" key)
+			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "Section ys x+" (outer = 1 ? 0 : -1) : "xs y+-1") " Border BackgroundTrans Center HWNDhwnd gSettings_LeagueSelection2 w" widths[outer] . color, % Lang_Trans("global_league_" key)
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
 			vars.hwnd.settings["leagueselect_" outer "|" key] := hwnd
 		}

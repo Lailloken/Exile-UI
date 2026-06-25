@@ -823,6 +823,7 @@ Leveltracker_GuideEditor(cHWND)
 		Leveltracker_GuideEditor("save#" targetProfile)
 		If FileExist("ini" vars.poe_version "\leveling guide" targetProfile ".ini")
 			IniWrite, % (settings.leveltracker["guide" targetProfile].info.custom := 0), % "ini" vars.poe_version "\leveling guide" targetProfile ".ini", Info, custom
+		GuiControl, % "+BackgroundBlack", % vars.hwnd.settings.resetbar
 
 		If InStr(cHWND, "default")
 		{
@@ -932,6 +933,7 @@ Leveltracker_GuideEditor(cHWND)
 			If InStr(cHWND, "#")
 				Return
 			IniWrite, % (settings.leveltracker["guide" profile].info.custom := (vars.leveltracker_editor.default_guide != json.dump(guide))), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, custom
+			GuiControl, % "+BackgroundFF8000", % vars.hwnd.settings.resetbar
 
 			If (profile = settings.leveltracker.profile)
 			{

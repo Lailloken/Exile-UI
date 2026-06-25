@@ -374,7 +374,7 @@ String_Search(name)
 	pNeedle_searchstrings := Gdip_CreateBitmapFromHBITMAP(vars.pics.search_strings[name]) ;load reference img-file that will be searched for in the screenshot
 	If InStr(A_Gui, "settings_menu") && (pNeedle_searchstrings <= 0)
 	{
-		MsgBox, % Lang_Trans("cheat_loaderror") " " name
+		MsgBox,, Exile UI, % Lang_Trans("cheat_loaderror") " " name
 		Gdip_DisposeImage(pHaystack_searchstrings)
 		Return 0
 	}

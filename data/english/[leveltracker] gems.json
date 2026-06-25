@@ -2345,7 +2345,8 @@
         ],
         "vendor": [
           "marauder",
-          "scion"
+          "scion",
+          "templar"
         ]
       }
     }
@@ -2905,6 +2906,7 @@
         ],
         "vendor": [
           "scion",
+          "templar",
           "witch"
         ]
       }
@@ -4198,7 +4200,8 @@
       },
       "enemy at the gate": {
         "vendor": [
-          "scion"
+          "scion",
+          "templar"
         ]
       }
     }
@@ -6696,7 +6699,8 @@
           "templar"
         ],
         "vendor": [
-          "scion"
+          "scion",
+          "templar"
         ]
       }
     }

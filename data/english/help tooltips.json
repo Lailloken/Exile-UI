@@ -572,6 +572,9 @@
       "each line has one or more steps you need to complete",
       "(hint)__ indented lines provide more info for the step above",
       "(hint)__",
+      "(color:FF00FF)x_tasks / (color:FF00FF)find_x: some lines have x sub-tasks you need to complete",
+      "(hint)__ they can be completed in random order or at the same time (zone-dependent)",
+      "(hint)__",
       "optional: lines marked with a plus-sign show optional steps",
       "(hint)__ they can be enabled/disabled with the (quest:optionals) toggle in the settings",
       "(hint)__",
@@ -985,6 +988,10 @@
       "while the runeshaping interface is on screen, hold down the <omni-key> to activate this feature",
       "the overlay will hide automatically upon releasing the <omni-key>(/highlight)",
       "requires the <runeshaping> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
+    ],
+    "runeshaping hold ctrl": [
+      "while holding down the <omni-key>, the ctrl-key will automatically be held down as well",
+      "this means your clicks will immediately confirm your reward choice"
     ],
     "runeshaping input": [
       "click this button to toggle between keyboard and controller mode",

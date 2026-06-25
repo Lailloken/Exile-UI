@@ -38,7 +38,7 @@ DB_Load(database)
 		If !vars.poe_version
 			db.leveltracker := {"areas": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas.json") ? lang : "english") "\[leveltracker] areas.json"))
 			, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] gems.json") ? lang : "english") "\[leveltracker] gems.json"))
-			, "trees": {"supported": ["3_28"]}}
+			, "trees": {"supported": ["3_28", "3_28_alternate"]}}
 		Else
 			db.leveltracker := {"areaIDs": {}, "areas": json.load(LLK_FileRead("data\" (FileExist("data\" lang "\[leveltracker] areas 2.json") ? lang : "english") "\[leveltracker] areas 2.json"))
 			, "trees": {"supported": ["0_4", "0_5"]}, "gems": Json.Load(LLK_FileRead("data\" (FileExist("data\" lang2 "\[leveltracker] gems 2.json") ? lang2 : "english") "\[leveltracker] gems 2.json"))}
@@ -107,10 +107,10 @@ DB_Load(database)
 				If !IsObject(db.mapinfo.mods[section])
 					db.mapinfo.mods[section] := {}
 				If settings.general.dev && (key = "ID") && db.mapinfo.mods[section].ID
-					MsgBox, % "duplicate: " section
+					MsgBox,, Exile UI, % "duplicate: " section
 				db.mapinfo.mods[section][key] := StrReplace(val, "&", "&&")
 				If settings.general.dev && (key = "type") && (val != "expedition") && !LLK_HasVal(db.mapinfo["mod types"], val)
-					MsgBox, % "invalid mod-type for:`n" section
+					MsgBox,, Exile UI, % "invalid mod-type for:`n" section
 			}
 		}
 	}
@@ -277,7 +277,7 @@ LLK_CloneObject(object)
 
 LLK_Error(ErrorMessage, restart := 0)
 {
-	MsgBox, % ErrorMessage
+	MsgBox,, Exile UI, % ErrorMessage
 	If restart
 		Reload
 	ExitApp
@@ -287,7 +287,7 @@ LLK_FilePermissionError(issue, folder)
 {
 	local
 
-	MsgBox, % Lang_Trans("m_permission_error1", (issue = "create") ? 1 : 2) " " folder "`n`n" Lang_Trans("m_permission_error1", 3) "`n" Lang_Trans("m_permission_error1", 4) "`n`n" Lang_Trans("m_permission_error1", 5) "`n`n" Lang_Trans("m_permission_error1", 6)
+	MsgBox,, Exile UI, % Lang_Trans("m_permission_error1", (issue = "create") ? 1 : 2) " " folder "`n`n" Lang_Trans("m_permission_error1", 3) "`n" Lang_Trans("m_permission_error1", 4) "`n`n" Lang_Trans("m_permission_error1", 5) "`n`n" Lang_Trans("m_permission_error1", 6)
 }
 
 LLK_FileRead(file, keep_case := 0, encoding := "65001")

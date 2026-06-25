@@ -21,7 +21,7 @@
 				Else FileDelete, % A_LoopFilePath
 
 	If outdated
-		MsgBox, % "file-list outdated"
+		MsgBox,, Exile UI, % "file-list outdated"
 
 	Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
 		If (check := InStr(A_LoopFileName, " "))

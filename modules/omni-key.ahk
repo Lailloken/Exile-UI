@@ -188,7 +188,11 @@ Omnikey2()
 		If !WinExist("OCR debug")
 			Runeshape_OCR()
 
+		If settings.runeshaping.hold_ctrl
+			SendInput, {LControl down}
 		Omni_Release(), active := 1
+		If settings.runeshaping.hold_ctrl
+			SendInput, {LControl up}
 		LLK_Overlay(vars.hwnd.runeshaping.main, "destroy"), vars.hwnd.runeshaping := ""
 		Gui, ocr_comms: Destroy
 	}
