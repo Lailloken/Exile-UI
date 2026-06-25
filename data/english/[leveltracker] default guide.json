@@ -878,6 +878,7 @@
       "(hint)__ if (color:cc99ff)edge is beach, go (img:5) instead"
     ],
     [
+      "optional: tattoo(s): follow water (img:7)",
       "go (img:1) to (img:arena) (color:ffffff)_|| kill tukohama",
       "go (img:1) to areaid2_6_6 ;; the ridge"
     ],
@@ -1115,6 +1116,8 @@
   ],
   [
     [
+      "optional: (color:cc99ff)smuggler's_cache (heist)",
+      "(hint)__ go (img:0), find (color:cc99ff)switch on wall",
       "go (img:2), then follow wall",
       "enter areaid2_8_town ;; sarn encampment"
     ],
@@ -1252,6 +1255,7 @@
       "(hint)__ section 1: go (img:1) || rest: linear"
     ],
     [
+      "optional: <jewel>: go (img:1), pick a statue",
       "go (img:2), get (img:waypoint) || find (img:quest) (quest:chest)",
       "(hint)__ usually around (img:waypoint) or far (img:5)",
       "go (img:0) to areaid2_9_5 ;; the foothills"
@@ -1261,6 +1265,7 @@
       "enter areaid2_9_6 ;; boiling lake"
     ],
     [
+      "optional: 2x (color:cc99ff)delve_fossil: go (img:7)",
       "go (img:1), kill basilisk for (quest:acid)",
       "(color:cc99ff)relog: areaid2_9_town ;; highgate"
     ],
@@ -1288,6 +1293,8 @@
       "go (img:7) to areaid2_9_7 ;; the tunnel"
     ],
     [
+      "leaguestart: optional: random (color:cc99ff)transfig._gem:",
+      "(hint)__ switch on (img:0) wall in trial",
       "leaguestart: complete (img:lab) trial",
       "(hint)__ in side path with (img:help) -icon",
       "enter areaid2_9_8 ;; the quarry"
@@ -1382,6 +1389,8 @@
         "yes"
       ],
       "lines": [
+        "optional: (color:cc99ff)10m_gem_exp (facetor's lens):",
+        "(hint)__ switch on (img:0) wall in trial",
         "follow edge, complete (img:lab) trial",
         "(hint)__ (img:craft) + (img:lab) are near (img:quest) (quest:elixir) (<2_respecs>)",
         "(color:cc99ff)relog: areaid2_10_town ;; oriath docks"
