@@ -1611,7 +1611,7 @@ Settings_hotkeys()
 	local
 	global vars, settings
 
-	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, vars.settings.tabblock_provisional := settings.hotkeys.tabblock
 	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
 	Gui, %GUI%: Add, Link, % "ys x+"settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/Hotkeys.htm">ahk: formatting</a>
 
@@ -1664,10 +1664,10 @@ Settings_hotkeys()
 	vars.hwnd.help_tooltips["settings_hotkeys omnikey-info"] := hwnd
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " hp Border BackgroundTrans"
+	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " h" settings.general.fHeight " Border BackgroundTrans"
 	Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd gSettings_hotkeys2", % settings.hotkeys.omnikey
 	Gui, %GUI%: Font, % "s" settings.general.fSize
-	Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd1 cFF8000", % Lang_Trans("m_hotkeys_keyblock", 2)
+	Gui, %GUI%: Add, Text, % "ys x+0 Border HWNDhwnd1 cFF8000", % " " Lang_Trans("m_hotkeys_exclusive") " "
 	vars.hwnd.settings.omnikey := vars.hwnd.help_tooltips["settings_hotkeys formatting|||"] := hwnd, vars.hwnd.help_tooltips["settings_hotkeys omniblock"] := hwnd1
 	ControlGetPos, xEdit,, wEdit,,, % "ahk_id " hwnd
 	;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
@@ -1679,11 +1679,11 @@ Settings_hotkeys()
 		vars.hwnd.help_tooltips["settings_hotkeys omnikey2"] := hwnd
 
 		Gui, %GUI%: font, % "s"settings.general.fSize - 4
-		Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " hp Border BackgroundTrans"
+		Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " h" settings.general.fHeight " Border BackgroundTrans"
 		Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd gSettings_hotkeys2", % settings.hotkeys.omnikey2
 		vars.hwnd.settings.omnikey2 := vars.hwnd.help_tooltips["settings_hotkeys formatting||||"] := hwnd
 		Gui, %GUI%: font, % "s"settings.general.fSize
-		Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd cFF8000", % Lang_Trans("m_hotkeys_keyblock", 2)
+		Gui, %GUI%: Add, Text, % "ys x+0 Border HWNDhwnd cFF8000", % " " Lang_Trans("m_hotkeys_exclusive") " "
 		vars.hwnd.help_tooltips["settings_hotkeys omniblock|"] := hwnd
 		;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
 	}
@@ -1693,12 +1693,13 @@ Settings_hotkeys()
 	vars.hwnd.help_tooltips["settings_hotkeys tab"] := hwnd
 
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " hp Border BackgroundTrans"
+	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth*10 " h" settings.general.fHeight " Border BackgroundTrans"
 	Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd gSettings_hotkeys2", % settings.hotkeys.tab
 	vars.hwnd.settings.tab := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
-	Gui, %GUI%: Add, Checkbox, % "ys hp HWNDhwnd 0x400 gSettings_hotkeys2 Checked" settings.hotkeys.tabblock . (settings.hotkeys.tabblock ? " cFF8000" : ""), % Lang_Trans("m_hotkeys_keyblock")
-	vars.hwnd.settings.tabblock := vars.hwnd.help_tooltips["settings_hotkeys omniblock||"] := hwnd
+	Gui, %GUI%: Add, Text, % "ys x+0 Border BackgroundTrans HWNDhwnd gSettings_hotkeys2" (vars.settings.tabblock_provisional ? " cLime" : ""), % " " Lang_Trans("m_hotkeys_exclusive") " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+	vars.hwnd.settings.tabblock := hwnd, vars.hwnd.help_tooltips["settings_hotkeys omniblock||"] := hwnd1
 	;Gui, %GUI%: Add, Progress, % "Disabled Section xs cWhite h1 w" xEdit + wEdit - x_anchor - 1, 100
 
 	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd0 y+" settings.general.fWidth * 1.25, % Lang_Trans("m_hotkeys_menuwidget")
@@ -1744,7 +1745,7 @@ Settings_hotkeys2(cHWND)
 
 	settings.hotkeys.omnikey := LLK_ControlGet(vars.hwnd.settings.omnikey)
 	settings.hotkeys.omnikey2 := LLK_ControlGet(vars.hwnd.settings.omnikey2)
-	settings.hotkeys.tab := LLK_ControlGet(vars.hwnd.settings.tab), settings.hotkeys.tabblock := LLK_ControlGet(vars.hwnd.settings.tabblock)
+	settings.hotkeys.tab := LLK_ControlGet(vars.hwnd.settings.tab), settings.hotkeys.tabblock := vars.settings.tabblock_provisional
 	settings.hotkeys.emergencykey := LLK_ControlGet(vars.hwnd.settings.emergencykey)
 	settings.hotkeys.emergencykey_ctrl := LLK_ControlGet(vars.hwnd.settings.emergencykey_ctrl), settings.hotkeys.emergencykey_alt := LLK_ControlGet(vars.hwnd.settings.emergencykey_alt)
 
@@ -1757,7 +1758,8 @@ Settings_hotkeys2(cHWND)
 			settings.hotkeys.rebound_c := LLK_ControlGet(cHWND)
 			Settings_menu("hotkeys", 1)
 		Case "tabblock":
-			GuiControl, % "+c" (LLK_ControlGet(cHWND) ? "FF8000" : "White"), % cHWND
+			vars.settings.tabblock_provisional := !vars.settings.tabblock_provisional
+			GuiControl, % "+c" (vars.settings.tabblock_provisional ? "Lime" : "White"), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "apply":
 			If LLK_ControlGet(vars.hwnd.settings.rebound_alt) && !LLK_ControlGet(vars.hwnd.settings.item_descriptions)
@@ -1801,7 +1803,7 @@ Settings_hotkeys2(cHWND)
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.omnikey2) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, omni-hotkey2
 
 			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.tab) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, tab replacement
-			IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.tabblock) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, block tab-key's native function
+			IniWrite, % """" vars.settings.tabblock_provisional """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, block tab-key's native function
 
 			If vars.hwnd.settings.movekey
 				IniWrite, % """" LLK_ControlGet(vars.hwnd.settings.movekey) """", % "ini" vars.poe_version "\hotkeys.ini", hotkeys, move-key
@@ -4372,7 +4374,7 @@ Settings_OCR()
 	Gui, %GUI%: Add, Edit, % "ys hp HWNDhwnd cBlack gSettings_OCR2 w" settings.general.fWidth * 10, % settings.OCR.hotkey
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
-	Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd3 gSettings_OCR2 0x400 Checked" settings.OCR.hotkey_block, % Lang_Trans("m_hotkeys_keyblock")
+	Gui, %GUI%: Add, Checkbox, % "ys HWNDhwnd3 gSettings_OCR2 0x400 Checked" settings.OCR.hotkey_block, % Lang_Trans("m_hotkeys_exclusive")
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd2 gSettings_OCR2 0x400 Checked" settings.OCR.debug, % Lang_Trans("m_ocr_debug")
 	vars.hwnd.settings.z_hotkey := vars.hwnd.help_tooltips["settings_ocr z hotkey"] := hwnd0
 	vars.hwnd.settings.hotkey := vars.hwnd.help_tooltips["settings_ocr hotkey"] := hwnd

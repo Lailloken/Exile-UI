@@ -1042,8 +1042,7 @@
 		m_hotkeys_omnikey_new	=	"omni-key:"
 		m_hotkeys_omnikey_new	=	"omni-key (general):"
 		m_hotkeys_omnikey_new	=	"omni-key 2 (for items):"
-		m_hotkeys_keyblock		=	"block the keypress"										;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu
-		m_hotkeys_keyblock		=	"keypress is blocked"										;## same as above, but as a note instead of option
+		m_hotkeys_exclusive		=	"exclusive"												;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu
 		m_hotkeys_widget		=	"widget-key:"
 		m_hotkeys_emergency		=	"force-restart:"											;## hotkey to force-restart the tool in case of crash/hang
 		m_hotkeys_winkey		=	"win-key"													;## Windows-key
