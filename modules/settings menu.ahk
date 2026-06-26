@@ -6338,21 +6338,23 @@ Settings_LeagueSelection(ByRef yCoord)
 {
 	local
 	global vars, settings
-	static fSize, wLeague, widths
+	static fSize, wLeague, widths, widths_count
 
-	If (fSize != settings.general.fSize)
+	leagues := vars.leagues, league := settings.general.league
+	objects := [leagues, leagues[league.1], leagues[league.1][league.2], leagues[league.1][league.2][league.3], leagues[league.1][league.2][league.3][league.4]]
+
+	If (fSize != settings.general.fSize) || (widths_count != objects[(vars.poe_version ? 3 : 4)].Count())
 	{
 		fSize := settings.general.fSize, widths := []
 		LLK_PanelDimensions([Lang_Trans("m_general_character") . Lang_Trans("global_colon"), Lang_Trans("global_league") . Lang_Trans("global_colon")], fSize, wLeague, hLeague)
 	}
+	widths_count := objects[(vars.poe_version ? 3 : 4)].Count()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, yMax := 0
 	Gui, %GUI%: Add, Text, % "Section xs Border 0x200 Right HWNDhwnd w" wLeague " h" (hPanel := settings.general.fHeight * vars.leagues.Count() - 1), % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
 	ControlGetPos, xFirst, yFirst, wFirst, hFirst,, ahk_id %hwnd%
 	vars.hwnd.help_tooltips["settings_league selection"] := hwnd, yCoord := yFirst + hFirst
 
-	leagues := vars.leagues, league := settings.general.league
-	objects := [leagues, leagues[league.1], leagues[league.1][league.2], leagues[league.1][league.2][league.3], leagues[league.1][league.2][league.3][league.4]]
 	Loop, % (vars.poe_version ? 3 : 4)
 	{
 		outer := A_Index
