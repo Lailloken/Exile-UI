@@ -2,5 +2,5 @@
 .gitignore export-ignore
 *.md export-ignore
 img/readme/ export-ignore
-img/GUI/act-decoder/*
+img/GUI/act-decoder/* export-ignore
 data/global/?legion?* export-ignore
