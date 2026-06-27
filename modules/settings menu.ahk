@@ -6083,10 +6083,10 @@ Settings_updater()
 	vars.hwnd.settings.update_refresh := hwnd, LLK_PanelDimensions([Lang_Trans("m_updater_version", 2), Lang_Trans("m_updater_version", 3)], settings.general.fSize, width, height)
 
 	Gui, %GUI%: Add, Text, % "Section xs w" width, % Lang_Trans("m_updater_version", 2)
-	Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0", % vars.updater.version.2
+	Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0 h" settings.general.fHeight, % vars.updater.version.2
 	ControlGetPos, x,,,,, ahk_id %hwnd%
 
-	If settings.general.dev
+	If settings.general.dev || GetKeyState("Shift", "P") && GetKeyState("CTRL", "P")
 	{
 		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gSettings_updater2", % " get dev build "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
