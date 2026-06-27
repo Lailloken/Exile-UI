@@ -157,8 +157,11 @@
       "hold down the <widget-key> while in a supported campaign area to activate the overlay",
       "accuracy can vary from patch to patch, so use them as rough guides instead of mini-map replacement(/highlight)"
     ],
+    "actdecoder folder": [
+      "opens the act-decoder folder. you have to delete every folder and zip-file that has 'exile-ui' in its name"
+    ],
     "actdecoder hotkey": [
-      "optional: specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
+      "specify a hotkey as an alternative to the widget-key (which will then no longer activate the act-decoder)",
       "this is primarily for improving wasd compatibility, e.g. by binding it to a thumb button (xbutton1/2) on the mouse",
       "holding this key will only activate the act-decoder, tapping it will use its normal function (e.g. a skill)(/highlight)"
     ],
@@ -1582,6 +1585,9 @@
     "rotate 2": [
       "click: rotate 90 degrees\nr-click: rotate -90 degrees",
       "when unsure how to match indicators, always try mirroring before rotating(/highlight)"
+    ],
+    "update": [
+      "layout update available in the settings menu"
     ]
   },
   "lootfilter": {

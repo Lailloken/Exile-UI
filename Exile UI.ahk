@@ -721,7 +721,8 @@ Loop()
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted`n`nIf this is a recurring issue, disable multi-threading in the <general> settings", 1)
 
-		If (vars.news.unread || vars.update.1) && (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main))
+		If (vars.news.unread || vars.update.1 || vars.actdecoder.updater.available) && (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main)
+			|| vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main))
 		{
 			news_tick += 1
 			If (Blank(vars.radial.click_select) || vars.radial.click_select = "settings") && WinExist("ahk_id " vars.hwnd.radial.main)
@@ -732,7 +733,14 @@ Loop()
 					GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : "Lime"), % vars.hwnd.settings.background_news
 				If vars.update.1
 					GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
+				If vars.actdecoder.updater.available
+				{
+					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.actdecoder
+					GuiControl, % "movedraw", % vars.hwnd.settings.actdecoder
+				}
 			}
+			If vars.actdecoder.updater.available && vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
+				GuiControl, % "+Background" (Mod(news_tick, 2) ? "Black" : "Lime"), % vars.hwnd.actdecoder.helppanel_bar
 		}
 	}
 

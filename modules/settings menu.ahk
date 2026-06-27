@@ -13,6 +13,54 @@
 	If !settings.features.actdecoder
 		Return
 
+	FileDelete, % "img\GUI\act-decoder\Exile-UI*"
+	Loop, Files, % "img\GUI\act-decoder\Exile-UI*", D
+		FileRemoveDir, % A_LoopFilePath, 1
+
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_actdecoder_download")
+	Gui, %GUI%: Font, norm
+
+	If !vars.actdecoder.file_list.Count() || vars.actdecoder.updater.available
+	{
+		If FileExist("img\GUI\act-decoder\Exile-UI*")
+		{
+			Gui, %GUI%: Add, Text, % "Section xs cFF8000", % Lang_Trans("m_actdecoder_leftover")
+			Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd gSettings_actdecoder2", % " " Lang_Trans("global_openfolder") " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+			vars.hwnd.settings.open_folder := hwnd, vars.hwnd.help_tooltips["settings_actdecoder folder"] := hwnd1
+			Return
+		}
+		Else If !vars.actdecoder.file_list.Count()
+			Gui, %GUI%: Add, Text, % "Section xs cFF8000", % Lang_Trans("m_actdecoder_download", 2)
+		Else Gui, %GUI%: Add, Text, % "Section xs h" settings.general.fHeight " cLime", % Lang_Trans("global_update", 2)
+
+		If vars.actdecoder.updater.check.requires && (vars.actdecoder.updater.check.requires > vars.actdecoder.tool)
+			Gui, %GUI%: Add, Text, % "Section xs y+0 hp cFF8000", % Lang_Trans("m_actdecoder_required")
+		Else
+		{
+			Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd gSettings_actdecoder2", % " " Lang_Trans("global_download") " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+			vars.hwnd.settings.dload_layouts := hwnd
+		}
+
+		If !vars.actdecoder.file_list.Count()
+			Return
+	}
+	Else If Blank(vars.actdecoder.updater.last) || (LLK_TimeElapsed(vars.actdecoder.updater.last, "seconds") >= 60)
+	{
+		Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd gSettings_actdecoder2", % " " Lang_Trans("global_update", 3) " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
+		vars.hwnd.settings.dload_check := hwnd
+	}
+	Else
+	{
+		If (vars.actdecoder.updater.check = "failed")
+			Gui, %GUI%: Add, Text, % "Section xs h" settings.general.fHeight " cFF8000", % Lang_Trans("m_actdecoder_failed")
+		Else If (vars.actdecoder.updater.check.version = vars.actdecoder.version)
+			Gui, %GUI%: Add, Text, % "Section xs h" settings.general.fHeight " cLime", % Lang_Trans("m_actdecoder_success")
+	}
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
@@ -72,7 +120,10 @@ Settings_actdecoder2(cHWND := "")
 {
 	local
 	global vars, settings
+	static wait
 
+	If wait
+		Return
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 	KeyWait, LButton
 	If (check = "enable")
@@ -88,6 +139,58 @@ Settings_actdecoder2(cHWND := "")
 		Else If !Blank(settings.actdecoder.hotkey)
 			Hotkey, % Hotkeys_Convert(settings.actdecoder.hotkey), Actdecoder_Hotkey, On
 		Settings_menu("actdecoder")
+	}
+	Else If (check = "open_folder")
+	{
+		Run, explore img\GUI\act-decoder\
+		Settings_menuClose()
+	}
+	Else If (check = "dload_check")
+	{
+		Actdecoder_UpdateCheck()
+		Settings_menu("actdecoder")
+	}
+	Else If (check = "dload_layouts")
+	{
+		wait := 1, failed := 0
+		LLK_ToolTip(Lang_Trans("global_downloading"), 10000,,, "dload_layout", "Lime")
+		UrlDownloadToFile, % "https://github.com/Lailloken/Exile-UI/archive/refs/heads/layouts" StrReplace(vars.poe_version, " ", "_") ".zip", % "img\GUI\act-decoder\Exile-UI-layouts.zip"
+		If ErrorLevel || !FileExist("img\GUI\act-decoder\Exile-UI*.zip")
+			failed := 1
+		vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+		If !failed
+		{
+			LLK_ToolTip(Lang_Trans("global_extracting"), 10000,,, "dload_layout", "Lime")
+			FileCopyDir, % "img\GUI\act-decoder\Exile-UI-layouts.zip", % "img\GUI\act-decoder\", 1
+			If ErrorLevel
+				failed := 1
+			vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+
+			If !failed
+			{
+				LLK_ToolTip(Lang_Trans("global_copying"), 10000,,, "dload_layout", "Lime")
+				Loop, Files, % "img\GUI\act-decoder\Exile-UI-layouts" StrReplace(vars.poe_version, " ", "_") "\*", DF
+				{
+					If InStr(A_LoopFilePath, ".json")
+						FileMove, % A_LoopFilePath, % "img\GUI\act-decoder\", 1
+					Else FileMoveDir, % A_LoopFilePath, % "img\GUI\act-decoder\zones" vars.poe_version, 2
+
+					If ErrorLevel
+					{
+						failed := 1
+						FileDelete, % "img\GUI\act-decoder\*" vars.poe_version ".json"
+						FileRemoveDir, % "img\GUI\act-decoder\zones" vars.poe_version, 1
+						Break
+					}
+				}
+				vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+			}
+		}
+		Init_actdecoder(failed ? 2 : 1)
+		wait := 0, vars.actdecoder.updater.last := A_NowUTC
+		Settings_menu("actdecoder")
+		If failed
+			LLK_ToolTip(Lang_Trans("global_fail"), 3,,,, "Red")
 	}
 	Else If (check = "hotkey")
 	{
@@ -1205,7 +1308,7 @@ Settings_donations()
 
 	If (last_update + 120000 < A_TickCount)
 	{
-		Try donations_new := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/img/readme/donations.json")
+		Try donations_new := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/misc/donations.json")
 		If (SubStr(donations_new, 1, 1) . SubStr(donations_new, 0) = "{}")
 			vars.settings.donations := JSON.load(donations_new), live_list := 1
 	}
@@ -5982,6 +6085,14 @@ Settings_updater()
 	Gui, %GUI%: Add, Text, % "Section xs w" width, % Lang_Trans("m_updater_version", 2)
 	Gui, %GUI%: Add, Text, % "ys HWNDhwnd x+0", % vars.updater.version.2
 	ControlGetPos, x,,,,, ahk_id %hwnd%
+
+	If settings.general.dev
+	{
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gSettings_updater2", % " get dev build "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
+		vars.hwnd.settings.get_dev := hwnd
+	}
+
 	color := vars.updater.skip && (vars.updater.latest.1 = vars.updater.skip) ? " cYellow" : (IsNumber(vars.updater.latest.1) && vars.updater.latest.1 > vars.updater.version.1) ? " cLime" : ""
 	Gui, %GUI%: Add, Text, % "Section xs w" width . color, % Lang_Trans("m_updater_version", 3) " "
 	Gui, %GUI%: Add, Text, % "ys x+0" color, % vars.updater.latest.2
@@ -6145,6 +6256,12 @@ Settings_updater2(cHWND := "")
 	}
 	Else If InStr(check, "fullchangelog_")
 		Run, % "https://github.com/Lailloken/Lailloken-UI/releases/tag/v" control
+	Else If (check = "get_dev")
+	{
+		IniWrite, % "dev", ini\config.ini, versions, apply update
+		Reload
+		ExitApp
+	}
 	Else If InStr(check, "restart_install")
 	{
 		If InStr(check, 2)

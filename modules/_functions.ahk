@@ -698,13 +698,18 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 		UpdateDownload(hwnd)
 		branch := InStr(versions_live._release.2, "/main.zip") ? "main" : "beta"
 		vars.updater.target_version := [LLK_IniRead("ini\config.ini", "versions", "apply update")]
-		Loop, Parse, % vars.updater.target_version.1, % "."
-			vars.updater.target_version.2 .= (A_Index = 3) ? (A_LoopField < 10 ? "0" : "") A_LoopField : A_LoopField
+		If (vars.updater.target_version.1 = "dev")
+			vars.updater.target_version.2 := "dev"
+		Else
+			Loop, Parse, % vars.updater.target_version.1, % "."
+				vars.updater.target_version.2 .= (A_Index = 3) ? (A_LoopField < 10 ? "0" : "") A_LoopField : A_LoopField
 
 		LLK_Log("starting update to " vars.updater.target_version.1)
 
 		If !FileExist("update\update_" vars.updater.target_version.2 ".zip")
-			UrlDownloadToFile, % "https://github.com/Lailloken/Lailloken-UI/archive/refs/tags/v" vars.updater.target_version.1 ".zip", % "update\update_" vars.updater.target_version.2 ".zip"
+			If (vars.updater.target_version.1 = "dev")
+				UrlDownloadToFile, % "https://github.com/Lailloken/Exile-UI/archive/refs/heads/dev.zip", % "update\update_" vars.updater.target_version.2 ".zip"
+			Else UrlDownloadToFile, % "https://github.com/Lailloken/Exile-UI/archive/refs/tags/v" vars.updater.target_version.1 ".zip", % "update\update_" vars.updater.target_version.2 ".zip"
 		If ErrorLevel || !FileExist("update\update_" vars.updater.target_version.2 ".zip")
 			vars.update := [-5, vars.updater.target_version.1] ;error-code -5 = download of zip-file failed
 		If (vars.update.1 >= 0)

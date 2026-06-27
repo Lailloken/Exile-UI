@@ -1,4 +1,4 @@
-﻿Init_actdecoder()
+﻿Init_actdecoder(refresh := 0)
 {
 	local
 	global vars, settings, json
@@ -6,30 +6,42 @@
 	If !FileExist("ini" vars.poe_version "\act-decoder.ini")
 		IniWrite, % "", % "ini" vars.poe_version "\act-decoder.ini", settings
 
-	If !IsObject(vars.actdecoder)
+	If refresh || !IsObject(vars.actdecoder)
 	{
-		vars.actdecoder := {}
+		vars.actdecoder := {"updater": {}}
+		Try tool := json.Load(LLK_FileRead("data\versions.json"))
+		If tool._release
+			vars.actdecoder.tool := tool._release.1 . (tool.hotfix ? "." (tool.hotfix < 10 ? 0 : "") . tool.hotfix : "")
+		Try current := json.Load(LLK_FileRead("img\GUI\act-decoder\version" vars.poe_version ".json"))
 		Try vars.actdecoder.file_list := json.Load(LLK_FileRead("img\GUI\act-decoder\file-list" vars.poe_version ".json"))
+		If current.version
+			vars.actdecoder.version := current.version
+		Else vars.actdecoder.version := 1
+		If (refresh = 1)
+			vars.actdecoder.updater.check := {"version": current.version}
+		Else If (refresh = 2)
+			vars.actdecoder.updater.check := "failed"
 	}
 	vars.actdecoder.zone_layouts := {}, vars.actdecoder.files := {}
 
 	If vars.actdecoder.file_list.Count()
-		Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
-			If !vars.actdecoder.file_list[A_LoopFileName]
-				If settings.general.dev
-					outdated := 1
-				Else FileDelete, % A_LoopFilePath
+		For outer in [1, 2]
+			Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
+				If (outer = 1) && !vars.actdecoder.file_list[A_LoopFileName]
+				{
+					If settings.general.dev
+						outdated := 1
+					Else FileDelete, % A_LoopFilePath
+				}
+				Else If (outer = 2) && (check := InStr(A_LoopFileName, " "))
+				{
+					vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt)] := 1
+					vars.actdecoder.zones[SubStr(StrReplace(A_LoopFileName, "." A_LoopFileExt), 1, InStr(A_LoopFileName, " ") - 1)] := 1
+					vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
+				}
 
 	If outdated
 		MsgBox,, Exile UI, % "file-list outdated"
-
-	Loop, Files, % "img\GUI\act-decoder\zones" vars.poe_version "\*"
-		If (check := InStr(A_LoopFileName, " "))
-		{
-			vars.actdecoder.files[StrReplace(A_LoopFileName, "." A_LoopFileExt)] := 1
-			vars.actdecoder.zones[SubStr(StrReplace(A_LoopFileName, "." A_LoopFileExt), 1, InStr(A_LoopFileName, " ") - 1)] := 1
-			vars.actdecoder.zone_layouts[SubStr(A_LoopFileName, 1, check - 1)] := {}
-		}
 
 	settings.actdecoder := {}, ini := IniBatchRead("ini" vars.poe_version "\act-decoder.ini")
 	settings.actdecoder.xLayouts := !Blank(check := ini.settings["zone-layouts x"]) ? check : ""
@@ -40,6 +52,8 @@
 	settings.actdecoder.trans_zones := !Blank(check := ini.settings["zone transparency"]) ? check : 10
 	settings.actdecoder.hotkey := hotkey := !Blank(check := ini.settings["alternative hotkey"]) ? check : ""
 
+	If refresh
+		Return
 	Hotkey, If, vars.actdecoder.zones[vars.log.areaID] && WinActive("ahk_group poe_ahk_window")
 	If !GetKeyVK(hotkey)
 		settings.actdecoder.hotkey := ""
@@ -61,11 +75,6 @@ Actdecoder_Hotkey()
 	vars.actdecoder.tab := 1
 	If Actdecoder_ZoneLayouts()
 		active := 1
-	Else 
-	{
-		vars.actdecoder.tab := 0
-		LLK_ToolTip(Lang_Trans("m_actdecoder_missing"),,,,, "Red")
-	}
 
 	KeyWait, % settings.actdecoder.hotkey
 	If !active
@@ -105,6 +114,30 @@ Actdecoder_ImageSelect(pic)
 	}
 }
 
+Actdecoder_UpdateCheck()
+{
+	local
+	global vars, settings, json
+
+	Try update_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/layouts" StrReplace(vars.poe_version, " ", "_") "/version" StrReplace(vars.poe_version, " ", "%20") ".json")
+	If update_check
+		Try live := json.Load(update_check)
+
+	If live.version
+		vars.actdecoder.updater.check := live.Clone()
+	Else vars.actdecoder.updater.check := "failed"
+
+	vars.actdecoder.updater.last := A_NowUTC
+	If !(live.version > vars.actdecoder.version)
+		Return
+	vars.actdecoder.updater.available := 1
+	If vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main)
+	{
+		vars.hwnd.help_tooltips.Delete("actdecoder_help panel"), vars.hwnd.help_tooltips.actdecoder_update := vars.hwnd.actdecoder.helppanel_bar
+		GuiControl, % "+BackgroundLime", % vars.hwnd.actdecoder.helppanel_bar
+	}
+}
+
 Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 {
 	local
@@ -113,6 +146,9 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If !settings.features.actdecoder
 		Return
+
+	If Blank(vars.actdecoder.updater.last)
+		SetTimer, Actdecoder_UpdateCheck, -100
 
 	If InStr(mode, "SC00")
 	{
@@ -272,8 +308,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 	hwnd_old := vars.hwnd.actdecoder.main, vars.hwnd.actdecoder := {"main": actdecoder_zones}
 
 	Gui, %GUI_name%: Add, Pic, % "Section Border BackgroundTrans HWNDhwnd h" settings.general.fHeight " w-1" (vars.actdecoder.tab ? "" : " Hidden"), % "HBitmap:*" vars.pics.global.help
-	Gui, %GUI_name%: Add, Progress, % "Disabled HWNDhwnd1 xp yp wp hp BackgroundBlack" (vars.actdecoder.tab ? "" : " Hidden"), 0
-	vars.hwnd.actdecoder.helppanel := hwnd, vars.hwnd.actdecoder.helppanel_bar := vars.hwnd.help_tooltips["actdecoder_help panel"] := hwnd1
+	Gui, %GUI_name%: Add, Progress, % "Disabled HWNDhwnd1 xp yp wp hp Border Background" (vars.actdecoder.updater.available ? "Lime" : "Black") . (vars.actdecoder.tab ? "" : " Hidden"), 0
+	vars.hwnd.actdecoder.helppanel := hwnd, vars.hwnd.actdecoder.helppanel_bar := vars.hwnd.help_tooltips["actdecoder_" (vars.actdecoder.updater.available ? "update" : "help panel")] := hwnd1
 
 	If !vars.pics.zone_layouts.drag
 		vars.pics.zone_layouts.drag := LLK_ImageCache("img\GUI\drag.png")
