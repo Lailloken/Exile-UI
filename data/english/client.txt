@@ -102,9 +102,8 @@
 
 
 		maps_xesht			=	"xesht"				;## PoE2 only (whole block)
-		maps_xesht			=	"twisted domain"		;## the map-name of the xesht fight
 		maps_arbiter			=	"arbiter of ash"
-		maps_arbiter			=	"the burning monolith"	;## the map-name of the arbiter fight
+		maps_arbiter2			=	"arbiter of divinity"
 		maps_medved			=	"medved"				;## the expedition bosses
 		maps_vorana			=	"vorana"
 		maps_uhtred			=	"uhtred"

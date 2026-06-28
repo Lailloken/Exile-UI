@@ -1,4 +1,9 @@
 {
+  "_translation_notes": [
+    "the outer-most key is the game's internal area-ID, e.g. 'abyss', 'alpineridge', 'aridplains'",
+    "only translate the 'name' value, e.g. 'name': 'abyss' -> 'name': 'XYZ', 'name': 'alpine ridge' -> 'name': 'XYZ'",
+    "the 'boss' value is used by statlas to find the correct image, and by the map-tracker to reference the client.txt for certain boss names, e.g. 'maps_arbiter', 'maps_arbiter2', 'maps_xesht'"
+  ],
   "maps": {
     "abyss": {
       "boss": "tor gul",
@@ -28,6 +33,10 @@
       "boss": "oswin",
       "name": "bastille"
     },
+    "bazaar": {
+      "boss": "viper",
+      "name": "bazaar"
+    },
     "bloodwood": {
       "boss": "devourer",
       "name": "bloodwood"
@@ -39,6 +48,10 @@
     "bluff": {
       "boss": "uxmal",
       "name": "bluff"
+    },
+    "breachdomain_01": {
+      "boss": "xesht",
+      "name": "twisted domain"
     },
     "burialbog": {
       "boss": "rootdredge",
@@ -62,6 +75,10 @@
     "channel": {
       "boss": "hask",
       "name": "channel"
+    },
+    "chasm": {
+      "boss": "diamora",
+      "name": "chasm"
     },
     "cliffside": {
       "boss": "torvian",
@@ -94,6 +111,9 @@
     "deserted": {
       "boss": "lord of the pit",
       "name": "deserted"
+    },
+    "endgamedoodad_meteorcrater": {
+      "name": "the fallen star"
     },
     "epitaph": {
       "boss": "asinia",
@@ -219,6 +239,28 @@
       "boss": "beira",
       "name": "mire"
     },
+    "monument": {
+      "name": "the monument"
+    },
+    "mortuary": {
+      "name": "mortuary"
+    },
+    "mothersoul_female": {
+      "boss": "phya",
+      "name": "the matriarch halls"
+    },
+    "mothersoul_female_quest": {
+      "boss": "phya",
+      "name": "the matriarch halls"
+    },
+    "mothersoul_male": {
+      "boss": "phyx",
+      "name": "the patriarch halls"
+    },
+    "mothersoul_male_quest": {
+      "boss": "phyx",
+      "name": "the patriarch halls"
+    },
     "necropolis": {
       "boss": "draven",
       "name": "necropolis"
@@ -226,6 +268,10 @@
     "oasis": {
       "boss": "jamanra",
       "name": "oasis"
+    },
+    "orbalascrossing": {
+      "boss": "elzarah",
+      "name": "orbala's crossing"
     },
     "ornatechambers": {
       "boss": "elzarah",
@@ -254,6 +300,10 @@
       "boss": "hartlin",
       "name": "port"
     },
+    "precipice": {
+      "boss": "vornas",
+      "name": "precipice"
+    },
     "ravine": {
       "boss": "zicoatl",
       "name": "ravine"
@@ -265,6 +315,10 @@
     "reservoir": {
       "boss": "rootdredge",
       "name": "reservoir"
+    },
+    "ritualleagueboss": {
+      "boss": "ritualboss",
+      "name": "crux of nothingness"
     },
     "riverhold": {
       "boss": "siora",
@@ -366,6 +420,10 @@
       "boss": "blackjaw2",
       "name": "sinking spire"
     },
+    "swarm": {
+      "boss": "rattlecage",
+      "name": "swarm"
+    },
     "trenches": {
       "boss": "devourer",
       "name": "trenches"
@@ -374,21 +432,52 @@
       "boss": "jamanra2",
       "name": "the copper citadel"
     },
+    "uberboss_delirium": {
+      "boss": "raventrickster",
+      "name": "the withered willow"
+    },
+    "uberboss_divinity": {
+      "boss": "arbiter2",
+      "name": "the origin tower"
+    },
+    "uberboss_fallenstar": {
+      "boss": "the aberration",
+      "name": "ruins of kingsmarch"
+    },
     "uberboss_ironcitadel": {
       "boss": "geonor",
       "name": "the iron citadel"
+    },
+    "uberboss_ironcitadel_quest": {
+      "boss": "geonor",
+      "name": "western enigma chamber"
     },
     "uberboss_jadecitadel": {
       "boss": "tavakai",
       "name": "the jade isles"
     },
+    "uberboss_monolith": {
+      "boss": "arbiter",
+      "name": "the burning monolith"
+    },
+    "uberboss_ritual": {
+      "boss": "the bodach",
+      "name": "caer tarth"
+    },
     "uberboss_stonecitadel": {
       "boss": "doryani",
       "name": "the stone citadel"
     },
+    "uberboss_stonecitadel_quest": {
+      "boss": "doryani",
+      "name": "eastern enigma chamber"
+    },
     "uniquecastaway": {
       "boss": "hartlin",
       "name": "castaway"
+    },
+    "uniqueinitialtower": {
+      "name": "precursor tower"
     },
     "uniquelake": {
       "name": "the fractured lake"
@@ -400,6 +489,20 @@
     "uniqueselenite": {
       "boss": "random boss",
       "name": "the silent cave"
+    },
+    "UniqueReactor_01": {
+      "boss": "precursor separator",
+      "name": "western gateway"
+    },
+    "UniqueReactor_02": {
+      "name": "ancient gateway"
+    },
+    "UniqueReactor_03": {
+      "boss": "precursor refiner",
+      "name": "eastern gateway"
+    },
+    "UniqueReactor_04": {
+      "name": "site of the chosen"
     },
     "uniqueuntaintedparadise": {
       "name": "untainted paradise"

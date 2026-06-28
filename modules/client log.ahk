@@ -230,25 +230,7 @@ Log_Get(log_text, data)
 			%data% := log_text
 		Else
 		{
-			If LLK_StringCompare(log_text, ["breach"])
-			{
-				If settings.maptracker.rename
-					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_xesht")
-				Else Return Lang_Trans("maps_xesht", 2) " (" Lang_Trans("maps_boss") ")"
-			}
-			Else If LLK_StringCompare(log_text, ["ritual"])
-			{
-				If settings.maptracker.rename
-					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_ritualboss")
-				Else Return Lang_Trans("maps_ritualboss", 2) " (" Lang_Trans("maps_boss") ")"
-			}
-			Else If InStr(log_text, "uberboss_monolith")
-			{
-				If settings.maptracker.rename
-					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_arbiter")
-				Else Return Lang_Trans("maps_arbiter", 2) " (" Lang_Trans("maps_boss") ")"
-			}
-			Else If InStr(log_text, "expedition")
+			If InStr(log_text, "expedition")
 			{
 				If !IsObject(db.maps)
 					DB_Load("maps")
@@ -257,7 +239,7 @@ Log_Get(log_text, data)
 				Else %data% := SubStr(log_text, InStr(log_text, "_") + 1)
 
 				If boss && settings.maptracker.rename
-					Return Lang_Trans("maps_boss") ": " Lang_Trans("maps_" boss)
+					Return Lang_Trans("maps_boss") . Lang_Trans("global_colon") " " Lang_Trans("maps_" boss)
 				Else If boss
 					Return LLK_StringCase(%data%) " (" Lang_Trans("maps_boss") ")"
 				Else Return LLK_StringCase(%data%)
@@ -271,16 +253,17 @@ Log_Get(log_text, data)
 			If !IsObject(db.maps)
 				DB_Load("maps")
 
-			%data% := StrReplace(SubStr(log_text, 4), "_noboss"), map_name := db.maps.maps[%data%].name
-			If InStr(%data%, "uberboss_")
-				%data% := (settings.maptracker.rename ? Lang_Trans("maps_boss") ": " : "") . (map_name ? map_name : StrReplace(%data%, "uberboss_")) . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
+			%data% := (RegexMatch(log_text, "i)^map") ? StrReplace(SubStr(log_text, 4), "_noboss") : log_text), map_name := db.maps.maps[%data%].name, boss := db.maps.maps[%data%].boss, boss := Lang_Trans("maps_" boss)
+			rename := settings.maptracker.rename
+			If InStr(%data%, "uberboss_") || RegexMatch(%data%, "i)ritualleagueboss|breachdomain")
+				%data% := (rename ? Lang_Trans("maps_boss") . Lang_Trans("global_colon") " " : "") . (boss && rename ? boss : (map_name ? map_name : StrReplace(%data%, "uberboss_"))) . (settings.maptracker.rename ? "" : " (" Lang_Trans("maps_boss") ")")
 			Else If LLK_StringCompare(%data%, ["unique"])
 			{
 				For key, val in unique_maps
 					If !override && InStr(%data%, key)
-						%data% := Lang_Trans("items_unique") ": " Lang_Trans("maps_" (val ? val : key)), override := 1
+						%data% := Lang_Trans("items_unique") . Lang_Trans("global_colon") " " Lang_Trans("maps_" (val ? val : key)), override := 1
 				If !override
-					%data% := Lang_Trans("items_unique") ": " (map_name ? map_name : SubStr(%data%, 7))
+					%data% := Lang_Trans("items_unique") . Lang_Trans("global_colon") " " (map_name ? map_name : SubStr(%data%, 7))
 			}
 			Else If LLK_PatternMatch(log_text, "", ["losttowers", "swamptower", "mesa", "bluff", "alpineridge"],,, 0)
 			{

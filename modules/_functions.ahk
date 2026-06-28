@@ -67,6 +67,7 @@ DB_Load(database)
 	}
 	Else If (database = "maps")
 		db.maps := Json.Load(LLK_FileRead("data\" (FileExist("data\" settings.general.lang_client "\maps" vars.poe_version ".json") ? settings.general.lang_client : "english") "\maps" vars.poe_version ".json",, "65001"))
+		, db.maps.Delete("_translation_notes")
 	Else If (database = "item_mods")
 		db.item_mods := Json.Load(LLK_FileRead("data\global\item mods" vars.poe_version ".json"))
 	Else If (database = "item_bases")

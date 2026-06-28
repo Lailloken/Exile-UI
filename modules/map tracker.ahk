@@ -1138,7 +1138,7 @@ Maptracker_LogsFilter(cHWND) ;adds operators/keywords to the search-bar when ico
 Maptracker_LogsLoad()
 {
 	local
-	global vars, settings
+	global vars, settings, db
 
 	vars.maptracker.entries := {}, entries := vars.maptracker.entries
 	FileRead, ini, % "ini" vars.poe_version "\map tracker log.ini"
@@ -1171,6 +1171,24 @@ Maptracker_LogsLoad()
 					val := StrReplace(val, k, v)
 			If (key = "map") && RegExMatch(val, "i)[a-zA-Z]\:[a-zA-Z]")
 				val := StrReplace(val, ":", ": ")
+
+			If vars.poe_version && (key = "map")
+			{
+				If !IsObject(db.maps)
+					DB_Load("maps")
+				map := val, rename := 0
+				If (check := InStr(map, Lang_Trans("global_colon"))) || (check := InStr(map, ":"))
+					rename := (RegexMatch(map, "i)" Lang_Trans("maps_boss") "(:|" Lang_Trans("global_colon") ")") ? 1 : 0), map := SubStr(map, check + 1), map := Trim(map, " ")
+				If (check := InStr(map, "("))
+					map := SubStr(map, 1, check - 1), map := Trim(map, " ")
+				matches := []
+				For mKey, mObject in db.maps.maps
+					If RegExMatch(mKey, "i)" StrReplace(map, " ", ".") "$")
+						boss := Lang_Trans("maps_" mObject.boss), matches.Push(rename && boss ? boss : mObject.name)
+
+				If (matches.Count() = 1)
+					val := StrReplace(val, map, matches.1)
+			}
 
 			Loop, Parse, val, `;, %A_Space% ;parse side-content info
 			{
