@@ -347,7 +347,7 @@ Settings_betrayal()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Betrayal-Info">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Betrayal-Info">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs y+"vars.settings.spacing " Section 0x400 gSettings_betrayal2 HWNDhwnd Checked"settings.features.betrayal, % Lang_Trans("m_betrayal_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_betrayal enable"] := hwnd
@@ -514,7 +514,7 @@ Settings_cheatsheets()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, Init_cheatsheets()
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Cheat-sheet-Overlay-Toolkit">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Cheat-sheet-Overlay-Toolkit">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs y+"vars.settings.spacing " Section 0x400 gSettings_cheatsheets2 HWNDhwnd Checked"settings.features.cheatsheets, % Lang_Trans("m_cheat_enable")
 	vars.hwnd.settings.feature := hwnd, vars.hwnd.help_tooltips["settings_cheatsheets enable"] := hwnd
@@ -777,7 +777,7 @@ Settings_client()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki">exile ui wiki && setup guide</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki">exile ui wiki && setup guide</a>
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_general_client", 2)
@@ -1024,7 +1024,7 @@ Settings_cloneframes()
 
 	Init_cloneframes()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, xMargin := settings.general.fWidth * 0.75
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Clone-frames">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Clone-frames">wiki page</a>
 
 	If vars.general.MultiThreading && (vars.cloneframes.list.Count() > 1)
 	{
@@ -1329,7 +1329,7 @@ Settings_donations()
 	LLK_PanelDimensions(dimensions, settings.general.fSize - 2, width, height), columns := 4
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 
-	Gui, %GUI%: Add, Link, % "Section HWNDhwnd x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/discussions/407">how to donate</a>
+	Gui, %GUI%: Add, Link, % "Section HWNDhwnd x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/discussions/407">how to donate</a>
 	vars.hwnd.help_tooltips["settings_donations howto"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, special thanks to these exiles who help me stay sane:
@@ -1353,7 +1353,7 @@ Settings_exchange()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, xMargin := settings.general.fWidth * 0.75
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Vaal-Street">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd 0x400 gSettings_exchange2 y+" vars.settings.spacing " Checked" settings.features.exchange, % Lang_Trans("m_exchange_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_exchange enable"] := hwnd
@@ -1510,7 +1510,7 @@ Settings_general()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki">exile ui wiki && setup guide</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki">exile ui wiki && setup guide</a>
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_general_settings")
@@ -1933,7 +1933,7 @@ Settings_iteminfo()
 	static fSize, wActive, wReset, wDesired, wUndesired, wActivation, wTier
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, profile := settings.iteminfo.profile
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Item-info">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Item-info">wiki page</a>
 
 	If (settings.general.lang_client = "unknown")
 	{
@@ -2384,7 +2384,7 @@ Settings_leveltracker()
 	static fSize, wImport, wEdit, wLeague, wReset, wPob, wOptionals, hDDL, wChar
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := settings.general.fWidth/4
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Act‐Tracker">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Act‐Tracker">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs y+"vars.settings.spacing " Section 0x400 gSettings_leveltracker2 HWNDhwnd Checked"settings.features.leveltracker, % Lang_Trans("m_lvltracker_enable")
 	vars.hwnd.settings.enable := hwnd, vars.hwnd.help_tooltips["settings_leveltracker enable"] := hwnd
@@ -3030,7 +3030,7 @@ Settings_lootfilter()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/FilterSpoon">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/FilterSpoon">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section gSettings_lootfilter2 0x400 y+" vars.settings.spacing " HWNDhwnd Checked" settings.features.lootfilter, % Lang_Trans("m_lootfilter_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_lootfilter enable"] := hwnd
@@ -3498,7 +3498,7 @@ Settings_mapinfo()
 	global vars, settings, db
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Map-info-panel">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Map-info-panel">wiki page</a>
 
 	If (settings.general.lang_client = "unknown")
 	{
@@ -3801,7 +3801,7 @@ Settings_maptracker()
 	static fSize, wMaps
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Map‐Tracker">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Map‐Tracker">wiki page</a>
 
 	If (settings.general.lang_client = "unknown")
 	{
@@ -4440,7 +4440,7 @@ Settings_OCR()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/TLDR‐Tooltips">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/TLDR‐Tooltips">wiki page</a>
 	Gui, %GUI%: Add, Link, % "ys x+" settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/KeyList.htm">ahk: list of keys</a>
 	Gui, %GUI%: Add, Link, % "ys HWNDhwnd x+" settings.general.fWidth, <a href="https://www.autohotkey.com/docs/v1/Hotkeys.htm">ahk: formatting</a>
 
@@ -4656,7 +4656,7 @@ Settings_qol()
 	static fSize, wFont, wDuration, wList, wPosition
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, yMax := 0
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Minor-Features">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Minor-Features">wiki page</a>
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.alarm ? " cLime" : ""), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
@@ -5254,7 +5254,7 @@ Settings_screenchecks()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Screen-checks">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Screen-checks">wiki page</a>
 
 	For key in (active_pixel := Settings_ScreenChecksValid("pixel").1)
 	{
@@ -5461,7 +5461,7 @@ Settings_searchstrings()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
-	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Search-strings">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" vars.settings.x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Search-strings">wiki page</a>
 	Gui, %GUI%: Add, Link, % "ys HWNDhwnd x+"2*settings.general.fWidth, % "<a href=""https://poe" StrReplace(vars.poe_version, " ") ".re/"">poe regex</a>"
 	vars.hwnd.help_tooltips["settings_searchstrings poe-regex"] := hwnd
 
@@ -5646,7 +5646,7 @@ Settings_stash()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Stash‐Ninja">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Stash‐Ninja">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "xs Section HWNDhwnd 0x400 gSettings_stash2 y+" vars.settings.spacing " Checked" settings.features.stash, % Lang_Trans("m_stash_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_stash enable" vars.poe_version] := hwnd
@@ -5988,7 +5988,7 @@ Settings_statlas()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Lailloken-UI/wiki/Statlas">wiki page</a>
+	Gui, %GUI%: Add, Link, % "Section x" x_anchor " y" vars.settings.ySelection, <a href="https://github.com/Lailloken/Exile-UI/wiki/Statlas">wiki page</a>
 
 	Gui, %GUI%: Add, Checkbox, % "Section xs HWNDhwnd 0x400 gSettings_statlas2 y+" vars.settings.spacing " Checked" settings.features.statlas, % Lang_Trans("m_statlas_enable")
 	vars.hwnd.settings.enable := vars.hwnd.help_tooltips["settings_statlas enable"] := hwnd
@@ -6059,7 +6059,7 @@ Settings_unsupported()
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % "this feature is not available on clients`nwith an unsupported language.`n`nit will be available once a language-`npack for the current language has been`ninstalled.`n`nthese packs have to be created by the`ncommunity. to find out if there are any`nfor your language or how to`ncreate one, click the link below.`n"
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Link, % "Section xs", <a href="https://github.com/Lailloken/Lailloken-UI/discussions/categories/translations-localization">exile ui discussions: translations</a>
+	Gui, %GUI%: Add, Link, % "Section xs", <a href="https://github.com/Lailloken/Exile-UI/discussions/categories/translations-localization">exile ui discussions: translations</a>
 }
 
 Settings_updater()
@@ -6241,9 +6241,9 @@ Settings_updater2(cHWND := "")
 		Return
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 	If InStr(check, "githubpage_")
-		Run, % "https://github.com/Lailloken/Lailloken-UI/tree/"control
+		Run, % "https://github.com/Lailloken/Exile-UI/tree/"control
 	Else If (check = "releases_page")
-		Run, % "https://github.com/Lailloken/Lailloken-UI/releases"
+		Run, % "https://github.com/Lailloken/Exile-UI/releases"
 	Else If (check = "update_check")
 	{
 		settings.updater.update_check := LLK_ControlGet(cHWND)
@@ -6261,7 +6261,7 @@ Settings_updater2(cHWND := "")
 		Settings_menu("updater")
 	}
 	Else If InStr(check, "fullchangelog_")
-		Run, % "https://github.com/Lailloken/Lailloken-UI/releases/tag/v" control
+		Run, % "https://github.com/Lailloken/Exile-UI/releases/tag/v" control
 	Else If InStr(check, "get_")
 	{
 		IniWrite, % control, ini\config.ini, versions, apply update
@@ -6283,7 +6283,7 @@ Settings_updater2(cHWND := "")
 	Else If (check = "manual")
 	{
 		in_progress := 1, UpdateDownload(vars.hwnd.settings.manual_bar)
-		UrlDownloadToFile, % "https://github.com/Lailloken/Lailloken-UI/archive/refs/tags/v" vars.update.2 ".zip", % "update\update_" vars.updater.target_version.2 ".zip"
+		UrlDownloadToFile, % "https://github.com/Lailloken/Exile-UI/archive/refs/tags/v" vars.update.2 ".zip", % "update\update_" vars.updater.target_version.2 ".zip"
 		error := ErrorLevel || !FileExist("update\update_" vars.updater.target_version.2 ".zip") ? 1 : 0
 		in_progress := 0
 		SetTimer, UpdateDownload, Delete
@@ -6299,7 +6299,7 @@ Settings_updater2(cHWND := "")
 	}
 	Else If (check = "github")
 	{
-		Run, % "https://github.com/Lailloken/Lailloken-UI/archive/refs/tags/v" vars.update.2 ".zip"
+		Run, % "https://github.com/Lailloken/Exile-UI/archive/refs/tags/v" vars.update.2 ".zip"
 		Run, explore %A_ScriptDir%
 		ExitApp
 	}

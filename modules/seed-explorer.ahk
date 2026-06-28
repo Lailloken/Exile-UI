@@ -443,7 +443,7 @@ Legion_Update()
 		If FileExist("data\global\[legion] " val ".csv")
 			count := !count ? 1 : count + 1
 
-	Try version_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/global/%5Blegion%5D%20version.txt")
+	Try version_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/" (settings.general.dev_env ? "dev" : "main") "/data/global/%5Blegion%5D%20version.txt")
 	If Blank(version_check) || InStr(version_check, "404: not found")
 	{
 		LLK_ToolTip(Lang_Trans("global_error") ": version-check", 2,,,, "Red")
@@ -466,7 +466,7 @@ Legion_Update()
 		GuiControl,, % vars.hwnd.legion.update_bar, 0
 		For index, val in jewels
 		{
-			UrlDownloadToFile, % "https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/global/%5Blegion%5D%20" StrReplace(val, " ", "%20") ".csv", % "data\global\[legion] " val ".csv"
+			UrlDownloadToFile, % "https://raw.githubusercontent.com/Lailloken/Exile-UI/" (settings.general.dev_env ? "dev" : "main") "/data/global/%5Blegion%5D%20" StrReplace(val, " ", "%20") ".csv", % "data\global\[legion] " val ".csv"
 			If ErrorLevel
 			{
 				error := 1

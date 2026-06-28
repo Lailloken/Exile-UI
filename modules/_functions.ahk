@@ -614,8 +614,8 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	If !FileExist("update\")
 		FileCreateDir, update\
 	update.1 := !FileExist("update\") ? -2 : update.1
-	FileDelete, update\update.* ;delete any leftover files
-	update.1 := FileExist("update\update.*") ? -1 : update.1 ;error code -1 = delete-permission
+	FileDelete, update\update* ;delete any leftover files
+	update.1 := FileExist("update\update*") ? -1 : update.1 ;error code -1 = delete-permission
 	Loop, Files, update\lailloken-ui-*, D
 		FileRemoveDir, % A_LoopFileLongPath, 1 ;delete any leftover folders
 	Loop, Files, update\exile-ui-*, D
@@ -643,7 +643,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	}
 
 	FileDelete, data\version_check.json
-	Try version_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/versions.json")
+	Try version_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/" (settings.general.dev_env ? "dev" : "main") "/data/versions.json")
 	update.1 := !InStr(version_check, """_release""") ? -4 : update.1 ;error-code -4 = version-list download failed
 	If (update.1 = -4)
 	{
@@ -660,7 +660,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	vars.updater.skip := LLK_IniRead("ini\config.ini", "versions", "skip", 0)
 
 	If !settings.general.dev
-		Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Lailloken-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
+		Try changelog_check := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/" (settings.general.dev_env ? "dev" : "main") "/data/changelog.json")
 	Else changelog_check := LLK_FileRead("data\changelog.json")
 	changelog_check := changelog_check ? Trim(changelog_check, " `r`n`t") : ""
 
