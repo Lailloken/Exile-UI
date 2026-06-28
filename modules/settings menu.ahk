@@ -6092,6 +6092,12 @@ Settings_updater()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
 		vars.hwnd.settings.get_dev := hwnd
 	}
+	Else If settings.general.dev || GetKeyState("CTRL", "P")
+	{
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gSettings_updater2", % " get hotfix "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
+		vars.hwnd.settings.get_hotfix := hwnd
+	}
 
 	color := vars.updater.skip && (vars.updater.latest.1 = vars.updater.skip) ? " cYellow" : (IsNumber(vars.updater.latest.1) && vars.updater.latest.1 > vars.updater.version.1) ? " cLime" : ""
 	Gui, %GUI%: Add, Text, % "Section xs w" width . color, % Lang_Trans("m_updater_version", 3) " "
@@ -6256,9 +6262,9 @@ Settings_updater2(cHWND := "")
 	}
 	Else If InStr(check, "fullchangelog_")
 		Run, % "https://github.com/Lailloken/Lailloken-UI/releases/tag/v" control
-	Else If (check = "get_dev")
+	Else If InStr(check, "get_")
 	{
-		IniWrite, % "dev", ini\config.ini, versions, apply update
+		IniWrite, % control, ini\config.ini, versions, apply update
 		Reload
 		ExitApp
 	}
