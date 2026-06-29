@@ -989,7 +989,7 @@
     "runeshaping enable": [
       "scans the rewards offered on runic remnants and displays their poe.ninja prices",
       "while the runeshaping interface is on screen, hold down the <omni-key> to activate this feature",
-      "the overlay will hide automatically upon releasing the <omni-key>(/highlight)",
+      "requires the english language pack. if your system is not english, you can add it as a secondary language in the windows settings.(/highlight)",
       "requires the <runeshaping> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "runeshaping hold ctrl": [
@@ -1185,7 +1185,7 @@
     "statlas enable": [
       "atlas feature that displays various information about maps on the atlas",
       "long-press the <omni-key> over maps on the atlas to activate the overlay",
-      "scroll to adjust the image size",
+      "requires the english language pack. if your system is not english, you can add it as a secondary language in the windows settings.(/highlight)",
       "requires the <atlas> screen-check to be set up correctly in the <screen-checks> section(/highlight)"
     ],
     "statlas maptracker": [

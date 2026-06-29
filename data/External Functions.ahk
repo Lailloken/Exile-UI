@@ -10184,7 +10184,7 @@ ocr_uwp(IRandomAccessStream, language := "FirstAvailable")
 
 		if (OcrEngineObject = 0)
 		{
-			MsgBox, % "Cannot use language """ language """ for OCR because it's not installed on the system." (!InStr(A_ScriptName, "_ocr thread") ? " The tool will restart." : "")
+			MsgBox,, Exile UI OCR, % "Cannot use language """ language """ for OCR because it's not installed on the system. Go to the Windows language settings and add it as a secondary language." (!InStr(A_ScriptName, "_ocr thread") ? "`n`nThe tool will restart." : "")
 			If !InStr(A_ScriptName, "_ocr thread")
 				Reload
 			ExitApp
