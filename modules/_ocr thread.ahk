@@ -58,6 +58,7 @@ Runeshaping()
 		pBitmap_clone := Gdip_CloneBitmapArea(pBitmap, 0, yLast, width*2, hClip,, 1)
 		hbmBitmap_clone := Gdip_CreateHBITMAPFromBitmap(pBitmap_clone, 0), Gdip_DisposeImage(pBitmap_clone)
 		pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap_clone), text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
+		StringUpper, text, text
 
 		If (StrLen(text) <= 5)
 		{

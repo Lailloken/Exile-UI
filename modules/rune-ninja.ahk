@@ -49,6 +49,7 @@ Runeshape_OCR()
 	If ErrorLevel
 	{
 		LLK_ToolTip(Lang_Trans("ocr_fail"), 2,,,, "Red")
+		Gui, ocr_comms: Destroy
 		Return
 	}
 	Else If !(settings.runeshaping.debug && GetKeyState("ALT", "P"))
@@ -64,6 +65,8 @@ Runeshape_OCR()
 		WinWaitClose, OCR debug
 		If (vars.ocr_comms.text = "OCR failed") || !GetKeyState("ALT", "P")
 			LLK_ToolTip(Lang_Trans("global_fail"), 1,,,, "Red")
+		KeyWait, ALT
+		Gui, ocr_comms: Destroy
 		Return
 	}
 	text := vars.ocr_comms.text, text := SubStr(text, InStr(text, "`n") + 1)
@@ -83,6 +86,7 @@ Runeshape_OCR()
 			object.stack := "?", line := SubStr(line, InStr(line, "x ") + 2)
 		object.line := line, vars.runeshaping.text.Push(object)
 	}
+	Gui, ocr_comms: Destroy
 	Runeshape_GUI()
 }
 

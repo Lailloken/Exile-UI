@@ -41,6 +41,7 @@ Statlas()
 	If ErrorLevel
 	{
 		LLK_ToolTip(Lang_Trans("ocr_fail"), 2,,,, "Red")
+		Gui, ocr_comms: Destroy
 		Return
 	}
 	Else If !GetKeyState("ALT", "P")
@@ -55,6 +56,8 @@ Statlas()
 	{
 		If (vars.ocr_comms.text = "OCR failed") || !GetKeyState("ALT", "P")
 			LLK_ToolTip(Lang_Trans("global_fail"), 1,,,, "Red")
+		KeyWait, ALT
+		Gui, ocr_comms: Destroy
 		Return
 	}
 	text := SubStr(vars.ocr_comms.text, InStr(vars.ocr_comms.text, ":") + 2), text := StrReplace(text, "  ", " ")
@@ -77,6 +80,7 @@ Statlas()
 			}
 		}
 
+	Gui, ocr_comms: Destroy
 	If !vars.statlas.map
 		Return
 	Else Return 1
