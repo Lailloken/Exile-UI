@@ -4229,7 +4229,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 				Gui, %GUI_name%: Add, Text, % (A_Index = 5 ? "Section xs y+-1" : "ys x+-1") " BackgroundTrans Border gSettings_menu HWNDhwnd w" dIcon " h" dIcon
 				Gui, %GUI_name%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:*" vars.pics.settings[val]
 			}
-			Else Gui, %GUI_name%: Add, Text, % "Section xs y+-1 BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 w" section_width " h" settings.general.fHeight*1.2 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1)
+			Else Gui, %GUI_name%: Add, Text, % "Section xs y+-1 BackgroundTrans Border gSettings_menu HWNDhwnd 0x200 w" section_width " h" settings.general.fHeight*1.1 . color, % " " Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1)
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled HWNDhwnd1 Background" (val = "client" && settings.general.lang_client = "unknown" ? "Red" : "Black") " cBlack", 100
 			vars.hwnd.settings[val] := hwnd, vars.hwnd.settings["background_"val] := hwnd1
 			If !main_section
@@ -6497,6 +6497,8 @@ Settings_LeagueSelection(ByRef yCoord)
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack c" vars.settings.cButtons, 100
 			vars.hwnd.settings["leagueselect_" outer "|" key] := hwnd
 		}
+		If (objects[outer].Count() = 1)
+			Gui, %GUI%: Add, Text, % "xs y+-1 Border w" widths[outer], % " "
 	}
 
 	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fHeight " h" hPanel " BackgroundTrans Border gSettings_LeagueSelection2 HWNDhwnd"
@@ -6539,7 +6541,7 @@ Settings_LeagueSelection2(cHWND := "")
 	{
 		KeyWait, LButton
 		FileDelete, % "data\global\league update.json"
-		UrlDownloadToFile, % "https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/global/leagues" StrReplace(vars.poe_version, " ", "%20") ".json", % "data\global\league update.json"
+		UrlDownloadToFile, % "https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/misc/leagues" StrReplace(vars.poe_version, " ", "%20") ".json", % "data\global\league update.json"
 		If ErrorLevel || !FileExist("data\global\league update.json")
 		{
 			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "Red")

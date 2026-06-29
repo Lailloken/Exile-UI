@@ -1221,7 +1221,7 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "rune-ninja" section of the settings menu
-		m_runeshaping_enable	=	"enable the rune-ninja overlay (experimental)"
+		m_runeshaping_enable	=	"enable the rune-ninja overlay"
 		m_runeshaping_correction	=	"auto-correct dictionary:"					;## a list of strings that can be set up to fix recurring scan issues
 
 

@@ -546,7 +546,13 @@ Init_general()
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home":LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
-	vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1)), settings.general.league0 := StrSplit("sc|trade" (vars.poe_version ? "" : "|normal") "|standard", "|")
+	If FileExist("data\global\leagues" vars.poe_version ".json")
+		vars.leagues := json.Load(LLK_FileRead("data\global\leagues" vars.poe_version ".json", 1))
+	Else If !vars.poe_version
+		vars.leagues := {"sc":{"ssf":{"normal":{"standard":"Solo Self-Found"},"ruthless":{"standard":"SSF Ruthless"}},"trade":{"normal":{"standard":"Standard"},"ruthless":{"standard":"Ruthless"}}},"hc":{"ssf":{"normal":{"standard":"Hardcore SSF"},"ruthless":{"standard":"Hardcore SSF Ruthless"}},"trade":{"normal":{"standard":"Hardcore"},"ruthless":{"standard":"Hardcore Ruthless"}}}}
+	Else vars.leagues := {"sc":{"ssf":{"standard":"Solo Self-Found"},"trade":{"standard":"Standard"}},"hc":{"ssf":{"standard":"Hardcore SSF"},"trade":{"standard":"Hardcore"}}}
+
+	settings.general.league0 := StrSplit("sc|trade" (vars.poe_version ? "" : "|normal") "|standard", "|")
 	settings.general.league := league := !Blank(check := ini.settings.league) ? StrSplit(check, "|", " ", 4) : settings.general.league0.Clone()
 	If !vars.poe_version && !vars.leagues[league.1][league.2][league.3][league.4] || vars.poe_version && !vars.leagues[league.1][league.2][league.3]
 		settings.general.league := settings.general.league0.Clone()
