@@ -157,7 +157,7 @@ Statlas_GUI(mode := "")
 			stats[timeframe].total_runs += runs.Count()
 			For iMaprun, vMaprun in runs
 			{
-				mapname := (InStr(vMaprun.map, ":") ? Trim(SubStr(vMaprun.map, InStr(vMaprun.map, ":") + 1), " ") : vMaprun.map)
+				mapname := (InStr(vMaprun.map, ":") ? Trim(SubStr(vMaprun.map, InStr(vMaprun.map, ":",, 0) + 1), " ") : vMaprun.map)
 				While (pCheck := InStr(mapname, "("))
 					remove := SubStr(mapname, pCheck), remove := SubStr(remove, 1, InStr(remove, ")")), mapname := StrReplace(mapname, remove), mapname := Trim(mapname, " ")
 				If (mapname = map.2 || mapname = Lang_Trans("maps_" boss)) && (vMaprun.tier >= settings.statlas.tier)
