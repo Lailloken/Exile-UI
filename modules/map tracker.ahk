@@ -1485,7 +1485,7 @@ Maptracker_MechanicsCheck()
 
 	For mechanic, type in vars.maptracker.mechanics
 	{
-		If (type != 2) || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic)) || (mechanic = "expedition" && InStr(vars.log.areaID, "expedition"))
+		If !settings.maptracker[mechanic] || (type != 2) || !Blank(LLK_HasVal(vars.maptracker.map.content, mechanic)) || (mechanic = "expedition" && InStr(vars.log.areaID, "expedition"))
 			Continue
 
 		If !vars.pics.maptracker_checks[mechanic]

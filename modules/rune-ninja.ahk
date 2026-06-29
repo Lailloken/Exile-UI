@@ -5,7 +5,7 @@
 
 	If !FileExist("ini" vars.poe_version "\rune-ninja.ini")
 	{
-		IniWrite, % settings.general.fSize, % "ini" vars.poe_version "\rune-ninja.ini", settings, font-size
+		IniWrite, % settings.general.fSize + 2, % "ini" vars.poe_version "\rune-ninja.ini", settings, font-size
 		IniWrite, % "1=""ix ,lx §1x ""`n2=""iox ,lox ,i0x ,l0x ,1ox §10x """, % "ini" vars.poe_version "\rune-ninja.ini", autocorrect
 	}
 

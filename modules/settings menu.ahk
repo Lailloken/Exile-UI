@@ -3934,7 +3934,7 @@ Settings_maptracker()
 		{
 			If (type != 2)
 				Continue
-			added += 1, color := !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? "red" : settings.maptracker[mechanic] ? " cLime" : " c505050"
+			added += 1, color := !FileExist("img\Recognition ("vars.client.h "p)\Mapping Tracker\"mechanic . vars.poe_version ".bmp") ? "red" : settings.maptracker[mechanic] ? " cLime" : ""
 			Gui, %GUI%: Add, Text, % (added = 1 || !Mod(added - 1, 4) ? "xs Section" : "ys") " Border BackgroundTrans gSettings_maptracker2 HWNDhwnd c" color, % " " Lang_Trans("mechanic_" mechanic) " "
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
 			vars.hwnd.settings["screenmechanic_"mechanic] := hwnd, vars.hwnd.help_tooltips["settings_maptracker screenmechanic"handle] := hwnd1, handle .= "|"
@@ -4081,9 +4081,9 @@ Settings_maptracker2(cHWND)
 					LLK_ToolTip(Lang_Trans("maptracker_dialogue"), 3,,,, "red")
 					Return
 				}
-				settings.maptracker[control] := !settings.maptracker[control] ? 1 : 0
+				settings.maptracker[control] := !settings.maptracker[control]
 				IniWrite, % settings.maptracker[control], % "ini" vars.poe_version "\map tracker.ini", mechanics, % control
-				GuiControl, % "+c"(settings.maptracker[control] ? "Lime" : "505050"), % cHWND
+				GuiControl, % "+c"(settings.maptracker[control] ? "Lime" : "White"), % cHWND
 				GuiControl, movedraw, % cHWND
 			}
 			Else If InStr(check, "color_")
