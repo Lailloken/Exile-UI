@@ -19,3 +19,4 @@ img/*.jpg
 
 # files created by specific features on demand
 data/global/?stash-ninja??prices*
+data/global/leagues*.json
