@@ -774,6 +774,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 		ClipWait, 0.1
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
+		Sleep, 100
 		SendInput, ^{a}^{v}
 		KeyWait, LButton
 		If (vars.general.cMouse = mode)
