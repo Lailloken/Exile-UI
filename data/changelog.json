@@ -1,5 +1,14 @@
 [
   [
+	["1.63.8", 16308, 1],
+	"june 30, 2026",
+	"tool updates should now download and install significantly faster",
+	"stash-ninja:\n–> added support for controller ui (global toggle is in the <game-client> settings)",
+	"rune-ninja:\n–> kb/controller mode is now set by the global toggle in the <game-client> settings",
+	"act-decoder:\n–> note: poe2 are still largely outdated\n–> layouts are now downloaded separately in the settings (to speed up general tool updates)(/highlight)",
+	"map-tracker:\n–> new maps added in 0.5 now use the correct area names (also applies retroactively to existing logs)"
+  ],
+  [
 	["1.63.7", 16307],
 	"june 25, 2026",
 	"added support for the poe1 <RotA event>\n–> a few hours after launch, you'll be able to update the league-selection list in the <general> settings\n–> glhf",
