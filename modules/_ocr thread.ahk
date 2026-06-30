@@ -55,7 +55,7 @@ Runeshaping()
 		hClip := Round(poe_client.2 * (high_tier ? 3/40 : 2/45)) * 2
 		If (yLast + hClip >= clip.4 * 2)
 			Break
-		pBitmap_clone := Gdip_CloneBitmapArea(pBitmap, 0, yLast, width*2, hClip,, 1)
+		pBitmap_clone := Gdip_CloneBitmapArea(pBitmap, 0, yLast + (high_tier ? hClip//2 : 0), width*2, (high_tier ? hClip//2 : hClip),, 1)
 		hbmBitmap_clone := Gdip_CreateHBITMAPFromBitmap(pBitmap_clone, 0), Gdip_DisposeImage(pBitmap_clone)
 		pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap_clone), text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
 		StringUpper, text, text
@@ -86,8 +86,8 @@ Runeshaping()
 		ControlGetPos,,,, hControl,, ahk_id %hwnd%
 		For index, hbm in HBMs
 		{
-			Gui, test: Add, Pic, % "Section " (index = 1 ? "xp yp" : "xs") " w" width " h" poe_client.2 * (InStr(aText[index], "[") ? 3/40 : 2/45), % "HBitmap:*" hbm
-			Gui, test: Add, Text, % "ys yp+" (poe_client.2 * (InStr(aText[index], "[") ? 3/40 : 2/45))//2 - hControl//2, % aText[index]
+			Gui, test: Add, Pic, % "Section " (index = 1 ? "xp yp" : "xs") " w" width " h" poe_client.2 * (InStr(aText[index], "[") ? 3/80 : 2/45), % "HBitmap:*" hbm
+			Gui, test: Add, Text, % "ys yp+" (poe_client.2 * (InStr(aText[index], "[") ? 3/80 : 2/45))//2 - hControl//2, % aText[index]
 		}
 		Gui, test: Add, Text, % "Section xs", % "scan time: " A_TickCount - start " ms"
 		Gui, test: Show, % "NA x" xWin + Round(poe_client.2//2 * 1.1) " y" yWin
