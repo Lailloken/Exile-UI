@@ -26,6 +26,7 @@
 		settings.stash.retry := !Blank(check := ini.settings["retry"]) && (check > A_Now) ? check : 0
 		settings.stash.index_stock := !Blank(check := ini.settings["show stock in index"]) ? check : 1
 		settings.stash.use_global := !Blank(check := ini.settings["use global profiles"]) ? check : 0
+		settings.stash.offsets := [[0, 0], [Round(vars.client.h * (173/720)) - Round(vars.client.h / 30), Round(vars.client.h * (13/72)) - Round(vars.client.h * (17/120))]]
 
 		settings.stash.global_profile := dLimits.Clone()
 		If ini["global profiles"].Count()
@@ -192,7 +193,7 @@ Stash(mode, test := 0)
 	lBot := array[profile].1, lTop := array[profile].2, lType := array[profile].3
 	lBot := Blank(lBot) ? (lType = 4) ? -999 : 0 : lBot, lTop := Blank(lTop) ? 999999 : lTop
 	count := added := 0, width := Floor(vars.client.h * (37/60)), height := vars.client.h, currencies := ["chaos", "exalted", "divine", "percent"], vars.stash.wait := 1, vars.stash.enter := 0
-	bookmark_profile := settings.stash[tab].bookmark
+	bookmark_profile := settings.stash[tab].bookmark, offsets := settings.stash.offsets[settings.general.input_method]
 
 	For item, val in vars.stash[tab]
 		If IsObject(val)
@@ -205,9 +206,9 @@ Stash(mode, test := 0)
 				button := SubStr(item, InStr(item, "_") + 1), wButton := (InStr(item, "currency") ? dButtons * 4.5 : dButtons2 * 4), hButton := (InStr(item, "currency") ? dButtons : dButtons2)
 				If vars.poe_version
 					wButton := dButtons, hButton := dButtons
-				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border x" val.coords.1 + 4 " y" val.coords.2 + 4 " w" wButton - 8 " h" hButton - 8 . (hidden ? " Hidden" : "")
+				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border x" val.coords.1 + 4 + offsets.1 " y" val.coords.2 + 4 + offsets.2 " w" wButton - 8 " h" hButton - 8 . (hidden ? " Hidden" : "")
 				Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd BackgroundPurple" . (hidden ? " Hidden" : ""), 0
-				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border x" val.coords.1 " y" val.coords.2 " w" wButton " h" hButton . (hidden ? " Hidden" : "")
+				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border x" val.coords.1 + offsets.1 " y" val.coords.2 + offsets.2 " w" wButton " h" hButton . (hidden ? " Hidden" : "")
 				Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Background" (button = tab ? colors.2 : "Black") . (hidden ? " Hidden" : ""), 0
 			}
 			Else
@@ -215,7 +216,7 @@ Stash(mode, test := 0)
 				price := Round(val.prices[lType], (val.prices[lType] > 1000) ? 0 : (val.prices[lType] > 10) ? 1 : 2), trade := val.source.2[lType]
 				cBookmarked := (settings.stash[tab].bookmarking && settings.stash[tab].bookmarks[bookmark_profile][item])
 				exception1 := (!vars.poe_version && LLK_PatternMatch(item, "", ["potent", "powerful", "prime"]) ? 1 : 0), exception2 := (!vars.poe_version && LLK_PatternMatch(item, "", ["powerful", "prime"]) ? 1 : 0)
-				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border Right c" colors[cBookmarked ? 5 : trade ? 3 : 1] " x" val.coords.1 " y" val.coords.2 + (exception1 ? vars.client.h * (1/12) : dBox) - settings.stash.fHeight2
+				Gui, %GUI_name%: Add, Text, % "BackgroundTrans Border Right c" colors[cBookmarked ? 5 : trade ? 3 : 1] " x" val.coords.1 + offsets.1 " y" val.coords.2 + (exception1 ? vars.client.h * (1/12) : dBox) + offsets.2 - settings.stash.fHeight2
 				. " w" (exception2 ? vars.client.h * (1/12) : dBox) . (hidden ? " Hidden" : ""), % (test ? A_Index : (lType = 4) ? val.trend[val.trend.MaxIndex()] : price) " "
 				Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" colors[cBookmarked ? 6 : trade ? 4 : 2] . (hidden ? " Hidden" : ""), 100
 				vars.hwnd.stash[item] := hwnd
@@ -230,7 +231,7 @@ Stash(mode, test := 0)
 	If settings.stash[tab].bookmarking
 	{
 		Gui, %GUI_name%: Font, % "bold s" settings.stash.fSize
-		Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans Center Border x0 y" vars.client.h * 0.8 - width//10 - settings.stash.fHeight " w" width//2, % Lang_Trans("stash_bookmark") " " bookmark_profile
+		Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans Center Border x" 0 + offsets.1 " y" vars.client.h * 0.8 + offsets.2 - width//10 - settings.stash.fHeight " w" width//2, % Lang_Trans("stash_bookmark") " " bookmark_profile
 		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled BackgroundBlack", 0
 		Gui, %GUI_name%: Font, % "norm s" settings.stash.fSize2
 		price_dimensions := [], price_list := {}, price_total := 0
@@ -279,8 +280,8 @@ Stash(mode, test := 0)
 			If (outer = 1) || Blank(limit.3)
 				Continue
 			If settings.stash[tab].bookmarking
-				style := !added ? "x" width//2 " y" vars.client.h * 0.8 - width//10 - settings.stash.fHeight : "ys"
-			Else style := !added ? "x" width//2 - (count/2) * width//10 " y" vars.client.h * 0.8 - width//10 - settings.stash.fHeight : "ys"
+				style := !added ? "x" width//2 + offsets.1 " y" vars.client.h * 0.8 + offsets.2 - width//10 - settings.stash.fHeight : "ys"
+			Else style := !added ? "x" width//2 + offsets.1 - (count/2) * width//10 " y" vars.client.h * 0.8 + offsets.2 - width//10 - settings.stash.fHeight : "ys"
 			color1 := (index = profile) ? " c" settings.stash.colors.1 : "", color2 := (index = profile) ? settings.stash.colors.2 : "Black"
 			Gui, %GUI_name%: Font, % "bold s" settings.stash.fSize
 			Gui, %GUI_name%: Add, Text, % "Section " style " Center BackgroundTrans Border w" width//10 . color1, % index
@@ -307,7 +308,7 @@ Stash(mode, test := 0)
 			added += 1
 		}
 
-	xPos := width//2 - (settings.stash[tab].bookmarking ? 0 : (count/2) * width//10)
+	xPos := width//2 - (settings.stash[tab].bookmarking ? 0 : (count/2) * width//10) + offsets.1
 	Gui, %GUI_name%: Font, % "s" settings.stash.fSize
 	string := Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[(vars.poe_version ? 3 : 4)])
 	Gui, %GUI_name%: Add, Text, % "x" xPos " y+0 Border BackgroundTrans cLime", % " " Lang_Trans("global_league") . Lang_Trans("global_colon") " " string " "

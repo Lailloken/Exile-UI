@@ -887,7 +887,8 @@ Loop_main()
 	If vars.client.stream && !vars.radial.wait && !vars.general.drag && !WinExist("LLK-UI: notepad reminder") && !WinExist("LLK-UI: alarm set") && !WinExist("ahk_id " vars.hwnd.betrayal_setup.main) && WinActive("ahk_group poe_ahk_window") && vars.general.wMouse && LLK_HasVal(vars.hwnd, vars.general.wMouse,,,, 1) && !WinActive("ahk_id " vars.general.wMouse)
 		WinActivate, % "ahk_id " vars.general.wMouse
 
-	If !vars.general.drag && (vars.general.wMouse != vars.hwnd.settings.main) && vars.hwnd.stash.main && !vars.stash.wait && !vars.stash.enter && (vars.stash.GUI || WinExist("ahk_id " vars.hwnd.stash.main)) && WinActive("ahk_group poe_ahk_window") && LLK_IsBetween(vars.general.xMouse, vars.client.x, vars.client.x + vars.stash.width) && LLK_IsBetween(vars.general.yMouse, vars.client.y, vars.client.y + vars.client.h)
+	offsets := settings.stash.offsets[settings.general.input_method]
+	If !vars.general.drag && (vars.general.wMouse != vars.hwnd.settings.main) && vars.hwnd.stash.main && !vars.stash.wait && !vars.stash.enter && (vars.stash.GUI || WinExist("ahk_id " vars.hwnd.stash.main)) && WinActive("ahk_group poe_ahk_window") && LLK_IsBetween(vars.general.xMouse, vars.client.x + offsets.1, vars.client.x + vars.stash.width + offsets.1) && LLK_IsBetween(vars.general.yMouse, vars.client.y + offsets.2, vars.client.y + vars.client.h + offsets.2)
 	{
 		tab := vars.stash.active
 		If !stashhover.exact || (vars.general.xMouse "," vars.general.yMouse != stashhover.exact)
@@ -901,8 +902,8 @@ Loop_main()
 				box := InStr(item, "tab_") ? vars.stash.buttons : vars.stash[tab].box
 				If !vars.poe_version
 					exception1 := LLK_PatternMatch(item, "", ["potent", "powerful", "prime"]) ? 1 : 0, exception2 := LLK_PatternMatch(item, "", ["powerful", "prime"]) ? 1 : 0
-				x1 := vars.client.x + val.coords.1, x2 := vars.client.x + val.coords.1 + (exception2 ? vars.client.h * (1/12) : box * (!vars.poe_version && InStr(item, "tab_") ? 4.5 : 1))
-				y1 := vars.client.y + val.coords.2, y2 := vars.client.y + val.coords.2 + (exception1 ? vars.client.h * (1/12) : box)
+				x1 := vars.client.x + val.coords.1 + offsets.1, x2 := vars.client.x + val.coords.1 + offsets.1 + (exception2 ? vars.client.h * (1/12) : box * (!vars.poe_version && InStr(item, "tab_") ? 4.5 : 1))
+				y1 := vars.client.y + val.coords.2 + offsets.2, y2 := vars.client.y + val.coords.2 + offsets.2 + (exception1 ? vars.client.h * (1/12) : box)
 				If LLK_IsBetween(vars.general.xMouse, x1, x2) && LLK_IsBetween(vars.general.yMouse, y1, y2)
 				{
 					stashhover := {"x1": x1, "x2": x2, "y1": y1, "y2": y2}
@@ -911,7 +912,7 @@ Loop_main()
 				}
 			}
 			If Blank(stashhover.x1) && vars.stash.hover
-					vars.stash.hover := "", Stash("refresh")
+				vars.stash.hover := "", Stash("refresh")
 			stashhover.exact := vars.general.xMouse "," vars.general.yMouse
 		}
 	}

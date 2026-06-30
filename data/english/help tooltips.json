@@ -73,7 +73,7 @@
     ],
     "input method 2": [
       "optional mode, (very) limited compatibility: a few features have modified behavior to remain functional in controller mode",
-      "examples:\nitem-info, omni-key context menu",
+      "examples:\nitem-info, omni-key context menu, stash-ninja, rune-ninja",
       "controller support is low-priority and based on individual requests(/highlight)"
     ],
     "active character": [
