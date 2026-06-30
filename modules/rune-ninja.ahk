@@ -14,11 +14,10 @@
 	LLK_FontDimensions(settings.runeshaping.fSize, fHeight, fWidth), settings.runeshaping.fWidth := fWidth, settings.runeshaping.fHeight := fHeight
 	settings.runeshaping.debug := (!Blank(check := ini.settings["enable trouble-shooting"]) ? check : 0)
 	settings.runeshaping.colors_default := {"high": "00FF00", "stack": "FFFF00", "unknown": "FF8000"}
-	settings.runeshaping.controller := (!Blank(check := ini.settings["controller mode"]) ? check : 0)
 	settings.runeshaping.hold_ctrl := (!Blank(check := ini.settings["hold down ctrl-key"]) ? check : 0)
 	index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
 	If !Blank(index)
-		If settings.runeshaping.controller
+		If (settings.general.input_method = 2)
 			vars.imagesearch.search[index] := "runeshaping2"
 		Else vars.imagesearch.search[index] := "runeshaping"
 
@@ -36,7 +35,7 @@ Runeshape_OCR()
 	local
 	global vars, settings, JSON
 
-	start := A_TickCount, cont := settings.runeshaping.controller
+	start := A_TickCount, cont := (settings.general.input_method = 2)
 	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client "|" vars.client.h
@@ -145,7 +144,6 @@ Runeshape_GUI()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border cBlack Background" color, 100
 		Gui, %GUI%: Add, Text, % "Hidden xp yp-" offset " w2 h" hText
 	}
-	controller := settings.runeshaping.controller
-	Gui, %GUI%: Show, % "NA x" vars.client.x + (Round(vars.client.h//2 * 1.01)) " y" vars.client.y + Round(vars.client.h * (controller ? 11/45 : 5/36))
+	Gui, %GUI%: Show, % "NA x" vars.client.x + (Round(vars.client.h//2 * 1.01)) " y" vars.client.y + Round(vars.client.h * (settings.general.input_method = 2 ? 11/45 : 5/36))
 	LLK_Overlay(hwnd_runeshaping, "show",, GUI)
 }

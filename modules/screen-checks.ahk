@@ -194,7 +194,7 @@ Screenchecks_ImageSearch(name := "") ;performing image screen-checks: use parame
 			val := name
 
 		If (val != name) && ((settings.features[val] = 0) || (val = "skilltree" && !settings.features.leveltracker) || (val = "stash" && (!settings.features.maptracker || !settings.maptracker.loot))
-			|| InStr(val, "runeshaping") && (!settings.features.runeshaping || InStr(val, "2") && !settings.runeshaping.controller || !InStr(val, "2") && settings.runeshaping.controller))
+			|| InStr(val, "runeshaping") && (!settings.features.runeshaping || InStr(val, "2") && (settings.general.input_method = 1) || !InStr(val, "2") && (settings.general.input_method = 2)))
 			continue ;skip check if the connected feature is not enabled
 
 		If !vars.pics.screen_checks[val]

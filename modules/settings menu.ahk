@@ -936,6 +936,14 @@ Settings_client2(cHWND := "")
 		GuiControl, movedraw, % cHWND
 		GuiControl, +cWhite, % vars.hwnd.settings["inputmethod_" (control = 1 ? 2 : 1)]
 		GuiControl, movedraw, % vars.hwnd.settings["inputmethod_" (control = 1 ? 2 : 1)]
+		index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
+		If !Blank(index)
+		{
+			If (settings.general.input_method = 2)
+				vars.imagesearch.search[index] := "runeshaping2"
+			Else vars.imagesearch.search[index] := "runeshaping"
+			Settings_menu()
+		}
 
 		Case (check = "apply"):
 		width := (LLK_ControlGet(vars.hwnd.settings.custom_width) > vars.monitor.w) ? vars.monitor.w : LLK_ControlGet(vars.hwnd.settings.custom_width)
@@ -5011,12 +5019,7 @@ Settings_runeshaping()
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.league_select := hwnd, vars.hwnd.help_tooltips["settings_league selection other"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "ys Border", % " " Lang_Trans("m_general_input", 2) " "
-	Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd Border BackgroundTrans gSettings_runeshaping2 cLime", % " " Lang_Trans("global_" (settings.runeshaping.controller ? "controller" : "keyboard")) " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd1 Border BackgroundBlack c" vars.settings.cButtons, 100
-	vars.hwnd.settings.input := hwnd, vars.hwnd.help_tooltips["settings_runeshaping input"] := hwnd1
-
-	Gui, %GUI%: Add, Text, % "Section xs Border", % " " Lang_Trans("global_hold_ctrl") " "
+	Gui, %GUI%: Add, Text, % "ys Border", % " " Lang_Trans("global_hold_ctrl") " "
 	Gui, %GUI%: Add, Text, % "ys x+0 w" wOnOff " Border BackgroundTrans HWNDhwnd Center gSettings_runeshaping2" (settings.runeshaping.hold_ctrl ? " cLime" : ""), % Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off"))
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" vars.settings.cButtons, 100
 	vars.hwnd.settings.hold_ctrl := hwnd, vars.hwnd.help_tooltips["settings_runeshaping hold ctrl"] := hwnd1
@@ -5110,19 +5113,6 @@ Settings_runeshaping2(cHWND := "")
 		;######################################################
 		Case (check = "league_select"):
 		Settings_menu("general")
-		;######################################################
-		Case (check = "input"):
-		index := LLK_HasVal(vars.imagesearch.search, "runeshaping", 1)
-		If Blank(index)
-		{
-			LLK_ToolTip("global_error")
-			Return
-		}
-		IniWrite, % (settings.runeshaping.controller := !settings.runeshaping.controller), % "ini" vars.poe_version "\rune-ninja.ini", settings, controller mode
-		If settings.runeshaping.controller
-			vars.imagesearch.search[index] := "runeshaping2"
-		Else vars.imagesearch.search[index] := "runeshaping"
-		Settings_menu()
 		;######################################################
 		Case (check = "hold_ctrl"):
 		IniWrite, % (settings.runeshaping.hold_ctrl := !settings.runeshaping.hold_ctrl), % "ini" vars.poe_version "\rune-ninja.ini", settings, hold down ctrl-key
@@ -5445,7 +5435,7 @@ Settings_ScreenChecksValid(type := "")
 	For key, val in vars.imagesearch.list
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
 		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key] || InStr(key, "async") && !settings.features.async
-		|| InStr(key, "runeshaping") && (!settings.features.runeshaping || InStr(key, "2") && !settings.runeshaping.controller || !InStr(key, "2") && settings.runeshaping.controller)
+		|| InStr(key, "runeshaping") && (!settings.features.runeshaping || InStr(key, "2") && (settings.general.input_method = 1) || !InStr(key, "2") && (settings.general.input_method = 2))
 			Continue
 		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 
