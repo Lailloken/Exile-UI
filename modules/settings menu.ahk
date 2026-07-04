@@ -3367,8 +3367,13 @@ Settings_macros()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " h" settings.general.fHeight " 0x200", % Lang_Trans("m_macros_custom")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " h" settings.general.fHeight " 0x200 HWNDhwnd", % Lang_Trans("m_macros_custom")
+	vars.hwnd.settings.header_custom := hwnd
 	Gui, %GUI%: Font, norm
+
+	Gui, %GUI%: Add, Text, % "Hidden xp yp wp hp Center Border BackgroundTrans gSettings_macros2 cRed HWNDhwnd", % " " Lang_Trans("global_save") " "
+	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.custommacros_save := hwnd, vars.hwnd.settings.custommacros_save_bar := hwnd1
 
 	Gui, %GUI%: Add, Text, % "ys x" xPos " Border Right HWNDhwnd0 w" wHotkey, % Lang_Trans("global_hotkey") " "
 	Gui, %GUI%: Add, Text, % "Hidden xp yp wp hp Border Center BackgroundTrans cRed gSettings_macros2 HWNDhwnd1", % " " Lang_Trans("global_save") " "
@@ -3381,8 +3386,7 @@ Settings_macros()
 	vars.hwnd.settings["hotkeysave_custommacros"] := hwnd1, vars.hwnd.settings.hotkeysave_custommacros_bar := hwnd2
 
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
-	Gui, %GUI%: Add, Text, % "ys Border gSettings_macros2 cRed Hidden HWNDhwnd1", % " " Lang_Trans("global_save") " "
-	vars.hwnd.help_tooltips["settings_macros custom"] := hwnd, vars.hwnd.settings.custommacros_save := hwnd1
+	vars.hwnd.help_tooltips["settings_macros custom"] := hwnd
 
 	Loop 9
 	{
@@ -3495,8 +3499,13 @@ Settings_macros2(cHWND)
 	{
 		Loop 9
 			If (LLK_ControlGet(vars.hwnd.settings["label_" A_Index - 1]) != settings.macros["label_" A_Index - 1]) || (LLK_ControlGet(vars.hwnd.settings["command_" A_Index - 1]) != settings.macros["command_" A_Index - 1])
+			{
 				modified := 1
+				Break
+			}
 		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.custommacros_save
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.custommacros_save_bar
+		GuiControl, % (modified ? "+" : "-") "Hidden", % vars.hwnd.settings.header_custom
 	}
 }
 
