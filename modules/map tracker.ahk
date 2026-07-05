@@ -43,7 +43,7 @@
 	}
 	settings.maptracker.xCoord := !Blank(check := ini.settings["x-coordinate"]) ? check : ""
 	settings.maptracker.yCoord := !Blank(check := ini.settings["y-coordinate"]) ? check : ""
-	settings.maptracker.dColors := {"date_unselected": "404040", "date_selected": "606060", "league 1": "330000", "league 2": "001933", "league 3": "003300", "league 4": "330066", "league 5": "009999", "league 6": "99004C", "league 7": "666600", "league 8": "CC6600"}
+	settings.maptracker.dColors := {"date_unselected": "404040", "date_selected": "505080", "infopanel": "000066", "league 1": "330000", "league 2": "001933", "league 3": "003300", "league 4": "330066", "league 5": "009999", "league 6": "99004C", "league 7": "666600", "league 8": "CC6600"}
 	settings.maptracker.colors := {}
 	If !IsObject(vars.maptracker)
 	{
@@ -55,11 +55,15 @@
 		Else vars.maptracker.leagues := [["crucible", 20230407, 20230815], ["ancestor", 20230818, 20231205], ["affliction", 20231208, 20240326], ["necropolis", 20240329, 20240723], ["settlers", 20240726, 20250609], ["mercenaries", 20250613, 20251027], ["keepers", 20251031, 20260302], ["mirage", 20260306, 20261212]]
 	}
 
+	If settings.general.dev && !settings.maptracker.dColors.HasKey("league " vars.maptracker.leagues.MaxIndex())
+		MsgBox, 4096,, % "map-tracker logviewer: not enough league colors"
+
 	For mechanic in vars.maptracker.mechanics
 		settings.maptracker[mechanic] := !Blank(check := ini.mechanics[mechanic]) ? check : (InStr("seer,mist", mechanic) ? 1 : 0)
 
 	settings.maptracker.colors.date_unselected := !Blank(check := ini.UI["date_unselected color"]) ? check : settings.maptracker.dColors.date_unselected
 	settings.maptracker.colors.date_selected := !Blank(check := ini.UI["date_selected color"]) ? check : settings.maptracker.dColors.date_selected
+	settings.maptracker.colors.infopanel := !Blank(check := ini.UI["infopanel color"]) ? check : settings.maptracker.dColors.infopanel
 	For index, array in vars.maptracker.leagues
 		settings.maptracker.colors["league " index] := !Blank(check := ini.UI["league " index " color"]) ? check : settings.maptracker.dColors["league " index]
 	vars.maptracker.dialog := InStr(LLK_FileRead(vars.system.config), "output_all_dialogue_to_chat=true")
@@ -195,9 +199,9 @@ Maptracker_DateSelect()
 	Gui, %GUI_name%: Color, 800080
 	WinSet, TransColor, 800080
 	Gui, %GUI_name%: Margin, 0, 0
-	Gui, %GUI_name%: Font, % "s"settings.maptracker.fSize2 + 2 " cWhite", % vars.system.font
+	Gui, %GUI_name%: Font, % "s"settings.maptracker.fSize2 " cWhite", % vars.system.font
 
-	hwnd_old := vars.hwnd.maptracker_dates.main, vars.hwnd.maptracker_dates := {"main": maptracker_dates, "toggle": toggle}, column := []
+	hwnd_old := vars.hwnd.maptracker_dates.main, vars.hwnd.maptracker_dates := {"colors": {}, "main": maptracker_dates, "toggle": toggle}, column := []
 
 	If Blank(LLK_HasKey(runs, SubStr(pick, 1, 4), 1))
 		year_override := 1
@@ -213,7 +217,7 @@ Maptracker_DateSelect()
 		column.Push(array.1 " (" run_count ")")
 	}
 	If column.Count()
-		LLK_PanelDimensions(column, settings.maptracker.fSize2 + 2, wColumn, hColumn)
+		LLK_PanelDimensions(column, settings.maptracker.fSize2, wColumn, hColumn)
 
 	For year in years
 	{
@@ -234,26 +238,34 @@ Maptracker_DateSelect()
 					Continue
 
 				pLeagues += 1
-				Gui, %GUI_name%: Add, Text, % "xs" (!league_count ? " Section" (allButton ? " y+-1" : "") : " y+-1") " Border BackgroundTrans" (active_date = array.1 ? " cLime" : "") . " w" wColumn, % " " array.1 " (" run_count_league ")"
-				Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 cRed Background" settings.maptracker.colors["league " pLeagues], 0
-				vars.hwnd.maptracker_dates[array.1] := hwnd, league_count .= "|"
+				Gui, %GUI_name%: Add, Text, % "xs" (!league_count ? " Section" : " y+0") " w" settings.maptracker.fHeight2 " h" settings.maptracker.fHeight2 " Border BackgroundTrans", % " "
+				Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" settings.maptracker.colors["league " pLeagues], 100
+				Gui, %GUI_name%: Add, Text, % "ys yp x+0 Border BackgroundTrans" (active_date = array.1 ? " cLime" : "") . " w" wColumn, % " " array.1 " (" run_count_league ")"
+				Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 Vertical BackgroundBlack c" settings.maptracker.colors["league " pLeagues], 500
+				vars.hwnd.maptracker_dates[array.1] := hwnd, vars.hwnd.maptracker_dates.colors["league " pLeagues] := vars.hwnd.help_tooltips["maptracker_logviewer league colors" league_count] := hwnd1, league_count .= "|"
 				ControlGetPos,,,, hRow,, ahk_id %hwnd%
 			}
 
 		If league_count && (A_Index = 1)
-			Gui, %GUI_name%: Add, Progress, % "ys x+-1 Section Background646464 w" settings.maptracker.fWidth2/2 " h" hRow * StrLen(league_count) - (StrLen(league_count) - 1)
+			Gui, %GUI_name%: Add, Progress, % "ys x+0 Section Background646464 w" settings.maptracker.fWidth2/2 " h" hRow * StrLen(league_count) ;- (StrLen(league_count) - 1)
 
 		If wControl
 			LLK_PanelDimensions(["  " year " (" LLK_HasKey(runs, year, 1,, 1).Count() ")  "], settings.maptracker.fSize2 + 2, wControl1, hControl1), width0 := (wControl >= wControl1) ? " wp" : " w" wControl1
 		pick := (A_Index = years.Count()) && year_override && !Blank(LLK_HasKey(runs, year, 1)) ? year : pick
-		Gui, %GUI_name%: Add, Text, % "ys" (A_Index = 1 ? " Section" : "") " x+-1 Center Border BackgroundTrans" (StrMatch(year, active_date, 1) ? " cLime" : "") . (width0 ? width0 : ""), % "  " year " (" LLK_HasKey(runs, year, 1,, 1).Count() ")  "
-		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 cRed Background" settings.maptracker.colors["date_" (InStr(pick, year) ? "" : "un") "selected"], 0
+		Gui, %GUI_name%: Add, Text, % "ys" (A_Index = 1 ? " Section" : "") " x+0 Center Border BackgroundTrans" (StrMatch(year, active_date, 1) ? " cLime" : "") . (width0 ? width0 : ""), % "  " year " (" LLK_HasKey(runs, year, 1,, 1).Count() ")  "
+		Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 Vertical BackgroundBlack c" settings.maptracker.colors["date_" (InStr(pick, year) ? "" : "un") "selected"], 500
 		vars.hwnd.maptracker_dates[year] := hwnd
 
 		If (A_Index = years.Count())
 		{
-			Gui, %GUI_name%: Add, Pic, % "ys x+-1 hp-2 w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border HWNDhwnd Background" settings.maptracker.colors.date_unselected, 0
+			For index, val in ["date_unselected", "date_selected"]
+			{
+				Gui, %GUI_name%: Add, Text, % "ys w" settings.maptracker.fHeight2 " h" settings.maptracker.fHeight2 " Border BackgroundTrans", % " "
+				Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" settings.maptracker.colors[val], 100
+				vars.hwnd.maptracker_dates.colors[val] := vars.hwnd.help_tooltips["maptracker_logviewer selection colors " index] := hwnd1
+			}
+			Gui, %GUI_name%: Add, Pic, % "ys x+0 hp-2 w-1 Border BackgroundTrans", % "HBitmap:*" vars.pics.global.help
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border HWNDhwnd BackgroundBlack", 0
 			vars.hwnd.help_tooltips["maptracker_logviewer date help"] := hwnd
 		}
 		ControlGetPos, xControl, yYear, wControl, hYear,, ahk_id %hwnd%
@@ -261,7 +273,7 @@ Maptracker_DateSelect()
 		If (years.Count() > 1) && (A_Index = years.Count())
 		{
 			Gui, %GUI_name%: Add, Text, % "x0 y0 Center Border HWNDhwnd00 BackgroundTrans w" wYears . (active_date = "all" ? " cLime" : ""), % Lang_Trans("maptracker_all") " (" runs.Count() ")"
-			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd0 Border Range0-500 cRed Background" settings.maptracker.colors.date_unselected, 0
+			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd0 Border Range0-500 Vertical BackgroundBlack c" settings.maptracker.colors.date_unselected, 500
 			vars.hwnd.maptracker_dates.all := hwnd0, vars.hwnd.maptracker_dates.all_button := hwnd00
 		}
 	}
@@ -274,8 +286,8 @@ Maptracker_DateSelect()
 				If run_count
 				{
 					color := StrMatch(active_date, year "/" SubStr(month, 1, 2), 1) ? " cLime" : ""
-					Gui, %GUI_name%: Add, Text, % (!added ? "xs y" yYear + hYear - 1 : "ys x+-1") " Section Border BackgroundTrans" color, % " " SubStr(month, InStr(month, " ") + 1) . (run_count ? " (" run_count ") " : " ")
-					Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 cRed Background" settings.maptracker.colors.date_selected, 0
+					Gui, %GUI_name%: Add, Text, % (!added ? "xs y" yYear + hYear : "ys x+0") " Section Border BackgroundTrans" color, % " " SubStr(month, InStr(month, " ") + 1) . (run_count ? " (" run_count ") " : " ")
+					Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 Vertical BackgroundBlack c" settings.maptracker.colors.date_selected, 500
 					added := 1, vars.hwnd.maptracker_dates[year "/" SubStr(month, 1, 2)] := hwnd
 					For date, array in entries
 					{
@@ -288,8 +300,8 @@ Maptracker_DateSelect()
 								Break
 							}
 							Else color := settings.maptracker.colors.date_unselected
-						Gui, %GUI_name%: Add, Text, % "xs y+-1 Border Right wp BackgroundTrans" (InStr(active_date, date) ? " cLime": ""), % " " SubStr(date, 9, 2) + 0 " (" Format("{:0" StrLen(run_count) "}", array.Count()) ") "
-						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 cRed Background" color, 0
+						Gui, %GUI_name%: Add, Text, % "xs y+0 Border Right wp BackgroundTrans" (InStr(active_date, date) ? " cLime": ""), % " " SubStr(date, 9, 2) + 0 " (" Format("{:0" StrLen(run_count) "}", array.Count()) ") "
+						Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled HWNDhwnd Border Range0-500 Vertical BackgroundBlack c" color, 500
 						vars.hwnd.maptracker_dates[date] := hwnd
 					}
 				}
@@ -300,6 +312,19 @@ Maptracker_DateSelect()
 	KeyWait, LButton
 	While WinActive("ahk_id " maptracker_dates) 	;loop that waits for inputs while the date selection is on screen
 	{									;some drawbacks: GetKeyState doesn't work with certain keys (similar loops in the script use dedicated hotkeys, but the hotkeys section has become bloated)
+		check := LLK_HasVal(vars.hwnd.maptracker_dates.colors, vars.general.cMouse)
+		If !Blank(check) && ((space := GetKeyState("Space", "P")) || GetKeyState("LButton", "P"))
+		{
+			RGB := (space ? settings.maptracker.dColors[check] : RGB_Picker(settings.maptracker.colors[check]))
+			KeyWait, LButton
+			KeyWait, Space
+			If Blank(RGB)
+				Continue
+			IniWrite, % """" (settings.maptracker.colors[check] := RGB) """", % "ini" vars.poe_version "\map tracker.ini", UI, % check " color"
+			Maptracker_DateSelect()
+			Return
+		}
+
 		check := LLK_HasVal(vars.hwnd.maptracker_dates, vars.general.cMouse)
 		If !Blank(check) && GetKeyState("LButton", "P")
 		{
@@ -312,6 +337,7 @@ Maptracker_DateSelect()
 			}
 			If InStr(pick, "/") && (StrLen(check) > 4) || LLK_HasVal(vars.maptracker.leagues, pick,,,, 1) || double_click || (pick = "all")
 			{
+				KeyWait, LButton
 				vars.maptracker.active_date := pick, vars.maptracker.active_page := 1, Maptracker_Logs()
 				Break
 			}
@@ -321,7 +347,7 @@ Maptracker_DateSelect()
 		If GetKeyState("DEL", "P") && vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.maptracker_dates, vars.general.cMouse))
 		{
 			delHWND := vars.general.cMouse
-			If LLK_Progress(delHWND, "DEL")
+			If LLK_Progress(delHWND, "DEL",,, 500)
 			{
 				delDate := LLK_HasVal(vars.hwnd.maptracker_dates, vars.general.cMouse)
 				league_check := LLK_HasVal(leagues, delDate,,,, 1)
@@ -519,12 +545,12 @@ Maptracker_GUI(mode := 0)
 	Gui, %GUI_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +Border +E0x02000000 +E0x00080000 HWNDmaptracker" (vars.maptracker.pause ? " +E0x20" : "")
 	Gui, %GUI_name%: Color, Black
 	Gui, %GUI_name%: Margin, % settings.maptracker.fWidth/2, 0
-	Gui, %GUI_name%: Font, % "s"settings.maptracker.fSize . (vars.maptracker.pause ? " c" settings.maptracker.colors.date_unselected : " cWhite"), % vars.system.font
+	Gui, %GUI_name%: Font, % "s"settings.maptracker.fSize . (vars.maptracker.pause ? " cGray" : " cWhite"), % vars.system.font
 	hwnd_old := vars.hwnd.maptracker.main, vars.hwnd.maptracker := {"main": maptracker}
 
 	Gui, %GUI_name%: Add, Progress, % "x0 y0 BackgroundWhite HWNDhwnd w" settings.maptracker.fWidth * 0.6 " h" settings.maptracker.fWidth * 0.6, 0
 	vars.hwnd.maptracker.drag := hwnd, tier := !SubStr(vars.maptracker.map.tier, 1, 1) ? SubStr(vars.maptracker.map.tier, 2) : vars.maptracker.map.tier
-	Gui, %GUI_name%: Add, Text, % "Section x0 y0 0x200 h" Ceil(settings.maptracker.fHeight * 1.25) " BackgroundTrans HWNDhwnd" (vars.maptracker.pause ? " c"settings.maptracker.colors.date_unselected : ""), % Blank(vars.maptracker.map.name) ? " " Lang_Trans("maptracker_idle") " " : " " Lang_Trans("maptracker_tier", 3) tier " " (InStr(vars.maptracker.map.name, ":") ? SubStr(vars.maptracker.map.name, InStr(vars.maptracker.map.name, ":") + 2) : vars.maptracker.map.name) . (vars.maptracker.map.time ? " " FormatSeconds(vars.maptracker.map.time, 0) : "") " "
+	Gui, %GUI_name%: Add, Text, % "Section x0 y0 0x200 h" Ceil(settings.maptracker.fHeight * 1.25) " BackgroundTrans HWNDhwnd" (vars.maptracker.pause ? " cGray" : ""), % Blank(vars.maptracker.map.name) ? " " Lang_Trans("maptracker_idle") " " : " " Lang_Trans("maptracker_tier", 3) tier " " (InStr(vars.maptracker.map.name, ":") ? SubStr(vars.maptracker.map.name, InStr(vars.maptracker.map.name, ":") + 2) : vars.maptracker.map.name) . (vars.maptracker.map.time ? " " FormatSeconds(vars.maptracker.map.time, 0) : "") " "
 	vars.hwnd.maptracker.save := hwnd
 	Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Disabled Vertical Range0-500 BackgroundBlack cGreen HWNDhwnd", 0
 	vars.hwnd.maptracker.delbar := hwnd, count := 0
@@ -729,6 +755,10 @@ Maptracker_Logs(mode := "")
 	Gui, %GUI_name%: Add, Text, % "ys Center Border gMaptracker_Logs2 HWNDhwnd2 x+" settings.maptracker.fWidth2//4 " w" settings.maptracker.fWidth2 * 2, % "+"
 	vars.hwnd.maptracker_logs.font_minus := hwnd, vars.hwnd.maptracker_logs.font_reset := hwnd1, vars.hwnd.maptracker_logs.font_plus := hwnd2
 
+	Gui, %GUI_name%: Add, Text, % "ys x+" settings.maptracker.fWidth2 " w" settings.maptracker.fHeight2 " Border BackgroundTrans gMaptracker_logs2 HWNDhwnd", % " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 BackgroundBlack c" settings.maptracker.colors.infopanel, 100
+	vars.hwnd.maptracker_logs.color_infopanel := hwnd, vars.hwnd.help_tooltips["maptracker_logviewer infopanel color"] := hwnd1
+
 	Gui, %GUI_name%: Add, Text, % "ys HWNDhwnd0 x+" settings.maptracker.fWidth2, % Lang_Trans("maptracker_page", 2)
 	Gui, %GUI_name%: Add, Text, % "ys Center Border gMaptracker_Logs2 HWNDhwnd x+" settings.maptracker.fWidth2//2 . (!settings.maptracker.page_entries ? " cFuchsia" : ""), % " " Lang_Trans("global_auto") " "
 	page_entries := max_lines, vars.hwnd.maptracker_logs.entries_auto := hwnd, vars.hwnd.help_tooltips["maptracker_logviewer page-entries"] := hwnd0
@@ -827,7 +857,7 @@ Maptracker_Logs(mode := "")
 							vars.hwnd.help_tooltips["maptracker_logviewer sum avg"] := hwnd
 						}
 						If !InStr("#,e-exp", header)
-							Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack c"settings.maptracker.colors.date_unselected, 100
+							Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border BackgroundBlack c"settings.maptracker.colors.infopanel, 100
 						If (header = "#")
 							Gui, %GUI_name%: Font, % "s" settings.maptracker.fSize2, % vars.system.font
 						sum_row := outer
@@ -858,7 +888,7 @@ Maptracker_Logs(mode := "")
 							vars.hwnd.maptracker_logs["content_" A_LoopField . icon_handle] := icon, icon_handle .= "|"
 						}
 					If InStr(" loot, mapinfo, notes, character, league,", " "val.1 ",")
-						Gui, %GUI_name%: Add, Progress, % "xp yp w"width " hp Border BackgroundBlack c" settings.maptracker.colors.date_unselected " Range0-1", % content[val.1] && (content[val.1] != "¢¢¢") ? 1 : 0
+						Gui, %GUI_name%: Add, Progress, % "xp yp w"width " hp Border BackgroundBlack c" settings.maptracker.colors.infopanel " Range0-1", % content[val.1] && (content[val.1] != "¢¢¢") ? 1 : 0
 				}
 		}
 	}
@@ -890,6 +920,12 @@ Maptracker_Logs2(cHWND)
 	}
 
 	check := LLK_HasVal(vars.hwnd.maptracker_logs, cHWND), control := StrReplace(SubStr(check, InStr(check, "_") + 1), !InStr(check, "removesearch_") ? "|" : "")
+	If !RegexMatch(check, "i)map_")
+	{
+		KeyWait, LButton
+		KeyWait, RButton
+	}
+
 	Switch check
 	{
 		Case "export":
@@ -901,6 +937,12 @@ Maptracker_Logs2(cHWND)
 			}
 			Else If vars.maptracker.displayed_runs && LLK_Progress(vars.hwnd.maptracker_logs.export_progress, "LButton")
 				Maptracker_LogsCSV()
+		Case "color_infopanel":
+			RGB := (vars.system.click = 1 ? RGB_Picker(settings.maptracker.colors.infopanel) : settings.maptracker.dColors.infopanel)
+			If Blank(RGB)
+				Return
+			IniWrite, % """" (settings.maptracker.colors.infopanel := RGB) """", % "ini" vars.poe_version, UI, infopanel color
+			Maptracker_Logs()
 		Case "filter_button":
 			vars.maptracker.keywords := {}
 			For search, hwnd in vars.hwnd.maptracker_logs.searches
@@ -911,8 +953,6 @@ Maptracker_Logs2(cHWND)
 			vars.maptracker.focus := LLK_HasVal(vars.hwnd.maptracker_logs.searches, hwnd), Maptracker_Logs()
 		Case "filter_reset":
 		{
-			KeyWait, LButton
-			KeyWait, RButton
 			vars.maptracker.focus := ""
 			If vars.maptracker.keywords.Count()
 				vars.maptracker.keywords := {}, Maptracker_Logs()
@@ -928,7 +968,6 @@ Maptracker_Logs2(cHWND)
 				vars.maptracker.active_page := control, Maptracker_Logs()
 			Else If InStr(check, "font_")
 			{
-				KeyWait, LButton
 				If (control = "reset")
 					settings.maptracker.fSize2 := settings.general.fSize
 				Else settings.maptracker.fSize2 += (control = "plus") ? 1 : (settings.maptracker.fSize2 > 6) ? -1 : 0
@@ -939,7 +978,6 @@ Maptracker_Logs2(cHWND)
 			}
 			Else If InStr(check, "entries_")
 			{
-				KeyWait, LButton
 				IniWrite, % (settings.maptracker.page_entries := control), % "ini" vars.poe_version "\map tracker.ini", settings, entries per page
 				Maptracker_Logs()
 			}
@@ -1328,7 +1366,7 @@ Maptracker_LogsTooltip(ini_section, ini_key, cHWND)
 		}
 
 		Gui, maptracker_tooltip: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDmaptracker_tooltip"
-		Gui, maptracker_tooltip: Color, % settings.maptracker.colors.date_unselected
+		Gui, maptracker_tooltip: Color, % settings.maptracker.colors.infopanel
 		Gui, maptracker_tooltip: Margin, 0, 0
 		Gui, maptracker_tooltip: Font, % "s"settings.maptracker.fSize2 " cWhite", % vars.system.font
 
