@@ -14,7 +14,7 @@
 	settings.iteminfo.trigger := !Blank(check := ini.settings["enable wisdom-scroll trigger"]) ? check : 0
 	;settings.iteminfo.ilvl := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["enable item-levels"]) ? check : 0
 	settings.iteminfo.itembase := !Blank(check := ini.settings["enable base-info"]) ? check : (vars.poe_version ? 0 : 1)
-	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : (vars.poe_version ? 1 : 0)
+	settings.iteminfo.override := !Blank(check := ini.settings["enable blacklist-override"]) ? check : 1
 	settings.iteminfo.compare := (settings.general.lang_client != "english") || vars.poe_version ? 0 : !Blank(check := ini.settings["enable gear-tracking"]) ? check : 0
 	settings.iteminfo.activation := !Blank(check := ini.settings.activation) ? check : "toggle"
 	;settings.iteminfo.bars_tier := !Blank(check := ini.settings["tier bars"]) ? check : 1
@@ -29,6 +29,7 @@
 	settings.iteminfo.rules.attacks := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["attacks override"]) ? check : 0
 	settings.iteminfo.rules.hitgain := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["lifemana gain override"]) ? check : 0
 	settings.iteminfo.rules.crit := (settings.general.lang_client != "english") ? 0 : !Blank(check := ini.settings["crit override"]) ? check : 0
+	settings.iteminfo.Delete("rules")
 
 	settings.iteminfo.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	LLK_FontDimensions(settings.iteminfo.fSize, height, width), settings.iteminfo.fWidth := width, settings.iteminfo.fHeight := height
