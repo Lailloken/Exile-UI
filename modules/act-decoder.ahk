@@ -419,7 +419,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				Else style0 := (alignment = "horizontal" ? "xs" : "ys")
 
 				Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd " style0 " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.zone_layouts.rotate
-				vars.hwnd.actdecoder[vars.log.areaID " " file "_rotate"] := vars.hwnd.help_tooltips["actdecoder_rotate" vars.poe_version . handle0] := hwnd, handle0 .= "|"
+				vars.hwnd.actdecoder[vars.log.areaID " " file "_rotate"] := vars.hwnd.help_tooltips["actdecoder_rotate" handle0] := hwnd, handle0 .= "|"
 				If (vars.actdecoder.zone_layouts[vars.log.areaID][file].Count() > 1) || vars.actdecoder.zone_layouts[vars.log.areaID][file].1
 				{
 					Gui, %GUI_name%: Add, Pic, % "Border HWNDhwnd0 BackgroundTrans " (alignment = "horizontal" ? "x+" settings.general.fWidth//2 " yp" : "y+" settings.general.fWidth//2 " xp") " h" settings.general.fHeight " w-1", % "HBitmap:*" vars.pics.global.revert

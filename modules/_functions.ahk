@@ -800,3 +800,15 @@ UpdateParseVersion(string)
 	string .= InStr(string, "(hotfix") ? ")" : ""
 	Return string
 }
+
+URL(cHWND)
+{
+	local
+	global vars
+
+	KeyWait, LButton
+	URL := vars.URLs[cHWND]
+	If Blank(URL)
+		Return
+	Run, % URL
+}

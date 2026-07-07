@@ -74,7 +74,7 @@ Gui_CreateGraph(width, height, graph, color)
 	Return hbmBitmap
 }
 
-Gui_DropDownList(object, coord_array)
+Gui_DropDownList(object, coord_array, align := "", altsubmit := 0)
 {
 	local
 	global vars, settings, json
@@ -83,12 +83,12 @@ Gui_DropDownList(object, coord_array)
 	Gui, DDL: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border +E0x02000000 +E0x00080000 HWNDhwnd_ddl, Exile UI: Drop-Down List
 	Gui, DDL: Color, % object.color
 	Gui, DDL: Font, % "s" object.fSize " cWhite", % vars.system.font
-	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
+	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : -1), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
 
 	If !object.list.Count()
 		Return
 
-	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, wList := Max(wList, coord_array.3 - 2)
+	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, HWNDs := [], wList := Max(wList, coord_array.3), hList := Max(hList, coord_array.4 - 2)
 	For index, val in object.list
 	{
 		If (type = "minimap")
@@ -97,8 +97,8 @@ Gui_DropDownList(object, coord_array)
 				vars.pics.lootfilter[val] := LLK_ImageCache("img\GUI\lootfilter\" val ".png",, settings.lootfilter.fHeight2 - 2)
 			Gui, DDL: Add, Pic, % (A_Index = 1 ? "Section" : "ys") " HWNDhwnd", % "HBitmap:*" vars.pics.lootfilter[val]
 		}
-		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : "") " w" wList " HWNDhwnd" (val = object.current ? " cLime" : ""), % " " val
-		controls[hwnd] := val
+		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : " x-1 y-1") " w" wList " h" hList " 0x200 HWNDhwnd" (val = object.current ? " cLime" : "") . (align ? " " align : ""), % (!align ? " " : "") . val . (align = "right" ? " " : "")
+		controls[hwnd] := val, HWNDs.Push(hwnd)
 	}
 
 	Gui, DDL: Show, % "NA x10000 y10000"
@@ -108,12 +108,24 @@ Gui_DropDownList(object, coord_array)
 	Gui, DDL: Show, % "x" xPos " y" yPos
 	WinWaitActive, ahk_id %hwnd_ddl%
 
-	While Blank(input) && (vars.general.wMouse = hwnd_ddl) && WinActive("ahk_id " hwnd_ddl)
+	If (safe := vars.general.safe_mode)
 	{
-		KeyWait, LButton, D T0.25
-		If vars.general.cMouse && !ErrorLevel
-			input := controls[vars.general.cMouse]
+		MouseGetPos, xPos, yPos, win_hover, control_hover, 2
+		wMouse := Blank(win_hover) ? 0 : win_hover, cMouse := Blank(control_hover) ? 0 : control_hover
 	}
+	While Blank(input) && ((safe ? wMouse : vars.general.wMouse) = hwnd_ddl) && WinActive("ahk_id " hwnd_ddl)
+	{
+		If safe
+		{
+			MouseGetPos, xPos, yPos, win_hover, control_hover, 2
+			wMouse := Blank(win_hover) ? 0 : win_hover, cMouse := Blank(control_hover) ? 0 : control_hover
+		}
+		KeyWait, LButton, D T0.25
+		If (safe ? cMouse : vars.general.cMouse) && !ErrorLevel
+			input := controls[safe ? cMouse : vars.general.cMouse]
+	}
+	If altsubmit
+		input := [input, LLK_HasVal(HWNDs, (safe ? cMouse : vars.general.cMouse))]
 	KeyWait, LButton
 	Gui, DDL: Destroy
 	Return input
@@ -286,6 +298,10 @@ Gui_HelpToolTip(HWND_key)
 	}
 	Else For index, text in target_array
 	{
+		If IsObject(text)
+			text := (vars.poe_version ? text.2 : text.1)
+		If !text
+			Continue
 		font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
 		color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
 		For index0, remove in ["underline", "bold", "highlight"]
@@ -780,7 +796,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	{
 		For index, val in vars.GUI
 		{
-			If (val.hwnd = vars.hwnd.settings.main) && (vars.settings.active = "betrayal-info") || !WinExist("ahk_id " val.hwnd) || InStr(vars.hwnd.cheatsheet_menu.main "," vars.hwnd.searchstrings_menu.main "," vars.hwnd.leveltracker_screencap.main "," vars.hwnd.notepad.main "," vars.hwnd.leveltracker_editor.main "," vars.hwnd.leveltracker_gempickups.main, val.hwnd)
+			If (val.hwnd = vars.hwnd.settings.main) && settings.features.betrayal && (vars.settings.active = "betrayal-info") || !WinExist("ahk_id " val.hwnd) || InStr(vars.hwnd.cheatsheet_menu.main "," vars.hwnd.searchstrings_menu.main "," vars.hwnd.leveltracker_screencap.main "," vars.hwnd.notepad.main "," vars.hwnd.leveltracker_editor.main "," vars.hwnd.leveltracker_gempickups.main, val.hwnd)
 				Continue
 			Gui, % val.name ": Hide"
 		}

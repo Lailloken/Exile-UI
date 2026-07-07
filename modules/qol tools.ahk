@@ -475,11 +475,8 @@ Lab(mode := "", override := 0)
 		KeyWait, % vars.hotkeys.tab
 		LLK_Overlay(vars.hwnd["tooltippoelab"], "destroy"), LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
 		Run, % "https://www.poelab.com/"
-		If settings.features.browser
-		{
-			WinWaitActive, ahk_group snipping_tools,, 2
-			ToolTip_Mouse("lab", 1)
-		}
+		WinWaitActive, ahk_group snipping_tools,, 2
+		ToolTip_Mouse("lab", 1)
 	}
 
 	If (mode = "import" || mode = "link")

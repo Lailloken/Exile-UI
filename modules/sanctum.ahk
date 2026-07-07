@@ -148,6 +148,7 @@ Sanctum(cHWND := "", hotkey := 0)
 					GuiControl, +Hidden, % vars.hwnd.sanctum.scanned_img
 				}
 				Else KeyWait, RButton
+				WinActivate, % "ahk_id " vars.hwnd.poe_client
 				Return
 			}
 		}

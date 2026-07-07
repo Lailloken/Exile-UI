@@ -3,7 +3,7 @@
 	local
 	global vars, settings
 
-	If !FileExist("ini" vars.poe_version "\screen checks (" vars.client.h "p).ini")
+	If vars.general.supported_resolutions.HasKey(vars.client.h) && !FileExist("ini" vars.poe_version "\screen checks (" vars.client.h "p).ini")
 		IniWrite, % "", % "ini" vars.poe_version "\screen checks (" vars.client.h "p).ini", gamescreen
 
 	If (vars.client.h0 / vars.client.w0 < (5/12)) ;if the client is running a resolution that's wider than 21:9, there is a potential for black bars on each side

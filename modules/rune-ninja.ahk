@@ -139,7 +139,7 @@ Runeshape_GUI()
 	For index, price in prices
 	{
 		hText := (text[index].tier ? dBox2 : dBox), fHeight := settings.runeshaping.fHeight, offset := (fHeight >= hText ? 0 : hText//2 - fHeight//2)
-		Gui, %GUI%: Add, Text, % "x0 y" (index = 1 ? offset : "+" offset + 4) " w" settings.runeshaping.fWidth * 5 " 0x200 Right Border BackgroundTrans" (fHeight >= hText ? " h" hText : ""), % " " (IsNumber(price) ? Round(price, (price >= 1000 ? 0 : 1)) : price) " "
+		Gui, %GUI%: Add, Text, % "x0 y" (index = 1 ? offset : "+" offset + 4) " w" settings.runeshaping.fWidth * Max(5, StrLen(Round(max_price, (max_price >= 1000 ? 0 : 1)))) " 0x200 Right Border BackgroundTrans" (fHeight >= hText ? " h" hText : ""), % " " (IsNumber(price) ? Round(price, (price >= 1000 ? 0 : 1)) : price) " "
 		color := (!IsNumber(price) ? settings.runeshaping.color_unknown : (!IsNumber(text[index].stack) ? settings.runeshaping.color_stack : (price = max_price ? settings.runeshaping.color_high : "White")))
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border cBlack Background" color, 100
 		Gui, %GUI%: Add, Text, % "Hidden xp yp-" offset " w2 h" hText

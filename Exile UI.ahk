@@ -403,7 +403,7 @@ Init_client()
 			vars.general.supported_resolutions := {}, vars.general.available_resolutions := ""
 		vars.general.supported_resolutions[StrReplace(A_LoopField, "p")] := 1
 		If (StrReplace(A_Loopfield, "p") <= vars.monitor.h && (vars.client.fullscreen = "true" || vars.client.borderless)) || (StrReplace(A_LoopField, "p") < vars.monitor.h && (vars.client.fullscreen = "false") && !vars.client.borderless)
-			vars.general.available_resolutions := !vars.general.available_resolutions ? StrReplace(A_Loopfield, "p") :  StrReplace(A_Loopfield, "p") "|" vars.general.available_resolutions
+			vars.general.available_resolutions := !vars.general.available_resolutions ? StrReplace(A_Loopfield, "p") : StrReplace(A_Loopfield, "p") "|" vars.general.available_resolutions
 	}
 	vars.general.available_resolutions .= "|"
 
@@ -750,7 +750,7 @@ Loop()
 		}
 	}
 
-	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill[2]* 60000) && settings.general.kill[1]
+	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill.2 * 60000) && settings.general.kill.1
 		ExitApp
 }
 
@@ -1040,7 +1040,7 @@ Resolution_check()
 		}
 		MsgBox,, Exile UI, % text
 		vars.general.safe_mode := 1
-		settings_menu("general")
+		settings_menu("client")
 		sleep, 2000
 		Loop
 		{
@@ -1074,6 +1074,8 @@ Startup()
 
 	ini := IniBatchRead("ini" vars.poe_version "\config.ini", "settings")
 	settings.general := {"kill": [LLK_IniRead("ini\config.ini", "settings", "kill script", 1), LLK_IniRead("ini\config.ini", "settings", "kill-timeout", 1)]}
+	If !settings.general.kill.1
+		settings.general.kill.2 := 0
 	settings.general.dev := !Blank(check := ini.settings["dev"]) ? check : 0, settings.general.capslock := !Blank(check := ini.settings["enable capslock-toggling"]) ? check : 1
 	SetStoreCapsLockMode, % settings.general.capslock ;for people who have something bound to CapsLock
 	If !(vars.general.Gdip := Gdip_Startup(1))

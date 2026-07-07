@@ -35,7 +35,7 @@
 
 ;## these are some global system-settings that are dependent on the target language
 		system_font			=	"Fontin SmallCaps"		;## except for Fontin SmallCaps, the specified font-type has to be installed on the system
-											;## this key is also present in the client.txt file, where it takes precedence (i.e. the value there will override this one)
+													;## this key is also present in the client.txt file, where it takes priority (i.e. the value there will override this one)
 
 
 ;#####################################################
@@ -108,6 +108,7 @@
 		global_button			=	"button-size:"
 		global_enable			=	"enable"
 		global_reset			=	"reset"
+		global_reset			=	"r"
 		global_color			=	"color"
 		global_color			=	"colors:"
 		global_opacity			=	"opacity:"
@@ -133,6 +134,7 @@
 		global_save			=	"save"
 		global_discard			=	"discard"
 		global_restart			=	"apply & restart"
+		global_restart			=	"restart"
 		global_imgfolder		=	"open img folder"
 		global_openfolder		=	"open folder"
 		global_newentry		=	"add entry:"
@@ -164,7 +166,7 @@
 		global_pattern			=	"pattern"			;## as in color pattern
 		global_regular			=	"regular"			;## as in default
 		global_setup			=	"setup"
-		global_variance		=	"variance (0-255)"
+		global_variance		=	"variance"
 		global_hotkey			=	"hotkey:"
 		global_hotkey			=	"optional hotkey:"
 		global_panelsize		=	"panel-size:"
@@ -198,8 +200,9 @@
 		global_global			=	"global"
 		global_controller		=	"controller"		;## gamepad
 		global_keyboard		=	"keyboard"
-		global_multithreading	=	"multi-threaded"	;## i.e. using multiple CPU cores/threads
-		global_multithreading	=	"single-threaded"
+		global_multithreading	=	"multi"			;## i.e. using multiple CPU cores/threads
+		global_multithreading	=	"single"
+		global_multithreading	=	"threads:"
 		global_ignore			=	"ignore"
 		global_custom			=	"custom"			;## as in "user-defined"
 		global_condition		=	"condition:"		;## as in "if x condition is met"
@@ -281,12 +284,13 @@
 		global_small			=	"small"
 		global_medium			=	"medium"
 		global_large			=	"large"
-		global_ocr_debug		=	"enable trouble-shooting"
 		global_active			=	"active:"			;## as in currently active/selected
 		global_meta			=	"meta:"			;## as in meta info/knowledge/data
 		global_animations		=	"ui animations"	;## as in UI transitions, movement, etc.
 		global_animations		=	"animations"
 		global_hold_ctrl		=	"hold ctrl"
+		global_load			=	"load"
+		global_troubleshoot		=	"trouble-shooting"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -874,9 +878,9 @@
 
 ;## these strings are displayed/required in the "general" section of the settings menu
 		m_general_settings		=	"tool settings:"
-		m_general_kill			=	"exit x minutes after closing the game:"
-		m_general_browser		=	"browser features"
-		m_general_capslock		=	"capslock-toggling"						;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
+		m_general_autoclose		=	"auto-close:"
+		m_general_browser		=	"browser qol"
+		m_general_capslock		=	"caps-toggle"							;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
 		m_general_charleague	=	"character & league:"
 		m_general_character		=	"char"
 		m_general_level		=	"lvl"
@@ -892,9 +896,9 @@
 		m_general_display		=	"windowed"
 		m_general_display		=	"borderless windowed"
 		m_general_resolution	=	"custom resolution:"
-		m_general_filler		=	"cover empty screen space"
-		m_general_filler		=	"and taskbar"							;## separate toggle, in addition to previous line
-		m_general_filler		=	"split-screen mode"						;## separate toggle, in addition to previous line
+		m_general_resolution	=	"resolution:"
+		m_general_screenfiller	=	"screen-filler"
+		m_general_screenfiller	=	"split"								;## as in split-screen
 		m_general_position		=	"window-position:"
 		m_general_posleft		=	"left"
 		m_general_poscenter		=	"center"
@@ -903,6 +907,7 @@
 		m_general_posbottom		=	"bottom"
 		m_general_postaskbar	=	"taskbar"
 		m_general_borderless	=	"apply borderless-windowed mode"
+		m_general_borderless	=	"borderless"
 		m_general_blackbars		=	"the client has black bars on the sides"	;## black bars as in letterboxes
 		m_general_permissions	=	"write-permissions test:"
 		m_general_start		=	"start test"
@@ -975,8 +980,6 @@
 
 ;## these strings are displayed/required in the "betrayal-info" section of the settings menu
 		m_betrayal_enable		=	"enable the betrayal-info overlay"
-		m_betrayal_ruthless		=	"ruthless rewards & highlighting"	;## it's a toggle to switch between regular and ruthless rewards
-		m_betrayal_recognition	=	"image-recognition:"
 		m_betrayal_colors		=	"reward-colors:"
 		m_betrayal_rewards		=	"reward customization:"
 
@@ -1031,9 +1034,9 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "vaal street" section of the settings menu
-		m_exchange_enable		=	"enable currency exchange features"
-		m_exchange_graphs		=	"show balance graphs"
-		m_async_enable			=	"enable async trading features"
+		m_exchange_currency		=	"currency exchange features"
+		m_exchange_balance		=	"balance graphs"
+		m_async_trade			=	"async trading features"
 		m_async_name			=	"full item names"
 		m_async_minchange		=	"min. price change:"				;## used for 'quick reprice' feature: new price needs to be at least x% lower than the current price
 
@@ -1051,13 +1054,10 @@
 		m_hotkeys_ckey			=	"the c-key is used for something;other than <character screen>"		;## in-game setting, on C by default
 		m_hotkeys_movekey		=	"move-key:"												;## i.e. the key used to move the character, default l-mouse
 		m_hotkeys_omnikey_new	=	"omni-key:"
-		m_hotkeys_omnikey_new	=	"omni-key (general):"
-		m_hotkeys_omnikey_new	=	"omni-key 2 (for items):"
 		m_hotkeys_exclusive		=	"exclusive"												;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu
 		m_hotkeys_widget		=	"widget-key:"
-		m_hotkeys_emergency		=	"force-restart:"											;## hotkey to force-restart the tool in case of crash/hang
-		m_hotkeys_winkey		=	"win-key"													;## Windows-key
-		m_hotkeys_menuwidget	=	"menu-widget:"
+		m_hotkeys_menukey		=	"menu-key:"
+		m_hotkeys_restartkey	=	"restart-key:"
 		m_hotkeys_error		=	"invalid hotkey"
 		m_hotkeys_error		=	"duplicate keybinds detected"
 		m_hotkeys_error		=	"alt-key is rebound, but no;alternative key is set up"				;## if certain tickboxes are ticked, the user has to provide an alternative hotkey
@@ -1076,16 +1076,15 @@
 		m_iteminfo_profiles		=	"reset profile's:"					;## you can choose between two options: a profile's desired, or undesired mods
 		m_iteminfo_desired		=	"desired"
 		m_iteminfo_undesired	=	"undesired"
-		m_iteminfo_undesired	=	"(un)desired:"
 		m_iteminfo_modbars		=	"roll-range:"
 		m_iteminfo_hiderange	=	"hide roll-range"
-		m_iteminfo_league		=	"enable league-start mode"
-		m_iteminfo_base		=	"show & compare item's base-stats"		;## base-stats as in armor, evasion, ES, attack-speed, phys/ele dmg
-		m_iteminfo_class		=	"item-class"
+		m_iteminfo_stattrack	=	"stat-track"						;## option to track the stats of your current gear
+		m_iteminfo_basestats	=	"base-stats"						;## option to show/compare base-stats, e.g armor, evasion, ES, attack-speed, phys/ele dmg
+		m_iteminfo_iclass		=	"class"
 		m_iteminfo_ilvl		=	"display item-lvl requirements"
 		m_iteminfo_highlight	=	"highlight customization:"
 		m_iteminfo_fractured	=	"fr"								;## this abbreviation for "fractured" should always have a length of 2 (max 3 if really necessary)
-		m_iteminfo_override		=	"<undesired> overrides tier/ilvl color"
+		m_iteminfo_overridetier	=	"override tier/ilvl"
 		m_iteminfo_rules		=	"global rules/overrides:"
 		m_iteminfo_rules		=	"weapon res"						;## as in ele-resistance mods on weapons (which are generally undesired)
 		m_iteminfo_rules		=	"attack dmg"
@@ -1093,7 +1092,7 @@
 		m_iteminfo_rules		=	"resists"
 		m_iteminfo_rules		=	"life/mana gain on hit/kill"
 		m_iteminfo_rules		=	"crit"
-		m_iteminfo_quality		=	"show quality & iron rune scaling"
+		m_iteminfo_qualscaling	=	"qual & rune scaling"
 		m_iteminfo_affixinfo	=	"affix-info:"
 		m_iteminfo_maxtier		=	"max tier"
 
@@ -1116,13 +1115,12 @@
 
 ;## these strings are displayed/required in the "act-tracker" section of the settings menu
 		m_lvltracker_enable			=	"enable the act-tracker feature"
-		m_lvltracker_timer			=	"enable timer"
-		m_lvltracker_pause			=	"pause timer in hideouts"
-		m_lvltracker_fade			=	"fade out after x seconds:"
-		m_lvltracker_fade			=	"fade in on mouse-hover"
+		m_lvltracker_timer			=	"timer"
+		m_lvltracker_fadeout		=	"fade"
+		m_lvltracker_fadeout		=	"hover"
 		m_lvltracker_gear			=	"gear tracker"
-		m_lvltracker_recommend		=	"lvl recommendations"
-		m_lvltracker_hotkeys		=	"enable page-hotkeys"
+		m_lvltracker_lvltips		=	"lvl tips"
+		m_lvltracker_pagehotkeys		=	"page-hotkeys"
 		m_lvltracker_poboverlays		=	"pob overlay settings:"
 		m_lvltracker_pobgems		=	"gems: use toggle instead of hold"
 		m_lvltracker_pobmanual		=	"tree: use screen-caps instead of schematics"
@@ -1139,7 +1137,7 @@
 		m_lvltracker_bandits		=	"oak"
 		m_lvltracker_treehotkey		=	"hotkey to close trees:"				;## optional setting for users who don't close the in-game tree with ESC
 		m_lvltracker_gemquests		=	"gem-quests"						;## quests that unlock gems
-		m_lvltracker_autotrack		=	"enable dynamic character tracking"
+		m_lvltracker_autotracking	=	"auto-tracking"
 
 
 
@@ -1160,19 +1158,18 @@
 ;## these strings are displayed/required in the "map-tracker" section of the settings menu
 		m_maptracker_enable			=	"enable the map-tracker feature"
 		m_maptracker_tracking		=	"tracking settings:"
-		m_maptracker_hide			=	"hide panel when the tracker is paused"
+		m_maptracker_pausehide		=	"hide on pause"
 		m_maptracker_loot			=	"loot"
 		m_maptracker_kills			=	"kills"
 		m_maptracker_notes			=	"notes"								;## option to add notes to map runs
 		m_maptracker_sidearea		=	"side-areas"
-		m_maptracker_rename			=	"tag & rename boss maps"					;## adds a "boss:"-tag to logged map-runs
+		m_maptracker_bosstags		=	"boss-tags"							;## adds a "boss:"-tag to logged map-runs
 		m_maptracker_character		=	"char/build"
 		m_maptracker_league			=	"league"
-		m_maptracker_content		=	"track atlas mechanics"
-		m_maptracker_dialogue		=	"–> dialogue tracking:"					;## tracking is done via in-game dialogue in the chat-box
-		m_maptracker_screen			=	"–> screen tracking:"					;## tracking is done via screen-reading
-		m_maptracker_portal			=	"reminder when using portal scrolls"		;## shows a reminder-tooltip when activating a portal scroll
-		m_maptracker_portal			=	"portal scroll hotkey:"
+		m_maptracker_mapcontent		=	"map content"
+		m_maptracker_dialogue		=	"dialogue tracking:"					;## tracking is done via in-game dialogue in the chat-box
+		m_maptracker_screen			=	"screen tracking:"						;## tracking is done via screen-reading
+		m_maptracker_portalreminder	=	"portal reminder:"
 
 
 
@@ -1182,14 +1179,14 @@
 
 ;## these strings are displayed/required in the "map-info" section of the settings menu
 		m_mapinfo_enable			=	"enable the map-info panel"
-		m_mapinfo_tab				=	"show panel while holding the widget-key"
-		m_mapinfo_textcolors		=	"text-colors:"
+		m_mapinfo_sidepanel			=	"side-panel"
+		m_mapinfo_mapmods			=	"map-mods:"
 		m_mapinfo_header			=	"header"								;## as in line at the top of a section/paragraph
-		m_mapinfo_logbook			=	"logbook-colors:"
+		m_mapinfo_logbooks			=	"logbooks:"
 		m_mapinfo_modsettings		=	"map-mod settings:"
 		m_mapinfo_pinned			=	"pinned mods:"
 		m_mapinfo_modsearch			=	"mod search:"
-		m_mapinfo_roll_highlight		=	"highlight map rolls"
+		m_mapinfo_maprolls			=	"map rolls"
 		m_mapinfo_reset			=	"reset tiers"
 
 
@@ -1200,7 +1197,7 @@
 
 
 ;## these strings are displayed/required in the "announcements" section of the settings menu
-		m_news_recent			=	"most recent announcements:"
+		m_news_recent			=	"most recent announcement(s):"
 
 ;#####################################################
 ;## settings menu: minor qol tools
@@ -1233,8 +1230,8 @@
 ;## these strings are displayed/required in the "sanctum planner" section of the settings menu
 		m_sanctum_enable		=	"enable the sanctum planner overlay"
 		m_sanctum_enable		=	"enable the sekhema planner overlay"
-		m_sanctum_cheatsheets	=	"show cheat-sheet"
-		m_sanctum_relics		=	"enable the relic-management overlay"
+		m_sanctum_cheatsheet	=	"cheat-sheet"
+		m_sanctum_relicmanager	=	"relic manager"
 
 
 
@@ -1300,8 +1297,8 @@
 		m_stash_leagues		=	"league:"
 		m_stash_tabs			=	"stash tab configuration:"
 		m_stash_limits			=	"price-range profiles:"
-		m_stash_history		=	"show price history"
-		m_stash_use_global		=	"use global price-range profiles"
+		m_stash_pricehistory	=	"price history"
+		m_stash_globalprofiles	=	"global profiles"
 		m_stash_exalt			=	"show exalt rates"
 		m_stash_infolder		=	"in folder"
 		m_stash_active			=	"active tab:"
@@ -1316,7 +1313,6 @@
 
 ;## these strings are displayed/required in the "statlas" section of the settings menu
 		m_statlas_enable		=	"enable the statlas feature"
-		m_statlas_maptracker	=	"show map-tracker data"
 
 
 
@@ -1342,7 +1338,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "updater" section of the settings menu
-		m_updater_autocheck		=	"automatically check for updates"
 		m_updater_version		=	"version information:"
 		m_updater_version		=	"current:"
 		m_updater_version		=	"latest:"

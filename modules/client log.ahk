@@ -309,7 +309,7 @@ Log_Loop(mode := 0)
 			vars.log.file := FileOpen(vars.log.file_location, "a", "UTF-8")
 
 	guide := vars.leveltracker.guide ;short-cut variable
-	If !vars.news.wait && (!news_check || (A_TickCount >= news_check + 900000))
+	If !vars.news.wait && (!news_check || (A_TickCount >= news_check + 1800000))
 	{
 		news_check := A_TickCount
 		SetTimer, News, -100

@@ -821,7 +821,7 @@ Maptracker_Logs(mode := "")
 			Else
 			{
 				Gui, %GUI_name%: Add, Edit, % "ys Section cBlack HWNDhwnd_search gMaptracker_Logs2 w" width " h" hEdit (!Blank(pCheck := vars.maptracker.keywords[header]) ? " cGreen" : ""), % pCheck
-				vars.hwnd.maptracker_logs.searches[header] := vars.hwnd.help_tooltips["maptracker_logviewer search " header (InStr("mapinfo,content", header) ? vars.poe_version : "")] := hwnd_search
+				vars.hwnd.maptracker_logs.searches[header] := vars.hwnd.help_tooltips["maptracker_logviewer search " header (InStr("mapinfo", header) ? vars.poe_version : "")] := hwnd_search
 			}
 			Gui, %GUI_name%: Font, % "s" settings.maptracker.fSize2 + 4
 			Gui, %GUI_name%: Add, Text, % "xs y+-1 BackgroundTrans Border Center HWNDhwnd w"width . gLabel, % icon ? "" : (header = "#") ? "" : Lang_Trans("maptracker_" header . (InStr("kills,loot", header) ? 1 : ""), (header = "time" && date_check) ? 2 : 1)

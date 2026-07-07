@@ -283,6 +283,13 @@ Hotkeys_Tab()
 			Break
 		}
 
+	While settings.features.leveltracker && settings.leveltracker.fade && LLK_Overlay(vars.hwnd.leveltracker.main, "check") && GetKeyState(vars.hotkeys.tab, "P")
+		If (A_TickCount >= start + 200)
+		{
+			active .= " leveltrackerfade", vars.leveltracker.tabfade := 1, Leveltracker_Toggle("show")
+			Break
+		}
+
 	map := vars.mapinfo.active_map
 	While settings.features.mapinfo && settings.mapinfo.tabtoggle && map.name && GetKeyState(vars.hotkeys.tab, "P")
 	&& (LLK_HasVal(vars.mapinfo.categories, vars.log.areaname, 1) || LLK_StringCompare(vars.log.areaID, ["map"]) || LLK_StringCompare(vars.log.areaID, ["hideout"]) || InStr(vars.log.areaID, "heisthub") || InStr(map.english, "invitation") && LLK_PatternMatch(vars.log.areaID, "", ["MavenHub", "PrimordialBoss"]))
@@ -362,6 +369,8 @@ Hotkeys_Tab()
 	}
 	If InStr(active, "leveltracker")
 		vars.leveltracker.overlays := 0
+	If InStr(active, "leveltrackerfade")
+		Leveltracker_Toggle("hide"), vars.leveltracker.tabfade := 0
 	If InStr(active, "mapinfo")
 		LLK_Overlay(vars.hwnd.mapinfo.main, "destroy"), vars.mapinfo.toggle := 0
 	If InStr(active, "maptracker")
@@ -371,7 +380,7 @@ Hotkeys_Tab()
 
 	If active && !settings.general.dev
 		WinActivate, ahk_group poe_window
-	Sleep 200
+	Sleep 100
 }
 
 ;pre-defined contexts for hotkey command

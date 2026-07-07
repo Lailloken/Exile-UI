@@ -513,7 +513,7 @@ Omni_ContextMenuPick(cHWND)
 	Else If (check = "poelab")
 	{
 		Run, % "https://www.poelab.com/"
-		If settings.qol.lab && settings.features.browser
+		If settings.qol.lab
 		{
 			WinWaitActive, ahk_group snipping_tools,, 2
 			ToolTip_Mouse("lab", 1)
