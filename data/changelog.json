@@ -59,8 +59,8 @@
   [
 	["1.63.1", 16301],
 	"june 1, 2026",
-	"act-tracker:\n–> updated guaranteed league-rewards\n–> switched around mastodon badlands and keth\n–> fixed guide being stuck at the end of a2\n–> act 4 shark and map-hunt quest are no longer optional\n–> aldur quest-line will be added next release (need to figure out campaign runs after first)",
-	"enchant-finder:\n–> updated to 0.5, now supports new emotions",
+	"act-tracker:\n–> updated guaranteed league-rewards\n–> switched around mastodon badlands and keth\n–> fixed guide being stuck at the end of a2\n–> act 4 shark and map-hunt quest are no longer optional",
+	"enchant finder:\n–> updated to 0.5, now supports new emotions",
 	"item-info:\n–> updated item mods and bases to 0.5\n–> updated unique drop-tiers to poeladder's current data"
   ],
   [
@@ -73,7 +73,7 @@
   [
 	["1.62.7", 16207, 1],
 	"may 21, 2026",
-	"act-tracker:\n–> added many optionals, A1 + A4 routing tweaks, major interlude re-routing (see full notes)\n–> updates will be applied the next time you reset your guide-slot (don't do it if you're currenly on a run!)\n–> guide-slots with custom edits are not affected (create a new slot or delete the previous one to get the updates, after making a backup)(/highlight)",
+	"act-tracker:\n–> added many optionals, A1 + A4 routing tweaks, major interlude re-routing (see full notes)(/highlight)",
 	"filterspoon:\n–> added economy checks for scarabs (poe1)\n–> added customization for beams, minimap icons, sound effects\n–> added stack-filtering to poe.ninja economy checks\n–> added global quick-settings for qual flasks and socketed gear (poe2 artificer salvaging)"
   ],
   [
@@ -130,68 +130,5 @@
 	"betrayal-info:\n–> updated rewards to 3.28",
 	"map-tracker:\n–> removed ritual reminder when opening portals (there's a new in-game notification)",
 	"glhf"
-  ],
-  [
-	["1.61.7", 16107],
-	"march 4, 2026",
-	"–> this is not the 3.28 update\n–> every league-start will now have a new major version, so mirage's update will be v1.62.0",
-	"act-decoder:\n–> revisited and tweaked many layouts from a1 to a10",
-	"act-tracker:\n–> fixed hint images not working under specific settings\n–> tweaked/rewrote many sections of the poe1 guide\n–> added a new toggle to include every gem-quest, regardless of imports\n–> hotkey to close skill-tree and overlay is now space by default"
-  ],
-  [
-	["1.61.6", 16106],
-	"february 26, 2026",
-	"act-decoder:\n–> major alignment update for poe2: revised acts 1-3 and added new decoded layouts\n–> lock hotkey moved from <space> to <alt>, hold <alt> to temporarily hide the overlay",
-	"vaal street:\n–> repricing panel now shows negative percentage values"
-  ],
-  [
-	["1.61.5", 16105, 1],
-	"february 17, 2026",
-	"–> added settings menu shortcut to tray icon\n–> f2 no longer the default alt. hotkey for settings menu(/highlight)",
-	"stash-ninja:\n–> league selection moved to <general> settings (is a global setting now)",
-	"act-decoder:\n–> removed <generic> layouts (outdated or inaccurate), tweaked some layouts",
-	"act-tracker:\n–> tweaked a few poe1 sections",
-	"new feature:\n–> added async trading functionality to <vaal street>: quick repricing, tracking, logging"
-  ],
-  [
-	["1.61.4", 16104],
-	"january 29, 2026",
-	"act-tracker:\n–> added support for 3.27 phrecia imports\n–> added <optionals> for 5L breach drops in acts 5 + 6 (league-start route)",
-	"act-decoder:\n–> added <sample> layouts for acts 1 through 10, as well as some <decoded> ones for certain areas"
-  ],
-  [
-	["1.61.3", 16103],
-	"january 20, 2026",
-	"act-tracker:\n–> tweaked poe2 guide + druid ascendancy-trees\n–> fixed a lvl-tracking issue in private leagues",
-	"act-decoder:\n–> tweaked a few areas, added a new manor ramparts layout",
-	"item-info:\n–> updated poe2 unique drop-tiers",
-	"stash-ninja:\n–> enabled price history for poe2"
-  ],
-  [
-	["1.61.2", 16102],
-	"december 25, 2025",
-	"hotfix 1\n–> fixed an oversight in act-decoder",
-	"act-tracker:\n–> fixed scion a1 quest rewards, added missing disciple of varashta tree",
-	"act-decoder:\n–> improved selection for full layouts, added/improved some layouts",
-	"clone-frames:\n–> added optional setting for improved auto-toggling",
-	"item-info:\n–> re-enabled ilvl display for PoE2, improved mod detection"
-  ],
-  [
-	["1.61.1", 16101, 1],
-	"december 16, 2025",
-	"–> added an option to disable multi-threading to resolve crash issues(/highlight)",
-	"act-tracker:\n–> added support for 0.4 trees and gems",
-	"act-tracker:\n–> general tweaks, finalized A4 structure (applied after guide reset!), tweaked lvl recommendation panel",
-	"enchant finder:\n–> updated to 0.4",
-	"item-info:\n–> fixed implicit items, updated mods / bases / drop-tiers to 0.4",
-	"stash-ninja:\n–> updated for fate of the vaal"
-  ],
-  [
-	["1.61.0", 16100],
-	"december 11, 2025",
-	"–> added support for 800p custom resolutions",
-	"act-tracker:\n–> general tweaks, a4 restructure, many new optionals\n–> lvl-diff color more accurate, added lvl recommendations (highly-optimized runs)",
-	"act-decoder:\n–> can now be moved outside main monitor (beta), improved tooltips",
-	"item-info:\n–> added support for talismans"
   ]
 ]
