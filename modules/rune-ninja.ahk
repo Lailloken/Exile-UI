@@ -39,7 +39,7 @@ Runeshape_OCR()
 	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client "|" vars.client.h
-	. "`nclip: " Round(vars.client.h * (cont ? 19/120 : 337/1440)) "|" Round(vars.client.h * (cont ? 23/96 : 11/80)) "|" Round(vars.client.h * (cont ? 25/72 : 13/48)) "|" Round(vars.client.h * 0.52) "`n"
+	. "`nclip: " Round(vars.client.h * (cont ? 19/120 : 1/8)) "|" Round(vars.client.h * (cont ? 23/96 : 11/80)) "|" Round(vars.client.h * (cont ? 25/72 : 3/8)) "|" Round(vars.client.h * 0.52) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
 	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "") . (settings.general.lang_client = "english" ? "`nenglish" : "")
 	Gui, ocr_comms: Show, NA x10000 y10000
