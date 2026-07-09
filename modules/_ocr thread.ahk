@@ -14,7 +14,7 @@ poe_client := SubStr(vars, 9), poe_client := SubStr(poe_client, 1, InStr(poe_cli
 clip := SubStr(vars, InStr(vars, "clip: ") + 6), clip := SubStr(clip, 1, InStr(clip, "`n") - 1), clip := StrSplit(clip, "|")
 If (check := InStr(vars, "blackbars:"))
 	blackbars := SubStr(vars, check + 11), blackbars := SubStr(blackbars, 1, InStr(blackbars, "`n") - 1), blackbars := StrSplit(blackbars, "|")
-runeshaping := InStr(vars, "runeshaping"), debug := InStr(vars, "debug"), english := InStr(vars, "english")
+runeshaping := InStr(vars, "runeshaping"), debug := InStr(vars, "debug"), english := InStr(vars, "english"), controller := InStr(vars, "controller")
 
 For index, val in clip
 	If !IsNumber(val)
@@ -52,12 +52,22 @@ Runeshaping()
 	;pEffect := Gdip_CreateEffect(2, 0, 100), Gdip_BitmapApplyEffect(pBitmap, pEffect), Gdip_DisposeEffect(pEffect)
 	Loop
 	{
+		If controller
+			high_tier := 1
 		hClip := Round(poe_client.2 * (high_tier ? 3/40 : 2/45)) * 2
 		If (yLast + hClip >= clip.4 * 2)
 			Break
+	
 		pBitmap_clone := Gdip_CloneBitmapArea(pBitmap, 0, yLast + (high_tier ? hClip//2 : 0), width*2, (high_tier ? hClip//2 : hClip),, 1)
 		hbmBitmap_clone := Gdip_CreateHBITMAPFromBitmap(pBitmap_clone, 0), Gdip_DisposeImage(pBitmap_clone)
-		pIRandomAccessStream := HBitmapToRandomAccessStream(hbmBitmap_clone), text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
+
+		If !controller
+		{
+			pBitmap_clone1 := Gdip_CloneBitmapArea(pBitmap, Floor(poe_client.2 * (13/120)) * 2, yLast + (high_tier ? hClip//2 : 0), Floor(poe_client.2 * (43/160)) * 2, (high_tier ? hClip//2 : hClip),, 1)
+			hbmBitmap_clone1 := Gdip_CreateHBITMAPFromBitmap(pBitmap_clone1, 0), Gdip_DisposeImage(pBitmap_clone1)
+		}
+		pIRandomAccessStream := HBitmapToRandomAccessStream(high_tier ? hbmBitmap_clone : hbmBitmap_clone1), text := ocr_uwp(pIRandomAccessStream, (english ? "en" : "FirstAvailable")), ObjRelease(pIRandomAccessStream)
+		text := Trim(text, "`n`t* "), text := ((check := InStr(text, "`n",, 0)) ? SubStr(text, check + 1) : text)
 		StringUpper, text, text
 
 		If (StrLen(text) <= 5)
@@ -71,7 +81,9 @@ Runeshaping()
 				Break
 			}
 		}
-		Else yLast += hClip, aText.Push(Trim(text, "`n`t ") . (high_tier ? " [1]" : "")), HBMs.Push(hbmBitmap_clone), high_tier := "", text_all .= (!text_all ? "" : "`n") . aText[aText.MaxIndex()]
+		Else yLast += hClip, aText.Push(text . (high_tier ? " [1]" : "")), HBMs.Push(hbmBitmap_clone), high_tier := "", text_all .= (!text_all ? "" : "`n") . aText[aText.MaxIndex()]
+		If !controller
+			DeleteObject(hbmBitmap_clone1)
 	}
 
 	Gdip_DisposeImage(pBitmap)

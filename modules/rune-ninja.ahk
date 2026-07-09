@@ -6,7 +6,7 @@
 	If !FileExist("ini" vars.poe_version "\rune-ninja.ini")
 	{
 		IniWrite, % settings.general.fSize + 2, % "ini" vars.poe_version "\rune-ninja.ini", settings, font-size
-		IniWrite, % "1=""ix ,lx §1x ""`n2=""iox ,lox ,i0x ,l0x ,1ox §10x ""`n3=""greatwolfs§greatwolf's""", % "ini" vars.poe_version "\rune-ninja.ini", autocorrect
+		IniWrite, % "1=""ix ,lx §1x ""`n2=""iox ,lox ,i0x ,l0x ,1ox §10x ""`n3=""greatwolfs§greatwolf's""`n4=""ofthe§of the""", % "ini" vars.poe_version "\rune-ninja.ini", autocorrect
 	}
 
 	settings.runeshaping := {"autocorrect": []}, ini := IniBatchRead("ini" vars.poe_version "\rune-ninja.ini")
@@ -28,6 +28,8 @@
 		settings.runeshaping.autocorrect[index] := StrSplit(val, "§")
 	If !LLK_HasVal(settings.runeshaping.autocorrect, "greatwolfs", 1,,, 1)
 		settings.runeshaping.autocorrect.InsertAt(3, ["greatwolfs", "greatwolf's"])
+	If !LLK_HasVal(settings.runeshaping.autocorrect, "ofthe", 1,,, 1)
+		settings.runeshaping.autocorrect.InsertAt(4, ["ofthe", "of the"])
 }
 
 Runeshape_OCR()
@@ -39,9 +41,9 @@ Runeshape_OCR()
 	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
 	Gui, ocr_comms: Add, Text,, % "client: " vars.hwnd.poe_client "|" vars.client.h
-	. "`nclip: " Round(vars.client.h * (cont ? 19/120 : 1/8)) "|" Round(vars.client.h * (cont ? 23/96 : 11/80)) "|" Round(vars.client.h * (cont ? 25/72 : 3/8)) "|" Round(vars.client.h * 0.52) "`n"
+	. "`nclip: " Round(vars.client.h * (cont ? 19/120 : 1/8)) "|" Round(vars.client.h * (cont ? 23/96 : 11/80)) "|" Round(vars.client.h * (cont ? 25/72 : 17/45)) "|" Round(vars.client.h * 0.52) "`n"
 	. (settings.general.blackbars ? "blackbars: " vars.client.x - vars.monitor.x "|0|" vars.client.w "|" vars.client.h "`n" : "")
-	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "") . (settings.general.lang_client = "english" ? "`nenglish" : "")
+	. "`nruneshaping" . (settings.runeshaping.debug ? "`ndebug" : "") . (settings.general.lang_client = "english" ? "`nenglish" : "") . (cont ? "`ncontroller" : "")
 	Gui, ocr_comms: Show, NA x10000 y10000
 
 	vars.runeshaping := {"text": []}, vars.ocr_comms := {}
