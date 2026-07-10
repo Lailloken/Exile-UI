@@ -848,6 +848,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 				AsyncTrade(), LLK_ToolTip(Lang_Trans("async_listing"),,,,, "Lime")
 				Return
 			}
+			Sleep, 100
 			SendInput, {RButton}
 		}
 
