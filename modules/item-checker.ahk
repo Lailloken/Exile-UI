@@ -2070,10 +2070,9 @@ Iteminfo_ModgroupCheck(name, mode := 0) ;check the affix-name to determine if th
 
 	If !vars.poe_version
 		parse := "abyss,bestiary,delve,incursion,syndicate,shaper,elder,crusader,redeemer,hunter,warlord,essence,infamous"
-	Else parse := "abyss2,essence"
+	Else parse := "abyss,essence"
 
-	abyss := ["abyssal"]
-	abyss2 := ["veiled", "amanamu", "kurgal", "ulaman", "lightless"]
+	abyss := (vars.poe_version ? ["veiled", "amanamu", "kurgal", "ulaman", "lightless"] : ["abyssal"])
 	bestiary := ["saqawal", "farrul", "craiceann", "fenumus"]
 	delve := ["subterranean", "of the underground"]
 	incursion := ["Citaqualotl", "Guatelitzi", "Matatl", "Tacati", "Topotante", "Xopec"]
