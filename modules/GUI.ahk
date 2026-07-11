@@ -124,6 +124,11 @@ Gui_DropDownList(object, coord_array, align := "", altsubmit := 0)
 		If (safe ? cMouse : vars.general.cMouse) && !ErrorLevel
 			input := controls[safe ? cMouse : vars.general.cMouse]
 	}
+	If !Blank(input) && (object.cHWND)
+	{
+		GuiControl, Text, % object.cHWND, % (!align ? " " : "") . input . (align = "right" ? " " : "")
+		GuiControl, movedraw, % object.cHWND
+	}
 	If altsubmit
 		input := [input, LLK_HasVal(HWNDs, (safe ? cMouse : vars.general.cMouse))]
 	KeyWait, LButton
@@ -196,7 +201,7 @@ Gui_HelpToolTip(HWND_key)
 
 	toggle := !toggle, GUI_name := "help_tooltip" toggle
 	Gui, %GUI_name%: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDtooltip
-	Gui, %GUI_name%: Color, 202045
+	Gui, %GUI_name%: Color, 101030
 	Gui, %GUI_name%: Margin, 0, 0
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.help_tooltips.main, vars.hwnd.help_tooltips.main := tooltip, vars.general.active_tooltip := vars.general.cMouse
@@ -335,7 +340,7 @@ Gui_HelpToolTip(HWND_key)
 	Else If (check = "actdecoder")
 		xPos := (vars.general.xMouse + tooltip_width >= vars.monitor.x + vars.monitor.w ? vars.monitor.x + vars.monitor.w - tooltip_width : vars.general.xMouse)
 	Else If settings_selection
-		yPos := y
+		xPos := xControl, yPos := y + h - 1
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1
@@ -792,6 +797,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	If !InStr("showhide", guiHWND) && (Blank(gui_name) || Blank(gui_index))
 		Return
 
+	DetectHiddenWindows, On
 	If (guiHWND = "hide")
 	{
 		For index, val in vars.GUI
@@ -805,20 +811,14 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	{
 		For index, val in vars.GUI
 		{
-			ControlGetPos, x,,,,, % "ahk_id " val.dummy
-			If !val.show || Blank(x)
+			If !val.show || !WinExist("ahk_id " val.hwnd)
 				Continue
 			Gui, % val.name ": Show", % (NA ? "NA" : "")
 		}
 	}
 	Else If (mode = "show") || (mode = "hide") && !Blank(gui_name0)
 	{
-		If !vars.GUI[gui_index].dummy
-		{
-			Gui, %gui_name%: Add, Text, Hidden x0 y0 HWNDhwnd, % "" ;add a dummy text-control to the GUI with which to check later on if it has been destroyed already (via ControlGetPos)
-			vars.GUI[gui_index].dummy := hwnd, vars.GUI[gui_index].show := (mode = "show") ? 1 : 0
-		}
-		Else vars.GUI[gui_index].show := 1
+		vars.GUI[gui_index].show := 1
 		Gui, %gui_name%: Show, % (mode = "show" ? (NA ? "NA" : "") : "Hide")
 	}
 	Else If (mode = "hide")
@@ -829,27 +829,24 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	}
 	Else If (mode = "destroy")
 	{
-		If vars.GUI[gui_index].dummy
-			ControlGetPos, x,,,,, % "ahk_id " vars.GUI[gui_index].dummy
-		If WinExist("ahk_id " guiHWND) || !Blank(x)
+		If WinExist("ahk_id " guiHWND)
 			Gui, %gui_name%: Destroy
 	}
 	Else If (mode = "check")
 	{
-		If vars.GUI[gui_index].dummy
-			ControlGetPos, x,,,,, % "ahk_id " vars.GUI[gui_index].dummy
-		Return x
+		DetectHiddenWindows, Off
+		Return (WinExist("ahk_id " guiHWND) ? 1 : 0)
 	}
 
 	For index, val in vars.GUI ;check for GUIs that have already been destroyed
 	{
-		ControlGetPos, x,,,,, % "ahk_id " val.dummy
-		If Blank(x)
+		If !WinExist("ahk_id " val.hwnd)
 			remove := index ";" remove
 	}
 	Loop, Parse, remove, `;
 		If IsNumber(A_LoopField)
 			vars.GUI.RemoveAt(A_LoopField)
+	DetectHiddenWindows, Off
 }
 
 LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", header_offset := 0, margins := 1, min_width := 0, use_key := 0, font_style := "")
