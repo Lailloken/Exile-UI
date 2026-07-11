@@ -1024,7 +1024,7 @@
 		m_clone_scale			=	"scale:"
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders	=	"invalid frame borders"
-		m_clone_closebutton		=	"use <close button> for auto-toggling (beta)"
+		m_clone_closetoggle		=	"close button"
 		m_clone_town			=	"clone-frames are hidden in hideouts and towns unless this settings section is open"
 
 

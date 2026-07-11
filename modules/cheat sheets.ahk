@@ -111,10 +111,7 @@ Cheatsheet_Add(name, type)
 	global vars, settings
 
 	WinGetPos, xPos, yPos, width, height, % "ahk_id " vars.hwnd.settings.name
-	While (SubStr(name, 1, 1) = " ")
-		name := SubStr(name, 2)
-	While (SubStr(name, 0) = " ")
-		name := SubStr(name, 1, -1)
+	name := Trim(name, " ")
 	Loop, Parse, name
 	{
 		If !LLK_IsType(A_LoopField, "alnum")
@@ -146,7 +143,9 @@ Cheatsheet_Add(name, type)
 
 	If error
 		Return
-	types := ["images", "app", "advanced"]
+	types := ["images", "app", "advanced"], type := LLK_HasVal([Lang_Trans("m_cheat_images"), Lang_Trans("m_cheat_app"), Lang_Trans("m_cheat_advanced")], type)
+	If !type
+		Return
 	IniWrite, 1, % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, enable
 	IniWrite, % types[type], % "cheat-sheets" vars.poe_version "\" name "\info.ini", general, type
 	IniWrite, 1, % "cheat-sheets" vars.poe_version "\" name "\info.ini", UI, scale
