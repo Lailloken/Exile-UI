@@ -332,7 +332,7 @@ Hotkeys_Tab()
 			If IsNumber(StrReplace(timestamp, "|")) && (timestamp <= A_Now)
 				expired := "expired"
 		If !expired
-			LLK_Overlay(vars.hwnd.alarm.main, "destroy")
+			SetTimer, Alarm_Close, 100
 		Else Alarm("", "", "expired")
 	}
 	If InStr(active, "notepad")

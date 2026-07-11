@@ -358,6 +358,16 @@ Alarm(hotkey := 1, cHWND := "", mode := "")
 	LLK_Overlay(hwnd_old, "destroy"), vars.alarm.drag := 0
 }
 
+Alarm_Close()
+{
+	local
+	global vars, settings
+
+	If WinExist("ahk_id " vars.hwnd.alarm.main)
+		LLK_Overlay(vars.hwnd.alarm.main, "destroy")
+	Else SetTimer, Alarm_Close, Delete
+}
+
 Distilled_Emotions()
 {
 	local
