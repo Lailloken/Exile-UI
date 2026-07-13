@@ -1,5 +1,16 @@
 [
   [
+	["1.63.9", 16309],
+	"july 13, 2026",
+	"act-tracker:\n–> poe1: focused channelling support didn't import correctly\n–> poe2: some steps were not tagged as <optional> or <league-start>",
+	"chat macros:\n–> (re)binding hotkeys wasn't working",
+	"item-info:\n–> (temporarily) removed global rules",
+	"rune-ninja:\n–> several scanner improvements",
+	"settings:\n–> streamlined and re-arranged the individual sections",
+	"stash-ninja:\n–> when using <global profiles>, the active profile is now also global",
+	"vaal street:\n–> fixed conversion issues, (potentially) fixed repricing issues"
+  ],
+  [
 	["1.63.8", 16308, 1],
 	"june 30, 2026",
 	"tool updates should now download and install significantly faster",
