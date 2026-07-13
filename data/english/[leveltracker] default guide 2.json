@@ -284,7 +284,7 @@
       "(hint)_ - find (img:checkpoint) (color:aqua)v-shaped_bridge along edge"
     ],
     [
-      "(color:66b2ff)res (img:ring) + (img:rune) in (img:checkpoint) (color:cc99ff)elemental_offering",
+      "optional: (color:66b2ff)res (img:ring) + (img:rune) in (img:checkpoint) (color:cc99ff)elemental_offering",
       "find (img:arena) heart_of_keth: kill azarian",
       "(img:quest_2) halani: (quest:cinders) || (img:quest_2) halani: (quest:essence)",
       "(img:portal) to areaidg2_town ;; the ardura caravan"
@@ -403,7 +403,7 @@
     ],
     [
       "optional: <boots>: (img:checkpoint) (color:cc99ff)camp chest",
-      "(img:in-out2) mystic_refuge for (img:waypoint)",
+      "leaguestart: (img:in-out2) mystic_refuge for (img:waypoint)",
       "enter (img:checkpoint) areaidg3_5 ;; chimeral wetlands",
       "(hint)__ npc in (img:checkpoint) (color:cc99ff)camp can reveal it"
     ],
