@@ -35,6 +35,14 @@
 					If !Blank(new := ini["global profiles"]["limit " outer " " val])
 						settings.stash.global_profile[outer][index] := (new = "null" ? "" : new)
 
+		If settings.stash.use_global
+			For index, val in settings.stash.global_profile
+				If !Blank(val.3)
+				{
+					settings.stash.global_profile_active := index
+					Break
+				}
+
 		settings.stash.rate_limits := {"timestamp": ""}
 		settings.stash.colors := [!Blank(check := ini.UI["text color"]) ? check : "000000", !Blank(check1 := ini.UI["background color"]) ? check1 : "00CC00"
 							, !Blank(check2 := ini.UI["text color2"]) ? check2 : "000000", !Blank(check3 := ini.UI["background color2"]) ? check3 : "FF8000"
@@ -177,7 +185,7 @@ Stash(mode, test := 0)
 	Gui, %GUI_name%: Color, Purple
 	WinSet, TransColor, Purple
 	Gui, %GUI_name%: Margin, 0, 0
-	tab := (mode = "refresh") ? vars.stash.active : mode, profile := settings.stash[tab].profile, vars.stash.active := tab, vars.stash.regex := ""
+	tab := (mode = "refresh") ? vars.stash.active : mode, profile := (settings.stash.use_global ? settings.stash.global_profile_active : settings.stash[tab].profile), vars.stash.active := tab, vars.stash.regex := ""
 	array := (settings.stash.use_global ? settings.stash.global_profile : settings.stash[tab].limits)
 
 	If test
@@ -357,6 +365,8 @@ Stash_Hotkeys(mode := "")
 	{
 		If settings.stash[tab].bookmarking && (GetKeyState("Shift", "P") || GetKeyState("Control", "P")) && (settings.stash[tab].bookmark != hotkey)
 			settings.stash[tab].bookmark := hotkey, Stash("refresh")
+		Else If settings.stash.use_global && !Blank(settings.stash.global_profile[hotkey].3)
+			settings.stash.global_profile_active := hotkey, Stash("refresh")
 		Else If !Blank(settings.stash[tab].limits[hotkey].3) && !(GetKeyState("Shift", "P") || GetKeyState("Control", "P")) && (hotkey != settings.stash[tab].profile)
 			settings.stash[tab].profile := hotkey, Stash("refresh")
 	}

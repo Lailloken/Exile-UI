@@ -1211,7 +1211,7 @@
       "olroths-saga"
     ],
     [
-      364,
+      274,
       536,
       "verisium",
       "verisium"
@@ -1221,6 +1221,12 @@
       0,
       "exceptional verisium",
       "exceptional-verisium"
+    ],
+    [
+      544,
+      0,
+      "liquid verisium",
+      "liquid-verisium"
     ],
     [
       274,
