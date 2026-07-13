@@ -183,7 +183,7 @@ Gui_HelpToolTip(HWND_key)
 		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
-	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? vars.settings.w//2 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
@@ -341,6 +341,9 @@ Gui_HelpToolTip(HWND_key)
 		xPos := (vars.general.xMouse + tooltip_width >= vars.monitor.x + vars.monitor.w ? vars.monitor.x + vars.monitor.w - tooltip_width : vars.general.xMouse)
 	Else If settings_selection
 		xPos := xControl, yPos := y + h - 1
+	Else If (check = "settings")
+		xPos := (vars.settings.x + vars.settings.w + width >= vars.monitor.x + vars.monitor.w ? vars.settings.x - width : vars.settings.x + vars.settings.w)
+		, yPos := (RegexMatch(control, "i)updater.changelog|recentchanges") ? vars.settings.y : Max(vars.settings.y, y + h//2 - height//2))
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1

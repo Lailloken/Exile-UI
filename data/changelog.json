@@ -20,7 +20,7 @@
 	["1.63.6", 16306],
 	"june 22, 2026",
 	"item-info:\n–> profiles can now have names",
-	"added a new docking position (<taskbar>) for the game-client",
+	"added a new <taskbar> docking position for the game-client",
 	"rune-ninja:\n–> fixed scan results on non-english systems\n–> fixed price-checks for thaumaturgic fluxes\n–> added a controller mode",
 	"settings:\n–> restructured the side panel to make it shorter\n–> clickable buttons are now shaded to set them apart from simple text boxes"
   ],

@@ -967,9 +967,10 @@ Settings_client()
 			Gui, %GUI%: Add, Text, % "xp y+-1 w" wDock " hp 0x200 Border BackgroundTrans Center gSettings_client2 HWNDhwnd", % DDL[vars.client.docked]
 			vars.ddl.dock := {"cHWND": hwnd, "current": DDL[vars.client.docked], "list": DDL.Clone(), "fSize": fSize, "color": vars.settings.cButtons}
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-			vars.hwnd.settings.dock := hwnd, vars.hwnd.help_tooltips["settings_window position|"] := hwnd1
+			vars.hwnd.settings.dock := hwnd
 		}
-		Else Gui, %GUI%: Add, Text, % "xp y+-1 w" wDock " hp Center Border", % Lang_Trans("m_general_poscenter")
+		Else Gui, %GUI%: Add, Text, % "xp y+-1 w" wDock " hp Center Border HWNDhwnd1", % Lang_Trans("m_general_poscenter")
+		vars.hwnd.help_tooltips["settings_window position|"] := hwnd1
 
 		If (hCheck < vars.monitor.h)
 		{
@@ -6763,7 +6764,7 @@ Settings_CharTracking(mode, wEdits := "")
 	If valid_char
 	{
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-		Gui, %GUI%: Add, Text, % "xs y+-1 w" wEdits " hp HWNDhwnd0 Border 0x200 cLime", % " " vars.log.character_class " (" vars.log.level ")"
+		Gui, %GUI%: Add, Text, % "xs y+-1 w" wEdits " hp HWNDhwnd0 Border 0x200", % " " vars.log.character_class " (" vars.log.level ")"
 		vars.hwnd.settings.class_text := vars.hwnd.help_tooltips["settings_ascendancy"] := hwnd0
 	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize
