@@ -626,6 +626,7 @@ Settings_cheatsheets()
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth*12 " hp Border BackgroundTrans"
 	Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd",
+	Gui, %GUI%: Font, % "s" settings.general.fSize
 	vars.hwnd.settings.name := vars.hwnd.help_tooltips["settings_cheatsheets name"] := hwnd
 
 	For index, object in vars.cheatsheets.samples
