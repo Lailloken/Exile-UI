@@ -183,7 +183,7 @@ Gui_HelpToolTip(HWND_key)
 		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
-	tooltip_width := (check = "settings") ? vars.settings.w//2 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? settings.general.fWidth * 34 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 

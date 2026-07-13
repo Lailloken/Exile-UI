@@ -2656,11 +2656,19 @@ Settings_leveltracker()
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.recommend := hwnd, vars.hwnd.help_tooltips["settings_leveltracker recommendation"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gSettings_leveltracker2" (settings.leveltracker.autotrack ? " cLime" : " cGray"), % " " Lang_Trans("m_lvltracker_autotracking") " "
+	Gui, %GUI%: Add, Text, % (settings.leveltracker.fade ? "Section xs" : "ys") " Border BackgroundTrans HWNDhwnd gSettings_leveltracker2" (settings.leveltracker.autotrack ? " cLime" : " cGray"), % " " Lang_Trans("m_lvltracker_autotracking") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.autotrack := hwnd, vars.hwnd.help_tooltips["settings_leveltracker auto tracking"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans Center gSettings_leveltracker2 HWNDhwnd" (settings.leveltracker.hotkeys ? " cLime w" settings.general.fWidth * 16 - 3  : " cGray"), % " " Lang_Trans("m_lvltracker_pagehotkeys") " "
+	If !vars.client.stream && !vars.poe_version
+	{
+		Gui, %GUI%: Add, Text, % (!settings.leveltracker.fade ? "Section xs" : "ys") " Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd" (settings.leveltracker.geartracker ? " cLime" : " cGray"), % " " Lang_Trans("m_lvltracker_gear") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings.geartracker := hwnd, vars.hwnd.help_tooltips["settings_leveltracker geartracker"] := hwnd1
+	}
+
+	line_break := (!vars.poe_version && settings.leveltracker.fade || vars.poe_version && !settings.leveltracker.fade)
+	Gui, %GUI%: Add, Text, % "Section " (line_break ? "xs" : "ys") " Border BackgroundTrans Center gSettings_leveltracker2 HWNDhwnd" (settings.leveltracker.hotkeys ? " cLime w" settings.general.fWidth * 16 - 3  : " cGray"), % " " Lang_Trans("m_lvltracker_pagehotkeys") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.hotkeys_enable := hwnd, vars.hwnd.help_tooltips["settings_leveltracker hotkeys enable"] := hwnd1
 
@@ -2680,18 +2688,8 @@ Settings_leveltracker()
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
 
-	If !vars.client.stream && !vars.poe_version
-	{
-		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd" (settings.leveltracker.geartracker ? " cLime" : " cGray"), % " " Lang_Trans("m_lvltracker_gear") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.hwnd.settings.geartracker := hwnd, vars.hwnd.help_tooltips["settings_leveltracker geartracker"] := hwnd1
-
-		If settings.leveltracker.hotkeys
-			Gui, %GUI%: Add, Text, % "xp y+-1 hp Border w1 Hidden"
-	}
-
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing, % Lang_Trans("m_lvltracker_guide")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " yp+" settings.general.fHeight + vars.settings.spacing, % Lang_Trans("m_lvltracker_guide")
 	Gui, %GUI%: Font, norm
 
 	files := [0, 0, 0, 0, 0, 0, 0, 0, 0], handle := ""

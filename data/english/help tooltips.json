@@ -270,7 +270,7 @@
     ],
     "cloneframes close button toggle": [
       "(/highlight)experimental option:\nmainly for setups where the <infopanel> check cannot be used reliably",
-      "this option will unlock the <close button> check in the <screen-checks> section",
+      "this option will unlock the <close button> check in the <screen-checks> section",
       "if calibrated correctly, clone-frames will automatically hide whenever a full-screen interface with that button is on screen"
     ],
     "cloneframes performance": [
@@ -307,7 +307,7 @@
     ],
     "exchange enable": [
       "ratio calculator, small ux improvements, trade logging, and balance tracking for the in-game currency exchange",
-      "(/highlight)requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section",
+      "(/highlight)requires the <currency exchange> and <inventory> checks to be set up correctly in the <screen-checks> section",
       "while the currency exchange is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
     ],
@@ -319,7 +319,7 @@
     ],
     "exchange async enable": [
       "quick-pricing functionality, and price/age tracking for listed items",
-      "(/highlight)requires the <async trade> checks to be set up correctly in the <screen-checks> section",
+      "(/highlight)requires the <async trade> checks to be set up correctly in the <screen-checks> section",
       "while the async trade window is on screen, press the <omni-key> to activate the feature",
       "hold down <alt> to temporarily hide the overlay"
     ],
@@ -478,7 +478,7 @@
       "adds a timer that records your act times and stores them in csv-files",
       "timer structure:\ntotal time | act # | current act time",
       "click <act #> to pause/resume the timer",
-      "how to reset: in the first zone or town, long-right-click on <act #>"
+      "how to reset: in the first zone or town, long-right-click on <act #>"
     ],
     "leveltracker fade-timer": [
       "automatically hides the overlay after a delay (except when in towns)",
@@ -501,8 +501,8 @@
       ]
     ],
     "leveltracker geartracker": [
-      "mainly for re-running campaign:\nnotifies you when gems or gear are equippable\n(guide overlay will display <gear rdy>)",
-      "accessed by clicking <gear rdy> in the guide overlay or right-clicking the act-tracker button in the menu-widget",
+      "mainly for re-running campaign:\nnotifies you when gems or gear are equippable\n(guide overlay will display <gear rdy>)",
+      "accessed by clicking <gear rdy> in the guide overlay or right-clicking the act-tracker button in the menu-widget",
       "(/highlight)requires your character name in the <general> settings or the active guide slot"
     ],
     "leveltracker expbar": [
@@ -541,7 +541,7 @@
       "if you want to edit the images yourself, you can move them to this folder manually"
     ],
     "leveltracker tree hotkey": [
-      "optional: if you close the in-game passive tree by pressing its hotkey again or the <close all ui> hotkey, you can specify it here",
+      "optional: if you close the in-game passive tree by pressing its hotkey again or the <close all ui> hotkey, you can specify it here",
       "whenever you press that hotkey to close the in-game tree, the tree overlay will also close"
     ],
     "leveltracker profile create": [
@@ -674,7 +674,7 @@
     ],
     "leveltracker auto tracking": [
       "1) if the guide-overlay is open, characters will be automatically tracked and added to the active guide-slot upon reaching level 2",
-      "2) when you write something into local chat, tracking will automatically switch to the guide-slot with that character's name"
+      "2) when you write something into local chat, tracking will automatically switch to the guide-slot that has that character's name"
     ],
     "lootfilter colors": [
       "the colors used for the background and buttons in the editor"
@@ -815,7 +815,7 @@
       "requires you to specify the correct in-game hotkey"
     ],
     "maptracker portal hotkey": [
-      "enter the in-game hotkey for <use portal scroll>",
+      "enter the in-game hotkey for <portal scroll>",
       "check the links above if it uses special keys/combinations"
     ],
     "maptracker loot-tracker": [
@@ -950,7 +950,7 @@
       "holding down the right crtl-key while scanning the screen will open a window that displays the screen-cap as well as the text the tool was able to read from it"
     ],
     "ocr z hotkey": [
-      "type in the in-game hotkey for <toggle highlighting>",
+      "type in the in-game hotkey for <toggle highlighting>",
       "check the links above if it uses special keys/combinations"
     ],
     "ocr hotkey": [
@@ -1422,7 +1422,7 @@
       "the current div-price in exalts (e.g. 210):\nthis value is used to convert exalt to divines when logging trades"
     ],
     "currency icons": [
-      "optional: click a currency icon to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
+      "optional: click a currency icon to log your in-/outflow of main currency\n(the transaction will be logged when clicking <place order>)"
     ],
     "edit fields": [
       "enter a value, or scroll to adjust the current value (hold down <shift> to adjust by 10)",
@@ -1457,7 +1457,7 @@
   "lab": {
     "button": [
       "red = layout unavailable/outdated, yellow = layout only, green = layout + tracking",
-      "click to open poelab.com: select difficulty, right-click layout image, click <copy image>",
+      "click to open poelab.com: select difficulty, right-click layout image, click <copy image>",
       "optional: right-click <lab compass file>, click <copy link address>, press ctrl + a and then ctrl + c"
     ]
   },
@@ -1528,7 +1528,7 @@
       "hold down <alt> to temporarily hide the overlay",
       "select a skill set from the list on the left",
       "click <all x gems> to start an in-game search: this will include every gem of the matching type within every socket group",
-      "below that, there's a list of all the socket groups from the selected skill set: it only includes groups where the <main gem> matches the uncut gem you initially clicked on (skill or spirit)",
+      "below that, there's a list of all the socket groups from the selected skill set: it only includes groups where the <main gem> matches the uncut gem you initially clicked on (skill or spirit)",
       "click a socket group to start an in-game search: this will include every gem from the group"
     ]
   },
@@ -2053,7 +2053,7 @@
       "-> open the in-game passive tree",
       "-> the <close button> (img) has to be fully visible",
       "-> long-click the <cal> button: a 'crosshair' and zoom-widget will follow the cursor",
-      "-> drag the 'crosshair' onto a red pixel on the <close button>, as shown on the img",
+      "-> drag the 'crosshair' onto a red pixel on the <close button>, as shown on the img",
       "-> follow the instructions in <test>"
     ],
     "inventory": [
