@@ -203,7 +203,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 			If (click = 2)
 				Return
 			IniWrite, % (settings.actdecoder.aLayouts := (settings.actdecoder.aLayouts = "vertical") ? "horizontal" : "vertical"), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts arrangement
-			x := (settings.actdecoder.aLayouts = "vertical") ? 0 : "", y := (settings.actdecoder.aLayouts = "vertical") ? "" : 0
+			x := (settings.actdecoder.aLayouts = "vertical") ? vars.monitor.x : "", y := (settings.actdecoder.aLayouts = "vertical") ? "" : vars.monitor.y
 			KeyWait, LButton
 			KeyWait, RButton
 		}
@@ -228,7 +228,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 				If longpress
 					vars.general.drag := 0
 			}
-			Else x := (settings.actdecoder.aLayouts = "horizontal") ? "" : 0, y := (settings.actdecoder.aLayouts = "horizontal") ? 0 : ""
+			Else x := (settings.actdecoder.aLayouts = "horizontal") ? "" : vars.monitor.x, y := (settings.actdecoder.aLayouts = "horizontal") ? vars.monitor.y : ""
 			KeyWait, LButton
 			KeyWait, RButton
 		}
