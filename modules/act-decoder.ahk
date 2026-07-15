@@ -9,9 +9,9 @@
 	If refresh || !IsObject(vars.actdecoder)
 	{
 		vars.actdecoder := {"updater": {}}
-		Try tool := json.Load(LLK_FileRead("data\versions.json"))
-		If tool._release
-			vars.actdecoder.tool := tool._release.1 . (tool.hotfix ? "." (tool.hotfix < 10 ? 0 : "") . tool.hotfix : "")
+		Try tool_version := json.Load(LLK_FileRead("data\versions.json"))
+		If tool_version._release
+			vars.actdecoder.tool_version := tool_version._release.1 . (tool_version.hotfix ? "." (tool_version.hotfix < 10 ? 0 : "") . tool_version.hotfix : "")
 		Try current := json.Load(LLK_FileRead("img\GUI\act-decoder\version" vars.poe_version ".json"))
 		Try vars.actdecoder.file_list := json.Load(LLK_FileRead("img\GUI\act-decoder\file-list" vars.poe_version ".json"))
 		If current.version
@@ -223,7 +223,7 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 					{
 						longpress := 1
 						LLK_Drag(width, height, x, y,, "actdecoder_zones" toggle, 1,,, 1)
-						Sleep 1
+						Sleep 10
 					}
 				If longpress
 					vars.general.drag := 0
@@ -279,8 +279,8 @@ Actdecoder_ZoneLayouts(mode := 0, click := 0, cHWND := "")
 
 	If !Blank(x) || !Blank(y)
 	{
-		IniWrite, % (settings.actdecoder.xLayouts := x), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts x
-		IniWrite, % (settings.actdecoder.yLayouts := y), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts y
+		IniWrite, % (settings.actdecoder.xLayouts := x - vars.monitor.x), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts x
+		IniWrite, % (settings.actdecoder.yLayouts := y - vars.monitor.y), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts y
 	}
 	If (click = 1) && (check = "drag")
 		Return

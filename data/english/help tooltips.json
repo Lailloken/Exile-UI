@@ -176,6 +176,10 @@
       "separate zoom setting in locked mode\n(0 = disabled)",
       "this means you can have two different zoom while (not) holding down the hotkey"
     ],
+    "actdecoder position reset": [
+      "long-click to reset the overlay's placement to the default position",
+      "this overlay is one of the few that can be placed outside the main monitor, which may cause issues if you change your setup between sessions"
+    ],
     "anoints enable": [
       "quick-access interface to find and filter which recipes are available with the materials you have",
       "hover over materials and press the <omni-key> to access this feature"

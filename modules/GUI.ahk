@@ -688,35 +688,36 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 	If !ignore_bounds
 	{
 		xPos := (xPos < vars.monitor.x) ? vars.monitor.x : xPos, yPos := (yPos < vars.monitor.y) ? vars.monitor.y : yPos
-		xPos -= vars.monitor.x, yPos -= vars.monitor.y
-		If (xPos >= vars.monitor.w)
-			xPos := vars.monitor.w - 1
-		If (yPos >= vars.monitor.h)
-			yPos := vars.monitor.h - 1
+		If (xPos >= vars.monitor.x + vars.monitor.w)
+			xPos := vars.monitor.x + vars.monitor.w - 1
+		If (yPos >= vars.monitor.y + vars.monitor.h)
+			yPos := vars.monitor.y + vars.monitor.h - 1
 	}
 
-	If (xPos >= vars.monitor.w / 2) && !top_left
+	If (xPos >= vars.monitor.x + vars.monitor.w / 2) && !top_left
 		xTarget := xPos - width + 1 - xOffset
 	Else xTarget := xPos + (!top_left ? xOffset : 0)
 
-	If (yPos >= vars.monitor.h / 2) && !top_left
+	If (yPos >= vars.monitor.y + vars.monitor.h / 2) && !top_left
 		yTarget := yPos - height + 1 - yOffset
 	Else yTarget := yPos + (!top_left ? yOffset : 0)
 
 	If !ignore_bounds
 	{
-		If top_left && (xTarget + width > vars.monitor.w)
-			xTarget := vars.monitor.w - width, xPos := xTarget
-		If top_left && (yTarget + height > vars.monitor.h)
-			yTarget := vars.monitor.h - height, yPos := yTarget
+		If top_left && (xTarget + width > vars.monitor.x + vars.monitor.w)
+			xTarget := vars.monitor.x + vars.monitor.w - width, xPos := xTarget
+		If top_left && (yTarget + height > vars.monitor.y + vars.monitor.h)
+			yTarget := vars.monitor.y + vars.monitor.h - height, yPos := yTarget
 	}
 
 	If snap && LLK_IsBetween(xMouse, vars.monitor.x + vars.client.xc * 0.9, vars.monitor.x + vars.client.xc * 1.1)
-		xPos := "", xTarget := vars.client.xc - width/2 + 1
+		xPos := "", xTarget := vars.monitor.x + vars.client.xc - width/2 + 1
 	Else If snap && LLK_IsBetween(yMouse, vars.monitor.y + vars.client.yc * 0.9, vars.monitor.y + vars.client.yc * 1.1)
-		yPos := "", yTarget := vars.client.yc - height/2 + 1
+		yPos := "", yTarget := vars.monitor.y + vars.client.yc - height/2 + 1
+	Else If !ignore_bounds
+		xPos -= vars.monitor.x, yPos -= vars.monitor.y
 
-	Gui, %gui_name%: Show, % (vars.client.stream ? "" : "NA ") "x" vars.monitor.x + xTarget " y" vars.monitor.y + yTarget
+	Gui, %gui_name%: Show, % (vars.client.stream ? "" : "NA ") "x" xTarget " y" yTarget
 }
 
 LLK_FontDefault()

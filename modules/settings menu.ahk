@@ -45,7 +45,7 @@
 			Gui, %GUI%: Add, Text, % "Section xs cFF8000", % Lang_Trans("m_actdecoder_download", 2)
 		Else Gui, %GUI%: Add, Text, % "Section xs h" settings.general.fHeight " cLime", % Lang_Trans("global_update", 2)
 
-		If vars.actdecoder.updater.check.requires && (vars.actdecoder.updater.check.requires > vars.actdecoder.tool)
+		If vars.actdecoder.updater.check.requires && (vars.actdecoder.updater.check.requires > vars.actdecoder.tool_version)
 			Gui, %GUI%: Add, Text, % "Section xs y+0 hp cFF8000", % Lang_Trans("m_actdecoder_required")
 		Else
 		{
@@ -110,6 +110,13 @@
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings["zoneszoom_plus"] := hwnd, vars.hwnd.help_tooltips["settings_actdecoder layouts locked zoom|||"] := hwnd1
 
+	If !Blank(settings.actdecoder.xLayouts . settings.actdecoder.yLayouts)
+	{
+		Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " Border BackgroundTrans HWNDhwnd gSettings_actdecoder2", % " " Lang_Trans("global_reset") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Range0-500 Vertical HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
+		vars.hwnd.settings.reset_position := hwnd, vars.hwnd.settings.reset_position_bar := vars.hwnd.help_tooltips["settings_actdecoder position reset"] := hwnd1
+	}
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing, % Lang_Trans("global_credits") . Lang_Trans("global_colon")
 	Gui, %GUI%: Font, norm
@@ -137,7 +144,8 @@ Settings_actdecoder2(cHWND := "")
 	If wait
 		Return
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
-	KeyWait, LButton
+	If !InStr(check, "reset_position")
+		KeyWait, LButton
 	If (check = "enable")
 	{
 		IniWrite, % (settings.features.actdecoder := !settings.features.actdecoder), % "ini" vars.poe_version "\config.ini", Features, enable act-decoder
@@ -256,6 +264,17 @@ Settings_actdecoder2(cHWND := "")
 
 		GuiControl, Text, % vars.hwnd.settings["zoneszoom_text"], % settings.actdecoder.sLayouts1
 		GuiControl, movedraw, % vars.hwnd.settings["zoneszoom_text"]
+	}
+	Else If (check = "reset_position")
+	{
+		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings.reset_position_bar, "LButton",,, 500, "Red", vars.settings.cButtons)
+		{
+			IniWrite, % (settings.actdecoder.xLayouts := ""), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts x
+			IniWrite, % (settings.actdecoder.yLayouts := ""), % "ini" vars.poe_version "\act-decoder.ini", settings, zone-layouts y
+			If WinExist("ahk_id " vars.hwnd.actdecoder.main)
+				Actdecoder_ZoneLayouts()
+		}
+		Else Return
 	}
 	Else LLK_ToolTip("no action")
 
