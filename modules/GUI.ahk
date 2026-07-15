@@ -838,8 +838,9 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	}
 	Else If (mode = "check")
 	{
+		check := (WinExist("ahk_id " guiHWND) ? 1 : 0)
 		DetectHiddenWindows, Off
-		Return (WinExist("ahk_id " guiHWND) ? 1 : 0)
+		Return check
 	}
 
 	For index, val in vars.GUI ;check for GUIs that have already been destroyed
