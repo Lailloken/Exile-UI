@@ -166,24 +166,6 @@
     [
       "(img:quest) greust: <intruders_in_black>",
       "(img:quest) helena: <invite_to_hideout>",
-      "(img:waypoint) to areaid1_2_3 ;; the crossroads"
-    ],
-    [
-      "go (img:3) to areaid1_2_15 ;; fellshrine ruins",
-      "follow road: areaid1_2_5_1 ;; the crypt (1)"
-    ],
-    [
-      "leaguestart: complete (img:lab) trial",
-      "find & enter areaid1_2_5_2 ;; the crypt (2)",
-      "(hint)__ (color:cc99ff)start & (color:cc99ff)exit: opposite corners"
-    ],
-    [
-      "find (img:quest) (quest:altar) for (quest:golden_hand)",
-      "(hint)__ (color:cc99ff)start & (quest:altar): opposite corners",
-      "(color:cc99ff)relog: areaid1_2_town ;; forest encampment"
-    ],
-    [
-      "(img:quest) yeena: (quest:book)",
       "go (img:5) to areaid1_2_7 ;; the riverways"
     ],
     [
@@ -319,10 +301,10 @@
         ]
       ],
       "lines": [
-        "go (img:4) to torch on road || follow:",
-        "(hint)_ 1) side path: (color:red)kill arena:alira for (quest:amulet)",
-        "(hint)_ 2) main road: kill arteri for (quest:emblem)",
-        "(img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town ;; forest encampment"
+        "find & (color:red)kill arena:alira for (quest:amulet)",
+        "(hint)__ search the side with the (img:waypoint)",
+        "go (img:5), kill arteri || break (img:quest) (quest:seal)",
+        "(color:cc99ff)relog: areaid1_2_town ;; forest encampment"
       ]
     },
     {
@@ -333,10 +315,10 @@
         ]
       ],
       "lines": [
-        "go (img:4) to torch on road || follow:",
-        "(hint)_ 1) side path: (quest:help) arena:alira for (quest:apex)",
-        "(hint)_ 2) main road: kill arteri for (quest:emblem)",
-        "(img:quest) (quest:seal) || (color:cc99ff)relog: areaid1_2_town ;; forest encampment"
+        "find & (quest:help) arena:alira for (quest:apex)",
+        "(hint)__ search the side with the (img:waypoint)",
+        "go (img:5), kill arteri || break (img:quest) (quest:seal)",
+        "(color:cc99ff)relog: areaid1_2_town ;; forest encampment"
       ]
     },
     {
@@ -435,7 +417,7 @@
       ],
       "lines": [
         "find & (quest:help) arena:oak for (quest:apex)",
-        "clear (img:quest) (quest:roots), enter areaid1_2_11 ;; vaal ruins",
+        "find (img:waypoint): areaid1_2_3 ;; the crossroads",
         "(hint)__ usually (img:7) or (img:1), rarely (img:5)"
       ]
     },
@@ -449,7 +431,7 @@
       ],
       "lines": [
         "(img:quest) bestel: (quest:book)",
-        "(img:waypoint) to areaid1_2_12 ;; the wetlands"
+        "(img:waypoint) to areaid1_2_3 ;; the crossroads"
       ]
     },
     {
@@ -460,22 +442,30 @@
         ]
       ],
       "lines": [
-        "(img:waypoint) to areaid1_2_12 ;; the wetlands"
+        "(img:waypoint) to areaid1_2_3 ;; the crossroads"
       ]
     },
-    {
-      "condition": [
-        "bandit",
-        [
-          "none",
-          "alira",
-          "kraityn"
-        ]
-      ],
-      "lines": [
-        "clear (img:quest) (quest:roots), enter areaid1_2_11 ;; vaal ruins"
-      ]
-    },
+    [
+      "go (img:3) to areaid1_2_15 ;; fellshrine ruins",
+      "follow road: areaid1_2_5_1 ;; the crypt (1)"
+    ],
+    [
+      "leaguestart: complete (img:lab) trial",
+      "find & enter areaid1_2_5_2 ;; the crypt (2)",
+      "(hint)__ (color:cc99ff)start & (color:cc99ff)exit: opposite corners"
+    ],
+    [
+      "find (img:quest) (quest:altar) for (quest:golden_hand)",
+      "(hint)__ (color:cc99ff)start & (quest:altar): opposite corners",
+      "(img:portal) to areaid1_2_town ;; forest encampment"
+    ],
+    [
+      "(img:quest) yeena: (quest:book)",
+      "(img:waypoint) to areaid1_2_12 ;; the wetlands"
+    ],
+    [
+      "clear (img:quest) (quest:roots): areaid1_2_11 ;; vaal ruins"
+    ],
     [
       "find & enter areaid1_2_8 ;; northern forest",
       "(hint)_ - zone is often s- or v-shaped",
@@ -1424,7 +1414,7 @@
       "(img:quest) lilly: areaid2_11_endgame_town ;; karui shores"
     ],
     [
-      "leaguestart: get the (img:craft) || talk to (img:quest) kirac",
+      "leaguestart: get the (img:craft) || (color:cc99ff)relog: talk to (img:quest) kirac",
       "<type_\"/passives\"_in_chat>",
       "<the_act-tracker_guide_ends_here>"
     ]
