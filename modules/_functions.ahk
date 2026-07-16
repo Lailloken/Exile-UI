@@ -692,10 +692,22 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	}
 	Else If (timer = 2)
 	{
+		If WinExist("ahk_class POEWindowClass")
+		{
+			WinGetPos, xWin, yWin, wWin, hWin, ahk_class POEWindowClass
+			winPos := {"x": xWin, "y": yWin, "w": wWin, "h" hWin}
+		}
 		Gui, update_download: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDdownload
 		Gui, update_download: Color, Black
 		Gui, update_download: Add, Progress, range0-10 HWNDhwnd BackgroundBlack cGreen, 0
-		Gui, update_download: Show
+		If IsObject(winPos)
+		{
+			Gui, update_download: Show, NA x10000 y10000
+			WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " download
+			Gui, update_download: Show, % "x" winPos.x + winPos.w//2 - wWin//2 " y" winPos.y + winPos.h//2 - hWin//2
+		}
+		Else Gui, update_download: Show
+
 		UpdateDownload(hwnd)
 		branch := InStr(versions_live._release.2, "/main.zip") ? "main" : "beta"
 		vars.updater.target_version := [LLK_IniRead("ini\config.ini", "versions", "apply update")]
