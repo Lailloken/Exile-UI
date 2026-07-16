@@ -3783,7 +3783,7 @@ Settings_mapinfo()
 {
 	local
 	global vars, settings, db
-	static fSize, wFont, wMapmods
+	static fSize, wFont, wMapmods, wDDL
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.xMargin
 
@@ -3812,13 +3812,14 @@ Settings_mapinfo()
 		fSize := settings.general.fSize
 		LLK_PanelDimensions([Lang_Trans("m_mapinfo_maprolls"), Lang_Trans("global_font")], fSize, wFont, hFont)
 		LLK_PanelDimensions([Lang_Trans("m_mapinfo_mapmods"), Lang_Trans("m_mapinfo_logbooks")], fSize, wMapmods, hMapmods)
+		LLK_PanelDimensions([Lang_Trans("m_general_posleft"), Lang_Trans("m_general_posright"), Lang_Trans("m_general_postop"), Lang_Trans("m_general_posbottom")], fSize, wDDL, hDDL)
 	}
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing, % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "xs Section Border Right", % " " Lang_Trans("global_activation") " "
+	Gui, %GUI%: Add, Text, % "xs Section Right Border", % " " Lang_Trans("global_activation") " "
 	Gui, %Gui%: Add, Text, % "ys x+-1 Border BackgroundTrans HWNDhwnd gSettings_mapinfo2" (settings.mapinfo.activation = "toggle" ? " cLime" : ""), % " " Lang_Trans("global_toggle") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.activation_toggle := hwnd, vars.hwnd.help_tooltips["settings_mapinfo toggle"] := hwnd1
@@ -3831,14 +3832,21 @@ Settings_mapinfo()
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.shiftclick := hwnd, vars.hwnd.help_tooltips["settings_mapinfo shift-click"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd" (settings.mapinfo.tabtoggle ? " cLime" : " cGray"), % " " Lang_Trans("m_mapinfo_sidepanel") " "
+	Gui, %GUI%: Add, Text, % "Section xs Border Right", % " " Lang_Trans("global_position") . Lang_Trans("global_colon") " "
+	DDL := [Lang_Trans("m_general_postop"), Lang_Trans("m_general_posbottom"), Lang_Trans("m_general_posleft"), Lang_Trans("m_general_posright")], current := DDL[settings.mapinfo.position]
+	Gui, %GUI%: Add, Text, % "ys x+-1 w" wDDL " Center Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd cLime", % current
+	vars.ddl.mapinfo_position := {"current": current, "cHWND": hwnd, "list": DDL.Clone(), "color": vars.settings.cButtons, "fSize": fSize}
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.position := hwnd, vars.hwnd.help_tooltips["settings_mapinfo position"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd" (settings.mapinfo.tabtoggle ? " cLime" : " cGray"), % " " Lang_Trans("m_mapinfo_sidepanel") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.tabtoggle := hwnd, vars.hwnd.help_tooltips["settings_mapinfo tab"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "Section xs w" wFont " Right Border HWNDhwnd0", % Lang_Trans("global_font") " "
+	Gui, %GUI%: Add, Text, % "Section xs" (vars.poe_version ? "" : " w" wFont) " Right Border HWNDhwnd0", % (vars.poe_version ? " " : "") Lang_Trans("global_font") " "
 	Gui, %GUI%: Add, Text, % "ys x+-1 Center Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd w"settings.general.fWidth*2, % "–"
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.help_tooltips["settings_font-size"] := hwnd0, vars.hwnd.settings.font_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd1
@@ -3862,7 +3870,7 @@ Settings_mapinfo()
 	}
 	ControlGetPos, xGui,, wGui,,, ahk_id %hwnd%
 
-	Gui, %GUI%: Add, Text, % "Section xs w" wFont " Center Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd" (settings.mapinfo.roll_highlight ? " cLime" : " cGray"), % Lang_Trans("m_mapinfo_maprolls")
+	Gui, %GUI%: Add, Text, % "Section xs" (vars.poe_version ? "" : " w" wFont) " Center Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd" (settings.mapinfo.roll_highlight ? " cLime" : " cGray"), % " " Lang_Trans("m_mapinfo_maprolls") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.roll_highlight := hwnd, vars.hwnd.help_tooltips["settings_mapinfo roll highlight"] := hwnd1, handle := ""
 
@@ -4016,6 +4024,13 @@ Settings_mapinfo2(cHWND)
 			IniWrite, % settings.mapinfo.trigger, % "ini" vars.poe_version "\map info.ini", settings, enable shift-clicking
 			GuiControl, % "+c" (settings.mapinfo.trigger ? "Lime" : "Gray"), % cHWND
 			GuiControl, % "movedraw", % cHWND
+		Case "position":
+			WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
+			input := Gui_DropDownList(vars.ddl.mapinfo_position, [xControl, yControl, wControl, hControl], "Center", 1)
+			If Blank(input) || IsObject(input) && Blank(input.1 . input.2)
+				Return
+			IniWrite, % (settings.mapinfo.position := input.2), % "ini" vars.poe_version "\map info.ini", settings, position
+			vars.ddl.mapinfo_position.current := input.1
 		Case "tabtoggle":
 			IniWrite, % (settings.mapinfo.tabtoggle := !settings.mapinfo.tabtoggle), % "ini" vars.poe_version "\map info.ini", settings, show panel while holding tab
 			GuiControl, % "+c" (settings.mapinfo.tabtoggle ? "Lime" : "Gray"), % cHWND

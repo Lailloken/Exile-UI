@@ -865,6 +865,9 @@
       "hold down the <omni-key> over maps/waystones to activate the panel",
       "the panel will close automatically once you release the key"
     ],
+    "mapinfo position": [
+      "the tooltip's position relative to the mouse cursor"
+    ],
     "mapinfo shift-click": [
       "refreshes the tooltip whenever you apply currency to maps via shift-click",
       "you have to hold down <shift> first, right click currency, and then apply it",

@@ -44,6 +44,7 @@
 	settings.mapinfo.trigger := !Blank(check := ini.settings["enable shift-clicking"]) ? check : 0
 	settings.mapinfo.tabtoggle := !Blank(check := ini.settings["show panel while holding tab"]) ? check : 0
 	settings.mapinfo.activation := !Blank(check := ini.settings.activation) ? check : "toggle"
+	settings.mapinfo.position := !Blank(check := ini.settings.position) ? check : 1
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "FFFF00", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "000000"]
 	For index, val in ["quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"]
@@ -263,13 +264,14 @@ Mapinfo_GUI(mode := 1)
 		WinGetPos, x, y,,, % "ahk_id "hwnd_old
 	Else
 	{
+		position := settings.mapinfo.position
 		Gui, %GUI_name%: Show, % "NA x10000 y10000"
 		WinGetPos,,, w, h, % "ahk_id "vars.hwnd.mapinfo.main
 		MouseGetPos, xPos, yPos
-		y := (mode = 2) ? vars.monitor.y + vars.client.yc - h/2 : (yPos - (h + vars.client.h/25) < vars.client.y) ? yPos + vars.client.h/25 : yPos - (h + vars.client.h/25), oob := (y + h > vars.client.y + vars.client.h) ? 1 : 0
-		If oob
-			x := (xPos - vars.client.h/25 - w < vars.client.x) ? xPos + vars.client.h/25 : xPos - vars.client.h/25 - w, y := (yPos + h/2 > vars.client.y + vars.client.h) ? vars.client.y + vars.client.h - h : (yPos - h/2 < vars.client.y) ? vars.client.y : yPos - h/2
-		Else x := (mode = 2) ? vars.client.x + vars.client.w - w : (xPos - w/2 < vars.client.x) ? vars.client.x : (xPos + w/2 > vars.client.x + vars.client.w) ? vars.client.x + vars.client.w - w : xPos - w/2
+		If (mode = 2)
+			x := vars.client.x + vars.client.w - w, y := vars.client.y + vars.client.h/2 - h/2
+		Else x := xPos + (InStr("12", position) ? -w/2 : (position = 3 ? -w : 0)), y := yPos + (position = 1 ? -h : (InStr("34", position)) ? -vars.client.h/20 : 0)
+		Gui_CheckBounds(x, y, w, h)
 	}
 	Gui, %GUI_name%: Show, % (mode ? "NA " : "") "x"x " y"y
 	LLK_Overlay(mapinfo, "show", mode, GUI_name)
