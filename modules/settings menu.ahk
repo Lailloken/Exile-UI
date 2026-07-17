@@ -1679,7 +1679,7 @@ Settings_general()
 {
 	local
 	global vars, settings
-	static fSize, wOnOff
+	static fSize, wOnOff, wLanguage
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 
@@ -1748,7 +1748,7 @@ Settings_general()
 	Loop, Files, data\*, R
 		If (A_LoopFileName = "client.txt")
 			parse := StrReplace(StrReplace(A_LoopFilePath, "data\"), "\client.txt"), check .= parse "|"
-	If (lang_check := (LLK_InStrCount(check, "|") > 1))
+	If (lang_check := (settings.general.dev || LLK_InStrCount(check, "|") > 1))
 	{
 		Gui, %GUI%: Font, % "s"settings.general.fSize - 4
 		Gui, %GUI%: Add, DDL, % "Hidden xs w" wLanguage, test
