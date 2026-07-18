@@ -282,6 +282,115 @@ Settings_actdecoder2(cHWND := "")
 		Leveltracker_Progress()
 }
 
+Settings_addons()
+{
+	local
+	global vars, settings, db
+
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
+
+	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans gSettings_addons2 HWNDhwnd" (settings.features.addons ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.enable := hwnd, vars.hwnd.help_tooltips["settings_addons enable"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gURL cAqua", % " wiki page "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder", vars.hwnd.help_tooltips["settings_website"] := hwnd1
+
+	If !settings.features.addons
+	{
+		Gui, %Gui%: Add, Text, % "Hidden Section xs y+" vars.settings.spacing " w" settings.general.fWidth * vars.settings.min_width " HWNDhwnd cRed", % Lang_Trans("m_addons_failed")
+		Gui, %Gui%: Add, Text, % "xs y+-1 h1 wp"
+		vars.hwnd.settings.addons_failed := hwnd
+		Return
+	}
+
+	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000", % Lang_Trans("m_addons_warning")
+	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " " Lang_Trans("global_import") " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.import := hwnd, vars.hwnd.help_tooltips["settings_addons import"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "Hidden ys Border BackgroundTrans gSettings_addons2 HWNDhwnd cRed", % " " Lang_Trans("global_restart") " "
+	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.restart := hwnd, vars.hwnd.settings.restart_bar := hwnd1
+	
+	Gui, %GUI%: Font, bold underline
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_addons_list")
+	Gui, %GUI%: Font, norm
+
+	For key, val in vars.addons.list
+	{
+		vars.addons.list[key].enabled_provisional := val.enabled
+		Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_addons2 HWNDhwnd" (val.enabled ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings["enable_" key] := hwnd
+
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " x "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
+		vars.hwnd.settings["delete_" key] := hwnd, vars.hwnd.settings["delete_" key "_bar"] := vars.hwnd.help_tooltips["settings_addons delete"] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " " Lang_Trans("global_settings") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings["settings_" key] := hwnd
+
+		Gui, %GUI%: Add, Text, % "ys hp c" (val.enabled ? "White" : "Gray"), % key
+	}
+}
+
+Settings_addons2(cHWND)
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
+	If !InStr(check, "delete_")
+		KeyWait, LButton
+
+	Switch
+	{
+		Case (check = "enable"):
+		If !settings.features.addons
+		{
+			MsgBox, 4, Exile UI, % Lang_Trans("m_addons_warning", 2)
+			IfMsgBox Yes
+			{
+				FileCreateDir, % "add-ons"
+				Sleep, 100
+				If !FileExist("add-ons")
+				{
+					GuiControl, -Hidden, % vars.hwnd.settings.addons_failed
+					Return
+				}
+			}
+			Else Return
+		}
+		IniWrite, % (settings.features.addons := !settings.features.addons), % "ini" vars.poe_version "\config.ini", features, enable add-ons
+		Settings_menu()
+
+		Case InStr(check, "enable_"):
+		vars.addons.list[control].enabled_provisional := !vars.addons.list[control].enabled_provisional
+		GuiControl, % "+c" (vars.addons.list[control].enabled_provisional ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+		For key, val in vars.addons.list
+			If (val.enabled != val.enabled_provisional)
+				modified := 1
+
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.restart
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.restart_bar
+
+		Case InStr(check, "delete_"):
+		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings[check "_bar"], "LButton",,, 500, "Red", vars.settings.cButtons)
+			Sleep 1
+		Else Return
+
+		Case InStr(check, "settings_"):
+		Settings_menu("addons_" control)
+
+		Default:
+		LLK_ToolTip("no action")
+	}
+}
+
 Settings_anoints()
 {
 	local
@@ -4484,16 +4593,19 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "runeshaping", "search-strings", "sanctum", "stash-ninja", "statlas", "exchange"], "sections2": []}
+			vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "addons", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "news", "updater", "donations", "actdecoder", "leveling tracker", "addons", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "runeshaping", "search-strings", "sanctum", "stash-ninja", "statlas", "exchange"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 		vars.settings.cButtons := "202040", vars.settings.cButtons2 := "353570", vars.settings.min_width := 30
 	}
 
+	If InStr(section, "addons_")
+		sub_section := SubStr(section, InStr(section, "_") + 1), section := "addons"
+
 	If !Blank(LLK_HasVal(vars.hwnd.settings, section))
 	{
-		section := LLK_HasVal(vars.hwnd.settings, section) ? LLK_HasVal(vars.hwnd.settings, section) : section
+		section := LLK_HasVal(vars.hwnd.settings, section)
 		KeyWait, LButton
 	}
 
@@ -4547,14 +4659,14 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	ControlGetPos, x, y,,,, ahk_id %hwnd%
 	vars.hwnd.settings.general := hwnd, vars.settings.xSelection := x, vars.settings.ySelection := y + vars.settings.line1, vars.settings.wSelection := section_width
 	vars.hwnd.settings["background_general"] := vars.hwnd.help_tooltips["settings_selection general"] := hwnd1, vars.settings.x_anchor := vars.settings.xSelection + vars.settings.wSelection + vars.settings.xMargin
-	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints", "runeshaping": "runeshaping"}
+	feature_check := {"actdecoder": "actdecoder", "betrayal-info": "betrayal", "cheat-sheets": "cheatsheets", "leveling tracker": "leveltracker", "mapping tracker": "maptracker", "map-info": "mapinfo", "tldr-tooltips": "OCR", "sanctum": "sanctum", "stash-ninja": "stash", "filterspoon" : "lootfilter", "item-info": "iteminfo", "statlas": "statlas", "anoints": "anoints", "addons": "addons", "runeshaping": "runeshaping"}
 	feature_check2 := {"item-info": 1, "mapping tracker": 1, "map-info": 1, "statlas": 1, "runeshaping": 1}
 
 	If !vars.general.buggy_resolutions.HasKey(vars.client.h) && !vars.general.safe_mode
 		For index, val in vars.settings.sections
 		{
 			If (val = "general") || (val = "screen-checks") && !IsNumber(vars.pixelsearch.gamescreen.x1) || !vars.log.file_location && InStr("mapping tracker, actdecoder", val)
-			|| vars.client.stream && InStr("item-info, map-info, filterspoon", val)
+			|| vars.client.stream && InStr("item-info, map-info, filterspoon", val) || (val = "addons") && !FileExist("add-ons")
 				Continue
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
 			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
@@ -4621,7 +4733,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	Settings_ScreenChecksValid() ;check if 'screen-checks' section needs to be highlighted red
 
 	;Gui, %GUI_name%: Add, Text, % "BackgroundTrans x" vars.settings.x_anchor " y" vars.settings.ySelection " w" settings.general.fWidth * vars.settings.min_width " h1"
-	Settings_menu2(section, mode)
+	Settings_menu2(section, mode, sub_section)
 	Gui, %GUI_name%: Margin, % vars.settings.xMargin, -1
 	Gui, %GUI_name%: Add, Text, % "Section xs x" vars.settings.x_anchor " y+0 w1 h" vars.settings.line1
 	Gui, %GUI_name%: Show, % "NA AutoSize x10000 y10000"
@@ -4655,7 +4767,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	vars.settings.w := w, vars.settings.h := h, vars.settings.restart := vars.settings.wait := ""
 }
 
-Settings_menu2(section, mode := 0) ;mode parameter used when manually calling this function to refresh the window
+Settings_menu2(section, mode := 0, sub_section := "") ;mode parameter used when manually calling this function to refresh the window
 {
 	local
 	global vars, settings
@@ -4668,6 +4780,10 @@ Settings_menu2(section, mode := 0) ;mode parameter used when manually calling th
 			Settings_general()
 		Case "actdecoder":
 			Settings_actdecoder()
+		Case "addons":
+			If sub_section
+				vars.addons.list[sub_section].func.Settings_menu()
+			Else Settings_addons()
 		Case "betrayal-info":
 			Settings_betrayal()
 		Case "cheat-sheets":

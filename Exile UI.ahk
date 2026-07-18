@@ -12,6 +12,7 @@
 #Include data\External Functions.ahk
 #Include data\JSON.ahk
 
+ListLines, Off
 SetWorkingDir %A_ScriptDir%
 DllCall("SetThreadDpiAwarenessContext", "ptr", -3, "ptr")
 OnMessage(0x0204, "RightClick")
@@ -39,10 +40,26 @@ While !WinExist("ahk_class POEWindowClass") && !WinExist("ahk_exe GeForceNOW.exe
 }
 
 ;band-aid fix for situations in which the client was launched after the script, and the script detected an unsupported resolution because the PoE-client window was being resized during window-detection
-If (WinExist("ahk_class POEWindowClass") || WinExist("ahk_exe GeForceNOW.exe")) && win_not_exist
+If win_not_exist && (WinExist("ahk_class POEWindowClass") || WinExist("ahk_exe GeForceNOW.exe"))
 	Sleep, 4000
 LLK_Log("found game-client")
 vars.poe_version := CheckClient(), LLK_Log("--- tool launched" (vars.poe_version ? " (PoE 2)" : "") " ---")
+
+If FileExist("add-ons")
+{
+	other_version := (vars.poe_version ? "" : " 2")
+	If FileExist("add-ons\loader" other_version)
+		FileMove, % "add-ons\loader" other_version, % "add-ons\loader" other_version " (inactive)", % (moved := 1)
+	If FileExist("add-ons\loader" vars.poe_version " (inactive)")
+		FileMove, % "add-ons\loader" vars.poe_version " (inactive)", % "add-ons\loader" vars.poe_version, % (moved := 1)
+
+	If moved
+	{
+		Sleep 500
+		Reload
+		ExitApp
+	}
+}
 
 ;If !vars.poe_version && FileExist("ini\") && !FileExist("ini\file check.ini") ;check ini-files for incorrect file-encoding
 ;	IniIntegrityCheck()
@@ -113,6 +130,9 @@ LLK_Log("+++ tool is running +++")
 
 Menu, Tray, Add
 Menu, Tray, Add, Settings, Settings_menu
+
+For key, val in vars.addons.list
+	func := val.info.classname, vars.addons.list[key].func := new %func%(val.info.name), vars.addons.list[key].func.Init()
 Return
 
 #Include modules\_functions.ahk
@@ -145,6 +165,7 @@ Return
 #Include modules\settings menu.ahk
 #Include modules\stash-ninja.ahk
 #Include modules\statlas.ahk
+#Include *i add-ons\loader
 
 Exit()
 {
@@ -528,6 +549,7 @@ Init_general()
 	settings.features.runeshaping := !Blank(check := ini.features["enable rune-ninja"]) ? check : 0
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
 	settings.features.anoints := !Blank(check := ini.features["enable enchant finder"]) ? check : 0
+	settings.features.addons := !Blank(check := ini.features["enable add-ons"]) ? check : 0
 	settings.features.lootfilter := !Blank(check := ini.features["enable filterspoon"]) ? check : 0
 	settings.features.betrayal := !vars.poe_version && !Blank(check := ini.features["enable betrayal-info"]) ? check : 0
 	settings.features.cheatsheets := !Blank(check := ini.features["enable cheat-sheets"]) ? check : 0
@@ -571,6 +593,18 @@ Init_vars()
 	settings.features := {}
 	settings.geforce := {}
 
+	If FileExist("add-ons\loader" vars.poe_version)
+	{
+		settings.addons := {}, vars.addons := {"list": {}}, loaded := LLK_FileRead("add-ons\loader" vars.poe_version), version := (vars.poe_version ? 2 : 1)
+		Loop, Files, % "add-ons\*", D
+			If FileExist(A_LoopFilePath "\*.ahk") && InStr((file := LLK_FileRead(A_LoopFilePath "\info.json")), "poe" version)
+			{
+				Try info := json.Load(file)
+				Catch
+					Continue
+				vars.addons.list[A_LoopFileName] := {"info": info.Clone(), "enabled": InStr(loaded, "\" A_LoopFileName "\")}
+			}
+	}
 	vars.betrayal := {}
 	vars.cheatsheets := {}
 	vars.client := {}

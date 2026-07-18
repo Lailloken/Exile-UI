@@ -565,5 +565,8 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 							MapEvent(type)
 							Break
 						}
+
+		For key, val in vars.addons.list
+			vars.addons.list[key].func.LogRead(loopfield)
 	}
 }

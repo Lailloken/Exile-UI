@@ -56,6 +56,7 @@
 ;## the feature-names are used here and there, so make sure to be consistent across each mention
 		ms_general			=	"general"
 		ms_actdecoder			=	"act-decoder"
+		ms_addons				=	"add-ons"
 		ms_anoints			=	"enchant finder"
 		ms_betrayal-info		=	"betrayal-info"
 		ms_cheat-sheets		=	"cheat-sheets"
@@ -954,7 +955,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "act-decoder" section of the settings menu
-		m_actdecoder_enable		=	"enable the act-decoder overlay"
 		m_actdecoder_simple		=	"only show generic layouts"
 		m_actdecoder_download	=	"download layouts:"
 		m_actdecoder_download	=	"layouts have not been downloaded yet"
@@ -966,11 +966,14 @@
 
 
 ;#####################################################
-;## settings menu: act-decoder
+;## settings menu: add-ons
 ;#####################################################
 
-;## these strings are displayed/required in the "act-decoder" section of the settings menu
-		m_anoints_enable		=	"enable the enchant finder feature"
+;## these strings are displayed/required in the "add-ons" section of the settings menu
+		m_addons_failed		=	"write issue: couldn't create add-ons folder"
+		m_addons_warning		=	"warning: proceed with caution and do your own research"
+		m_addons_warning		=	"WARNING:;;Add-ons are not validated and may contain dangerous code.;Please do your own research and check the source code before downloading them.;;Do you want to proceed?"
+		m_addons_list			=	"list of downloaded add-ons:"
 
 
 
@@ -979,7 +982,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "betrayal-info" section of the settings menu
-		m_betrayal_enable		=	"enable the betrayal-info overlay"
 		m_betrayal_colors		=	"reward-colors:"
 		m_betrayal_rewards		=	"reward customization:"
 
@@ -990,7 +992,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "cheat-sheets" section of the settings menu
-		m_cheat_enable			=	"enable the cheat-sheet toolkit"
 		m_cheat_hotkeys		=	"hotkey settings:"
 		m_cheat_modifier		=	"omni-key modifier:"			;## as in modifier-key (ALT, CTRL, etc.)
 		m_cheat_advance		=	"advanced cheat-sheets"
@@ -1070,7 +1071,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "item-info" section of the settings menu
-		m_iteminfo_enable		=	"enable the item-info feature"
 		m_iteminfo_profiles		=	"profile settings:"
 		m_iteminfo_profiles		=	"profile selection:"
 		m_iteminfo_profiles		=	"reset profile's:"					;## you can choose between two options: a profile's desired, or undesired mods
@@ -1103,7 +1103,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "filterspoon" section of the settings menu
-		m_lootfilter_enable		=	"enable the filterspoon feature (experimental)"
 		m_lootfilter_colors		=	"ui & buttons:"
 		m_lootfilter_tester		=	"preset-tester:"					;## a section in the settings menu to test/preview various filter settings (size, opacity, etc.)
 
@@ -1114,7 +1113,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "act-tracker" section of the settings menu
-		m_lvltracker_enable			=	"enable the act-tracker feature"
 		m_lvltracker_timer			=	"timer"
 		m_lvltracker_fadeout		=	"fade"
 		m_lvltracker_fadeout		=	"hover"
@@ -1156,7 +1154,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "map-tracker" section of the settings menu
-		m_maptracker_enable			=	"enable the map-tracker feature"
 		m_maptracker_tracking		=	"tracking settings:"
 		m_maptracker_pausehide		=	"hide on pause"
 		m_maptracker_loot			=	"loot"
@@ -1178,7 +1175,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "map-info" section of the settings menu
-		m_mapinfo_enable			=	"enable the map-info panel"
 		m_mapinfo_sidepanel			=	"side-panel"
 		m_mapinfo_mapmods			=	"map-mods:"
 		m_mapinfo_header			=	"header"								;## as in line at the top of a section/paragraph
@@ -1218,7 +1214,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "rune-ninja" section of the settings menu
-		m_runeshaping_enable	=	"enable the rune-ninja overlay"
 		m_runeshaping_correction	=	"auto-correct dictionary:"					;## a list of strings that can be set up to fix recurring scan issues
 
 
@@ -1228,8 +1223,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "sanctum planner" section of the settings menu
-		m_sanctum_enable		=	"enable the sanctum planner overlay"
-		m_sanctum_enable		=	"enable the sekhema planner overlay"
 		m_sanctum_cheatsheet	=	"cheat-sheet"
 		m_sanctum_relicmanager	=	"relic manager"
 
@@ -1272,7 +1265,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "stash-ninja" section of the settings menu
-		m_stash_enable			=	"enable the stash-ninja feature"
 		m_stash_blight			=	"blight"
 		m_stash_breach			=	"breach"
 		m_stash_currency1		=	"currency"
@@ -1312,7 +1304,6 @@
 ;#####################################################
 
 ;## these strings are displayed/required in the "statlas" section of the settings menu
-		m_statlas_enable		=	"enable the statlas feature"
 
 
 
