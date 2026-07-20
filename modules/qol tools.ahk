@@ -483,9 +483,9 @@ Lab(mode := "", override := 0)
 		If GetKeyState(vars.hotkeys.tab, "P")
 			LLK_ToolTip(Lang_Trans("global_releasekey") " " vars.hotkeys.tab, 0,,, "poelab"), vars.alarm.toggle := 0, LLK_Overlay(vars.hwnd.alarm.main, "destroy")
 		KeyWait, % vars.hotkeys.tab
-		LLK_Overlay(vars.hwnd["tooltippoelab"], "destroy"), LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
+		LLK_Overlay(vars.hwnd.tooltip_poelab, "destroy"), LLK_Overlay(vars.hwnd.lab.main, "destroy"), LLK_Overlay(vars.hwnd.lab.button, "destroy"), vars.lab.toggle := 0
 		Run, % "https://www.poelab.com/"
-		WinWaitActive, ahk_group snipping_tools,, 2
+		WinWaitActive, ahk_group snipping_tools,, 0.5
 		ToolTip_Mouse("lab", 1)
 	}
 
@@ -493,6 +493,7 @@ Lab(mode := "", override := 0)
 	{
 		WinWaitNotActive, ahk_group poe_window,, 2
 		Clipboard := ""
+		LLK_ToolTip("to support poelab, please consider disabling ad-block and leaving the site open in the background while running lab", 0, vars.client.x + vars.client.w/2, vars.client.y, "poelab_support", "Yellow",,,, 1,, 1, vars.client.w/4)
 		While !WinActive("ahk_group poe_window")
 		{
 			If !step
@@ -539,6 +540,8 @@ Lab(mode := "", override := 0)
 			Sleep 250
 		}
 		WinWaitActive, ahk_group poe_window
+		vars.tooltip[vars.hwnd.tooltip_poelab_support] := A_TickCount + 1000
+
 		If !step
 		{
 			LLK_ToolTip(Lang_Trans("global_abort"), 1.5, vars.monitor.x + vars.client.xc, vars.monitor.y + vars.client.yc,, "red", settings.general.fSize + 8,,, 1), Gdip_DisposeImage(pBitmap)

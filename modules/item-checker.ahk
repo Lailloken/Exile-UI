@@ -2836,16 +2836,15 @@ Iteminfo_Overlays() ;show update buttons for specific gear-slots underneath the 
 	local
 	global vars, settings
 
-	If settings.iteminfo.compare
-		For slot, val in vars.iteminfo.compare.slots
-		{
-			If LLK_IsBetween(vars.general.xMouse, val.x1, val.x2) && LLK_IsBetween(vars.general.yMouse, val.y1, val.y2) && (vars.log.areaID != "login") && vars.pixels.inventory
-			&& !WinExist("ahk_id "vars.hwnd.iteminfo_comparison[slot]) && (vars.general.wMouse != vars.hwnd.iteminfo.main) && (vars.general.wMouse != vars.hwnd.omni_context.main) && WinActive("ahk_group poe_window")
-				LLK_Overlay(vars.hwnd.iteminfo_comparison[slot], "show",, "iteminfo_button_" slot)
-			Else If WinExist("ahk_id " vars.hwnd.iteminfo_comparison[slot])
-			&& (!(LLK_IsBetween(vars.general.xMouse, val.x1, val.x2) && LLK_IsBetween(vars.general.yMouse, val.y1, val.y2)) || (vars.general.wMouse = vars.hwnd.iteminfo.main) || (vars.general.wMouse = vars.hwnd.omni_context.main) || (vars.log.areaID = "login") || !WinActive("ahk_group poe_window") || !vars.pixels.inventory)
-				LLK_Overlay(vars.hwnd.iteminfo_comparison[slot], "hide")
-		}
+	For slot, val in vars.iteminfo.compare.slots
+	{
+		If vars.pixels.inventory && LLK_IsBetween(vars.general.xMouse, val.x1, val.x2) && LLK_IsBetween(vars.general.yMouse, val.y1, val.y2) && (vars.log.areaID != "login")
+		&& !WinExist("ahk_id "vars.hwnd.iteminfo_comparison[slot]) && (vars.general.wMouse != vars.hwnd.iteminfo.main) && (vars.general.wMouse != vars.hwnd.omni_context.main) && WinActive("ahk_group poe_window")
+			LLK_Overlay(vars.hwnd.iteminfo_comparison[slot], "show",, "iteminfo_button_" slot)
+		Else If WinExist("ahk_id " vars.hwnd.iteminfo_comparison[slot])
+		&& (!(LLK_IsBetween(vars.general.xMouse, val.x1, val.x2) && LLK_IsBetween(vars.general.yMouse, val.y1, val.y2)) || (vars.general.wMouse = vars.hwnd.iteminfo.main) || (vars.general.wMouse = vars.hwnd.omni_context.main) || (vars.log.areaID = "login") || !WinActive("ahk_group poe_window") || !vars.pixels.inventory)
+			LLK_Overlay(vars.hwnd.iteminfo_comparison[slot], "hide")
+	}
 }
 
 Iteminfo_Trigger(mode := 0) ;handles shift-clicks on items and currency for the shift-trigger feature

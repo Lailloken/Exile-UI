@@ -939,7 +939,7 @@ LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0,
 	Return 0
 }
 
-LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "White", size := "", align := "", trans := "", center := 0, background := "", center_text := 0)
+LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "White", size := "", align := "", trans := "", center := 0, background := "", center_text := 0, width := 0)
 {
 	local
 	global vars, settings
@@ -966,9 +966,9 @@ LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "Whit
 	Gui, tooltip%name%: Margin, % settings.general.fwidth / 2, 0
 	WinSet, Transparent, % trans
 	Gui, tooltip%name%: Font, % "s" size* (name = "update" ? 1.4 : 1) " cWhite", % vars.system.font
-	vars.hwnd["tooltip" name] := hwnd
+	vars.hwnd["tooltip_" name] := hwnd
 
-	Gui, tooltip%name%: Add, Text, % "c"color align (center_text ? " Center" : ""), % message
+	Gui, tooltip%name%: Add, Text, % (width ? "w" width " " : "") "c"color align (center_text ? " Center" : ""), % message
 	Gui, tooltip%name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, w, h, ahk_id %hwnd%
 

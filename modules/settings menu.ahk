@@ -173,22 +173,22 @@ Settings_actdecoder2(cHWND := "")
 	Else If (check = "dload_layouts")
 	{
 		wait := 1, failed := 0
-		LLK_ToolTip(Lang_Trans("global_downloading"), 10000,,, "dload_layout", "Lime")
+		LLK_ToolTip(Lang_Trans("global_downloading"), 0,,, "dload_layout", "Lime")
 		UrlDownloadToFile, % "https://github.com/Lailloken/Exile-UI/archive/refs/heads/layouts" StrReplace(vars.poe_version, " ", "_") ".zip", % "img\GUI\act-decoder\Exile-UI-layouts.zip"
 		If ErrorLevel || !FileExist("img\GUI\act-decoder\Exile-UI*.zip")
 			failed := 1
-		vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+		LLK_Overlay(vars.hwnd.tooltip_dload_layout, "destroy")
 		If !failed
 		{
-			LLK_ToolTip(Lang_Trans("global_extracting"), 10000,,, "dload_layout", "Lime")
+			LLK_ToolTip(Lang_Trans("global_extracting"), 0,,, "dload_layout", "Lime")
 			FileCopyDir, % "img\GUI\act-decoder\Exile-UI-layouts.zip", % "img\GUI\act-decoder\", 1
 			If ErrorLevel
 				failed := 1
-			vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+			LLK_Overlay(vars.hwnd.tooltip_dload_layout, "destroy")
 
 			If !failed
 			{
-				LLK_ToolTip(Lang_Trans("global_copying"), 10000,,, "dload_layout", "Lime")
+				LLK_ToolTip(Lang_Trans("global_copying"), 0,,, "dload_layout", "Lime")
 				Loop, Files, % "img\GUI\act-decoder\Exile-UI-layouts" StrReplace(vars.poe_version, " ", "_") "\*", DF
 				{
 					If InStr(A_LoopFilePath, ".json")
@@ -203,7 +203,7 @@ Settings_actdecoder2(cHWND := "")
 						Break
 					}
 				}
-				vars.tooltip[vars.hwnd["tooltipdload_layout"]] := A_TickCount
+				LLK_Overlay(vars.hwnd.tooltip_dload_layout, "destroy")
 			}
 		}
 		Init_actdecoder(failed ? 2 : 1)
@@ -3274,7 +3274,7 @@ Settings_leveltracker2(cHWND := "")
 		text := "class: " info.class "`nascendancy: " ascendancy (!vars.poe_version ? "`nbandit: " info.bandit : "") "`nskill-sets: " info.gems.Count() "`nskill-trees: " info.trees.Count()
 		LLK_ToolTip(text, 0,,, "pobtooltip")
 		KeyWait, LButton
-		vars.tooltip[vars.hwnd["tooltippobtooltip"]] := A_TickCount
+		LLK_Overlay(vars.hwnd.tooltip_pobtooltip, "destroy")
 	}
 	Else If (check = "leaguestart")
 	{

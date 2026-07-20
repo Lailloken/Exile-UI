@@ -476,7 +476,7 @@ Legion_Update()
 			}
 			Else GuiControl,, % vars.hwnd.legion.update_bar, % index
 		}
-		vars.tooltip[vars.hwnd["tooltiplegion_update"]] := A_TickCount
+		LLK_Overlay(vars.hwnd.tooltip_legion_update, "destroy")
 		If !error
 		{
 			IniWrite, % (settings.legion.version := version_online), ini\seed-explorer.ini, settings, version

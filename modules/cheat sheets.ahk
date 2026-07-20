@@ -170,7 +170,7 @@ Cheatsheet_Advanced(name, hotkey := "")
 	If !InStr(A_Gui, "cheatsheet_menu")
 	{
 		pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
-		LLK_ToolTip(Lang_Trans("global_scan"), 10, vars.general.xMouse + vars.client.w/100, vars.general.yMouse, "cheatsheet")
+		LLK_ToolTip(Lang_Trans("global_scan"), 0, vars.general.xMouse + vars.client.w/100, vars.general.yMouse, "cheatsheet")
 		While (hotkey && GetKeyState(hotkey, "P") || GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")) && (variation <= 75)
 		{
 			Loop, Files, % "cheat-sheets" vars.poe_version "\" name "\[check] *.bmp"
@@ -195,7 +195,7 @@ Cheatsheet_Advanced(name, hotkey := "")
 			}
 			variation += 10
 		}
-		vars.tooltip[vars.hwnd.tooltipcheatsheet] := A_TickCount
+		LLK_Overlay(vars.hwnd.tooltip_cheatsheet, "destroy")
 		Gdip_DisposeImage(pHaystack)
 	}
 	Else

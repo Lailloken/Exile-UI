@@ -200,9 +200,9 @@ Economy_Update(type := "currency", minutes := 60)
 	{
 		If !IsNumber(vars.stash[type].timestamp) || (vars.stash[type].league != league) || (LLK_TimeElapsed(vars.stash[type].timestamp) > minutes)
 		{
-			LLK_ToolTip(Lang_Trans("stash_update"), 10000,,, "stashprices", "lime")
+			LLK_ToolTip(Lang_Trans("stash_update"), 0,,, "stashprices", "lime")
 			success := Stash_PriceFetch(type)
-			vars.tooltip[vars.hwnd["tooltipstashprices"]] := A_TickCount
+			LLK_Overlay(vars.hwnd.tooltip_stashprices, "destroy")
 		}
 		If success || IsNumber(vars.stash[type].timestamp) && (LLK_TimeElapsed(vars.stash[type].timestamp) <= minutes)
 		{

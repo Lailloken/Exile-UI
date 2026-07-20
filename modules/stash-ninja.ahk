@@ -162,7 +162,7 @@ Stash(mode, test := 0)
 		If (league != league_ID) || Blank(timestamp) || Blank(now) || (now >= 61)
 		{
 			If !tooltip
-				LLK_ToolTip(Lang_Trans("stash_update"), 10000,,, "stashprices", "lime")
+				LLK_ToolTip(Lang_Trans("stash_update"), 0,,, "stashprices", "lime")
 			check := Stash_PriceFetch(tab), tooltip := 1
 			If !check
 			{
@@ -178,7 +178,7 @@ Stash(mode, test := 0)
 
 	;vars.stash.currency1["chaos orb"].prices := [1, 1/(vars.poe_version ? vars.stash.currency1["exalted orb"].prices.1 : vars.stash.exalt), 1/(vars.poe_version ? vars.stash.currency1["divine orb"].prices.1 : vars.stash.divine)]
 	If !Blank(check)
-		vars.tooltip[vars.hwnd["tooltipstashprices"]] := A_TickCount
+		LLK_Overlay(vars.hwnd.tooltip_stashprices, "destroy")
 
 	Gui, %GUI_name%: New, % "-Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x20 +E0x02000000 +E0x00080000 HWNDhwnd_stash"
 	Gui, %GUI_name%: Font, % "s" settings.stash.fSize2 " cWhite", % vars.system.font
