@@ -822,7 +822,7 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	}
 	Else If (mode = "show") || (mode = "hide") && !Blank(gui_name0)
 	{
-		vars.GUI[gui_index].show := 1
+		vars.GUI[gui_index].show := (mode = "hide" ? 0 : 1)
 		Gui, %gui_name%: Show, % (mode = "show" ? (NA ? "NA" : "") : "Hide")
 	}
 	Else If (mode = "hide")
