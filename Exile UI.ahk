@@ -132,7 +132,7 @@ Menu, Tray, Add
 Menu, Tray, Add, Settings, Settings_menu
 
 For key, val in vars.addons.list
-	func := val.info.classname, vars.addons.list[key].func := new %func%(val.info.name), vars.addons.list[key].func.Init()
+	func := val.info.classname, vars.addons.list[key].func := new %func%(val.info.name)
 Return
 
 #Include modules\_functions.ahk
@@ -565,7 +565,7 @@ Init_general()
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home":LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	If FileExist("data\global\leagues" vars.poe_version ".json")
@@ -597,7 +597,7 @@ Init_vars()
 	{
 		settings.addons := {}, vars.addons := {"list": {}}, loaded := LLK_FileRead("add-ons\loader" vars.poe_version), version := (vars.poe_version ? 2 : 1)
 		Loop, Files, % "add-ons\*", D
-			If FileExist(A_LoopFilePath "\*.ahk") && InStr((file := LLK_FileRead(A_LoopFilePath "\info.json")), "poe" version)
+			If FileExist(A_LoopFilePath "\*.ahk") && InStr((file := LLK_FileRead(A_LoopFilePath "\info.json", 1)), "poe" version)
 			{
 				Try info := json.Load(file)
 				Catch

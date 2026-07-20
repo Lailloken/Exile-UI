@@ -8,6 +8,7 @@
 #Include data\External Functions.ahk
 #Include data\JSON.ahk
 #Persistent
+ListLines, Off
 
 vars := {"general": {}, "hwnd": {}, "log": {}, "pixels": {}, "sanctum": {}, "settings": {}, "exchange": {}}
 settings := {"features": {}, "general": {}, "iteminfo": {}}

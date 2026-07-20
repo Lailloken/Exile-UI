@@ -286,6 +286,7 @@ Settings_addons()
 {
 	local
 	global vars, settings, db
+	static fSize
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
 
@@ -303,6 +304,14 @@ Settings_addons()
 		Gui, %Gui%: Add, Text, % "xs y+-1 h1 wp"
 		vars.hwnd.settings.addons_failed := hwnd
 		Return
+	}
+
+	If (fSize != settings.general.fSize)
+	{
+		fSize := settings.general.fSize
+		For key, hbm in vars.pics.settings_addons
+			DeleteObject(hbm)
+		vars.pics.settings_addons := {}
 	}
 
 	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000", % Lang_Trans("m_addons_warning")
@@ -325,13 +334,19 @@ Settings_addons()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.hwnd.settings["enable_" key] := hwnd
 
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " x "
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " x "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
-		vars.hwnd.settings["delete_" key] := hwnd, vars.hwnd.settings["delete_" key "_bar"] := vars.hwnd.help_tooltips["settings_addons delete"] := hwnd1
+		vars.hwnd.settings["delete_" key] := hwnd, vars.hwnd.settings["delete_" key "_bar"] := vars.hwnd.help_tooltips["settings_addons delete" handle] := hwnd1
 
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " " Lang_Trans("global_settings") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.hwnd.settings["settings_" key] := hwnd
+		If !vars.pics.settings_addons.settings
+			vars.pics.settings_addons.settings := LLK_ImageCache("img\GUI\settings\general.png",, settings.general.fHeight - 2)
+		Gui, %GUI%: Add, Pic, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % "HBitmap:*" vars.pics.settings_addons.settings
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings["settings_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons settings" handle] := hwnd1, handle .= "|"
+
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " ? "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
+		vars.hwnd.settings["info_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons about" handle] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "ys hp c" (val.enabled ? "White" : "Gray"), % key
 	}
@@ -343,7 +358,7 @@ Settings_addons2(cHWND)
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
-	If !InStr(check, "delete_")
+	If !RegexMatch(check, "i)info_|delete_")
 		KeyWait, LButton
 
 	Switch
@@ -385,6 +400,15 @@ Settings_addons2(cHWND)
 
 		Case InStr(check, "settings_"):
 		Settings_menu("addons_" control)
+
+		Case InStr(check, "info_"):
+		info := vars.addons.list[control].info
+		For index, val in info.creators
+			creators .= (creators ? ", " : "") . val.name
+		text := Lang_Trans("global_info") . Lang_Trans("global_colon") "`n" LLK_StringCase(info.description) "`n`n" Lang_Trans("global_credits") . Lang_Trans("global_colon") "`n" creators
+		LLK_ToolTip(text, 0,,, "addons_info",,,,, 1,, 1, settings.general.fWidth * 20)
+		KeyWait, LButton
+		LLK_Overlay(vars.hwnd.tooltip_addons_info, "destroy")
 
 		Default:
 		LLK_ToolTip("no action")

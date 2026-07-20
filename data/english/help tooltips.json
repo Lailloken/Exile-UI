@@ -180,6 +180,9 @@
       "long-click to reset the overlay's placement to the default position",
       "this overlay is one of the few that can be placed outside the main monitor, which may cause issues if you change your setup between sessions"
     ],
+    "addons about": [
+      "long-click to information about this add-on"
+    ],
     "addons delete": [
       "long-click to delete this add-on"
     ],
@@ -188,6 +191,9 @@
     ],
     "addons import": [
       "copy a github repo url into your clipboard and click this button to import an add-on"
+    ],
+    "addons settings": [
+      "open the settings for this add-on"
     ],
     "anoints enable": [
       "quick-access interface to find and filter which recipes are available with the materials you have",
