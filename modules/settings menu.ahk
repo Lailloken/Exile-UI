@@ -6437,11 +6437,12 @@ Settings_stash2(cHWND)
 	Else If InStr(check, "infolder_")
 	{
 		groups := (vars.poe_version ? [["currency1"], ["delirium"], ["essences"], ["ritual"], ["runes1", "runes2", "soulcores", "idols"], ["fragments"], ["abyss"], ["expedition"], ["breach"]]
-			: [["fragments", "scarabs", "breach"], ["currency1", "currency2"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]])
+			: [["fragments", "scarabs", "betrayal"], ["currency1", "currency2", "currency3"], ["delve"], ["blight"], ["delirium"], ["essences"], ["ultimatum"]])
 		gCheck := LLK_HasVal(groups, control,,,, 1)
 
+		prev := settings.stash[control].in_folder
 		For index, tab in groups[gCheck]
-			IniWrite, % (settings.stash[tab].in_folder := !settings.stash[tab].in_folder), % "ini" vars.poe_version "\stash-ninja.ini", % tab, tab is in folder
+			IniWrite, % (settings.stash[tab].in_folder := !prev), % "ini" vars.poe_version "\stash-ninja.ini", % tab, tab is in folder
 		GuiControl, % "+c" (settings.stash[control].in_folder ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		Init_stash(1)
