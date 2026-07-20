@@ -60,7 +60,7 @@
       "use (img:arena) boat: areaid1_1_4_1 ;; submerged passage"
     ],
     [
-      "find & enter areaid1_1_5 ;; the ledge"
+      "enter areaid1_1_5 nearby ;; the ledge"
     ],
     [
       "follow wall to areaid1_1_6 ;; the climb",
@@ -76,7 +76,7 @@
         "yes"
       ],
       "lines": [
-        "(img:quest) tarkleigh: (quest:book)",
+        "(img:quest) tarkleigh: (quest:book) ;; dweller",
         "(img:quest) nessa: <the_caged_brute1>",
         "(img:waypoint) to areaid1_1_7_1 ;; lower prison"
       ]
@@ -94,7 +94,7 @@
     ],
     [
       "twinkrun: (img:quest) nessa: <the_caged_brute1>",
-      "twinkrun: (img:quest) tarkleigh: (quest:book)",
+      "twinkrun: (img:quest) tarkleigh: (quest:book) ;; dweller",
       "(img:quest) tarkleigh: <the_caged_brute2>",
       "leaguestart: optional: spare quicksilver? (color:cc99ff)vendor:",
       "(hint)__ qs-flask + aug + (ms) boots",
@@ -106,7 +106,7 @@
     ],
     [
       "follow wall, (color:ff00ff)find_2 (img:arena) exits:",
-      "(hint)_ - if (img:arena) cavern_of_wrath first: (img:in-out2) (color:ffffff)for (img:waypoint)",
+      "(hint)_ - if (color:cc99ff)cavern 1st: (img:in-out2) (color:ffffff)for (img:waypoint) || enter (img:arena) ship...",
       "(hint)_ - else: set (img:portal) || enter (img:arena) cavern, (img:waypoint) to (img:town)",
       "(enter (img:portal) ,) enter areaid1_1_9a ;; ship graveyard cavefollow wall, find (img:arena) (color:99ccff)cavern & (img:arena) cave :"
     ],
@@ -142,15 +142,14 @@
       "go (img:1) to areaid1_2_2 ;; old fields"
     ],
     [
-      "leaguestart: optional: (img:quest) (color:8787fe)flask / <belt> : find (img:arena) den, set (img:portal) ;; the den",
+      "leaguestart: optional: (color:8787fe)flask / <belt> : find (img:arena) den, set (img:portal) ;; the den",
       "(hint)__ usually located near the road",
       "follow road: areaid1_2_3 ;; the crossroads"
     ],
     [
       "follow road: get (img:waypoint)",
-      "leaguestart: optional: (img:quest) (color:8787fe)flask / <belt> : (img:waypoint) to (img:town)",
-      "(hint)_ - enter (img:portal) || enter areaid1_2_2a",
-      "(hint)_ - kill beast || (color:cc99ff)relog: (img:quest) yeena",
+      "leaguestart: optional: (color:8787fe)flask / <belt> : (img:waypoint) to (img:town), enter  (img:portal)",
+      "(hint)__ enter (img:arena) (color:ffffff)for arena:beast || (color:cc99ff)relog: (img:quest) yeena",
       "go (img:7): areaid1_2_6_1 ;; chamber of sins (1)"
     ],
     [
@@ -469,7 +468,7 @@
     [
       "find & enter areaid1_2_8 ;; northern forest",
       "(hint)_ - zone is often s- or v-shaped",
-      "(hint)_ - rare: zone is an outward spiral"
+      "(hint)_ - (color:cc99ff)rare: zone is an outward spiral"
     ],
     [
       "(img:7) edge leads to areaid1_2_14_2 ;; the caverns"
@@ -481,10 +480,10 @@
       "leaguestart: (hint)_ - (img:craft): diff. corner (secret door)"
     ],
     [
-      "find (img:arena) apex, kill oversoul (lvl:20-22)",
-      "(hint)_ - 1st (img:arena) stairs: random corner",
-      "(hint)_ - then opposite corners",
-      "(color:cc99ff)relog || (img:waypoint) to areaid1_3_1 ;; city of sarn"
+      "kill oversoul in (img:arena) apex (lvl:20-22)",
+      "(hint)_ - 1st (img:arena) in random corner",
+      "(hint)_ - then in opposite corners",
+      "(color:cc99ff)relog: (img:waypoint) to areaid1_3_1 ;; city of sarn"
     ]
   ],
   [
@@ -520,9 +519,9 @@
     ],
     [
       "follow (img:0) edge to (img:waypoint)",
+      "leaguestart: go (img:0) to areaid1_3_6 ;; the catacombs",
       "twinkrun: enter areaid1_3_7 ;; the battlefront",
-      "(hint)__ search in the corners",
-      "leaguestart: go (img:0) to areaid1_3_6 ;; the catacombs"
+      "(hint)__ search in the corners"
     ],
     {
       "condition": [
@@ -557,8 +556,8 @@
       ]
     },
     [
-      "(color:cc99ff)if_you're_below_lvl_23,_catch_up",
-      "go (img:7) for (img:waypoint) _|| go (img:5) for (img:quest) (quest:spool)",
+      "(color:red)if_you're_below_lvl_23,_catch_up",
+      "go (img:7) for (img:waypoint), then (img:5) for (img:quest) (quest:spool)",
       "go (img:7) to areaid1_3_9 (lvl:24) ;; the docks"
     ],
     [
@@ -686,13 +685,13 @@
     [
       "twinkrun: follow road: get (img:waypoint)",
       "early option: (img:lab) normal_lab",
-      "twinkrun: (hint)__ area-lvl 33 || 2nd option later",
-      "leaguestart: (hint)_ - area-lvl 33 || 2nd option later",
+      "twinkrun: (hint)__ area-lvl 33 || (color:cc99ff)2nd_option_later",
+      "leaguestart: (hint)_ - area-lvl 33 || (color:cc99ff)2nd_option_later",
       "leaguestart: (hint)_ - (img:waypoint) to (img:town), enter areaidlabyrinth_airlock ;; aspirants' plaza",
       "(color:cc99ff)wagons lead to areaid1_3_18_1 ;; sceptre of god"
     ],
     [
-      "enter areaid1_3_18_2 ;; upper sceptre of god",
+      "reach areaid1_3_18_2 ;; upper sceptre of god",
       "(hint)__ (img:arena) stairs can spawn every 90\u00b0"
     ],
     [
@@ -716,6 +715,7 @@
     ],
     [
       "leaguestart: find the (img:craft)",
+      "(hint)__ (color:red)3.29:_changed/removed?",
       "enter areaid1_4_3_2 ;; the mines (2)"
     ],
     [
@@ -731,15 +731,14 @@
       "(img:quest) tasuni: (quest:book)",
       "(img:quest) oyun: <breaking_the_seal>",
       "regular option: (img:lab) normal_lab",
-      "leaguestart: (hint)__ enter areaidlabyrinth_airlock ;; aspirants' plaza",
       "(img:waypoint) to areaid1_4_3_3 ;; crystal veins"
     ],
     [
       "enter areaid1_4_5_1 ;; daresso's dream"
     ],
     [
-      "find & enter areaid1_4_5_2 ;; grand arena",
-      "(hint)__ go (img:1) and straight if possible"
+      "reach areaid1_4_5_2 ;; grand arena",
+      "(hint)__ if possible, go (img:1) + straight"
     ],
     [
       "kill daresso for (quest:eye)",
@@ -755,8 +754,8 @@
       "(hint)__ go (img:1), then follow bridges/stairs"
     ],
     [
-      "kill kaom for (quest:eye) || (img:portal) to areaid1_4_town ;; highgate",
-      "(hint)__ if bend on the right, go (img:7). else (img:1)"
+      "kill kaom (quest:(eye)) || (img:portal) areaid1_4_town ;; highgate",
+      "(hint)__ if right bulge, go (img:7). else (img:1)"
     ],
     [
       "(img:waypoint) to areaid1_4_3_3 ;; crystal veins",
@@ -782,15 +781,15 @@
       "enter areaid1_4_7 ;; the ascent"
     ],
     [
-      "go (img:0), follow (img:7) cart tracks",
-      "find (img:quest) (quest:lever), enter areaid1_5_1 ;; slave pens"
+      "go (img:0), follow tracks (img:7)",
+      "find (img:quest) (quest:lever): areaid1_5_1 ;; slave pens"
     ]
   ],
   [
     [
       "follow (img:5) edge, kill overseer",
       "(hint)_ - find corridor with gallows",
-      "(hint)_ - loop clockwise to reach (color:cc99ff)arena",
+      "(hint)_ - loop clockwise to find (color:cc99ff)arena",
       "enter areaid1_5_town ;; overseer's tower"
     ],
     [
@@ -798,26 +797,26 @@
       "enter areaid1_5_2 ;; control blocks"
     ],
     [
-      "go (img:7), find (img:quest) (quest:miasmeter)",
-      "go (img:1), kill casticus for (quest:eyes)",
-      "go (img:0), enter areaid1_5_3 ;; oriath square"
+      "go (img:7) for (img:quest) (quest:miasmeter)",
+      "go (img:1) for arena:casticus (quest:(eyes))",
+      "go (img:0) to areaid1_5_3 ;; oriath square"
     ],
     [
       "go (img:1) to (img:quest) areaid1_5_4 ;; templar courts"
     ],
     [
-      "enter  areaid1_5_5 (lvl:37) ;; chamber of innocence",
+      "reach areaid1_5_5 (lvl:37) ;; chamber of innocence",
       "(hint)__ (color:cc99ff)start & (color:cc99ff)exit: adjacent corners2"
     ],
     [
       "follow (img:0) edge, kill avarius",
       "leaguestart: (hint)__ (img:craft): corridor along (img:4) edge",
-      "(hint)__ high exp zone, farm level: 40-42",
+      "(hint)__ high xp area, farm level: 40-42",
       "go (img:3), enter areaid1_5_4b ;; torched courts",
       "leaguestart: (hint)__ talk to (img:quest) bannon so he's in (img:town)"
     ],
     [
-      "enter areaid1_5_3b ;; ruined square",
+      "reach areaid1_5_3b ;; ruined square",
       "(hint)__ (color:cc99ff)start & (color:cc99ff)exit: adjacent corners2"
     ],
     [
@@ -826,7 +825,7 @@
     ],
     [
       "find (img:quest) (quest:sign_of_purity)",
-      "(hint)__ zone: (counter-)clockwise spiral",
+      "(hint)__ area: (counter)clockwise spiral",
       "use (color:cc99ff)lever, enter areaid1_5_3b ;; ruined square"
     ],
     [
@@ -834,9 +833,10 @@
       "go (img:4) to areaid1_5_7 ;; the reliquary"
     ],
     [
-      "find 3x (img:quest) (quest:torment) near corners",
-      "leaguestart: (hint)__ (img:craft) is near one of the (img:quest) (quest:torments)",
-      "(img:waypoint) to areaid1_5_town (img:town) ;; overseer's tower"
+      "find 3x (img:quest) (quest:torment) (corners)",
+      "leaguestart: (hint)__ (img:craft) near one of the (quest:torments)",
+      "(img:waypoint) to areaid1_5_town (img:town) ;; overseer's tower",
+      "(hint)__ go back to the (img:arena) entrance"
     ],
     [
       "(img:quest) lani: (color:8787fe)util._flask || <jewel> || (quest:book)",
@@ -862,10 +862,11 @@
       "enter areaid2_6_4 ;; mud flats"
     ],
     [
-      "go (img:2), kill queen for (quest:eye)",
-      "(hint)__ if you hit (color:cc99ff)zone-edge, follow it",
-      "go (img:7), enter areaid2_6_5 ;; karui fortress",
-      "(hint)__ if (color:cc99ff)edge is beach, go (img:5) instead"
+      "go (img:2), kill queen (quest:(eye))",
+      "(hint)__ hit zone (color:cc99ff)edge? follow it",
+      "reach areaid2_6_5 ;; karui fortress",
+      "(hint)_ - if (color:cc99ff)edge went (img:1), go (img:5)",
+      "(hint)_ - otherwise go (img:7)"
     ],
     [
       "optional: tattoo(s): follow water (img:7)",
@@ -923,36 +924,29 @@
     ],
     [
       "leaguestart: complete (img:lab) trial",
-      "enter areaid2_6_7_2 ;; shavronne's tower"
+      "reach areaid2_6_7_2 ;; shavronne's tower"
     ],
     [
       "kill shavronne_&_brutus",
       "enter areaid2_6_8 ;; prisoner's gate"
     ],
     [
-      "follow road to areaid2_6_9 ;; western forest"
+      "find passage, kill abberath",
+      "(hint)__ ledge near road leads to it",
+      "follow road: areaid2_6_9 ;; western forest"
     ],
     [
-      "follow road to areaid2_6_10 ;; the riverways",
-      "leaguestart: (hint)__ (img:craft): follow side path marked by",
-      "leaguestart: (hint)__ torch on road"
+      "follow road: areaid2_6_10 ;; the riverways",
+      "leaguestart: (hint)__ (img:craft): torch on road + side path"
     ],
     [
       "follow road: get (img:waypoint)",
-      "follow trail between 2 pillars",
-      "enter areaid2_6_11 ;; the wetlands"
+      "enter areaid2_6_11 ;; the wetlands",
+      "(hint)__ follow path between 2 pillars"
     ],
     [
       "follow (img:6) edge, kill ryslatha",
       "(hint)__ rare: (img:arena) arena can be (img:1) instead",
-      "(img:portal) to areaid2_6_town ;; lioneye's watch"
-    ],
-    [
-      "(img:waypoint) to areaid2_6_8 ;; prisoner's gate"
-    ],
-    [
-      "ledge near road leads to passage",
-      "follow passage, kill abberath",
       "(color:cc99ff)relog: areaid2_6_town ;; lioneye's watch"
     ],
     [
@@ -970,7 +964,7 @@
       "enter areaid2_6_13 ;; cavern of anger"
     ],
     [
-      "take (img:quest) (quest:flag) || enter areaid2_6_14 ;; the beacon"
+      "take (img:quest) (quest:flag) || reach areaid2_6_14 ;; the beacon"
     ],
     [
       "go (img:1) to (img:quest) (quest:fuel_carts)",
@@ -980,7 +974,7 @@
     ],
     [
       "try to go (img:5) from (img:waypoint) :",
-      "(hint)_ - blocked: go far (img:3). follow (img:2) edge",
+      "(hint)_ - edge: go far (img:3). follow (img:2) edge",
       "(hint)_ - open: go (img:5) and follow top edge",
       "kill tsoagoth, (img:portal) areaid2_6_town ;; lioneye's watch"
     ],
@@ -1024,8 +1018,9 @@
       "enter areaid2_7_5_map ;; maligaro's sanctum"
     ],
     [
+      "follow edge + 2 bridges",
+      "leaguestart: optional: <ring> in (color:cc99ff)cradle after bridge 1",
       "kill maligaro for (quest:venom)",
-      "(hint)__ follow edge to find bridges",
       "(img:portal) to areaid2_7_5_1 ;; chamber of sins (1)"
     ],
     [
@@ -1042,17 +1037,17 @@
       "(hint)__ try far (img:5) of (img:lab), else far (img:1)"
     ],
     [
-      "enter areaid2_7_7 ;; ashen fields"
+      "reach areaid2_7_7 ;; ashen fields"
     ],
     [
       "early option: (img:lab) cruel_lab",
-      "(hint)__ area-lvl 55 || 2nd option later",
-      "follow (img:5) road, kill greust",
+      "(hint)__ area-lvl 55 || (color:cc99ff)2nd_option_later",
+      "follow road (img:5), kill greust",
       "enter areaid2_7_8 ;; northern forest"
     ],
     [
       "go (img:5), then (img:7) along edge",
-      "(hint)__ set (img:portal) if you find (img:arena) dread_thicket",
+      "(hint)__ set (img:portal) if you find (img:arena) dread...",
       "enter areaid2_7_10 ;; the causeway"
     ],
     [
@@ -1093,6 +1088,8 @@
       "enter areaid2_7_12_1 ;; temple of decay (1)"
     ],
     [
+      "optional: vaaled (color:ff8111)weap, <weap>, <armor>",
+      "(hint)__ (color:cc99ff)red_room near big platform",
       "enter areaid2_7_12_2 ;; temple of decay (2)",
       "(hint)_ - floor 1: move diagonally",
       "(hint)_ - floor 2: (rotated) z-pattern"
@@ -1150,6 +1147,7 @@
     ],
     [
       "follow (img:0) edge, get (img:waypoint)",
+      "(hint)__ (color:red)3.29:_will_be_farther (img:7)",
       "(img:waypoint) to areaid2_8_town (img:town) ;; sarn encampment"
     ],
     [
@@ -1241,7 +1239,7 @@
       "enter areaid2_9_2 ;; the descent"
     ],
     [
-      "find & enter areaid2_9_3 ;; vastiri desert",
+      "reach areaid2_9_3 ;; vastiri desert",
       "(hint)__ section 1: go (img:1) || rest: linear"
     ],
     [
@@ -1292,7 +1290,7 @@
     [
       "go (img:7) for (img:waypoint) _|| go (img:1) for (img:arena) exit",
       "if (color:cc99ff)shrine: (img:in-out2) (color:ff8000)garukhan (color:lime)(feather)",
-      "(hint)__ then follow edge (img:6): (img:arena) the_refinery",
+      "(hint)__ then follow edge (img:6) to (img:arena) refinery",
       "else: enter areaid2_9_9 ;; the refinery"
     ],
     [
@@ -1340,7 +1338,7 @@
       "go (img:3) to areaid2_10_3 ;; torched courts"
     ],
     [
-      "enter areaid2_10_4 ;; desecrated chambers",
+      "reach areaid2_10_4 ;; desecrated chambers",
       "(hint)__ (color:cc99ff)start & (color:cc99ff)exit: adjacent corners2"
     ],
     [
