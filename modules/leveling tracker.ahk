@@ -2816,7 +2816,7 @@ Leveltracker_PobSkilltree(mode := "", ByRef failed_versions := "")
 			Continue
 		group := tree.nodes[node].group, orbit := tree.nodes[node].orbit, orbitIndex := tree.nodes[node].orbitIndex
 		x_coord := tree.groups[group].x, y_coord := tree.groups[group].y
-		margin := 250
+		margin := 500
 
 		If ascendancy && tree.nodes[node].HasKey(vars.poe_version ? "classesstart" : "classstartindex")
 			ascendancy_points.Push(node)
