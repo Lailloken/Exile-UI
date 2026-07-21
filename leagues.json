@@ -2,52 +2,36 @@
   "sc": {
     "ssf": {
       "normal": {
-        "standard": "Solo Self-Found",
-        "mirage": "SSF Mirage",
-        "rota": "SSF Ancestors"
+        "standard": "Solo Self-Found"
       },
       "ruthless": {
-        "standard": "SSF Ruthless",
-        "mirage": "SSF R Mirage",
-        "rota": "SSF R Ancestors"
+        "standard": "SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Standard",
-        "mirage": "Mirage",
-        "rota": "Ancestors"
+        "standard": "Standard"
       },
       "ruthless": {
-        "standard": "Ruthless",
-        "mirage": "Ruthless Mirage",
-        "rota": "Ruthless Ancestors"
+        "standard": "Ruthless"
       }
     }
   },
   "hc": {
     "ssf": {
       "normal": {
-        "standard": "Hardcore SSF",
-        "mirage": "HC SSF Mirage",
-        "rota": "HC SSF Ancestors"
+        "standard": "Hardcore SSF"
       },
       "ruthless": {
-        "standard": "Hardcore SSF Ruthless",
-        "mirage": "HC SSF R Mirage",
-        "rota": "HC SSF R Ancestors"
+        "standard": "Hardcore SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Hardcore",
-        "mirage": "Hardcore Mirage",
-        "rota": "Hardcore Ancestors"
+        "standard": "Hardcore"
       },
       "ruthless": {
-        "standard": "Hardcore Ruthless",
-        "mirage": "HC Ruthless Mirage",
-        "rota": "HC R Ancestors"
+        "standard": "Hardcore Ruthless"
       }
     }
   }
