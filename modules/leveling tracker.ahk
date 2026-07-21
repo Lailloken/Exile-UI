@@ -779,7 +779,7 @@ Leveltracker_GemPickups(cHWND := "")
 			}
 		}
 
-	vars.ddl.gempickups := {}
+	vars.ddl.gempickups := {}, xMax := 0
 	For gem in gems
 	{
 		If !db.leveltracker.gems[gem]
@@ -803,7 +803,7 @@ Leveltracker_GemPickups(cHWND := "")
 				GuiControl, movedraw, % hwnd_divider, % "h" yLast + hLast - divider.y
 		}
 
-		Gui, %GUI_name%: Add, Text, % (!vars.ddl.gempickups.Count() ? (single_set ? "Section xp yp" : "Section ys x+" margin) : (break ? "Section ys x+" margin : "xs y+" margin)) " w" wDDL " Center Border BackgroundTrans HWNDhwnd gLeveltracker_GemPickups", % current
+		Gui, %GUI_name%: Add, Text, % (!vars.ddl.gempickups.Count() ? (single_set ? "Section xp yp" : "Section ys x+" margin) : (break ? "Section ys x" xMax + margin : "xs y+" margin)) " w" wDDL " Center Border BackgroundTrans HWNDhwnd gLeveltracker_GemPickups", % current
 		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" (modified ? "FF8000" : vars.settings.cButtons2) " c" vars.settings.cButtons, 100
 		vars.ddl.gempickups[gem] := {"cHWND": hwnd, "color": "Black", "current": current, "fSize": fSize, "list": DDL.Clone()}
 		vars.hwnd.leveltracker_gempickups[gem "_ddl"] := hwnd, vars.hwnd.leveltracker_gempickups[gem "_bar"] := hwnd1
@@ -811,8 +811,8 @@ Leveltracker_GemPickups(cHWND := "")
 
 		color := ((attribute := db.leveltracker.gems[gem].attribute) ? colors[attribute] : "White")
 		Gui, %GUI_name%: Add, Text, % "ys x+" margin/2 " yp hp 0x200 HWNDhwnd c" color, % gem_name
-		vars.hwnd.leveltracker_gempickups[gem "_panel"] := hwnd
 		ControlGetPos, xLast, yLast, wLast, hLast,, % "ahk_id " hwnd
+		vars.hwnd.leveltracker_gempickups[gem "_panel"] := hwnd, xMax := Max(xMax, xLast + wLast)
 		Gui, %GUI_name%: Font, norm
 	}
 
