@@ -753,7 +753,10 @@ Leveltracker_GemPickups(cHWND := "")
 	LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wList, hList,,, 0)
 
 	dimensions := [], skillsets_provisional := []
-	If (vars.leveltracker["PoB" profile].gems.Count() > 1)
+
+	If (single_set := (vars.leveltracker["PoB" profile].gems.Count() = 1))
+		Gui, %GUI_name%: Add, Text, % "Hidden Section x" margin " y+" margin " w10", % " "
+	Else If (vars.leveltracker["PoB" profile].gems.Count() > 1)
 		For outer in [1, 2]
 		{
 			For index, val in vars.leveltracker["PoB" profile].gems
@@ -764,13 +767,19 @@ Leveltracker_GemPickups(cHWND := "")
 					color := (skillsets_provisional[index] = 0 ? "Gray" : "Lime")
 					Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section x" margin " y+" margin : "xs y+" margin) " w" wSkillsets " c" color " Border BackgroundTrans gLeveltracker_GemPickups HWNDhwnd", % " " val.title
 					Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-					vars.hwnd.leveltracker_gempickups["skillset_" index] := hwnd, vars.hwnd.leveltracker_gempickups["skillset_" index "_bar"] := hwnd1
+					vars.hwnd.leveltracker_gempickups["skillset_" index] := hwnd
+					vars.hwnd.leveltracker_gempickups["skillset_" index "_bar"] := vars.hwnd.help_tooltips["leveltrackergems_skillsets" handle] := hwnd1, handle .= "|"
 				}
 			If (outer = 1)
 				LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wSkillsets, hSkillsets)
+			Else
+			{
+				Gui, %GUI_name%: Add, Text, % "ys x+" margin " w2 h5 Border HWNDhwnd_divider"
+				divider := LLK_ControlGetPos(hwnd_divider)
+			}
 		}
 
-	vars.leveltracker_gempickups.tooltips := {}, vars.ddl.gempickups := {}
+	vars.ddl.gempickups := {}
 	For gem in gems
 	{
 		If !db.leveltracker.gems[gem]
@@ -782,43 +791,40 @@ Leveltracker_GemPickups(cHWND := "")
 				acts[db.leveltracker.gems._quests[Quest].act] := 1, quest_check[quest] := 1
 		default_acts[gem] := acts.MinIndex(), acts.0 := 1, acts.6 := 1
 
-		vars.leveltracker_gempickups.tooltips[gem_name] := ["skillset(s):"]
-		For index, skillset in vars.leveltracker["PoB" profile].gems
-			For index, group in skillset.groups
-				For index, gem0 in group.gems
-					If RegExMatch(gem0, "i)" gem_name "$")
-					{
-						vars.leveltracker_gempickups.tooltips[gem_name].Push(skillset.title)
-						Continue 3
-					}
-
 		For act in acts
 			DDL.Push(!act ? Lang_Trans("m_updater_skip") : Lang_Trans("global_act") " " act)
 		act := vars.leveltracker["PoB" profile].vendors[gem], act := (!IsNumber(act) ? default_acts[gem] : act), current := (!act ? Lang_Trans("m_updater_skip") : Lang_Trans("global_act") " " act)
 		modified := (!Blank(vars.leveltracker["PoB" profile].vendors[gem]) && (default_acts[gem] != vars.leveltracker["PoB" profile].vendors[gem]) ? 1 : 0)
 
 		If (break := (yLast + hLast >= vars.monitor.h * 0.5) ? 1 : 0)
-			Gui, %GUI_name%: Add, Progress, % "Disabled Hidden HWNDhwnd_break xs xp y+0 w" wList " h" margin, 0
+		{
+			Gui, %GUI_name%: Add, Progress, % "Disabled Hidden HWNDhwnd_break xs xp y+0 h" margin, 0
+			If !single_set
+				GuiControl, movedraw, % hwnd_divider, % "h" yLast + hLast - divider.y
+		}
 
-		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section ys x+" margin : (break ? "Section ys x+" margin : "xs y+" margin)) " w" wDDL " Center Border BackgroundTrans HWNDhwnd gLeveltracker_GemPickups", % current
+		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? (single_set ? "Section xp yp" : "Section ys x+" margin) : (break ? "Section ys x+" margin : "xs y+" margin)) " w" wDDL " Center Border BackgroundTrans HWNDhwnd gLeveltracker_GemPickups", % current
 		Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" (modified ? "FF8000" : vars.settings.cButtons2) " c" vars.settings.cButtons, 100
 		vars.ddl.gempickups[gem] := {"cHWND": hwnd, "color": "Black", "current": current, "fSize": fSize, "list": DDL.Clone()}
 		vars.hwnd.leveltracker_gempickups[gem "_ddl"] := hwnd, vars.hwnd.leveltracker_gempickups[gem "_bar"] := hwnd1
 		Gui, %GUI_name%: Font, % (quest_check.Count() < 3 && quest_check["a fixture of fate"] ? "underline" : "norm")
 
 		color := ((attribute := db.leveltracker.gems[gem].attribute) ? colors[attribute] : "White")
-		Gui, %GUI_name%: Add, Text, % "ys x+" margin/2 " yp hp 0x200 HWNDhwnd w" wList " c" color, % gem_name
-		vars.hwnd.help_tooltips["leveltrackergems_gem " gem_name] := hwnd
+		Gui, %GUI_name%: Add, Text, % "ys x+" margin/2 " yp hp 0x200 HWNDhwnd c" color, % gem_name
+		vars.hwnd.leveltracker_gempickups[gem "_panel"] := hwnd
 		ControlGetPos, xLast, yLast, wLast, hLast,, % "ahk_id " hwnd
 		Gui, %GUI_name%: Font, norm
 	}
 
-	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize + 8
-	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin/2 " Border gLeveltracker_GemPickups HWNDhwnd cLime", % " " Lang_Trans("global_save") " "
-	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border gLeveltracker_GemPickups HWNDhwnd1 cRed", % " " Lang_Trans("global_reset") " "
-	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden xs y+0 w" wList " h" margin, 0
-	vars.hwnd.leveltracker_gempickups.save := vars.hwnd.help_tooltips["leveltrackergems_save-reset"] := hwnd
-	vars.hwnd.leveltracker_gempickups.reset := vars.hwnd.help_tooltips["leveltrackergems_save-reset|"] := hwnd1
+	Gui, %GUI_name%: Font, % "s" settings.leveltracker.fSize + 12
+	Gui, %GUI_name%: Add, Text, % "Section xs y+" margin " Border BackgroundTrans gLeveltracker_GemPickups HWNDhwnd cLime", % " " Lang_Trans("global_save") " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.leveltracker_gempickups.save := hwnd, vars.hwnd.help_tooltips["leveltrackergems_save-reset"] := hwnd1
+
+	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border BackgroundTrans gLeveltracker_GemPickups HWNDhwnd cRed", % " " Lang_Trans("global_reset") " "
+	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	Gui, %GUI_name%: Add, Progress, % "Disabled Hidden xs y+0 h" margin, 0	
+	vars.hwnd.leveltracker_gempickups.reset := hwnd, vars.hwnd.help_tooltips["leveltrackergems_save-reset|"] := hwnd1
 
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	ControlFocus,, % "ahk_id " vars.hwnd.leveltracker_gempickups.xbutton

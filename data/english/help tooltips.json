@@ -520,7 +520,7 @@
       ]
     ],
     "leveltracker geartracker": [
-      "mainly for re-running campaign:\nnotifies you when gems or gear are equippable\n(guide overlay will display <gear rdy>)",
+      "mainly for re-running campaign:\ncreate a list of lvling gear/gems, and it will notify you when they are equippable\n(guide overlay will display <gear rdy>)",
       "accessed by clicking <gear rdy> in the guide overlay or right-clicking the act-tracker button in the menu-widget",
       "(/highlight)requires your character name in the <general> settings or the active guide slot"
     ],
@@ -588,7 +588,7 @@
       ]
     ],
     "leveltracker gems": [
-      "(/highlight)right-click to open gem-pickup configuration:\nwhen and/or whether to pick up specific gems during the campaign",
+      "(/highlight)right-click to open gem-pickup configuration:\nwhen or whether to pick up specific gems during the campaign",
       "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
       "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)"
     ],
@@ -653,7 +653,7 @@
       "show/hide optional loot, quests, encounters",
       "(/highlight)they will be marked with a plus-sign in the guide",
       [
-        "examples: strongboxes, gear quests, guaranteed drops, vendor recipes",
+        "examples: act secrets, strongboxes, gear quests, guaranteed drops, vendor recipes",
         "examples: jeweller's/artificer's orbs, league rewards, gems, jewelry, flasks, a4 treasure map"
       ]
     ],
@@ -1556,12 +1556,16 @@
   },
   "leveltrackergems": {
     "general": [
-      "adjust when and/or whether to pick up specific gems during the campaign",
+      "adjust when or whether to pick up specific gems during the campaign",
       "select <skip> if you don't want to pick up certain gems (e.g. if you are already muling them with a different character)",
-      "if gems are underlined, it means that the earliest pickup is the a3 library quest"
+      "(/highlight)if gems are underlined, it means that the earliest pickup is the a3 library quest"
     ],
     "save-reset": [
       "(/highlight)applying/reverting changes will also reset your guide progress"
+    ],
+    "skillsets": [
+      "you can disable individual skill sets and automatically set the corresponding skills to <skip>",
+      "when you hover over individual skills on the right, the corresponding skill set(s) will be highlighted"
     ]
   },
   "leveltrackerschematics": {

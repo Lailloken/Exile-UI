@@ -179,8 +179,6 @@ Gui_HelpToolTip(HWND_key)
 
 	If (check = "lootfilter") && RegexMatch(control, "i)^dummy|tier\s")
 		lootfilter := settings.lootfilter.profile, database := (!IsObject(vars.help.lootfilter.rollback) ? vars.help2 : vars.help)
-	Else If (check = "leveltrackergems") && InStr(control, "gem ")
-		database := vars.leveltracker_gempickups.tooltips, gempickups := 1
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
 	tooltip_width := (check = "settings") ? settings.general.fWidth * 34 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
@@ -206,9 +204,7 @@ Gui_HelpToolTip(HWND_key)
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.help_tooltips.main, vars.hwnd.help_tooltips.main := tooltip, vars.general.active_tooltip := vars.general.cMouse
 
-	If gempickups
-		target_array := database[SubStr(control, 5)]
-	Else target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
+	target_array := (donation ? database[control].2.Clone() : database[check][control].Clone())
 
 	If (control = "leveltracker profile select")
 	{
@@ -325,6 +321,8 @@ Gui_HelpToolTip(HWND_key)
 
 	If (check = "lootfilter")
 		xPos := xWin - width, yPos := y
+	Else If (check = "leveltrackergems") && !InStr(control, "save")
+		yPos := yWin - height + 1
 	Else If (check = "statlas")
 		yPos := yWin + hWin
 	Else If (check = "exchange")
