@@ -1,5 +1,13 @@
 [
   [
+	["1.63.10", 16310, 1],
+	"july 21, 2026",
+	"this is not the (full) 3.29 update(/highlight)",
+	"fixes\n–> unintented pop-ups of certain interfaces after alt-tabbing\n–> non-functional (re)positioning of interfaces on specific multi-monitor setups\n–> stash-ninja <in folder> toggle",
+	"act-tracker:\n–> added support for 3.29 imports (once available)\n–> general guide tweaks\n–> moved a2 crypt quest to the end\n–> removed a6 abberath backtrack\n(will be applied on next guide slot reset)\n–> updated the gem pickups configuration and added toggles for skill sets",
+	"map-info:\n–> added an option to change the tooltip's position"
+  ],
+  [
 	["1.63.9", 16309],
 	"july 13, 2026",
 	"act-tracker:\n–> poe1: focused channelling support didn't import correctly\n–> poe2: some steps were not tagged as <optional> or <league-start>",
@@ -66,13 +74,6 @@
 	"june 3, 2026",
 	"stash-ninja:\n–> updated to 0.5",
 	"statlas:\n–> added a couple of 0.5 maps"
-  ],
-  [
-	["1.63.1", 16301],
-	"june 1, 2026",
-	"act-tracker:\n–> updated guaranteed league-rewards\n–> switched around mastodon badlands and keth\n–> fixed guide being stuck at the end of a2\n–> act 4 shark and map-hunt quest are no longer optional",
-	"enchant finder:\n–> updated to 0.5, now supports new emotions",
-	"item-info:\n–> updated item mods and bases to 0.5\n–> updated unique drop-tiers to poeladder's current data"
   ],
   [
 	["1.63.0", 16300, 1],

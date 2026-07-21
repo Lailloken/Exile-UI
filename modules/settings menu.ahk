@@ -6669,7 +6669,7 @@ Settings_updater()
 	vars.hwnd.settings.update_check := hwnd, vars.hwnd.help_tooltips["settings_updater check"] := hwnd1
 
 	Gui, %GUI%: Add, Text, % "Section xs w" wCurrent " Right Border", % Lang_Trans("m_updater_version", 2) " "
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 5 " Center Border HWNDhwnd", % vars.updater.version.2
+	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " Border HWNDhwnd", % " " vars.updater.version.2
 	ControlGetPos, x,,,,, ahk_id %hwnd%
 
 	If settings.general.dev || GetKeyState("Shift", "P") && GetKeyState("CTRL", "P")
@@ -6687,7 +6687,7 @@ Settings_updater()
 
 	color := vars.updater.skip && (vars.updater.latest.1 = vars.updater.skip) ? " cYellow" : (IsNumber(vars.updater.latest.1) && vars.updater.latest.1 > vars.updater.version.1) ? " cLime" : ""
 	Gui, %GUI%: Add, Text, % "Section xs y+-1 w" wCurrent " Right Border" color, % Lang_Trans("m_updater_version", 3) " "
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 5 " Center Border hp" color, % vars.updater.latest.2
+	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " Border hp" color, % " " vars.updater.latest.2
 
 	If IsNumber(vars.updater.latest.1) && (vars.updater.latest.1 > vars.updater.version.1) && (vars.updater.latest.1 != vars.updater.skip)
 	{
