@@ -1156,6 +1156,7 @@
     ],
     [
       "place (img:portal) in front of room",
+      "leaguestart: optional: 2-3 (color:cc99ff)scours in (img:arena) chamber",
       "go (img:2) to areaid2_8_6 ;; lunaris concourse"
     ],
     [
@@ -1171,6 +1172,7 @@
         "yes"
       ],
       "lines": [
+        "optional: 2-3 (color:cc99ff)scours in (img:arena) chamber",
         "get (img:lab) trial || enter areaid2_8_4 ;; high gardens",
         "(hint)_ - check (img:6) / (img:7) / (img:0) zone corners",
         "(hint)_ - note: (img:arena) exit you used is (img:2) corner"
