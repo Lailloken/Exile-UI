@@ -2836,7 +2836,7 @@ Settings_leveltracker()
 		Gui, %GUI%: Add, Text, % "yp x+-1 wp hp Center 0x200 BackgroundTrans Border", % ">"
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 		Gui, %GUI%: Add, Text, % "yp x+-1 w" width " hp Border BackgroundTrans"
-		Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd2 Limit gSettings_leveltracker2", % settings.leveltracker.hotkey_2
+		Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd2 gSettings_leveltracker2", % settings.leveltracker.hotkey_2
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		vars.hwnd.settings.hotkey_1 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys"] := hwnd1, vars.hwnd.settings.hotkey_2 := vars.hwnd.help_tooltips["settings_leveltracker hotkeys|"] := hwnd2
 	}
