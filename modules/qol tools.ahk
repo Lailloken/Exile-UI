@@ -687,7 +687,7 @@ MapEvent(type)
 	global vars, settings
 
 	position := settings.mapevents.position, text := (position > 2) ? StrReplace(Lang_Trans("mechanic_" type), " ", "`n") : Lang_Trans("mechanic_" type)
-	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "_mapevents_" type, settings.mapevents["color_" type], settings.mapevents.fSize, (position = 4 ? "Right" : ""),,, settings.mapevents["color1_" type])
+	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "mapevents_" type, settings.mapevents["color_" type], settings.mapevents.fSize, (position = 4 ? "Right" : ""),,, settings.mapevents["color1_" type])
 	WinGetPos,,, Width, Height, % "ahk_id" vars.hwnd["tooltip_mapevents_" type]
 	Switch position
 	{
@@ -700,7 +700,7 @@ MapEvent(type)
 		case 4:
 		xPos := vars.client.x + vars.client.w - Width, yPos := vars.monitor.y + vars.client.yc - Height/2
 	}
-	Gui, % "tooltip_mapevents_" type ": Show", % "NA x" xPos " y" yPos
+	Gui, % "tooltipmapevents_" type ": Show", % "NA x" xPos " y" yPos
 }
 
 MapEvent_InfamousMerc(clientTXT_line)
