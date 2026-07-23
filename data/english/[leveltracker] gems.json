@@ -2634,21 +2634,18 @@
       "a fixture of fate": {
         "vendor": []
       },
-      "enemy at the gate": {
-        "vendor": [
-          "templar"
-        ]
-      },
       "mercy mission": {
         "quest": [
           "witch",
           "shadow",
-          "scion"
+          "scion",
+          "templar"
         ],
         "vendor": [
           "scion",
           "shadow",
-          "witch"
+          "witch",
+          "templar"
         ]
       }
     }
