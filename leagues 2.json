@@ -2,21 +2,25 @@
   "sc": {
     "ssf": {
       "standard": "Solo Self-Found",
-      "aldur": "SSF Runes of Aldur"
+      "aldur": "SSF Runes of Aldur",
+      "rites": "SSF Forbidden Rites"
     },
     "trade": {
       "standard": "Standard",
-      "aldur": "Runes of Aldur"
+      "aldur": "Runes of Aldur",
+      "rites": "Forbidden Rites"
     }
   },
   "hc": {
     "ssf": {
       "standard": "Hardcore SSF",
-      "aldur": "HC SSF Runes of Aldur"
+      "aldur": "HC SSF Runes of Aldur",
+      "rites": "HC SSF Forbidden Rites"
     },
     "trade": {
       "standard": "Hardcore",
-      "aldur": "HC Runes of Aldur"
+      "aldur": "HC Runes of Aldur",
+      "rites": "HC Forbidden Rites"
     }
   }
 }
