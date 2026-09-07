@@ -13,6 +13,11 @@ If !InStr(vars, """client"":")
 	ExitApp
 
 comms := json.Load(Trim(vars, " `n`r`t"))
+If !comms.Count()
+{
+	StringSend("JSON error")
+	ExitApp
+}
 
 scan_start := A_TickCount
 poe_client := comms.client, clip := comms.clip, blackbars := comms.blackbars, runeshaping := comms.runeshaping, english := (comms.language = "english"), debug := comms.debug

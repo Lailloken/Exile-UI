@@ -616,6 +616,13 @@ OCR_Start(x, y, w, h, debug_key := "", usecase := "", opt_params := "[]", opt_ef
 			Sleep 25
 		}
 
+	If (vars.ocr_comms.text = "JSON error")
+	{
+		LLK_ToolTip("json error", 1,,,, "Red")
+		Gui, ocr_comms: Destroy
+		Return
+	}
+
 	If ocr_failed || (vars.ocr_comms.text = "OCR failed") || debug_key && GetKeyState(debug_key, "P")
 	{
 		WinWaitClose, OCR debug

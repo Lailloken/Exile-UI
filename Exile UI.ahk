@@ -1270,7 +1270,7 @@ StringReceive(wParam, string) ;based on example #4 on https://www.autohotkey.com
 	global vars, settings
 
 	StringAddress := NumGet(string + 2*A_PtrSize), string := StrGet(StringAddress)
-	If InStr(string, "OCR ")
+	If RegexMatch(string, "i)(OCR|JSON)\s")
 		vars.ocr_comms.text := LLK_StringCase(string)
 	Return true
 }
