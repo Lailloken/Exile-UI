@@ -791,9 +791,9 @@ Loop()
 			If WinExist("ahk_id " vars.hwnd.settings.main)
 			{
 				If vars.news.unread
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? "404040" : "Lime"), % vars.hwnd.settings.background_news
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? "6060FF" : "Lime"), % vars.hwnd.settings.background_news
 				If vars.update.1
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? "404040" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? "6060FF" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
 				If vars.actdecoder.updater.available
 				{
 					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.actdecoder

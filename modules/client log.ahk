@@ -523,7 +523,7 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		{
 			char_name := "", parse := SubStr(loopfield, InStr(loopfield, "]",, 0))
 			If InStr(parse, ":")
-				parse := SubStr(parse, 1, InStr(parse, ":") - 1), char_name := SubStr(parse, InStr(parse, " ",, 0) + 1)
+				parse := SubStr(parse, 1, InStr(parse, ":") - 1), char_name := SubStr(parse, InStr(parse, " ",, 0) + 1), char_name := LLK_StringCase(char_name)
 
 			If char_name && (char_name != settings.general.character) && !RegexMatch(char_name, "i)\.|\s") && !RegExMatch(char_name, "@|#|%|&|\$")
 				For iChars, oChars in vars.leveltracker.characters
