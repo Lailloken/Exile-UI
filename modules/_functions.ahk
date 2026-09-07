@@ -578,7 +578,7 @@ OCR_Start(x, y, w, h, debug_key := "", usecase := "", opt_params := "[]", opt_ef
 	local
 	global vars, settings, json
 
-	vars.ocr_comms := {}, start := A_TickCount, object := {}
+	vars.ocr_comms := {}, object := {}
 	Gui, ocr_comms: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border, % "Exile UI: OCR"
 	WinSet, Trans, 1
 	object.client := [vars.hwnd.poe_client, vars.client.h], object.clip := [x, y, w, h]
@@ -609,7 +609,9 @@ OCR_Start(x, y, w, h, debug_key := "", usecase := "", opt_params := "[]", opt_ef
 	Else If !(debug_key && GetKeyState(debug_key, "P"))
 		While !ocr_failed && Blank(vars.ocr_comms.text)
 		{
-			If (A_TickCount >= start + 1000)
+			If !start
+				start := A_TickCount
+			If (A_TickCount >= start + 3000)
 				ocr_failed := 1
 			Sleep 25
 		}
