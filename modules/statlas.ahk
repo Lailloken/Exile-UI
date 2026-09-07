@@ -32,7 +32,7 @@ Statlas()
 	If !text
 		Return
 
-	text := SubStr(text, InStr(text, ":") + 2), text := StrReplace(text, "  ", " ")
+	text := StrReplace(text, "  ", " ")
 	vars.statlas := {}
 
 	Loop, Parse, text, `n, " `r`t"
