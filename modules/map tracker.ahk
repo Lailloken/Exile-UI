@@ -806,6 +806,8 @@ Maptracker_Logs(mode := "")
 			Gui, %GUI_name%: Add, Text, % "xs y+-1 Center BackgroundTrans Border w" width, % "#"
 			vars.hwnd.maptracker_logs.filter_button := hwnd_button
 		}
+		Else If (header = "e-exp")
+			Continue
 		Else
 		{
 			Gui, %GUI_name%: Font, % "s" settings.maptracker.fSize2 - (InStr("time,e-exp", header) ? 0 : 4)
