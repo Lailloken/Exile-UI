@@ -2696,7 +2696,7 @@
     ],
     [
       94,
-      426,
+      282,
       "soul core of topotante",
       "soul-core-of-topotante"
     ],
@@ -2744,7 +2744,7 @@
     ],
     [
       139,
-      516,
+      372,
       "soul core of xopec",
       "soul-core-of-xopec"
     ],
@@ -2786,7 +2786,7 @@
     ],
     [
       94,
-      669,
+      488,
       "atmohua's soul core of retreat",
       "atmohuas-soul-core-of-retreat"
     ],
@@ -2834,7 +2834,7 @@
     ],
     [
       139,
-      759,
+      578,
       "opiloti's soul core of assault",
       "opilotis-soul-core-of-assault"
     ],
@@ -2873,6 +2873,108 @@
       0,
       "citaqualotl's soul core of foulness",
       "citaqualotls-soul-core-of-foulness"
+    ],
+    [
+      139,
+      696,
+      "jiquanis soul core of automation",
+      "jiquanis-soul-core-of-automation"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of malediction",
+      "jiquanis-soul-core-of-malediction"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of targeting",
+      "jiquanis-soul-core-of-targeting"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of rallying",
+      "jiquanis-soul-core-of-rallying"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of radiance",
+      "jiquanis-soul-core-of-radiance"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of severing",
+      "jiquanis-soul-core-of-severing"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of rippling",
+      "jiquanis-soul-core-of-rippling"
+    ],
+    [
+      184,
+      786,
+      "jiquanis soul core of quaking",
+      "jiquanis-soul-core-of-quaking"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of munitions",
+      "jiquanis-soul-core-of-munitions"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of snares",
+      "jiquanis-soul-core-of-snares"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of abundance",
+      "jiquanis-soul-core-of-abundance"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of squalls",
+      "jiquanis-soul-core-of-squalls"
+    ],
+    [
+      0,
+      0,
+      "jiquanis soul core of thundering",
+      "jiquanis-soul-core-of-thundering"
+    ],
+    [
+      274,
+      902,
+      "atziris soul core of devotion",
+      "atziris-soul-core-of-devotion"
+    ],
+    [
+      0,
+      0,
+      "atziris soul core of vitality",
+      "atziris-soul-core-of-vitality"
+    ],
+    [
+      0,
+      0,
+      "atziris soul core of alacrity",
+      "atziris-soul-core-of-alacrity"
+    ],
+    [
+      0,
+      0,
+      "atziris soul core of inoculation",
+      "atziris-soul-core-of-inoculation"
     ]
   ]
 }
