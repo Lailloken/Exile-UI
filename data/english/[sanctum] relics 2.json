@@ -10,7 +10,7 @@
   "monsters deal #% reduced damage": ["monsters: reduced dmg.", "%"],
   "rare monsters deal #% reduced damage": ["monsters: reduced dmg. (rares)", "%"],
   "bosses deal #% reduced damage": ["bosses: reduced dmg.", "%"],
-  "#% increased defences": ["defences: inc. maximum", "%"],
+  "#% increased armour, evasion and energy shield": ["defences: inc. maximum", "%"],
   "traps deal #% reduced damage": ["traps: reduced dmg.", "%"],
   "#% increased movement speed": ["inc. movement speed", "%"],
   "when you gain a key #% chance to gain another": ["keys: dupe chance", "%"],
