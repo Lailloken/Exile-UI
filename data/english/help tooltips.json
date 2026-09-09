@@ -1247,6 +1247,10 @@
     "statlas maptracker": [
       "the overlay will show stats collected via the map-tracker feature"
     ],
+    "statlas troubleshoot": [
+      "pressing <alt> + <omni-key> will open the screen-cap and ocr results",
+      "this can be used to find scan or screen-cap issues"
+    ],
     "updater check": [
       "checks for updates on tool launch and in the background while running",
       "the menu-widget will blink if an update is available"

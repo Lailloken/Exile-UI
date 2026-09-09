@@ -15,6 +15,7 @@
 	settings.statlas.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
 	settings.statlas.tier := settings.statlas.tier0 := !Blank(check := ini.settings["filter tier"]) ? check : 15
 	settings.statlas.maptracker := !Blank(check := ini.settings["include map-tracker data"]) ? check : (settings.features.maptracker ? 1 : 0)
+	settings.statlas.debug := !Blank(check := ini.settings["enable trouble-shooting"]) ? check : 0
 	settings.statlas.zoom := settings.statlas.zoom0 := !Blank(check := ini.settings.zoom) ? check : 0.25
 	LLK_FontDimensions(settings.statlas.fSize, font_height, font_width), settings.statlas.fWidth := font_width, settings.statlas.fHeight := font_height
 }
@@ -28,7 +29,7 @@ Statlas()
 		DB_Load("maps")
 
 	x := vars.general.xMouse - vars.client.x - vars.client.h//6, y := vars.general.yMouse - vars.client.y + Round(vars.client.h * 0.03), w := vars.client.h//3, h := Round(vars.client.h/22)
-	text := OCR_Start(x, y, w, h, "ALT")
+	text := OCR_Start(x, y, w, h, (settings.statlas.debug ? "ALT" : ""))
 	If !text
 		Return
 

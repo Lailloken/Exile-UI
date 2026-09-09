@@ -6548,6 +6548,10 @@ Settings_statlas()
 	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gSettings_statlas2" (settings.statlas.maptracker ? " cLime" : " cGray"), % " " Lang_Trans("ms_mapping tracker") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.maptracker := hwnd, vars.hwnd.help_tooltips["settings_statlas maptracker"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd gSettings_statlas2" (settings.statlas.debug ? " cLime" : " cGray"), % " " Lang_Trans("global_troubleshoot") " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	vars.hwnd.settings.debug := hwnd, vars.hwnd.help_tooltips["settings_statlas troubleshoot"] := hwnd1
 }
 
 Settings_statlas2(cHWND)
@@ -6582,6 +6586,12 @@ Settings_statlas2(cHWND)
 		}
 		IniWrite, % settings.statlas.fSize, % "ini" vars.poe_version "\statlas.ini", settings, font-size
 		LLK_FontDimensions(settings.statlas.fSize, height, width), settings.statlas.fWidth := width, settings.statlas.fHeight := height
+	}
+	Else If (check = "debug")
+	{
+		IniWrite, % (settings.statlas.debug := !settings.statlas.debug), % "ini" vars.poe_version "\statlas.ini", settings, enable trouble-shooting
+		GuiControl, % "+c" (settings.statlas.debug ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
 	}
 	Else LLK_ToolTip("no action")
 }
