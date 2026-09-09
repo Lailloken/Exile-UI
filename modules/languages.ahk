@@ -113,10 +113,10 @@ Lang_Trans(key, index := 1, insert := "")
 	local
 	global vars
 
-	index := Blank(index) ? 1 : index
-	value := !Blank(vars.lang[key][index]) ? vars.lang[key][index] : vars.lang2[key][index], check := 0
+	index := (Blank(index) ? 1 : StrReplace(index, " "))
+	value := (!Blank(vars.lang[key][index]) ? vars.lang[key][index] : vars.lang2[key][index]), check := 0
 	If IsObject(insert)
 		For index0, string in (!Blank(vars.lang[key][index]) ? vars.lang[key] : vars.lang2[key])
-			value := (index0 = 1) ? "" : value, check += (index0 >= index) ? 1 : 0, value .= (index0 >= index) ? string . insert[check] : ""
-	Return Blank(value) ? "0000" : value
+			value := (index0 = 1 ? "" : value), check += (index0 >= index ? 1 : 0), value .= (index0 >= index ? string . insert[check] : "")
+	Return (Blank(value) ? "0000" : value)
 }

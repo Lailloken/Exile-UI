@@ -579,7 +579,11 @@ Sanctum_Relics(cHWND := "")
 	{
 		mod2 := db.relics[mod].1, val := (RegExMatch(val, "i)(\.|,)[0-9]") ? RTrim(val, ",.0") : val)
 		If Blank(mod2)
+		{
 			mods2.unknown := !mods2.unknown ? [1] : [mods2.unknown + 1]
+			If settings.general.dev
+				LLK_ToolTip("unknown mod: " mod, 2)
+		}
 		Else mods2[mod2] := [val . (db.relics[mod].2 ? "%" : ""), mod], dimensions.Push(val . (db.relics[mod].2 ? "%" : ""))
 	}
 

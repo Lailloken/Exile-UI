@@ -1949,14 +1949,15 @@ Lootfilter_Match(array, dev_check := 0)
 						hasvaaluniquemod := 1
 					Case (key = "isvaalunique"):
 						isvaalunique := 0
-						If !vaal_uniques[basename]
+						If !vaal_uniques[basename] && !dev_check
 							Return
 						isvaalunique := 1
 					Case (key = "vestigial"):
-						If !InStr(search.clipboard, "vestigial implicit modifier")
+						If !InStr(search.clipboard, "vestigial implicit modifier") && !dev_check
 							Return
 					Case (key = "alwaysshow"):
-						Return
+						If !dev_check
+							Return
 					Case RegexMatch(key, "i)^(set|play|minimap|disabledropsound)"):
 					Case (key = "enchantmentpassivenode"):
 						If !dev_check
