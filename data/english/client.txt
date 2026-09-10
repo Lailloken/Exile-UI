@@ -123,12 +123,14 @@
 		maps_vaults			=	"vaults of kamasa"
 
 		maps_voidreliquary		=	"the reliquary vault"		;## accessible via reliquary keys
-		maps_biome			=	"biome:"			;## each map on the atlas belongs to a biome
+		maps_biome			=	"biome:"					;## each map on the atlas belongs to a biome
 
 
 ;## these strings are shown in the map-info panel
-		maps_stats_full		=	"mods#quantity#rarity#pack size#maps#scarabs#currency#waystones"		;## map rolls/multipliers
-		maps_stats			=	"x#q#r#p#m#s#c#w"							;## x = multiplication-sign, see above for the rest
+		maps_stats_full		=	"mods#quantity#rarity#pack size#maps#scarabs#currency"				;## map rolls/multipliers
+		maps_stats_full2		=	"mods#rarity#pack size#monster rarity#effectiveness#waystones"		;## map rolls/multipliers
+		maps_stats			=	"x#q#r#p#m#s#c"											;## x = multiplication-sign, see above for the rest
+		maps_stats2			=	"x#r#p#r#e#w"												;## x = multiplication-sign, see above for the rest
 
 
 
@@ -274,6 +276,8 @@
 
 		items_map_waystonechance	=	"Waystone Drop Chance:"			;## PoE2 only (whole block)
 		items_map_revives		=	"Revives Available:"
+		items_map_monstereffect	=	"Monster Effectiveness:"
+		items_map_monsterrarity	=	"Monster Rarity:"
 		items_sockets			=	"Sockets:"
 
 

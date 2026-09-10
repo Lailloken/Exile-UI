@@ -3638,7 +3638,7 @@ Settings_lootfilter2(cHWND := "")
 		Settings_menu("filterspoon")
 		;######################################################
 		Case (check = "notify"):
-		IniWrite, % (settings.lootfilter.notify := (settings.lootfilter.notify ? 0 : 4)), % "ini" vars.poe_version "\lootfilter.ini", settings, sync notification
+		IniWrite, % (settings.lootfilter.notify := (settings.lootfilter.notify ? 0 : 8)), % "ini" vars.poe_version "\lootfilter.ini", settings, sync notification
 		Settings_menu("filterspoon")
 		;######################################################
 		Case (check = "notify_hours"):
@@ -4109,11 +4109,9 @@ Settings_mapinfo()
 
 	If settings.mapinfo.roll_highlight
 	{
-		For index, val in ["quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"]
+		For index, val in settings.mapinfo.roll_types
 		{
-			If vars.poe_version && LLK_IsBetween(index, 4, 6) || !vars.poe_version && (index = 7)
-				Continue
-			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs Section" : "ys x+" settings.general.fWidth//2) " Center Border BackgroundTrans w" settings.general.fWidth * 2, % Lang_Trans("maps_stats", A_Index + 1)
+			Gui, %GUI%: Add, Text, % (A_Index = 1 ? "xs Section" : "ys x+" settings.general.fWidth//2) " Center Border BackgroundTrans w" settings.general.fWidth * 2, % Lang_Trans("maps_stats" . StrReplace(vars.poe_version, " "), A_Index + 1)
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd Background404040 cBlack", 100
 			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 			Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 3 " hp Border BackgroundTrans"
@@ -6894,9 +6892,10 @@ Settings_updater()
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.update_check := hwnd, vars.hwnd.help_tooltips["settings_updater check"] := hwnd1
 
+	width := (StrLen(vars.updater.version.2) > 6 || StrLen(vars.updater.latest.2) > 6 ? 6 : 5)
 	Gui, %GUI%: Add, Text, % "Section xs w" wCurrent " Right Border BackgroundTrans", % Lang_Trans("m_updater_version", 2) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " Border BackgroundTrans HWNDhwnd", % " " vars.updater.version.2
+	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * width " Border BackgroundTrans HWNDhwnd", % " " vars.updater.version.2
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 	ControlGetPos, x,,,,, ahk_id %hwnd%
 
@@ -6916,7 +6915,7 @@ Settings_updater()
 	color := vars.updater.skip && (vars.updater.latest.1 = vars.updater.skip) ? " cYellow" : (IsNumber(vars.updater.latest.1) && vars.updater.latest.1 > vars.updater.version.1) ? " cLime" : ""
 	Gui, %GUI%: Add, Text, % "Section xs y+-1 w" wCurrent " Right Border BackgroundTrans" color, % Lang_Trans("m_updater_version", 3) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " hp Border BackgroundTrans " color, % " " vars.updater.latest.2
+	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * width " hp Border BackgroundTrans " color, % " " vars.updater.latest.2
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 
 	If IsNumber(vars.updater.latest.1) && (vars.updater.latest.1 > vars.updater.version.1) && (vars.updater.latest.1 != vars.updater.skip)

@@ -61,8 +61,6 @@ If FileExist("add-ons")
 	}
 }
 
-;If !vars.poe_version && FileExist("ini\") && !FileExist("ini\file check.ini") ;check ini-files for incorrect file-encoding
-;	IniIntegrityCheck()
 If LLK_IniRead("ini\config.ini", "versions", "apply update")
 {
 	UpdateCheck(2)
@@ -120,12 +118,6 @@ If (check := LLK_IniRead("ini" vars.poe_version "\config.ini", "versions", "relo
 {
 	Settings_menu(check,, 0)
 	IniDelete, % "ini" vars.poe_version "\config.ini", Versions, reload settings
-}
-If vars.ini_integrity
-{
-	MsgBox,, Exile UI, % "The tool tried to fix misconfigured config-files in order to resolve an AHK bug, but there was an error.`n`nTo fix this manually, you have to open the files listed below (left) in a text-editor and copy their contents into the fixed files (right), replacing everything inside:`n`n" vars.ini_integrity "`n`nThis list is also stored in ""ini\file check.ini"" in case you want to do it later.`nIf you skip this manual fix, you'll have to reconfigure those features that rely on the files listed above."
-	Reload
-	ExitApp
 }
 LLK_Log("+++ tool is running +++")
 
@@ -653,43 +645,6 @@ Init_vars()
 	LLK_Log("initialized global objects")
 }
 
-IniIntegrityCheck()
-{
-	local
-	global vars
-
-	LLK_Log("starting ini integrity-check")
-
-	If !FileExist("ini" vars.poe_version " backup\")
-		FileCopyDir, % "ini" vars.poe_version, % "ini" vars.poe_version " backup", 1
-	Loop, Files, % "ini" vars.poe_version "\*.ini"
-	{
-		If InStr(A_LoopFileName, " backup")
-			Continue
-		FileRead, check, *P1200 %A_LoopFilePath%
-		If !InStr(check, "[") || !InStr(check, "]")
-		{
-			FileRead, check, *P65001 %A_LoopFilePath%
-			If (StrLen(check) > 0) && (!InStr(check, "[") || !InStr(check, "]"))
-			{
-				FileMove, % A_LoopFilePath, % StrReplace(A_LoopFilePath, ".ini", " backup.ini"), 1
-				vars.ini_integrity .= (Blank(vars.ini_integrity) ? "" : "`n") "`t" StrReplace(A_LoopFilePath, ".ini", " backup.ini") " -> " A_LoopFilePath
-			}
-			Else
-			{
-				FileDelete, % A_LoopFilePath
-				If InStr(check, "[") && InStr(check, "]")
-					FileAppend, % check, % A_LoopFilePath, CP1200
-			}
-		}
-	}
-	IniWrite, % A_Now, % "ini" vars.poe_version "\file check.ini", check, timestamp
-	If vars.ini_integrity
-		IniWrite, % StrReplace(vars.ini_integrity, "`t"), % "ini" vars.poe_version "\file check.ini", errors
-
-	LLK_Log("finished ini integrity-check")
-}
-
 LLK_FileCheck() ;delete old files (or ones that have been moved elsewhere)
 {
 	For index, val in ["Atlas.ini", "Betrayal.json", "essences.json", "help tooltips.json", "lang_english.txt", "Map mods.ini", "Betrayal.ini", "timeless jewels\", "item info\", "leveling tracker\"
@@ -760,7 +715,7 @@ Loop()
 		If !vars.hwnd.poe_client
 			If (vars.poe_version != CheckClient())
 			{
-				If Gui_MsgBox("switch client", Lang_Trans("msg_clientswitch"), [Lang_Trans("msg_clientswitch", 2), Lang_Trans("msg_clientswitch", 3)],, ["yes", "no"])
+				If Gui_MsgBox("switch client", "exile ui: " Lang_Trans("msg_clientswitch"), [Lang_Trans("msg_clientswitch", 2), Lang_Trans("msg_clientswitch", 3)],, ["yes", "no"])
 					LLK_Restart()
 				Else Return
 			}

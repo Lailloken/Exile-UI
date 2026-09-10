@@ -47,7 +47,8 @@
 	settings.mapinfo.position := !Blank(check := ini.settings.position) ? check : 2
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "000000", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "FFFF00"]
-	For index, val in ["quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"]
+	settings.mapinfo.roll_types := (!vars.poe_version ? ["quantity", "rarity", "pack size", "maps", "scarabs", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
+	For index, val in settings.mapinfo.roll_types
 		settings.mapinfo.roll_requirements[val] := !Blank(check := ini.UI[val " requirement"]) ? check : ""
 }
 
@@ -66,9 +67,11 @@ Mapinfo_GUI(mode := 1)
 	Gui, %GUI_name%: Margin, 0, 0 ;% settings.mapinfo.fWidth/2, % settings.mapinfo.fWidth/2
 	Gui, %GUI_name%: Font, % "s"settings.mapinfo.fSize " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.mapinfo.main, vars.hwnd.mapinfo := {"main": mapinfo}, mod_count := 0
-	summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.quantity . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3) . (!Blank(map.packsize) ? " | " map.packsize . Lang_Trans("maps_stats", 4) : "")
-	If vars.poe_version
-		summary1 := map.waystones Lang_Trans("maps_stats", 8) " | " map.revives " " Lang_Trans("mapinfo_rip")
+
+	If !vars.poe_version
+		summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.quantity . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3) " | " map.packsize . Lang_Trans("maps_stats", 4)
+	Else summary := summary0 := map.mods . Lang_Trans("maps_stats2", 1) " | " map.rarity . Lang_Trans("maps_stats2", 2) " | " map.packsize . Lang_Trans("maps_stats2", 3) " | " map.monsterrarity . Lang_Trans("maps_stats2", 4) " | " map.monstereffect . Lang_Trans("maps_stats2", 5) 
+		, summary1 := map.waystones Lang_Trans("maps_stats2", 6) " | " map.revives " " Lang_Trans("mapinfo_rip")
 
 	If !vars.poe_version
 		Loop, Parse, % "maps,scarabs,currency", `,
@@ -197,7 +200,7 @@ Mapinfo_GUI(mode := 1)
 		}
 	}
 
-	rolls := ["mods", "quantity", "rarity", "pack size", "maps", "scarabs", "currency", "waystones"], panels := 0
+	panels := 0, rolls := settings.mapinfo.roll_types.Clone(), rolls.InsertAt(1, "mods")
 	If (map.mods + map.quantity > 0)
 	{
 		;Gui, %GUI_name%: Add, Text, % "xs BackgroundTrans x1 y" yControl + hControl " Section HWNDhwnd Center w" width + settings.mapinfo.fHeight*2 - 3, % summary
@@ -215,7 +218,7 @@ Mapinfo_GUI(mode := 1)
 				Continue
 			panels += 1
 			style := (panels = 1 ? "xs Section y+" (yControl + hControl ? -1 : 0) " x" wGUI//2 - ((!vars.poe_version ? wSummary * (summary_array1.Count() - msc_count) : wSummary2 * summary_array1.Count()))//2 : "ys x+0")
-			roll := settings.mapinfo.roll_requirements[rolls[vars.poe_version ? 8 : index + 4]]
+			roll := settings.mapinfo.roll_requirements[rolls[vars.poe_version ? index + 5 : index + 4]]
 			If vars.poe_version && (index = 2)
 				color := " c" settings.mapinfo.color[(map.revives < 4) ? 4 - map.revives : 1]
 			Else color := settings.mapinfo.roll_highlight && !Blank(roll) && (SubStr(vSum, 1, -1) >= roll) ? " c" settings.mapinfo.roll_colors.1 : ""
@@ -537,7 +540,7 @@ Mapinfo_Parse2(mode)
 	vars.mapinfo.categories := db.mapinfo["mod types"].Clone(), vars.mapinfo.active_map := {}
 	For index, category in vars.mapinfo.categories
 		vars.mapinfo.active_map[category] := []
-	mod_count := 0, map_mods := {}, map := vars.mapinfo.active_map, mods := db.mapinfo.mods, parsed_lines := {}, map.mods := map.waystones := map.quantity := map.rarity := map.packsize := 0
+	mod_count := 0, map_mods := {}, map := vars.mapinfo.active_map, mods := db.mapinfo.mods, parsed_lines := {}, map.mods := map.waystones := map.quantity := map.rarity := map.monstereffect := map.monsterrarity := map.packsize := 0
 
 	For key in map
 		Loop 6
@@ -552,6 +555,10 @@ Mapinfo_Parse2(mode)
 
 		If InStr(A_LoopField, Lang_Trans("items_map_revives"))
 			map.revives := SubStr(A_LoopField, InStr(A_LoopField, ": ") + 2), map.revives := (check := InStr(map.revives, " (")) ? SubStr(map.revives, 1, check - 1) : map.revives
+		Else If InStr(A_LoopField, Lang_Trans("items_map_monstereffect"))
+			map.monstereffect := SubStr(A_LoopField, InStr(A_LoopField, "+") + 1), map.monstereffect := (check := InStr(map.monstereffect, " (")) ? SubStr(map.monstereffect, 1, check - 1) : map.monstereffect, map.monstereffect := Trim(map.monstereffect, "%")
+		Else If InStr(A_LoopField, Lang_Trans("items_map_monsterrarity"))
+			map.monsterrarity := SubStr(A_LoopField, InStr(A_LoopField, "+") + 1), map.monsterrarity := (check := InStr(map.monsterrarity, " (")) ? SubStr(map.monsterrarity, 1, check - 1) : map.monsterrarity, map.monsterrarity := Trim(map.monsterrarity, "%")
 		Else If InStr(A_LoopField, Lang_Trans("items_map_waystonechance"))
 			map.waystones := SubStr(A_LoopField, InStr(A_LoopField, "+") + 1), map.waystones := (check := InStr(map.waystones, " (")) ? SubStr(map.waystones, 1, check - 1) : map.waystones, map.waystones := Trim(map.waystones, "%")
 		Else If InStr(A_LoopField, Lang_Trans("items_mapquantity"))
