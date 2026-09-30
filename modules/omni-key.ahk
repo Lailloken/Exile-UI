@@ -530,7 +530,7 @@ Omni_ContextMenuPick(cHWND)
 			page := (InStr(A_GuiControl, "all clusters") ? "" : (InStr(item.itembase, "small") ? "Small_" : InStr(item.itembase, "medium") ? "Medium_" : "Large_")) "Cluster_Jewel"
 		Else If InStr(item.itembase, "Runic ", 1)
 			page := (item.class = "boots") ? "Runic_Sabatons" : (item.class = "helmets") ? "Runic_Crown" : "Runic_Gauntlets"
-		Else If !Blank(LLK_HasVal(["unset ring", "iron flask", "bone ring", "convoking wand", "bone spirit shield", "silver flask"], item.itembase)) || InStr(item.class, "jewels") || InStr(item.class, "heist")
+		Else If !Blank(LLK_HasVal(["unset ring", "iron flask", "bone ring", "convoking wand", "bone spirit shield", "silver flask", Lang_Trans("items_cannon")], item.itembase)) || InStr(item.class, "jewels") || InStr(item.class, "heist")
 			page := StrReplace(item.itembase, " ", "_")
 		Else page := StrReplace(item.class, " ", "_") . item.attributes
 		Run, % "https://poe" Trim(vars.poe_version, " ") "db.tw/" . Lang_Trans("system_poedb_lang") . "/" . page . (InStr(page, "cluster_jewel") ? "#EnchantmentModifiers" : "#ModifiersCalc")

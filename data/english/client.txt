@@ -249,6 +249,7 @@
 		items_uncut_gem		=	"Uncut Skill Gem"
 		items_uncut_gem		=	"Uncut Support Gem"
 		items_uncut_gem		=	"Uncut Spirit Gem"
+		items_cannon			=	"Trarthan Cannon"
 
 		items_merc_warrant		=	"Mercenary Warrant"					;## PoE1 only
 
