@@ -1757,7 +1757,7 @@ Iteminfo_GUI()
 			If (affixinfo = 3 && tier = max_tier) && InStr(highlights, "+",,, LLK_InStrCount(A_LoopField, "`n"))
 				width := UI.wSegment, color := "White", color_t := "Red"
 
-			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border 0x200 Center c" (color = "black" ? "White" : color_t), % tier ;add tier-cell
+			Gui, %GUI_name%: Add, Text, % "x"x " y"y " h"height " w"width " BackgroundTrans Border Center c" (color = "black" ? "White" : color_t) . (height <= UI.hSegment ? "" : " 0x200"), % tier ;add tier-cell
 			Gui, %GUI_name%: Add, Progress, % "xp yp wp hp Border Disabled BackgroundBlack c"color, 100
 			Gui, %GUI_name%: Font, norm
 
