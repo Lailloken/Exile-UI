@@ -426,6 +426,12 @@ Omni_ContextMenu()
 				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3, vars.hwnd.omni_context.anoints := hwnd4
 				width := (Max(w, w1, w2) > width) ? Max(w, w1, w2) : width
 			}
+			Else If (item.rarity = Lang_Trans("items_unique")) && !Blank(item.class) && !Blank(item.attributes)
+			{
+				Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd1" style, % "poe.db: " Lang_Trans("system_poedb_lang", 3)
+				ControlGetPos,,, w3,,, % "ahk_id " hwnd1
+				vars.hwnd.omni_context.poedb := hwnd1
+			}
 
 			If InStr(item.name, "to the goddess")
 			{
@@ -533,7 +539,7 @@ Omni_ContextMenuPick(cHWND)
 		Else If !Blank(LLK_HasVal(["unset ring", "iron flask", "bone ring", "convoking wand", "bone spirit shield", "silver flask", Lang_Trans("items_cannon")], item.itembase)) || InStr(item.class, "jewels") || InStr(item.class, "heist")
 			page := StrReplace(item.itembase, " ", "_")
 		Else page := StrReplace(item.class, " ", "_") . item.attributes
-		Run, % "https://poe" Trim(vars.poe_version, " ") "db.tw/" . Lang_Trans("system_poedb_lang") . "/" . page . (InStr(page, "cluster_jewel") ? "#EnchantmentModifiers" : "#ModifiersCalc")
+		Run, % "https://poe" Trim(vars.poe_version, " ") "db.tw/" . Lang_Trans("system_poedb_lang") . "/" . page . (item.rarity = Lang_Trans("items_unique") ? "#VaalOrbCorruptedEnchantment" : (InStr(page, "cluster_jewel") ? "#EnchantmentModifiers" : "#ModifiersCalc"))
 		Clipboard := item.ilvl
 		If InStr(page, "cluster_jewel") && settings.features.browser
 		{
@@ -590,14 +596,10 @@ Omni_ItemInfo()
 	Else If vars.poe_version && item.class && (vars.omnikey.poedb[item.class] = 2)
 	{
 		item.attributes := ""
-		Loop, Parse, % vars.omnikey.clipboard, `n, % "`r "
-			If InStr(A_LoopField, "Requires:")
-			{
-				Loop, Parse, A_LoopField, `,, % "`n`r "
-					If !InStr(A_LoopField, "Level")
-						item.attributes .= "_" LLK_StringCase(SubStr(StrReplace(A_LoopField, "(augmented) "), InStr(A_LoopField, " ") + 1, 3))
-				Break
-			}
+		For class, val in db.item_bases
+			If InStr(item.class, class)
+				If val.HasKey(item.itembase)
+					item.attributes .= (val[item.itembase].ar ? "_str" : ""), item.attributes .= (val[item.itembase].ev ? "_dex" : ""), item.attributes .= (val[item.itembase].es ? "_int" : "")
 	}
 
 	Loop, Parse, clip, `n, % "`r " ;store the item's class, rarity, and miscellaneous info
