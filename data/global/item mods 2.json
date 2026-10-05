@@ -695,7 +695,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -716,7 +726,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -737,7 +757,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -758,7 +788,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -779,7 +819,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -800,7 +850,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -821,7 +881,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -842,7 +912,17 @@
         ],
         "weights": [
           [
-            "two_hand_weapon",
+            "two_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -863,7 +943,17 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -884,7 +974,21 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -905,7 +1009,17 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -926,7 +1040,17 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -947,7 +1071,21 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -968,7 +1106,21 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -989,7 +1141,21 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1010,7 +1176,21 @@
         ],
         "weights": [
           [
-            "one_hand_weapon",
+            "one_hand_weapon"
+          ],
+          [
+            "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1039,6 +1219,13 @@
           [
             "mace",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1060,6 +1247,13 @@
           [
             "mace",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1079,6 +1273,17 @@
         "weights": [
           [
             "mace",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1101,6 +1306,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1121,6 +1333,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1143,6 +1362,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1163,6 +1389,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1185,6 +1418,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1205,6 +1445,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1227,6 +1474,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1247,6 +1501,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1269,6 +1530,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1289,6 +1557,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1311,6 +1586,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1332,6 +1614,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1351,6 +1640,13 @@
         "weights": [
           [
             "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1373,6 +1669,13 @@
           [
             "amulet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1393,6 +1696,25 @@
         "weights": [
           [
             "armour",
+            1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1415,6 +1737,25 @@
           [
             "armour",
             1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1435,6 +1776,25 @@
         "weights": [
           [
             "armour",
+            1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1457,6 +1817,25 @@
           [
             "armour",
             1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1477,6 +1856,25 @@
         "weights": [
           [
             "armour",
+            1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1499,6 +1897,25 @@
           [
             "armour",
             1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1519,6 +1936,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1541,6 +1965,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1561,6 +1992,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1583,6 +2021,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1603,6 +2048,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1625,6 +2077,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1645,6 +2104,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1667,6 +2133,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1687,6 +2160,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1709,6 +2189,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1729,6 +2216,13 @@
         "weights": [
           [
             "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1751,6 +2245,13 @@
           [
             "belt",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -1772,6 +2273,13 @@
           [
             "body_armour",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1791,7 +2299,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "body_armour",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1812,7 +2336,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "body_armour",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1833,7 +2373,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "body_armour",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1854,7 +2410,27 @@
         ],
         "weights": [
           [
-            "dex_armour",
+            "dex_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "dex_int_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -1877,6 +2453,17 @@
           [
             "body_armour",
             1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -1896,7 +2483,27 @@
         ],
         "weights": [
           [
-            "dex_armour",
+            "dex_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "dex_int_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1917,7 +2524,27 @@
         ],
         "weights": [
           [
-            "str_shield",
+            "str_shield"
+          ],
+          [
+            "dex_shield"
+          ],
+          [
+            "str_dex_shield"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -1940,6 +2567,17 @@
           [
             "body_armour",
             1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -1960,6 +2598,17 @@
         "weights": [
           [
             "body_armour",
+            1
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -1982,6 +2631,13 @@
           [
             "boots",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2002,6 +2658,13 @@
         "weights": [
           [
             "boots",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2024,6 +2687,17 @@
           [
             "boots",
             1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2044,6 +2718,17 @@
         "weights": [
           [
             "boots",
+            1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2066,6 +2751,17 @@
           [
             "boots",
             1
+          ],
+          [
+            "belt",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2086,6 +2782,13 @@
         "weights": [
           [
             "boots",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2108,6 +2811,13 @@
           [
             "boots",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2127,6 +2837,13 @@
         "weights": [
           [
             "boots",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -2149,6 +2866,13 @@
           [
             "boots",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2168,8 +2892,7 @@
         ],
         "weights": [
           [
-            "default",
-            1
+            "default"
           ]
         ]
       }
@@ -2191,6 +2914,13 @@
           [
             "bow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2211,6 +2941,17 @@
         "weights": [
           [
             "bow",
+            1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2240,6 +2981,21 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2260,6 +3016,17 @@
         "weights": [
           [
             "bow",
+            1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2289,6 +3056,21 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2309,6 +3091,17 @@
         "weights": [
           [
             "bow",
+            1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2331,6 +3124,17 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2352,6 +3156,17 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2372,6 +3187,17 @@
         "weights": [
           [
             "bow",
+            1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -2401,6 +3227,17 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2422,6 +3259,17 @@
           [
             "bow",
             1
+          ],
+          [
+            "spear",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2441,6 +3289,13 @@
         "weights": [
           [
             "crossbow",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2470,6 +3325,13 @@
           [
             "crossbow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2490,6 +3352,13 @@
         "weights": [
           [
             "crossbow",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2512,6 +3381,13 @@
           [
             "crossbow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2532,6 +3408,13 @@
         "weights": [
           [
             "crossbow",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2554,6 +3437,13 @@
           [
             "crossbow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2574,6 +3464,13 @@
           [
             "crossbow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2593,6 +3490,13 @@
         "weights": [
           [
             "crossbow",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -2615,6 +3519,13 @@
           [
             "crossbow",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2635,6 +3546,13 @@
         "weights": [
           [
             "focus",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2657,6 +3575,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2677,6 +3602,13 @@
         "weights": [
           [
             "focus",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2699,6 +3631,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2720,6 +3659,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2740,6 +3686,13 @@
         "weights": [
           [
             "focus",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2768,6 +3721,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2787,6 +3747,13 @@
         "weights": [
           [
             "focus",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -2809,6 +3776,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2829,6 +3803,13 @@
         "weights": [
           [
             "focus",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -2851,6 +3832,13 @@
           [
             "focus",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2871,6 +3859,25 @@
         "weights": [
           [
             "helmet",
+            1
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "focus",
+            1
+          ],
+          [
+            "quiver",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2893,6 +3900,13 @@
           [
             "weapon",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -2913,6 +3927,13 @@
         "weights": [
           [
             "weapon",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -2935,6 +3956,13 @@
           [
             "weapon",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -2955,6 +3983,13 @@
         "weights": [
           [
             "weapon",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -2977,6 +4012,13 @@
           [
             "weapon",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -2998,6 +4040,13 @@
           [
             "weapon",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -3017,7 +4066,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -3040,6 +4105,13 @@
           [
             "gloves",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -3059,7 +4131,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -3080,8 +4168,22 @@
         ],
         "weights": [
           [
-            "dex_armour",
-            1
+            "dex_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "dex_int_armour"
+          ],
+          [
+            "gloves"
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod"
           ]
         ]
       }
@@ -3101,7 +4203,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -3122,7 +4240,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -3145,6 +4279,13 @@
           [
             "gloves",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -3166,6 +4307,13 @@
           [
             "gloves",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -3185,7 +4333,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -3206,7 +4370,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "gloves",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -3229,6 +4409,13 @@
           [
             "gloves",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -3248,7 +4435,23 @@
         ],
         "weights": [
           [
-            "dex_armour",
+            "dex_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "dex_int_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -3271,6 +4474,13 @@
           [
             "helmet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -3292,6 +4502,13 @@
           [
             "helmet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -3311,7 +4528,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "dex_armour"
+          ],
+          [
+            "str_dex_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -3332,7 +4565,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -3355,6 +4604,13 @@
           [
             "helmet",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -3374,7 +4630,23 @@
         ],
         "weights": [
           [
-            "str_armour",
+            "str_armour"
+          ],
+          [
+            "int_armour"
+          ],
+          [
+            "str_int_armour"
+          ],
+          [
+            "helmet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -3397,6 +4669,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3425,6 +4708,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3453,6 +4747,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3481,6 +4786,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3509,6 +4825,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3536,6 +4863,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3564,6 +4902,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3592,6 +4941,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3620,6 +4980,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3648,6 +5019,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3669,6 +5051,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3697,6 +5090,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3725,6 +5129,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3753,6 +5168,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3774,6 +5200,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3802,6 +5239,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3830,6 +5278,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3858,6 +5317,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3885,6 +5355,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3913,6 +5394,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3941,6 +5433,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3969,6 +5472,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -3997,6 +5511,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4025,6 +5550,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4053,6 +5589,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4081,6 +5628,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4109,6 +5667,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4137,6 +5706,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4165,6 +5745,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4186,6 +5777,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4207,6 +5809,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4228,6 +5841,17 @@
           [
             "strjewel",
             1
+          ],
+          [
+            "intjewel",
+            1
+          ],
+          [
+            "dexjewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4256,6 +5880,13 @@
           [
             "warstaff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -4276,6 +5907,13 @@
         "weights": [
           [
             "warstaff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -4305,6 +5943,13 @@
           [
             "warstaff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -4325,6 +5970,13 @@
         "weights": [
           [
             "warstaff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -4354,6 +6006,13 @@
           [
             "warstaff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -4374,6 +6033,13 @@
         "weights": [
           [
             "warstaff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -4396,6 +6062,13 @@
           [
             "quiver",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -4416,6 +6089,13 @@
         "weights": [
           [
             "quiver",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -4438,6 +6118,13 @@
           [
             "quiver",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -4459,6 +6146,13 @@
           [
             "quiver",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -4478,6 +6172,13 @@
         "weights": [
           [
             "quiver",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -4500,6 +6201,13 @@
           [
             "quiver",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -4521,6 +6229,13 @@
           [
             "quiver",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -4541,6 +6256,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4561,6 +6287,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4581,6 +6318,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4601,6 +6349,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4622,6 +6381,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4642,6 +6412,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4663,6 +6444,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4683,6 +6475,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4703,6 +6506,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4723,6 +6537,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4744,6 +6569,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4765,6 +6601,17 @@
           [
             "int_radius_jewel",
             1
+          ],
+          [
+            "str_radius_jewel",
+            1
+          ],
+          [
+            "dex_radius_jewel",
+            1
+          ],
+          [
+            "default"
           ]
         ]
       }
@@ -4785,6 +6632,13 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -4807,6 +6661,13 @@
           [
             "ring",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -4827,6 +6688,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -4849,6 +6721,17 @@
           [
             "ring",
             1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -4869,6 +6752,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -4891,6 +6785,17 @@
           [
             "ring",
             1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -4911,6 +6816,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -4933,6 +6849,17 @@
           [
             "ring",
             1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -4953,6 +6880,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -4975,6 +6913,17 @@
           [
             "ring",
             1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -4995,6 +6944,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5017,6 +6977,17 @@
           [
             "ring",
             1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5037,6 +7008,17 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "amulet",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5059,6 +7041,13 @@
           [
             "ring",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -5079,6 +7068,13 @@
         "weights": [
           [
             "ring",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5101,6 +7097,13 @@
           [
             "ring",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5121,6 +7124,13 @@
           [
             "shield",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5140,7 +7150,20 @@
         ],
         "weights": [
           [
-            "dex_shield",
+            "dex_shield"
+          ],
+          [
+            "dex_int_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5160,7 +7183,20 @@
         ],
         "weights": [
           [
-            "dex_shield",
+            "dex_shield"
+          ],
+          [
+            "dex_int_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5181,7 +7217,23 @@
         ],
         "weights": [
           [
-            "str_shield",
+            "str_shield"
+          ],
+          [
+            "dex_shield"
+          ],
+          [
+            "str_dex_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5203,6 +7255,13 @@
         "weights": [
           [
             "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5230,7 +7289,20 @@
         ],
         "weights": [
           [
-            "dex_shield",
+            "dex_shield"
+          ],
+          [
+            "dex_int_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5253,6 +7325,13 @@
           [
             "shield",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5272,7 +7351,20 @@
         ],
         "weights": [
           [
-            "str_shield",
+            "str_shield"
+          ],
+          [
+            "str_int_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5293,7 +7385,20 @@
         ],
         "weights": [
           [
-            "str_shield",
+            "str_shield"
+          ],
+          [
+            "str_int_shield"
+          ],
+          [
+            "shield",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5316,6 +7421,13 @@
           [
             "spear",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -5336,6 +7448,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5358,6 +7477,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5378,6 +7504,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5400,6 +7533,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5420,6 +7560,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5442,6 +7589,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5462,6 +7616,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5484,6 +7645,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -5504,6 +7672,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5526,6 +7701,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5546,6 +7728,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5568,6 +7757,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5588,6 +7784,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5610,6 +7813,13 @@
           [
             "staff",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5630,6 +7840,13 @@
         "weights": [
           [
             "staff",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5652,6 +7869,13 @@
           [
             "talisman",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5671,6 +7895,13 @@
         "weights": [
           [
             "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5693,6 +7924,13 @@
           [
             "talisman",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -5713,6 +7951,13 @@
         "weights": [
           [
             "talisman",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5742,6 +7987,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5762,6 +8014,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5784,6 +8043,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5805,6 +8071,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5825,6 +8098,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
             1
           ]
         ]
@@ -5854,6 +8134,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "amanamu_mod",
+            1
           ]
         ]
       }
@@ -5874,6 +8161,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5896,6 +8190,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
+            1
           ]
         ]
       }
@@ -5916,6 +8217,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "kurgal_mod",
             1
           ]
         ]
@@ -5938,6 +8246,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -5958,6 +8273,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -5980,6 +8302,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -6001,6 +8330,13 @@
           [
             "wand",
             1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
+            1
           ]
         ]
       }
@@ -6021,6 +8357,13 @@
         "weights": [
           [
             "wand",
+            1
+          ],
+          [
+            "default"
+          ],
+          [
+            "ulaman_mod",
             1
           ]
         ]
@@ -41403,9 +43746,10 @@
         "name": "of the virtuoso",
         "text": [
           [
-            "10% increased Cooldown Recovery Rate",
+            ".*% increased Cooldown Recovery Rate",
             [
-              10
+              33,
+              36
             ]
           ]
         ],
