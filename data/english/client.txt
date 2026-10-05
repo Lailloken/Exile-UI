@@ -328,6 +328,7 @@
 		items_affix			=	""#""					;## in my limited testing, I only found Japanese to use something other than quotation marks (「#」)
 		items_uniquemod		=	"Unique Modifier"
 		items_implicit			=	"Implicit Modifier"
+		items_implicit_anoint	=	"Enhancement"
 		items_implicit_corrupt	=	"Corruption Enhancement"
 		items_implicit_exarch	=	"Searing Exarch Implicit Modifier"
 		items_implicit_eater	=	"Eater of Worlds Implicit Modifier"
