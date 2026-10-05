@@ -702,7 +702,7 @@ Settings_cheatsheets()
 {
 	local
 	global vars, settings
-	static fSize, wDDL
+	static fSize, wDDL, wAlt
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, Init_cheatsheets(), x_anchor := vars.settings.x_anchor
 
@@ -724,6 +724,7 @@ Settings_cheatsheets()
 	{
 		fSize := settings.general.fSize
 		LLK_PanelDimensions([Lang_Trans("m_cheat_images"), Lang_Trans("m_cheat_app"), Lang_Trans("m_cheat_advanced")], fSize - 2, wDDL, hDDL)
+		LLK_PanelDimensions([Lang_Trans("global_alt"), Lang_Trans("global_ctrl")], settings.general.fSize, wAlt, hAlt)
 	}
 
 	Gui, %GUI%: Font, % "underline bold"
@@ -732,8 +733,8 @@ Settings_cheatsheets()
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("m_cheat_modifier") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd0 Background404040 cBlack", 100
-	LLK_PanelDimensions([Lang_Trans("global_alt"), Lang_Trans("global_ctrl")], settings.general.fSize, wAlt, hAlt)
-	For index, val in ["alt", "ctrl"]
+
+	For index, val in ["ctrl", "alt"]
 	{
 		Gui, %GUI%: Add, Text, % "ys x+-1 w" wAlt " Center Border BackgroundTrans HWNDhwnd gSettings_cheatsheets2" (settings.cheatsheets.modifier = val ? " cLime" : ""), % Lang_Trans("global_" val)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -2200,7 +2201,7 @@ Settings_hotkeys()
 	}
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 	Gui, %GUI%: Add, Text, % "xs y+-1 w" wEdits " hp Border BackgroundTrans"
-	Gui, %GUI%: Add, Edit, % "xp yp wp hp Border HWNDhwnd gSettings_hotkeys2 cBlack", % settings.hotkeys.emergencykey
+	Gui, %GUI%: Add, Edit, % "xp yp wp hp Center Border HWNDhwnd gSettings_hotkeys2 cBlack", % settings.hotkeys.emergencykey
 	vars.hwnd.settings.emergencykey := vars.hwnd.help_tooltips["settings_hotkeys formatting|||||||"] := hwnd
 }
 
@@ -3484,14 +3485,13 @@ Settings_lootfilter()
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("m_cheat_modifier") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd Background404040 cBlack", 100
-	For index, val in ["alt", "ctrl"]
+	For index, val in ["ctrl", "alt"]
 	{
-		Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans Center gSettings_lootfilter2 HWNDhwnd" index " c" (settings.lootfilter.modifier_key = val ? "Lime" : "White") " w" wALT, % Lang_Trans("global_" val)
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd_bar" index " Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans Center gSettings_lootfilter2 HWNDhwnd c" (settings.lootfilter.modifier_key = val ? "Lime" : "White") " w" wALT, % Lang_Trans("global_" val)
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd_bar Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings["modifierkey_" val] := hwnd, vars.hwnd.help_tooltips["settings_lootfilter modifier keys" (index = 2 ? "|" : "")] := hwnd_bar
 	}
-	vars.hwnd.help_tooltips["settings_lootfilter modifier keys"] := hwnd
-	vars.hwnd.settings.modifierkey_alt := hwnd1, vars.hwnd.help_tooltips["settings_lootfilter modifier keys|"] := hwnd_bar1
-	vars.hwnd.settings.modifierkey_ctrl := hwnd2, vars.hwnd.help_tooltips["settings_lootfilter modifier keys||"] := hwnd_bar2
+	vars.hwnd.help_tooltips["settings_lootfilter modifier keys||"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "Section xs Center Border BackgroundTrans gSettings_lootfilter2 HWNDhwnd c" (settings.lootfilter.notify ? "Lime" : "Gray"), % " " Lang_Trans("global_notification") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
