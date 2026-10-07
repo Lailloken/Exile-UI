@@ -7500,7 +7500,7 @@ Settings_LeagueSelection(ByRef yCoord)
 	widths_count := objects[(vars.poe_version ? 3 : 4)].Count()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, yMax := 0
-	Gui, %GUI%: Add, Text, % "Section xs x" vars.settings.x_anchor " Border BackgroundTrans 0x200 Right w" wLeague " h" (hPanel := settings.general.fHeight * vars.leagues.Count() - 1), % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "Section xs x" vars.settings.x_anchor " Border BackgroundTrans 0x200 Right HWNDhwnd_league w" wLeague " h" (hPanel := settings.general.fHeight * vars.leagues.Count() - 1), % Lang_Trans("global_league") . Lang_Trans("global_colon") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack HWNDhwnd", 100
 	ControlGetPos, xFirst, yFirst, wFirst, hFirst,, ahk_id %hwnd%
 	vars.hwnd.help_tooltips["settings_league selection"] := hwnd, handle := "|"
@@ -7528,7 +7528,7 @@ Settings_LeagueSelection(ByRef yCoord)
 	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fHeight " h" height " BackgroundTrans Border gSettings_LeagueSelection2 HWNDhwnd"
 	Gui, %GUI%: Add, Pic, % (count > 1 ? "xp+1 yp+" (count - 1) * settings.general.fHeight//2 " wp-2 h-1" : "xp+1 yp+1 wp-2 hp-2") " BackgroundTrans HWNDhwnd1", % "HBitmap:*" vars.pics.global.reload
 	Gui, %GUI%: Add, Progress, % "Disabled xp-1 y" yFirst - 1 " w" settings.general.fHeight " h" height " Border HWNDhwnd2 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.league_update := hwnd, vars.hwnd.help_tooltips["settings_league update"] := hwnd1, vars.hwnd.help_tooltips["settings_league update|"] := hwnd2, yCoord := LLK_ControlGetPos(hwnd2).yMax
+	vars.hwnd.settings.league_update := hwnd, vars.hwnd.help_tooltips["settings_league update"] := hwnd1, vars.hwnd.help_tooltips["settings_league update|"] := hwnd2, yCoord := Max(LLK_ControlGetPos(hwnd2).yMax, LLK_ControlGetPos(hwnd_league).yMax)
 }
 
 Settings_LeagueSelection2(cHWND := "")
