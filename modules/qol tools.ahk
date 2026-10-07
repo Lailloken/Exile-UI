@@ -10,7 +10,8 @@
 	settings.qol := {"alarm": !Blank(check := ini.features.alarm) ? check : 0
 		, "notepad": !Blank(check1 := ini.features.notepad) ? check1 : 0
 		, "lab": (settings.general.lang_client = "unknown") ? 0 : !Blank(check2 := ini.features.lab) ? check2 : 0
-		, "mapevents": !Blank(check3 := ini.features.mapevents) ? check3 : 0}
+		, "mapevents": !Blank(check3 := ini.features.mapevents) ? check3 : 0
+		, "quickpob": !Blank(check4 := ini.features.quickpob) ? check4 : 0}
 
 	settings.alarm := {"fSize": !Blank(check := ini.alarm["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.alarm.fSize, font_height, font_width), settings.alarm.fHeight := font_height, settings.alarm.fWidth := font_width
@@ -66,6 +67,22 @@
 	settings.notepad.xQuickNote := !Blank(check := ini.notepad["x-coordinate quicknote"]) ? check : ""
 	settings.notepad.yQuickNote := !Blank(check := ini.notepad["y-coordinate quicknote"]) ? check : ""
 	vars.notepad := {"toggle": 0}, vars.notepad_widgets := {}, vars.hwnd.notepad_widgets := {}
+
+	settings.quickpob := {"exe": ["", "Path of Building" (vars.poe_version ? "-PoE2" : "") ".exe"]}
+	settings.quickpob.exe.1 := (!Blank(check := ini.quickpob["install folder"]) ? check : "")
+	If !FileExist(settings.quickpob.exe.1)
+		settings.quickpob.exe.1 := ""
+	settings.quickpob.hotkey := (!Blank(check := ini.quickpob.hotkey) ? check : "")
+	settings.quickpob.hotkey_alt := (!Blank(check := ini.quickpob["alt modifier"]) ? check : 0)
+	settings.quickpob.hotkey_ctrl := (!Blank(check := ini.quickpob["ctrl modifier"]) ? check : 0)
+	settings.quickpob.snip_offset := (!Blank(check := ini.quickpob["snip offset"]) ? check : 0)
+	settings.quickpob.mode := (!Blank(check := ini.quickpob.mode) ? check : "full")
+	If !Blank(settings.quickpob.hotkey) && Hotkeys_Convert(settings.quickpob.hotkey)
+	{
+		Hotkey, IfWinActive, % "ahk_group poe_window"
+		Hotkey, % Hotkeys_Convert((settings.quickpob.hotkey_alt ? "!" : "") . (settings.quickpob.hotkey_ctrl ? "^" : "") . settings.quickpob.hotkey), QuickPob, On
+	}
+	Else settings.quickpob.hotkey := ""
 }
 
 Alarm(hotkey := 1, cHWND := "", mode := "")
@@ -1184,4 +1201,293 @@ Notepad_Widget(tab, mode := 0, color := 0)
 	yPos := vars.notepad_widgets[tab].y, yPos := (yPos >= vars.monitor.h / 2) ? yPos - h + 1 : yPos
 	Gui, %GUI_name%: Show, % "NA x"vars.monitor.x + xPos " y"vars.monitor.y + yPos
 	LLK_Overlay(widget, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
+}
+
+QuickPoB(cHWND := "")
+{
+	local
+	global vars, settings
+
+	check := LLK_HasVal(vars.hwnd.quickpob, cHWND,,,, 1), control := LLK_HasVal(vars.hwnd.quickpob[check], cHWND)
+	If check
+	{
+		KeyWait, RButton
+		If (vars.system.click = 2)
+		{
+			For iHBM, HBM in vars.hwnd.quickpob[check].data.HBMs
+				DeleteObject(HBM)
+			LLK_Overlay(vars.hwnd.quickpob[check].main, "destroy"), vars.hwnd.quickpob.Delete(check)
+		}
+		Else If (control != "header")
+		{
+			WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " Gui_HWND(A_GUI)
+			MouseGetPos, xMouse, yMouse
+			While GetKeyState("LButton", "P")
+			{
+				LLK_Drag(wWin, hWin, xPos, yPos, 1, A_Gui,, xMouse - xWin, yMouse - yWin)
+				Sleep 15
+			}
+			vars.general.drag := 0
+			WinActivate, % "ahk_id " vars.hwnd.poe_client
+		}
+		Else QuickPob_Gui("toggle", Gui_HWND(A_Gui))
+		Return
+	}
+
+	If !IsObject(vars.quickpob)
+		vars.quickpob := {}
+
+	hotkey := settings.quickpob.hotkey
+	WinGet, pob_windows, List, % "ahk_exe " settings.quickpob.exe.2
+	If (pob_windows > 1)
+		LLK_ToolTip(Lang_Trans("quickpob_multi"), 2,,,, "Red")
+	Else If !pob_windows && (!settings.quickpob.exe.1 || !FileExist(settings.quickpob.exe.1))
+		LLK_ToolTip(Lang_Trans("global_setup", 2), 1.5,,,, "Red")
+	Else
+	{
+		Clipboard := ""
+		If (trade := Screenchecks_ImageSearch("tradesearch"))
+			Click
+		Else SendInput, % "^{c}"
+
+		ClipWait, 0.1
+		If !Clipboard
+		{
+			LLK_ToolTip(Lang_Trans("m_qol_quickpob") . Lang_Trans("global_colon") "`n" Lang_Trans("omnikey_copyfail"), 1.5,,,, "FF8000")
+			KeyWait, % hotkey
+			Return
+		}
+
+		KeyWait, % hotkey, T0.2
+		If (long_press := ErrorLevel)
+		{
+			LLK_ToolTip(Lang_Trans("global_ok"),,,,, "Lime")
+			KeyWait, % hotkey
+		}
+
+		If !WinExist("ahk_exe " settings.quickpob.exe.2)
+		{
+			Run, % settings.quickpob.exe.1
+			WinWait, % "ahk_exe " settings.quickpob.exe.2,, 2
+			vars.quickpob.error := ErrorLevel
+			WinActivate, % "ahk_id " vars.hwnd.poe_client
+
+			If !vars.quickpob.error
+			{
+				WinGetTitle, win_title, % "ahk_exe " settings.quickpob.exe.2
+				While RegExMatch(win_title, "i)^path.of.building" (vars.poe_version ? ".\(poe2\)" : "") "$")
+				{
+					If (A_Index = 1)
+						LLK_ToolTip(Lang_Trans("quickpob_loading") "`n" Lang_Trans("omnikey_escape"), 0,,, "quickpobwait", "Yellow"), vars.quickpob.pending := 1
+					If vars.quickpob.error && !tooltip
+						LLK_Overlay(vars.hwnd.tooltip_quickpobwait, "destroy"), tooltip := 1
+					If (A_Index = 100)
+					{
+						vars.quickpob.error := 3
+						Break
+					}
+					Sleep 100
+					WinGetTitle, win_title, % "ahk_exe " settings.quickpob.exe.2
+				}
+				LLK_Overlay(vars.hwnd.tooltip_quickpobwait, "destroy")
+			}
+		}
+
+		If !vars.quickpob.error && WinExist("ahk_exe " settings.quickpob.exe.2)
+		{
+			vars.quickpob.hwnd_pob := hwnd_pob := WinExist("ahk_exe " settings.quickpob.exe.2)
+			WinGet, style, ExStyle, % "ahk_id " hwnd_pob
+			start := A_TickCount
+			If !long_press
+			{
+				vars.quickpob.in_progress := vars.quickpob.style := 1
+				If !(style & 0x80)
+					WinSet, ExStyle, +0x80, % "ahk_id " hwnd_pob
+				WinSet, Trans, 1, % "ahk_id " hwnd_pob
+			}
+			WinActivate, % "ahk_id " hwnd_pob
+			WinWaitActive, % "ahk_id " hwnd_pob
+			SendEvent, {Control down}
+			SendEvent, {Blind}{3}{v}
+			SendEvent, {Control up}
+
+			If !long_press
+			{
+				MouseGetPos, xMouse, yMouse
+				MouseMove, % vars.monitor.x + vars.monitor.w, vars.monitor.y + 1.1*vars.system.caption, 0
+				SendEvent, {Blind}{PgDn}{PgDn}{PgDn}{PgDn}
+				bmp := Gdip_BitmapFromHWND(hwnd_pob, 1)
+				MouseMove, xMouse, yMouse, 0
+				QuickPoB_Gui(bmp)
+				WinActivate, % "ahk_id " vars.hwnd.poe_client
+				WinMinimize, % "ahk_id " hwnd_pob
+				WinSet, Trans, Off, % "ahk_id " hwnd_pob
+			}
+		}
+		Else
+		{
+			If WinExist("ahk_exe " settings.quickpob.exe.2)
+				WinClose, % "ahk_exe " settings.quickpob.exe.2
+			LLK_ToolTip(Lang_Trans("quickpob_fail", vars.quickpob.error), 2,,,, "Red")
+		}
+	}
+	vars.quickpob.pending := vars.quickpob.error := 0
+	KeyWait, % hotkey
+	vars.quickpob.in_progress := 0
+}
+
+QuickPoB_Gui(mode := "", gui_hwnd := "")
+{
+	local
+	global vars, settings
+	static bg_colors := {}, bg_colors2 := {}
+
+	If (mode = "flush")
+	{
+		bg_colors := {}, bg_colors2 := {}
+		Return
+	}
+	Else If (mode != "toggle")
+		bmp := mode
+
+	If !IsObject(vars.hwnd.quickpob)
+		vars.hwnd.quickpob := [], vars.hwnd.quickpob.0 := ""
+
+	If (mode != "toggle")
+	{
+		hwnd_pob := vars.quickpob.hwnd_pob
+		If (vars.hwnd.quickpob.Count() = 1)
+			compact := (settings.quickpob.mode = "compact")
+		Else Loop, % (count := Max(vars.hwnd.quickpob.MaxIndex(), vars.hwnd.quickpob.Count()))
+			If IsObject(vars.hwnd.quickpob[count - A_Index].data)
+			{
+				compact := vars.hwnd.quickpob[count - A_Index].data.compact
+				Break
+			}
+		If RegexMatch(Clipboard, "i)" Lang_Trans("items_class") ".*" Lang_Trans("items_class_rings"))
+			compact := 0
+
+		Gdip_GetImageDimensions(bmp, width, height), offset := settings.quickpob.snip_offset
+		bmp_crop := Gdip_CloneBitmapArea(bmp, offset - 1, height//20, (width := width - offset + 1), (height := height - height//20),, 1), Gdip_DisposeBitmap(bmp), bmp := bmp_crop
+		pEffect := Gdip_CreateEffect(5, 0, 10), Gdip_BitmapApplyEffect(bmp, pEffect), Gdip_DisposeEffect(pEffect)
+
+		If !bg_colors.Count()
+			Loop, % height
+				color := Gdip_GetPixelColor(bmp, 0, A_Index - 1, 4), bg_colors[color] := 1
+
+		Loop, % height
+		{
+			row := height - A_Index, color := Gdip_GetPixelColor(bmp, 1, row, 4)
+			If bg_colors[color]
+				If !target_color
+					Continue
+				Else
+				{
+					yMin := row + 1
+					Break
+				}
+
+			If !target_color
+				target_color := color, yMax := row
+
+			If !xMax
+				Loop, % width
+				{
+					prev := color2, color2 := Gdip_GetPixelColor(bmp, A_Index + 1, row, 4)
+					If (bottom_edge = "frame") && (color2 != target_color) || (bottom_edge = "cropped") && (color2 != target_color) && (prev = target_color)
+						xMax := A_Index - 1
+					If xMax
+						Break
+					Else If !bottom_edge
+						bottom_edge := (Gdip_GetPixelColor(bmp, 20, row, 4) = target_color ? "frame" : "cropped")
+				}
+		}
+
+		width := (xMax ? xMax + 1 : width), height := (yMin && yMax ? yMax - yMin + 1 : height), yCalcs_check := {}
+		bmp_crop := Gdip_CloneBitmapArea(bmp, 1, yMin, width, height,, 1), Gdip_DisposeBitmap(bmp), bmp := bmp_crop
+		Loop, % height
+		{
+			outer := A_Index, pixel_check := 0
+			If !bg_colors2.Count() && (Gdip_GetPixelColor(bmp, width//2, height - A_Index, 4) != target_color)
+			{
+				Loop, % width
+					bg_colors2[Gdip_GetPixelColor(bmp, A_Index - 1, height - outer, 4)] := 1
+				bg_colors2.Delete(target_color)
+			}
+			If !hHeader && bg_colors2.Count()
+			{
+				Loop, % width
+				{
+					If !bg_colors2[(color := Gdip_GetPixelColor(bmp, A_Index - 1, outer - 1, 4))] && (color != target_color)
+						Break
+					Else pixel_check += 1
+				}
+				If (pixel_check = width)
+					hHeader := outer - 1
+			}
+			If !yCalcs
+				Loop, % width//2
+					If yCalcs
+						Break
+					Else If !bg_colors2[(color := Gdip_GetPixelColor(bmp, A_Index - 1, height - outer, 4))] && InStr(color, SubStr(color, 1, 2),,, 3)
+						yCalcs := height - outer + 1
+					Else If (color != target_color)
+						yCalcs_check[color] := 1
+		}
+		If (yCalcs_check.Count() = 1)
+			yCalcs := 0
+
+		HBMs := []
+		If hHeader
+		{
+			crop := Gdip_CloneBitmapArea(bmp, 0, 0, width, hHeader), HBMs.1 := Gdip_CreateHBITMAPFromBitmap(crop), Gdip_DisposeBitmap(crop)
+			crop := Gdip_CloneBitmapArea(bmp, 0, hHeader, width, (yCalcs ? yCalcs : height) - hHeader), HBMs.2 := Gdip_CreateHBITMAPFromBitmap(crop), Gdip_DisposeBitmap(crop)
+		}
+		Else crop := Gdip_CloneBitmapArea(bmp, 0, 0, width, (yCalcs ? yCalcs : height)), HBMs.1 := Gdip_CreateHBITMAPFromBitmap(crop), Gdip_DisposeBitmap(crop)
+
+		If yCalcs
+			crop := Gdip_CloneBitmapArea(bmp, 0, yCalcs, width, height - yCalcs), HBMs.Push(Gdip_CreateHBITMAPFromBitmap(crop)), Gdip_DisposeBitmap(crop)
+
+		Gdip_DisposeBitmap(bmp), gui_name := "QuickPob_" (gui_index := vars.quickpob.max_index := vars.hwnd.quickpob.MaxIndex() + 1) "_0"
+	}
+	Else gui_index := LLK_HasVal(vars.hwnd.quickpob, gui_hwnd,,,, 1), gui_toggle := vars.hwnd.quickpob[gui_index].data.gui := !vars.hwnd.quickpob[gui_index].data.gui
+		, gui_name := "QuickPob_" gui_index "_" gui_toggle, guiPos := LLK_WinGetPos(vars.hwnd.quickpob[gui_index].main)
+
+	Gui, %gui_name%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_quickpob"
+	Gui, %gui_name%: Color, Purple
+	Gui, %gui_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
+	WinSet, TransColor, Purple
+	Gui, %gui_name%: Margin, 0, 0
+
+	If (mode = "toggle")
+		hwnd_old := vars.hwnd.quickpob[gui_index].main, vars.hwnd.quickpob[gui_index] := {"main": hwnd_quickpob, "data": vars.hwnd.quickpob[gui_index].data.Clone()}, HBMs := vars.hwnd.quickpob[gui_index].data.HBMs
+		, vars.hwnd.quickpob[gui_index].data.compact := !vars.hwnd.quickpob[gui_index].data.compact
+	Else vars.hwnd.quickpob[gui_index] := {"main": hwnd_quickpob, "data": {"compact": compact, "gui": 0, "HBMs": HBMs.Clone(), "target_color": target_color}}
+
+	data := vars.hwnd.quickpob[gui_index].data
+	For index, hbm in HBMs
+	{
+		If data.compact && (HBMs.Count() > 2) && (index = 2)
+			Continue
+		Gui, %gui_name%: Add, Pic, % (index = 1 ? "Section" : "xs") " gQuickPob HWNDhwnd", % "HBitmap:*" hbm
+		vars.hwnd.quickpob[gui_index][(index = 1 && HBMs.Count() > 2 ? "header" : "pic" index)] := hwnd
+	}
+
+	If data.price || (mode != "toggle") && InStr(Clipboard, "note: ~b/o")
+	{
+		If !data.price
+			data.price := Trim(SubStr(Clipboard, InStr(Clipboard, "note: ~b/o ") + 11), " `r`n")
+		Gui, %gui_name%: Add, Text, % "xp y+-1 wp Center BackgroundTrans", % data.price
+		Gui, %gui_name%: Add, Progress, % "Disabled xp yp wp hp Background" data.target_color " cBlack", 100
+	}
+	Gui, %gui_name%: Show, NA x10000 y10000
+
+	WinGetPos, xWin, yWin, wWin, hWin, % "ahk_id " hwnd_quickpob
+	If (mode != "toggle")
+		xPos := vars.general.xMouse - wWin//2, yPos := vars.general.yMouse - (compact || vars.general.yMouse >= vars.client.y + vars.client.h//2 ? hWin : 0)
+	Else xPos := guiPos.x, yPos := guiPos.y
+	Gui_CheckBounds(xPos, yPos, wWin, hWin)
+
+	Gui, %gui_name%: Show, % "NA x" xPos " y" yPos
+	LLK_Overlay(hwnd_quickpob, "show",, gui_name), LLK_Overlay(hwnd_old, "destroy")
 }

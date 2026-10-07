@@ -181,6 +181,9 @@ Exit()
 
 	If vars.maptracker.map.date_time
 		Maptracker_Save()
+
+	If vars.quickpob.style && WinExist("ahk_id " vars.quickpob.hwnd_pob)
+		WinSet, ExStyle, -0x80, % "ahk_id " vars.quickpob.hwnd_pob
 }
 
 Economy_Update(type := "currency", minutes := 60)
@@ -780,6 +783,12 @@ Loop()
 				GuiControl, % "movedraw", % vars.hwnd.leveltracker.timer_act
 				timer_flash := 0
 			}
+
+		If settings.qol.quickpob && vars.quickpob.style && !vars.quickpob.in_progress && WinActive("ahk_id " vars.quickpob.hwnd_pob)
+		{
+			vars.quickpob.style := ""
+			WinSet, ExStyle, -0x80, % "ahk_id " vars.quickpob.hwnd_pob
+		}
 	}
 
 	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill.2 * 60000) && settings.general.kill.1
@@ -862,7 +871,7 @@ Loop_main()
 	}
 	Else priceindex_count := 0
 
-	If settings.general.ClientFiller
+	If !vars.quickpob.in_progress && settings.general.ClientFiller
 	{
 		If vars.hwnd.ClientFiller && !WinExist("ahk_id " vars.hwnd.ClientFiller) && !WinActive("ahk_exe code.exe") && WinActive("ahk_group poe_window") && !WinActive("ahk_id " vars.hwnd.leveltracker_editor.main)
 		&& !WinActive("ahk_id " vars.hwnd.leveltracker_gempickups.main)
@@ -909,7 +918,7 @@ Loop_main()
 				GuiControl, % "+Background" vars.settings.cButtons2, % vars.hwnd.leveltracker_gempickups["skillset_" index "_bar"]
 			vars.leveltracker_gempickups.hover := ""
 		}
-		Else If vars.general.cMouse && RegExMatch(hover, "i)_panel|_bar") && (hover != vars.leveltracker_gempickups.hover) 
+		Else If vars.general.cMouse && RegExMatch(hover, "i)_panel|_bar") && (hover != vars.leveltracker_gempickups.hover)
 		{
 			For index, val in vars.leveltracker.skillsets
 				GuiControl, % "+Background" (val[StrReplace(StrReplace(hover, "_bar"), "_panel")] ? "Yellow" : vars.settings.cButtons2), % vars.hwnd.leveltracker_gempickups["skillset_" index "_bar"]
@@ -919,7 +928,7 @@ Loop_main()
 	Else If vars.leveltracker_gempickups.hover
 		vars.leveltracker_gempickups.hover := ""
 
-	If !WinActive("ahk_group poe_ahk_window") && !(settings.general.dev && WinActive("ahk_exe code.exe"))
+	If !vars.quickpob.in_progress && !WinActive("ahk_group poe_ahk_window") && !(settings.general.dev && WinActive("ahk_exe code.exe"))
 	{
 		vars.general.inactive += 1
 		If (vars.general.inactive = 3)
@@ -1042,7 +1051,7 @@ News(mode := "")
 	{
 		Try string := HTTPtoVar("https://raw.githubusercontent.com/Lailloken/Exile-UI/refs/heads/" (settings.general.dev_env ? "dev" : "main") "/data/announcements.json")
 		Try object := json.Load(string)
-	
+
 		If !Blank(object.timestamp) && (object.timestamp != vars.news.file.timestamp)
 		{
 			vars.news.file := json.Load(LLK_StringCase(string))

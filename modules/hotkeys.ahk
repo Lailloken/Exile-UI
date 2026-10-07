@@ -20,7 +20,7 @@
 	settings.hotkeys.emergencykey := !Blank(check := ini.hotkeys["emergency hotkey"]) ? check : "space"
 	settings.hotkeys.emergencykey_ctrl := !Blank(check := ini.hotkeys["emergency key ctrl"]) ? check : 1
 	settings.hotkeys.emergencykey_alt := !Blank(check := ini.hotkeys["emergency key alt"]) ? check : 1
-	settings.hotkeys.menuwidget := !Blank(check := ini.hotkeys["menu-widget alternative"]) ? (check = "blank" ? "" : check) : "" 
+	settings.hotkeys.menuwidget := !Blank(check := ini.hotkeys["menu-widget alternative"]) ? (check = "blank" ? "" : check) : ""
 
 	Hotkey, If,
 	Hotkey, % (settings.hotkeys.emergencykey_ctrl ? "^" : "") . (settings.hotkeys.emergencykey_alt ? "!" : "") . Hotkeys_Convert(settings.hotkeys.emergencykey), LLK_Restart, On
@@ -107,6 +107,18 @@ Hotkeys_ESC()
 		Cloneframes_SettingsRefresh(), vars.hwnd.cloneframe_borders.main := ""
 	Else If WinExist("OCR debug")
 		WinClose, OCR debug
+	Else If vars.quickpob.pending
+		vars.quickpob.error := 2
+	Else If (vars.hwnd.quickpob.Count() = 2)
+	{
+		For index, val in vars.hwnd.quickpob
+			If index
+			{
+				For iHBM, HBM in vars.hwnd.quickpob[index].data.HBMs
+					DeleteObject(HBM)
+				LLK_Overlay(vars.hwnd.quickpob[index].main, "destroy"), vars.hwnd.quickpob.Delete(index)
+			}
+	}
 	Else If WinExist("Exile UI: Drop-Down List")
 		Gui, DDL: Hide
 	Else If WinExist("Exile UI: RGB-Picker")

@@ -354,6 +354,16 @@ Gui_HelpToolTip(HWND_key)
 	LLK_Overlay(tooltip, (width < 10) ? "hide" : "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
 }
 
+Gui_HWND(name)
+{
+	local
+	global vars
+
+	For index, object in vars.GUI
+		If (object.name = name)
+			Return object.hwnd
+}
+
 Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 {
 	local
@@ -376,7 +386,7 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 		}
 		Return
 	}
-	
+
 	longpress := mode.longpress
 	Switch mode.check
 	{
@@ -522,21 +532,26 @@ Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left
 	vars.MsgBox[usecase].hwnd.title := hwnd, vars.MsgBox[usecase].hwnd.close := hwnd1
 
 	For index, val in text
-		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth//2 : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans " align, % val
-	
+	{
+		If RegExMatch(val, "\(color:.*\)")
+			color := SubStr(val, InStr(val, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), val := StrReplace(val, "(color:" color ")"), color .= " "
+		Else color := "White "
+		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth//2 : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % val
+	}
+
 	If !choices.Count()
 		choices := ["ok"]
 	For index, val in choices
 		dimensions.Push(Lang_Trans("global_" val))
 	LLK_PanelDimensions(dimensions, settings.general.fSize, wButtons, hButtons)
-	
+
 	For index, val in choices
 	{
 		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs x" 24*settings.general.fWidth - (choices.Count() = 1 ? wButtons/2 : wButtons + settings.general.fWidth//2) " y+" settings.general.fHeight//2 : "ys x+" settings.general.fWidth) " w" wButtons " Center Border BackgroundTrans HWNDhwnd gGUI_MsgBox", % Lang_Trans("global_" val)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.MsgBox[usecase].hwnd[val] := hwnd
 	}
-		
+
 	Gui, %GUI%: Add, Text, % "xs y+1 w10 h" settings.general.fHeight//2 " BackgroundTrans"
 	Gui, %GUI%: Show, % "NA x10000 y10000 w" 48*settings.general.fWidth - 2
 	WinGetPos,,, Width, Height, ahk_id %hwnd_msgbox%
@@ -1086,6 +1101,26 @@ LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "Whit
 	If duration
 		vars.tooltip[hwnd] := A_TickCount + duration*1000
 	vars.tooltip.wait := 0
+}
+
+LLK_WinGetPos(cHWND, return_val := "")
+{
+	local
+
+	WinGetPos, x, y, width, height, ahk_id %cHWND%
+	Switch return_val
+	{
+		Case "x":
+			Return x
+		Case "y":
+			Return y
+		Case "w":
+			Return width
+		Case "h":
+			Return height
+		Default:
+			Return {"x": x, "y": y, "w": width, "h": height, "xMax": x + width, "yMax": y + height}
+	}
 }
 
 RGB_Convert(RGB)

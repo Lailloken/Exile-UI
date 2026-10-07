@@ -1021,6 +1021,31 @@
     "TLDR hotkey shared": [
       "the feature will be activated by holding down the in-game hotkey that toggles loot visibility (default: z)"
     ],
+    "quickpob enable": [
+      "(/highlight)experimental / proof-of-concept feature:\nrequires a path of building window in the background",
+      "copies items or trade listings and creates one or more movable widgets with pob's calculations",
+      "hover over an item or the <copy item> button of a trade listing:\n>> press the hotkey to create a widget\n>> hold down the hotkey to switch to pob and import the item"
+    ],
+    "quickpob locate install": [
+      "optional feature:\nopen pob, then click this button to locate the pob install folder",
+      "this way, pob can be launched on demand via keypress and doesn't have to run in the background permanently"
+    ],
+    "quickpob mode compact": [
+      "the widget only shows gains/losses (green/red text in pob)",
+      "(/highlight)this setting applies to single widgets. if you create multiple wigets, the new one will use the same mode as the previous one."
+    ],
+    "quickpob mode full": [
+      "the widget shows the full item tooltip as it is presented in pob",
+      "(/highlight)this setting applies to single widgets. if you create multiple wigets, the new one will use the same mode as the previous one."
+    ],
+    "quickpob snip": [
+      "this feature scans pob for the item frame and creates a movable overlay widget",
+      "you have to calibrate it once so it knows where to search for the frame"
+    ],
+    "quickpob snip offset": [
+      "launch pob and open the <items> tab/section",
+      "long-click this button:\na teal square will follow the cursor. align its top-left corner with the top-left corner of the <craft item...> button in pob"
+    ],
     "runeshaping auto-correct input": [
       "type in one or more (comma-separated) strings that need to be replaced because of recurring ocr inaccuracies"
     ],
@@ -1227,7 +1252,7 @@
       [
         "enter c or d if you want to display chaos or divine prices",
         "enter c, e, or d if you want to display chaos, exalt, or divine prices"
-      ],      
+      ],
       "enter % if you want to display price trends"
     ],
     "stash profiles": [
@@ -1696,7 +1721,7 @@
       [
         "enter a value x and click <apply/update> to hide everything under x chaos. enter 0 to revert to defaults",
         "enter a value x and click <apply/update> to hide everything under x exalts. enter 0 to revert to defaults"
-      ],      
+      ],
       "(/highlight)sometimes, there's a discrepancy in categorization between poe.ninja and neversink filters (currency vs fragment)",
       "(/highlight)filter rules will be created according to poe.ninja's categories"
     ],
@@ -2171,6 +2196,12 @@
     "stash": [
       "(/bold)(/underline)instructions:",
       "-> open the stash",
+      "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
+      "-> follow the instructions in <test>"
+    ],
+    "tradesearch": [
+      "(/bold)(/underline)instructions:",
+      "-> open the async-trade search: the plaque at the top (img) has to be fully visible",
       "-> click <cal> to let the tool calibrate, OR right-click to manually calibrate",
       "-> follow the instructions in <test>"
     ]

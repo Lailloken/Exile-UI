@@ -552,7 +552,7 @@ LLK_TimeSince(timestamp_early, timestamp_late, short := 0)
 		If (timestamp_late >= val)
 			timestamp_late := Round(timestamp_late / val, 1), unit += 2
 		Else Break
-	
+
 	timestamp_late := StrReplace(timestamp_late, ".0")
 	timestamp_late := (timestamp_late >= 10 ? Round(timestamp_late) : timestamp_late)
 	Return timestamp_late . (short ? "" : " ") . SubStr(Lang_Trans("global_timeunits", unit + (timestamp_late != 1 ? 1 : 0)), 1, (short ? 1 : 1000))

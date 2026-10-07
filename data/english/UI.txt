@@ -124,6 +124,7 @@
 		global_add			=	"add"
 		global_calibrate		=	"cal"
 		global_calibrate		=	"calibration required"
+		global_calibrate		=	"calibrate"
 		global_import			=	"import"
 		global_test			=	"test"
 		global_edit			=	"edit"
@@ -170,6 +171,7 @@
 		global_pattern			=	"pattern"			;## as in color pattern
 		global_regular			=	"regular"			;## as in default
 		global_setup			=	"setup"
+		global_setup			=	"setup required"
 		global_variance		=	"variance"
 		global_hotkey			=	"hotkey:"
 		global_hotkey			=	"optional hotkey:"
@@ -303,6 +305,10 @@
 		global_shared			=	"shared"			;## e.g. shared hotkey
 		global_separate		=	"separate"
 		global_style			=	"style"
+		global_mode			=	"mode"
+		global_full			=	"full"
+		global_compact			=	"compact"
+		global_folder			=	"folder"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -699,6 +705,12 @@
 		lab_mismatch			=	"layouts don't match!"
 		lab_mismatch			=	"current:"
 		lab_movemarker			=	"long-click to move the marker here"
+		quickpob_multi			=	"more than 1;pob window"
+		quickpob_fail			=	"couldn't launch;path of building"
+		quickpob_fail			=	"start-up aborted"
+		quickpob_fail			=	"build timed out"
+		quickpob_loading		=	"waiting for;build to load..."
+		quickpob_snip			=	"snip offset:"
 
 
 
@@ -736,7 +748,7 @@
 		omnikey_clustersearch	=	"press ctrl-f to highlight;the selected jewel type"
 		omnikey_labimport		=	"select lab difficulty"
 		omnikey_labimport		=	"right-click layout image"
-		omnikey_labimport		=	"click <copy image>;optional:"				;## "copy image" when right-clicking a picture in your browser
+		omnikey_labimport		=	"click <copy image>;optional:"			;## "copy image" when right-clicking a picture in your browser
 		omnikey_labimport		=	"right-click <lab compass file>"			;## there's a link underneath each lab-layout image on poelab.com
 		omnikey_labimport		=	"click <copy link address>"				;## when right-clicking a link in your browser
 		omnikey_labimport		=	"press ctrl + a, ctrl + c"
@@ -1225,6 +1237,9 @@
 		m_qol_widget			=	"widget opacity:"
 		m_qol_widgetcolor		=	"widget colors:"
 		m_qol_lab				=	"lab overlay"
+		m_qol_quickpob			=	"quick pob"
+		m_qol_findpob			=	"confirm install path"
+		m_qol_findpob			=	"is this the correct path?"
 
 
 
@@ -1264,6 +1279,7 @@
 		m_screen_sanctum		=	"sekhema floor map"
 		m_screen_async1		=	"async trade (sell)"
 		m_screen_async2		=	"async trade (buy)"
+		m_screen_tradesearch	=	"trade search"
 
 
 ;#####################################################

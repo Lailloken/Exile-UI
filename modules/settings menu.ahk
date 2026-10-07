@@ -326,7 +326,7 @@ Settings_addons()
 	Gui, %GUI%: Add, Text, % "Hidden ys Border BackgroundTrans gSettings_addons2 HWNDhwnd cRed", % " " Lang_Trans("global_restart") " "
 	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.restart := hwnd, vars.hwnd.settings.restart_bar := hwnd1
-	
+
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_addons_list")
 	Gui, %GUI%: Font, norm
@@ -999,7 +999,7 @@ Settings_client()
 	static fSize, wDock, wDock2, wResolution, wPosition, wFiller, wTaskbar, wSplit
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, vars.settings.borderless_provisional := vars.client.borderless
-	
+
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " wiki && setup guide "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Exile-UI/wiki", vars.hwnd.help_tooltips["settings_website"] := hwnd1
@@ -1022,7 +1022,7 @@ Settings_client()
 
 		If (wPosition < wDock + wDock2 - 1)
 			wPosition := wDock + wDock2 - 1
-		Else 
+		Else
 		{
 			wDock := wDock2 := Max(wDock, wDock2)
 			While !Mod(wPosition, 2) || (wPosition < wDock * 2 - 1)
@@ -1585,7 +1585,7 @@ Settings_cloneframes2(cHWND)
 		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
 		If Blank(input := Gui_DropDownList(vars.ddl[check], [xControl, yControl, wControl, hControl], "Center", 1)) || IsObject(input) && Blank(input.1 . input.2)
 			Return
-		
+
 		vars.ddl[check].current := input.1
 		If (control = "global")
 			IniWrite, % input.2 - 1, % "ini" vars.poe_version "\clone frames.ini", settings, % (InStr(check, "inventory") ? "inventory" : "gamescreen") " toggle"
@@ -2093,7 +2093,7 @@ Settings_hotkeys()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, wEdits := Max(2 * wCtrl - 1, settings.general.fWidth * 7)
 	vars.settings.tabblock_provisional := settings.hotkeys.tabblock, vars.settings.emergencykey_ctrl_provisional := settings.hotkeys.emergencykey_ctrl, vars.settings.emergencykey_alt_provisional := settings.hotkeys.emergencykey_alt
-	
+
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " ahk: key list "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.URLs := {}, vars.URLs[hwnd] := "https://www.autohotkey.com/docs/v1/KeyList.htm", vars.hwnd.help_tooltips["settings_website"] := hwnd1
@@ -2976,7 +2976,7 @@ Settings_leveltracker()
 				Gui, %GUI%: Add, Progress, % "Disabled xp+1 yp+1 wp-2 hp-2 HWNDhwnd1 Background" (custom_gems ? "FF8000" : vars.settings.cButtons2) " c" vars.settings.cButtons, 100
 				vars.hwnd.settings.gems := hwnd, vars.hwnd.help_tooltips["settings_leveltracker gems"] := hwnd1
 				hidden := (settings.leveltracker["guide" profile].info.gems ? "" : " Hidden")
-				
+
 				Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_leveltracker2 HWNDhwnd c" (settings.leveltracker["guide" profile].info.gems_all ? "Lime" : "Gray") . hidden, % " " Lang_Trans("global_all") " "
 				Gui, %GUI%: Add, Progress, % "xp yp wp hp Border Disabled Vertical HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons . hidden, 100
 				vars.hwnd.settings.gems_all := hwnd, vars.hwnd.settings.gems_all_bar := vars.hwnd.help_tooltips["settings_leveltracker gems all"] := hwnd1
@@ -3048,7 +3048,7 @@ Settings_leveltracker()
 		{
 			Gui, %GUI%: Add, Text, % "Section xs h" settings.general.fHeight, % Lang_Trans("m_lvltracker_treehotkey")
 			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-			Gui, %GUI%: Add, Text, % "ys w" settings.general.fWidth * 10 " hp Border BackgroundTrans" 
+			Gui, %GUI%: Add, Text, % "ys w" settings.general.fWidth * 10 " hp Border BackgroundTrans"
 			Gui, %GUI%: Add, Edit, % "xp yp wp hp Border gSettings_leveltracker2 cBlack HWNDhwnd", % settings.leveltracker.tree_hotkey
 			vars.hwnd.settings.tree_hotkey := vars.hwnd.help_tooltips["settings_leveltracker tree hotkey"] := hwnd
 			Gui, %GUI%: Font, % "s" settings.general.fSize
@@ -3828,7 +3828,7 @@ Settings_macros()
 	{
 		If !vars.pics.settings_macros[travel]
 			vars.pics.settings_macros[travel] := LLK_ImageCache("img\GUI\radial menu\" travel ".png",, height)
-		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs" : "ys x+" settings.general.fWidth/2) " HWNDhwnd1 BackgroundTrans Border gSettings_macros2 w" height + 4 " h" height + 4 
+		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs" : "ys x+" settings.general.fWidth/2) " HWNDhwnd1 BackgroundTrans Border gSettings_macros2 w" height + 4 " h" height + 4
 		Gui, %GUI%: Add, Pic, % "xp+2 yp+2 HWNDhwnd", % "HBitmap:*" vars.pics.settings_macros[travel]
 		Gui, %GUI%: Add, Progress, % "xp-2 yp-2 w" height + 4 " h" height + 4 " HWNDhwnd2 Border Background" (settings.macros[travel] ? "Lime" : "Black") " cBlack", 100
 		vars.hwnd.help_tooltips["settings_macros " travel] := hwnd, vars.hwnd.settings["fasttravel_" travel] := hwnd1, vars.hwnd.settings["fasttravel_" travel "_bar"] := hwnd2
@@ -4420,7 +4420,7 @@ Settings_maptracker()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.hwnd.settings.kills_omnikey := hwnd, vars.hwnd.help_tooltips["settings_maptracker kill-tracker omni-key"] := hwnd1
 	}
-	
+
 	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_maptracker2 HWNDhwnd" (!settings.features.mapinfo ? " cFF8000" : (settings.maptracker.mapinfo ? " cLime" : " cGray")), % " " Lang_Trans("ms_map-info") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.mapinfo := hwnd, vars.hwnd.help_tooltips["settings_maptracker mapinfo"] := hwnd1
@@ -5022,9 +5022,10 @@ Settings_qol()
 {
 	local
 	global vars, settings
-	static fSize, wFont, wDuration, wList, wPosition, wHideout, wTiers
+	static fSize, wFont, wDuration, wList, wPosition, wHideout, wTiers, wHotkey, wControl, wSnip
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, yMax := 0
+	vars.settings.quickpob_alt_provisional := settings.quickpob.hotkey_alt, vars.settings.quickpob_ctrl_provisional := settings.quickpob.hotkey_ctrl
 
 	If (fSize != settings.general.fSize)
 	{
@@ -5032,11 +5033,14 @@ Settings_qol()
 		LLK_PanelDimensions([Lang_Trans("global_font")], fSize, wFont, hFont)
 		LLK_PanelDimensions([Lang_Trans("global_position") . Lang_Trans("global_colon")], fSize, wPosition, hPosition)
 		LLK_PanelDimensions([Lang_Trans("global_duration") . Lang_Trans("global_colon"), Lang_Trans("global_opacity")], fSize, wDuration, hDuration)
+		LLK_PanelDimensions([Lang_Trans("global_hotkey"), Lang_Trans("global_save"), Lang_Trans("global_mode") . Lang_Trans("global_colon"), Lang_Trans("global_folder") . Lang_Trans("global_colon")], fSize, wHotkey, hHotkey)
+		LLK_PanelDimensions([Lang_Trans("global_ctrl"), Lang_Trans("global_alt")], fSize, wControl, hControl), wControl := (wControl < 3*settings.general.fWidth ? 3*settings.general.fWidth : wControl)
+		LLK_PanelDimensions([Lang_Trans("quickpob_snip"), Lang_Trans("global_calibrate", 3)], fSize, wSnip, hSnip)
 		dimensions := []
 		For index, val in settings.mapevents.event_list
 			If (val != "hideout")
 				dimensions.Push(Lang_Trans("mechanic_" val))
-		
+
 		LLK_PanelDimensions(dimensions, fSize, wList, hList)
 		LLK_PanelDimensions([Lang_Trans("mechanic_hideout")], fSize, wHideout, hHideout)
 		LLK_PanelDimensions([Lang_Trans("global_tiers", 1), Lang_Trans("global_tiers", 2), Lang_Trans("global_tiers", 3)], fSize, wTiers, hTiers)
@@ -5047,6 +5051,13 @@ Settings_qol()
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " wiki page "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Exile-UI/wiki/Minor-Features", vars.hwnd.help_tooltips["settings_website"] := hwnd1
+
+	If settings.qol.quickpob
+	{
+		Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gURL cAqua", % " ahk: key list "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.URLs[hwnd] := "https://www.autohotkey.com/docs/v1/KeyList.htm", vars.hwnd.help_tooltips["settings_website|"] := hwnd1
+	}
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.alarm ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -5213,15 +5224,80 @@ Settings_qol()
 		GuiControl, movedraw, % hwnd_brace, % "h" LLK_ControlGetPos(hwnd, "y") - LLK_ControlGetPos(hwnd_brace, "y")
 	}
 
-	If vars.client.stream || vars.poe_version
+	If vars.client.stream
 		Return
 
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.general.lang_client = "unknown" ? " cGray" : (settings.qol.lab ? " cLime" : " cGray")), % " " Lang_Trans("global_enable") " "
+	If !vars.poe_version
+	{
+		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.general.lang_client = "unknown" ? " cGray" : (settings.qol.lab ? " cLime" : " cGray")), % " " Lang_Trans("global_enable") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.general.lang_client = "unknown" || !settings.qol.lab ? " cGray" : ""), % StrReplace(Lang_Trans("m_qol_lab"), Lang_Trans("global_colon"))
+		If (settings.general.lang_client = "unknown")
+			vars.hwnd.help_tooltips["settings_lang incompatible"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lang incompatible|"] := hwnd1
+		Else vars.hwnd.help_tooltips["settings_lab enable"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lab enable|"] := hwnd1
+	}
+
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.quickpob ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.general.lang_client = "unknown" || !settings.qol.lab ? " cGray" : ""), % StrReplace(Lang_Trans("m_qol_lab"), Lang_Trans("global_colon"))
-	If (settings.general.lang_client = "unknown")
-		vars.hwnd.help_tooltips["settings_lang incompatible"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lang incompatible|"] := hwnd1
-	Else vars.hwnd.help_tooltips["settings_lab enable"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lab enable|"] := hwnd1
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.notepad ? "" : " cGray"), % Lang_Trans("m_qol_quickpob")
+	vars.hwnd.help_tooltips["settings_quickpob enable"] := hwnd0, vars.hwnd.settings.enable_quickpob := hwnd, vars.hwnd.help_tooltips["settings_quickpob enable|"] := hwnd1
+
+	If settings.qol.quickpob
+	{
+		Gui, %GUI%: Add, Text, % "Section xs y+0 w2 h" vars.settings.line1 " Border HWNDhwnd_brace"
+
+		Gui, %GUI%: Add, Text, % "Hidden Section ys yp+" vars.settings.line1 " w" wHotkey " h" 2*settings.general.fHeight - 1 " 0x200 Center Border BackgroundTrans cRed gSettings_qol2 HWNDhwnd", % Lang_Trans("global_save")
+		Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings.quickpob_save := hwnd, vars.hwnd.settings.quickpob_save_bar := hwnd1
+		Gui, %GUI%: Add, Text, % "xp yp wp hp Right Border BackgroundTrans 0x200", % Lang_Trans("global_hotkey") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " cBlack", 100
+
+		For index, val in ["ctrl", "alt"]
+		{
+			Gui, %GUI%: Add, Text, % "ys x+-1 w" wControl " Center Border BackgroundTrans gSettings_qol2 HWNDhwnd c" (settings.quickpob["hotkey_" val] ? "Lime" : "Gray"), % Lang_Trans("global_" val)
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+			vars.hwnd.settings["quickpob_" val] := hwnd
+		}
+
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+		Gui, %GUI%: Add, Text, % "xp-" wControl - 1 " y+-1" " w" 2*wControl - 1 " hp Border BackgroundTrans"
+		Gui, %GUI%: Add, Edit, % "xp yp wp hp Center Border cBlack gSettings_qol2 HWNDhwnd1", % settings.quickpob.hotkey
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.settings.quickpob_hotkey := vars.hwnd.help_tooltips["settings_hotkeys formatting"] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "ys w" wSnip " Center Border BackgroundTrans  c" (settings.quickpob.snip_offset ? "Lime" : "FF8000"), % Lang_Trans("quickpob_snip")
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+		vars.hwnd.help_tooltips["settings_quickpob snip"] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "xp y+-1 wp Center Border BackgroundTrans gSettings_qol2 HWNDhwnd", % Lang_Trans("global_calibrate", 3)
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings.quickpob_snip := hwnd, vars.hwnd.help_tooltips["settings_quickpob snip offset"] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "Section xs w" wHotkey " Right Border BackgroundTrans", % Lang_Trans("global_mode") . Lang_Trans("global_colon") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+		For index, val in ["full", "compact"]
+		{
+			Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.quickpob.mode = val ? " cLime" : ""), % " " Lang_Trans("global_" val) " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+			vars.hwnd.settings["quickpob_" val] := hwnd, vars.hwnd.help_tooltips["settings_quickpob mode " val] := hwnd1
+		}
+
+		Gui, %GUI%: Add, Text, % "Section xs w" wHotkey " Right Border BackgroundTrans", % Lang_Trans("global_folder") . Lang_Trans("global_colon") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " cBlack", 100
+
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
+		path := SubStr(settings.quickpob.exe.1, 1, InStr(settings.quickpob.exe.1, "\",, 0) - 1), path := (StrLen(path) > 30 ? SubStr(path, 1, 30) "..." : path)
+		Gui, %GUI%: Add, Text, % "ys x+-1 hp Border BackgroundTrans 0x200 HWNDhwnd_text c" (settings.quickpob.exe.1 ? "Lime" : "Yellow"), % " " (settings.quickpob.exe.1 ? LLK_StringCase(path) : Lang_Trans("global_setup", 2)) " "
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+
+		Gui, %GUI%: Add, Pic, % "ys x+-1 w-1 hp-2 Border BackgroundTrans gSettings_qol2 HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings.locate_install := hwnd, vars.hwnd.help_tooltips["settings_quickpob locate install"] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " w" settings.general.fWidth * 20 " h2 Border HWNDhwnd"
+		GuiControl, movedraw, % hwnd_brace, % "h" LLK_ControlGetPos(hwnd, "y") - LLK_ControlGetPos(hwnd_brace, "y")
+	}
 }
 
 Settings_qol2(cHWND)
@@ -5230,7 +5306,7 @@ Settings_qol2(cHWND)
 	global vars, settings
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1), control1 := SubStr(check, 1, InStr(check, "_") - 1)
-	If !RegexMatch(check, "i)font_|(duration|opacity)_mapevents")
+	If !RegexMatch(check, "i)font_|(duration|opacity)_mapevents|quickpob_snip")
 		KeyWait, LButton
 
 	If InStr(check, "mapevents_enable_")
@@ -5297,6 +5373,11 @@ Settings_qol2(cHWND)
 			For key, val in vars.hwnd.notepad_widgets
 				LLK_Overlay(val, "destroy")
 			vars.hwnd.notepad_widgets := {}, vars.notepad_widgets := {}
+		}
+		If (control = "quickpob") && !Blank(settings.quickpob.hotkey)
+		{
+			Hotkey, IfWinActive, % "ahk_group poe_window"
+			Hotkey, % Hotkeys_Convert((settings.quickpob.hotkey_alt ? "!" : "") . (settings.quickpob.hotkey_ctrl ? "^" : "") . settings.quickpob.hotkey), QuickPob, % (settings.qol[control] ? "On" : "Off")
 		}
 		Settings_menu("minor qol tools")
 	}
@@ -5378,6 +5459,113 @@ Settings_qol2(cHWND)
 		If (control1 = "notepad") && vars.hwnd.notepad_widgets.Count()
 			For key, val in vars.hwnd.notepad_widgets
 				WinSet, Transparent, % (key = "notepad_reminder_feature") ? 250 : 50 * settings.notepad.trans, % "ahk_id "val
+	}
+	Else If (check = "locate_install")
+	{
+		WinGet, pob_windows, List, % "ahk_exe " settings.quickpob.exe.2
+		If (pob_windows > 1)
+		{
+			LLK_ToolTip(Lang_Trans("quickpob_multi"), 2,,,, "Red")
+			Return
+		}
+		WinGet, pob_path, ProcessPath, % "ahk_exe " settings.quickpob.exe.2
+		If !pob_path
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "FF8000")
+		Else If Gui_MsgBox("pob path", Lang_Trans("m_qol_findpob"), [Lang_Trans("m_qol_findpob", 2), "(color:aqua)" LLK_StringCase(pob_path)],, ["yes", "no"])
+		{
+			IniWrite, % """" (settings.quickpob.exe.1 := pob_path) """", % "ini" vars.poe_version "\qol tools.ini", quickpob, install folder
+			Settings_menu("minor qol tools")
+		}
+	}
+	Else If (check = "quickpob_save")
+	{
+		input := LLK_ControlGet(vars.hwnd.settings.quickpob_hotkey)
+		If !Blank(input) && !Hotkeys_Convert(input)
+		{
+			LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5,,,, "Red")
+			Return
+		}
+		Hotkey, IfWinActive, % "ahk_group poe_window"
+		modifiers := (settings.quickpob.hotkey_alt ? "!" : "") . (settings.quickpob.hotkey_ctrl ? "^" : "")
+		modifiers_new := (vars.settings.quickpob_alt_provisional ? "!" : "") . (vars.settings.quickpob_ctrl_provisional ? "^" : "")
+		If !Blank(settings.quickpob.hotkey)
+			Hotkey, % Hotkeys_Convert(modifiers . settings.quickpob.hotkey), QuickPob, Off
+		If !Blank(input)
+			Hotkey, % Hotkeys_Convert(modifiers_new . input), QuickPob, On
+		IniWrite, % """" (settings.quickpob.hotkey := input) """", % "ini" vars.poe_version "\qol tools.ini", quickpob, hotkey
+		IniWrite, % (settings.quickpob.hotkey_alt := vars.settings.quickpob_alt_provisional), % "ini" vars.poe_version "\qol tools.ini", quickpob, alt modifier
+		IniWrite, % (settings.quickpob.hotkey_ctrl := vars.settings.quickpob_ctrl_provisional), % "ini" vars.poe_version "\qol tools.ini", quickpob, ctrl modifier
+		GuiControl, % "+Hidden", % vars.hwnd.settings.quickpob_save
+		GuiControl, % "+Hidden", % vars.hwnd.settings.quickpob_save_bar
+		GuiControl, % "+cBlack", % vars.hwnd.settings.quickpob_hotkey
+		GuiControl, % "movedraw", % vars.hwnd.settings.quickpob_hotkey
+	}
+	Else If (check = "quickpob_hotkey")
+	{
+		input := LLK_ControlGet(cHWND), modified := (input != settings.quickpob.hotkey)
+		GuiControl, % "+c" (modified ? "Red" : "Black"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.quickpob_save
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.quickpob_save_bar
+	}
+	Else If (check = "quickpob_snip")
+	{
+		If !WinExist("ahk_exe " settings.quickpob.exe.2)
+		{
+			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "FF8000")
+			KeyWait, LButton
+			Return
+		}
+		WinActivate, % "ahk_exe " settings.quickpob.exe.2
+		Gui, snip: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_snip"
+		Gui, snip: Color, Aqua
+		WinSet, Trans, 100
+		Gui, snip: Show, NA w23 h23
+
+		Gui, zoom: New, -Caption +E0x80000 +E0x20 +LastFound +AlwaysOnTop +ToolWindow +OwnDialogs +Border HWNDzoom
+		Gui, zoom: Show, NA
+
+		While GetKeyState("LButton", "P")
+		{
+			pBitmap := Gdip_BitmapFromScreen(vars.general.xMouse - 9 "|" vars.general.yMouse - 9 "|15|15" )
+			hbmBitmap := CreateDIBSection(120, 120), hdcBitmap := CreateCompatibleDC(), obmBitmap := SelectObject(hdcBitmap, hbmBitmap), gBitmap := Gdip_GraphicsFromHDC(hdcBitmap)
+			Gdip_SetInterpolationMode(gBitmap, 5)
+			Gdip_DrawImage(gBitmap, pBitmap, 0, 0, 120, 120, 0, 0, 15, 15)
+			UpdateLayeredWindow(zoom, hdcBitmap, vars.general.xMouse + 64, vars.general.yMouse + 64, 120, 120)
+			Gdip_DisposeImage(pBitmap)
+			SelectObject(hdcBitmap, obmBitmap)
+			DeleteObject(hbmBitmap)
+			DeleteDC(hdcBitmap)
+			Gdip_DeleteGraphics(gBitmap)
+
+			Gui, snip: Show, % "NA x" vars.general.xMouse - 7 " y" vars.general.yMouse - 7
+			Sleep, 50
+		}
+		WinGetPos, xPob, yPob, wPob, hPob, % "ahk_exe " settings.quickpob.exe.2
+		WinGetPos, xSnip, ySnip, wSnip, hSnip, % "ahk_id " hwnd_snip
+		IniWrite, % (settings.quickpob.snip_offset := xSnip - (xPob + vars.system.xborder)), % "ini" vars.poe_version "\qol tools.ini", quickpob, snip offset
+		Gui, snip: Destroy
+		Gui, zoom: Destroy
+		QuickPob_Gui("flush")
+		WinActivate, % "ahk_id " vars.hwnd.poe_client
+	}
+	Else If RegexMatch(check, "i)quickpob_(alt|ctrl)")
+	{
+		input := vars.settings["quickpob_" control "_provisional"] := !vars.settings["quickpob_" control "_provisional"], other := (control = "alt" ? "ctrl" : "alt")
+		modified := (input . vars.settings["quickpob_" other "_provisional"] != settings.quickpob["hotkey_" control] . settings.quickpob["hotkey_" other])
+		GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.quickpob_save
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.quickpob_save_bar
+	}
+	Else If RegExMatch(check, "i)quickpob_(full|compact)")
+	{
+		IniWrite, % (settings.quickpob.mode := control), % "ini" vars.poe_version "\qol tools.ini", quickpob, mode
+		other := (control = "full" ? "compact" : "full")
+		GuiControl, % "+cLime", % cHWND
+		GuiControl, % "movedraw", % cHWND
+		GuiControl, % "+cWhite", % vars.hwnd.settings["quickpob_" other]
+		GuiControl, % "movedraw", % vars.hwnd.settings["quickpob_" other]
 	}
 	Else LLK_ToolTip("no action")
 }
@@ -5500,7 +5688,7 @@ Settings_runeshaping2(cHWND := "")
 		KeyWait, RButton
 		KeyWait, Enter
 	}
-	
+
 	Switch
 	{
 		Case (check = "enable"):
@@ -5751,7 +5939,7 @@ Settings_screenchecks()
 		Gui, %GUI%: Add, Text, % "ys x+"settings.general.fWidth/4 " Border BackgroundTrans gSettings_screenchecks2 HWNDhwnd" (Blank(vars.imagesearch[key].x1) ? " cRed" : ""), % " " Lang_Trans("global_test") " "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.hwnd.settings["tImage_"key] := hwnd, vars.hwnd.help_tooltips["settings_screenchecks image-test"handle] := hwnd1, handle .= "|"
-		Gui, %GUI%: Add, Text, % "ys hp 0x200", % Lang_Trans((RegExMatch(key, "i)sanctum|async|runeshaping") ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
+		Gui, %GUI%: Add, Text, % "ys hp 0x200", % Lang_Trans((RegExMatch(key, "i)sanctum|async|runeshaping|tradesearch") ? "m_screen_" : (key = "betrayal" ? "mechanic_" : "global_")) key, (key = "sanctum" ? vars.poe_version : ""))
 	}
 
 	If active_image.Count()
@@ -5893,6 +6081,7 @@ Settings_ScreenChecksValid(type := "")
 		If (key = "skilltree" && !settings.features.leveltracker) || (key = "stash" && !(settings.features.maptracker * settings.maptracker.loot))
 		|| (key = "atlas") && !settings.features.statlas || RegexMatch(key, "i)betrayal|exchange|sanctum") && !settings.features[key] || InStr(key, "async") && !settings.features.async
 		|| InStr(key, "runeshaping") && (!settings.features.runeshaping || InStr(key, "2") && (settings.general.input_method = 1) || !InStr(key, "2") && (settings.general.input_method = 2))
+		|| (key = "tradesearch") && !settings.qol.quickpob
 			Continue
 		Else valid *= !Blank(vars.imagesearch[key].x1) && FileExist("img\Recognition (" vars.client.h "p)\GUI\" key . vars.poe_version ".bmp") ? 1 : 0, active_image[key] := 1
 
