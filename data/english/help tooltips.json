@@ -1022,21 +1022,25 @@
       "the feature will be activated by holding down the in-game hotkey that toggles loot visibility (default: z)"
     ],
     "quickpob enable": [
-      "(/highlight)experimental / proof-of-concept feature:\nrequires a path of building window in the background",
-      "copies items or trade listings and creates one or more movable widgets with pob's calculations",
-      "hover over an item or the <copy item> button of a trade listing:\n>> press the hotkey to create a widget\n>> hold down the hotkey to switch to pob and import the item"
+      "(/highlight)experimental / proof-of-concept:\nrequires a path of building window in the background",
+      "copies items and creates movable widgets with pob calculations",
+      "hover over an item or the <copy item> button of a trade listing:\n>> press the hotkey to create a widget\n>> hold down the hotkey to switch to pob and import the item",
+      "single widgets can be closed with <esc>, multiple with <right-clicks>",
+      "(/highlight)to use this feature on trade listings, you have to set up the <trade search> check in the <screen-checks> section"
     ],
     "quickpob locate install": [
       "optional feature:\nopen pob, then click this button to locate the pob install folder",
       "this way, pob can be launched on demand via keypress and doesn't have to run in the background permanently"
     ],
     "quickpob mode compact": [
-      "the widget only shows gains/losses (green/red text in pob)",
-      "(/highlight)this setting applies to single widgets. if you create multiple wigets, the new one will use the same mode as the previous one."
+      "when created, the widget only shows gains/losses (green/red text in pob)",
+      "you can click the top part of a widget (item name & base) to manually toggle between modes",
+      "(/highlight)if you create multiple widgets, the new one will use the same mode as the previous one."
     ],
     "quickpob mode full": [
-      "the widget shows the full item tooltip as it is presented in pob",
-      "(/highlight)this setting applies to single widgets. if you create multiple wigets, the new one will use the same mode as the previous one."
+      "when created, the widget shows the full item tooltip as presented in pob",
+      "you can click the top part of a widget (item name & base) to manually toggle between modes",
+      "(/highlight)if you create multiple widgets, the new one will use the same mode as the previous one."
     ],
     "quickpob snip": [
       "this feature scans pob for the item frame and creates a movable overlay widget",

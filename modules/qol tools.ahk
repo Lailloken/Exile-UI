@@ -1242,7 +1242,7 @@ QuickPoB(cHWND := "")
 	If (pob_windows > 1)
 		LLK_ToolTip(Lang_Trans("quickpob_multi"), 2,,,, "Red")
 	Else If !pob_windows && (!settings.quickpob.exe.1 || !FileExist(settings.quickpob.exe.1))
-		LLK_ToolTip(Lang_Trans("global_setup", 2), 1.5,,,, "Red")
+		LLK_ToolTip(Lang_Trans("m_qol_quickpob") . Lang_Trans("global_colon") "`n" Lang_Trans("global_setup", 2), 1.5,,,, "Red")
 	Else
 	{
 		Clipboard := ""
@@ -1263,6 +1263,18 @@ QuickPoB(cHWND := "")
 		{
 			LLK_ToolTip(Lang_Trans("global_ok"),,,,, "Lime")
 			KeyWait, % hotkey
+		}
+		Else If !settings.quickpob.snip_offset
+		{
+			LLK_ToolTip(Lang_Trans("m_qol_quickpob") . Lang_Trans("global_colon") "`n" Lang_Trans("global_setup", 2), 1.5,,,, "Red")
+			KeyWait, % hotkey
+			Return
+		}
+		Else If RegexMatch(Clipboard, "i)" Lang_Trans("items_rarity") ".*" Lang_Trans("items_normal"))
+		{
+			LLK_ToolTip(LLK_StringCase(Lang_Trans("m_qol_quickpob") . Lang_Trans("global_colon") "`n" Lang_Trans("iteminfo_unsupported") " " Lang_Trans("system_parenthesis") . Lang_Trans("items_normal") . Lang_Trans("system_parenthesis", 2)), 2,,,, "FF8000")
+			KeyWait, % hotkey
+			Return
 		}
 
 		If !WinExist("ahk_exe " settings.quickpob.exe.2)
@@ -1489,5 +1501,14 @@ QuickPoB_Gui(mode := "", gui_hwnd := "")
 	Gui_CheckBounds(xPos, yPos, wWin, hWin)
 
 	Gui, %gui_name%: Show, % "NA x" xPos " y" yPos
-	LLK_Overlay(hwnd_quickpob, "show",, gui_name), LLK_Overlay(hwnd_old, "destroy")
+	If (wWin + hWin < 100)
+	{
+		LLK_ToolTip(Lang_Trans("global_error"),,,,, "Red")
+		Gui, %gui_name%: Destroy
+		For index, hbm in vars.hwnd.quickpob[gui_index].data.HBMs
+			DeleteObject(hbm)
+		vars.hwnd.quickpob.Delete(gui_index)
+	}
+	Else LLK_Overlay(hwnd_quickpob, "show",, gui_name)
+	LLK_Overlay(hwnd_old, "destroy")
 }

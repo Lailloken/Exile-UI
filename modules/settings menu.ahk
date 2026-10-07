@@ -4787,7 +4787,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 			|| vars.client.stream && InStr("item-info, map-info, filterspoon", val) || (val = "addons") && !FileExist("add-ons")
 				Continue
 			color := (val = "updater" && IsNumber(vars.update.1) && vars.update.1 < 0) ? " cRed" : (val = "updater" && IsNumber(vars.update.1) && vars.update.1 > 0) ? " cLime" : ""
-			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
+			color := feature_check[val] && !settings.features[feature_check[val]] || (val = "clone-frames") && !vars.cloneframes.enabled || (val = "search-strings") && !vars.searchstrings.enabled || (val = "minor qol tools") && !(settings.qol.alarm + settings.qol.lab + settings.qol.notepad + settings.qol.mapevents + settings.qol.quickpob) ? " cGray" : color, color := feature_check2[val] && (settings.general.lang_client = "unknown") ? " cGray" : color
 			color := (val = "donations" ? " cCCCC00" : (val = "news" && vars.news.unread ? " cLime" : color))
 			color := (val = "macros" ? (!Blank(settings.macros.hotkey_fasttravel) || !Blank(settings.macros.hotkey_custommacros) ? " cWhite" : " cGray") : color)
 			color := (val = "exchange" && !(settings.features.exchange + settings.features.async) ? " cGray" : color)
@@ -5239,7 +5239,7 @@ Settings_qol()
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.quickpob ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.notepad ? "" : " cGray"), % Lang_Trans("m_qol_quickpob")
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.quickpob ? "" : " cGray"), % Lang_Trans("m_qol_quickpob")
 	vars.hwnd.help_tooltips["settings_quickpob enable"] := hwnd0, vars.hwnd.settings.enable_quickpob := hwnd, vars.hwnd.help_tooltips["settings_quickpob enable|"] := hwnd1
 
 	If settings.qol.quickpob
@@ -5492,6 +5492,14 @@ Settings_qol2(cHWND)
 			Hotkey, % Hotkeys_Convert(modifiers . settings.quickpob.hotkey), QuickPob, Off
 		If !Blank(input)
 			Hotkey, % Hotkeys_Convert(modifiers_new . input), QuickPob, On
+		Else
+		{
+			vars.settings.quickpob_alt_provisional := vars.settings.quickpob_ctrl_provisional := 0
+			GuiControl, % "+cGray", % vars.hwnd.settings.quickpob_alt
+			GuiControl, % "movedraw", % vars.hwnd.settings.quickpob_alt
+			GuiControl, % "+cGray", % vars.hwnd.settings.quickpob_ctrl
+			GuiControl, % "movedraw", % vars.hwnd.settings.quickpob_ctrl
+		}
 		IniWrite, % """" (settings.quickpob.hotkey := input) """", % "ini" vars.poe_version "\qol tools.ini", quickpob, hotkey
 		IniWrite, % (settings.quickpob.hotkey_alt := vars.settings.quickpob_alt_provisional), % "ini" vars.poe_version "\qol tools.ini", quickpob, alt modifier
 		IniWrite, % (settings.quickpob.hotkey_ctrl := vars.settings.quickpob_ctrl_provisional), % "ini" vars.poe_version "\qol tools.ini", quickpob, ctrl modifier
