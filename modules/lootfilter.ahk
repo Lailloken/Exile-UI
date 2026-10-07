@@ -139,7 +139,7 @@ Lootfilter_Customize(cHWND := "")
 			If !Blank(input) && (input != 0) && (!IsObject(modifications := Lootfilter_Economy(type, input, current.stacks)) || !modifications.Count())
 			{
 				LLK_ToolTip(Lang_Trans((modifications = -1 ? "global_errorname" : (!modifications.Count() ? "lootfilter_lowcutoff" : "async_pricefailed")), (modifications = -1 ? 2 : 1)), 2,,,, "FF8000")
-				Return 
+				Return
 			}
 		}
 
@@ -1270,7 +1270,7 @@ Lootfilter_Editor(cHWND := "")
 		Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 		Gui, %GUI%: Add, Text, % "Section xs y+" margin " x" margin " Border BackgroundTrans Center HWNDhwnd w" wMax - margin - 1, % Lang_Trans("lootfilter_selections", (tier_view || !any_view && result_count = 1 ? 1 : 3))
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundGray c" background_color " HWNDhwnd_selectionheader_bar", 100
-		hwnd_selectionheader := hwnd 
+		hwnd_selectionheader := hwnd
 
 		If tier_view || !any_view && (result_count = 1)
 		{
@@ -2325,7 +2325,7 @@ Lootfilter_Modify(object, global := 0)
 				vars.lootfilter.active_filter.final.InsertAt(iChunk - lookback + 1, {"type": object.type, "tier": object.tier, "lines": lines, "global": global}), new_tier := 1
 				vars.lootfilter.active_filter.structure[object.type].Push({"tier": object.tier, "basetypes": """" object.modifications.newtier """"})
 			}
-			
+
 			If !InStr(object.type, "exui_economy") && (vChunk.tier != object.tier) && (global || IsObject(object.source) && (vChunk.tier = object.source.tier || Lootfilter_ChunkCompare(vChunk.lines, object.source.lines)))
 			&& LLK_HasVal(vChunk.lines, """" object.modifications[object.action] """", 1,,, 1)
 				For iLine, vLine in vChunk.lines

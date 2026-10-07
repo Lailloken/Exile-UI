@@ -70,7 +70,7 @@ Mapinfo_GUI(mode := 1)
 
 	If !vars.poe_version
 		summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.quantity . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3) " | " map.packsize . Lang_Trans("maps_stats", 4)
-	Else summary := summary0 := map.mods . Lang_Trans("maps_stats2", 1) " | " map.rarity . Lang_Trans("maps_stats2", 2) " | " map.packsize . Lang_Trans("maps_stats2", 3) " | " map.monsterrarity . Lang_Trans("maps_stats2", 4) " | " map.monstereffect . Lang_Trans("maps_stats2", 5) 
+	Else summary := summary0 := map.mods . Lang_Trans("maps_stats2", 1) " | " map.rarity . Lang_Trans("maps_stats2", 2) " | " map.packsize . Lang_Trans("maps_stats2", 3) " | " map.monsterrarity . Lang_Trans("maps_stats2", 4) " | " map.monstereffect . Lang_Trans("maps_stats2", 5)
 		, summary1 := map.waystones Lang_Trans("maps_stats2", 6) " | " map.revives " " Lang_Trans("mapinfo_rip")
 
 	If !vars.poe_version

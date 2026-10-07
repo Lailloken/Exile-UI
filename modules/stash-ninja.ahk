@@ -468,7 +468,7 @@ Stash_PriceFetch(tab)
 
 			For iTrend, vTrend in val.sparkline.data
 				trend .= (Blank(trend) ? "" : ", ") . (IsNumber(vTrend) ? vTrend : 0)
-			
+
 			ini_dump .= "`n" val.id "=""" price """", ini_dump .= !Blank(trend) ? "`n" val.id "_trend=""" trend """" : ""
 			For iNames, oNames in prices.items
 				If (oNames.id = val.id)

@@ -492,7 +492,7 @@ Actdecoder_ZoneLayoutsSize(hotkey)
 	global vars, settings
 	static resizing
 
-	If (hotkey = "hide") 
+	If (hotkey = "hide")
 	{
 		LLK_Overlay(vars.hwnd.actdecoder.main, "hide")
 		KeyWait, SC038

@@ -47,7 +47,7 @@
 			LLK_ToolTip(Lang_Trans("omnikey_language"), 3,,,, "red"), Omni_Release()
 			Return
 		}
-		
+
 		vars.omnikey.start := A_TickCount, vars.omnikey.item := {} ;store data about the clicked item here
 		Omni_ItemInfo()
 

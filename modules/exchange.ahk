@@ -89,7 +89,7 @@ AsyncTrade(cHWND := "", hotkey := "")
 	local
 	global vars, settings
 	static toggle := 0, fSize, listings
-	
+
 	check := LLK_HasVal(vars.hwnd.async, cHWND), control := SubStr(check, InStr(check, "_") + 1), league := settings.general.league.1 " " settings.general.league[(vars.poe_version ? 3 : 4)]
 	If !IsObject(vars.async[league])
 		vars.async[league] := {"buy": {}, "sell": {}, "sold": {}}
@@ -387,7 +387,7 @@ AsyncTradeLogs(cHWND := "")
 		Return
 	}
 	check := LLK_HasVal(vars.hwnd.async_logs, cHWND), control := SubStr(check, InStr(check, "_") + 1), league := settings.general.league.1 " " (settings.general.league[(vars.poe_version ? 3 : 4)])
-	
+
 	If check && !RegExMatch(check, "i)(tooltip|pricehistory|transaction)_")
 		KeyWait, LButton
 	If InStr(check, "view_")
@@ -589,7 +589,7 @@ AsyncTradeLogs(cHWND := "")
 					Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section xs" : "ys x+0") " Border HWNDhwnd Hidden w" dIcon + wItem1 - 1 " h" dIcon
 					Gui, %GUI_name%: Add, Text, % "Border ys " (index = 1 ? "x" : "xp") "+-1 hp w1 Border"
 				}
-				Else 
+				Else
 				{
 					If (index = 1)
 					{
@@ -762,7 +762,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 	local
 	global vars, settings
 	static toggle := 0, existing_item_prev, price_prev
-	
+
 	If InStr(tooltip, "tooltip_")
 		tooltip := SubStr(tooltip, InStr(tooltip, "_") + 1)
 	Else
@@ -835,7 +835,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 					KeyWait, % vars.omnikey.hotkey2, T0.5
 				longpress := (omni1 || ErrorLevel ? 1 : 0)
 			}
-			
+
 			If longpress && existing_item
 			{
 				LLK_ToolTip(Lang_Trans("async_listing", 2),,,,, "Yellow")
@@ -979,7 +979,7 @@ AsyncTradeReprice(mode := "", tooltip := "")
 				}
 				Else If (options.Count() = 5) || (A_Index = loop)
 					Break
-				Else 
+				Else
 				{
 					price_diff := 100 * (1 - ((loop - A_Index) / loop)), price_diff1 := 100 * (1 - ((loop - A_Index + 1) / loop))
 					If (price_diff >= last_diff + 5)
@@ -1379,7 +1379,6 @@ Exchange(cHWND := "", hotkey := "")
 		vars.hwnd.help_tooltips["exchange_exalt-div"] := vars.hwnd.exchange.exalt_div := hwnd1
 	}
 	Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
-	
 
 	Gui, %GUI_name%: Add, Text, % "Section Border Hidden x" (transactions.Count() ? wUI2 : 0) + vars.client.h * 0.2444 " y" vars.client.h * 0.1069 " HWNDhwnd w" wBoxes " h" hBoxes
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"

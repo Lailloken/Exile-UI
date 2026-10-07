@@ -566,7 +566,7 @@ TLDR_VaalAreas()
 		ini := IniBatchRead("ini\TLDR - vaal areas.ini")
 		If ini["profile " settings.TLDR.profile].Count()
 			settings.TLDR.highlighting["vaal areas"] := ini["profile " settings.TLDR.profile].Clone()
-	}	
+	}
 
 	For key, val in lines
 	{

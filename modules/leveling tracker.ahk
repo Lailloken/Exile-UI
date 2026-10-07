@@ -656,7 +656,7 @@ Leveltracker_GemPickups(cHWND := "")
 			GuiControl, % "+c" (skillsets_provisional[control] ? "Lime" : "Gray"), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		}
-		
+
 		For gem in vars.leveltracker.skillsets[control]
 		{
 			If (vars.system.click = 1) && skillsets_provisional[control]
@@ -686,7 +686,7 @@ Leveltracker_GemPickups(cHWND := "")
 			Return
 		Loop, Parse, input
 			pick .= (IsNumber(A_LoopField) ? A_LoopField : "")
-		
+
 		GuiControl, % "+Background" (default_acts[gem] != pick ? (!pick ? "Red" : "Yellow") : vars.settings.cButtons2), % vars.hwnd.leveltracker_gempickups[gem "_bar"]
 		vars.ddl.gempickups[gem].current := input
 		Return
@@ -837,7 +837,7 @@ Leveltracker_GemPickups(cHWND := "")
 
 	Gui, %GUI_name%: Add, Text, % "ys x+" margin " Border BackgroundTrans gLeveltracker_GemPickups HWNDhwnd cRed", % " " Lang_Trans("global_reset") " "
 	Gui, %GUI_name%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI_name%: Add, Progress, % "Hidden Disabled xs y+0 w" xMax - xLastDDL + margin + 1 " h" margin, 0	
+	Gui, %GUI_name%: Add, Progress, % "Hidden Disabled xs y+0 w" xMax - xLastDDL + margin + 1 " h" margin, 0
 	vars.hwnd.leveltracker_gempickups.reset := hwnd, vars.hwnd.help_tooltips["leveltrackergems_save-reset|"] := hwnd1
 
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
@@ -849,7 +849,7 @@ Leveltracker_GemPickups(cHWND := "")
 
 	xPos := (Blank(vars.leveltracker_gempickups.xPos) ? vars.monitor.x + vars.monitor.w/2 - wWin/2 : vars.leveltracker_gempickups.xPos)
 	yPos := (Blank(vars.leveltracker_gempickups.yPos) ? vars.monitor.y + vars.monitor.h/2 - hWin/2 : vars.leveltracker_gempickups.yPos)
-		
+
 	Gui, %GUI_name%: Show, % "x" xPos " y" yPos
 	LLK_Overlay(hwnd_manager, "show", 0, GUI_name), LLK_Overlay(hwnd_old, "destroy"), wait := 0
 
@@ -1682,7 +1682,7 @@ Leveltracker_Load(profile := "")
 			If (lilly_check := InStr(line, " || " Lang_Trans("quest_lilly") . Lang_Trans("global_colon")))
 				new_group[index] := SubStr(line, 1, lilly_check - 1)
 
-			If quest_count && (no_reward_count = quest_count) 
+			If quest_count && (no_reward_count = quest_count)
 			{
 				If !settings.leveltracker["guide" current_profile].info.gems_all || lilly_check && settings.leveltracker["guide" current_profile].info.gems_all
 					new_group.RemoveAt(index)
@@ -2244,7 +2244,7 @@ Leveltracker_PobGemCutting(cHWND := "")
 	Gui, %GUI_name%: Margin, 0, 0
 	Gui, %GUI_name%: Font, % "s" settings.leveltracker_gemcutting.fSize " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.leveltracker_gemcutting.main, vars.hwnd.leveltracker_gemcutting := {"main": leveltracker_gemcutting}
-	
+
 	Gui, %GUI_name%: Add, Text, % "Section BackgroundTrans Border", % " " Lang_Trans("global_font") " "
 	Gui, %GUI_name%: Add, Text, % "ys Center BackgroundTrans gLeveltracker_PobGemCutting Border HWNDhwnd w" settings.leveltracker_gemcutting.fWidth*2, % "–"
 	vars.hwnd.leveltracker_gemcutting.font_minus := hwnd
@@ -2456,7 +2456,7 @@ Leveltracker_PobGemLinks(gem_name := "", hover := "", xPos := "", yPos := "", re
 		}
 		Else
 		{
-			dimensions := [], english := []					
+			dimensions := [], english := []
 			For iGem, vGem in pob.gems[hover].groups[val].gems
 			{
 				gem0 := StrReplace(vGem, " |–")
@@ -3268,7 +3268,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 		exp_info := vars.poe_version ? (RegExMatch(vars.log.areaID, "i)^hideout|_town$") ? "" : Lang_Trans("lvltracker_exp") " " (level_diff > 0 ? "+" : "") level_diff) : Leveltracker_Experience("", 1)
 		If !vars.poe_version
 			color := " c" (!InStr(exp_info, "100%") ? (InStr(exp_info, "+") && IsNumber(target_lvl := db.leveltracker.arealvls[vars.leveltracker.guide.target_area]) && target_lvl > vars.log.arealevel ? "Fuchsia" : "Red") : "Lime")
-		Else 
+		Else
 			threshold := 3 + vars.log.level//16, gap := threshold - Abs(level_diff)
 			, color := " c" (level_diff > 0 ? (level_diff = 1 ? "FF8000" : "Red") : (gap > 0 ? "Lime" : (gap = 0 ? "Yellow" : (gap = -1 ? "FF8000" : "Red"))))
 	}
