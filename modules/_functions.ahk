@@ -674,6 +674,8 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	global vars, settings, Json
 
 	vars.update := [0], update := vars.update
+	If !timer && vars.general.updatewait
+		timer := 1
 
 	If !FileExist("update\")
 		FileCreateDir, update\
@@ -694,6 +696,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	{
 		If InStr("2", timer)
 			IniWrite, updater, % "ini" vars.poe_version "\config.ini", versions, reload settings
+		vars.general.updatewait := 0
 		Return
 	}
 	versions_local := Json.Load(LLK_FileRead("data\versions.json")) ;load local versions
@@ -713,6 +716,7 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	{
 		If InStr("2", timer)
 			IniWrite, updater, % "ini" vars.poe_version "\config.ini", versions, reload settings
+		vars.general.updatewait := 0
 		Return
 	}
 	Else version_check := Trim(version_check, " `r`n`t")
@@ -746,11 +750,14 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 	}
 
 	If (timer != 2) && (vars.updater.skip = vars.updater.latest.1)
+	{
+		vars.general.updatewait := 0
 		Return
+	}
 
 	If InStr("01", timer) && (versions_live._release.1 > versions_local._release.1)
 	{
-		vars.update := [1]
+		vars.update := [1], vars.general.updatewait := 0
 		Return
 	}
 	Else If (timer = 2)
@@ -834,10 +841,11 @@ UpdateCheck(timer := 0) ;checks for updates: timer param refers to whether this 
 			SetTimer, UpdateDownload, Delete
 			Gui, update_download: Destroy
 			IniWrite, updater, % "ini" vars.poe_version "\config.ini", versions, reload settings
-			LLK_Log("failed update to " vars.updater.target_version.1)
+			LLK_Log("failed update to " vars.updater.target_version.1), vars.general.updatewait := 0
 			Return
 		}
 	}
+	vars.general.updatewait := 0
 }
 
 UpdateDownload(mode := "")

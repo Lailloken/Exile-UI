@@ -731,14 +731,17 @@ Loop()
 		}
 		vars.client.closed := 0
 
-		If settings.updater.update_check && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1800000)
-			vars.general.updatetick := A_TickCount, UpdateCheck(1)
+		If settings.updater.update_check && !vars.general.updatewait && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1800000)
+		{
+			vars.general.updatetick := vars.general.updatewait := A_TickCount
+			SetTimer, UpdateCheck, -100
+		}
 
 		If vars.general.MultiThreading && !WinExist(vars.general.bThread)
 			LLK_Error("Secondary thread has crashed, the tool needs to be restarted`n`nIf this is a recurring issue, disable multi-threading in the <general> settings", 1)
 
-		If (vars.news.unread || vars.update.1 || vars.actdecoder.updater.available) && (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main)
-			|| vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main))
+		If (vars.news.unread || vars.update.1 || vars.actdecoder.updater.available)
+		&& (WinExist("ahk_id " vars.hwnd.radial.main) || WinExist("ahk_id " vars.hwnd.settings.main) || vars.actdecoder.tab && WinExist("ahk_id " vars.hwnd.actdecoder.main))
 		{
 			news_tick += 1
 			If (Blank(vars.radial.click_select) || vars.radial.click_select = "settings") && WinExist("ahk_id " vars.hwnd.radial.main)
