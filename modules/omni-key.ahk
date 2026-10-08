@@ -539,7 +539,7 @@ Omni_ContextMenuPick(cHWND)
 		Else If !Blank(LLK_HasVal(["unset ring", "iron flask", "bone ring", "convoking wand", "bone spirit shield", "silver flask", Lang_Trans("items_cannon")], item.itembase)) || InStr(item.class, "jewels") || InStr(item.class, "heist")
 			page := StrReplace(item.itembase, " ", "_")
 		Else page := StrReplace(item.class, " ", "_") . item.attributes
-		Run, % "https://poe" Trim(vars.poe_version, " ") "db.tw/" . Lang_Trans("system_poedb_lang") . "/" . page . (item.rarity = Lang_Trans("items_unique") ? "#VaalOrbCorruptedEnchantment" : (InStr(page, "cluster_jewel") ? "#EnchantmentModifiers" : "#ModifiersCalc"))
+		Run, % "https://poe" Trim(vars.poe_version, " ") "db.tw/" . Lang_Trans("system_poedb_lang") . "/" . page . (item.rarity = Lang_Trans("items_unique") ? "#VaalOrbCorrupted" (vars.poe_version ? "Enchantment" : "Implicit") : (InStr(page, "cluster_jewel") ? "#EnchantmentModifiers" : "#ModifiersCalc"))
 		Clipboard := item.ilvl
 		If InStr(page, "cluster_jewel") && settings.features.browser
 		{
