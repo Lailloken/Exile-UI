@@ -1309,7 +1309,6 @@ QuickPoB(cHWND := "")
 		{
 			vars.quickpob.hwnd_pob := hwnd_pob := WinExist("ahk_exe " settings.quickpob.exe.2)
 			WinGet, style, ExStyle, % "ahk_id " hwnd_pob
-			start := A_TickCount
 			If !long_press
 			{
 				vars.quickpob.in_progress := vars.quickpob.style := 1
@@ -1317,6 +1316,12 @@ QuickPoB(cHWND := "")
 					WinSet, ExStyle, +0x80, % "ahk_id " hwnd_pob
 				WinSet, Trans, 1, % "ahk_id " hwnd_pob
 			}
+			Else
+			{
+				vars.quickpob.style := 0
+				WinSet, ExStyle, -0x80, % "ahk_id " hwnd_pob	;redundant in some cases but also serves as a "ready-check" for instances where PoB is still booting up
+			}
+
 			WinActivate, % "ahk_id " hwnd_pob
 			WinWaitActive, % "ahk_id " hwnd_pob
 			SendEvent, {Control down}
@@ -1332,7 +1337,7 @@ QuickPoB(cHWND := "")
 				MouseMove, xMouse, yMouse, 0
 				QuickPoB_Gui(bmp)
 				WinActivate, % "ahk_id " vars.hwnd.poe_client
-				WinMinimize, % "ahk_id " hwnd_pob
+				WinSet, Bottom,, % "ahk_id " hwnd_pob
 				WinSet, Trans, Off, % "ahk_id " hwnd_pob
 			}
 		}

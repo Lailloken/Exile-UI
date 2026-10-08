@@ -703,26 +703,36 @@ Loop()
 {
 	local
 	global vars, settings
-	static news_tick := 0, tick := 0, timer_flash
+	static news_tick := 0, tick := 0, timer_flash, client_tick := 0
 
 	If !WinExist("ahk_group poe_window")
 	{
 		vars.client.closed := 1, vars.hwnd.poe_client := ""
-		If vars.log.latest_location
+		If !vars.log.file_wait && vars.log.latest_location
 			vars.log.file_wait := 1, vars.log.file.Close()
+		If settings.general.kill.1 && (A_TickCount >= vars.general.runcheck + settings.general.kill.2 * 60000)
+			ExitApp
 	}
-
-	If WinExist("ahk_group poe_window")
+	Else
 	{
 		vars.general.runcheck := A_TickCount, tick := !tick
 		If !vars.hwnd.poe_client
-			If (vars.poe_version != CheckClient())
+			If (client_tick = 5)
 			{
 				If Gui_MsgBox("switch client", "exile ui: " Lang_Trans("msg_clientswitch"), [Lang_Trans("msg_clientswitch", 2), Lang_Trans("msg_clientswitch", 3)],, ["yes", "no"])
 					LLK_Restart()
-				Else Return
+				Else
+				{
+					client_tick := 0
+					Return
+				}
 			}
-			Else vars.hwnd.poe_client := WinExist("ahk_class POEWindowClass")
+			Else If (vars.poe_version != CheckClient())
+			{
+				client_tick += 1
+				Return
+			}
+			Else vars.hwnd.poe_client := WinExist("ahk_class POEWindowClass"), client_tick := 0
 
 		If vars.client.closed
 		{
@@ -783,16 +793,13 @@ Loop()
 				GuiControl, % "movedraw", % vars.hwnd.leveltracker.timer_act
 				timer_flash := 0
 			}
-
-		If settings.qol.quickpob && vars.quickpob.style && !vars.quickpob.in_progress && WinActive("ahk_id " vars.quickpob.hwnd_pob)
-		{
-			vars.quickpob.style := ""
-			WinSet, ExStyle, -0x80, % "ahk_id " vars.quickpob.hwnd_pob
-		}
 	}
 
-	If !WinExist("ahk_group poe_window") && (A_TickCount >= vars.general.runcheck + settings.general.kill.2 * 60000) && settings.general.kill.1
-		ExitApp
+	If settings.qol.quickpob && vars.quickpob.style && !vars.quickpob.in_progress && WinActive("ahk_id " vars.quickpob.hwnd_pob)
+	{
+		vars.quickpob.style := ""
+		WinSet, ExStyle, -0x80, % "ahk_id " vars.quickpob.hwnd_pob
+	}
 }
 
 Loop_main()

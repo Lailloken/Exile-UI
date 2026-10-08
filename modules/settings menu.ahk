@@ -5265,9 +5265,9 @@ Settings_qol()
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		vars.hwnd.settings.quickpob_hotkey := vars.hwnd.help_tooltips["settings_hotkeys formatting"] := hwnd1
 
-		Gui, %GUI%: Add, Text, % "ys w" wSnip " Center Border BackgroundTrans  c" (settings.quickpob.snip_offset ? "Lime" : "FF8000"), % Lang_Trans("quickpob_snip")
+		Gui, %GUI%: Add, Text, % "ys w" wSnip " Center Border BackgroundTrans HWNDhwnd c" (settings.quickpob.snip_offset ? "Lime" : "FF8000"), % Lang_Trans("quickpob_snip")
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
-		vars.hwnd.help_tooltips["settings_quickpob snip"] := hwnd1
+		vars.hwnd.settings.quickpob_snip_label := hwnd, vars.hwnd.help_tooltips["settings_quickpob snip"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "xp y+-1 wp Center Border BackgroundTrans gSettings_qol2 HWNDhwnd", % Lang_Trans("global_calibrate", 3)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -5525,6 +5525,10 @@ Settings_qol2(cHWND)
 			Return
 		}
 		WinActivate, % "ahk_exe " settings.quickpob.exe.2
+		WinWaitActive, % "ahk_exe " settings.quickpob.exe.2
+		SendEvent, {Control down}
+		SendEvent, {3}
+		SendEvent, {Control up}
 		Gui, snip: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDhwnd_snip"
 		Gui, snip: Color, Aqua
 		WinSet, Trans, 100
@@ -5537,14 +5541,8 @@ Settings_qol2(cHWND)
 		{
 			pBitmap := Gdip_BitmapFromScreen(vars.general.xMouse - 9 "|" vars.general.yMouse - 9 "|15|15" )
 			hbmBitmap := CreateDIBSection(120, 120), hdcBitmap := CreateCompatibleDC(), obmBitmap := SelectObject(hdcBitmap, hbmBitmap), gBitmap := Gdip_GraphicsFromHDC(hdcBitmap)
-			Gdip_SetInterpolationMode(gBitmap, 5)
-			Gdip_DrawImage(gBitmap, pBitmap, 0, 0, 120, 120, 0, 0, 15, 15)
-			UpdateLayeredWindow(zoom, hdcBitmap, vars.general.xMouse + 64, vars.general.yMouse + 64, 120, 120)
-			Gdip_DisposeImage(pBitmap)
-			SelectObject(hdcBitmap, obmBitmap)
-			DeleteObject(hbmBitmap)
-			DeleteDC(hdcBitmap)
-			Gdip_DeleteGraphics(gBitmap)
+			Gdip_SetInterpolationMode(gBitmap, 5), Gdip_DrawImage(gBitmap, pBitmap, 0, 0, 120, 120, 0, 0, 15, 15), UpdateLayeredWindow(zoom, hdcBitmap, vars.general.xMouse + 64, vars.general.yMouse + 64, 120, 120)
+			Gdip_DisposeImage(pBitmap), SelectObject(hdcBitmap, obmBitmap), DeleteObject(hbmBitmap), DeleteDC(hdcBitmap), Gdip_DeleteGraphics(gBitmap)
 
 			Gui, snip: Show, % "NA x" vars.general.xMouse - 7 " y" vars.general.yMouse - 7
 			Sleep, 50
@@ -5555,6 +5553,8 @@ Settings_qol2(cHWND)
 		Gui, snip: Destroy
 		Gui, zoom: Destroy
 		QuickPob_Gui("flush")
+		GuiControl, % "+cLime", % vars.hwnd.settings.quickpob_snip_label
+		GuiControl, % "movedraw", % vars.hwnd.settings.quickpob_snip_label
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 	}
 	Else If RegexMatch(check, "i)quickpob_(alt|ctrl)")

@@ -1285,7 +1285,7 @@
     ],
     "updater check": [
       "checks for updates on tool launch and in the background while running",
-      "the menu-widget will blink if an update is available"
+      "the menu-widget will flash if an update is available"
     ],
     "updater hotfix": [
       "a hotfix release is available, you can download it below",
