@@ -1,5 +1,14 @@
 [
   [
+	["1.65.1", 16501],
+	"october 8, 2026",
+	"fixes\n–> instilled amulets + some abyss mods didn't work in item-info\n–> statlas didn't activate correctly\n–> relic mod for global defenses wasn't being tracked in sekhema planner",
+	"context-menu:\n–> trarthan cannons now use the correct poe.db link\n–> uniques now have a poe.db link for vaal modifiers",
+	"map-info:\n–> now correctly displays poe2 map rolls (item rarity, pack size, monster rarity, effectiveness)",
+	"stash-ninja:\n–> updated the soul core tab to 0.5.5",
+	"new feature:\n–> added <quick pob> to the minor qol tools (experimental / proof of concept)\n–> seamlessly creates one or more movable widgets with pob calculations for items under the cursor"
+  ],
+  [
 	["1.65.0", 16500, 1],
 	"september 3, 2026",
 	"act-tracker:\n–> updated the poe2 guide for 0.5.5\n–> these updates will be applied the next time you reset your guide slot\n–> removed farrow quests in acts 1-3\n–> several stylistic/format tweaks\n–> various pathing and hint improvements(/highlight)"
