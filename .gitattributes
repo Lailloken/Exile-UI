@@ -1,5 +1,6 @@
 .gitattributes export-ignore
 .gitignore export-ignore
+.github/ export-ignore
 *.md export-ignore
 img/readme/ export-ignore
 img/GUI/act-decoder/* export-ignore
