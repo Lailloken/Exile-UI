@@ -2083,6 +2083,9 @@ Lootfilter_Modify(object, global := 0)
 			If (object.modifications.opacity) && !LLK_HasKey(vChunk.lines, "setbackgroundcolor", 1,,, 1)
 				key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") "SetBackgroundColor", iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
 				, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "0 0 0 255"})
+			If (object.modifications.size) && !LLK_HasKey(vChunk.lines, "setfontsize", 1,,, 1)
+				key_name := (LLK_HasKey(vChunk.lines, "`t", 1,,, 1) ? "`t" : "") "SetFontSize", iMax := vars.lootfilter.active_filter.final[iChunk].lines.MaxIndex()
+				, vars.lootfilter.active_filter.final[iChunk].lines.InsertAt(iMax, {(key_name): "32"})
 
 			For iLine, oLine in vChunk.lines
 				For kLine, vLine in oLine
