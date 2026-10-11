@@ -1424,7 +1424,7 @@ QuickPoB_Gui(mode := "", gui_hwnd := "")
 		bmp_crop := Gdip_CloneBitmapArea(bmp, 1, yMin, width, height,, 1), Gdip_DisposeBitmap(bmp), bmp := bmp_crop
 		Loop, % height
 		{
-			outer := A_Index, pixel_check := 0
+			outer := A_Index, pixel_check := 0, pixels := {}
 			If !bg_colors2.Count() && (Gdip_GetPixelColor(bmp, width//2, height - A_Index, 4) != target_color)
 			{
 				Loop, % width
@@ -1437,9 +1437,9 @@ QuickPoB_Gui(mode := "", gui_hwnd := "")
 				{
 					If !bg_colors2[(color := Gdip_GetPixelColor(bmp, A_Index - 1, outer - 1, 4))] && (color != target_color)
 						Break
-					Else pixel_check += 1
+					Else pixel_check += 1, pixels[color] := 1
 				}
-				If (pixel_check = width)
+				If (pixel_check = width) && (pixels.Count() > 1)
 					hHeader := outer - 1
 			}
 			If !yCalcs
