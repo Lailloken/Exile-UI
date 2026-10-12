@@ -762,19 +762,14 @@ Lootfilter_Editor(cHWND := "")
 	Gui, %GUI%: Color, % (accent_color := settings.lootfilter.color_accent)
 
 	hwnd_old := vars.hwnd.lootfilter.main, vars.hwnd.lootfilter := {"main": hwnd_editor}, hMax := 0
-	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
-	Gui, %GUI%: Add, DDL, % "Hidden x" margin " y" margin, % "bla"
-
-	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize
-	Gui, %GUI%: Add, Text, % "Section xp yp" (settings.lootfilter.active_filter ? " w" wLabels : "") " hp 0x200 Right BackgroundTrans", % Lang_Trans("lootfilter_basefilter")
+	Gui, %GUI%: Add, Text, % "Section x" margin " y" margin . (settings.lootfilter.active_filter ? " w" wLabels : "") " h" settings.lootfilter.fHeight " Right BackgroundTrans", % Lang_Trans("lootfilter_basefilter")
 
 	If !vars.lootfilter.filters_list.Count()
 		If (Lootfilter_Load("init") = 0)
 		{
 			LLK_Overlay(hwnd_old, "destroy"), vars.hwnd.lootfilter := ""
 			Gui, %GUI%: Destroy
-			MsgBox, 4, Exile UI, % Lang_Trans("lootfilter_duplicatefiles") "`n" Lang_Trans("lootfilter_duplicatefiles", 2) "`n`n" Lang_Trans("lootfilter_duplicatefiles", 3)
-			IfMsgBox, Yes
+			If Gui_MsgBox("duped filters", "exile ui", [Lang_Trans("lootfilter_duplicatefiles"), Lang_Trans("lootfilter_duplicatefiles", 2), Lang_Trans("lootfilter_duplicatefiles", 3)],, ["yes", "no"])
 			{
 				Run, % vars.system.config_folder "\OnlineFilters"
 				Run, % "https://www.pathofexile.com/my-account/item-filters"
@@ -782,21 +777,22 @@ Lootfilter_Editor(cHWND := "")
 			Return
 		}
 
+	vars.ddl.filter_pick := {"list": [], "fSize": settings.lootfilter.fSize - 2, "color": accent_color}
 	For key, val in vars.lootfilter.filters_list
 	{
 		label := LLK_StringCase(key) " (" LLK_TimeSince(val.2, A_Now) ")"
-		ddl .= (ddl ? "|" : "") . label . (key = settings.lootfilter.active_filter ? "||" : "")
+		If (key = settings.lootfilter.active_filter)
+			vars.ddl.filter_pick.current := label
+		vars.ddl.filter_pick.list.Push(label)
 	}
 	wDDL := 40 * settings.lootfilter.fWidth, profile := settings.lootfilter.profile, wProfiles := Round(1.5 * settings.lootfilter.fWidth)
 	show_apply := (vars.lootfilter.update_applied || vars.lootfilter.modifications_pending.Count() > 1)
 
 	While !Mod(3 * wProfiles - 2, 2)
 		wProfiles += 1
-	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
-	Gui, %GUI%: Add, Text, % "ys x+" margin " w" wDDL " hp Border BackgroundTrans"
-	Gui, %GUI%: Add, DDL, % "xp yp w" wDDL " HWNDhwnd gLootfilter_Editor" (show_apply ? " Disabled" : ""), % StrReplace(ddl, "|||", "||")
-	vars.hwnd.lootfilter.filter_select := hwnd, vars.hwnd.help_tooltips["lootfilter_filter select"] := (vars.lootfilter.modifications_pending.Count() > 1 ? "" : hwnd)
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
+	Gui, %GUI%: Add, Text, % "ys x+" margin " w" wDDL " 0x200 hp Border HWNDhwnd " (show_apply ? "cGray" : "gLootfilter_Editor"), % " " vars.ddl.filter_pick.current
+	vars.hwnd.lootfilter.filter_select := hwnd, vars.hwnd.help_tooltips["lootfilter_filter select"] := (vars.lootfilter.modifications_pending.Count() > 1 ? "" : hwnd)
 
 	Gui, %GUI%: Add, Pic, % "ys x+-1 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
 	vars.hwnd.lootfilter.list_reload := vars.hwnd.help_tooltips["lootfilter_list reload"] := hwnd
@@ -834,7 +830,7 @@ Lootfilter_Editor(cHWND := "")
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
 	clip_mode := IsObject(search[vars.lootfilter.search.0]), history := (vars.lootfilter.search.Count() - 1 > 1)
 	Gui, %GUI%: Add, Text, % "ys x+" margin " hp w" wDDL " Border BackgroundTrans"
-	Gui, %GUI%: Add, Edit, % "xp yp w" wDDL " cBlack HWNDhwnd hp" (clip_mode ? " Disabled" : ""), % (clip_mode ? Lang_Trans("lootfilter_ingameitem") : search[Max(1, vars.lootfilter.search.0)])
+	Gui, %GUI%: Add, Edit, % "xp yp w" wDDL " Border cBlack HWNDhwnd hp" (clip_mode ? " Disabled" : ""), % (clip_mode ? Lang_Trans("lootfilter_ingameitem") : search[Max(1, vars.lootfilter.search.0)])
 	vars.hwnd.lootfilter.search_edit := vars.hwnd.help_tooltips["lootfilter_search field"] := hwnd
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize
 	Gui, %GUI%: Add, Pic, % "ys x+-1 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd1", % "HBitmap:*" vars.pics.global.home
@@ -929,7 +925,7 @@ Lootfilter_Editor(cHWND := "")
 
 			Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 4
 			Gui, %GUI%: Add, Text, % "ys yp x+-1 hp Border BackgroundTrans w" settings.lootfilter.fWidth2 * 4
-			Gui, %GUI%: Add, Edit, % "xp yp hp HWNDhwnd cBlack Center Limit5 w" settings.lootfilter.fWidth2 * 4, % (oCurrent.modifications.Count() ? StrSplit(oCurrent.action, "|").2 : "")
+			Gui, %GUI%: Add, Edit, % "xp yp hp Border HWNDhwnd cBlack Center Limit5 w" settings.lootfilter.fWidth2 * 4, % (oCurrent.modifications.Count() ? StrSplit(oCurrent.action, "|").2 : "")
 			vars.hwnd.lootfilter["cutoff_" val.1] := vars.hwnd.help_tooltips["lootfilter_economy cut-offs" handle_tooltip] := hwnd
 			Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
 			Gui, %GUI%: Add, Text, % "ys x+-1 yp Center Border gLootfilter_Customize HWNDhwnd w" wApplyUpdate, % Lang_Trans("global_" ((oCurrent.modifications.Count() && !oCurrent.modifications.toggle ? "update" : "apply")))
