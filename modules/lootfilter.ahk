@@ -226,8 +226,7 @@ Lootfilter_Customize(cHWND := "")
 		Lootfilter_Modify(object)
 		;######################################################
 		Case InStr(check, "customize_mapicon"):
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl.minimap, [xControl, yControl, wControl, hControl])) || RegexMatch(vars.lootfilter.last_style.minimapicon, "i)" input "$")
+		If Blank(input := Gui_DropDownList(vars.ddl.minimap, LLK_WinGetPos(cHWND, "array"))) || RegexMatch(vars.lootfilter.last_style.minimapicon, "i)" input "$")
 			Return
 
 		If !target_index
@@ -254,8 +253,7 @@ Lootfilter_Customize(cHWND := "")
 		Lootfilter_Modify(object)
 		;######################################################
 		Case (check = "customize_sound"):
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl[control], [xControl, yControl, wControl, hControl]))
+		If Blank(input := Gui_DropDownList(vars.ddl[control], LLK_WinGetPos(cHWND, "array")))
 			Return
 		sound := settings.lootfilter.sound_tags[input]
 
@@ -535,7 +533,8 @@ Lootfilter_Editor(cHWND := "")
 		Lootfilter_Load("refresh", (vars.system.click = 2 && settings.general.dev ? 1 : 0))
 		;######################################################
 		Case (check = "filter_select"):
-		input := LLK_ControlGet(cHWND), input := SubStr(input, 1, InStr(input, " (") - 1)
+		input := Gui_DropDownList(vars.ddl.filter_pick, LLK_WinGetPos(cHWND, "array")), input := SubStr(input, 1, InStr(input, " (") - 1)
+
 		If !input || (settings.lootfilter.active_filter = input)
 			Return
 		Else If (vars.system.click = 1)

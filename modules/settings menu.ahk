@@ -876,8 +876,7 @@ Settings_cheatsheets2(cHWND)
 		Cheatsheet_Add(LLK_ControlGet(vars.hwnd.settings.name), LLK_ControlGet(vars.hwnd.settings.type))
 	Else If (check = "type")
 	{
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl.cheatsheet_type, [xControl, yControl, wControl, hControl], "Center",, "Center"))
+		If Blank(input := Gui_DropDownList(vars.ddl.cheatsheet_type, LLK_WinGetPos(cHWND, "array"), "Center",, "Center"))
 			Return
 		vars.ddl.cheatsheet_type.current := input
 	}
@@ -1253,9 +1252,8 @@ Settings_client2(cHWND := "")
 		ExitApp
 
 		Case RegexMatch(check, "i)custom_(width|resolution)|dock2{0,1}$|blackbars"):
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
 		If InStr("custom_resolution,dock2", check)
-			If Blank(input := Gui_DropDownList(vars.ddl[check], [xControl, yControl, wControl, hControl], "Center"))
+			If Blank(input := Gui_DropDownList(vars.ddl[check], LLK_WinGetPos(cHWND, "array"), "Center"))
 				Return
 		GuiControl, -Hidden, % vars.hwnd.settings.apply
 		GuiControl, -Hidden, % vars.hwnd.settings.apply_bar
@@ -1582,8 +1580,7 @@ Settings_cloneframes2(cHWND)
 	}
 	Else If RegexMatch(check, "i)inventory_|gamescreen_")
 	{
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl[check], [xControl, yControl, wControl, hControl], "Center", 1)) || IsObject(input) && Blank(input.1 . input.2)
+		If Blank(input := Gui_DropDownList(vars.ddl[check], LLK_WinGetPos(cHWND, "array"), "Center", 1)) || IsObject(input) && Blank(input.1 . input.2)
 			Return
 
 		vars.ddl[check].current := input.1
@@ -3406,8 +3403,7 @@ Settings_leveltracker2(cHWND := "")
 	Else If (check = "bandit")
 	{
 		bandits := ["none", "alira", "kraityn", "oak"], profile := settings.leveltracker.profile
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl.bandit, [xControl, yControl, wControl, hControl], "Center", 1, "Center")) || IsObject(input) && Blank(input.1 . input.2)
+		If Blank(input := Gui_DropDownList(vars.ddl.bandit, LLK_WinGetPos(cHWND, "array"), "Center", 1, "Center")) || IsObject(input) && Blank(input.1 . input.2)
 			Return
 		IniWrite, % (settings.leveltracker["guide" profile].info.bandit := bandits[input.2]), % "ini" vars.poe_version "\leveling guide" profile ".ini", Info, bandit
 		IniWrite, 0, % "ini" vars.poe_version "\leveling guide" profile ".ini", Progress, pages
@@ -3623,8 +3619,7 @@ Settings_lootfilter2(cHWND := "")
 	}
 	If (check = "sound_pick")
 	{
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl[check], [xControl, yControl, wControl, hControl]))
+		If Blank(input := Gui_DropDownList(vars.ddl[check], LLK_WinGetPos(cHWND, "array")))
 			Return
 		vars.ddl.sound_pick.current := vars.lootfilter_tester.sound := input, vars.lootfilter_tester.sound_index := settings.lootfilter.sound_tags[input], check := "tester_test", control := "test"
 		GuiControl,, % vars.hwnd.settings.sound_tag, % (IsNumber(input) ? "" : input)
@@ -4232,8 +4227,7 @@ Settings_mapinfo2(cHWND)
 			GuiControl, % "+c" (settings.mapinfo.trigger ? "Lime" : "Gray"), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "position":
-			WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-			input := Gui_DropDownList(vars.ddl.mapinfo_position, [xControl, yControl, wControl, hControl], "Center", 1)
+			input := Gui_DropDownList(vars.ddl.mapinfo_position, LLK_WinGetPos(cHWND, "array"), "Center", 1)
 			If Blank(input) || IsObject(input) && Blank(input.1 . input.2)
 				Return
 			IniWrite, % (settings.mapinfo.position := input.2), % "ini" vars.poe_version "\map info.ini", settings, position
@@ -5418,8 +5412,7 @@ Settings_qol2(cHWND)
 	}
 	Else If InStr(check, "position_")
 	{
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl[check], [xControl, yControl, wControl, hControl], "Center", 1)) || IsObject(input) && Blank(input.1 . input.2)
+		If Blank(input := Gui_DropDownList(vars.ddl[check], LLK_WinGetPos(cHWND, "array"), "Center", 1)) || IsObject(input) && Blank(input.1 . input.2)
 			Return
 		vars.ddl[check].current := input.1
 		IniWrite, % (settings.mapevents.position := input.2), % "ini" vars.poe_version "\qol tools.ini", % control, position

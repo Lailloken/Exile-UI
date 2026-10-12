@@ -83,12 +83,14 @@ Gui_DropDownList(object, coord_array, align := "", altsubmit := 0, prev_align :=
 	Gui, DDL: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border +E0x02000000 +E0x00080000 HWNDhwnd_ddl, Exile UI: Drop-Down List
 	Gui, DDL: Color, % object.color
 	Gui, DDL: Font, % "s" object.fSize " cWhite", % vars.system.font
-	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : -1), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
+	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
 
 	If !object.list.Count()
 		Return
+	Else If (object.list.Count() = 1)
+		object.list.InsertAt(1, "")
 
-	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, HWNDs := [], wList := Max(wList, coord_array.3), hList := Max(hList, coord_array.4 - 2)
+	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, HWNDs := [], wList := Max(wList - 2, coord_array.3 - 2), hList := Max(hList - 2, coord_array.4 - 2)
 	For index, val in object.list
 	{
 		If (type = "minimap")
@@ -97,7 +99,7 @@ Gui_DropDownList(object, coord_array, align := "", altsubmit := 0, prev_align :=
 				vars.pics.lootfilter[val] := LLK_ImageCache("img\GUI\lootfilter\" val ".png",, settings.lootfilter.fHeight2 - 2)
 			Gui, DDL: Add, Pic, % (A_Index = 1 ? "Section" : "ys") " HWNDhwnd", % "HBitmap:*" vars.pics.lootfilter[val]
 		}
-		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : " x-1 y-1") " w" wList " h" hList " 0x200 HWNDhwnd" (val = object.current ? " cLime" : "") . (align ? " " align : ""), % (!align ? " " : "") . val . (align = "right" ? " " : "")
+		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : " x0 y0") " w" wList " h" hList " 0x200 HWNDhwnd" (val = object.current ? " cLime" : "") . (align ? " " align : ""), % (!align ? " " : "") . val . (align = "right" ? " " : "")
 		controls[hwnd] := val, HWNDs.Push(hwnd)
 	}
 
@@ -536,7 +538,7 @@ Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left
 		If RegExMatch(val, "\(color:.*\)")
 			color := SubStr(val, InStr(val, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), val := StrReplace(val, "(color:" color ")"), color .= " "
 		Else color := "White "
-		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth//2 : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % val
+		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth//2 : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % LLK_StringCase(val)
 	}
 
 	If !choices.Count()
@@ -1110,6 +1112,8 @@ LLK_WinGetPos(cHWND, return_val := "")
 	WinGetPos, x, y, width, height, ahk_id %cHWND%
 	Switch return_val
 	{
+		Case "array":
+			Return [x, y, width, height]
 		Case "x":
 			Return x
 		Case "y":

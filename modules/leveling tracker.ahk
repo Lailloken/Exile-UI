@@ -681,8 +681,7 @@ Leveltracker_GemPickups(cHWND := "")
 	Else If InStr(check, "_ddl")
 	{
 		gem := StrReplace(check, "_ddl")
-		WinGetPos, xControl, yControl, wControl, hControl, % "ahk_id " cHWND
-		If Blank(input := Gui_DropDownList(vars.ddl.gempickups[gem], [xControl, yControl, wControl, hControl], "Center"))
+		If Blank(input := Gui_DropDownList(vars.ddl.gempickups[gem], LLK_WinGetPos(cHWND, "array"), "Center"))
 			Return
 		Loop, Parse, input
 			pick .= (IsNumber(A_LoopField) ? A_LoopField : "")
