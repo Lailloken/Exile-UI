@@ -195,6 +195,11 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 |---|---|---|
 | ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/qol_004.png) | ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/qol_001.png) | ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/qol_006.png) |
 | <p align="center">**Path of Exile 2 compatible**</p> |||
+
+| Quick PoB: companion-feature to streamline PoB usage |
+|---|
+| ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/quickpob_001.jpg) |
+| <p align="center">**Path of Exile 2 compatible**</p> |
 <br>
 
 ### [Cheat-sheet Overlay Toolkit](https://github.com/Lailloken/Exile-UI/wiki/Cheat-sheet-Overlay-Toolkit): create customizable, context-sensitive overlays
