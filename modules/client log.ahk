@@ -375,12 +375,10 @@ Log_Loop(mode := 0)
 				vars.lootfilter.last_notification := A_TickCount
 				game_ini := IniBatchRead(vars.system.config_folder "\" (vars.poe_version ? "poe2_" : "") "production_Config.ini",, "blank")
 				If (game_ini.ui.item_filter != "filterspoon.filter")
-				{
 					settings.lootfilter.ingame_filter := game_ini.ui.item_filter
-					Return
-				}
 			}
-			MapEvent("lootfilter")
+			If (settings.lootfilter.ingame_filter = "filterspoon.filter")
+				MapEvent("lootfilter")
 		}
 
 		If (settings.features.leveltracker * settings.leveltracker.geartracker) && IsNumber(level) && (level0 != level)

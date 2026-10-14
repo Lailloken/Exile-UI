@@ -26,7 +26,8 @@
 		ini2 := IniBatchRead(vars.system.config_folder "\" (vars.poe_version ? "poe2_" : "") "production_Config.ini",, "blank")
 		settings.lootfilter.ingame_filter := ini2.ui.item_filter
 		FileGetTime, filestamp, % vars.system.config_folder "\OnlineFilters\" settings.lootfilter.active_filter_file
-		settings.lootfilter.last_sync := !Blank(check := ini.settings["last sync"]) ? check : 0, settings.lootfilter.last_sync := (filestamp ? Max(filestamp, settings.lootfilter.last_sync) : 0)
+		settings.lootfilter.last_sync := !Blank(check := ini.settings["last sync"]) ? check : 0
+		settings.lootfilter.last_sync := (filestamp ? Max(filestamp, settings.lootfilter.last_sync) : (settings.lootfilter.ingame_filter = "filterspoon.filter" ? 20201010101010 : 0))
 	}
 
 	settings.lootfilter.profile := !Blank(check := ini.settings.profile) ? check : 1
