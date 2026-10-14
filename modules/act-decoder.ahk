@@ -41,7 +41,7 @@
 				}
 
 	If outdated
-		Gui_MsgBox("layouts", "act-decoder", ["layouts outdated: rebuild file-list.json"],,, "Center")
+		Gui_MsgBox("layouts", "act-decoder", "layouts outdated: rebuild file-list.json",,, "Center")
 
 	settings.actdecoder := {}, ini := IniBatchRead("ini" vars.poe_version "\act-decoder.ini")
 	settings.actdecoder.xLayouts := !Blank(check := ini.settings["zone-layouts x"]) ? check : ""

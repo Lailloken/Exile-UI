@@ -488,13 +488,16 @@ Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
 	}
 }
 
-Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left")
+Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices := "[]", align := "Left")
 {
 	local
 	global vars, settings
 
 	If !IsObject(vars.settings)
 		Settings_menu("init")
+
+	If !IsObject(text)
+		text := [text]
 
 	If (check := LLK_HasVal(vars.MsgBox, usecase,,,, 1))
 	{
@@ -508,6 +511,7 @@ Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left
 				LLK_Drag(width, height, x, y, 1, vars.MsgBox[check].name,, xMouse - xWin, yMouse - yWin)
 				Sleep 15
 			}
+			vars.general.drag := 0
 			Return
 		}
 		Else KeyWait, LButton
@@ -527,9 +531,9 @@ Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left
 	Gui, %GUI%: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
 	vars.MsgBox[usecase] := {"hwnd": {"main": hwnd_msgbox}, "name": GUI}, dimensions := []
 
-	Gui, %GUI%: Add, Text, % "x" 46*settings.general.fWidth - 1 " y-1" " w" 2*settings.general.fWidth " Center Border BackgroundTrans gGui_MsgBox HWNDhwnd1", x
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "Section x-1 y-1 w" 48*settings.general.fWidth " Center Border BackgroundTrans HWNDhwnd gGui_MsgBox", % title
+	If RegExMatch(title, "i)^\(color:.*\)")
+		color := SubStr(title, InStr(title, ":") + 1), color := SubStr(color, 1, InStr(color, ")") - 1), title := SubStr(title, InStr(title, ")") + 1)
+	Gui, %GUI%: Add, Text, % "Section x-1 y-1 w" 48*settings.general.fWidth " Center Border BackgroundTrans HWNDhwnd gGui_MsgBox" (color ? " c" color : ""), % LLK_StringCase(title)
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 	vars.MsgBox[usecase].hwnd.title := hwnd, vars.MsgBox[usecase].hwnd.close := hwnd1
 
@@ -538,7 +542,7 @@ Gui_MsgBox(usecase, title, text, coords := "[]", choices := "[]", align := "Left
 		If RegExMatch(val, "\(color:.*\)")
 			color := SubStr(val, InStr(val, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), val := StrReplace(val, "(color:" color ")"), color .= " "
 		Else color := "White "
-		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth//2 : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % LLK_StringCase(val)
+		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % LLK_StringCase(val)
 	}
 
 	If !choices.Count()

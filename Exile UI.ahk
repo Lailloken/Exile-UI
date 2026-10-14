@@ -335,6 +335,13 @@ Init_client()
 	vars.monitor := {"x": xScreenOffset_monitor, "y": yScreenOffSet_monitor, "w": width_native, "h": height_native, "xc": xScreenOffset_monitor + width_native / 2, "yc": yScreenOffSet_monitor + height_native / 2}
 	LLK_Log("measured monitor resolution and position: " width_native "x" height_native ", " xScreenOffset_monitor ", " yScreenOffSet_monitor)
 
+	Init_Lang()
+	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
+	If (settings.general.fSize < 6)
+		settings.general.fSize := 6
+	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
+	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
+
 	If monitor_override
 		While (x_client "," y_client != vars.monitor.x "," vars.monitor.y)
 		{
@@ -357,11 +364,12 @@ Init_client()
 		vars.client.borderless := (vars.client.fullscreen = "true") ? 1 : !Blank(check := ini.settings["remove window-borders"]) ? check : 0
 		vars.client.customres := [ini.settings["custom-width"], ini.settings["custom-resolution"]]
 	}
+
 	If IsNumber(vars.client.customres.1) && IsNumber(vars.client.customres.2)
 	{
 		If (vars.client.customres.1 > vars.monitor.w) || (vars.client.customres.2 > vars.monitor.h) ;check resolution in case of manual .ini edit
 		{
-			MsgBox,, Exile UI, Incorrect settings for forced resolution detected.`nThe script will reset the settings and restart.
+			Gui_MsgBox("invalid custom res",, ["Incorrect settings for forced resolution detected.", "The tool will reset the settings and restart."])
 			IniWrite, % vars.monitor.h, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
 			IniWrite, % vars.monitor.w, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 			Reload
@@ -456,19 +464,14 @@ Init_general()
 	local
 	global vars, settings, json
 
-	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), legacy_version := ini.versions["ini-version"]
-	If IsNumber(legacy_version) && (legacy_version < 15000) || FileExist("modules\alarm-timer.ahk") ;|| FileExist("modules\delve-helper.ahk")
-	{
-		MsgBox,, Script updated incorrectly, Updating from legacy to v1.50+ requires a clean installation.`nThe script will now exit.
-		ExitApp
-	}
+	ini := IniBatchRead("ini" vars.poe_version "\config.ini")
 	ini_version := LLK_IniRead("ini\config.ini", "versions", "ini", 0) ;ini-version is stored here regardless of which PoE-version is being played
 
 	If (ini_version < 15303)
 	{
 		FileDelete, % "img\Recognition (" vars.client.h "p)\GUI\betrayal.bmp"
 		If ini.features["enable betrayal-info"]
-			MsgBox,, Exile UI, % "The betrayal image-check was changed in v1.53.3 and needs to be recalibrated."
+			Gui_MsgBox("betrayal update",, "The betrayal image-check was changed in v1.53.3 and needs to be recalibrated.")
 	}
 	If (ini_version < 15304)
 		FileDelete, data\global\[stash-ninja] prices.ini
@@ -544,12 +547,6 @@ Init_general()
 	settings.general.ClientFillerTaskbar := (!Blank(check := ini.settings["cover taskbar"]) ? check : 0)
 	settings.general.ClientFillerSplit := (!settings.general.ClientFillerTaskbar ? 0 : (!Blank(check := ini.settings["split-screen mode"]) ? check : 0))
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
-
-	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
-	If (settings.general.fSize < 6)
-		settings.general.fSize := 6
-	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
-	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
@@ -638,7 +635,7 @@ Init_vars()
 		alt_font := A_LoopFileName
 	vars.system := {"timeout": 1, "font1": New CustomFont("data\" (!Blank(alt_font) ? alt_font : "Fontin-SmallCaps.ttf")), "click": 1}
 	vars.tooltip := {}
-	vars.general := {"buggy_resolutions": {768: 1, 1024: 1, 1050: 1}, "inactive": 0, "startup": A_TickCount, "updatetick": 0}
+	vars.general := {"inactive": 0, "startup": A_TickCount, "updatetick": 0}
 	If !IsObject(vars.updater)
 	{
 		version := Json.Load(LLK_FileRead("data\versions.json")), version := version._release.1 . (version.hotfix ? "." (version.hotfix < 10 ? "0" : "") version.hotfix : "")
@@ -738,7 +735,7 @@ Loop()
 		{
 			WinWaitActive, ahk_group poe_window
 			Sleep, 5000
-			Init_client(), Init_Lang(), Init_screenchecks()
+			Init_client(), Init_screenchecks()
 			If vars.log.latest_location
 				vars.log.file := FileOpen(vars.log.latest_location, "a", "UTF-8"), vars.log.file_wait := 0
 		}
@@ -1078,42 +1075,18 @@ Resolution_check()
 {
 	local
 	global vars, settings
-	poe_height := vars.client.h
 
-	If vars.general.buggy_resolutions.HasKey(vars.client.h) || !vars.general.supported_resolutions.HasKey(vars.client.h)
+	If !vars.general.supported_resolutions.HasKey(vars.client.h)
 	{
-		If vars.general.buggy_resolutions.HasKey(poe_height)
-		{
-			text =
-			(LTrim
-			Unsupported resolution detected!
-
-			The script has detected a vertical screen-resolution of %poe_height% pixels which has caused issues with the game-client and the script in the past.
-
-			I have decided to end support for this resolution.
-			You have to run the client with a custom resolution, which you can set up in the following window.
-			)
-		}
-		Else If !vars.general.supported_resolutions.HasKey(vars.client.h)
-		{
-			text =
-			(LTrim
-			Unsupported resolution detected!
-
-			The script has detected a vertical screen-resolution of %poe_height% pixels which is not supported.
-
-			You have to run the client with a custom resolution, which you can set up in the following window.
-			)
-		}
-		MsgBox,, Exile UI, % text
+		Gui_MsgBox("bad resolution", Lang_Trans("msg_badresolution", 1), [Lang_Trans("msg_badresolution", 2) " " vars.client.h "p", Lang_Trans("msg_badresolution", 3)])
 		vars.general.safe_mode := 1
-		settings_menu("client")
-		sleep, 2000
+		Settings_menu("client")
+		Sleep, 2000
 		Loop
 		{
 			If !WinExist("ahk_id " vars.hwnd.settings.main)
 			{
-				MsgBox,, Exile UI, The tool will now close.
+				Gui_MsgBox("bad resolution",, [Lang_Trans("msg_shutdown")],,, "Center")
 				ExitApp
 			}
 			Sleep, 100
@@ -1210,7 +1183,7 @@ Startup()
 	}
 	Else vars.log.file_location := 0, LLK_Log("couldn't find game's log-file")
 
-	Init_client(), Init_Lang()
+	Init_client()
 
 	;start secondary thread for multi-threading
 	If (settings.general.multithread_off := LLK_IniRead("ini\config.ini", "settings", "disable multi-threading", 0))

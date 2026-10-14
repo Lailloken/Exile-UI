@@ -769,7 +769,7 @@ Lootfilter_Editor(cHWND := "")
 		{
 			LLK_Overlay(hwnd_old, "destroy"), vars.hwnd.lootfilter := ""
 			Gui, %GUI%: Destroy
-			If Gui_MsgBox("duped filters", "exile ui", [Lang_Trans("lootfilter_duplicatefiles"), Lang_Trans("lootfilter_duplicatefiles", 2), Lang_Trans("lootfilter_duplicatefiles", 3)],, ["yes", "no"])
+			If Gui_MsgBox("duped filters",, [Lang_Trans("lootfilter_duplicatefiles"), Lang_Trans("lootfilter_duplicatefiles", 2), Lang_Trans("lootfilter_duplicatefiles", 3)],, ["yes", "no"])
 			{
 				Run, % vars.system.config_folder "\OnlineFilters"
 				Run, % "https://www.pathofexile.com/my-account/item-filters"

@@ -344,6 +344,13 @@
 		msg_clientswitch		=	"you have switched to a different game-client, do you want the tool to switch/restart as well?"
 		msg_clientswitch		=	"if not, launch the correct client and then click <no>"
 
+		msg_badresolution		=	"Unsupported resolution detected"
+		msg_badresolution		=	"The tool has detected an unsupported vertical resolution:"
+		msg_badresolution		=	"You have to run the client with a custom resolution, which you can set up in the following window."
+
+		msg_shutdown			=	"The tool will now close."
+		msg_proceed			=	"Do you want to proceed?"
+
 
 
 ;#####################################################
