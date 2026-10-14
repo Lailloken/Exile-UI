@@ -309,6 +309,7 @@
 		global_full			=	"full"
 		global_compact			=	"compact"
 		global_folder			=	"folder"
+		global_warning			=	"warning"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -1011,8 +1012,20 @@
 ;## these strings are displayed/required in the "add-ons" section of the settings menu
 		m_addons_failed		=	"write issue: couldn't create add-ons folder"
 		m_addons_warning		=	"warning: proceed with caution and do your own research"
-		m_addons_warning		=	"WARNING:;;Add-ons are not validated and may contain dangerous code.;Please do your own research and check the source code before downloading them.;;Do you want to proceed?"
+		m_addons_warning2		=	"Add-ons are not validated and may contain dangerous code."
+		m_addons_warning2		=	"Please do your own research and check the source code before downloading them."
 		m_addons_list			=	"list of downloaded add-ons:"
+		m_addons_leftover		=	"There are left-over zip-files from previous downloads that couldn't be deleted. You have to manually delete them."
+		m_addons_leftover		=	"Do you want to open the folder?"
+		m_addons_importfail		=	"download failed"
+		m_addons_importfail		=	"add-on info couldn't be downloaded"
+		m_addons_importfail		=	"add-on doesn't support this game version"
+		m_addons_importfail		=	"add-on info is incorrect/incompatible"
+		m_addons_importfail		=	"duplicate add-on names"
+		m_addons_importfail		=	"zip-extraction failed"
+		m_addons_importfail		=	"unexpected zip contents"
+		m_addons_importfail		=	"couldn't move add-on folder"
+		m_addons_disable		=	"disabling add-ons requires a restart."
 
 
 

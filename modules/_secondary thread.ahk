@@ -287,3 +287,8 @@ Economy_Update(type := "", force := "")
 {
 	Return
 }
+
+Init_addons()
+{
+	Return
+}

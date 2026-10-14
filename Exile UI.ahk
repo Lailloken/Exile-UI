@@ -159,6 +159,7 @@ Return
 #Include modules\statlas.ahk
 #Include modules\TLDR tooltips.ahk
 #Include *i add-ons\loader
+#Include *i add-ons\loader 2
 
 Exit()
 {
@@ -224,6 +225,33 @@ Economy_Update(type := "currency", minutes := 60)
 		Else If !success
 			vars.economy[type] := {"timestamp": [A_NowUTC, "failed"]}
 	}
+}
+
+Init_addons()
+{
+	local
+	global vars, settings, json
+	static loaded, version
+
+	If !IsObject(vars.addons)
+		vars.addons := {"enabled": 0, "list": {}}, loaded := LLK_FileRead("add-ons\loader" vars.poe_version), version := (vars.poe_version ? 2 : 1)
+	If FileExist("add-ons\delete")
+	{
+		Loop, Read, add-ons\delete
+			FileRemoveDir, % "add-ons\" Trim(A_LoopReadLine, " `n`r`t"), 1
+		FileDelete, add-ons\delete
+	}
+
+	Loop, Files, % "add-ons\*", D
+		If vars.addons.list.HasKey(A_LoopFileName)
+			Continue
+		Else If FileExist(A_LoopFilePath "\*.ahk") && InStr((file := LLK_FileRead(A_LoopFilePath "\info.json", 1)), """poe" version """")
+		{
+			Try info := json.Load(file)
+			Catch
+				Continue
+			vars.addons.list[A_LoopFileName] := {"info": info.Clone(), "enabled": InStr(loaded, "\" A_LoopFileName "\")}, vars.addons.enabled += (InStr(loaded, "\" A_LoopFileName "\") ? 1 : 0)
+		}
 }
 
 Init_client()
@@ -599,18 +627,8 @@ Init_vars()
 	settings.features := {}
 	settings.geforce := {}
 
-	If FileExist("add-ons\loader" vars.poe_version)
-	{
-		settings.addons := {}, vars.addons := {"list": {}}, loaded := LLK_FileRead("add-ons\loader" vars.poe_version), version := (vars.poe_version ? 2 : 1)
-		Loop, Files, % "add-ons\*", D
-			If FileExist(A_LoopFilePath "\*.ahk") && InStr((file := LLK_FileRead(A_LoopFilePath "\info.json", 1)), "poe" version)
-			{
-				Try info := json.Load(file)
-				Catch
-					Continue
-				vars.addons.list[A_LoopFileName] := {"info": info.Clone(), "enabled": InStr(loaded, "\" A_LoopFileName "\")}
-			}
-	}
+	If FileExist("add-ons\")
+		Init_addons()
 	vars.betrayal := {}
 	vars.cheatsheets := {}
 	vars.client := {}

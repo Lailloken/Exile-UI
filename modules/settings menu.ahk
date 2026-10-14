@@ -286,7 +286,7 @@ Settings_actdecoder2(cHWND := "")
 		Leveltracker_Progress()
 }
 
-Settings_addons()
+Settings_addons(mode := 0)
 {
 	local
 	global vars, settings, db
@@ -318,48 +318,61 @@ Settings_addons()
 		vars.pics.settings_addons := {}
 	}
 
-	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000", % Lang_Trans("m_addons_warning")
-	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " " Lang_Trans("global_import") " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.import := hwnd, vars.hwnd.help_tooltips["settings_addons import"] := hwnd1
+	If !mode
+		For key, val in vars.addons.list
+			vars.addons.list[key].Delete("deleted")
+	deletion := LLK_HasKey(vars.addons.list, "deleted",,,, 1)
 
-	Gui, %GUI%: Add, Text, % "Hidden ys Border BackgroundTrans gSettings_addons2 HWNDhwnd cRed", % " " Lang_Trans("global_restart") " "
-	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000", % Lang_Trans("m_addons_warning")
+	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd " (deletion ? "cGray" : "gSettings_addons2"), % " " Lang_Trans("global_import") " "
+	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" (deletion ? "Black" : vars.settings.cButtons), 100
+	If !deletion
+		vars.hwnd.settings.import := hwnd, vars.hwnd.help_tooltips["settings_addons import"] := hwnd1
+
+	Gui, %GUI%: Add, Text, % (deletion ? "" : "Hidden ") "ys Border BackgroundTrans gSettings_addons2 HWNDhwnd cRed", % " " Lang_Trans("global_restart") " "
+	Gui, %GUI%: Add, Progress, % (deletion ? "" : "Hidden ") "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.restart := hwnd, vars.hwnd.settings.restart_bar := hwnd1
 
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_addons_list")
-	Gui, %GUI%: Font, norm
+	If vars.addons.list.Count()
+	{
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_addons_list")
+		Gui, %GUI%: Font, norm
+	}
 
 	For key, val in vars.addons.list
 	{
-		vars.addons.list[key].enabled_provisional := val.enabled
-		Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_addons2 HWNDhwnd" (val.enabled ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.hwnd.settings["enable_" key] := hwnd
+		vars.addons.list[key].enabled_provisional := val.enabled, deleted := val.deleted
+		Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans HWNDhwnd c" (deleted ? "Gray" : (val.enabled ? "Lime" : "Gray") " gSettings_addons2"), % " " Lang_Trans("global_enable") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" (deleted ? "Black" : vars.settings.cButtons), 100
+		If !deleted
+			vars.hwnd.settings["enable_" key] := hwnd, vars.hwnd.settings["enable_" key "_bar"] := hwnd1
 
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " x "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
-		vars.hwnd.settings["delete_" key] := hwnd, vars.hwnd.settings["delete_" key "_bar"] := vars.hwnd.help_tooltips["settings_addons delete" handle] := hwnd1
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " w" settings.general.fHeight " Center Border BackgroundTrans HWNDhwnd" (deleted ? "" : " gSettings_addons2"), % "x"
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" (deleted ? "Black" : vars.settings.cButtons), 500
+		If !deleted
+			vars.hwnd.settings["delete_" key] := hwnd, vars.hwnd.settings["delete_" key "_bar"] := vars.hwnd.help_tooltips["settings_addons delete" handle] := hwnd1
+
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " wp Center Border BackgroundTrans HWNDhwnd" (deleted ? "" : " gSettings_addons2"), % "?"
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" (deleted ? "Black" : vars.settings.cButtons), 500
+		If !deleted
+			vars.hwnd.settings["info_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons about" handle] := hwnd1
 
 		If !vars.pics.settings_addons.settings
 			vars.pics.settings_addons.settings := LLK_ImageCache("img\GUI\settings\general.png",, settings.general.fHeight - 2)
-		Gui, %GUI%: Add, Pic, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % "HBitmap:*" vars.pics.settings_addons.settings
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.hwnd.settings["settings_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons settings" handle] := hwnd1, handle .= "|"
+		Gui, %GUI%: Add, Pic, % hidden "ys x+" settings.general.fHeight//5 " Border BackgroundTrans HWNDhwnd" (!deleted && val.enabled ? " gSettings_addons2" : ""), % "HBitmap:*" vars.pics.settings_addons.settings
+		Gui, %GUI%: Add, Progress, % hidden "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" (!deleted && val.enabled ? vars.settings.cButtons : "Black"), 100
+		If !deleted && val.enabled
+			vars.hwnd.settings["settings_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons settings" handle] := hwnd1, handle .= "|"
 
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fHeight//5 " Border BackgroundTrans gSettings_addons2 HWNDhwnd", % " ? "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Range0-500 Vertical Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 500
-		vars.hwnd.settings["info_" key] := hwnd, vars.hwnd.help_tooltips["settings_addons about" handle] := hwnd1
-
-		Gui, %GUI%: Add, Text, % "ys hp c" (val.enabled ? "White" : "Gray"), % key
+		Gui, %GUI%: Add, Text, % "ys hp c" (deleted ? "Fuchsia" : (val.enabled ? "White" : "Gray")), % LLK_StringCase(key)
 	}
 }
 
 Settings_addons2(cHWND)
 {
 	local
-	global vars, settings
+	global vars, settings, json
 
 	check := LLK_HasVal(vars.hwnd.settings, cHWND), control := SubStr(check, InStr(check, "_") + 1)
 	If !RegexMatch(check, "i)info_|delete_")
@@ -370,8 +383,7 @@ Settings_addons2(cHWND)
 		Case (check = "enable"):
 		If !settings.features.addons
 		{
-			MsgBox, 4, Exile UI, % Lang_Trans("m_addons_warning", 2)
-			IfMsgBox Yes
+			If Gui_MsgBox("addon warning", "(color:Red)" Lang_Trans("global_warning"), [Lang_Trans("m_addons_warning2"), Lang_Trans("m_addons_warning2", 2), Lang_Trans("msg_proceed")],, ["yes", "no"])
 			{
 				FileCreateDir, % "add-ons"
 				Sleep, 100
@@ -383,37 +395,155 @@ Settings_addons2(cHWND)
 			}
 			Else Return
 		}
+		Else If vars.addons.enabled
+		{
+			If Gui_MsgBox("addons disable",, [Lang_Trans("m_addons_disable"), Lang_Trans("msg_proceed")],, ["yes", "no"], "Center")
+			{
+				FileDelete, % "add-ons\loader" vars.poe_version
+				IniWrite, % (settings.features.addons := !settings.features.addons), % "ini" vars.poe_version "\config.ini", features, enable add-ons
+				IniWrite, addons, % "ini" vars.poe_version "\config.ini", versions, reload settings
+				LLK_Restart()
+			}
+			Else Return
+		}
 		IniWrite, % (settings.features.addons := !settings.features.addons), % "ini" vars.poe_version "\config.ini", features, enable add-ons
 		Settings_menu()
+		;######################################################
+		Case (check = "restart"):
+		FileDelete, % "add-ons\loader" vars.poe_version
+		FileDelete, % "add-ons\delete"
+		For key, val in vars.addons.list
+			If val.deleted
+				delete .= (delete ? "`n" : "") val.info.name
+			Else If val.enabled_provisional && FileExist("add-ons\" val.info.name "\" val.info.classname ".ahk")
+				dump .= (dump ? "`n" : "") "#Include add-ons\" val.info.name "\" val.info.classname ".ahk"
 
+		If dump
+			file := FileOpen("add-ons\loader" vars.poe_version, "w", "UTF-8-RAW"), file.Write(dump), file.Close()
+		If delete
+			file := FileOpen("add-ons\delete", "w", "UTF-8-RAW"), file.Write(delete), file.Close()
+		IniWrite, addons, % "ini" vars.poe_version "\config.ini", versions, reload settings
+		LLK_Restart()
+		;######################################################
+		Case (check = "import"):
+		If !InStr(Clipboard, "github.com/")
+		{
+			LLK_ToolTip(Lang_Trans("global_errorname", 2),,,,, "Red")
+			Return
+		}
+		FileDelete, add-ons\*.zip
+		If FileExist("add-ons\*.zip")
+		{
+			If Gui_MsgBox("addons leftovers",, [Lang_Trans("m_addons_leftover"), Lang_Trans("m_addons_leftover", 2)],, ["yes", "no"])
+				Run, explore add-ons\
+			Return
+		}
+
+		folders := {}, game := (vars.poe_version ? 2 : 1)
+		Loop, Files, add-ons\*, D
+			folders[A_LoopFileName] := 1
+		If InStr(Clipboard, "/tree/")
+			dload := StrReplace(Clipboard, "/tree/", "/archive/refs/heads/") ".zip", info := StrReplace(StrReplace(Clipboard, "github.com", "raw.githubusercontent.com"), "/tree/", "/refs/heads/") "/info.json"
+		Else dload := Clipboard "/archive/refs/heads/main.zip", info := StrReplace(Clipboard, "github.com", "raw.githubusercontent.com") "/refs/heads/main/info.json"
+
+		Try info_json := HTTPtoVar(info)
+		Catch
+			error := 1
+
+		If !error
+			If !InStr(info_json, """classname"":")
+				error := 2
+			Else If !InStr(info_json, """poe" game """")
+				error := 3
+			Else Try info_json := json.load(info_json)
+
+		If !error
+			If Blank(info_json.name)
+				error := 4
+			Else If vars.addons.list.HasKey(info_json.name)
+				error := 5
+
+		If error
+		{
+			Gui_MsgBox("addons import fail",, Lang_Trans("m_addons_importfail", error),,, "Center")
+			Return
+		}
+		UrlDownloadToFile, % dload, add-ons\addon.zip
+		If ErrorLevel || !FileExist("add-ons\addon.zip")
+			error := 1
+		If !error
+		{
+			FileCopyDir, add-ons\addon.zip, add-ons, 1
+			error := (ErrorLevel ? 6 : 0)
+			FileDelete, add-ons\addon.zip
+		}
+		If !error
+		{
+			found := []
+			Loop, Files, add-ons\*, D
+				If !folders[A_LoopFileName]
+				{
+					found.Push(A_LoopFileName)
+					Break
+				}
+			If (found.Count() > 1)
+				For index, folder in found
+					FileRemoveDir, % "add-ons\" folder, 1
+			error := (!found.Count() ? 6 : (found.Count() > 1 ? 7 : 0))
+		}
+		If error
+		{
+			Gui_MsgBox("addons download fail",, Lang_Trans("m_addons_importfail", error),,, "Center")
+			Return
+		}
+
+		FileMoveDir, % "add-ons\" found.1, % "add-ons\" info_json.name, R
+		If ErrorLevel
+		{
+			FileRemoveDir, % "add-ons\" found.1, 1
+			FileRemoveDir, % "add-ons\" info_json.name, 1
+			Gui_MsgBox("addons download fail",, Lang_Trans("m_addons_importfail", 8),,, "Center")
+			Return
+		}
+		Init_addons(), Settings_menu()
+		;######################################################
 		Case InStr(check, "enable_"):
 		vars.addons.list[control].enabled_provisional := !vars.addons.list[control].enabled_provisional
 		GuiControl, % "+c" (vars.addons.list[control].enabled_provisional ? "Lime" : "Gray"), % cHWND
 		GuiControl, % "movedraw", % cHWND
+		GuiControl, % "+Background" (vars.addons.list[control].enabled != vars.addons.list[control].enabled_provisional ? "FF8000" : vars.settings.cButtons2), % vars.hwnd.settings[check "_bar"]
 		For key, val in vars.addons.list
 			If (val.enabled != val.enabled_provisional)
 				modified := 1
 
 		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.restart
 		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.restart_bar
-
+		;######################################################
 		Case InStr(check, "delete_"):
 		If (vars.system.click = 1) && LLK_Progress(vars.hwnd.settings[check "_bar"], "LButton",,, 500, "Red", vars.settings.cButtons)
-			Sleep 1
-		Else Return
-
+		{
+			If vars.addons.list[control].enabled
+				vars.addons.list[control].deleted := 1
+			Else
+			{
+				FileRemoveDir, % "add-ons\" control, 1
+				vars.addons.list.Delete(control)
+			}
+			Settings_menu("addons", 1)
+		}
+		;######################################################
 		Case InStr(check, "settings_"):
 		Settings_menu("addons_" control)
-
+		;######################################################
 		Case InStr(check, "info_"):
 		info := vars.addons.list[control].info
 		For index, val in info.creators
 			creators .= (creators ? ", " : "") . val.name
-		text := Lang_Trans("global_info") . Lang_Trans("global_colon") "`n" LLK_StringCase(info.description) "`n`n" Lang_Trans("global_credits") . Lang_Trans("global_colon") "`n" creators
+		text := LLK_StringCase(info.description) "`n`n" Lang_Trans("global_credits") . Lang_Trans("global_colon") "`n" creators
 		LLK_ToolTip(text, 0,,, "addons_info",,,,, 1,, 1, settings.general.fWidth * 20)
 		KeyWait, LButton
 		LLK_Overlay(vars.hwnd.tooltip_addons_info, "destroy")
-
+		;######################################################
 		Default:
 		LLK_ToolTip("no action")
 	}
@@ -4895,7 +5025,7 @@ Settings_menu2(section, mode := 0, sub_section := "") ;mode parameter used when 
 		Case "addons":
 			If sub_section
 				vars.addons.list[sub_section].func.Settings_menu()
-			Else Settings_addons()
+			Else Settings_addons(mode)
 		Case "betrayal-info":
 			Settings_betrayal()
 		Case "cheat-sheets":
