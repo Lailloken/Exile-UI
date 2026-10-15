@@ -3351,8 +3351,7 @@ Leveltracker_ScreencapPaste(index)
 				LLK_ToolTip(Lang_Trans("lvltracker_multipaste", 2), 2,,,, "red")
 				Return
 			}
-			MsgBox, 4, Clipboard multi-paste, % Lang_Trans("lvltracker_multipaste", 3, [LLK_InStrCount(Clipboard, ":"), index])
-			IfMsgBox No
+			If !Gui_MsgBox("multi-paste warning",, Lang_Trans("lvltracker_multipaste", 3, [LLK_InStrCount(Clipboard, ":"), index]),, ["yes", "no"])
 				Return
 		}
 		Loop, Parse, Clipboard, `n, `r

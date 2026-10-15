@@ -496,9 +496,6 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 	If !IsObject(vars.settings)
 		Settings_menu("init")
 
-	If !IsObject(text)
-		text := [text]
-
 	If (check := LLK_HasVal(vars.MsgBox, usecase,,,, 1))
 	{
 		control := LLK_HasVal(vars.MsgBox[check].hwnd, usecase), usecase := check
@@ -521,10 +518,12 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 		Return
 	}
 
+	If !IsObject(text)
+		text := [text]
 	If !IsObject(vars.MsgBox)
 		vars.MsgBox := {}
 
-	GUI := "MsgBox_" StrReplace(usecase, " ", "_")
+	GUI := "MsgBox_" LLK_StringReplace(usecase, [[" ", "_"], ["-", "_"]])
 	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd_msgbox +E0x02000000 +E0x00080000
 	Gui, %GUI%: Color, Black
 	Gui, %GUI%: Margin, -1, -1

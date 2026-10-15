@@ -108,10 +108,10 @@ DB_Load(database)
 				If !IsObject(db.mapinfo.mods[section])
 					db.mapinfo.mods[section] := {}
 				If settings.general.dev && (key = "ID") && db.mapinfo.mods[section].ID
-					MsgBox,, Exile UI, % "duplicate: " section
+					Gui_MsgBox("map-info warning",, "duplicate: " section,,, "Center")
 				db.mapinfo.mods[section][key] := StrReplace(val, "&", "&&")
 				If settings.general.dev && (key = "type") && (val != "expedition") && !LLK_HasVal(db.mapinfo["mod types"], val)
-					MsgBox,, Exile UI, % "invalid mod-type for:`n" section
+					Gui_MsgBox("map-info warning",, "invalid mod-type for:`n" section,,, "Center")
 			}
 		}
 	}
@@ -278,7 +278,7 @@ LLK_CloneObject(object)
 
 LLK_Error(ErrorMessage, restart := 0)
 {
-	MsgBox,, Exile UI, % ErrorMessage
+	Gui_MsgBox("error",, ErrorMessage)
 	If restart
 		Reload
 	ExitApp
@@ -288,7 +288,7 @@ LLK_FilePermissionError(issue, folder)
 {
 	local
 
-	MsgBox,, Exile UI, % Lang_Trans("m_permission_error1", (issue = "create") ? 1 : 2) " " folder "`n`n" Lang_Trans("m_permission_error1", 3) "`n" Lang_Trans("m_permission_error1", 4) "`n`n" Lang_Trans("m_permission_error1", 5) "`n`n" Lang_Trans("m_permission_error1", 6)
+	Gui_MsgBox("file permission",, [Lang_Trans("m_permission_error1", (issue = "create" ? 1 : 2)) " " folder, Lang_Trans("m_permission_error1", 3) "`n" Lang_Trans("m_permission_error1", 4), Lang_Trans("m_permission_error1", 5) "`n" Lang_Trans("m_permission_error1", 6)])
 }
 
 LLK_FileRead(file, keep_case := 0, encoding := "65001")

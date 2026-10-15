@@ -1509,7 +1509,7 @@ Lootfilter_Load(mode := "", dev_check := 0)
 		new_file := FileOpen(config_folder "\FilterSpoon.filter", "w", "UTF-8-RAW"), new_file.Close()
 		If !FileExist(config_folder "\FilterSpoon_tester.filter")
 			new_file := FileOpen(config_folder "\FilterSpoon_tester.filter", "w", "UTF-8-RAW"), new_file.Close()
-		MsgBox, 4096, % Lang_Trans("ms_filterspoon") ": " Lang_Trans("global_setup"), % Lang_Trans("lootfilter_presetup") "`n`n" Lang_Trans("lootfilter_presetup", 2)
+		Gui_MsgBox("filterspoon presetup", Lang_Trans("ms_filterspoon") ": " Lang_Trans("global_setup"), Lang_Trans("lootfilter_presetup") "`n" Lang_Trans("lootfilter_presetup", 2))
 	}
 
 	If !IsObject(vars.lootfilter.filters_list) || (mode = "refresh")
@@ -1607,7 +1607,7 @@ Lootfilter_Load(mode := "", dev_check := 0)
 		For index, chunk in vars.lootfilter.active_filter.stock
 			If IsObject(chunk)
 				Lootfilter_Match(chunk, dev_check), count += 1
-		MsgBox, % count
+		Gui_MsgBox("filterspoon devcheck",, count)
 	}
 	Return 1
 }
@@ -1624,14 +1624,14 @@ Lootfilter_LoadStructure()
 			type := val.type, tier := val.tier, basetype := ""
 			If settings.general.dev && !(type || tier)
 			{
-				MsgBox,, Exile UI, % "block with missing type/tier: " index
+				Gui_MsgBox("filterspoon load error",, "chunk with missing type/tier: " index)
 				Continue
 			}
 			If !IsObject(structure[type])
 				structure[type] := []
 			If settings.general.dev && LLK_HasKey(structure[type], tier,,,, 1)
 			{
-				MsgBox,, Exile UI, % "duplicate tier in type """ type """"
+				Gui_MsgBox("filterspoon load error",, "duplicate tier in type """ type """")
 				Continue
 			}
 			For iLine, oLine in val.lines
@@ -1970,7 +1970,7 @@ Lootfilter_Match(array, dev_check := 0)
 					Case (key = "height"):
 						object.multimatches := 1
 					Case settings.general.dev:
-						MsgBox,, Exile UI, % "unknown filter condition:`n!" (Clipboard := LLK_StringCase(key)) "!"
+						Gui_MsgBox("filterspoon unknown condition",, "unknown filter condition:`n!" (Clipboard := LLK_StringCase(key)) "!")
 					}
 				}
 

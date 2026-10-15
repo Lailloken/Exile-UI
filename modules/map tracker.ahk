@@ -57,7 +57,7 @@
 	}
 
 	If settings.general.dev && !settings.maptracker.dColors.HasKey("league " vars.maptracker.leagues.MaxIndex())
-		MsgBox, 4096,, % "map-tracker logviewer: not enough league colors"
+		Gui_MsgBox("map-tracker colors",, "map-tracker logviewer:`nnot enough league colors",,, "Center")
 
 	For mechanic in vars.maptracker.mechanics
 		settings.maptracker[mechanic] := !Blank(check := ini.mechanics[mechanic]) ? check : (InStr("seer,mist", mechanic) ? 1 : 0)

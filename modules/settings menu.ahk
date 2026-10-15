@@ -4947,10 +4947,9 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	;if aspect-ratio is wider than officially supported by PoE, show message and force-open the general section
 	If !vars.general.safe_mode && !settings.general.warning_ultrawide && (vars.client.h0/vars.client.w0 < (5/12))
 	{
-		MsgBox, 4, % Lang_Trans("m_general_resolution"), % Lang_Trans("global_ultrawide") "`n" Lang_Trans("global_ultrawide", 2) "`n" Lang_Trans("global_ultrawide", 3)
 		IniWrite, 1, % "ini" vars.poe_version "\config.ini", Versions, ultrawide warning
 		settings.general.warning_ultrawide := 1
-		IfMsgBox, Yes
+		If Gui_MsgBox("utrawide warning",, [Lang_Trans("global_ultrawide"), Lang_Trans("global_ultrawide", 2), Lang_Trans("global_ultrawide", 3)],, ["yes", "no"])
 		{
 			IniWrite, 1, % "ini" vars.poe_version "\config.ini", Settings, black-bar compensation
 			KeyWait, LButton
@@ -7744,7 +7743,7 @@ Settings_WriteTest(cHWND := "")
 	If FileExist("data\write-test\")
 	{
 		running := 0
-		MsgBox,, % Lang_Trans("m_general_permissions"), % Lang_Trans("m_permission_error", 1) "`n`n" Lang_Trans("m_permission_error", 2)
+		Gui_MsgBox("write-test error",, [Lang_Trans("m_permission_error"), Lang_Trans("m_permission_error", 2)])
 		Run, explore %A_WorkingDir%\data\
 		Return
 	}
@@ -7797,7 +7796,7 @@ Settings_WriteTest(cHWND := "")
 	Else status .= Lang_Trans("m_permission_image", 2) " " unknown "`n`n"
 	GuiControl,, % HWND_bar, 700
 
-	MsgBox, 4096, % Lang_Trans("m_permission_header"), % status
+	Gui_MsgBox("write-test results", Lang_Trans("m_permission_header"), Trim(status, " `r`n"))
 	GuiControl, % "+c" vars.settings.cButtons, % HWND_bar
 	running := 0
 }

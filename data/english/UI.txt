@@ -345,10 +345,13 @@
 		msg_clientswitch		=	"you have switched to a different game-client, do you want the tool to switch/restart as well?"
 		msg_clientswitch		=	"if not, launch the correct client and then click <no>"
 
+		msg_langswitch			=	"The game was launched with a different language setting."
+
 		msg_badresolution		=	"Unsupported resolution detected"
 		msg_badresolution		=	"The tool has detected an unsupported vertical resolution:"
 		msg_badresolution		=	"You have to run the client with a custom resolution, which you can set up in the following window."
 
+		msg_restart			=	"The tool will now restart."
 		msg_shutdown			=	"The tool will now close."
 		msg_proceed			=	"Do you want to proceed?"
 
@@ -949,7 +952,7 @@
 		m_general_postaskbar	=	"taskbar"
 		m_general_borderless	=	"apply borderless-windowed mode"
 		m_general_borderless	=	"borderless"
-		m_general_blackbars		=	"the client has black bars on the sides"	;## black bars as in letterboxes
+		m_general_ultrawidebars	=	"black bars"							;## black bars as in letterboxes
 		m_general_permissions	=	"write-permissions test:"
 		m_general_start		=	"start test"
 		m_general_admin		=	"restart as admin"

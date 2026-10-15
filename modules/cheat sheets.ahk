@@ -126,14 +126,11 @@ Cheatsheet_Add(name, type)
 		Return
 	}
 	If FileExist("cheat-sheets" vars.poe_version "\" name "\")
-	{
-		MsgBox, 4, % Lang_Trans("global_errorname", 4), % Lang_Trans("cheat_duplicate")
-		IfMsgBox No
+		If !Gui_MsgBox("cheatsheet duplicate", Lang_Trans("global_errorname", 4), Lang_Trans("cheat_duplicate"),, ["yes", "no"])
 		{
 			WinActivate, % "ahk_id " vars.hwnd.settings.main
 			Return
 		}
-	}
 	FileRemoveDir, % "cheat-sheets" vars.poe_version "\" name, 1
 	If FileExist("cheat-sheets" vars.poe_version "\" name "\")
 		error := 1, LLK_FilePermissionError("delete", A_ScriptDir "\cheat-sheets" vars.poe_version "\" name)
@@ -597,7 +594,7 @@ Cheatsheet_Image(name := "", hotkey := "") ;'hotkey' parameter used when overlay
 		pBitmap := Gdip_LoadImageFromFile(file)
 		If (pBitmap <= 0)
 		{
-			MsgBox,, Exile UI, % Lang_Trans("cheat_loaderror") " " file
+			Gui_MsgBox("cheat-sheet load error",, Lang_Trans("cheat_loaderror") " " file)
 			If !InStr(hotkey0, "wheel")
 				KeyWait, % hotkey0
 			Return
@@ -1225,10 +1222,10 @@ Cheatsheet_MenuPaste(index)
 			LLK_ToolTip(Lang_Trans("cheat_multifiles"), 2,,,, "red")
 			Return
 		}
-		MsgBox, 4, Clipboard multi-paste, % Lang_Trans("lvltracker_multipaste", 3, [LLK_InStrCount(Clipboard, ":"), index])
-		IfMsgBox, No
+
+		If !Gui_MsgBox("cheat-sheet multipaste",, Lang_Trans("lvltracker_multipaste", 3, [LLK_InStrCount(Clipboard, ":"), index]),, ["yes", "no"])
 			Return
-		IfMsgBox, Yes
+		Else
 		{
 			Loop, Parse, Clipboard, `n, `r
 			{
@@ -1404,7 +1401,7 @@ Cheatsheet_Search(name)
 
 	If (pNeedle <= 0)
 	{
-		MsgBox,, Exile UI, % Lang_Trans("cheat_loaderror") " " name
+		Gui_MsgBox("cheat-sheet error",, Lang_Trans("cheat_loaderror") " " name)
 		Gdip_DisposeImage(pHaystack)
 		Return 0
 	}

@@ -30,7 +30,7 @@
 
 	If prev_lang && (prev_lang != settings.general.lang_client)
 	{
-		MsgBox,, Exile UI, % "Client language has changed between restarts. The tool will now restart."
+		Gui_MsgBox("lang swap",, [Lang_Trans("msg_langswitch"), Lang_Trans("msg_restart")],,, "Center")
 		LLK_Restart()
 	}
 }
@@ -83,7 +83,7 @@ Lang_Load(file)
 			Continue
 		If !InStr(line, "=") || Mod(LLK_InStrCount(line, """"), 2)
 		{
-			MsgBox,, Exile UI, % "Potential error in file ""data\" file ", line " A_Index ":`n- key/value pair is missing an equal sign or quotation marks`n- comment-line is missing semi-colon"
+			MsgBox,, Exile UI, % "Potential error in file ""data\" file ", line " A_Index ".`nLine was skipped."
 			Continue
 		}
 		key := SubStr(line, 1, InStr(line, "=") - 1), val := SubStr(line, InStr(line, "=") + 1), val := InStr(val, ";##") ? SubStr(val, 1, InStr(val, ";##") - 1) : val
