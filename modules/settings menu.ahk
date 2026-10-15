@@ -1127,7 +1127,7 @@ Settings_client()
 	global vars, settings
 	static fSize, wDock, wDock2, wResolution, wPosition, wFiller, wTaskbar, wSplit
 
-	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, vars.settings.borderless_provisional := vars.client.borderless
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, vars.settings.borderless_provisional := vars.client.borderless, vars.settings.blackbars_provisional := settings.general.blackbars
 
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " wiki && setup guide "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -1320,9 +1320,10 @@ Settings_client()
 
 	If (vars.client.h0 / vars.client.w0 < (5/12))
 	{
-		settings.general.blackbars := LLK_IniRead("ini" vars.poe_version "\config.ini", "Settings", "black-bar compensation", 0)
-		Gui, %GUI%: Add, Checkbox, % "Section xs 0x400 BackgroundTrans gSettings_client2 HWNDhwnd Center Checked"settings.general.blackbars, % Lang_Trans("m_general_blackbars")
-		vars.hwnd.settings.blackbars := vars.hwnd.help_tooltips["settings_black bars"] := hwnd
+		color := settings.general.blackbars := LLK_IniRead("ini" vars.poe_version "\config.ini", "Settings", "black-bar compensation", 0)
+		Gui, %GUI%: Add, Text, % (vars.client.fullscreen = "false" || settings.general.FillerAvailable ? "ys" : "Section xs") " Center Border BackgroundTrans gSettings_client2 HWNDhwnd" (vars.settings.blackbars_provisional ? " cLime" : ""), % " " Lang_Trans("m_general_ultrawidebars") " "
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+		vars.hwnd.settings.blackbars := hwnd, vars.hwnd.help_tooltips["settings_black bars"] := hwnd1
 	}
 }
 
@@ -1375,13 +1376,19 @@ Settings_client2(cHWND := "")
 		IniWrite, % height, % "ini" vars.poe_version "\config.ini", Settings, custom-resolution
 		IniWrite, % width, % "ini" vars.poe_version "\config.ini", Settings, custom-width
 		IniWrite, % vars.settings.borderless_provisional, % "ini" vars.poe_version "\config.ini", settings, remove window-borders
-		If vars.hwnd.settings.blackbars
-			IniWrite, % LLK_ControlGet(vars.hwnd.settings.blackbars), % "ini" vars.poe_version "\config.ini", Settings, black-bar compensation
+		IniWrite, % vars.settings.blackbars_provisional, % "ini" vars.poe_version "\config.ini", Settings, black-bar compensation
 		IniWrite, % vars.settings.active, % "ini" vars.poe_version "\config.ini", Versions, reload settings
 		Reload
 		ExitApp
 
-		Case RegexMatch(check, "i)custom_(width|resolution)|dock2{0,1}$|blackbars"):
+		Case (check = "blackbars"):
+		vars.settings.blackbars_provisional := !vars.settings.blackbars_provisional
+		GuiControl, % "+c" (vars.settings.blackbars_provisional ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "movedraw", % cHWND
+		GuiControl, -Hidden, % vars.hwnd.settings.apply
+		GuiControl, -Hidden, % vars.hwnd.settings.apply_bar
+
+		Case RegexMatch(check, "i)custom_(width|resolution)|dock2{0,1}$"):
 		If InStr("custom_resolution,dock2", check)
 			If Blank(input := Gui_DropDownList(vars.ddl[check], LLK_WinGetPos(cHWND, "array"), "Center"))
 				Return
