@@ -765,7 +765,7 @@ Loop()
 		}
 		vars.client.closed := 0
 
-		If settings.updater.update_check && !vars.general.updatewait && !vars.update.1 && (A_TickCount >= vars.general.updatetick + 1800000)
+		If settings.updater.update_check && !vars.general.updatewait && !vars.update.1 && (A_TickCount >= vars.general.updatetick + Min(A_TickCount, 1800000))
 		{
 			vars.general.updatetick := vars.general.updatewait := A_TickCount
 			SetTimer, UpdateCheck, -100
