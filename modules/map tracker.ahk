@@ -112,7 +112,9 @@ Maptracker(cHWND := "", hotkey := "")
 		}
 		If (check = "character")
 		{
-			LLK_ToolTip(settings.general.character "`n" vars.log.character_class " (" vars.log.level ")" (settings.general.build ? "`n" settings.general.build : ""), 2,,,,,,,, 1)
+			LLK_ToolTip(settings.general.character "`n" vars.log.character_class " (" vars.log.level ")" . (settings.general.build ? "`n" settings.general.build : "") . (settings.maptracker.league ? "`n" Maptracker_League() : ""), 0,,, "maptracker_charinfo",,,,, 1)
+			KeyWait, LButton
+			LLK_Overlay(vars.hwnd.tooltip_maptracker_charinfo, "destroy")
 			Return
 		}
 		If (hotkey = 2)
@@ -625,6 +627,16 @@ Maptracker_Kills()
 	vars.maptracker.refresh_kills_last := A_TickCount
 	Sleep, 100
 	Log_Loop(1)
+}
+
+Maptracker_League()
+{
+	local
+	global vars, settings
+
+	For index, val in settings.general.league
+		league .= (league && !InStr("normal,trade", val) ? " " : "") . (InStr("normal,trade", val) ? "" : Lang_Trans("global_league_" val))
+	Return league
 }
 
 Maptracker_Logs(mode := "")
@@ -1830,8 +1842,7 @@ Maptracker_Save(mode := 0)
 		If settings.maptracker.character && vars.log.level
 			character := settings.general.character "(n)" vars.log.character_class " (" vars.log.level ")" (settings.general.build ? "(n)" settings.general.build : "")
 		If settings.maptracker.league
-			For index, val in settings.general.league
-				league .= (league && !InStr("normal,trade", val) ? " " : "") . (InStr("normal,trade", val) ? "" : Lang_Trans("global_league_" val))
+			Maptracker_League()
 
 		IniWrite, % "map=" map.name "`ntier=" map.tier "`nrun=" map.time "`nportals=" map.portals "`ndeaths=" map.deaths "`nkills=" map.kills "`ncontent=" (!content ? 0 : content) "`nloot=" (!loot ? 0 : loot)
 		. "`nmapinfo=" vars.maptracker.map.mapinfo "`ne-exp="map.experience (map.experience && !InStr(map.experience, "?") ? "%" : "") "`nnotes=""" (settings.maptracker.notes ? notes : "") """`ncharacter=""" character """"

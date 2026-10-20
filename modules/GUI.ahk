@@ -183,7 +183,7 @@ Gui_HelpToolTip(HWND_key)
 		lootfilter := settings.lootfilter.profile, database := (!IsObject(vars.help.lootfilter.rollback) ? vars.help2 : vars.help)
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
-	tooltip_width := (check = "settings") ? settings.general.fWidth * 34 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
@@ -344,8 +344,7 @@ Gui_HelpToolTip(HWND_key)
 	Else If settings_selection
 		xPos := xControl, yPos := y + h - 1
 	Else If (check = "settings")
-		xPos := (vars.settings.x + vars.settings.w + width >= vars.monitor.x + vars.monitor.w ? vars.settings.x - width : vars.settings.x + vars.settings.w)
-		, yPos := (RegexMatch(control, "i)updater.changelog|recentchanges") ? vars.settings.y : Max(vars.settings.y, y + h//2 - height//2))
+		xPos := vars.settings.x + vars.settings.x_anchor - vars.settings.xMargin - 1, yPos := y + h - 1
 
 	If (check = "alarm" && yPos < vars.monitor.y)
 		yPos := yWin + hWin - 1
@@ -956,6 +955,8 @@ LLK_Overlay(guiHWND, mode := "show", NA := 1, gui_name0 := "")
 	{
 		If WinExist("ahk_id " guiHWND)
 			Gui, %gui_name%: Destroy
+		If (key := LLK_HasVal(vars.hwnd, guiHWND))
+			vars.hwnd.Delete(key)
 	}
 	Else If (mode = "check")
 	{

@@ -599,7 +599,7 @@ Init_general()
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
 	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png")}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png"), "checkmark": LLK_ImageCache("img\GUI\checkmark.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	If FileExist("data\global\leagues" vars.poe_version ".json")
@@ -777,9 +777,9 @@ Loop()
 			If WinExist("ahk_id " vars.hwnd.settings.main)
 			{
 				If vars.news.unread
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? "6060FF" : "Lime"), % vars.hwnd.settings.background_news
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? (vars.settings.active = "news" ? "6060FF" : vars.settings.cButtons2) : "Lime"), % vars.hwnd.settings.background_news
 				If vars.update.1
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? "6060FF" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
+					GuiControl, % "+Background" (Mod(news_tick, 2) ? (vars.settings.active = "updater" ? "6060FF" : vars.settings.cButtons2) : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
 				If vars.actdecoder.updater.available
 				{
 					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.actdecoder
@@ -1006,14 +1006,15 @@ Loop_main()
 	If vars.general.cMouse
 		check_help := LLK_HasVal(vars.hwnd.help_tooltips, vars.general.cMouse), check := (SubStr(check_help, 1, InStr(check_help, "_") - 1)), control := StrReplace(SubStr(check_help, InStr(check_help, "_") + 1), "|"), database := IsObject(vars.help[check][control]) ? vars.help : vars.help2
 
-	tick_helptooltips += 1
-	If !vars.radial.wait && (!Mod(tick_helptooltips, 3) || check_help)
+	If !vars.radial.wait && (check_help || vars.hwnd.help_tooltips.main && WinExist("ahk_id " vars.hwnd.help_tooltips.main))
 	{
 		If check_help && (vars.general.active_tooltip != vars.general.cMouse) && (database[check][control].Count() || (check = "lootfilter") && (InStr(control, "dummy") || InStr(control, "tier")) || InStr(control, "updater changelog") || check = "lab" && !(vars.lab.mismatch || vars.lab.outdated) && InStr(control, "square") || check = "donation" && vars.settings.donations[control].2.Count() || check = "lootfilter" && InStr(control, "tooltip") || check = "leveltrackergems" && InStr(control, "gem ")) && !WinExist("ahk_id "vars.hwnd.screencheck_info.main)
-			Gui_HelpToolTip(check_help)
+			Gui_HelpToolTip(check_help), tick_helptooltips := 0
+		Else If (tick_helptooltips = 3)
+			LLK_Overlay(vars.hwnd.help_tooltips.main, "destroy"), vars.general.active_tooltip := "", vars.hwnd.help_tooltips.main := "", tick_helptooltips := 0
 		Else If (vars.general.drag || !check_help || WinExist("ahk_id "vars.hwnd.screencheck_info.main)) && WinExist("ahk_id " vars.hwnd.help_tooltips.main)
-			LLK_Overlay(vars.hwnd.help_tooltips.main, "destroy"), vars.general.active_tooltip := "", vars.hwnd.help_tooltips.main := ""
-		tick_helptooltips := 0
+			tick_helptooltips += 1
+		Else tick_helptooltips := 0
 	}
 
 	If WinExist("ahk_id "vars.hwnd.legion.main)

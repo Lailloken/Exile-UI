@@ -925,7 +925,7 @@
 		m_general_autoclose		=	"auto-close:"
 		m_general_browser		=	"browser qol"
 		m_general_capslock		=	"caps-toggle"							;## by default, AHK will toggle capslock back and forth whenever it sends key-strokes
-		m_general_charleague	=	"character & league:"
+		m_general_charleague	=	"league & character:"
 		m_general_character		=	"char"
 		m_general_level		=	"lvl"
 		m_general_client		=	"game-client settings:"
@@ -1397,6 +1397,9 @@
 		m_updater_changelog		=	"full changelog"
 		m_updater_skip			=	"skip"
 		m_updater_failed		=	"update failed:"
+		m_updater_autocheck		=	"auto-check"
+
+
 		m_updater_error1		=	"the last update attempt failed because of write-permission errors. please open the <general> section of the settings and run the test at the bottom."
 		m_updater_error1		=	"fixing these issues is critical not just for the updater but for many other features as well."
 
