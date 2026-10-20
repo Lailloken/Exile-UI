@@ -89,6 +89,7 @@ Init_leveltracker(), LLK_Log("initialized act-tracker settings")
 Init_actdecoder(), LLK_Log("initialized act-decoder settings")
 Init_maptracker(), LLK_Log("initialized map-tracker settings")
 Init_qol(), LLK_Log("initialized minor qol settings")
+Init_notifications(), LLK_Log("initialized notification settings")
 Init_recombination(), LLK_Log("initialized recombination settings")
 Init_sanctum(), LLK_Log("initialized sanctum planner settings")
 Init_stash(), LLK_Log("initialized stash-ninja settings")
@@ -147,6 +148,7 @@ Return
 #Include modules\map-info.ahk
 #Include modules\map tracker.ahk
 #Include modules\omni-key.ahk
+#Include modules\notifications.ahk
 #Include modules\qol tools.ahk
 #Include modules\recombination.ahk
 #Include modules\rune-ninja.ahk
@@ -493,7 +495,9 @@ Init_general()
 	global vars, settings, json
 
 	ini := IniBatchRead("ini" vars.poe_version "\config.ini")
-	ini_version := LLK_IniRead("ini\config.ini", "versions", "ini", 0) ;ini-version is stored here regardless of which PoE-version is being played
+	If vars.poe_version
+		ini2 := IniBatchRead("ini\config.ini"), ini_version := (Blank(ini2.versions.ini) ? 0 : ini2.versions.ini)
+	Else ini_version := (Blank(ini.versions.ini) ? 0 : ini.versions.ini)
 
 	If (ini_version < 15303)
 	{
@@ -597,7 +601,9 @@ Init_general()
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.features.exchange := !Blank(check := ini.features["enable vaal street"]) ? check : 0
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
-	settings.updater := {"update_check": LLK_IniRead("ini\config.ini", "settings", "update auto-check", 0)}
+	If vars.poe_version
+		settings.updater := {"update_check": ini2.settings["update auto-check"], "notify": ini2.settings["update notification"]}
+	Else settings.updater := {"update_check": ini.settings["update auto-check"], "notify": ini.settings["update notification"]}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png"), "checkmark": LLK_ImageCache("img\GUI\checkmark.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}

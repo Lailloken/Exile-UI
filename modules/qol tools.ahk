@@ -10,8 +10,22 @@
 	settings.qol := {"alarm": !Blank(check := ini.features.alarm) ? check : 0
 		, "notepad": !Blank(check1 := ini.features.notepad) ? check1 : 0
 		, "lab": (settings.general.lang_client = "unknown") ? 0 : !Blank(check2 := ini.features.lab) ? check2 : 0
-		, "mapevents": !Blank(check3 := ini.features.mapevents) ? check3 : 0
-		, "quickpob": !Blank(check4 := ini.features.quickpob) ? check4 : 0}
+		, "quickpob": !Blank(check3 := ini.features.quickpob) ? check3 : 0}
+
+	If ini.HasKey("mapevents")
+	{
+		object := {"events": {}, "settings": {}}
+		For key, val in ini.mapevents
+			object[(!InStr(key, "color") && RegexMatch(key, "i)enable|hideout") ? "events" : "settings")][key] := val
+		For key, val in object
+		{
+			dump := ""
+			For k, v in val
+				dump .= (dump ? "`n" : "") . StrReplace(k, "enable ") "=" (InStr(k, "-color") ? """" v """" : v)
+			IniWrite, % dump, % "ini" vars.poe_version "\notifications.ini", % key
+		}
+		IniDelete, % "ini" vars.poe_version "\qol tools.ini", mapevents
+	}
 
 	settings.alarm := {"fSize": !Blank(check := ini.alarm["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.alarm.fSize, font_height, font_width), settings.alarm.fHeight := font_height, settings.alarm.fWidth := font_width
@@ -23,7 +37,6 @@
 	settings.alarm.yPos := !Blank(check := ini.alarm["y-coordinate"]) ? check : vars.client.y - vars.monitor.y
 	settings.alarm.orientation := !Blank(check := ini.alarm.orientation) ? check : "horizontal"
 	vars.alarm := {"timers": {}, "defaults": {}, "single_use": {}}
-	vars.mapevents := {}
 
 	For timer, timestamp in ini["alarm - timers"]
 	{
@@ -44,20 +57,6 @@
 
 	If InStr(vars.log.areaID, "labyrinth_")
 		Lab("init")
-
-	settings.mapevents := {"fSize": !Blank(check := ini.mapevents["font-size"]) ? check : settings.general.fSize * 2}
-	settings.mapevents.event_list := ["graftblood", "infamous", "hideout"]
-	LLK_FontDimensions(settings.mapevents.fSize, font_height, font_width), settings.mapevents.fHeight := font_height, settings.mapevents.fWidth := font_width
-	settings.mapevents.color := !Blank(check := ini.mapevents["font-color"]) ? check : "FF0000"
-	settings.mapevents.color1 := !Blank(check := ini.mapevents["background color"]) ? check : "FFFFFF"
-	settings.mapevents.duration := !Blank(check := ini.mapevents.duration) ? check : 5
-	settings.mapevents.opacity := !Blank(check := ini.mapevents.opacity) ? check : 5
-	settings.mapevents.position := !Blank(check := ini.mapevents.position) ? check : 1
-	For index, val in settings.mapevents.event_list
-		settings.mapevents[val] := !Blank(check := ini.mapevents["enable " val]) ? check : (val = "hideout" ? 0 : 1)
-		, settings.mapevents["color_" val] := !Blank(check := ini.mapevents["text-color " val]) ? check : "FF0000", settings.mapevents["color1_" val] := !Blank(check := ini.mapevents["background-color " val]) ? check : "FFFFFF"
-	Loop 3
-		settings.mapevents["hideout_t" A_Index] := !Blank(check := ini.mapevents["hideout T" A_Index]) ? check : 1
 
 	settings.notepad := {"fSize": !Blank(check := ini.notepad["font-size"]) ? check : settings.general.fSize}
 	LLK_FontDimensions(settings.notepad.fSize, font_height, font_width), settings.notepad.fHeight := font_height, settings.notepad.fWidth := font_width
@@ -676,74 +675,6 @@ Lab(mode := "", override := 0)
 	Gui, %GUI_name2%: Show, % "NA x"x " y"y
 	LLK_Overlay(lab, "show",, GUI_name), LLK_Overlay(lab2, "show",, GUI_name2)
 	LLK_Overlay(hwnd_old, "destroy"), LLK_Overlay(hwnd_old2, "destroy")
-}
-
-MapEvent(type := "")
-{
-	local
-	global vars, settings
-
-	If !type
-	{
-		type := "hideout", tier := vars.mapevents.hideout.tier
-		If (vars.log.areaID != vars.mapevents.hideout.ID || vars.log.areaseed != vars.mapevents.hideout.seed)
-		{
-			vars.mapevents.hideout := {}
-			Return
-		}
-	}
-	text := Lang_Trans("mechanic_" type), color := settings.mapevents["color_" type], background := settings.mapevents["color1_" type]
-	If (type = "lootfilter")
-		text := Lang_Trans("lootfilter_notification"), color := "Red", background := "White"
-	position := settings.mapevents.position, text := (position > 2) ? StrReplace(text, " ", "`n") : text
-
-	If (type = "hideout")
-		text .= " (" Lang_Trans("global_tiers", tier) ")"
-	LLK_ToolTip(text, settings.mapevents.duration, 10000, 10000, "mapevents_" type, color, settings.mapevents.fSize, (position = 4 ? "Right" : ""), settings.mapevents.opacity * 51,, background)
-	WinGetPos,,, Width, Height, % "ahk_id" vars.hwnd["tooltip_mapevents_" type]
-	Switch position
-	{
-		case 1:
-		xPos := vars.monitor.x + vars.client.xc - Width/2, yPos := vars.client.y
-		case 2:
-		xPos := vars.monitor.x + vars.client.xc - Width/2, yPos := vars.client.y + vars.client.h - Height
-		case 3:
-		xPos := vars.client.x, yPos := vars.monitor.y + vars.client.yc - Height/2
-		case 4:
-		xPos := vars.client.x + vars.client.w - Width, yPos := vars.monitor.y + vars.client.yc - Height/2
-	}
-	Gui, % "tooltipmapevents_" type ": Show", % "NA x" xPos " y" yPos
-}
-
-MapEvent_Hideout(ID, seed)
-{
-	local
-	global vars, settings
-	static hideouts := {"mapworldsterrace": 1, "mapworldshauntedmansion": 1, "mapworldsmoontemple": 1, "mapworldstorturechamber": 1, "mapworldsdig": 1, "mapworldscrimsontemple": 1, "mapworldssunkencity": 1
-	, "mapworldssummit": 2, "mapworldstower": 2, "mapworldsiceberg": 2, "mapworldsorchard": 2
-	, "mapworldsarcade": 3, "mapworldspromenade": 3, "mapworldsatoll": 3, "mapworldsmoontempleunique": 3, "mapworldsacademy": 3, "mapworldsivorytemple": 3, "mapworldsgraveyard": 3}
-
-	If !((tier := hideouts[ID]) && settings.mapevents["hideout_t" tier])
-		Return
-	vars.mapevents.hideout := {"ID": ID, "seed": seed, "tier": tier}
-	SetTimer, MapEvent, -10000
-}
-
-MapEvent_InfamousMerc(clientTXT_line)
-{
-	local
-	global vars, settings, json
-	static FirstApproach
-
-	If !IsObject(FirstApproach)
-	{
-		lang := FileExist("data\" settings.general.lang_client "\mercenaries.json") ? settings.general.lang_client : "english"
-		file := LLK_FileRead("data\" lang "\mercenaries.json"), FirstApproach := json.load(file)
-	}
-
-	For index, line in FirstApproach
-		If InStr(clientTXT_line, line)
-			Return 1
 }
 
 Notepad(cHWND := "", hotkey := "", color := 0)

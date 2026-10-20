@@ -637,8 +637,6 @@
 		lootfilter_minsupportlevel	=	"min supp."								;## min level for support gems
 		lootfilter_socketables		=	"socketables"
 
-		lootfilter_notification		=	"sync lootfilter"							;## configurable reminder notification after X hours
-
 
 
 ;#####################################################
@@ -723,6 +721,15 @@
 		quickpob_loading		=	"waiting for;build to load..."
 		quickpob_snip			=	"snip offset:"
 
+
+
+;#####################################################
+;## (map-event) notifications
+;#####################################################
+
+;## these strings are displayed/required for notifications
+		notification_lootfilter	=	"sync lootfilter"
+		notification_updater	=	"update available"
 
 
 ;#####################################################
@@ -1249,13 +1256,25 @@
 ;## these strings are displayed/required in the "announcements" section of the settings menu
 		m_news_recent			=	"most recent announcement(s):"
 
+
+
+;#####################################################
+;## settings menu: (map-event) notifications
+;#####################################################
+
+
+;## these strings are displayed/required in the "(map-event) notifications" section of the settings menu
+		m_notifications_label	=	"map-event notifications:"
+		m_notifications_label2	=	"feature notifications:"
+
+
+
 ;#####################################################
 ;## settings menu: minor qol tools
 ;#####################################################
 
 ;## these strings are displayed/required in the "minor qol tools" section of the settings menu
 		m_qol_alarm			=	"alarm/timer widget:"
-		m_qol_map_events		=	"map-event notifications:"
 		m_qol_notepad			=	"notepad:"
 		m_qol_widget			=	"widget opacity:"
 		m_qol_widgetcolor		=	"widget colors:"

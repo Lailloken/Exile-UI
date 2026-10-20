@@ -258,6 +258,9 @@ Log_Loop(mode := 0)
 		If (auto_track = 1)
 			level0 := 0
 
+		If settings.updater.update_check && settings.updater.notify && (vars.update.1 > 0) && RegExMatch(areaID, "i)^hideout")
+			Notification("updater")
+
 		If settings.features.lootfilter && settings.lootfilter.notify && (settings.lootfilter.ingame_filter = "filterspoon.filter") && settings.lootfilter.last_sync
 		&& (LLK_TimeElapsed(settings.lootfilter.last_sync,, 0) >= settings.lootfilter.notify * 60) && RegExMatch(areaID, "i)^hideout")
 		{
@@ -269,7 +272,7 @@ Log_Loop(mode := 0)
 					settings.lootfilter.ingame_filter := game_ini.ui.item_filter
 			}
 			If (settings.lootfilter.ingame_filter = "filterspoon.filter")
-				MapEvent("lootfilter")
+				Notification("lootfilter")
 		}
 
 		If (settings.features.leveltracker * settings.leveltracker.geartracker) && IsNumber(level) && (level0 != level)
@@ -465,20 +468,20 @@ Log_Parse(content, ByRef areaID, ByRef areaname, ByRef areaseed, ByRef arealevel
 		If settings.features.maptracker && settings.maptracker.mechanics && vars.maptracker.map.id && (vars.log.areaID = vars.maptracker.map.id)
 			Maptracker_ParseDialogue(loopfield)
 
-		If settings.qol.mapevents
-			For index0, type in settings.mapevents.event_list
-				If (type = "hideout") && settings.mapevents.hideout && InStr(loopfield, "] Spawning discoverable Hideout")
+		If LLK_HasVal(settings.notifications.events, 1)
+			For index0, type in settings.notifications.event_list
+				If (type = "hideout") && settings.notifications.events.hideout && InStr(loopfield, "] Spawning discoverable Hideout")
 				{
 					map_ID := (areaID ? areaID : vars.log.areaID), map_seed := (areaseed ? areaseed : vars.log.areaseed)
-					If (map_ID != vars.mapevents.hideout.ID || map_seed != vars.mapevents.hideout.seed)
-						MapEvent_Hideout(map_ID, map_seed)
+					If (map_ID != vars.notifications.hideout.ID || map_seed != vars.notifications.hideout.seed)
+						Notification_Hideout(map_ID, map_seed)
 					Break
 				}
-				Else If settings.mapevents[type]
+				Else If settings.notifications.events[type]
 					For index1, line in vars.lang["log_" type]
-						If InStr(loopfield, line, 1) && (type != "infamous" || type = "infamous" && MapEvent_InfamousMerc(loopfield "."))
+						If InStr(loopfield, line, 1) && (type != "infamous" || type = "infamous" && Notification_InfamousMerc(loopfield "."))
 						{
-							MapEvent(type)
+							Notification(type)
 							Break
 						}
 

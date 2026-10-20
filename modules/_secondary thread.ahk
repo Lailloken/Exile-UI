@@ -58,6 +58,7 @@ Return
 #Include modules\map-info.ahk
 #Include modules\map tracker.ahk
 #Include modules\omni-key.ahk
+#Include modules\notifications.ahk
 #Include modules\qol tools.ahk
 #Include modules\recombination.ahk
 #Include modules\rune-ninja.ahk

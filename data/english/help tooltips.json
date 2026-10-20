@@ -12,6 +12,9 @@
     "selection screen-checks": [
       "screen-checks"
     ],
+    "selection notifications": [
+      "(map-event) notifications"
+    ],
     "selection news": [
       "announcements"
     ],
@@ -372,7 +375,7 @@
       "example: not activating on-hover overlays while moving the character"
     ],
     "hotkeys omnikey-info": [
-      "context-sensitive hotkey that activates the majority of features (default: capslock)",
+      "context-sensitive hotkey that activates the majority of features (default: capslock)",
       "instead of specifying hotkeys for every feature, you calibrate screen-checks to help this hotkey interpret which feature has to be activated when pressed"
     ],
     "hotkeys omnikey2": [
@@ -748,7 +751,8 @@
     ],
     "lootfilter notification": [
       "if you are using an online filter that is periodically updated, you can set up notification pop-ups as a reminder to regularly re-sync your modified filter",
-      "these pop-ups will be displayed whenever you enter a hideout and the last sync was more than x hours ago"
+      "these pop-ups will be displayed whenever you enter a hideout and the last sync was more than x hours ago",
+      "(/highlight)right-click to customize global notifications"
     ],
     "macros animations": [
       "toggles menu-widget animations"
@@ -960,16 +964,16 @@
       "timer-widget with alarm/countdown and stopwatch functionality",
       "hidden by default: hold down the <widget-key> to access it"
     ],
-    "map-events duration": [
-      "the notification will be on screen for x seconds",
-      "(/highlight)long-click, and move the cursor up/down or right/left to adjust"
-    ],
     "map-events enable": [
       "displays notifications whenever certain events happen",
       "examples: infamous mercenaries, claimable hideouts, graftblood (almost) full"
     ],
     "map-events enable event": [
       "click to enable/disable this event",
+      "right-click to activate a test notification"
+    ],
+    "map-events enable notification": [
+      "click to enable/disable this feature notification",
       "right-click to activate a test notification"
     ],
     "map-events hideout tiers": [
@@ -990,6 +994,15 @@
     "notepad opacity": [
       "the opacity of inactive widgets (i.e. when not holding down the <widget-key>)",
       "0 = inactive widgets are hidden"
+    ],
+    "notifications events about": [
+      "you can set up pop-up notifications for certain in-game events that may be easily missable"
+    ],
+    "notifications disabled": [
+      "the corresponding (sub-)feature is currently disabled"
+    ],
+    "notifications features about": [
+      "you can set up pop-up notifications for certain feature events"
     ],
     "lab enable": [
       "simple lab layout overlay and tracker for casual runs",
@@ -1293,6 +1306,10 @@
     ],
     "updater hotfix unlisted": [
       "(/highlight)only download this if you were told to (this branch may be unavailable or outdated)"
+    ],
+    "updater notification": [
+      "shows a notification pop-up when you enter a hideout and an update is available",
+      "(/highlight)right-click to customize global notifications"
     ],
     "updater refresh": [
       "check for updates"
