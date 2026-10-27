@@ -169,7 +169,7 @@
   ],
   [
     [
-      "optional: (img:spirit2) (color:cc99ff)league || (img:support2) in (img:checkpoint) (color:cc99ff)raider_camp",
+      "optional: (img:spirit2) (color:cc99ff)league || (img:support2) in (img:checkpoint) (color:cc99ff)raided_camp",
       "kill (img:checkpoint) rathbreaker || (img:portal) out",
       "(hint)__ follow (color:aqua)spear-lines to bone passage",
       "(img:quest_2) zarka: (img:skill) || enter areaidg2_town ;; the ardura caravan"
@@ -254,7 +254,7 @@
       "(color:cc99ff)desert_map: areaidg2_6 ;; valley of the titans"
     ],
     [
-      "optional: preserved rib: (color:cc99ff)abyss",
+      "optional: gnawed rib: (color:cc99ff)abyss",
       "traverse (color:cc99ff)3_canyons for (color:ff00ff)2_tasks",
       "(hint)_ - (quest:seals) at the end of (color:ff00ff)each_canyon",
       "(hint)_ - find (img:waypoint) + use (quest:relics) in (color:ff00ff)1_canyon",
@@ -548,7 +548,7 @@
       "twinkrun: optional: makoru (ship): areaidg4_13 ;; plunder's point",
       "leaguestart: optional: check vendors",
       "leaguestart: makoru (ship): areaidg4_13 ;; plunder's point",
-      "(hint)__ clear expedition || enter (img:arena) station",
+      "(hint)__ clear expedition || enter (img:arena) post",
       "makoru (ship): areaidg4_4_1 ;; eye of hinekora"
     ],
     [
@@ -650,6 +650,7 @@
       "enter areaidp3_3 ;; glacial tarn"
     ],
     [
+      "activate (img:waypoint)",
       "follow (img:2) edge: areaidp3_4 ;; howling caves"
     ],
     [
@@ -775,6 +776,7 @@
     ],
     [
       "(img:quest_2) hooded one",
+      "leaguestart: (img:quest_2) farrow",
       "(img:quest_2) doryani",
       "leaguestart: use the (color:cc99ff)map_device",
       "<the_act-tracker_ends_here>"
