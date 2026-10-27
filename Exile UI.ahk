@@ -369,8 +369,8 @@ Init_client()
 	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
 	If (settings.general.fSize < 6)
 		settings.general.fSize := 6
-	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width
-	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width
+	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width, settings.general.radius := (font_height - 2)//3
+	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width, settings.general.radius2 := (font_height - 2)//3
 
 	If monitor_override
 		While (x_client "," y_client != vars.monitor.x "," vars.monitor.y)
@@ -579,6 +579,9 @@ Init_general()
 	settings.general.ClientFillerTaskbar := (!Blank(check := ini.settings["cover taskbar"]) ? check : 0)
 	settings.general.ClientFillerSplit := (!settings.general.ClientFillerTaskbar ? 0 : (!Blank(check := ini.settings["split-screen mode"]) ? check : 0))
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
+	If vars.poe_version
+		settings.general.slop := (!Blank(check := ini2.settings["rounded corners"]) ? check : 0)
+	Else settings.general.slop := (!Blank(check := ini.settings["rounded corners"]) ? check : 0)
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
@@ -1048,7 +1051,8 @@ Loop_main()
 			If vars.general.MultiThreading
 				StringSend("wait=0") ;Cloneframes_Thread(0, 2)
 		}
-		Leveltracker_Fade()
+		If settings.features.leveltracker
+			Leveltracker_Fade(), Leveltracker_Hover()
 
 		If !vars.general.MultiThreading
 			Cloneframes_Check()

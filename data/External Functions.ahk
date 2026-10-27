@@ -1382,10 +1382,11 @@ Gdip_FillRectangleC(pGraphics, pBrush, cx, cy, rx, ry := "") {
 ; x, y               x, y coordinates of the top left of the rounded rectangle
 ; w, h               width and height of the rectanlge
 ; r                  radius of the rounded corners
+; corners            linear array (default [1, 1, 1, 1]) to control which corners to round: [top-left, top-right, bottom-left, bottom-right] -- custom addition for Exile UI
 ;
 ; return             status enumeration. 0 = success
 
-Gdip_FillRoundedRectangle(pGraphics, pBrush, x, y, w, h, r) {
+Gdip_FillRoundedRectangle(pGraphics, pBrush, x, y, w, h, r, corners := "[]") {
    Region := Gdip_GetClipRegion(pGraphics)
    Gdip_SetClipRect(pGraphics, x-r, y-r, 2*r, 2*r, 4)
    Gdip_SetClipRect(pGraphics, x+w-r, y-r, 2*r, 2*r, 4)
@@ -1395,10 +1396,22 @@ Gdip_FillRoundedRectangle(pGraphics, pBrush, x, y, w, h, r) {
    Gdip_SetClipRegion(pGraphics, Region, 0)
    Gdip_SetClipRect(pGraphics, x-(2*r), y+r, w+(4*r), h-(2*r), 4)
    Gdip_SetClipRect(pGraphics, x+r, y-(2*r), w-(2*r), h+(4*r), 4)
-   Gdip_FillEllipse(pGraphics, pBrush, x, y, 2*r, 2*r)
-   Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y, 2*r, 2*r)
-   Gdip_FillEllipse(pGraphics, pBrush, x, y+h-(2*r), 2*r, 2*r)
-   Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y+h-(2*r), 2*r, 2*r)
+
+   If !IsObject(corners)
+      corners := [1, 1, 1, 1]
+   If corners.1
+      Gdip_FillEllipse(pGraphics, pBrush, x, y, 2*r, 2*r)
+   Else Gdip_FillRectangle(pGraphics, pBrush, x, y, 2*r, 2*r)
+   If corners.2
+      Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y, 2*r, 2*r)
+   Else Gdip_FillRectangle(pGraphics, pBrush, x+w-(2*r), y, 2*r, 2*r)
+   If corners.3
+      Gdip_FillEllipse(pGraphics, pBrush, x, y+h-(2*r), 2*r, 2*r)
+   Else Gdip_FillRectangle(pGraphics, pBrush, x, y+h-(2*r), 2*r, 2*r)
+   If corners.4
+      Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y+h-(2*r), 2*r, 2*r)
+   Else Gdip_FillRectangle(pGraphics, pBrush, x+w-(2*r), y+h-(2*r), 2*r, 2*r)
+
    Gdip_SetClipRegion(pGraphics, Region, 0)
    Gdip_DeleteRegion(Region)
    return _E

@@ -600,7 +600,7 @@ LButton::LLK_Overlay(vars.hwnd.mapinfo.main, "destroy")
 *LButton::
 *RButton::Return
 
-#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.leveltracker.controls1) && !Blank(LLK_HasVal(vars.hwnd.leveltracker, vars.general.cMouse)) ;hovering the leveltracker-controls and clicking
+#If (vars.system.timeout = 0) && (vars.general.wMouse = vars.hwnd.leveltracker.controls) && !Blank(LLK_HasVal(vars.hwnd.leveltracker, vars.general.cMouse)) ;hovering the leveltracker-controls and clicking
 
 *LButton::Leveltracker(vars.general.cMouse, 1)
 *RButton::Leveltracker(vars.general.cMouse, 2)

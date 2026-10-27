@@ -1,4 +1,65 @@
-﻿Gui_CheckBounds(ByRef xPos, ByRef yPos, width, height)
+﻿Gui_BackgroundPanel(HWND, rounded_corners := "[]", radius := "", border := "[]", color := "000000")
+{
+	local
+	global vars, settings
+	static brushes := {}
+
+	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (hidden) global toggle
+		If (rounded_corners = "override") || settings.general.slop && (rounded_corners = 1)
+			rounded_corners := [1, 1, 1, 1]
+		Else If !settings.general.slop || !IsObject(rounded_corners)
+			rounded_corners := [0, 0, 0, 0]
+
+	If !IsObject(border)
+		border := [646464, 404040]
+
+	WinGet, is_window, ControlListHwnd, ahk_id %hwnd%
+	size := LLK_WinGetPos(HWND), size.h += (is_window ? 0 : 2)
+
+	If !IsNumber(radius)
+		radius := size.h//(is_window ? 9 : 3)
+
+	pBitmap := Gdip_CreateBitmap(size.w, size.h), G := Gdip_GraphicsFromImage(pBitmap,, (is_window ? 3 : 4)), Gdip_SetPixelOffsetMode(G, 4)
+
+	For index, hex in border
+	{
+		If !brushes[hex]
+			brushes[hex] := Gdip_BrushCreateSolid(0xFF . hex)
+		If is_window && (index > 1 && !aa)
+			Gdip_SetSmoothingMode(G, 4), aa := 1
+		offset := index - 1, Gdip_FillRoundedRectangle(g, brushes[hex], offset, offset, size.w - 2*offset, size.h - 2*offset, Max(1, radius - offset), rounded_corners)
+	}
+	If !brushes[color]
+		brushes[color] := Gdip_BrushCreateSolid(0xFF . color)
+	Gdip_FillRoundedRectangle(g, brushes[color], border.Count(), border.Count(), size.w - 2*border.Count(), size.h - 2*border.Count(), Max(1, radius - border.Count()), rounded_corners)
+
+	hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), Gdip_DisposeImage(pBitmap), Gdip_DeleteGraphics(G)
+	Return hBitmap
+}
+
+Gui_BackgroundWindow(gui_name, width, height, radius, margin, trans) ;currently unused
+{
+	local
+	global vars, settings
+
+	Gui, %gui_name%: New, -Caption +E0x80000 +E0x20 +LastFound +AlwaysOnTop +ToolWindow HWNDhwnd_window
+	Gui, %gui_name%: Show, NA
+
+	hbm := CreateDIBSection(width, height), hdc := CreateCompatibleDC(), obm := SelectObject(hdc, hbm), G := Gdip_GraphicsFromHDC(hdc)
+	Gdip_SetSmoothingMode(G, 4), Gdip_SetPixelOffsetMode(G, 4)
+	pBrush := Gdip_BrushCreateSolid(0xFF646464), pBrush2 := Gdip_BrushCreateSolid(0xFF000000)
+
+	Gdip_FillRoundedRectangle(G, pBrush, 0, 0, width, height, radius)
+	Gdip_FillRoundedRectangle(G, pBrush2, margin, margin, width - 2*margin, height - 2*margin, radius - 2)
+
+	Gdip_DeleteBrush(pBrush), Gdip_DeleteBrush(pBrush2)
+	UpdateLayeredWindow(hwnd1, hdc, 0, 0, width, height, trans)
+
+	SelectObject(hdc, obm), DeleteObject(hbm), DeleteDC(hdc), Gdip_DeleteGraphics(G)
+	Return hwnd_window
+}
+
+Gui_CheckBounds(ByRef xPos, ByRef yPos, width, height)
 {
 	local
 	global vars, settings
@@ -363,6 +424,37 @@ Gui_HWND(name)
 	For index, object in vars.GUI
 		If (object.name = name)
 			Return object.hwnd
+}
+
+Gui_Label(GUI_name, options, text := "", tooltip := "", global_hwnd := "", corners := "[]", radius := "", border := "[]", color := "000000", enabled := "")
+{
+	local
+	global vars, settings
+
+	If !border
+		no_border := 1
+	Else If !IsObject(border)
+		border := [vars.settings.cButtons3, vars.settings.cButtons2]
+
+	If (corners = 1)
+		corners := [1, 1, 1, 1]
+
+	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : vars.settings.cDisabled)), % text
+	If !(no_border && !color)
+		Gui, %GUI_name%: Add, Pic, % (RegExMatch(options, "i)(^|\s)hidden($|\s)") ? "Hidden " : "") "xp yp BackgroundTrans HWNDhwnd_pic", % "HBitmap:" Gui_BackgroundPanel(hwnd_text, (IsObject(corners) ? corners : 0), radius, (IsObject(border) ? border : ""), color)
+	If tooltip
+		vars.hwnd.help_tooltips[tooltip] := hwnd_text
+
+	object := vars
+	For index, val in (split := StrSplit(global_hwnd, ".", " `t`n`r"))
+	{
+		If (index = split.Count())
+			object[val] := hwnd_text, object[val "_back"] := hwnd_pic
+		Else If !IsObject(object[val])
+			object[val] := {}
+		object := object[val]
+	}
+	Return hwnd_text
 }
 
 Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)
@@ -831,7 +923,7 @@ LLK_Drag(width, height, ByRef xPos, ByRef yPos, top_left := 0, gui_name := "", s
 	}
 
 	If snap && LLK_IsBetween(xMouse, vars.monitor.x + vars.client.xc * 0.9, vars.monitor.x + vars.client.xc * 1.1)
-		xPos := "", xTarget := vars.monitor.x + vars.client.xc - width/2 + 1
+		xPos := "", xTarget := vars.monitor.x + vars.client.xc - width/2
 	Else If snap && LLK_IsBetween(yMouse, vars.monitor.y + vars.client.yc * 0.9, vars.monitor.y + vars.client.yc * 1.1)
 		yPos := "", yTarget := vars.monitor.y + vars.client.yc - height/2 + 1
 	Else If !ignore_bounds
