@@ -369,8 +369,8 @@ Init_client()
 	settings.general.fSize := !Blank(check := ini.settings["font-size"]) ? check : LLK_FontDefault()
 	If (settings.general.fSize < 6)
 		settings.general.fSize := 6
-	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width, settings.general.radius := (font_height - 2)//3
-	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width, settings.general.radius2 := (font_height - 2)//3
+	LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fHeight := font_height, settings.general.fWidth := font_width, settings.general.radius := Ceil((font_height - 2)/3)
+	LLK_FontDimensions((settings.general.fSize2 := settings.general.fSize - 4), font_height, font_width), settings.general.fHeight2 := font_height, settings.general.fWidth2 := font_width, settings.general.radius2 := Ceil((font_height - 2)/3)
 
 	If monitor_override
 		While (x_client "," y_client != vars.monitor.x "," vars.monitor.y)
@@ -494,10 +494,10 @@ Init_general()
 	local
 	global vars, settings, json
 
-	ini := IniBatchRead("ini" vars.poe_version "\config.ini")
+	ini := IniBatchRead("ini" vars.poe_version "\config.ini"), target := StrReplace(vars.poe_version, " ")
 	If vars.poe_version
-		ini2 := IniBatchRead("ini\config.ini"), ini_version := (Blank(ini2.versions.ini) ? 0 : ini2.versions.ini)
-	Else ini_version := (Blank(ini.versions.ini) ? 0 : ini.versions.ini)
+		ini2 := IniBatchRead("ini\config.ini")
+	ini_version := (Blank(ini%target%.versions.ini) ? 0 : ini%target%.versions.ini)
 
 	If (ini_version < 15303)
 	{
@@ -604,9 +604,7 @@ Init_general()
 	settings.features.statlas := vars.poe_version && !Blank(check := ini.features["enable statlas"]) ? check : 0
 	settings.features.exchange := !Blank(check := ini.features["enable vaal street"]) ? check : 0
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
-	If vars.poe_version
-		settings.updater := {"update_check": ini2.settings["update auto-check"], "notify": ini2.settings["update notification"]}
-	Else settings.updater := {"update_check": ini.settings["update auto-check"], "notify": ini.settings["update notification"]}
+	settings.updater := {"update_check": ini%target%.settings["update auto-check"], "notify": ini%target%.settings["update notification"]}
 
 	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png"), "checkmark": LLK_ImageCache("img\GUI\checkmark.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}

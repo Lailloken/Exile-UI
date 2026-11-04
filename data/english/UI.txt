@@ -43,7 +43,8 @@
 ;#####################################################
 
 ;## these names will be shown in a tooltip when hovering over the "credits" label	;## the tooltip is segmented into smaller boxes
-		translator			=	"lailloken"			;## you can add additional <contributor> lines, and each value will have its own box
+		translator			=	"translators:"
+		translator			=	"lailloken"			;## you can add additional <translator> lines, and each value will have its own box
 
 
 
@@ -293,7 +294,7 @@
 		global_large			=	"large"
 		global_active			=	"active:"			;## as in currently active/selected
 		global_meta			=	"meta:"			;## as in meta info/knowledge/data
-		global_animations		=	"ui animations"	;## as in UI transitions, movement, etc.
+		global_animations		=	"animations"		;## as in UI transitions, movement, etc.
 		global_animations		=	"animations"
 		global_hold_ctrl		=	"hold ctrl"
 		global_load			=	"load"
@@ -891,7 +892,7 @@
 		stash_reminder			=	"switch to <note> first"
 		stash_limits			=	"rate limits:"			;## GGG's APIs have tiered rate limits that control how often you can access them
 		stash_open			=	"open"				;## in the context of "X open trade listings"
-		stash_nolistings		=	"no listings;online"		;## i.e. no-one is selling that item right now
+		stash_nolistings		=	"no listings;online"	;## i.e. no-one is selling that item right now
 		stash_bulk			=	"bulk:"
 		stash_stock			=	"stock"				;## as in available stock
 		stash_pricetags		=	"price tags:"
@@ -943,9 +944,9 @@
 		m_general_language		=	"not supported"
 		m_general_language		=	"(some features may not be available)"
 		m_general_display		=	"detected window:"						;## refers to the client-window
-		m_general_display		=	"windowed fullscreen"
+		m_general_display		=	"wind. fullscreen"
 		m_general_display		=	"windowed"
-		m_general_display		=	"borderless windowed"
+		m_general_display		=	"borderless wind."
 		m_general_resolution	=	"custom resolution:"
 		m_general_resolution	=	"resolution:"
 		m_general_screenfiller	=	"screen-filler"

@@ -290,7 +290,6 @@ Settings_addons(mode := 0)
 	static fSize
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans gSettings_addons2 HWNDhwnd" (settings.features.addons ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.enable := hwnd, vars.hwnd.help_tooltips["settings_addons enable"] := hwnd1
@@ -2133,8 +2132,8 @@ Settings_general2(cHWND := "")
 					GuiControl, text, % vars.hwnd.settings.font_reset, % settings.general.fSize
 					Sleep 150
 				}
-				LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fheight := font_height, settings.general.fwidth := font_width, settings.general.radius := (font_height - 2)//3
-				LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fheight2 := font_height, settings.general.fwidth2 := font_width, settings.general.radius2 := (font_height - 2)//3
+				LLK_FontDimensions(settings.general.fSize, font_height, font_width), settings.general.fheight := font_height, settings.general.fwidth := font_width, settings.general.radius := Ceil((font_height - 2)/3)
+				LLK_FontDimensions(settings.general.fSize - 4, font_height, font_width), settings.general.fheight2 := font_height, settings.general.fwidth2 := font_width, settings.general.radius2 := Ceil((font_height - 2)/3)
 				IniWrite, % settings.general.fSize, % "ini" vars.poe_version "\config.ini", Settings, font-size
 				For key, hbm in vars.pics.settings_lootfilter
 					DeleteObject(hbm)
@@ -3525,8 +3524,8 @@ Settings_leveltracker2(cHWND := "")
 			Sleep 150
 		}
 		IniWrite, % settings.leveltracker.fSize, % "ini" vars.poe_version "\leveling tracker.ini", settings, font-size
-		LLK_FontDimensions(settings.leveltracker.fSize, height, width), settings.leveltracker.fHeight := height, settings.leveltracker.fWidth := width, settings.leveltracker.radius := (height - 2)//3
-		LLK_FontDimensions(settings.leveltracker.fSize - 2, height, width), settings.leveltracker.fHeight2 := height, settings.leveltracker.fWidth2 := width, settings.leveltracker.radius2 := (height - 2)//3
+		LLK_FontDimensions(settings.leveltracker.fSize, height, width), settings.leveltracker.fHeight := height, settings.leveltracker.fWidth := width, settings.leveltracker.radius := Ceil((height - 2)/3)
+		LLK_FontDimensions(settings.leveltracker.fSize - 2, height, width), settings.leveltracker.fHeight2 := height, settings.leveltracker.fWidth2 := width, settings.leveltracker.radius2 := Ceil((height - 2)/3)
 		If LLK_Overlay(vars.hwnd.leveltracker.main, "check")
 			Leveltracker()
 		If WinExist("ahk_id "vars.hwnd.geartracker.main)
@@ -4799,8 +4798,8 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 	If !IsObject(vars.settings)
 	{
 		If !vars.poe_version
-			vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "notifications", "news", "updater", "donations", "actdecoder", "leveling tracker", "addons", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
-		Else vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "notifications", "news", "updater", "donations", "actdecoder", "leveling tracker", "addons", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "runeshaping", "search-strings", "sanctum", "stash-ninja", "statlas", "exchange"], "sections2": []}
+			vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "notifications", "updater", "addons", "donations", "actdecoder", "leveling tracker", "betrayal-info", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "sanctum", "search-strings", "stash-ninja", "tldr-tooltips", "exchange"], "sections2": []}
+		Else vars.settings := {"sections": ["general", "client", "hotkeys", "screen-checks", "notifications", "updater", "addons", "donations", "actdecoder", "leveling tracker", "macros", "cheat-sheets", "clone-frames", "anoints", "filterspoon", "item-info", "map-info", "mapping tracker", "minor qol tools", "runeshaping", "search-strings", "sanctum", "stash-ninja", "statlas", "exchange"], "sections2": []}
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 		vars.settings.cButtons := "151550", vars.settings.cButtons2 := "404040", vars.settings.cButtons3 := "646464", vars.settings.min_width := 30, vars.settings.cEnabled := "Lime", vars.settings.cDisabled := "Gray"

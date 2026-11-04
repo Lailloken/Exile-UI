@@ -19,7 +19,10 @@
       "announcements"
     ],
     "selection updater": [
-      "updater"
+      "updater & announcements"
+    ],
+    "selection addons": [
+      "add-ons"
     ],
     "selection donations": [
       "donations"
@@ -149,7 +152,7 @@
       "pick a preferred position, and the client will be placed there automatically every time"
     ],
     "black bars": [
-      "the client's aspect ratio is limited to 24:10 and there will be black bars if it's wider",
+      "the client's aspect ratio is limited to 24:10, and there will be black bars if it's wider",
       "this option repositions the tool's overlays and screen-checks to compensate for that"
     ],
     "window borders": [
@@ -1002,7 +1005,8 @@
       "the corresponding (sub-)feature is currently disabled"
     ],
     "notifications features about": [
-      "you can set up pop-up notifications for certain feature events"
+      "you can set up pop-up notifications for certain feature events",
+      "(/highlight)unless stated otherwise, these will pop up whenever you enter a hideout"
     ],
     "lab enable": [
       "simple lab layout overlay and tracker for casual runs",

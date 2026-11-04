@@ -64,6 +64,7 @@
 ;#####################################################
 
 ;## these names will be shown in a tooltip when hovering over the "credits" label	;## the tooltip is segmented into smaller boxes
+		contributor			=	"contributors:"
 		contributor			=	"lailloken"			;## you can add additional <contributor> lines, and each value will have its own box
 
 

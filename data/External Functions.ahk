@@ -1388,10 +1388,14 @@ Gdip_FillRectangleC(pGraphics, pBrush, cx, cy, rx, ry := "") {
 
 Gdip_FillRoundedRectangle(pGraphics, pBrush, x, y, w, h, r, corners := "[]") {
    Region := Gdip_GetClipRegion(pGraphics)
-   Gdip_SetClipRect(pGraphics, x-r, y-r, 2*r, 2*r, 4)
-   Gdip_SetClipRect(pGraphics, x+w-r, y-r, 2*r, 2*r, 4)
-   Gdip_SetClipRect(pGraphics, x-r, y+h-r, 2*r, 2*r, 4)
-   Gdip_SetClipRect(pGraphics, x+w-r, y+h-r, 2*r, 2*r, 4)
+   If corners.1
+      Gdip_SetClipRect(pGraphics, x-r, y-r, 2*r, 2*r, 4)
+   If corners.2
+      Gdip_SetClipRect(pGraphics, x+w-r, y-r, 2*r, 2*r, 4)
+   If corners.3
+      Gdip_SetClipRect(pGraphics, x-r, y+h-r, 2*r, 2*r, 4)
+   If corners.4
+      Gdip_SetClipRect(pGraphics, x+w-r, y+h-r, 2*r, 2*r, 4)
    _E := Gdip_FillRectangle(pGraphics, pBrush, x, y, w, h)
    Gdip_SetClipRegion(pGraphics, Region, 0)
    Gdip_SetClipRect(pGraphics, x-(2*r), y+r, w+(4*r), h-(2*r), 4)
@@ -1401,16 +1405,12 @@ Gdip_FillRoundedRectangle(pGraphics, pBrush, x, y, w, h, r, corners := "[]") {
       corners := [1, 1, 1, 1]
    If corners.1
       Gdip_FillEllipse(pGraphics, pBrush, x, y, 2*r, 2*r)
-   Else Gdip_FillRectangle(pGraphics, pBrush, x, y, 2*r, 2*r)
    If corners.2
       Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y, 2*r, 2*r)
-   Else Gdip_FillRectangle(pGraphics, pBrush, x+w-(2*r), y, 2*r, 2*r)
    If corners.3
       Gdip_FillEllipse(pGraphics, pBrush, x, y+h-(2*r), 2*r, 2*r)
-   Else Gdip_FillRectangle(pGraphics, pBrush, x, y+h-(2*r), 2*r, 2*r)
    If corners.4
       Gdip_FillEllipse(pGraphics, pBrush, x+w-(2*r), y+h-(2*r), 2*r, 2*r)
-   Else Gdip_FillRectangle(pGraphics, pBrush, x+w-(2*r), y+h-(2*r), 2*r, 2*r)
 
    Gdip_SetClipRegion(pGraphics, Region, 0)
    Gdip_DeleteRegion(Region)

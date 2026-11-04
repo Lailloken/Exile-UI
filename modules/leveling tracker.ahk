@@ -118,8 +118,8 @@
 	}
 
 	settings.leveltracker.fSize := !Blank(check := ini.settings["font-size"]) ? check : settings.general.fSize
-	LLK_FontDimensions(settings.leveltracker.fSize, font_height, font_width), settings.leveltracker.fHeight := font_height, settings.leveltracker.fWidth := font_width, settings.leveltracker.radius := (font_height - 2)//3
-	LLK_FontDimensions(settings.leveltracker.fSize - 2, font_height, font_width), settings.leveltracker.fHeight2 := font_height, settings.leveltracker.fWidth2 := font_width, settings.leveltracker.radius2 := (font_height - 2)//3
+	LLK_FontDimensions(settings.leveltracker.fSize, font_height, font_width), settings.leveltracker.fHeight := font_height, settings.leveltracker.fWidth := font_width, settings.leveltracker.radius := Ceil((font_height - 2)/3)
+	LLK_FontDimensions(settings.leveltracker.fSize - 2, font_height, font_width), settings.leveltracker.fHeight2 := font_height, settings.leveltracker.fWidth2 := font_width, settings.leveltracker.radius2 := Ceil((font_height - 2)/3)
 
 	settings.leveltracker.fSize_editor := !Blank(check := ini.settings["font-size editor"]) ? check : settings.leveltracker.fSize
 	LLK_FontDimensions(settings.leveltracker.fSize_editor, font_height, font_width), settings.leveltracker.fHeight_editor := font_height, settings.leveltracker.fWidth_editor := font_width
@@ -485,7 +485,10 @@ Leveltracker(cHWND := "", hotkey := "")
 		If (check = "drag")
 		{
 			If (hotkey = 2)
+			{
 				settings.leveltracker.xCoord := "", settings.leveltracker.yCoord := "", write := 1
+				KeyWait, RButton
+			}
 
 			While (hotkey = 1) && GetKeyState("LButton", "P")
 			{
@@ -3209,7 +3212,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If (prev_settings != settings.leveltracker.fSize "|" (vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : exp) "|" gear_rdy "|" (vars.poe_version && settings.leveltracker.recommend) "|" settings.leveltracker.timer)
 	{
 		dimensions := [(vars.poe_version ? Lang_Trans("lvltracker_exp") " +99" : (Blank(exp) ? "1" : exp)), (settings.leveltracker.timer ? "99:59:59" : "")]
-		dimensions.Push((settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : (vars.poe_version && settings.leveltracker.recommend ? "99.5 | 99 | 99.5")))
+		dimensions.Push((gear_rdy ? Lang_Trans("lvltracker_gearready") : (vars.poe_version && settings.leveltracker.recommend ? "99.5 | 99 | 99.5")))
 		LLK_PanelDimensions(dimensions, settings.leveltracker.fSize, wExp, hExp)
 		While Mod(wExp, 2)
 			wExp += 1
@@ -3259,7 +3262,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 
 	Gui, %GUI_name_main%: Font, % "s" settings.leveltracker.fSize - 2
 	Gui, %GUI_name_main%: Add, Text, % "Section xs w" wExp2 . (time ? " y+-1" : (offset > 0 ? " x" offset//2 : "") " y+-2") " h" fHeight " BackgroundTrans HWNDhwnd_leftpanel Center" (recommendation ? "" : " cLime")
-	, % (recommendation ? StrReplace(recommendation, "|", "| " vars.log.level " |") : (settings.leveltracker.geartracker && vars.leveltracker.gear_ready ? Lang_Trans("lvltracker_gearready") : ""))
+	, % (recommendation ? StrReplace(recommendation, "|", "| " vars.log.level " |") : (gear_rdy ? Lang_Trans("lvltracker_gearready") : ""))
 	Gui, %GUI_name_main%: Font, % "s" settings.leveltracker.fSize
 	Gui, %GUI_name_main%: Add, Text, % "ys x+-1 hp BackgroundTrans Center w" wButtons, % "<"
 	Gui, %GUI_name_main%: Add, Text, % "ys x+-1 hp BackgroundTrans Center w" wButtons, % "?"
@@ -3273,7 +3276,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	Gui, %GUI_back%: New, % "-DPIScale +LastFound -Caption +AlwaysOnTop +ToolWindow +E0x02000000 +E0x00080000 HWNDleveltracker_back" (vars.leveltracker.hover ? "" : " +E0x20")
 	Gui, %GUI_back%: Color, Purple
 	Gui, %GUI_back%: Margin, 0, 0
-	WinSet, TransColor, % "Purple " 100 + settings.leveltracker.trans * 31
+	WinSet, TransColor, % "Purple" (settings.leveltracker.trans = 5 ? "" : " " 100 + settings.leveltracker.trans * 31)
 	Gui, %GUI_back%: Font, % "s"settings.leveltracker.fSize " cWhite", % vars.system.font
 	vars.hwnd.leveltracker.controls := leveltracker_back, slop := settings.leveltracker.slop
 
@@ -3281,21 +3284,21 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If time
 	{
 		Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " w" wExp2,,, "hwnd.leveltracker.dummy01", [slop, 0, 0, 0, "override"])
-		Gui, %GUI_back%: Add, Progress, % "Disabled ys x+1 yp+2 w6 hp-4 Vertical HWNDhwnd Background" vars.settings.cButtons " cRed range0-500", 0
+		Gui, %GUI_back%: Add, Progress, % "Disabled ys x+2 yp+3 w6 hp-6 Vertical HWNDhwnd Background" vars.settings.cButtons " cRed range0-500", 0
 		vars.hwnd.leveltracker.reset_bar := hwnd
-		Gui_Label(GUI_back, "ys xp-2 yp-2 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset",,,, vars.settings.cButtons)
+		Gui_Label(GUI_back, "ys xp-3 yp-3 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset",,,, vars.settings.cButtons)
 		Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy02", [0, slop, 0, 0, "override"])
 	}
 	Gui, %GUI_back%: Add, Progress, % "xs x" wExp2 - 2 - fWidth/2 + (offset > 0 ? offset//2 : 0) . (time ? " y+1" : "") " BackgroundWhite HWNDhwnd0 w" fWidth/2 " h" fWidth/2, 0
 	vars.hwnd.leveltracker.drag := hwnd0
-	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"], (gear_rdy ? vars.settings.cButtons : ""))
+	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"],,, (gear_rdy ? vars.settings.cButtons : ""))
 	Gui_Label(GUI_back, "ys x+-1 w" wButtons,,, "hwnd.leveltracker.-",,,, vars.settings.cButtons)
 	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.?",,,, vars.settings.cButtons)
 	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.+",,,, vars.settings.cButtons)
 	Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy2", [0, (!time && slop), 0, 0, "override"])
 
 	Gui, %GUI_back%: Show, % "NA x10000 y10000"
-	Gui, %GUI_back%: Add, Pic, % "x0 y0 BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel(leveltracker_back, (slop ? "override" : 0), Round(1.5*settings.leveltracker.radius))
+	Gui, %GUI_back%: Add, Pic, % "x0 y0 BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel(leveltracker_back, (slop ? "override" : 0), Round(1.5*settings.leveltracker.radius), [vars.settings.cButtons3, vars.settings.cButtons3, vars.settings.cButtons])
 	WinSet, Redraw,, ahk_id %leveltracker_back%
 	WinGetPos,,, wControls, hControls, % "ahk_id " vars.hwnd.leveltracker.controls
 
