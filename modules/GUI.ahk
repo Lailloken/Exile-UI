@@ -4,22 +4,43 @@
 	global vars, settings
 	static brushes := {}
 
-	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (hidden) global toggle
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2
+	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (currently hidden) global toggle
 		If (rounded_corners = "override") || settings.general.slop && (rounded_corners = 1)
 			rounded_corners := [1, 1, 1, 1]
 		Else If !settings.general.slop || !IsObject(rounded_corners)
 			rounded_corners := [0, 0, 0, 0]
 
-	If !IsObject(border)
-		border := [646464, 404040]
+	If InStr(border, "push ")
+		push := StrReplace(border, "push ")
+	Else If InStr(border, "insert ")
+		insert := StrReplace(border, "insert ")
 
-	WinGet, is_window, ControlListHwnd, ahk_id %hwnd%
-	size := LLK_WinGetPos(HWND), size.h += (is_window ? 0 : 2)
+	If !border
+		no_border := 1
+	Else If !IsObject(border)
+		If !Blank(push)
+			border := [cButtons, cButtons2, cButtons2, push]
+		Else If !Blank(insert)
+			border := [insert, cButtons, cButtons2, cButtons2]
+		Else border := [cButtons, cButtons2, cButtons2]
+
+	If IsObject(HWND)
+		HWND := HWND.1, no_resize := 1
+	If Blank(color)
+		color := "000000"
+
+	WinGet, is_window, ControlListHwnd, ahk_id %HWND%
+	size := LLK_WinGetPos(HWND), size.h += (is_window || no_resize ? 0 : 2), trans := (StrLen(color) > 6)
 
 	If !IsNumber(radius)
-		radius := size.h//(is_window ? 9 : 3)
+		radius := Ceil(is_window ? Min(size.h, size.w)/30 : (size.h - (no_resize ? 0 : 2))/3)
 
 	pBitmap := Gdip_CreateBitmap(size.w, size.h), G := Gdip_GraphicsFromImage(pBitmap,, (is_window ? 3 : 4)), Gdip_SetPixelOffsetMode(G, 4)
+	If !brushes[000000]
+		brushes[000000] := Gdip_BrushCreateSolid(0xFF000000)
+	If !is_window && LLK_HasVal(rounded_corners, 1)
+		Gdip_FillRectangle(G, brushes[000000], 0, 0, size.w, size.h)
 
 	For index, hex in border
 	{
@@ -30,9 +51,10 @@
 		offset := index - 1, Gdip_FillRoundedRectangle(g, brushes[hex], offset, offset, size.w - 2*offset, size.h - 2*offset, Max(1, radius - offset), rounded_corners)
 	}
 	If !brushes[color]
-		brushes[color] := Gdip_BrushCreateSolid(0xFF . color)
+		brushes[color] := Gdip_BrushCreateSolid(trans ? color : 0xFF . color)
+	If trans
+		Gdip_SetCompositingMode(G, 1)
 	Gdip_FillRoundedRectangle(g, brushes[color], border.Count(), border.Count(), size.w - 2*border.Count(), size.h - 2*border.Count(), Max(1, radius - border.Count()), rounded_corners)
-
 	hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), Gdip_DisposeImage(pBitmap), Gdip_DeleteGraphics(G)
 	Return hBitmap
 }
@@ -244,7 +266,7 @@ Gui_HelpToolTip(HWND_key)
 		lootfilter := settings.lootfilter.profile, database := (!IsObject(vars.help.lootfilter.rollback) ? vars.help2 : vars.help)
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
-	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.wSelection : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? vars.settings.w - vars.settings.x_anchor + vars.settings.xMargin - 1 : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
@@ -433,15 +455,19 @@ Gui_Label(GUI_name, options, text := "", tooltip := "", global_hwnd := "", corne
 
 	If !border
 		no_border := 1
-	Else If !IsObject(border)
-		border := [vars.settings.cButtons3, vars.settings.cButtons2]
 
 	If (corners = 1)
 		corners := [1, 1, 1, 1]
 
-	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : vars.settings.cDisabled)), % text
+	If Blank(color)
+		color := "000000"
+
+	If IsObject(enabled)
+		tColor := enabled.2, enabled := enabled.1
+
+	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : (Blank(tColor) ? vars.settings.cDisabled : tColor))), % text
 	If !(no_border && !color)
-		Gui, %GUI_name%: Add, Pic, % (RegExMatch(options, "i)(^|\s)hidden($|\s)") ? "Hidden " : "") "xp yp BackgroundTrans HWNDhwnd_pic", % "HBitmap:" Gui_BackgroundPanel(hwnd_text, (IsObject(corners) ? corners : 0), radius, (IsObject(border) ? border : ""), color)
+		Gui, %GUI_name%: Add, Pic, % (RegExMatch(options, "i)(^|\s)hidden($|\s)") ? "Hidden " : "") "xp yp BackgroundTrans HWNDhwnd_pic", % "HBitmap:" Gui_BackgroundPanel(hwnd_text, (IsObject(corners) ? corners : 0), radius, border, color)
 	If tooltip
 		vars.hwnd.help_tooltips[tooltip] := hwnd_text
 
@@ -454,7 +480,7 @@ Gui_Label(GUI_name, options, text := "", tooltip := "", global_hwnd := "", corne
 			object[val] := {}
 		object := object[val]
 	}
-	Return hwnd_text
+	Return {"text": hwnd_text, "back": hwnd_pic}
 }
 
 Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)

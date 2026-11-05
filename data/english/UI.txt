@@ -55,6 +55,8 @@
 ;## these are the individual sections of the settings menu, and most refer to a feature
 ;## these don't necessarily have to be translated, it's up to the translator(s)
 ;## the feature-names are used here and there, so make sure to be consistent across each mention
+		ms_header				=	"features"
+		ms_header2			=	"misc. settings"
 		ms_general			=	"general"
 		ms_actdecoder			=	"act-decoder"
 		ms_addons				=	"add-ons"
@@ -98,6 +100,7 @@
 		global_abort			=	"aborted"
 		global_delete			=	"delete"
 		global_delete			=	"del"
+		global_delete			=	"deleted"
 		global_scan			=	"scanning..."
 		global_scan			=	"scan"
 		global_match			=	"no match"
@@ -311,6 +314,14 @@
 		global_compact			=	"compact"
 		global_folder			=	"folder"
 		global_warning			=	"warning"
+		global_read			=	"read"
+		global_design			=	"design"
+		global_old			=	"old"
+		global_new			=	"new"
+		global_theme			=	"theme"			;## as in UI (color) theme
+		global_blue			=	"blue"
+		global_gray			=	"gray"
+		global_choc			=	"choc"			;## as in chocolate color theme
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -990,13 +1001,14 @@
 		m_permission_image		=	"can delete image-files:"
 		m_permission_error		=	"There are some leftover files from a previous test, and the tool cannot delete them."
 		m_permission_error		=	"Please delete the 'write-test' folder within the folder that will open after closing this message."	;## NOTE: don't translate the name of folders (as they're hard-coded and not localized)
+		m_permission_restart	=	"Do you want to restart the tool with admin rights?"
 
 ;## these strings are displayed/required in an error-message related to write-permissions
 		m_permission_error1		=	"The tool couldn't create a file/folder:"
 		m_permission_error1		=	"The tool couldn't delete a file/folder:"
 		m_permission_error1		=	"There seeem to be write-permission issues in the current folder location."
 		m_permission_error1		=	"Try moving the tool to another location or running it as administrator."
-		m_permission_error1		=	"There is a write-permissions test in the settings menu that you can use to troubleshoot this issue."
+		m_permission_error1		=	"There is a write-permissions test in the <general> settings that you can use to troubleshoot this issue."
 		m_permission_error1		=	"It's highly recommended to fix this issue as many features will not work correctly otherwise."
 
 
@@ -1115,7 +1127,7 @@
 		m_hotkeys_settings		=	"tool keybind settings:"
 		m_hotkeys_descriptions	=	"<show advanced item descriptions>;is not bound to the alt-key"		;## in-game setting, usually on ALT
 		m_hotkeys_descriptions	=	"instead, it is bound to:"
-		m_hotkeys_ckey			=	"the c-key is used for something;other than <character screen>"		;## in-game setting, on C by default
+		m_hotkeys_ckey2		=	"c-key is rebound"
 		m_hotkeys_movekey		=	"move-key:"												;## i.e. the key used to move the character, default l-mouse
 		m_hotkeys_omnikey_new	=	"omni-key:"
 		m_hotkeys_exclusive		=	"exclusive"												;## option that blocks what a key normally does, e.g. CapsLock-key toggles capslock-state, windows-key opens start-menu

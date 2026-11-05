@@ -252,7 +252,7 @@ Init_addons()
 			Try info := json.Load(file)
 			Catch
 				Continue
-			vars.addons.list[A_LoopFileName] := {"info": info.Clone(), "enabled": InStr(loaded, "\" A_LoopFileName "\")}, vars.addons.enabled += (InStr(loaded, "\" A_LoopFileName "\") ? 1 : 0)
+			vars.addons.list[A_LoopFileName] := {"info": info.Clone(), "enabled": (InStr(loaded, "\" A_LoopFileName "\") ? 1 : 0)}, vars.addons.enabled += (InStr(loaded, "\" A_LoopFileName "\") ? 1 : 0)
 		}
 }
 
@@ -579,9 +579,12 @@ Init_general()
 	settings.general.ClientFillerTaskbar := (!Blank(check := ini.settings["cover taskbar"]) ? check : 0)
 	settings.general.ClientFillerSplit := (!settings.general.ClientFillerTaskbar ? 0 : (!Blank(check := ini.settings["split-screen mode"]) ? check : 0))
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
-	If vars.poe_version
-		settings.general.slop := (!Blank(check := ini2.settings["rounded corners"]) ? check : 0)
-	Else settings.general.slop := (!Blank(check := ini.settings["rounded corners"]) ? check : 0)
+	settings.general.slop := (!Blank(check := ini%target%.settings["rounded corners"]) ? check : 1)
+	settings.general.theme := theme := (!Blank(check := ini%target%.settings.theme) ? check : "blue")
+	settings.general.themecustom1 := custom1 := (!Blank(check := ini%target%.settings["custom color 1"]) ? check : "193300")
+	settings.general.themecustom2 := custom2 := (!Blank(check := ini%target%.settings["custom color 2"]) ? check : "336600")
+	settings.general.themes := themes := {"blue": ["181865", "3535DD"], "choc": ["292219", "755940"], "gray": ["252525", "707070"], "custom": [custom1, custom2]}
+	settings.general.cButtons := themes[theme].1, settings.general.cButtons2 := themes[theme].2
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
@@ -783,13 +786,16 @@ Loop()
 				GuiControl, % "+c" (Mod(news_tick, 2) ? "Black" : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.radial.settings
 			If WinExist("ahk_id " vars.hwnd.settings.main)
 			{
-				If vars.news.unread
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? (vars.settings.active = "news" ? "6060FF" : vars.settings.cButtons2) : "Lime"), % vars.hwnd.settings.background_news
-				If vars.update.1
-					GuiControl, % "+Background" (Mod(news_tick, 2) ? (vars.settings.active = "updater" ? "6060FF" : vars.settings.cButtons2) : (vars.update.1 < 0 ? "Red" : "Lime")), % vars.hwnd.settings.background_updater
+				If vars.update.1 || vars.news.unread
+					GuiControl, % (Mod(news_tick, 2) ? "+" : "-") "Hidden", % vars.hwnd.settings.background_updater
+				If vars.hwnd.settings.news_latest && vars.news.unread
+				{
+					GuiControl, % "+c" (Mod(news_tick, 2) ? "Lime" : "White"), % vars.hwnd.settings.news_latest
+					GuiControl, % "movedraw", % vars.hwnd.settings.news_latest
+				}
 				If vars.actdecoder.updater.available
 				{
-					GuiControl, % "+c" (Mod(news_tick, 2) ? "White" : "Lime"), % vars.hwnd.settings.actdecoder
+					GuiControl, % "+c" (Mod(news_tick, 2) ? "Lime" : "White"), % vars.hwnd.settings.actdecoder
 					GuiControl, % "movedraw", % vars.hwnd.settings.actdecoder
 				}
 			}

@@ -30,6 +30,21 @@
     "slider general": [
       "(/highlight)long-click, and move the cursor up/down or right/left to adjust"
     ],
+    "themes color1": [
+      "button color:\nclick to open the color palette"
+    ],
+    "themes color2": [
+      "border color:\nclick to open the color palette"
+    ],
+    "themes custom": [
+      "use the buttons on the right to adjust this custom color theme"
+    ],
+    "themes new": [
+      "rounded corners"
+    ],
+    "themes old": [
+      "regular corners"
+    ],
     "multi-threading multi": [
       "the tool will use two threads/processes, which improves performance and enables advanced features",
       "examples:\nclone-frames fps options"
@@ -191,7 +206,7 @@
       "this overlay is one of the few that can be placed outside the main monitor, which may cause issues if you change your setup between sessions"
     ],
     "addons about": [
-      "long-click to information about this add-on"
+      "long-click to show information about this add-on"
     ],
     "addons delete": [
       "long-click to delete this add-on"

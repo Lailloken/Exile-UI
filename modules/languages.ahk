@@ -108,7 +108,7 @@ Lang_Load(file)
 	Return array
 }
 
-Lang_Trans(key, index := 1, insert := "")
+Lang_Trans(key, index := 1, insert := "", remove_colon := 0)
 {
 	local
 	global vars
@@ -118,5 +118,5 @@ Lang_Trans(key, index := 1, insert := "")
 	If IsObject(insert)
 		For index0, string in (!Blank(vars.lang[key][index]) ? vars.lang[key] : vars.lang2[key])
 			value := (index0 = 1 ? "" : value), check += (index0 >= index ? 1 : 0), value .= (index0 >= index ? string . insert[check] : "")
-	Return (Blank(value) ? "0000" : value)
+	Return (Blank(value) ? "0000" : RTrim(value, (remove_colon ? ":" . Lang_Trans("global_colon") : "")))
 }
