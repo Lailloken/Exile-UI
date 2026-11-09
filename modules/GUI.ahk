@@ -1,12 +1,12 @@
-﻿Gui_BackgroundPanel(HWND, rounded_corners := "[]", radius := "", border := "[]", color := "000000")
+﻿Gui_BackgroundPanel(HWND, rounded_corners := "[]", radius := "", border := "[]", color := 0)
 {
 	local
 	global vars, settings
 	static brushes := {}
 
-	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings.general.slop, contrast := settings.general.contrast
 	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (currently hidden) global toggle
-		If (rounded_corners = "override") || settings.general.slop && (rounded_corners = 1)
+		If (rounded_corners = "override") || slop && (rounded_corners = 1)
 			rounded_corners := [1, 1, 1, 1]
 		Else If !settings.general.slop || !IsObject(rounded_corners)
 			rounded_corners := [0, 0, 0, 0]
@@ -16,45 +16,64 @@
 	Else If InStr(border, "insert ")
 		insert := StrReplace(border, "insert ")
 
-	If !border
-		no_border := 1
-	Else If !IsObject(border)
+	If Blank(color)
+		color := 0
+	trans := (StrLen(color) > 6)
+
+	If border && IsNumber(border)
+		resize := border
+	Else resize := 0
+
+	If !IsObject(border)
+	{
+		border := []
+		Loop, % Max(1 + (contrast ? 0 : 1), settings.general.fHeight//10)
+			border.Push(!Blank(insert) ? insert : cButtons2)
+
 		If !Blank(push)
-			border := [cButtons, cButtons2, cButtons2, push]
-		Else If !Blank(insert)
-			border := [insert, cButtons, cButtons2, cButtons2]
-		Else border := [cButtons, cButtons2, cButtons2]
+			border.Push(push)
+		Else If contrast && color && (color != cButtons2)
+			border.Push(0)
+		Else If !color
+			border.Push(cButtons)
+	}
+
+	border.Push(RGB_Middle(color, border[border.MaxIndex()]))
 
 	If IsObject(HWND)
 		HWND := HWND.1, no_resize := 1
-	If Blank(color)
-		color := "000000"
 
 	WinGet, is_window, ControlListHwnd, ahk_id %HWND%
-	size := LLK_WinGetPos(HWND), size.h += (is_window || no_resize ? 0 : 2), trans := (StrLen(color) > 6)
+	size := LLK_WinGetPos(HWND), size.h += (is_window || no_resize ? 0 : 2 + resize)
 
 	If !IsNumber(radius)
 		radius := Ceil(is_window ? Min(size.h, size.w)/30 : (size.h - (no_resize ? 0 : 2))/3)
 
 	pBitmap := Gdip_CreateBitmap(size.w, size.h), G := Gdip_GraphicsFromImage(pBitmap,, (is_window ? 3 : 4)), Gdip_SetPixelOffsetMode(G, 4)
-	If !brushes[000000]
-		brushes[000000] := Gdip_BrushCreateSolid(0xFF000000)
+	If !brushes[0]
+		brushes[0] := Gdip_BrushCreateSolid(0xFF000000)
 	If !is_window && LLK_HasVal(rounded_corners, 1)
-		Gdip_FillRectangle(G, brushes[000000], 0, 0, size.w, size.h)
+		Gdip_FillRectangle(G, brushes[0], 0, 0, size.w, size.h)
 
 	For index, hex in border
 	{
+		If !Blank(hex_prev) && (hex_prev = hex) && (!is_window || is_window && aa)
+			Continue
 		If !brushes[hex]
 			brushes[hex] := Gdip_BrushCreateSolid(0xFF . hex)
 		If is_window && (index > 1 && !aa)
 			Gdip_SetSmoothingMode(G, 4), aa := 1
-		offset := index - 1, Gdip_FillRoundedRectangle(g, brushes[hex], offset, offset, size.w - 2*offset, size.h - 2*offset, Max(1, radius - offset), rounded_corners)
+		offset := index - 1
+		Gdip_FillRoundedRectangle(g, brushes[hex], offset, offset, size.w - 2*offset, size.h - 2*offset, Max(1, radius - offset), (slop && border.Count() > 2 && index >= border.Count() - 1 ? [1, 1, 1, 1] : rounded_corners))
+		hex_prev := hex
 	}
 	If !brushes[color]
 		brushes[color] := Gdip_BrushCreateSolid(trans ? color : 0xFF . color)
+
 	If trans
-		Gdip_SetCompositingMode(G, 1)
-	Gdip_FillRoundedRectangle(g, brushes[color], border.Count(), border.Count(), size.w - 2*border.Count(), size.h - 2*border.Count(), Max(1, radius - border.Count()), rounded_corners)
+		Gdip_SetCompositingMode(G, 1), Gdip_SetSmoothingMode(G, 3)
+	If (color != border[border.MaxIndex()])
+		Gdip_FillRoundedRectangle(g, brushes[color], border.Count(), border.Count(), size.w - 2*border.Count(), size.h - 2*border.Count(), Max(1, radius - border.Count()), (slop ? [1, 1, 1, 1] : rounded_corners))
 	hBitmap := Gdip_CreateHBITMAPFromBitmap(pBitmap), Gdip_DisposeImage(pBitmap), Gdip_DeleteGraphics(G)
 	Return hBitmap
 }
@@ -448,24 +467,28 @@ Gui_HWND(name)
 			Return object.hwnd
 }
 
-Gui_Label(GUI_name, options, text := "", tooltip := "", global_hwnd := "", corners := "[]", radius := "", border := "[]", color := "000000", enabled := "")
+Gui_Label(GUI_name, options, text := " ", tooltip := "", global_hwnd := "", corners := "[]", radius := "", border := "[]", color := "", enabled := "")
 {
 	local
 	global vars, settings
 
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2
 	If !border
 		no_border := 1
 
 	If (corners = 1)
 		corners := [1, 1, 1, 1]
 
+	If IsObject(global_hwnd)
+		hwnd_back := global_hwnd.2, global_hwnd := global_hwnd.1
+
 	If Blank(color)
-		color := "000000"
+		color := (settings.general.fill ? settings.general.cButtons2 : 0)
 
 	If IsObject(enabled)
 		tColor := enabled.2, enabled := enabled.1
 
-	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : (Blank(tColor) ? vars.settings.cDisabled : tColor))), % text
+	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : (Blank(tColor) ? settings.general.cDisabled : tColor))), % text
 	If !(no_border && !color)
 		Gui, %GUI_name%: Add, Pic, % (RegExMatch(options, "i)(^|\s)hidden($|\s)") ? "Hidden " : "") "xp yp BackgroundTrans HWNDhwnd_pic", % "HBitmap:" Gui_BackgroundPanel(hwnd_text, (IsObject(corners) ? corners : 0), radius, border, color)
 	If tooltip
@@ -475,7 +498,11 @@ Gui_Label(GUI_name, options, text := "", tooltip := "", global_hwnd := "", corne
 	For index, val in (split := StrSplit(global_hwnd, ".", " `t`n`r"))
 	{
 		If (index = split.Count())
-			object[val] := hwnd_text, object[val "_back"] := hwnd_pic
+		{
+			object[val] := hwnd_text
+			If hwnd_back
+				object[val . hwnd_back] := hwnd_pic
+		}
 		Else If !IsObject(object[val])
 			object[val] := {}
 		object := object[val]
@@ -1260,9 +1287,45 @@ RGB_Convert(RGB)
 				converted .= Format("{:02X}", A_LoopField)
 		Return converted
 	}
+	Else If !RGB
+		RGB := "000000"
+	Else If (StrLen(RGB) > 6)
+		RGB := SubStr(RGB, 5)
 	For index, val in ["red", "green", "blue"]
 		%val% := Format("{:i}", "0x" SubStr(RGB, 1 + 2*(index - 1), 2))
 	Return [red, green, blue]
+}
+
+RGB_Max(RGB, RGB2)
+{
+	local
+
+	sum := sum2 := 0
+	For index, val in ["", 2]
+		For index, cVal in RGB_Convert(RGB%val%)
+			sum%val% += cVal
+	Return (sum > sum2 ? RGB : RGB2)
+}
+
+RGB_Middle(RGB, RGB2 := "000000", gray := 0)
+{
+	local
+
+	RGB_vals := RGB_Convert(RGB), sum := 0
+	If gray
+	{
+		For index, val in RGB_vals
+			sum += val 
+		avg := sum//3, max := Max(RGB_vals*)
+
+		If !(max = RGB_vals.1 || max = RGB_vals.2) && (avg < 150) || (avg <= 55)
+			RGB2 := "FFFFFF"
+		Else RGB2 := "000000"
+		Return RGB_Middle(RGB_Convert(avg " " avg " " avg), RGB2)
+	}
+	For index, val in RGB_Convert(RGB2)
+		new_rgb .= (val + RGB_vals[index])//2 " "
+	Return RGB_Convert(new_rgb)
 }
 
 RGB_Picker(RGB := "", colors := "", color := "Black")
@@ -1342,7 +1405,9 @@ RGB_Picker(RGB := "", colors := "", color := "Black")
 			Gui, RGB_palette: Add, Edit, % "ys Number Right Limit3 x+-1 hp cBlack gRGB_Picker HWNDhwnd_edit_" letter " w" settings.general.fWidth*3 - 1, % val
 			Gui, RGB_palette: Font, % "s" settings.general.fSize
 		}
-		Gui, RGB_palette: Add, Progress, % "Disabled xs y+-1 Section hp HWNDhwnd_final Background646464 c" (Blank(RGB) ? "000000" : RGB) " w" settings.general.fWidth*3, 100
+		Gui, RGB_palette: Add, Progress, % "Disabled Section xs y+-1 w" settings.general.fWidth*3 " hp Background646464 c" (Blank(RGB) ? "000000" : RGB), 100
+		Gui, RGB_palette: Add, Pic, % "ys x+-1 hp-2 w-1 Border", % "HBitmap:*" vars.pics.global.arrow_right
+		Gui, RGB_palette: Add, Progress, % "Disabled ys x+-1 w" settings.general.fWidth*3 " hp HWNDhwnd_final Background646464 c" (Blank(RGB) ? "000000" : RGB), 100
 	}
 	Gui, RGB_palette: Add, Text, % (colors ? "hp " : "") "ys x+-1 Border HWNDhwnd_save 0x200", % " " Lang_Trans("global_apply") " "
 
@@ -1354,7 +1419,7 @@ RGB_Picker(RGB := "", colors := "", color := "Black")
 	Gui, RGB_palette: Show, % "x" xPos " y" yPos
 	WinWait, ahk_id %hwnd_palette%,, 2
 
-	While Blank(picked_rgb) && (vars.general.wMouse = hwnd_palette) && !vars.RGB_picker.cancel
+	While Blank(picked_rgb) && !vars.RGB_picker.cancel && WinActive("ahk_id " hwnd_palette)
 	{
 		KeyWait, LButton, D T0.1
 		If !ErrorLevel && hwnd_GUI.HasKey(vars.general.cMouse)

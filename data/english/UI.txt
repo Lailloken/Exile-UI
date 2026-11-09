@@ -114,6 +114,7 @@
 		global_enable			=	"enable"
 		global_reset			=	"reset"
 		global_reset			=	"r"
+		global_reset			=	"reset position"
 		global_color			=	"color"
 		global_color			=	"colors:"
 		global_opacity			=	"opacity:"
@@ -298,7 +299,6 @@
 		global_active			=	"active:"			;## as in currently active/selected
 		global_meta			=	"meta:"			;## as in meta info/knowledge/data
 		global_animations		=	"animations"		;## as in UI transitions, movement, etc.
-		global_animations		=	"animations"
 		global_hold_ctrl		=	"hold ctrl"
 		global_load			=	"load"
 		global_troubleshoot		=	"trouble-shooting"
@@ -322,6 +322,8 @@
 		global_blue			=	"blue"
 		global_gray			=	"gray"
 		global_choc			=	"choc"			;## as in chocolate color theme
+		global_fill			=	"fill"			;## as in filling a UI shape/button with color
+		global_contrast		=	"contrast"		;## setting for additional contrast around buttons
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"

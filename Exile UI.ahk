@@ -579,16 +579,19 @@ Init_general()
 	settings.general.ClientFillerTaskbar := (!Blank(check := ini.settings["cover taskbar"]) ? check : 0)
 	settings.general.ClientFillerSplit := (!settings.general.ClientFillerTaskbar ? 0 : (!Blank(check := ini.settings["split-screen mode"]) ? check : 0))
 	settings.general.input_method := !Blank(check := ini.settings["input method"]) ? check : 1
+
 	settings.general.slop := (!Blank(check := ini%target%.settings["rounded corners"]) ? check : 1)
-	settings.general.theme := theme := (!Blank(check := ini%target%.settings.theme) ? check : "blue")
-	settings.general.themecustom1 := custom1 := (!Blank(check := ini%target%.settings["custom color 1"]) ? check : "193300")
-	settings.general.themecustom2 := custom2 := (!Blank(check := ini%target%.settings["custom color 2"]) ? check : "336600")
-	settings.general.themes := themes := {"blue": ["181865", "3535DD"], "choc": ["292219", "755940"], "gray": ["252525", "707070"], "custom": [custom1, custom2]}
-	settings.general.cButtons := themes[theme].1, settings.general.cButtons2 := themes[theme].2
+	settings.general.theme := theme := (!Blank(check := ini%target%.settings.theme) ? check : "gray")
+	settings.general.themecustom1 := custom1 := (!Blank(check := ini%target%.settings["custom color 1"]) ? check : "306000"), settings.general.themecustom1_default := "306000"
+	settings.general.themecustom2 := custom2 := (!Blank(check := ini%target%.settings["custom color 2"]) ? check : "183000"), settings.general.themecustom2_default := "183000"
+	settings.general.themes := themes := {"blue": ["1919B4", "151560"], "choc": ["5A411E", "252015"], "gray": ["484848", "232323"], "custom": [custom1, custom2]}
+	settings.general.cButtons := themes[theme].1, settings.general.cButtons2 := themes[theme].2, settings.general.cDisabled := RGB_Middle(settings.general.cButtons,, 1)
+	settings.general.fill := (!Blank(check := ini%target%.settings["fill panels"]) ? check : 1)
+	settings.general.contrast := (!Blank(check := ini%target%.settings["high contrast"]) ? check : 1)
 
 	settings.general.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.general.sMenu, height, width), settings.general.wMenu := width
-	settings.general.animations := !Blank(check := ini.settings.animations) ? check : 1
+	settings.general.animations := 0 ; !Blank(check := ini.settings.animations) ? check : 1
 	settings.features.browser := !Blank(check := ini.settings["enable browser features"]) ? check : 1
 	settings.features.runeshaping := !Blank(check := ini.features["enable rune-ninja"]) ? check : 0
 	settings.features.sanctum := !Blank(check := ini.features["enable sanctum planner"]) ? check : 0
@@ -609,7 +612,7 @@ Init_general()
 	settings.features.async := !Blank(check := ini.features["enable async trade"]) ? check : 0
 	settings.updater := {"update_check": ini%target%.settings["update auto-check"], "notify": ini%target%.settings["update notification"]}
 
-	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png"), "checkmark": LLK_ImageCache("img\GUI\checkmark.png")}
+	vars.pics := {"global": {"close": LLK_ImageCache("img\GUI\close.png"), "help": LLK_ImageCache("img\GUI\help.png"), "home": LLK_ImageCache("img\GUI\home.png"), "reload": LLK_ImageCache("img\GUI\restart.png"), "revert": LLK_ImageCache("img\GUI\revert.png"), "revert_all": LLK_ImageCache("img\GUI\revert_all.png"), "black_trans": LLK_ImageCache("img\GUI\square_black_trans.png"), "collapse": LLK_ImageCache("img\GUI\toggle_collapse.png"), "expand": LLK_ImageCache("img\GUI\toggle_expand.png"), "checkmark": LLK_ImageCache("img\GUI\checkmark.png"), "arrow_right": LLK_ImageCache("img\GUI\arrow_right.png")}
 	, "anoints": {}, "betrayal_checks": {}, "cheatsheets_checks": {}, "iteminfo": {}, "legion": {}, "leveltracker": {}, "mapinfo": {}, "maptracker": {}, "maptracker_checks": {}, "radial": {"macros": {}, "menu": {}}, "runeshaping": {}, "screen_checks": {}, "search_strings": {}, "settings_lootfilter": {}, "settings": {}, "stashninja": {}, "statlas": {}, "zone_layouts": {}}
 
 	If FileExist("data\global\leagues" vars.poe_version ".json")

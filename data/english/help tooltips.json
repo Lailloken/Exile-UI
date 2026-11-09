@@ -30,11 +30,20 @@
     "slider general": [
       "(/highlight)long-click, and move the cursor up/down or right/left to adjust"
     ],
+    "contrast": [
+      "high-contrast setting for button borders"
+    ],
+    "fill": [
+      "fills text panels with the background color instead of black"
+    ],
+    "themes": [
+      "click: select theme\nright-click: load theme into <custom> slot"
+    ],
     "themes color1": [
-      "button color:\nclick to open the color palette"
+      "button color:\nclick to open the color palette, right-click to reset"
     ],
     "themes color2": [
-      "border color:\nclick to open the color palette"
+      "background color:\nclick to open the color palette, right-click to reset"
     ],
     "themes custom": [
       "use the buttons on the right to adjust this custom color theme"
