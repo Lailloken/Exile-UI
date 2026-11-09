@@ -91,7 +91,7 @@ Log_CharacterInfo(line, any_character := 0)
 			class := SubStr(line, InStr(line, Lang_Trans("system_parenthesis")) + 1), class := LLK_StringCase(SubStr(class, 1, InStr(class, Lang_Trans("system_parenthesis", 2)) - 1))
 			, character := SubStr(parse, 1, InStr(parse, Lang_Trans("system_parenthesis")) - 1), character := Trim(character, " ")
 	}
-	Else If Lang_Match(line, vars.lang.log_whois)
+	Else If Lang_Match(line, vars.lang.log_whois) && RegExMatch(line, "i)" settings.general.character "(\s){0,1}" vars.lang.log_whois.1)
 	{
 		parse := SubStr(line, InStr(line, ":",, 0) + 1)
 		Loop, Parse, parse
