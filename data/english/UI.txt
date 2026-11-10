@@ -156,6 +156,9 @@
 		global_errorname		=	"name must not contain:;"
 		global_inventory		=	"inventory"
 		global_skilltree		=	"skilltree"
+		global_skilltree		=	"skilltrees"
+		global_tree			=	"tree"
+		global_tree			=	"trees"
 		global_ascendancy		=	"ascendancy-tree"
 		global_atlas			=	"atlas"
 		global_stash			=	"stash"
@@ -324,6 +327,8 @@
 		global_choc			=	"choc"			;## as in chocolate color theme
 		global_fill			=	"fill"			;## as in filling a UI shape/button with color
 		global_contrast		=	"contrast"		;## setting for additional contrast around buttons
+		global_manual			=	"manual"			;## opposite of automatic
+		global_menu			=	"menu"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -1197,14 +1202,16 @@
 		m_lvltracker_lvltips		=	"lvl tips"
 		m_lvltracker_pagehotkeys		=	"page-hotkeys"
 		m_lvltracker_poboverlays		=	"pob overlay settings:"
-		m_lvltracker_pobgems		=	"gems: use toggle instead of hold"
 		m_lvltracker_pobmanual		=	"tree: use screen-caps instead of schematics"
 		m_lvltracker_pob			=	"pob: middle-click opens screen-cap menu"
 		m_lvltracker_screencap		=	"screen-cap menu"
 		m_lvltracker_guide			=	"guides:"
+		m_lvltracker_guide			=	"guide"
 		m_lvltracker_incompatible	=	"incompatible guide-data,;update required"
 		m_lvltracker_treeclear		=	"delete data"
-		m_lvltracker_leaguestart		=	"league-start"
+		m_lvltracker_quests			=	"quests"
+		m_lvltracker_quests			=	"loot"
+		m_lvltracker_leaguestart		=	"new league"
 		m_lvltracker_optionals		=	"optionals"						;## refers to optional loot, quests, etc.
 		m_lvltracker_bandit			=	"bandit"
 		m_lvltracker_bandits		=	"alira"

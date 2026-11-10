@@ -584,8 +584,8 @@ Init_general()
 	settings.general.theme := theme := (!Blank(check := ini%target%.settings.theme) ? check : "gray")
 	settings.general.themecustom1 := custom1 := (!Blank(check := ini%target%.settings["custom color 1"]) ? check : "306000"), settings.general.themecustom1_default := "306000"
 	settings.general.themecustom2 := custom2 := (!Blank(check := ini%target%.settings["custom color 2"]) ? check : "183000"), settings.general.themecustom2_default := "183000"
-	settings.general.themes := themes := {"blue": ["1919B4", "151560"], "choc": ["5A411E", "252015"], "gray": ["484848", "232323"], "custom": [custom1, custom2]}
-	settings.general.cButtons := themes[theme].1, settings.general.cButtons2 := themes[theme].2, settings.general.cDisabled := RGB_Middle(settings.general.cButtons,, 1)
+	settings.general.themes := themes := {"blue": ["1919B4", "151560"], "choc": ["5A411E", "252015"], "gray": ["484848", "282828"], "custom": [custom1, custom2]}
+	settings.general.cButtons := themes[theme].1, settings.general.cButtons2 := themes[theme].2, settings.general.cEnabled := "Lime", settings.general.cDisabled := RGB_Middle(settings.general.cButtons,, 1)
 	settings.general.fill := (!Blank(check := ini%target%.settings["fill panels"]) ? check : 1)
 	settings.general.contrast := (!Blank(check := ini%target%.settings["high contrast"]) ? check : 1)
 

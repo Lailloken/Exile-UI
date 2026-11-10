@@ -3172,6 +3172,7 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	guide := vars.leveltracker.guide, areas := db.leveltracker.areas, areaIDs := db.leveltracker.areaIDs, timer := vars.leveltracker.timer ;short-cut variables
 	vars.leveltracker.fade := mode ? 0 : vars.leveltracker.fade, vars.leveltracker.toggle := mode ? 1 : vars.leveltracker.toggle
 	profile := settings.leveltracker.profile, leaguestart := settings.leveltracker["guide" profile].info.leaguestart, fHeight := settings.leveltracker.fHeight, fWidth := settings.leveltracker.fWidth
+	cButtons := settings.general.cButtons
 
 	If !vars.log.act || (vars.log.act = "c")
 		vars.log.act := LLK_HasVal(areas, vars.log.areaID,,,, 1), vars.log.act := (vars.poe_version && !vars.log.act && IsNumber(SubStr(vars.log.areaID, 2, 1)) ? SubStr(vars.log.areaID, 2, 1) : vars.log.act)
@@ -3283,28 +3284,26 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	Gui, %GUI_back%: Add, Text, % "Section x0 y0 w" width " h" height " BackgroundTrans"
 	If time
 	{
-		Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " w" wExp2,,, "hwnd.leveltracker.dummy01", [slop, 0, 0, 0, "override"])
-		Gui, %GUI_back%: Add, Progress, % "Disabled ys x+2 yp+3 w6 hp-6 Vertical HWNDhwnd Background" vars.settings.cButtons " cRed range0-500", 0
-		vars.hwnd.leveltracker.reset_bar := hwnd
-		Gui_Label(GUI_back, "ys xp-3 yp-3 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset",,,, vars.settings.cButtons)
-		Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy02", [0, slop, 0, 0, "override"])
+		Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " w" wExp2,,, "hwnd.leveltracker.dummy01", [slop, 0, 0, 0, "override"],,, 0)
+		Gui_Label(GUI_back, "ys x+-1 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset", [0, 0, 0, 0, "override"],,, cButtons)
+		Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy02", [0, slop, 0, 0, "override"],,, 0)
 	}
 	Gui, %GUI_back%: Add, Progress, % "xs x" wExp2 - 2 - fWidth/2 + (offset > 0 ? offset//2 : 0) . (time ? " y+1" : "") " BackgroundWhite HWNDhwnd0 w" fWidth/2 " h" fWidth/2, 0
 	vars.hwnd.leveltracker.drag := hwnd0
-	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"],,, (gear_rdy ? vars.settings.cButtons : ""))
-	Gui_Label(GUI_back, "ys x+-1 w" wButtons,,, "hwnd.leveltracker.-",,,, vars.settings.cButtons)
-	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.?",,,, vars.settings.cButtons)
-	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.+",,,, vars.settings.cButtons)
-	Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy2", [0, (!time && slop), 0, 0, "override"])
+	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"],,, (gear_rdy ? cButtons : 0))
+	Gui_Label(GUI_back, "ys x+-1 w" wButtons,,, "hwnd.leveltracker.-", [0, 0, 0, 0, "override"],,, cButtons)
+	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.?", [0, 0, 0, 0, "override"],,, cButtons)
+	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.+", [0, 0, 0, 0, "override"],,, cButtons)
+	Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy2", [0, (!time && slop), 0, 0, "override"],,, 0)
 
 	Gui, %GUI_back%: Show, % "NA x10000 y10000"
-	Gui, %GUI_back%: Add, Pic, % "x0 y0 BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel(leveltracker_back, (slop ? "override" : 0), Round(1.5*settings.leveltracker.radius), [vars.settings.cButtons3, vars.settings.cButtons3, vars.settings.cButtons])
+	Gui, %GUI_back%: Add, Pic, % "x0 y0 BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel(leveltracker_back, [slop, slop, slop, slop, "override"], Round(1.5*settings.leveltracker.radius))
 	WinSet, Redraw,, ahk_id %leveltracker_back%
 	WinGetPos,,, wControls, hControls, % "ahk_id " vars.hwnd.leveltracker.controls
 
 	xPos := Blank(settings.leveltracker.xCoord) ? vars.client.xc - width/2 : settings.leveltracker.xCoord, xPos := (xPos >= vars.monitor.w / 2) ? xPos - width + 1 : xPos
 	xPos := (xPos >= vars.monitor.w) ? vars.monitor.w - width - 2 : xPos
-	yPos := Blank(settings.leveltracker.yCoord) ? vars.client.y - vars.monitor.y + vars.client.h : settings.leveltracker.yCoord, yPos := (yPos >= vars.monitor.h / 2) ? yPos - hControls - 1 : yPos
+	yPos := Blank(settings.leveltracker.yCoord) ? vars.client.y - vars.monitor.y + vars.client.h : settings.leveltracker.yCoord, yPos := (yPos >= vars.monitor.h / 2) ? yPos - hControls : yPos
 	yPos := (yPos >= vars.monitor.h) ? vars.monitor.h - height + 1 : yPos
 
 	Gui, %GUI_name_main%: +Owner%leveltracker_back%

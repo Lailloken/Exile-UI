@@ -4,7 +4,7 @@
 	global vars, settings
 	static brushes := {}
 
-	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings.general.slop, contrast := settings.general.contrast
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings[(InStr(rounded_corners.5 . rounded_corners, "override") ? "leveltracker" : "general")].slop, contrast := settings.general.contrast
 	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (currently hidden) global toggle
 		If (rounded_corners = "override") || slop && (rounded_corners = 1)
 			rounded_corners := [1, 1, 1, 1]
@@ -336,7 +336,7 @@ Gui_HelpToolTip(HWND_key)
 				{
 					Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
 					Gui, %GUI_name%: Add, Text, % (index = 2 ? "x0 y0" : "xs") " Section Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
-					Gui, %GUI_name%: Add, Text, % "HWNDhwnd xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (InStr(text, "(/highlight)") ? " cFF8000" : ""), % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
+					Gui, %GUI_name%: Add, Text, % "HWNDhwnd xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (InStr(text, "(/highlight)") ? " cFFFF00" : ""), % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
 				}
 		}
 	Else If lootfilter
@@ -410,7 +410,7 @@ Gui_HelpToolTip(HWND_key)
 		If !text
 			Continue
 		font := InStr(text, "(/bold)") ? "bold" : "", font .= InStr(text, "(/underline)") ? (font ? " " : "") "underline" : "", font := !font ? "norm" : font, text := StrReplace(text, "&", "&&")
-		color := (InStr(text, "(/highlight)") ? "FF8000" : "White")
+		color := (InStr(text, "(/highlight)") ? "FFFF00" : "White")
 		For index0, remove in ["underline", "bold", "highlight"]
 			text := StrReplace(text, "(/" remove ")")
 		Gui, %GUI_name%: Font, % font
@@ -1174,6 +1174,31 @@ LLK_PanelDimensions(array, fSize, ByRef width, ByRef height, align := "left", he
 LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0, color := "", reset_color := "", background := "", reset_background := "") ;HWND_bar = HWND of the progress bar, key = key that is held down to fill the progress bar, HWND_control = HWND of the button (to undo clipping)
 {
 	local
+	global vars, settings
+
+	If Blank(color)
+		color := "Red"
+	start := A_TickCount, val := 0
+	Gui, progress_bar: New, % "-DPIScale +E0x20 +LastFound +AlwaysOnTop +ToolWindow -Caption +E0x02000000 +E0x00080000 HWNDhwnd"
+	Gui, progress_bar: Margin, 0, 0
+	WinSet, TransColor, Purple, ahk_id %hwnd%
+	Gui, progress_bar: Add, Progress, % "x0 y0 w" settings.general.fWidth " h" 2*settings.general.fHeight " Vertical Range0-500 HWNDhwnd_bar Background" settings.general.cButtons " c" color
+	Gui, progress_bar: Show, % "NA x" vars.general.xMouse - settings.general.fWidth/2 " y" vars.general.yMouse - 2*settings.general.fHeight
+
+	While GetKeyState(key, "P")
+	{
+		GuiControl,, %HWND_bar%, % A_TickCount - start
+		If (A_TickCount >= start + 600)
+		{
+			If key_wait
+				KeyWait, % key
+			val := 1
+			Break
+		}
+		Sleep 20
+	}
+	Gui, progress_bar: Destroy
+	Return val
 
 	start := A_TickCount
 	If !Blank(color)
@@ -1318,7 +1343,7 @@ RGB_Middle(RGB, RGB2 := "000000", gray := 0)
 			sum += val 
 		avg := sum//3, max := Max(RGB_vals*)
 
-		If !(max = RGB_vals.1 || max = RGB_vals.2) && (avg < 150) || (avg <= 55)
+		If !(max = RGB_vals.1 || max = RGB_vals.2) && (avg < 150) || (avg <= 75)
 			RGB2 := "FFFFFF"
 		Else RGB2 := "000000"
 		Return RGB_Middle(RGB_Convert(avg " " avg " " avg), RGB2)

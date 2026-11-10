@@ -242,8 +242,8 @@
       "(/highlight)you have to set up the <betrayal> check in the <screen-checks> section",
       "while the syndicate board is on screen, hold down the <omni-key> to activate the overlay"
     ],
-    "betrayal ruthless": [
-      "show ruthless rewards:\ntiering/highlighting you apply is stored separately for this mode"
+    "betrayal mode": [
+      "select your game mode:\ntiering/highlighting you apply is stored separately for each mode"
     ],
     "betrayal folder": [
       "folder that contains calibration files"
@@ -387,7 +387,7 @@
       "(/highlight)long-click, and move the cursor up/down or right/left to adjust"
     ],
     "hotkeys ingame-keybinds": [
-      "to avoid conflicts between custom in-game keybinds and the tool's hotkeys:\n- tick anything that applies to you\n- provide alternative keys when asked to"
+      "to avoid conflicts between custom in-game keybinds and the tool's hotkeys:\n>> tick anything that applies to you\n>> provide alternative keys when asked to"
     ],
     "hotkeys formatting": [
       "for special keys, check the ahk-link above to find the proper names",
@@ -567,16 +567,17 @@
     "leveltracker expbar": [
       "slightly moves the guide-overlay up so it doesn't cover the exp-bar"
     ],
-    "leveltracker skilltree-info": [
+    "leveltracker pobgems info": [
       "hold down the <omni-key> over a gem to show gem setups/links",
-      "you can switch between skill sets by scrolling the mouse wheel",
-      "–––––",
+      "you can switch between skill sets by scrolling the mouse wheel"
+    ],
+    "leveltracker skilltree info": [
       "while the skill-tree is on screen, press the <omni-key> to show overlays with skill-tree schematics",
       "(/highlight)you have to set up the <skilltree> check in the <screen-checks> section"
     ],
     "leveltracker skilltree clear": [
       "long-click to delete the skill-tree files used to render schematics: they will be re-downloaded the next time they are needed",
-      "deleting them is only required if the schematics are outdated or otherwise incorrect"
+      "(/highlight)deleting them is only required if the schematics are outdated or otherwise incorrect"
     ],
     "leveltracker pob gems": [
       "the gem-overlay will stay on screen after releasing the <omni-key>, until you press <esc>",
@@ -584,8 +585,8 @@
       "clicking a gem-name in the list(s) will start an in-game search for that gem"
     ],
     "leveltracker pob manual": [
-      "the tree-overlay will use manual screen-caps instead of schematics rendered from pob's data",
-      "(/highlight)this changes how the overlay is accessed:\n- hold down the <omni-key> while the tree is on screen\n- scroll to switch between images"
+      "the tree-overlay will use screenshots you have to take manually instead of schematics rendered automatically from pob's data",
+      "(/highlight)this also changes how the overlay is accessed:\n- hold down the <omni-key> while the tree is on screen\n- scroll to switch between images"
     ],
     "leveltracker pob": [
       "m-mouse in pob will open the screen-cap menu",
@@ -623,17 +624,17 @@
       "there are up to nine individual guide slots you can use and switch between",
       "each slot has its own data for: guide & progress, gear, skill-tree, timer",
       [
-        "credits:\n- guide originally derived from exile-leveling by heartofphos\n- contains several act optimizations based on cyclondefinitiv's guide",
+        "credits:\n>> guide originally derived from exile-leveling by heartofphos\n>> contains several act optimizations based on cyclondefinitiv's guide",
         "credits: acts 1-3 originally derived from u/xebtria's quick-guide"
       ]
     ],
     "leveltracker gems": [
-      "(/highlight)right-click to open gem-pickup configuration:\nwhen or whether to pick up specific gems during the campaign",
-      "click to toggle whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
+      "toggles whether gem-quests should be included in the guide or not (reduces backtracking and npc interactions)",
+      "(/highlight)right-click to open gem-pickup configuration:\nchoose when to pick up (or skip) specific gems during the campaign ",
       "on: you pick up gems via questing\noff: you buy gems separately (lilly/trading)"
     ],
     "leveltracker gems all": [
-      "by default, the guide skips gem-quests that don't have relevant rewards for the imported build",
+      "by default, the guide skips gem-quests that don't have relevant rewards for the imported build (or if a build hasn't been imported)",
       "click this button to override this behavior and instead include every gem-quest (except a3 library)"
     ],
     "leveltracker guide format info": [
@@ -721,12 +722,16 @@
       "optional: enter a description/name for the build you will play with this guide",
       "(/highlight)it will also be applied to the <general> section, i.e. this description will be used globally"
     ],
+    "leveltracker pob info": [
+      "optional: you can import builds from pob so the guide has access to gem and skilltree information"
+    ],
     "leveltracker pob preview": [
       "long-click to check available pob data",
       "long-right-click to delete pob data"
     ],
     "leveltracker hotkeys enable": [
-      "allows you to switch guide-pages by using customizable hotkeys"
+      "allows you to switch guide-pages by using customizable hotkeys",
+      ">> left edit-field: previous guide page\n>> right edit-field: next guide page"
     ],
     "leveltracker hotkeys": [
       "type in a key-name and press <enter>",
