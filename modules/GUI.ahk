@@ -771,8 +771,8 @@ Gui_RadialMenu(selection := "", longpress := 0)
 		Else
 		{
 			Gui, %GUI%: Add, Pic, % style " Border BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.radial[active][img . file]
-			If (vars.radial.active = "menu" && val = "settings") && (!vars.radial.click_select || vars.radial.click_select = "settings")
-				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" (vars.update.1 ? (vars.update.1 > 0 ? "Lime" : "Red") : "Black"), 100
+			If (vars.radial.active = "fasttravel") || (vars.radial.active = "menu" && val = "settings") && (!vars.radial.click_select || vars.radial.click_select = "settings")
+				Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp HWNDhwnd Border BackgroundBlack c" (vars.radial.active = "menu" && vars.update.1 ? (vars.update.1 > 0 ? "Lime" : "Red") : "Black"), 100
 		}
 
 		If val

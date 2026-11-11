@@ -12,7 +12,7 @@
 
 	settings.macros.sMenu := !Blank(check := ini.settings["menu-widget size"]) ? check : Max(settings.general.fSize, 10)
 	LLK_FontDimensions(settings.macros.sMenu, height, width), settings.macros.wMenu := width
-	settings.macros.animations := !Blank(check := ini.settings.animations) ? check : 1
+	settings.macros.animations := 0 ; !Blank(check := ini.settings.animations) ? check : 1
 	settings.macros.hotkey_fasttravel := hotkey_fasttravel := !Blank(check := ini.settings["fasttravel hotkey"]) ? check : ""
 	If !Blank(hotkey_fasttravel) && Hotkeys_Convert(hotkey_fasttravel)
 	{
@@ -36,7 +36,7 @@
 
 	If !IsObject(vars.macros)
 		vars.macros := {}
-	For index, val in (vars.macros.fasttravels := (!vars.poe_version ? ["boat", "kingsmarch", "monastery", "menagerie", "heist", "sanctum", "delve", "guild"] : ["guild"]))
+	For index, val in (vars.macros.fasttravels := (!vars.poe_version ? ["kingsmarch", "monastery", "menagerie", "heist", "sanctum", "delve", "guild"] : ["guild"]))
 		settings.macros[val] := !Blank(check := ini.settings["enable " val]) ? check : 1
 }
 
