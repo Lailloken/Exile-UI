@@ -108,7 +108,7 @@
 	settings.leveltracker.hotkey_2 := !Blank(check := ini.settings["hotkey 2"]) ? check : "f4"
 	settings.leveltracker.tree_hotkey := tree_hotkey := !Blank(check := ini.settings["tree hotkey"]) ? check : "space"
 	settings.leveltracker.autotrack := !Blank(check := ini.settings.autotrack) ? check : 0
-	settings.leveltracker.slop := !Blank(check := ini.settings["rounded corners"]) ? check : 0
+	settings.leveltracker.slop := !Blank(check := ini.settings["rounded corners"]) ? check : 1
 
 	tree_hotkey := (!GetKeyVK(tree_hotkey) ? "" : tree_hotkey)
 	If !Blank(tree_hotkey)
