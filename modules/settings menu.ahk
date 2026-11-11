@@ -7048,7 +7048,7 @@ Settings_updater()
 		{
 			major := SubStr(val.1.1, 1, 5)
 			If !added[major]
-				If (index >= 4)
+				If (index >= 5)
 					Continue
 				Else Gui_Label(GUI, (!added.Count() ? "Section xs" : "ys") " w" 4*fWidth " Center", major,,, [slop, 0, slop, 0],, (InStr(selected, major) ? "insert 00FFFF" : ""))
 
