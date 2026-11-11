@@ -4,7 +4,8 @@
 	global vars, settings
 	static brushes := {}
 
-	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings[(InStr(rounded_corners.5 . rounded_corners, "override") ? "leveltracker" : "general")].slop, contrast := settings.general.contrast
+	override := InStr(rounded_corners.5 . rounded_corners, "override")
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings[(override ? "leveltracker" : "general")].slop, contrast := settings.general.contrast
 	If (rounded_corners.5 != "override") ;"override" is a temporary band-aid fix so the design toggle in the act-tracker section overrides the (currently hidden) global toggle
 		If (rounded_corners = "override") || slop && (rounded_corners = 1)
 			rounded_corners := [1, 1, 1, 1]
@@ -24,10 +25,16 @@
 		resize := border
 	Else resize := 0
 
+	If IsObject(HWND)
+		HWND := HWND.1, no_resize := 1
+
+	WinGet, is_window, ControlListHwnd, ahk_id %HWND%
+	size := LLK_WinGetPos(HWND), size.h += (is_window || no_resize ? 0 : 2 + resize)
+
 	If !IsObject(border)
 	{
 		border := []
-		Loop, % Max(1 + (contrast ? 0 : 1), settings.general.fHeight//10)
+		Loop, % Max(1 + (contrast ? 0 : 1), settings[(override ? "leveltracker" : "general")].fHeight//10)
 			border.Push(!Blank(insert) ? insert : cButtons2)
 
 		If !Blank(push)
@@ -39,12 +46,6 @@
 	}
 
 	border.Push(RGB_Middle(color, border[border.MaxIndex()]))
-
-	If IsObject(HWND)
-		HWND := HWND.1, no_resize := 1
-
-	WinGet, is_window, ControlListHwnd, ahk_id %HWND%
-	size := LLK_WinGetPos(HWND), size.h += (is_window || no_resize ? 0 : 2 + resize)
 
 	If !IsNumber(radius)
 		radius := Ceil(is_window ? Min(size.h, size.w)/30 : (size.h - (no_resize ? 0 : 2))/3)

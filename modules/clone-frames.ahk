@@ -151,25 +151,25 @@ Cloneframes_SettingsRefresh(name := "")
 		Settings_menu("clone-frames")
 		Return
 	}
-	GuiControl, % style "Disabled", % vars.hwnd.settings.xSource ;it's not possible to remove Disabled and set the new value with a single GuiControl call
+	GuiControl, % style "Hidden", % vars.hwnd.settings.xSource ;it's not possible to remove Disabled and set the new value with a single GuiControl call
 	GuiControl,, % vars.hwnd.settings.xSource, % vars.cloneframes.list[name].xSource
-	GuiControl, % style "Disabled", % vars.hwnd.settings.ySource
+	GuiControl, % style "Hidden", % vars.hwnd.settings.ySource
 	GuiControl,, % vars.hwnd.settings.ySource, % vars.cloneframes.list[name].ySource
-	GuiControl, % style "Disabled", % vars.hwnd.settings.width
+	GuiControl, % style "Hidden", % vars.hwnd.settings.width
 	GuiControl,, % vars.hwnd.settings.width, % vars.cloneframes.list[name].width
-	GuiControl, % style "Disabled", % vars.hwnd.settings.height
+	GuiControl, % style "Hidden", % vars.hwnd.settings.height
 	GuiControl,, % vars.hwnd.settings.height, % vars.cloneframes.list[name].height
-	GuiControl, % style "Disabled", % vars.hwnd.settings.xTarget
+	GuiControl, % style "Hidden", % vars.hwnd.settings.xTarget
 	GuiControl,, % vars.hwnd.settings.xTarget, % vars.cloneframes.list[name].xTarget
-	GuiControl, % style "Disabled", % vars.hwnd.settings.yTarget
+	GuiControl, % style "Hidden", % vars.hwnd.settings.yTarget
 	GuiControl,, % vars.hwnd.settings.yTarget, % vars.cloneframes.list[name].yTarget
-	GuiControl, % style "Disabled", % vars.hwnd.settings.xScale
+	GuiControl, % style "Hidden", % vars.hwnd.settings.xScale
 	GuiControl,, % vars.hwnd.settings.xScale, % vars.cloneframes.list[name].xScale
-	GuiControl, % style "Disabled", % vars.hwnd.settings.yScale
+	GuiControl, % style "Hidden", % vars.hwnd.settings.yScale
 	GuiControl,, % vars.hwnd.settings.yScale, % vars.cloneframes.list[name].yScale
-	GuiControl, % style "Disabled", % vars.hwnd.settings.opacity
+	GuiControl, % style "Hidden", % vars.hwnd.settings.opacity
 	GuiControl,, % vars.hwnd.settings.opacity, % vars.cloneframes.list[name].opacity
-	GuiControl, % style "Disabled", % vars.hwnd.settings.xSource
+	GuiControl, % style "Hidden", % vars.hwnd.settings.xSource
 	GuiControl, % vars.hwnd.settings.main ": "(style = "+" ? "+cWhite" : "+cLime"), % "clone-frame editing:"
 	GuiControl, % vars.hwnd.settings.main ": movedraw", % "clone-frame editing:"
 	GuiControl, % (style = "+") ? "-g +cGray" : "+gSettings_cloneframes2 +cLime", % vars.hwnd.settings.save

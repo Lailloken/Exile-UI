@@ -60,7 +60,7 @@
 	Gui, %GUI%: Font, norm
 
 	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_hotkey", 2) " ", "settings_actdecoder hotkey", ["hwnd.settings.hotkey_label", "_bar"], [slop, slop, 0, 0])
-	Gui_Label(GUI, "Hidden xp yp wp Center cRed gSettings_actdecoder2", Lang_Trans("global_save"),, ["hwnd.settings.hotkey_save", "_bar"], [slop, slop, 0, 0],, "insert 800000", cButtons)
+	Gui_Label(GUI, "Hidden xp yp wp Center cRed gSettings_actdecoder2", Lang_Trans("global_save"),, ["hwnd.settings.hotkey_save", "_bar"], [slop, slop, 0, 0],, "Push FF0000", cButtons)
 	Gui_Label(GUI, "xs y+0 wp",, "settings_hotkeys formatting",, [0, 0, slop, slop],,, "0x01000000")
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 	Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack Center gSettings_actdecoder2 HWNDhwnd", % settings.actdecoder.hotkey
@@ -283,7 +283,7 @@ Settings_addons(mode := 0)
 	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000 BackgroundTrans", % Lang_Trans("m_addons_warning")
 	Gui_Label(GUI, "Section xs " (deletion ? "cGray" : "gSettings_addons2"), " " Lang_Trans("global_import") " ", (!deletion ? "settings_addons import" : ""), "hwnd.settings.import", slop,,, (deletion ? 0 : cButtons))
 
-	Gui_Label(GUI, (deletion ? "" : "Hidden ") "ys gSettings_addons2 cRed", " " Lang_Trans("global_restart") " ",, ["hwnd.settings.restart", "_bar"], slop,, "insert 800000", cButtons)
+	Gui_Label(GUI, (deletion ? "" : "Hidden ") "ys gSettings_addons2 cRed", " " Lang_Trans("global_restart") " ",, ["hwnd.settings.restart", "_bar"], slop,, "push FF0000", cButtons)
 	If vars.addons.list.Count()
 	{
 		Gui, %GUI%: Font, bold underline
@@ -294,21 +294,21 @@ Settings_addons(mode := 0)
 	For key, val in vars.addons.list
 	{
 		vars.addons.list[key].enabled_provisional := val.enabled, label := ((deleted := val.deleted) ? Lang_Trans("global_delete", 3) : Lang_Trans("global_enable"))
-		Gui_Label(GUI, "Section xs w" wEnable " Center c" (deleted ? "Red" : (val.enabled ? "Lime" : "Gray") " gSettings_addons2"), label,, ["hwnd.settings.enable_" key, "_bar"], [slop, 0, slop, 0],, (deleted ? "insert 800000" : ""), (deleted ? 0 : cButtons))
-		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["enable_" key "_bar"]], [slop, 0, slop, 0],, "insert 800000", cButtons)
+		Gui_Label(GUI, "Section xs w" wEnable " Center c" (deleted ? "Red" : (val.enabled ? "Lime" : "Gray") " gSettings_addons2"), label,, ["hwnd.settings.enable_" key, "_bar"], [slop, 0, slop, 0],, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
+		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["enable_" key "_bar"]], [slop, 0, slop, 0],, "push FF0000", cButtons)
 
-		Gui_Label(GUI, "ys x+0 w" fHeight " Center" (deleted ? "" : " gSettings_addons2"), "x", (deleted ? "" : "settings_addons delete" handle), ["hwnd.settings.delete_" key, "_bar"],,, (deleted ? "insert 800000" : ""), (deleted ? 0 : cButtons))
-		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["delete_" key "_bar"]],,, "insert 800000", cButtons)
+		Gui_Label(GUI, "ys x+0 w" fHeight " Center" (deleted ? "" : " gSettings_addons2"), "x", (deleted ? "" : "settings_addons delete" handle), ["hwnd.settings.delete_" key, "_bar"],,, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
+		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["delete_" key "_bar"]],,, "push FF0000", cButtons)
 
-		Gui_Label(GUI, "ys x+0 w" fHeight " Center" (deleted ? "" : " gSettings_addons2"), "?", (deleted ? "" : "settings_addons about" handle), ["hwnd.settings.info_" key, "_bar"],,, (deleted ? "insert 800000" : ""), (deleted ? 0 : cButtons))
-		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["info_" key "_bar"]],,, "insert 800000", cButtons)
+		Gui_Label(GUI, "ys x+0 w" fHeight " Center" (deleted ? "" : " gSettings_addons2"), "?", (deleted ? "" : "settings_addons about" handle), ["hwnd.settings.info_" key, "_bar"],,, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
+		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["info_" key "_bar"]],,, "push FF0000", cButtons)
 
 		If !vars.pics.settings_addons.settings
 			vars.pics.settings_addons.settings := LLK_ImageCache("img\GUI\settings\general.png",, settings.general.fHeight - 2)
 
 		Gui, %GUI%: Add, Pic, % hidden "ys x+1 yp+1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.settings_addons.settings
-		Gui_Label(GUI, "xp-1 yp-1 w" fHeight (!deleted && val.enabled ? " gSettings_addons2" : ""),,, ["hwnd.settings.settings_" key, "_bar"], [0, slop, 0, slop],, (deleted ? "insert 800000" : ""), (deleted ? 0 : cButtons))
-		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["settings_" key "_bar"]], [0, slop, 0, slop],, "insert 800000", cButtons)
+		Gui_Label(GUI, "xp-1 yp-1 w" fHeight (!deleted && val.enabled ? " gSettings_addons2" : ""),,, ["hwnd.settings.settings_" key, "_bar"], [0, slop, 0, slop],, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
+		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["settings_" key "_bar"]], [0, slop, 0, slop],, "push FF0000", cButtons)
 		vars.hwnd.help_tooltips["settings_addons settings" handle] := (!deleted && val.enabled ? hwnd : ""), handle .= "|"
 		Gui, %GUI%: Add, Text, % "ys hp BackgroundTrans c" (deleted ? "Red" : (val.enabled ? "White" : "Gray")), % LLK_StringCase(key)
 	}
@@ -517,7 +517,7 @@ Settings_anoints()
 		Return
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("global_font") " "
@@ -536,9 +536,9 @@ Settings_anoints()
 		DB_Load("anoints")
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("global_databaseinfo") . Lang_Trans("global_colon")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_databaseinfo") . Lang_Trans("global_colon")
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "Section xs Center", % Lang_Trans("global_current") . Lang_Trans("global_colon") " " vars.anoints.timestamp " "
+	Gui, %GUI%: Add, Text, % "Section xs Center BackgroundTrans", % Lang_Trans("global_current") . Lang_Trans("global_colon") " " vars.anoints.timestamp " "
 	Gui, %GUI%: Add, Pic, % "ys x+0 hp-2 w-1 Border BackgroundTrans HWNDhwnd gSettings_anoints2", % "HBitmap:*" vars.pics.global.reload
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.update := hwnd, vars.hwnd.help_tooltips["settings_anoints update"] := hwnd1
@@ -775,7 +775,7 @@ Settings_cheatsheets()
 	}
 
 	Gui, %GUI%: Font, % "underline bold"
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_cheat_hotkeys")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_cheat_hotkeys")
 	Gui, %GUI%: Font, % "norm"
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("m_cheat_modifier") " "
@@ -791,7 +791,7 @@ Settings_cheatsheets()
 	If vars.cheatsheets.count_advanced
 	{
 		Gui, %GUI%: Font, bold underline
-		Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("global_ui") " " Lang_Trans("m_cheat_advance")
+		Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui") " " Lang_Trans("m_cheat_advance")
 		Gui, %GUI%: Font, norm
 
 		Loop 4
@@ -816,7 +816,7 @@ Settings_cheatsheets()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs y+"vars.settings.spacing, % Lang_Trans("m_cheat_create")
+	Gui, %GUI%: Add, Text, % "Section xs y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_cheat_create")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize
@@ -849,7 +849,7 @@ Settings_cheatsheets()
 		{
 			LLK_PanelDimensions([Lang_Trans("global_update"), Lang_Trans("global_enable")], settings.general.fSize, wSample, hSample)
 			Gui, %GUI%: Font, bold underline
-			Gui, %GUI%: Add, Text, % "Section xs BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("m_cheat_samples")
+			Gui, %GUI%: Add, Text, % "Section xs BackgroundTrans y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_cheat_samples")
 			Gui, %GUI%: Font, norm
 			valid_samples := 1
 		}
@@ -865,7 +865,7 @@ Settings_cheatsheets()
 		If (A_Index = 1)
 		{
 			Gui, %GUI%: Font, bold underline
-			Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_cheat_list")
+			Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_cheat_list")
 			Gui, %GUI%: Font, % "norm s" settings.general.fSize - 2
 		}
 
@@ -1117,7 +1117,7 @@ Settings_client()
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_general_client")
 	Gui, %GUI%: Font, norm
 
-	Gui_Label(GUI, "Hidden ys cRed gSettings_client2", " " Lang_Trans("global_restart", 2) " ",, ["hwnd.settings.apply", "_bar"], slop,, "insert 800000", cButtons)
+	Gui_Label(GUI, "Hidden ys cRed gSettings_client2", " " Lang_Trans("global_restart", 2) " ",, ["hwnd.settings.apply", "_bar"], slop,, "push FF0000", cButtons)
 	Gui, %GUI%: Add, Text, % "yp x+0 w1 hp BackgroundTrans"
 
 	Gui_Label(GUI, "Section xs w" wResolution " Center", Lang_Trans("m_general_resolution", 2,, 1), "settings_force resolution",, [slop, (slop && fullscreen != "true"), 0, 0])
@@ -1332,9 +1332,9 @@ Settings_cloneframes()
 	If vars.general.MultiThreading && (vars.cloneframes.list.Count() > 1)
 	{
 		Gui, %GUI%: Font, bold underline
-		Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_clone_performance")
+		Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_clone_performance")
 		Gui, %GUI%: Font, norm
-		Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
+		Gui, %GUI%: Add, Pic, % "ys HWNDhwnd hp w-1 BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 		vars.hwnd.help_tooltips["settings_cloneframes performance"] := hwnd
 		For index, val in ["low", "normal", "high", "max"]
 		{
@@ -1343,8 +1343,8 @@ Settings_cloneframes()
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 			vars.hwnd.settings["performance_" index] := hwnd
 		}
-		Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_clone_performance", 2)
-		Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd", % "100"
+		Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans", % Lang_Trans("m_clone_performance", 2)
+		Gui, %GUI%: Add, Text, % "ys x+0 HWNDhwnd BackgroundTrans", % "100"
 		vars.hwnd.settings.fps := hwnd
 	}
 
@@ -1360,7 +1360,7 @@ Settings_cloneframes()
 
 	wMax := settings.general.fWidth * (vars.cloneframes.list.Count() = 1 ? vars.settings.min_width : 20)
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd y+" vars.settings.spacing, % Lang_Trans("m_clone_list")
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_clone_list")
 	ControlGetPos, xHeader, yHeader, wHeader, hHeader,, % "ahk_id " hwnd
 
 	Gui, %GUI%: Font, % "norm s"settings.general.fSize - 4
@@ -1403,14 +1403,14 @@ Settings_cloneframes()
 
 	Gui, %GUI%: Add, Progress, % "Disabled Section BackgroundWhite x" xHeader + Max(wMax, wHeader) + xMargin " y" yHeader - 1 " w2 h" (hDivider := yLast + hLast - yHeader), 0
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section ys", % Lang_Trans("m_clone_hide")
+	Gui, %GUI%: Add, Text, % "Section ys BackgroundTrans", % Lang_Trans("m_clone_hide")
 	Gui, %GUI%: Font, % "norm s" settings.general.fSize - 2
 	Gui, %GUI%: Add, Text, % "ys hp 0x200 Border BackgroundTrans cLime gSettings_cloneframes2 HWNDhwnd", % " " Lang_Trans("global_" (settings.cloneframes.toggle = 1 ? "global" : "custom")) " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-info"] := hwnd1, handle := ""
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
-	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd Center w" wDDL, % Lang_Trans("global_inventory")
+	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd Center w" wDDL " BackgroundTrans", % Lang_Trans("global_inventory")
 	ControlGetPos, xHeader1, yHeader1, wHeader1, hHeader1,, % "ahk_id " hwnd
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"inventory": settings.cloneframes.inventory}})
@@ -1427,7 +1427,7 @@ Settings_cloneframes()
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w2 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
-	Gui, %GUI%: Add, Text, % "Section ys Center HWNDhwnd_info w" wDDL, % Lang_Trans("m_screen_gamescreen")
+	Gui, %GUI%: Add, Text, % "Section ys Center HWNDhwnd_info w" wDDL " BackgroundTrans", % Lang_Trans("m_screen_gamescreen")
 	ControlGetPos, xInfo, yInfo, wInfo, hInfo,, % "ahk_id " hwnd_info
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
@@ -1452,11 +1452,11 @@ Settings_cloneframes()
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor . (vars.poe_version ? "" : " y" yLast + hLast + settings.general.fWidth/2) " w" (xInfo + wInfo - x_anchor), % Lang_Trans("m_clone_town")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor . (vars.poe_version ? "" : " y" yLast + hLast + settings.general.fWidth/2) " w" (xInfo + wInfo - x_anchor) " BackgroundTrans", % Lang_Trans("m_clone_town")
 	Gui, %GUI%: Font, % "cWhite norm s" settings.general.fSize
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " HWNDhwnd y+" vars.settings.spacing, % Lang_Trans("m_clone_editing")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " HWNDhwnd y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_clone_editing")
 	colors := ["3399FF", "Yellow", "DC3220"], handle := "", vars.hwnd.settings.edit_text := vars.hwnd.help_tooltips["settings_cloneframes corners"handle] := hwnd
 	Gui, %GUI%: Font, norm
 	For index, val in vars.lang.global_mouse
@@ -1465,40 +1465,40 @@ Settings_cloneframes()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border BackgroundBlack HWNDhwnd c"colors[index], 100
 		handle .= "|", vars.hwnd.help_tooltips["settings_cloneframes corners"handle] := hwnd
 	}
-	Gui, %GUI%: Add, Text, % "xs Section c3399FF", % Lang_Trans("global_coordinates") ":"
+	Gui, %GUI%: Add, Text, % "xs Section c3399FF BackgroundTrans", % Lang_Trans("global_coordinates") . Lang_Trans("global_colon")
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.x + 4 - vars.monitor.x
+	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.x + 4 - vars.monitor.x
 	vars.hwnd.settings.xSource := vars.cloneframes.scroll.xSource := vars.hwnd.help_tooltips["settings_cloneframes scroll"] := hwnd
-	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.y + 4 - vars.monitor.y
+	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.y + 4 - vars.monitor.y
 	vars.hwnd.settings.ySource := vars.cloneframes.scroll.ySource := vars.hwnd.help_tooltips["settings_cloneframes scroll|"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
 
-	Gui, %GUI%: Add, Text, % "ys", % Lang_Trans("m_clone_scale")
+	Gui, %GUI%: Add, Text, % "ys BackgroundTrans", % Lang_Trans("m_clone_scale")
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*3, 100
+	Gui, %GUI%: Add, Edit, % "ys x+" settings.general.fWidth/2 " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*3, 100
 	vars.hwnd.settings.xScale := vars.cloneframes.scroll.xScale := vars.hwnd.help_tooltips["settings_cloneframes scroll||||||"] := hwnd
-	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*3, 100
+	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*3, 100
 	vars.hwnd.settings.yScale := vars.cloneframes.scroll.yScale := vars.hwnd.help_tooltips["settings_cloneframes scroll|||||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
 
-	Gui, %GUI%: Add, Text, % "xs Section cYellow", % Lang_Trans("global_coordinates") ":"
+	Gui, %GUI%: Add, Text, % "xs Section cYellow BackgroundTrans", % Lang_Trans("global_coordinates") . Lang_Trans("global_colon")
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % Format("{:0.0f}", vars.client.xc - 100)
+	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % Format("{:0.0f}", vars.client.xc - 100)
 	vars.hwnd.settings.xTarget := vars.cloneframes.scroll.xTarget := vars.hwnd.help_tooltips["settings_cloneframes scroll||||"] := hwnd
-	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.y + 13 - vars.monitor.y
+	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % vars.client.y + 13 - vars.monitor.y
 	vars.hwnd.settings.yTarget := vars.cloneframes.scroll.yTarget := vars.hwnd.help_tooltips["settings_cloneframes scroll|||||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
 
-	Gui, %GUI%: Add, Text, % "ys", % Lang_Trans("global_opacity")
+	Gui, %GUI%: Add, Text, % "ys BackgroundTrans", % Lang_Trans("global_opacity")
 	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " 0x200 hp Border BackgroundTrans Center HWNDhwnd w"settings.general.fWidth*2, 5
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background404040 cBlack", 100
 	vars.hwnd.settings.opacity := hwnd, vars.cloneframes.scroll.opacity := vars.hwnd.help_tooltips["settings_cloneframes scroll||||||||"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "xs Section cDC3220", % Lang_Trans("global_width") "/" Lang_Trans("global_height") ":"
+	Gui, %GUI%: Add, Text, % "xs Section cDC3220 BackgroundTrans", % Lang_Trans("global_width") "/" Lang_Trans("global_height") . Lang_Trans("global_colon")
 	Gui, %GUI%: Font, % "s"settings.general.fSize - 4
-	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % 200
+	Gui, %GUI%: Add, Edit, % "ys x" x_anchor + wCoords " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % 200
 	vars.hwnd.settings.width := vars.cloneframes.scroll.width := vars.hwnd.help_tooltips["settings_cloneframes scroll||"] := hwnd
-	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Disabled Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % 200
+	Gui, %GUI%: Add, Edit, % "ys x+"settings.general.fWidth/4 " hp Border Hidden Number cBlack Right gCloneframes_SettingsApply HWNDhwnd w"settings.general.fWidth*4, % 200
 	vars.hwnd.settings.height := vars.cloneframes.scroll.height := vars.hwnd.help_tooltips["settings_cloneframes scroll|||"] := hwnd
 	Gui, %GUI%: Font, % "s"settings.general.fSize
 
@@ -1536,7 +1536,7 @@ Settings_cloneframes2(cHWND)
 		Cloneframes_SettingsRefresh(control)
 		For key, hwnd in vars.hwnd.settings
 			If InStr(key, "group_")
-				GuiControl, Disable, % hwnd
+				GuiControl, +Hidden, % hwnd
 	}
 	Else If InStr(check, "del_")
 	{
@@ -1672,7 +1672,7 @@ Settings_exchange()
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans HWNDhwnd gSettings_exchange2" (settings.features.exchange ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd2" (settings.features.exchange ? "" : " cGray"), % Lang_Trans("m_exchange_currency")
+	Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd2" (settings.features.exchange ? "" : " cGray") " BackgroundTrans", % Lang_Trans("m_exchange_currency")
 	vars.hwnd.settings.enable := hwnd, vars.hwnd.help_tooltips["settings_exchange enable"] := hwnd1, vars.hwnd.help_tooltips["settings_exchange enable|"] := hwnd2
 
 	If settings.features.exchange
@@ -1716,7 +1716,7 @@ Settings_exchange()
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans HWNDhwnd gSettings_exchange2" (settings.features.async ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd2" (settings.features.async ? "" : " cGray"), % Lang_Trans("m_async_trade")
+	Gui, %GUI%: Add, Text, % "ys hp 0x200 HWNDhwnd2" (settings.features.async ? "" : " cGray") " BackgroundTrans", % Lang_Trans("m_async_trade")
 	vars.hwnd.settings.async_enable := hwnd, vars.hwnd.help_tooltips["settings_exchange async enable"] := hwnd1, vars.hwnd.help_tooltips["settings_exchange async enable|"] := hwnd2
 
 	If settings.features.async
@@ -2123,7 +2123,7 @@ Settings_hotkeys()
 	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_hotkeys_settings", 2)
 	Gui, %GUI%: Font, norm
 
-	Gui_Label(GUI, "Hidden ys gSettings_hotkeys2 cRed", " " Lang_Trans("global_restart", 2) " ",, ["hwnd.settings.apply", "_bar"], slop,, "insert 800000", cButtons)
+	Gui_Label(GUI, "Hidden ys gSettings_hotkeys2 cRed", " " Lang_Trans("global_restart", 2) " ",, ["hwnd.settings.apply", "_bar"], slop,, "push FF0000", cButtons)
 	Gui, %GUI%: Add, Text, % "xp yp wp hp BackgroundTrans", % ""
 	width := (rebound_c ? Max(wHotkeys, wHotkeys2, (movekey ? wMovekey : 0)) : Max(wHotkeys, (movekey ? wMovekey : 0)))
 
@@ -2299,7 +2299,7 @@ Settings_iteminfo()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing, % Lang_Trans("m_iteminfo_profiles")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_iteminfo_profiles")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs w" wActive " Border BackgroundTrans Right", % Lang_Trans("global_active") " "
@@ -2903,7 +2903,7 @@ Settings_leveltracker()
 		Gui_Label(GUI, "Section xs", " " Lang_Trans("global_gem", 2) " ", "settings_leveltracker pobgems info",, [slop, 0, slop, 0])
 		Gui_Label(GUI, "ys x+0 gSettings_leveltracker2", " " Lang_Trans("global_toggle") " ", "settings_leveltracker pob gems", "hwnd.settings.pobgems", [0, slop, 0, slop],,, cButtons, settings.leveltracker.gemlinksToggle)
 		If !(manual := settings.leveltracker.pobmanual)
-			Gui_Label(GUI, "Hidden ys w" wTrees " Center gSettings_leveltracker2 cRed", Lang_Trans("global_save"),, ["hwnd.settings.tree_hotkey_save", "_bar"], [slop, 0, slop, 0],, "insert 800000", cButtons)
+			Gui_Label(GUI, "Hidden ys w" wTrees " Center gSettings_leveltracker2 cRed", Lang_Trans("global_save"),, ["hwnd.settings.tree_hotkey_save", "_bar"], [slop, 0, slop, 0],, "push FF0000", cButtons)
 
 		Gui_Label(GUI, (manual ? "ys h" 2*fHeight - 2 " 0x200" : "xp yp w" wTrees " Center"), " " Lang_Trans("global_tree", 2) " ", "settings_leveltracker skilltree info",, [slop, 0, slop, 0], radius)
 		If !manual
@@ -3368,7 +3368,7 @@ Settings_lootfilter()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("m_cheat_modifier") " "
@@ -3393,7 +3393,7 @@ Settings_lootfilter()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("global_font") " "
@@ -3658,95 +3658,72 @@ Settings_macros()
 	If (fSize != settings.general.fSize) || (settings.macros.sMenu != sMenu)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("global_hotkey"), Lang_Trans("global_save")], fSize, wHotkey, hHotkey)
+		LLK_PanelDimensions([Lang_Trans("global_hotkey",,, 1), Lang_Trans("global_save")], fSize, wHotkey, hHotkey)
 		LLK_PanelDimensions([Lang_Trans("m_macros_fasttravel"), Lang_Trans("m_macros_custom")], fSize, wHeader, hHeader,,, 0,,, "underline bold")
 		For key, hbm in vars.pics.settings_macros
 			DeleteObject(hbm)
 		vars.pics.settings_macros := {}, sMenu := settings.macros.sMenu
 	}
 
-	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.xMargin
+	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.xMargin, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth
+	fHeight := settings.general.fHeight, radius := settings.general.radius
+	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros"}
 
-	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " Border BackgroundTrans HWNDhwnd gURL cAqua", % " wiki page "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.URLs := {}, vars.URLs[hwnd] := "https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros", vars.hwnd.help_tooltips["settings_website"] := hwnd1
-
-	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gURL cAqua", % " ahk: key list "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.URLs[hwnd] := "https://www.autohotkey.com/docs/v1/KeyList.htm", vars.hwnd.help_tooltips["settings_website|"] := hwnd1
-
-	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans HWNDhwnd gURL cAqua", % " poe.wiki: chat "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.URLs[hwnd] := "https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands", vars.hwnd.help_tooltips["settings_website||"] := hwnd1
+	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	hwnd := Gui_Label(GUI, "ys gURL cAqua", " poe.wiki: chat ", "settings_website||",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans", % " " Lang_Trans("m_general_menuwidget") " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd Background404040 cBlack", 100
-	vars.hwnd.help_tooltips["settings_font-size"] := hwnd
-	Gui, %GUI%: Add, Text, % "ys x+-1 gSettings_macros2 Border BackgroundTrans Center HWNDhwnd w"settings.general.fWidth*2, % "–"
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.widget_minus := hwnd, vars.hwnd.help_tooltips["settings_font-size|"] := hwnd1
-	Gui, %GUI%: Add, Text, % "x+-1 ys gSettings_macros2 Border BackgroundTrans Center HWNDhwnd", % " " settings.macros.sMenu " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.widget_reset := hwnd, vars.hwnd.help_tooltips["settings_font-size||"] := hwnd1
-	Gui, %GUI%: Add, Text, % "wp x+-1 ys gSettings_macros2 Border BackgroundTrans Center HWNDhwnd w"settings.general.fWidth*2, % "+"
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.widget_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_macros2 HWNDhwnd" (settings.macros.animations ? " cLime" : " cGray"), % " " Lang_Trans("global_animations", 2) " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.animations := hwnd, vars.hwnd.help_tooltips["settings_macros animations"] := hwnd1
+	Gui_Label(GUI, "ys", " " Lang_Trans("m_general_menuwidget") " ",,, [slop, 0, slop, 0])
+	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_macros2", "–", "settings_font-size", "hwnd.settings.widget_minus",,,, cButtons)
+	Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center gSettings_macros2", settings.macros.sMenu, "settings_font-size|", "hwnd.settings.widget_reset",,,, cButtons)
+	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_macros2", "+", "settings_font-size||", "hwnd.settings.widget_plus", [0, slop, 0, slop],,, cButtons)
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight " 0x200", % Lang_Trans("m_macros_fasttravel")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight " BackgroundTrans", % Lang_Trans("m_macros_fasttravel")
 	Gui, %GUI%: Font, norm
 
 	xPos := x_anchor + 2*settings.general.fWidth + Max(wHeader, 2*settings.general.fWidth + Round(settings.general.fWidth * 3.2 * 4.5))
-	Gui, %GUI%: Add, Text, % "ys x" xPos " Right Border BackgroundTrans HWNDhwnd0 w" wHotkey, % Lang_Trans("global_hotkey") " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd01 Background404040 cBlack", 100
-	Gui, %GUI%: Add, Text, % "Hidden xp yp wp hp Border BackgroundTrans Center cRed gSettings_macros2 HWNDhwnd1", % Lang_Trans("global_save")
-	Gui, %GUI%: Add, Progress, % "Disabled Hidden xp yp wp hp Border HWNDhwnd2 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " hp Border BackgroundTrans"
-	Gui, %GUI%: Add, Edit, % "xp yp wp hp Border HWNDhwnd gSettings_macros2 cBlack", % settings.macros.hotkey_fasttravel
-	Gui, %GUI%: Font, % "s" settings.general.fSize
-	vars.hwnd.settings.hotkey_fasttravel_label := hwnd0, vars.hwnd.settings.hotkey_fasttravel := vars.hwnd.help_tooltips["settings_macros hotkeys"] := hwnd
-	vars.hwnd.settings.hotkeysave_fasttravel := hwnd1, vars.hwnd.settings.hotkeysave_fasttravel_bar := hwnd2, vars.hwnd.settings.hotkey_fasttravel_label_bar := vars.hwnd.help_tooltips["settings_macros fast-travel"] := hwnd01
+	Gui_Label(GUI, "Hidden ys x" xPos " w" wHotkey " Center gSettings_macros2 cRed", Lang_Trans("global_save"),, ["hwnd.settings.hotkeysave_fasttravel", "_bar"], [slop, 0, slop, 0],, "push FF0000", cButtons)
+	Gui_Label(GUI, "xp yp w" wHotkey " Center", Lang_Trans("global_hotkey",,, 1), "settings_macros fast-travel",, [slop, 0, slop, 0])
 
-	height := Round(settings.general.fWidth * 3.2)
+	Gui_Label(GUI, "ys x+0 w" 6*fWidth,, "settings_macros hotkeys",, [0, slop, 0, slop],,, "0x50" cButtons)
+	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
+	Gui, %GUI%: Add, Edit, % "xp yp wp hp Center HWNDhwnd gSettings_macros2 cBlack", % settings.macros.hotkey_fasttravel
+	Gui, %GUI%: Font, % "s" settings.general.fSize
+	vars.hwnd.settings.hotkey_fasttravel := hwnd
+
+	height := Round(settings.general.fWidth * 3.2) + 4
 	For index, travel in vars.macros.fasttravels
 	{
 		If !vars.pics.settings_macros[travel]
 			vars.pics.settings_macros[travel] := LLK_ImageCache("img\GUI\radial menu\" travel ".png",, height)
-		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs" : "ys x+" settings.general.fWidth/2) " HWNDhwnd1 BackgroundTrans Border gSettings_macros2 w" height + 4 " h" height + 4
-		Gui, %GUI%: Add, Pic, % "xp+2 yp+2 HWNDhwnd", % "HBitmap:*" vars.pics.settings_macros[travel]
-		Gui, %GUI%: Add, Progress, % "xp-2 yp-2 w" height + 4 " h" height + 4 " HWNDhwnd2 Border Background" (settings.macros[travel] ? "Lime" : "Black") " cBlack", 100
-		vars.hwnd.help_tooltips["settings_macros " travel] := hwnd, vars.hwnd.settings["fasttravel_" travel] := hwnd1, vars.hwnd.settings["fasttravel_" travel "_bar"] := hwnd2
+		Gui, %GUI%: Add, Pic, % (index = 1 ? "Section xs" : "ys x+" fWidth/2) " BackgroundTrans", % "HBitmap:*" vars.pics.settings_macros[travel]
+		hwnd := Gui_Label(GUI, "xp yp wp hp-2 gSettings_macros2",, "settings_macros " travel, ["hwnd.settings.fasttravel_" travel, "_bar"], slop, radius, "push FFFF00", cButtons)
+		Gui, %GUI%: Add, Pic, % "xp yp", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["fasttravel_" travel "_bar"]], slop, radius,, cButtons)
+		If !settings.macros[travel]
+			GuiControl, +Hidden, % hwnd.back
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " h" settings.general.fHeight " 0x200 HWNDhwnd", % Lang_Trans("m_macros_custom")
+	Gui, %GUI%: Add, Text, % "Section xs Center y+"vars.settings.spacing " h" settings.general.fHeight " HWNDhwnd BackgroundTrans", % Lang_Trans("m_macros_custom")
 	vars.hwnd.settings.header_custom := hwnd
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Hidden xp yp wp hp Center Border BackgroundTrans gSettings_macros2 cRed HWNDhwnd", % " " Lang_Trans("global_save") " "
-	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.custommacros_save := hwnd, vars.hwnd.settings.custommacros_save_bar := hwnd1
+	Gui_Label(GUI, "Hidden xp yp wp Center gSettings_macros2 cRed", " " Lang_Trans("global_save") " ",, ["hwnd.settings.custommacros_save", "_bar"], slop,, "push FF0000")
 
-	Gui, %GUI%: Add, Text, % "ys x" xPos " Border BackgroundTrans Right HWNDhwnd0 w" wHotkey, % Lang_Trans("global_hotkey") " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd01 Background404040 cBlack", 100
-	Gui, %GUI%: Add, Text, % "Hidden xp yp wp hp Border Center BackgroundTrans cRed gSettings_macros2 HWNDhwnd1", % " " Lang_Trans("global_save") " "
-	Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd2 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+	Gui_Label(GUI, "Hidden ys x" xPos " w" wHotkey " Center gSettings_macros2 cRed", Lang_Trans("global_save"),, ["hwnd.settings.hotkeysave_custommacros", "_bar"], [slop, 0, slop, 0],, "push FF0000", cButtons)
+	Gui_Label(GUI, "xp yp w" wHotkey " Center", Lang_Trans("global_hotkey",,, 1), "settings_macros custom",, [slop, 0, slop, 0])
+
+	Gui_Label(GUI, "ys x+0 w" 6*fWidth,, "settings_macros hotkeys|",, [0, slop, 0, slop],,, "0x50" cButtons)
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-	Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 6 " hp Border BackgroundTrans"
-	Gui, %GUI%: Add, Edit, % "xp yp wp hp Border HWNDhwnd gSettings_macros2 cBlack", % settings.macros.hotkey_custommacros
+	Gui, %GUI%: Add, Edit, % "xp yp wp hp Center HWNDhwnd gSettings_macros2 cBlack", % settings.macros.hotkey_custommacros
 	Gui, %GUI%: Font, % "s" settings.general.fSize
-	vars.hwnd.settings.hotkey_custommacros := vars.hwnd.help_tooltips["settings_macros hotkeys|"] := hwnd, vars.hwnd.settings.hotkey_custommacros_label := hwnd0
-	vars.hwnd.settings["hotkeysave_custommacros"] := hwnd1, vars.hwnd.settings.hotkeysave_custommacros_bar := hwnd2, vars.hwnd.settings.hotkey_custommacros_label_bar := vars.hwnd.help_tooltips["settings_macros custom"] := hwnd01
-	wEdit := Max(wHeader, 2*settings.general.fWidth + Round(settings.general.fWidth * 3.2 * 4.5)) + wHotkey - settings.general.fHeight - 2*(settings.general.fWidth//2) + 4*settings.general.fWidth - 1
+	vars.hwnd.settings.hotkey_custommacros := hwnd
 
+	wEdit := Max(wHeader, 2*settings.general.fWidth + Round(settings.general.fWidth * 3.2 * 4.5)) + wHotkey - settings.general.fHeight - 2*(settings.general.fWidth//2) + 4*settings.general.fWidth - 1
 	Loop 9
 	{
 		Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fHeight " Center HWNDhwnd0 Border BackgroundTrans gSettings_macros2", % A_Index - 1
@@ -3754,7 +3731,7 @@ Settings_macros()
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd01 Background" (enabled ? "Lime" : vars.settings.cButtons2) " c" vars.settings.cButtons, 100
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth//2 " w" settings.general.fWidth * 4 " hp Border BackgroundTrans"
-		Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd Limit3 gSettings_macros2" (A_Index = 1 ? " Disabled" : ""), % settings.macros["label_" A_Index - 1]
+		Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd Limit3 gSettings_macros2" (A_Index = 1 ? " Hidden" : ""), % settings.macros["label_" A_Index - 1]
 		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth//2 " w" wEdit " hp Border BackgroundTrans"
 		Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd1 gSettings_macros2", % settings.macros["command_" A_Index - 1]
 		Gui, %GUI%: Font, % "s" settings.general.fSize
@@ -3800,12 +3777,10 @@ Settings_macros2(cHWND)
 
 		Case InStr(check, "fasttravel_"):
 			IniWrite, % (settings.macros[control] := !settings.macros[control]), % "ini" vars.poe_version "\chat macros.ini", settings, % "enable " control
-			GuiControl, % "+Background" (settings.macros[control] ? "Lime" : "Black"), % vars.hwnd.settings["fasttravel_" control "_bar"]
+			GuiControl, % (settings.macros[control] ? "-" : "+") "Hidden", % vars.hwnd.settings["fasttravel_" control "_bar"]
 
 		Case InStr(check, "hotkey_"):
 			input := LLK_ControlGet(cHWND)
-			GuiControl, % (input != settings.macros["hotkey_" control] ? "+" : "-") "Hidden", % vars.hwnd.settings["hotkey_" control "_label"]
-			GuiControl, % (input != settings.macros["hotkey_" control] ? "+" : "-") "Hidden", % vars.hwnd.settings["hotkey_" control "_label_bar"]
 			GuiControl, % (input != settings.macros["hotkey_" control] ? "-" : "+") "Hidden", % vars.hwnd.settings["hotkeysave_" control]
 			GuiControl, % (input != settings.macros["hotkey_" control] ? "-" : "+") "Hidden", % vars.hwnd.settings["hotkeysave_" control "_bar"]
 
@@ -3905,7 +3880,7 @@ Settings_mapinfo()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "xs Section Center y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section Right Border BackgroundTrans", % " " Lang_Trans("global_activation") " "
@@ -3935,7 +3910,7 @@ Settings_mapinfo()
 	vars.hwnd.settings.tabtoggle := hwnd, vars.hwnd.help_tooltips["settings_mapinfo tab"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs" (vars.poe_version ? "" : " w" wFont) " Right Border BackgroundTrans", % (vars.poe_version ? " " : "") Lang_Trans("global_font") " "
@@ -4012,9 +3987,9 @@ Settings_mapinfo()
 	}
 
 	Gui, %GUI%: Font, % "bold underline"
-	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight, % Lang_Trans("m_mapinfo_modsettings")
+	Gui, %GUI%: Add, Text, % "xs Section x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight " BackgroundTrans", % Lang_Trans("m_mapinfo_modsettings")
 	Gui, %GUI%: Font, % "norm"
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_mapinfo mod settings"] := hwnd
 
 	Gui, %GUI%: Add, Text, % "ys Border BackgroundTrans gSettings_mapinfo2 HWNDhwnd", % " " Lang_Trans("m_mapinfo_reset") " "
@@ -4027,7 +4002,7 @@ Settings_mapinfo()
 	For ID, val in settings.mapinfo.pinned
 	{
 		If (A_Index = 1)
-			Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_mapinfo_pinned")
+			Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans", % Lang_Trans("m_mapinfo_pinned")
 		If !(check := LLK_HasVal(db.mapinfo.mods, ID,,,, 1)) || !val
 			Continue
 		ID := (ID < 100 ? "0" : "") . (ID < 10 ? "0" : "") . ID, ini := IniBatchRead("ini" vars.poe_version "\map info.ini", ID)
@@ -4045,7 +4020,7 @@ Settings_mapinfo()
 		Gui, %GUI%: Font, Norm
 		vars.hwnd.settings["mapmod_" ID] := hwnd, vars.hwnd.settings["unpin_" ID] := hwnd1
 	}
-	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd", % Lang_Trans("m_mapinfo_modsearch")
+	Gui, %GUI%: Add, Text, % "xs Section HWNDhwnd BackgroundTrans", % Lang_Trans("m_mapinfo_modsearch")
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden Default HWNDhwnd1 gSettings_mapinfo2", OK
 	ControlGetPos, x1, y1, w1, h1,, ahk_id %hwnd%
 	Gui, %GUI%: Font, % "norm s" settings.general.fSize - 4
@@ -4253,7 +4228,7 @@ Settings_maptracker()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans", % " " Lang_Trans("global_panelsize") " "
@@ -4279,10 +4254,10 @@ Settings_maptracker()
 	vars.hwnd.settings.rename := hwnd, vars.hwnd.help_tooltips["settings_maptracker rename"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("m_maptracker_tracking")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_maptracker_tracking")
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "Section xs w" wMaps - 2 " h" settings.general.fHeight " Right 0x200", % Lang_Trans("global_meta") " "
+	Gui, %GUI%: Add, Text, % "Section xs w" wMaps - 2 " h" settings.general.fHeight " Right 0x200 BackgroundTrans", % Lang_Trans("global_meta") " "
 	Gui, %GUI%: Add, Text, % "ys x+0 Border BackgroundTrans gSettings_maptracker2 HWNDhwnd" (settings.maptracker.notes ? " cLime" : " cGray"), % " " Lang_Trans("m_maptracker_notes") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.notes := hwnd, vars.hwnd.help_tooltips["settings_maptracker notes"] := hwnd1
@@ -4295,7 +4270,7 @@ Settings_maptracker()
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.league := hwnd, vars.hwnd.help_tooltips["settings_maptracker league"] := hwnd1
 
-	Gui, %GUI%: Add, Text, % "Section xs w" wMaps - 2 " h" settings.general.fHeight " Right 0x200", % Lang_Trans("global_maps") . Lang_Trans("global_colon") " "
+	Gui, %GUI%: Add, Text, % "Section xs w" wMaps - 2 " h" settings.general.fHeight " Right 0x200 BackgroundTrans", % Lang_Trans("global_maps") . Lang_Trans("global_colon") " "
 	Gui, %GUI%: Add, Text, % "Section ys x+0 Border BackgroundTrans gSettings_maptracker2 HWNDhwnd" (settings.maptracker.kills ? " cLime" : " cGray"), % " " Lang_Trans("m_maptracker_kills") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.kills := hwnd, vars.hwnd.help_tooltips["settings_maptracker kill-tracker"] := hwnd1
@@ -4346,7 +4321,7 @@ Settings_maptracker()
 
 		If general_mechanics && !vars.poe_version
 			Gui, %GUI%: Add, Text, % "xs x" x_anchor " w" settings.general.fWidth * 20 " h2 Border"
-		Gui, %GUI%: Add, Text, % "Section" (!added ? " xs x+" vars.settings.xMargin " y+-1" : " xs"), % Lang_Trans("m_maptracker_dialogue")
+		Gui, %GUI%: Add, Text, % "Section" (!added ? " xs x+" vars.settings.xMargin " y+-1" : " xs") " BackgroundTrans", % Lang_Trans("m_maptracker_dialogue")
 		vars.hwnd.help_tooltips["settings_maptracker dialogue tracking"] := hwnd, added := 0, ingame_dialogs := vars.maptracker.dialog := InStr(LLK_FileRead(vars.system.config), "output_all_dialogue_to_chat=true") ? 1 : 0
 		For mechanic, type in vars.maptracker.mechanics
 		{
@@ -4359,7 +4334,7 @@ Settings_maptracker()
 		}
 
 		Gui, %GUI%: Add, Text, % "xs x" x_anchor " w" settings.general.fWidth * 20 " h2 Border"
-		Gui, %GUI%: Add, Text, % "Section xs", % Lang_Trans("m_maptracker_screen")
+		Gui, %GUI%: Add, Text, % "Section xs BackgroundTrans", % Lang_Trans("m_maptracker_screen")
 		vars.hwnd.help_tooltips["settings_maptracker screen tracking"] := hwnd, handle := "", added := 0
 		For mechanic, type in vars.maptracker.mechanics
 		{
@@ -5127,7 +5102,7 @@ Settings_qol()
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.alarm ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.alarm ? "" : " cGray"), % StrReplace(Lang_Trans("m_qol_alarm"), Lang_Trans("global_colon"))
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.alarm ? "" : " cGray") " BackgroundTrans", % StrReplace(Lang_Trans("m_qol_alarm"), Lang_Trans("global_colon"))
 	vars.hwnd.help_tooltips["settings_alarm enable"] := hwnd1, vars.hwnd.settings.enable_alarm := hwnd, vars.hwnd.help_tooltips["settings_alarm enable|"] := hwnd0
 
 	If settings.qol.alarm
@@ -5165,7 +5140,7 @@ Settings_qol()
 	cLast := LLK_ControlGetPos(hwnd), yMax := Max(yMax, cLast.y + cLast.h)
 	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y" yMax + vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.notepad ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.notepad ? "" : " cGray"), % StrReplace(Lang_Trans("m_qol_notepad"), Lang_Trans("global_colon"))
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.notepad ? "" : " cGray") " BackgroundTrans", % StrReplace(Lang_Trans("m_qol_notepad"), Lang_Trans("global_colon"))
 	vars.hwnd.help_tooltips["settings_notepad enable"] := hwnd0, vars.hwnd.settings.enable_notepad := hwnd, vars.hwnd.help_tooltips["settings_notepad enable|"] := hwnd1
 
 	If settings.qol.notepad
@@ -5218,7 +5193,7 @@ Settings_qol()
 	{
 		Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.general.lang_client = "unknown" ? " cGray" : (settings.qol.lab ? " cLime" : " cGray")), % " " Lang_Trans("global_enable") " "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.general.lang_client = "unknown" || !settings.qol.lab ? " cGray" : ""), % StrReplace(Lang_Trans("m_qol_lab"), Lang_Trans("global_colon"))
+		Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.general.lang_client = "unknown" || !settings.qol.lab ? " cGray" : "") " BackgroundTrans", % StrReplace(Lang_Trans("m_qol_lab"), Lang_Trans("global_colon"))
 		If (settings.general.lang_client = "unknown")
 			vars.hwnd.help_tooltips["settings_lang incompatible"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lang incompatible|"] := hwnd1
 		Else vars.hwnd.help_tooltips["settings_lab enable"] := hwnd0, vars.hwnd.settings.enable_lab := hwnd, vars.hwnd.help_tooltips["settings_lab enable|"] := hwnd1
@@ -5226,7 +5201,7 @@ Settings_qol()
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.qol.quickpob ? " cLime" : " cGray"), % " " Lang_Trans("global_enable") " "
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.quickpob ? "" : " cGray"), % Lang_Trans("m_qol_quickpob")
+	Gui, %GUI%: Add, Text, % "ys x+" settings.general.fWidth/2 " hp 0x200 HWNDhwnd0" (settings.qol.quickpob ? "" : " cGray") " BackgroundTrans", % Lang_Trans("m_qol_quickpob")
 	vars.hwnd.help_tooltips["settings_quickpob enable"] := hwnd0, vars.hwnd.settings.enable_quickpob := hwnd, vars.hwnd.help_tooltips["settings_quickpob enable|"] := hwnd1
 
 	If settings.qol.quickpob
@@ -5237,7 +5212,7 @@ Settings_qol()
 		Gui, %GUI%: Add, Progress, % "Hidden Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.hwnd.settings.quickpob_save := hwnd, vars.hwnd.settings.quickpob_save_bar := hwnd1
 		Gui, %GUI%: Add, Text, % "xp yp wp hp Right Border BackgroundTrans 0x200", % Lang_Trans("global_hotkey") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " cBlack", 100
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 
 		For index, val in ["ctrl", "alt"]
 		{
@@ -5253,7 +5228,7 @@ Settings_qol()
 		vars.hwnd.settings.quickpob_hotkey := vars.hwnd.help_tooltips["settings_hotkeys formatting"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "ys w" wSnip " Center Border BackgroundTrans HWNDhwnd c" (settings.quickpob.snip_offset ? "Lime" : "FF8000"), % Lang_Trans("quickpob_snip")
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background404040 cBlack", 100
 		vars.hwnd.settings.quickpob_snip_label := hwnd, vars.hwnd.help_tooltips["settings_quickpob snip"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "xp y+-1 wp Center Border BackgroundTrans gSettings_qol2 HWNDhwnd", % Lang_Trans("global_calibrate", 3)
@@ -5261,7 +5236,7 @@ Settings_qol()
 		vars.hwnd.settings.quickpob_snip := hwnd, vars.hwnd.help_tooltips["settings_quickpob snip offset"] := hwnd1
 
 		Gui, %GUI%: Add, Text, % "Section xs w" wHotkey " Right Border BackgroundTrans", % Lang_Trans("global_mode") . Lang_Trans("global_colon") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background404040 cBlack", 100
 		For index, val in ["full", "compact"]
 		{
 			Gui, %GUI%: Add, Text, % "ys x+-1 Border BackgroundTrans gSettings_qol2 HWNDhwnd" (settings.quickpob.mode = val ? " cLime" : ""), % " " Lang_Trans("global_" val) " "
@@ -5270,13 +5245,13 @@ Settings_qol()
 		}
 
 		Gui, %GUI%: Add, Text, % "Section xs w" wHotkey " Right Border BackgroundTrans", % Lang_Trans("global_folder") . Lang_Trans("global_colon") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " cBlack", 100
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 		path := SubStr(settings.quickpob.exe.1, 1, InStr(settings.quickpob.exe.1, "\",, 0) - 1), path := (StrLen(path) > 30 ? SubStr(path, 1, 30) "..." : path)
 		Gui, %GUI%: Add, Text, % "ys x+-1 hp Border BackgroundTrans 0x200 HWNDhwnd_text c" (settings.quickpob.exe.1 ? "Lime" : "Yellow"), % " " (settings.quickpob.exe.1 ? LLK_StringCase(path) : Lang_Trans("global_setup", 2)) " "
 		Gui, %GUI%: Font, % "s" settings.general.fSize
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " cBlack", 100
+		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background404040 cBlack", 100
 
 		Gui, %GUI%: Add, Pic, % "ys x+-1 w-1 hp-2 Border BackgroundTrans gSettings_qol2 HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
@@ -5717,7 +5692,7 @@ Settings_sanctum()
 		Return
 
 	Gui, %GUI%: Font, underline bold
-	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans", % " " Lang_Trans("global_font") " "
@@ -6082,7 +6057,7 @@ Settings_searchstrings()
 	GuiControl, % "movedraw", % vars.hwnd.settings["search-strings"]
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("m_search_universal")
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_search_universal")
 	Gui, %GUI%: Add, Pic, % "ys hp w-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans gSettings_searchstrings2 HWNDhwnd1", % " " Lang_Trans("m_search_edit") " "
@@ -6228,7 +6203,7 @@ Settings_stash()
 		Return
 
 	Gui, %GUI%: Font, underline bold
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " h" settings.general.fHeight " 0x200", % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " h" settings.general.fHeight " 0x200 BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden Default HWNDhwnd gSettings_stash2", OK
 	Gui, %GUI%: Font, norm
 	vars.hwnd.settings.apply_button := hwnd
@@ -6262,7 +6237,7 @@ Settings_stash()
 		Settings_stash_profiles(GUI, "global")
 
 	Gui, %GUI%: Font, % "bold underline cWhite s" settings.general.fSize
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight " 0x200", % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " h" settings.general.fHeight " 0x200 BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Section xs Border BackgroundTrans", % " " Lang_Trans("global_font") " "
@@ -6308,7 +6283,7 @@ Settings_stash()
 	}
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing, % Lang_Trans("m_stash_tabs")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_stash_tabs")
 	Gui, %GUI%: Font, norm
 	Gui, %GUI%: Add, Pic, % "ys BackgroundTrans HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
 
@@ -6558,8 +6533,8 @@ Settings_stash_profiles(GUI_name, tab)
 	If (tab = "global")
 		Gui, %GUI_name%: Add, Text, % "Section xs y+0 w2 h" vars.settings.line1 " Border HWNDhwnd_brace"
 
-	Gui, %GUI_name%: Add, Text, % "Section " (tab = "global" ? "ys y+0" : "xs x" vars.settings.x_anchor), % Lang_Trans("m_stash_limits")
-	Gui, %GUI_name%: Add, Pic, % "ys HWNDhwnd hp w-1", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI_name%: Add, Text, % "Section " (tab = "global" ? "ys y+0" : "xs x" vars.settings.x_anchor) " BackgroundTrans", % Lang_Trans("m_stash_limits")
+	Gui, %GUI_name%: Add, Pic, % "ys HWNDhwnd hp w-1 BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 4 " cBlack"
 	vars.hwnd.help_tooltips["settings_stash limits"] := hwnd, currencies := ["c", "e", "d", "%"]
 	Loop 5
@@ -6723,7 +6698,7 @@ Settings_TLDR()
 	Else wHotkey1 := wHotkey
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "Hidden Section xs w" wHotkey1 . (shared ? " h" 2* settings.general.fHeight - 1 " 0x200" : "") " Center Border BackgroundTrans gSettings_TLDR2 cRed HWNDhwnd", % Lang_Trans("global_save")
@@ -6765,7 +6740,7 @@ Settings_TLDR()
 	vars.hwnd.settings.debug := hwnd, vars.hwnd.help_tooltips["settings_TLDR debug"] := hwnd1
 
 	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing, % Lang_Trans("global_ui")
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
 	Gui, %GUI%: Add, Text, % "xs Section Border BackgroundTrans", % " " Lang_Trans("global_font") " "
@@ -6779,8 +6754,8 @@ Settings_TLDR()
 	Gui, %GUI%: Add, Text, % "ys x+-1 w"settings.general.fWidth*2 " Center Border BackgroundTrans gSettings_TLDR2 HWNDhwnd", % "+"
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 	vars.hwnd.settings.font_plus := hwnd, vars.hwnd.help_tooltips["settings_font-size|||"] := hwnd1
-	Gui, %GUI%: Add, Text, % "xs Section", % Lang_Trans("m_iteminfo_highlight")
-	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd", % "HBitmap:*" vars.pics.global.help
+	Gui, %GUI%: Add, Text, % "xs Section BackgroundTrans", % Lang_Trans("m_iteminfo_highlight")
+	Gui, %GUI%: Add, Pic, % "ys hp w-1 HWNDhwnd BackgroundTrans", % "HBitmap:*" vars.pics.global.help
 	vars.hwnd.help_tooltips["settings_TLDR colors"] := hwnd
 
 	For index, array in settings.TLDR.colors
@@ -6943,9 +6918,9 @@ Settings_unsupported()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing, % "this feature is not available on clients`nwith an unsupported language.`n`nit will be available once a language-`npack for the current language has been`ninstalled.`n`nthese packs have to be created by the`ncommunity. to find out if there are any`nfor your language or how to`ncreate one, click the link below.`n"
+	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % "this feature is not available on clients`nwith an unsupported language.`n`nit will be available once a language-`npack for the current language has been`ninstalled.`n`nthese packs have to be created by the`ncommunity. to find out if there are any`nfor your language or how to`ncreate one, click the link below.`n"
 	Gui, %GUI%: Font, norm
-	Gui, %GUI%: Add, Link, % "Section xs", <a href="https://github.com/Lailloken/Exile-UI/discussions/categories/translations-localization">exile ui discussions: translations</a>
+	Gui, %GUI%: Add, Link, % "Section xs BackgroundTrans", <a href="https://github.com/Lailloken/Exile-UI/discussions/categories/translations-localization">exile ui discussions: translations</a>
 }
 
 Settings_updater()
@@ -7049,7 +7024,7 @@ Settings_updater()
 				vars.help.settings["recentchanges " key].RemoveAt(6)
 			Loop 2
 			{
-				style := (A_Index = 2 ? "Section xs" : "ys x+" settings.general.fWidth/2) . (RegExMatch(key, "i)major.changes|new.feature") ? " cFF8000" : "")
+				style := (A_Index = 2 ? "Section xs" : "ys x+" settings.general.fWidth/2) . (RegExMatch(key, "i)major.changes|new.feature") ? " cFFFF00" : "")
 				hwnd := Gui_Label(GUI, style, " " StrReplace(key, "&", "&&") " ", "settings_recentchanges " key,, slop)
 				ControlGetPos, xControl, yControl, wControl, hControl,, % "ahk_id " hwnd.back
 				If (xControl + wControl <= vars.settings.x_anchor + settings.general.fWidth * vars.settings.min_width * 1.33)
@@ -7077,7 +7052,7 @@ Settings_updater()
 					Continue
 				Else Gui_Label(GUI, (!added.Count() ? "Section xs" : "ys") " w" 4*fWidth " Center", major,,, [slop, 0, slop, 0],, (InStr(selected, major) ? "insert 00FFFF" : ""))
 
-			minor := SubStr(val.1.2, -1) + 0, color := (selected = major . minor ? " cAqua" : (val.1.3 ? " cFF8000" : ""))
+			minor := SubStr(val.1.2, -1) + 0, color := (selected = major . minor ? " cAqua" : (val.1.3 ? " cFFFF00" : ""))
 			Gui_Label(GUI, "ys x+0 w" 2.5*fWidth " gSettings_updater2 Center" color, minor, "settings_updater changelog " major . minor, "hwnd.settings.versionselect_" StrReplace(major, ".", ",") . minor, (minor = 0 ? [0, slop, 0, slop] : ""),, (InStr(selected, major) ? "insert 00FFFF" : ""), cButtons), added[major] := 1
 		}
 	}
