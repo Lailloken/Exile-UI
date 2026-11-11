@@ -1,5 +1,14 @@
 [
   [
+	["1.65.2", 16502, 1],
+	"november 11, 2026",
+	"if you only play poe2, skip this and the following releases(/highlight)",
+	"major ui rework (work in progress)\n–> guide overlay and half of the settings menu make use of it\n–> the rest of the tool will be updated step by step\n–> poe2-only sections may have visual issues(/highlight)",
+	"settings:\n–> re-arranged the sidebar and global options\n–> removed the <announcements> section and moved them to <updater>",
+	"act-tracker:\n–> reverted the fairgraves/allflame quest changes from 3.29\n–> added a note to the fairgraves kill, just in case 3.30 also moves him to the exit",
+	"map-events:\n–> moved from <minor qol tools> to a new <notifications> section in the settings"
+  ],
+  [
 	["1.65.1", 16501],
 	"october 8, 2026",
 	"fixes\n–> instilled amulets + some abyss mods didn't work in item-info\n–> statlas didn't activate correctly\n–> relic mod for global defenses wasn't being tracked in sekhema planner",
