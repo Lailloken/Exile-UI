@@ -2,44 +2,36 @@
   "sc": {
     "ssf": {
       "normal": {
-        "standard": "Solo Self-Found",
-        "allflame": "SSF Allflame"
+        "standard": "Solo Self-Found"
       },
       "ruthless": {
-        "standard": "SSF Ruthless",
-        "allflame": "SSF R Allflame"
+        "standard": "SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Standard",
-        "allflame": "Allflame"
+        "standard": "Standard"
       },
       "ruthless": {
-        "standard": "Ruthless",
-        "allflame": "Ruthless Allflame"
+        "standard": "Ruthless"
       }
     }
   },
   "hc": {
     "ssf": {
       "normal": {
-        "standard": "Hardcore SSF",
-        "allflame": "HC SSF Allflame"
+        "standard": "Hardcore SSF"
       },
       "ruthless": {
-        "standard": "Hardcore SSF Ruthless",
-        "allflame": "HC SSF R Allflame"
+        "standard": "Hardcore SSF Ruthless"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Hardcore",
-        "allflame": "Hardcore Allflame"
+        "standard": "Hardcore"
       },
       "ruthless": {
-        "standard": "Hardcore Ruthless",
-        "allflame": "HC Ruthless Allflame"
+        "standard": "Hardcore Ruthless"
       }
     }
   }
