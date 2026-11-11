@@ -138,10 +138,24 @@
       "follow wall to areaid1_1_9 ;; ship graveyard"
     ],
     [
-      "leaguestart: kill fairgraves (quest:(allflame))",
-      "twinkrun: kill fairgraves",
-      "reach areaid1_1_11_1 ;; cavern of wrath",
-      "(img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch"
+      "follow wall, (color:ff00ff)find_2 (img:arena) exits:",
+      "(hint)_ - (color:red)3.30_note: if arena:fairgraves is blocking an",
+      "(hint)__ _exit, kill (color:white)him and (color:cc99ff)skip_this_&_next_page",
+      "(hint)_ - (color:ff00ff)if (color:cc99ff)cavern 1st: (img:in-out2) (color:ffffff)for (img:waypoint) || enter (img:arena) ship...",
+      "(hint)_ - (color:ff00ff)else: set (img:portal) || enter (img:arena) cavern, (img:waypoint) to (img:town)",
+      "(enter (img:portal) ,) enter areaid1_1_9a ;; ship graveyard cave"
+    ],
+    [
+      "find (img:quest) (quest:slave_girl) for (quest:allflame)",
+      "(hint)__ (color:cc99ff)start & (quest:girl) : opposite corners",
+      "enter areaid1_1_9 ;; ship graveyard"
+    ],
+    [
+      "kill fairgraves",
+      "(color:ff00ff)if he blocked the exit:",
+      "(hint)_ - enter areaid1_1_11_1 ;; cavern of wrath",
+      "(hint)_ - (img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch",
+      "(color:ff00ff)else (color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
     ],
     [
       "(img:quest) bestel: (quest:book)",
@@ -808,7 +822,7 @@
   ],
   [
     [
-      "leaguestart: optional: 5l body: (color:cc99ff)league",
+      "leaguestart: optional: 5l body: (color:cc99ff)league (color:red)(?)",
       "follow (img:5) edge, kill overseer",
       "(hint)_ - find corridor with gallows",
       "(hint)_ - loop clockwise to reach arena:him",
@@ -922,7 +936,7 @@
         "yes"
       ],
       "lines": [
-        "optional: 5l body: (color:cc99ff)league",
+        "optional: 5l body: (color:cc99ff)league (color:red)(?)",
         "kill everything",
         "(color:cc99ff)relog: areaid2_6_town ;; lioneye's watch"
       ]
