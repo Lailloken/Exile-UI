@@ -325,9 +325,80 @@ Betrayal_Search(hotkey)
 
 	Betrayal_Prioview(), vars.betrayal.rbutton := 0
 
+	member1 := "", division1 := "", LIST0 := ""
+	xPrev := vars.general.xMouse, yPrev := vars.general.yMouse ;mouse-position at the start of this loop
+	pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
+
+	Loop, Files, % "img\Recognition ("vars.client.h "p)\Betrayal\*.bmp"
+	{
+		parse := SubStr(A_LoopFileName, 1, InStr(A_LoopFileName, ".") - 1)
+		If vars.betrayal.divisions.HasKey(parse) ;skip divisions and recently unassigned members
+			continue
+
+		If !vars.pics.betrayal_checks[parse]
+			vars.pics.betrayal_checks[parse] := LLK_ImageCache(A_LoopFilePath)
+		pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[parse])
+		width := Gdip_GetImageWidth(pNeedle)
+		x1 := (vars.general.xMouse - vars.client.x - vars.client.w/3 < 0) ? 0 : vars.general.xMouse - vars.client.x - vars.client.w/3
+		x2 := (vars.general.xMouse - vars.client.x + vars.client.w/3 > vars.client.w) ? vars.client.w - 1 : vars.general.xMouse - vars.client.x + vars.client.w/3
+		y1 := (vars.general.yMouse - vars.client.y - vars.client.h/4 < 0) ? 0 : vars.general.yMouse - vars.client.y - vars.client.h/4
+		y2 := (vars.general.yMouse - vars.client.y + vars.client.h/4 > vars.client.h) ? vars.client.h - 1 : vars.general.yMouse - vars.client.y + vars.client.h/4 > vars.client.h
+		result := Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation + 20,, 1, 1)
+		Gdip_DisposeImage(pNeedle)
+
+		If !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) ;if cursor was moved since the start, restart the loop
+			break
+
+		If (result > 0)
+		{
+			member1 := StrReplace(A_LoopFileName, ".bmp")
+			LIST0 := LIST "," width
+			Break
+		}
+	}
+
+
+	;if cursor was moved since the start or if there was no result, restart the loop
+	If !member1 || !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) || !GetKeyState(hotkey, "P")
+		Gdip_DisposeImage(pHaystack)
+	Else
+	{
+		For key, division in vars.betrayal.divisions.list ;scan the division
+		{
+			If !FileExist("img\Recognition ("vars.client.h "p)\Betrayal\"division ".bmp")
+				continue
+
+			If !vars.pics.betrayal_checks[division]
+				vars.pics.betrayal_checks[division] := LLK_ImageCache("img\Recognition (" vars.client.h "p)\Betrayal\" division ".bmp")
+			pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[division])
+			width := Gdip_GetImageWidth(pNeedle), result := Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation + 20,, 1, 1)
+			Gdip_DisposeImage(pNeedle)
+
+			If !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) ;if cursor was moved since the start, restart the loop
+				break
+
+			If (result > 0)
+			{
+				division1 := division, LIST0 := LIST "," width
+				Break
+			}
+		}
+		Gdip_DisposeImage(pHaystack)
+
+		;make sure the cursor hasn't moved too much during the scan (to prevent extreme niche cases where members and divisions get mixed up)
+		If LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) && LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8)
+		{
+			If member1
+				vars.betrayal.board[member1] := division1
+
+			If member1 && (member1 != vars.hwnd.betrayal_info.active)
+				Betrayal_Info(member1, division1)
+			Betrayal_Prioview()
+		}
+	}
+
 	While GetKeyState(hotkey, "P")
 	{
-		Sleep 100
 		If vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.betrayal_prioview, vars.general.cMouse))
 			hover := [LLK_HasVal(vars.hwnd.betrayal_prioview, vars.general.cMouse), "betrayal_prioview"]
 		Else If vars.general.cMouse && !Blank(LLK_HasVal(vars.hwnd.betrayal_info, vars.general.cMouse))
@@ -363,7 +434,8 @@ Betrayal_Search(hotkey)
 				KeyWait, RButton
 			}
 		}
-		If (vars.general.wMouse = vars.hwnd.betrayal_prioview.main) && vars.betrayal.members.HasKey(StrReplace(hover.1, "_progress")) ;&& (!WinExist("ahk_id " vars.hwnd.betrayal_info.main) || (StrReplace(hover.1, "_progress") != vars.hwnd.betrayal_info.active))
+
+		If (vars.general.wMouse = vars.hwnd.betrayal_prioview.main) && vars.betrayal.members.HasKey(StrReplace(hover.1, "_progress")) 
 		{
 			If (StrReplace(hover.1, "_progress") = delay.1)
 				delay.2 += 1
@@ -378,83 +450,10 @@ Betrayal_Search(hotkey)
 		}
 		Else delay := ["", 0]
 
-		If xPrev && LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) && LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) ;only scan the screen if mouse has moved a bit
-		|| (vars.general.wMouse = vars.hwnd.betrayal_info.main) || !GetKeyState(hotkey, "P")
-			continue
-
-		member1 := "", division1 := "", LIST0 := ""
-		xPrev := vars.general.xMouse, yPrev := vars.general.yMouse ;mouse-position at the start of this loop
-		pHaystack := Gdip_BitmapFromHWND(vars.hwnd.poe_client, 1)
-
-		Loop, Files, % "img\Recognition ("vars.client.h "p)\Betrayal\*.bmp"
-		{
-			parse := SubStr(A_LoopFileName, 1, InStr(A_LoopFileName, ".") - 1)
-			If vars.betrayal.divisions.HasKey(parse) ;skip divisions and recently unassigned members
-				continue
-
-			If !vars.pics.betrayal_checks[parse]
-				vars.pics.betrayal_checks[parse] := LLK_ImageCache(A_LoopFilePath)
-			pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[parse])
-			width := Gdip_GetImageWidth(pNeedle)
-			x1 := (vars.general.xMouse - vars.client.x - vars.client.w/3 < 0) ? 0 : vars.general.xMouse - vars.client.x - vars.client.w/3
-			x2 := (vars.general.xMouse - vars.client.x + vars.client.w/3 > vars.client.w) ? vars.client.w - 1 : vars.general.xMouse - vars.client.x + vars.client.w/3
-			y1 := (vars.general.yMouse - vars.client.y - vars.client.h/4 < 0) ? 0 : vars.general.yMouse - vars.client.y - vars.client.h/4
-			y2 := (vars.general.yMouse - vars.client.y + vars.client.h/4 > vars.client.h) ? vars.client.h - 1 : vars.general.yMouse - vars.client.y + vars.client.h/4 > vars.client.h
-			result := Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation + 20,, 1, 1)
-			Gdip_DisposeImage(pNeedle)
-
-			If !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) ;if cursor was moved since the start, restart the loop
-				break
-
-			If (result > 0)
-			{
-				member1 := StrReplace(A_LoopFileName, ".bmp")
-				LIST0 := LIST "," width
-				Break
-			}
-		}
-
-
-		;if cursor was moved since the start or if there was no result, restart the loop
-		If !member1 || !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) || !GetKeyState(hotkey, "P")
-		{
-			Gdip_DisposeImage(pHaystack)
-			continue
-		}
-
-		For key, division in vars.betrayal.divisions.list ;scan the division
-		{
-			If !FileExist("img\Recognition ("vars.client.h "p)\Betrayal\"division ".bmp")
-				continue
-
-			If !vars.pics.betrayal_checks[division]
-				vars.pics.betrayal_checks[division] := LLK_ImageCache("img\Recognition (" vars.client.h "p)\Betrayal\" division ".bmp")
-			pNeedle := Gdip_CreateBitmapFromHBITMAP(vars.pics.betrayal_checks[division])
-			width := Gdip_GetImageWidth(pNeedle), result := Gdip_ImageSearch(pHaystack, pNeedle, LIST, x1, y1, x2, y2, vars.imagesearch.variation + 20,, 1, 1)
-			Gdip_DisposeImage(pNeedle)
-
-			If !LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) || !LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8) ;if cursor was moved since the start, restart the loop
-				break
-
-			If (result > 0)
-			{
-				division1 := division, LIST0 := LIST "," width
-				Break
-			}
-		}
-		Gdip_DisposeImage(pHaystack)
-
-		;make sure the cursor hasn't moved too much during the scan (to prevent extreme niche cases where members and divisions get mixed up)
-		If LLK_InRange(xPrev, vars.general.xMouse, settings.betrayal.sPrio/8) && LLK_InRange(yPrev, vars.general.yMouse, settings.betrayal.sPrio/8)
-		{
-			If member1
-				vars.betrayal.board[member1] := division1
-
-			If member1 && (member1 != vars.hwnd.betrayal_info.active)
-				Betrayal_Info(member1, division1)
-			Betrayal_Prioview()
-		}
+		Sleep 200
 	}
+
+	KeyWait, % hotkey
 	LLK_Overlay(vars.hwnd.betrayal_prioview.main, "destroy"), LLK_Overlay(vars.hwnd.betrayal_info.main, "destroy")
 	vars.hwnd.Delete("betrayal_info"), vars.hwnd.Delete("betrayal_prioview")
 }
