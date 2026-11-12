@@ -1,5 +1,13 @@
 [
   [
+	["1.65.3", 16503, 1],
+	"november 12, 2026",
+	"important update\n–> ggg has updated their tool policies with regards to screen reading\n–> this update (temporarily) removes/disables affected (sub-)features\n  - betrayal-info scan while holding omni-key\n  - clone-frames auto-hide feature\n  - vaal street & sanctum/sekhema auto toggle(/highlight)\n–> older versions will now technically be <use at your own risk>",
+	"act-tracker:\n–> added support for 3.30 gems & trees",
+	"enchant finder:\n–> updated for 3.30",
+	"betrayal-info:\n–> partially updated for 3.30"
+  ],
+  [
 	["1.65.2", 16502, 1],
 	"november 11, 2026",
 	"if you only play poe2, skip this and the following releases(/highlight)",
