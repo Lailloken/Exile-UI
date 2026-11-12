@@ -7,11 +7,11 @@
 		IniWrite, % "", % "ini" vars.poe_version "\clone frames.ini", settings
 
 	settings.cloneframes := {}, ini := IniBatchRead("ini" vars.poe_version "\clone frames.ini")
-	settings.cloneframes.gamescreen := !Blank(check := ini.settings["gamescreen toggle"]) ? check : (!Blank(check1 := ini.settings["enable pixel-check"]) ? (check1 ? 2 : check1) : 0)
-	settings.cloneframes.inventory := !Blank(check := ini.settings["inventory toggle"]) ? check : (!Blank(check1 := ini.settings["hide in inventory"]) ? check1 : 1)
+	settings.cloneframes.gamescreen := 0 ;!Blank(check := ini.settings["gamescreen toggle"]) ? check : (!Blank(check1 := ini.settings["enable pixel-check"]) ? (check1 ? 2 : check1) : 0)
+	settings.cloneframes.inventory := 0 ;!Blank(check := ini.settings["inventory toggle"]) ? check : (!Blank(check1 := ini.settings["hide in inventory"]) ? check1 : 1)
 	settings.cloneframes.speed := speed := !Blank(check := ini.settings["performance"]) ? check : 2
-	settings.cloneframes.toggle := !Blank(check := ini.settings.toggle) ? check : 1
-	settings.cloneframes.closebutton_toggle := !Blank(check := ini.settings["close button toggle"]) ? check : 0
+	settings.cloneframes.toggle := 1 ;!Blank(check := ini.settings.toggle) ? check : 1
+	settings.cloneframes.closebutton_toggle := 0 ; !Blank(check := ini.settings["close button toggle"]) ? check : 0
 
 	If !IsObject(vars.cloneframes)
 		vars.cloneframes := {"enabled": 0, "gamescreen": 0, "inventory": 0, "scroll": {}, "intervals": [200, 100, 50, 33]}

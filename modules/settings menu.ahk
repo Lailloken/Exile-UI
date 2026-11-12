@@ -1401,58 +1401,60 @@ Settings_cloneframes()
 	If (vars.cloneframes.list.Count() = 1)
 		Return
 
-	Gui, %GUI%: Add, Progress, % "Disabled Section BackgroundWhite x" xHeader + Max(wMax, wHeader) + xMargin " y" yHeader - 1 " w2 h" (hDivider := yLast + hLast - yHeader), 0
-	Gui, %GUI%: Font, bold underline
-	Gui, %GUI%: Add, Text, % "Section ys BackgroundTrans", % Lang_Trans("m_clone_hide")
-	Gui, %GUI%: Font, % "norm s" settings.general.fSize - 2
-	Gui, %GUI%: Add, Text, % "ys hp 0x200 Border BackgroundTrans cLime gSettings_cloneframes2 HWNDhwnd", % " " Lang_Trans("global_" (settings.cloneframes.toggle = 1 ? "global" : "custom")) " "
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-	vars.hwnd.settings.toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-info"] := hwnd1, handle := ""
-	Gui, %GUI%: Font, % "s" settings.general.fSize
-
-	Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd Center w" wDDL " BackgroundTrans", % Lang_Trans("global_inventory")
-	ControlGetPos, xHeader1, yHeader1, wHeader1, hHeader1,, % "ahk_id " hwnd
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
-	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"inventory": settings.cloneframes.inventory}})
+	If (1 = 2)
 	{
-		If (key = "settings_cloneframe")
-			Continue
-		DDL := [Lang_Trans("global_ignore"), Lang_Trans("global_hide"), Lang_Trans("global_show")]
-		Gui, %GUI%: Add, Text, % "xs wp h" settings.general.fHeight " Center 0x200 Border BackgroundTrans HWNDhwnd gSettings_cloneframes2 cLime", % DDL[val.inventory + 1]
+		Gui, %GUI%: Add, Progress, % "Disabled Section BackgroundWhite x" xHeader + Max(wMax, wHeader) + xMargin " y" yHeader - 1 " w2 h" (hDivider := yLast + hLast - yHeader), 0
+		Gui, %GUI%: Font, bold underline
+		Gui, %GUI%: Add, Text, % "Section ys BackgroundTrans", % Lang_Trans("m_clone_hide")
+		Gui, %GUI%: Font, % "norm s" settings.general.fSize - 2
+		Gui, %GUI%: Add, Text, % "ys hp 0x200 Border BackgroundTrans cLime gSettings_cloneframes2 HWNDhwnd", % " " Lang_Trans("global_" (settings.cloneframes.toggle = 1 ? "global" : "custom")) " "
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.ddl["inventory_" key] := {"cHWND": hwnd, "current": DDL[val.inventory + 1], "list": DDL.Clone(), "fSize": fSize - 2, "color": vars.settings.cButtons}
-		ControlGetPos, xLast1, yLast1, wLast1, hLast1,, % "ahk_id " hwnd
-		vars.hwnd.settings["inventory_" key] := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd1, handle .= "|"
-	}
-	Gui, %GUI%: Font, % "s" settings.general.fSize
+		vars.hwnd.settings.toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-info"] := hwnd1, handle := ""
+		Gui, %GUI%: Font, % "s" settings.general.fSize
 
-	Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w2 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
-	Gui, %GUI%: Add, Text, % "Section ys Center HWNDhwnd_info w" wDDL " BackgroundTrans", % Lang_Trans("m_screen_gamescreen")
-	ControlGetPos, xInfo, yInfo, wInfo, hInfo,, % "ahk_id " hwnd_info
-	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
-	For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
-	{
-		If (key = "settings_cloneframe")
-			Continue
-
-		DDL := [Lang_Trans("global_ignore"), Lang_Trans("global_hide"), Lang_Trans("global_show")]
-		Gui, %GUI%: Add, Text, % "xs wp h" settings.general.fHeight " Center 0x200 Border BackgroundTrans HWNDhwnd gSettings_cloneframes2 cLime", % DDL[val.gamescreen + 1]
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.ddl["gamescreen_" key] := {"cHWND": hwnd, "current": DDL[val.gamescreen + 1], "list": DDL.Clone(), "fSize": fSize - 2, "color": vars.settings.cButtons}
-		handle .= "|", vars.hwnd.settings["gamescreen_" key] := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd1
-	}
-
-	If vars.poe_version
-	{
+		Gui, %GUI%: Add, Text, % "Section xs HWNDhwnd Center w" wDDL " BackgroundTrans", % Lang_Trans("global_inventory")
+		ControlGetPos, xHeader1, yHeader1, wHeader1, hHeader1,, % "ahk_id " hwnd
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
-		Gui, %GUI%: Add, Text, % "Section xs x" xHeader1 - 1 " y+" settings.general.fWidth/2 " w" xInfo + wInfo - xHeader1 " hp 0x200 Center Border BackgroundTrans HWNDhwnd gSettings_cloneframes2" (settings.cloneframes.closebutton_toggle ? " cLime" : " cGray"), % " " Lang_Trans("m_clone_closetoggle") " "
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.hwnd.settings.closebutton_toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes close button toggle"] := hwnd1
+		For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"inventory": settings.cloneframes.inventory}})
+		{
+			If (key = "settings_cloneframe")
+				Continue
+			DDL := [Lang_Trans("global_ignore"), Lang_Trans("global_hide"), Lang_Trans("global_show")]
+			Gui, %GUI%: Add, Text, % "xs wp h" settings.general.fHeight " Center 0x200 Border BackgroundTrans HWNDhwnd gSettings_cloneframes2 cLime", % DDL[val.inventory + 1]
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+			vars.ddl["inventory_" key] := {"cHWND": hwnd, "current": DDL[val.inventory + 1], "list": DDL.Clone(), "fSize": fSize - 2, "color": vars.settings.cButtons}
+			ControlGetPos, xLast1, yLast1, wLast1, hLast1,, % "ahk_id " hwnd
+			vars.hwnd.settings["inventory_" key] := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd1, handle .= "|"
+		}
+		Gui, %GUI%: Font, % "s" settings.general.fSize
+
+		Gui, %GUI%: Add, Progress, % "Disabled Section ys BackgroundWhite w2 h" yLast1 + hLast1 - (yHeader + hHeader) - settings.general.fHeight/4, 0
+		Gui, %GUI%: Add, Text, % "Section ys Center HWNDhwnd_info w" wDDL " BackgroundTrans", % Lang_Trans("m_screen_gamescreen")
+		ControlGetPos, xInfo, yInfo, wInfo, hInfo,, % "ahk_id " hwnd_info
+		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
+		For key, val in (settings.cloneframes.toggle = 2 ? vars.cloneframes.list : {"global": {"gamescreen": settings.cloneframes.gamescreen}})
+		{
+			If (key = "settings_cloneframe")
+				Continue
+
+			DDL := [Lang_Trans("global_ignore"), Lang_Trans("global_hide"), Lang_Trans("global_show")]
+			Gui, %GUI%: Add, Text, % "xs wp h" settings.general.fHeight " Center 0x200 Border BackgroundTrans HWNDhwnd gSettings_cloneframes2 cLime", % DDL[val.gamescreen + 1]
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+			vars.ddl["gamescreen_" key] := {"cHWND": hwnd, "current": DDL[val.gamescreen + 1], "list": DDL.Clone(), "fSize": fSize - 2, "color": vars.settings.cButtons}
+			handle .= "|", vars.hwnd.settings["gamescreen_" key] := hwnd, vars.hwnd.help_tooltips["settings_cloneframes toggle-modes" handle] := hwnd1
+		}
+
+		If vars.poe_version
+		{
+			Gui, %GUI%: Font, % "s" settings.general.fSize - 2
+			Gui, %GUI%: Add, Text, % "Section xs x" xHeader1 - 1 " y+" settings.general.fWidth/2 " w" xInfo + wInfo - xHeader1 " hp 0x200 Center Border BackgroundTrans HWNDhwnd gSettings_cloneframes2" (settings.cloneframes.closebutton_toggle ? " cLime" : " cGray"), % " " Lang_Trans("m_clone_closetoggle") " "
+			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
+			vars.hwnd.settings.closebutton_toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes close button toggle"] := hwnd1
+		}
 	}
-	Gui, %GUI%: Font, % "s" settings.general.fSize
 
 	Gui, %GUI%: Font, % "cAqua bold s" settings.general.fSize - 2
-	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor . (vars.poe_version ? "" : " y" yLast + hLast + settings.general.fWidth/2) " w" (xInfo + wInfo - x_anchor) " BackgroundTrans", % Lang_Trans("m_clone_town")
+	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor . (vars.poe_version ? "" : " y" yLast + hLast + settings.general.fWidth/2) " w" settings.general.fWidth * vars.settings.min_width " BackgroundTrans", % Lang_Trans("m_clone_town")
 	Gui, %GUI%: Font, % "cWhite norm s" settings.general.fSize
 
 	Gui, %GUI%: Font, bold underline
