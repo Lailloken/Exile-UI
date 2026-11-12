@@ -131,11 +131,12 @@ Loop()
 
 	If !vars.pixelsearch.wait
 		For pixel in vars.pixelsearch.list
-			If (pixel = "close_button") && settings.cloneframes.closebutton_toggle && vars.cloneframes.enabled
-			|| (pixel = "gamescreen") && vars.cloneframes.gamescreen
-			|| (pixel = "inventory") && (vars.cloneframes.inventory || settings.features.iteminfo * settings.iteminfo.compare || vars.exchange.active || vars.sanctum.active_relics)
-				vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
-			Else vars.pixels[pixel] := 0
+			vars.pixels[pixel] := 0
+			;If (pixel = "close_button") && settings.cloneframes.closebutton_toggle && vars.cloneframes.enabled
+			;|| (pixel = "gamescreen") && vars.cloneframes.gamescreen
+			;|| (pixel = "inventory") && (vars.cloneframes.inventory || settings.features.iteminfo * settings.iteminfo.compare || vars.exchange.active || vars.sanctum.active_relics)
+			;	vars.pixels[pixel] := Screenchecks_PixelSearch(pixel)
+			;Else vars.pixels[pixel] := 0
 
 	If vars.pixels.Count() && ((check := json.dump({"clone-speed": Round(1000/vars.cloneframes.ms), "pixels": vars.pixels.Clone()})) != comms_last)
 	{

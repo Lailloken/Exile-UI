@@ -5946,9 +5946,11 @@ Settings_ScreenChecksValid(type := "")
 
 	valid := 1, active_pixel := {}, active_image := {}
 	For key, val in vars.pixelsearch.list
-		If (key = "gamescreen") && !vars.cloneframes.gamescreen
-		|| (key = "close_button") && !(vars.cloneframes.enabled && settings.cloneframes.closebutton_toggle)
-		|| (key = "inventory") && !(vars.cloneframes.inventory || settings.features.iteminfo * (settings.iteminfo.compare + settings.iteminfo.trigger) || settings.features.exchange || settings.features.sanctum * settings.sanctum.relics || settings.features.mapinfo * settings.mapinfo.trigger)
+		If (key = "inventory") && !(settings.features.iteminfo * settings.iteminfo.trigger)
+		|| (key = "gamescreen" || key = "close_button")
+		;If (key = "gamescreen") && !vars.cloneframes.gamescreen
+		;|| (key = "close_button") && !(vars.cloneframes.enabled && settings.cloneframes.closebutton_toggle)
+		;|| (key = "inventory") && !(vars.cloneframes.inventory || settings.features.iteminfo * (settings.iteminfo.compare + settings.iteminfo.trigger) || settings.features.exchange || settings.features.sanctum * settings.sanctum.relics || settings.features.mapinfo * settings.mapinfo.trigger)
 			Continue
 		Else valid *= vars.pixelsearch[key].color1 ? 1 : 0, active_pixel[key] := 1
 

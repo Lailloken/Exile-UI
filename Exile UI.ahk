@@ -864,7 +864,7 @@ Loop_main()
 			}
 		}
 	}
-	Else If !Mod(tick, 4)
+	Else If (1 = 2) ; !Mod(tick, 4)
 	{
 		If vars.cloneframes.enabled && vars.cloneframes.gamescreen
 			vars.pixels.gamescreen := Screenchecks_PixelSearch("gamescreen")

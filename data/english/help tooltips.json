@@ -1152,9 +1152,8 @@
       "(/highlight)you have to set up the <inventory> check in the <screen-checks> section"
     ],
     "screenchecks pixel-about": [
-      "the tool continually checks the screen for certain ui elements",
-      "this enables context sensitivity and automatic overlay toggling",
-      "(/highlight)these checks will never result in any interaction with the client"
+      "on certain inputs, the tool will check the screen for certain in-game ui elements",
+      "this enables context sensitivity and optimized overlay positioning but requires manual calibration"
     ],
     "screenchecks pixel-calibration": [
       "follow the instructions from <info> before clicking this",
