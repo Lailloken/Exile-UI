@@ -3285,15 +3285,15 @@ Leveltracker_Progress(mode := 0) ;advances the guide and redraws the overlay
 	If time
 	{
 		Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " w" wExp2,,, "hwnd.leveltracker.dummy01", [slop, 0, 0, 0, "override"],,, 0)
-		Gui_Label(GUI_back, "ys x+-1 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset", [0, 0, 0, 0, "override"],,, cButtons)
+		Gui_Label(GUI_back, "ys x+-1 w" 3*wButtons - 2,,, "hwnd.leveltracker.reset", [0, 0, 0, 0, "override"],,, 0)
 		Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy02", [0, slop, 0, 0, "override"],,, 0)
 	}
 	Gui, %GUI_back%: Add, Progress, % "xs x" wExp2 - 2 - fWidth/2 + (offset > 0 ? offset//2 : 0) . (time ? " y+1" : "") " BackgroundWhite HWNDhwnd0 w" fWidth/2 " h" fWidth/2, 0
 	vars.hwnd.leveltracker.drag := hwnd0
-	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"],,, (gear_rdy ? cButtons : 0))
-	Gui_Label(GUI_back, "ys x+-1 w" wButtons,,, "hwnd.leveltracker.-", [0, 0, 0, 0, "override"],,, cButtons)
-	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.?", [0, 0, 0, 0, "override"],,, cButtons)
-	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.+", [0, 0, 0, 0, "override"],,, cButtons)
+	Gui_Label(GUI_back, "Section xs" (offset > 0 ? " x" offset//2 : "") " yp-2 w" wExp2,,, "hwnd.leveltracker." (gear_rdy ? "gear_ready" : "dummy1"), [(!time && slop), 0, 0, 0, "override"],,, 0)
+	Gui_Label(GUI_back, "ys x+-1 w" wButtons,,, "hwnd.leveltracker.-", [0, 0, 0, 0, "override"],,, 0)
+	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.?", [0, 0, 0, 0, "override"],,, 0)
+	Gui_Label(GUI_back, "ys x+-1 wp",,, "hwnd.leveltracker.+", [0, 0, 0, 0, "override"],,, 0)
 	Gui_Label(GUI_back, "ys x+-1 w" wExp2,,, "hwnd.leveltracker.dummy2", [0, (!time && slop), 0, 0, "override"],,, 0)
 
 	Gui, %GUI_back%: Show, % "NA x10000 y10000"
