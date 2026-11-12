@@ -527,7 +527,8 @@
       "it will be available once a language-pack for the current language has been installed"
     ],
     "leveltracker enable": [
-      "automated campaign guide overlay and several qol features",
+      "campaign guide overlay and several qol features",
+      "reads the game's log-file to track your progress and switch pages automatically",
       "adds a button to the menu-widget that toggles the guide overlay"
     ],
     "leveltracker timer": [
@@ -841,8 +842,8 @@
       "guild hideout"
     ],
     "maptracker enable": [
-      "automated tracker for your map runs, and a log viewer with export tools",
-      "tracks map-times, deaths, portals, loot, kills, and certain types of side-content"
+      "tracker for your map runs, and a log viewer with export tools",
+      "reads the game's log-file to track map-times, deaths, portals, loot, kills, and certain types of side-content"
     ],
     "maptracker rename": [
       "boss maps will be tagged and renamed for easier searching/filtering",

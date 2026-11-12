@@ -4576,7 +4576,7 @@ Settings_menu(section := "", mode := 0, NA := 1) ;mode parameter is used when ma
 		For index, val in vars.settings.sections
 			vars.settings.sections2.Push(Lang_Trans("ms_" val, (vars.poe_version && val = "sanctum") ? 2 : 1))
 		If Blank(settings.general.theme) ;Gui_MsgBox during startup may be called before general/global settings have been loaded, so use placeholder defaults for now
-			settings.general.cButtons := "404040", settings.general.cButtons2 := "646464"
+			settings.general.cButtons := "404040", settings.general.cButtons2 := "646464", settings.general.fSize := 16, settings.general.fWidth := 11, settings.general.fHeight := 26
 		vars.settings.cButtons := "171750", vars.settings.cButtons2 := "252580", vars.settings.cButtons3 := "3030CC", vars.settings.min_width := 30, vars.settings.cEnabled := "Lime", vars.settings.cDisabled := "Gray"
 	}
 
@@ -5842,7 +5842,7 @@ Settings_screenchecks()
 		}
 	}
 	Else If !(active_pixel.Count() + active_image.Count())
-		Gui, %GUI%: Add, Text, % "Section xs cLime y+" vars.settings.spacing " w" settings.general.fWidth * vars.settings.min_width, % Lang_Trans("m_screen_inactive")
+		Gui, %GUI%: Add, Text, % "Section xs cLime y+" vars.settings.spacing " w" settings.general.fWidth * vars.settings.min_width " BackgroundTrans", % Lang_Trans("m_screen_inactive")
 }
 
 Settings_screenchecks2(cHWND := "")
