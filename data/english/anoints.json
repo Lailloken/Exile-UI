@@ -1,5 +1,5 @@
 {
-  "_timestamp": "2026-07-24, 07:30 (utc)",
+  "_timestamp": "2026-11-12, 14:00 (utc)",
   "amulets": {
     "Acrimony": {
       "recipe": "1, 10, 10",
@@ -256,7 +256,7 @@
       "recipe": "1, 7, 10",
       "stats": [
         "24% increased Melee Damage",
-        "+0.4 metres to Melee Strike-Range while at least 5 enemies are Nearby"
+        "+0.4 metres to Melee Strike-Range while at least 5 enemies within 6 metres"
       ]
     },
     "Asylum": {
@@ -821,7 +821,7 @@
       "recipe": "2, 4, 9",
       "stats": [
         "30% increased Damage Over Time with Bow Skills",
-        "Damaging Ailments deal damage 10% faster"
+        "Damaging Ailments deal damage 10% Faster"
       ]
     },
     "Deadly Inclinations": {
@@ -971,7 +971,7 @@
     "Dirty Techniques": {
       "recipe": "3, 11, 13",
       "stats": [
-        "Damaging Ailments deal damage 15% faster"
+        "Damaging Ailments deal damage 15% Faster"
       ]
     },
     "Disciple of the Forbidden": {
@@ -1519,8 +1519,8 @@
     "Glory of Command": {
       "recipe": "4, 7, 13",
       "stats": [
-        "40% increased Accuracy while you have at least 1 nearby Ally",
-        "15% increased Area-of-Effect for Attacks while you have at least 1 nearby Ally"
+        "40% increased Accuracy while you have an Ally within 6 metres",
+        "15% increased Area-of-Effect for Attacks while you have an Ally within 6 metres"
       ]
     },
     "Golem Commander": {
@@ -2663,7 +2663,7 @@
     "Savage Wounds": {
       "recipe": "5, 10, 13",
       "stats": [
-        "Bleeding you inflict deals Damage 15% faster"
+        "Bleeding you inflict deals Damage 15% Faster"
       ]
     },
     "Savagery": {
@@ -2675,7 +2675,7 @@
     "Searing Heat": {
       "recipe": "3, 6, 12",
       "stats": [
-        "Ignites you inflict deal Damage 15% faster"
+        "Ignites you inflict deal Damage 15% Faster"
       ]
     },
     "Season of Ice": {
@@ -2722,7 +2722,7 @@
     "Settling Ash": {
       "recipe": "1, 7, 13",
       "stats": [
-        "Nearby enemies are Covered in Ash if you haven't moved in the past 2 seconds"
+        "enemies within 6 metres are Covered in Ash if you haven't moved in the past 2 seconds"
       ]
     },
     "Shaman's Dominion": {
@@ -2966,7 +2966,7 @@
       "stats": [
         "Attacks used by Totems have 8% increased Attack Speed",
         "Attack Skills have +1 to maximum number of Summoned Ballista Totems",
-        "Each Totem applies 1% increased Damage taken to enemies near it"
+        "Each Totem applies 1% increased Damage taken to enemies within 3 metres"
       ]
     },
     "Survivalist": {
