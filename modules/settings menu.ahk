@@ -4756,7 +4756,7 @@ Settings_menu2(section, mode := 0, sub_section := "") ;mode parameter used when 
 			Settings_actdecoder()
 		Case "addons":
 			If sub_section
-				vars.addons.list[sub_section].func.Settings_menu()
+				vars.addons.list[sub_section].func.Settings_Open()
 			Else Settings_addons(mode)
 		Case "betrayal-info":
 			Settings_betrayal()

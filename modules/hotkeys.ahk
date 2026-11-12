@@ -210,6 +210,20 @@ Hotkeys_ESC()
 		Cheatsheet_Close()
 	Else If WinExist("ahk_id " vars.hwnd.iteminfo.main) || WinExist("ahk_id " vars.hwnd.iteminfo_markers.1)
 		Iteminfo_Close(1)
+	Else If vars.addons.enabled
+	{
+		consumed := passESC := 0
+		For key, val in vars.addons.list
+			If (consumed := val.func.ESC(passESC))
+				Break
+
+		If !consumed || passESC
+		{
+			SendInput, {ESC down}
+			KeyWait, ESC
+			SendInput, {ESC up}
+		}
+	}
 	Else
 	{
 		If vars.hwnd.async_pricing.main && WinExist("ahk_id " vars.hwnd.async_pricing.main)

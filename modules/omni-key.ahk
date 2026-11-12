@@ -57,7 +57,7 @@
 			Return
 		}
 
-		Switch Omni_Context()
+		Switch (context := Omni_Context())
 		{
 			Case "essences":
 				While GetKeyState(vars.omnikey.hotkey, "P") || !Blank(vars.omnikey.hotkey2) && GetKeyState(vars.omnikey.hotkey2, "P")
@@ -108,6 +108,9 @@
 				Anoints("stock")
 			Case "relics":
 				Sanctum_Relics()
+			Default:
+				If RegexMatch(context, "i)^addon ")
+					vars.addons.list[StrReplace(context, "addon ")].func.Omni_OnItem()
 		}
 	}
 	Else If Blank(vars.omnikey.hotkey2) || !Blank(vars.omnikey.hotkey2) && !InStr(A_ThisHotkey, Hotkeys_Convert(vars.omnikey.hotkey2)) ;prevent item-only omni-key from executing non-item features
@@ -216,6 +219,10 @@ Omnikey2()
 			}
 		}
 	}
+	Else If vars.addons.enabled
+		For key, val in vars.addons.list
+			If (active := val.func.Omni_OnBlank())
+				Break
 
 	If active
 	{
@@ -334,6 +341,12 @@ Omni_Context(mode := 0)
 
 	If WinExist("ahk_id " vars.hwnd.geartracker.main)
 		Return "geartracker"
+
+	If vars.addons.enabled
+		For key, val in vars.addons.list
+			If val.func.Omni_Context()
+				Return "addon " key
+
 	If !LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map", "Waystone", "Invitation", "Blueprint:", "Contract:", "Expedition Logbook"]) || LLK_PatternMatch(item.name "`n" item.itembase, "", ["Doryani", "Maple"])
 	|| (item.rarity = Lang_Trans("items_unique"))
 		Return "context_menu"
