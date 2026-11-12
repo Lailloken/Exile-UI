@@ -640,6 +640,8 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 
 	If !IsObject(vars.settings)
 		Settings_menu("init")
+	If (coords = "nodrag")
+		nodrag := 1, coords := ""
 
 	If (check := LLK_HasVal(vars.MsgBox, usecase,,,, 1))
 	{
@@ -677,7 +679,7 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 
 	If RegExMatch(title, "i)^\(color:.*\)")
 		color := SubStr(title, InStr(title, ":") + 1), color := SubStr(color, 1, InStr(color, ")") - 1), title := SubStr(title, InStr(title, ")") + 1)
-	Gui, %GUI%: Add, Text, % "Section x-1 y-1 w" 48*settings.general.fWidth " Center Border BackgroundTrans HWNDhwnd gGui_MsgBox" (color ? " c" color : ""), % LLK_StringCase(title)
+	Gui, %GUI%: Add, Text, % "Section x-1 y-1 w" 48*settings.general.fWidth " Center Border BackgroundTrans HWNDhwnd" (nodrag ? "" : " gGui_MsgBox") . (color ? " c" color : ""), % LLK_StringCase(title)
 	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
 	vars.MsgBox[usecase].hwnd.title := hwnd, vars.MsgBox[usecase].hwnd.close := hwnd1
 
@@ -686,18 +688,18 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 		If RegExMatch(val, "\(color:.*\)")
 			color := SubStr(val, InStr(val, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), val := StrReplace(val, "(color:" color ")"), color .= " "
 		Else color := "White "
-		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % LLK_StringCase(val)
+		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % (nodrag ? val : LLK_StringCase(val))
 	}
 
 	If !choices.Count()
 		choices := ["ok"]
 	For index, val in choices
-		dimensions.Push(Lang_Trans("global_" val))
+		check := Lang_Trans("global_" val), dimensions.Push(check ? check : val)
 	LLK_PanelDimensions(dimensions, settings.general.fSize, wButtons, hButtons)
 
 	For index, val in choices
 	{
-		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs x" 24*settings.general.fWidth - (choices.Count() = 1 ? wButtons/2 : wButtons + settings.general.fWidth//2) " y+" settings.general.fHeight//2 : "ys x+" settings.general.fWidth) " w" wButtons " Center Border BackgroundTrans HWNDhwnd gGUI_MsgBox", % Lang_Trans("global_" val)
+		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs x" 24*settings.general.fWidth - (choices.Count() = 1 ? wButtons/2 : wButtons + settings.general.fWidth//2) " y+" settings.general.fHeight//2 : "ys x+" settings.general.fWidth) " w" wButtons " Center Border BackgroundTrans HWNDhwnd gGUI_MsgBox", % ((check := Lang_Trans("global_" val)) ? check : val)
 		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 		vars.MsgBox[usecase].hwnd[val] := hwnd
 	}

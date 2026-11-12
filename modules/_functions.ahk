@@ -286,9 +286,12 @@ LLK_Error(ErrorMessage, restart := 0)
 
 LLK_FilePermissionError(issue, folder)
 {
-	local
-
-	Gui_MsgBox("file permission",, [Lang_Trans("m_permission_error1", (issue = "create" ? 1 : 2)) " " folder, Lang_Trans("m_permission_error1", 3) "`n" Lang_Trans("m_permission_error1", 4), Lang_Trans("m_permission_error1", 5) "`n" Lang_Trans("m_permission_error1", 6)])
+	array := ["The tool couldn't " issue " a file/folder: " folder
+		, "There seeem to be write-permission issues in the current folder location."
+		, "Try moving the tool to a different location or running it as administrator."
+		, "The tool will now close."]
+	Gui_MsgBox("file permission",, array, "nodrag")
+	ExitApp
 }
 
 LLK_FileRead(file, keep_case := 0, encoding := "65001")
