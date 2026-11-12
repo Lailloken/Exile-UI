@@ -549,6 +549,51 @@ type	=	player
 text	=	reduced leech: %
 ID	=	090
 
+[Area contains a buried Pandemonium Sentinel]
+type	=	area
+text	=	pand. sentinel
+ID	=	091
+
+[Area contains a buried Apex Sentinel]
+type	=	area
+text	=	apex sentinel
+ID	=	092
+
+[Area contains a buried Stalker Sentinel]
+type	=	area
+text	=	stalker sentinel
+ID	=	093
+
+[Area contains a Mirage]
+type	=	area
+text	=	mirage
+ID	=	094
+
+[Area contains the Viridian Wildwood]
+type	=	area
+text	=	wildwood
+ID	=	095
+
+[Area contains an Evocator of Beidat]
+type	=	area
+text	=	beidat evoc.
+ID	=	096
+
+[Area contains an Evocator of K'Tash]
+type	=	area
+text	=	k'tash evoc.
+ID	=	097
+
+[Area contains an Evocator of Ghorr]
+type	=	area
+text	=	ghorr evoc.
+ID	=	098
+
+[Area contains a Mirror of Delirium]
+type	=	area
+text	=	delirium
+ID	=	099
+
 [Rare monsters in area Temporarily Revive on death]
 type	=	monsters
 text	=	rares temp revive
