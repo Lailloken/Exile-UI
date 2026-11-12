@@ -1,18 +1,16 @@
 {
-  "timestamp": "2026-07-24 16:00:00",
+  "timestamp": "2026-11-12 19:15:00",
   "messages": [
     [
       {
-        "priority": 2,
-        "stamp": "2026-07-24 16:00:00",
-        "topic": "allflame league-start"
+        "priority": 3,
+        "stamp": "2026-11-12 19:15:00",
+        "topic": "updated ggg policies"
       },
-      "the 1.64.0 update for the allflame league is now available",
-      "it includes updated quest-reward info, which is very important if your build uses the faster attacks/casting support(s)",
-      "it also includes a routing change for the fairgraves fight in act 1 (based on ZiggyD's preview video)",
-      "these changes will be applied the next time you reset the guide",
-      "as with every league-start patch: if features don't activate correctly, you'll have to recalibrate their screen-checks",
-      "good luck, have fun!"
+      "ggg has updated their tool policies with regards to screen reading",
+      "v1.65.3 is now available and it disables affected (sub-)features: check the release notes for more information",
+      "older versions are now technically <use at your own risk>, so you should update as soon as possible",
+      "this update should also be more or less league-launch ready for tomorrow, but there might be another one (so keep an eye out)"
     ]
   ]
 }
