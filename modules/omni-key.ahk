@@ -291,8 +291,8 @@ Omni_Context(mode := 0)
 
 	If settings.features.lootfilter && (item.name || item.itembase) && (vars.hwnd.lootfilter.main && WinExist("ahk_id " vars.hwnd.lootfilter.main) || GetKeyState(settings.lootfilter.modifier_key, "P"))
 		Return "lootfilter"
-	If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
-		Return "recombination"
+	;If WinExist("ahk_id " vars.hwnd.recombination.main) && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
+	;	Return "recombination"
 	If WinExist("ahk_id "vars.hwnd.legion.main) && (item.itembase = "Timeless Jewel")
 		Return "legion"
 	If WinExist("ahk_id " vars.hwnd.notepad.main) && (vars.notepad.selected_entry = "gems") && (item.rarity = Lang_Trans("items_gem"))
@@ -430,13 +430,13 @@ Omni_ContextMenu()
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd2" style, % "craft of exile"
 					ControlGetPos,,, w4,,, % "ahk_id " hwnd2
 				}
-				If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
-					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
+				;If !vars.poe_version && LLK_PatternMatch(item.class, "", vars.recombination.classes,,, 0)
+				;	Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd3 " style, % "recombination"
 				If settings.features.anoints && RegExMatch(item.name, "^(Potent\s){0,1}(Diluted|Liquid|Concentrated)\s|\sOil$")
 					Gui, omni_context: Add, Text, % "Section xs gOmni_ContextMenuPick HWNDhwnd4 " style, % Lang_Trans("ms_anoints")
 
 				vars.hwnd.omni_context.wiki_class := hwnd, vars.omni_context[hwnd] := (class = "augment") ? (InStr(item.name, Lang_Trans("items_soul_core")) ? "soul core" : (InStr(item.name, Lang_Trans("items_idol")) ? "idol" : "rune")) : class, vars.hwnd.omni_context.poedb := hwnd1
-				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.recombination := hwnd3, vars.hwnd.omni_context.anoints := hwnd4
+				vars.hwnd.omni_context.craftofexile := hwnd2, vars.hwnd.omni_context.anoints := hwnd4 ;vars.hwnd.omni_context.recombination := hwnd3
 				width := (Max(w, w1, w2) > width) ? Max(w, w1, w2) : width
 			}
 			Else If (item.rarity = Lang_Trans("items_unique")) && !Blank(item.class) && !Blank(item.attributes)
