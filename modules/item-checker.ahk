@@ -164,7 +164,7 @@ Iteminfo(refresh := 0) ; refresh: 1 to refresh it normally, 2 for clipboard pars
 	Else UI.xPos := "", UI.yPos := "", vars[(refresh = 2) ? "omnikey" : "iteminfo"].clipboard := StrReplace(StrReplace(StrReplace(StrReplace(Clipboard, " (unmet)"), "maelström", "maelstrom"), " — " Lang_Trans("items_unscalable")), "&", "&&"), vars[(refresh = 2) ? "omnikey" : "iteminfo"].item := {}
 
 	clip := vars[(refresh = 2) ? "omnikey" : "iteminfo"].clipboard, item := vars[(refresh = 2) ? "omnikey" : "iteminfo"].item ;short-cut variables
-	Loop, % (!vars.poe_version && refresh = 2 && settings.general.lang_client != "english") ? 2 : 1
+	Loop, 1 ; (!vars.poe_version && refresh = 2 && settings.general.lang_client != "english") ? 2 : 1
 	{
 		If (A_Index = 2)
 		{
