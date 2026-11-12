@@ -1,5 +1,5 @@
 {
-  "_timestamp": "2026-07-22, 05:30 (utc)",
+  "_timestamp": "2026-11-12, 14:00 (utc)",
   "aisling": {
     "rewards": {
       "transportation": [
@@ -15,15 +15,15 @@
         "timed crafting:\nboots"
       ],
       "intervention": [
-        "torment scarabs",
-        "torment scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "cameria": {
     "rewards": {
       "transportation": [
-        "abyss scarabs",
+        "allflame embers:\ntype?",
         "ring"
       ],
       "fortification": [
@@ -35,15 +35,15 @@
         "timed crafting:\nring"
       ],
       "intervention": [
-        "delirium scarabs",
-        "sulphite scarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "elreon": {
     "rewards": {
       "transportation": [
-        "fragments",
+        "allflame embers:\ntype?",
         "shield"
       ],
       "fortification": [
@@ -55,8 +55,8 @@
         "timed crafting:\nshield"
       ],
       "intervention": [
-        "beyond scarabs",
-        "titanic scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -75,8 +75,8 @@
         "timed crafting:\nbody armors"
       ],
       "intervention": [
-        "divination scarabs",
-        "ritual scarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -95,8 +95,8 @@
         "timed crafting:\ngloves"
       ],
       "intervention": [
-        "blight scarabs",
-        "timed crafting:\nweapons"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -107,16 +107,16 @@
         "higher-rarity items"
       ],
       "fortification": [
-        "domination scarabs",
+        "allflame embers:\ntype?",
         "mixed items"
       ],
       "research": [
         "crafting bench:\ninfluence",
-        "anarchy scarabs"
+        "allflame embers:\ntype?"
       ],
       "intervention": [
-        "ambush scarabs",
-        "ambush scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -135,8 +135,8 @@
         "timed crafting:\nbelts"
       ],
       "intervention": [
-        "influenced scarabs",
-        "abyss scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -155,8 +155,8 @@
         "timed crafting:\njewels"
       ],
       "intervention": [
-        "breach scarabs",
-        "breach scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -167,23 +167,23 @@
         "basic currency"
       ],
       "fortification": [
-        "kalguuran scarabs",
+        "allflame embers:\ntype?",
         "quality currency"
       ],
       "research": [
         "unique vendor\n(gold prices)",
-        "essence scarabs"
+        "allflame embers:\ntype?"
       ],
       "intervention": [
-        "expedition scarabs",
-        "expedition scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "jorgin": {
     "rewards": {
       "transportation": [
-        "sulphite scarabs",
+        "allflame embers:\ntype?",
         "amulet"
       ],
       "fortification": [
@@ -195,15 +195,15 @@
         "timed crafting:\namulet"
       ],
       "intervention": [
-        "bestiary scarabs",
-        "bestiary scarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "korell": {
     "rewards": {
       "transportation": [
-        "anarchy scarabs",
+        "allflame embers:\ntype?",
         "helmet"
       ],
       "fortification": [
@@ -215,15 +215,15 @@
         "timed crafting\nhelmets"
       ],
       "intervention": [
-        "essence scarabs",
-        "elder scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "leo": {
     "rewards": {
       "transportation": [
-        "incursion scarabs",
+        "allflame embers:\ntype?",
         "flask"
       ],
       "fortification": [
@@ -232,11 +232,11 @@
       ],
       "research": [
         "crafting bench:\ndjinn vaal orb",
-        "harvest scarabs"
+        "allflame embers:\ntype?"
       ],
       "intervention": [
-        "ultimatum scrabs",
-        "ultimatum scarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -247,7 +247,7 @@
         "quiver"
       ],
       "fortification": [
-        "trapped chest:\nunique item",
+        "ancient orbs",
         "trapped chest:\nquivers"
       ],
       "research": [
@@ -255,8 +255,8 @@
         "fractured item"
       ],
       "intervention": [
-        "titanic scarabs",
-        "blight scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -267,16 +267,16 @@
         "map"
       ],
       "fortification": [
-        "trapped chest:\nunique map",
+        "various threads",
         "trapped chest:\nmaps"
       ],
       "research": [
-        "trapped chest:\nscarabs",
-        "beyond scarabs"
+        "trapped chest:\nvarious threads",
+        "allflame embers:\ntype?"
       ],
       "intervention": [
-        "cartography\nscarabs",
-        "cartography\nscarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -292,19 +292,19 @@
       ],
       "research": [
         "crafting bench:\ngem",
-        "domination scarabs"
+        "allflame embers:\ntype?"
       ],
       "intervention": [
-        "ritual scarabs",
-        "cartography\nscarabs"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
   "vagan": {
     "rewards": {
       "transportation": [
-        "trarthan scarabs",
-        "trarthan scarab"
+        "allflame embers:\ntype?",
+        "allflame embers:\ntype?"
       ],
       "fortification": [
         "trapped chest:\nenshrouded uniques",
@@ -315,8 +315,8 @@
         "timed crafting:\nweapon"
       ],
       "intervention": [
-        "legion scarabs",
-        "legion scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   },
@@ -331,12 +331,12 @@
         "apply jeweller's:\n10 / 15 / 20 / 30"
       ],
       "research": [
-        "chance + sour\nyour item",
+        "trapped chest:\nsoul core'd qual gems",
         "apply fusings:\n10 / 15 / 20 / 30"
       ],
       "intervention": [
-        "harvest scarabs",
-        "shaper scarab"
+        "trapped chest:\nuniques (class?)",
+        "trapped chest:\nrandom items (class?)"
       ]
     }
   }
