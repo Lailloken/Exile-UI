@@ -344,7 +344,7 @@ Omni_Context(mode := 0)
 
 	If vars.addons.enabled
 		For key, val in vars.addons.list
-			If val.func.Omni_Context()
+			If val.func.Omni_ItemContext()
 				Return "addon " key
 
 	If !LLK_PatternMatch(item.name "`n" item.itembase, "", ["Map", "Waystone", "Invitation", "Blueprint:", "Contract:", "Expedition Logbook"]) || LLK_PatternMatch(item.name "`n" item.itembase, "", ["Doryani", "Maple"])
