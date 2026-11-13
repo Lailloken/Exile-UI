@@ -4,8 +4,8 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
 <br>
 
 ## Download & Setup
-| [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Exile-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_download.png)](https://github.com/Lailloken/Exile-UI/archive/refs/heads/main.zip) | [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_releases.png)](https://github.com/Lailloken/Exile-UI/releases) |
-|---|---|---|---|
+| [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_autohotkey.png)](https://www.autohotkey.com/) | [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_guide.png)](https://github.com/Lailloken/Exile-UI/wiki) | [![img](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_download.png)](https://github.com/Lailloken/Exile-UI/archive/refs/heads/main.zip) |
+|---|---|---|
 
 ## Contributions
 | [![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_issues.png)](https://github.com/Lailloken/Exile-UI/issues/new) | ![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_code.png) | [![image](https://raw.githubusercontent.com/Lailloken/Exile-UI/main/img/readme/_translations.png)](https://github.com/Lailloken/Exile-UI/issues/326) |
@@ -37,7 +37,7 @@ A light-weight AHK overlay with UI and QoL features for Path of Exile 1 and 2, e
  
   - sends key-presses to copy item-info, or activate chat-commands and in-game searches
  
-  - checks screen-content for context-sensitivity to adapt the tool's behavior: it searches for open UIs (e.g. inventory, stash), `but it never reads/checks game-related values or bars`
+  - checks screen-content `on key-press` for context-sensitivity to adapt the tool's behavior: it searches for open UIs (e.g. inventory, stash) and activates features based on that
  
   - reads on-screen text `on key-press` to summarize the information and display it in customizable tooltips
  
