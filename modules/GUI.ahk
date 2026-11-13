@@ -710,7 +710,7 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 	Gui, %GUI%: Add, Progress, % "Disabled x-1 y" settings.general.fHeight - 2 " w" width " h" height - settings.general.fHeight + 1 " Border Background404040 cBlack", 100
 
 	xPos := (Blank(coords.1) ? vars.monitor.x + vars.monitor.w//2 - width/2 : coords.1), yPos := (Blank(coords.2) ? vars.monitor.y + vars.monitor.h//2 - height/2 : coords.2)
-	Gui, %GUI%: Show, % "x" (Blank(xPos) ? "Center" : xPos) " y" (Blank(yPos) ? "Center" : "yPos") 
+	Gui, %GUI%: Show, % "x" (Blank(xPos) ? "Center" : xPos) " y" (Blank(yPos) ? "Center" : yPos) 
 	LLK_Overlay(hwnd_msgbox, "show", 0, GUI)
 
 	While Blank(vars.MsgBox[usecase].choice)
