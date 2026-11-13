@@ -2,36 +2,44 @@
   "sc": {
     "ssf": {
       "normal": {
-        "standard": "Solo Self-Found"
+        "standard": "Solo Self-Found",
+        "umbra": "SSF Covens"
       },
       "ruthless": {
-        "standard": "SSF Ruthless"
+        "standard": "SSF Ruthless",
+        "umbra": "SSF R Covens"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Standard"
+        "standard": "Standard",
+        "umbra": "Covens"
       },
       "ruthless": {
-        "standard": "Ruthless"
+        "standard": "Ruthless",
+        "umbra": "Ruthless Covens"
       }
     }
   },
   "hc": {
     "ssf": {
       "normal": {
-        "standard": "Hardcore SSF"
+        "standard": "Hardcore SSF",
+        "umbra": "HC SSF Covens"
       },
       "ruthless": {
-        "standard": "Hardcore SSF Ruthless"
+        "standard": "Hardcore SSF Ruthless",
+        "umbra": "HC SSF R Covens"
       }
     },
     "trade": {
       "normal": {
-        "standard": "Hardcore"
+        "standard": "Hardcore",
+        "umbra": "Hardcore Covens"
       },
       "ruthless": {
-        "standard": "Hardcore Ruthless"
+        "standard": "Hardcore Ruthless",
+        "umbra": "HC Ruthless Covens"
       }
     }
   }
