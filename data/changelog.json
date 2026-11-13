@@ -1,5 +1,10 @@
 [
   [
+	["1.65.4", 16504, 1],
+	"november 13, 2026",
+	"fixed an oversight that could lead to crashes(/highlight)\n--> reminder <--\nread the v1.65.3 release notes about ggg policy update(/highlight)"
+  ],
+  [
 	["1.65.3", 16503, 1],
 	"november 12, 2026",
 	"important update\n–> ggg has updated their tool policies with regards to screen reading\n–> this update (temporarily) removes/disables affected (sub-)features\n  - betrayal-info scan while holding omni-key\n  - clone-frames auto-hide feature\n  - vaal street & sanctum/sekhema auto toggle(/highlight)\n–> older versions will now technically be <use at your own risk>",
