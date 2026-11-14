@@ -327,6 +327,8 @@
 		items_suffix			=	"Suffix Modifier"
 		items_suffix_allowed	=	"Suffix Modifier# allowed"
 		items_affix			=	""#""					;## in my limited testing, I only found Japanese to use something other than quotation marks (「#」)
+		items_rareonly			=	"Rare-only"				;## some special map-mods only roll on specific item-tiers (introduced in 3.30)
+		items_deliriumreward	=	"Delirium Reward Type:"		;## delirium map-mod states the reward (map-info leaves it out, though)
 		items_uniquemod		=	"Unique Modifier"
 		items_implicit			=	"Implicit Modifier"
 		items_implicit_anoint	=	"Enhancement"

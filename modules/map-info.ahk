@@ -350,12 +350,12 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 
 	Loop, Parse, clip, `;
 	{
-		If LLK_PatternMatch(A_LoopField, "{ ", [Lang_Trans("items_prefix"), Lang_Trans("items_suffix")])
+		If LLK_PatternMatch(A_LoopField, "{ ", [Lang_Trans("items_prefix"), Lang_Trans("items_suffix"), Lang_Trans("items_rareonly")])
 		{
 			mod_count += 1, texts := [], values := []
 			Loop, Parse, A_LoopField, `n
 			{
-				If (A_Index = 1) || (SubStr(A_LoopField, 1, 1) = "(")
+				If (A_Index = 1) || InStr(A_LoopField, Lang_Trans("items_deliriumreward")) || (SubStr(A_LoopField, 1, 1) = "(")
 					Continue
 				Mapinfo_Lineparse(Iteminfo_ModRangeRemove(A_LoopField), text, value)
 				texts.Push(text)

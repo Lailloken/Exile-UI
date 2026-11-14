@@ -576,17 +576,17 @@ ID	=	095
 
 [Area contains an Evocator of Beidat]
 type	=	area
-text	=	beidat evoc.
+text	=	beidat evocator
 ID	=	096
 
 [Area contains an Evocator of K'Tash]
 type	=	area
-text	=	k'tash evoc.
+text	=	k'tash evocator
 ID	=	097
 
 [Area contains an Evocator of Ghorr]
 type	=	area
-text	=	ghorr evoc.
+text	=	ghorr evocator
 ID	=	098
 
 [Area contains a Mirror of Delirium]
