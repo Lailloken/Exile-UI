@@ -66,7 +66,7 @@
 	{
 		If !oCheck
 			If !vars.poe_version
-				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "breach": [20, Round(height * (1/80))]
+				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "threads": [20, Round(height * (1/72))]
 				, "currency1": [24, Round(height * (1/90))], "currency2": [24, Round(height * (1/90))], "currency3": [24, Round(height * (1/90))], "blight": [24, Round(height * (1/60))]
 				, "delirium": [20, Round(height * (1/72))], "ultimatum": [20, Round(height * (1/90))]}
 				, "width": width, "buttons": Round(height * (1/36)), "buttons2": Round(height * (19/720))}

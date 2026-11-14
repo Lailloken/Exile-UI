@@ -1377,6 +1377,7 @@
 		m_stash_ritual			=	"ritual"
 		m_stash_abyss			=	"abyss"
 		m_stash_expedition		=	"expedition"
+		m_stash_threads		=	"threads"
 
 		m_stash_runes1			=	"runes"				;## the sub-tabs in the PoE2 fragments tab
 		m_stash_runes2			=	"kalguuran runes"

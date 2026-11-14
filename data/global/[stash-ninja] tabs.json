@@ -914,18 +914,6 @@
   ],
   "delirium": [
     [
-      "73",
-      "214",
-      "fine",
-      "fine-delirium-orb"
-    ],
-    [
-      "747",
-      "0",
-      "primal",
-      "primal-delirium-orb"
-    ],
-    [
       "295",
       "235",
       "simulacrum splinter",
@@ -950,12 +938,6 @@
       "cartographers-delirium-orb"
     ],
     [
-      "656",
-      "0",
-      "skittering",
-      "skittering-delirium-orb"
-    ],
-    [
       "745",
       "0",
       "armoursmith's",
@@ -974,12 +956,6 @@
       "jewellers-delirium-orb"
     ],
     [
-      "0",
-      "0",
-      "fragmented",
-      "fragmented-delirium-orb"
-    ],
-    [
       "654",
       "0",
       "whispering",
@@ -988,8 +964,8 @@
     [
       "0",
       "0",
-      "timeless",
-      "timeless-delirium-orb"
+      "threaded",
+      "threaded-delirium-orb"
     ],
     [
       "72",
@@ -1000,8 +976,8 @@
     [
       "0",
       "0",
-      "abyssal",
-      "abyssal-delirium-orb"
+      "fine",
+      "fine-delirium-orb"
     ],
     [
       "654",
@@ -1740,6 +1716,12 @@
       "weeping-essence-of-suffering"
     ],
     [
+      "704",
+      "0",
+      "essence of desolation",
+      "essence-of-desolation"
+    ],
+    [
       "770",
       "0",
       "essence of horror",
@@ -1774,6 +1756,12 @@
       "0",
       "3 wrath",
       "weeping-essence-of-wrath"
+    ],
+    [
+      "704",
+      "0",
+      "essence of trickery",
+      "essence-of-trickery"
     ],
     [
       "770",
@@ -1820,35 +1808,18 @@
   ],
   "fragments": [
     [
-      "116",
+      "202",
       "186",
       "tab_fragments"
     ],
     [
-      "284",
+      "368",
       "0",
-      "tab_scarabs"
-    ],
-    [
-      "452",
-      "0",
-      "tab_betrayal"
-    ],
-    [
-      "124",
-      "266",
-      "sacrifice at dusk",
-      "dusk"
-    ],
-    [
-      "0",
-      "0",
-      "sacrifice at midnight",
-      "mid"
+      "tab_threads"
     ],
     [
       "288",
-      "0",
+      "266",
       "veritania's crest",
       "veritanias-crest"
     ],
@@ -1871,32 +1842,8 @@
       "offer-dedication"
     ],
     [
-      "626",
-      "0",
-      "mortal grief",
-      "grie"
-    ],
-    [
-      "0",
-      "0",
-      "mortal rage",
-      "rage"
-    ],
-    [
-      "124",
-      "346",
-      "sacrifice at noon",
-      "noon"
-    ],
-    [
-      "0",
-      "0",
-      "sacrifice at dawn",
-      "dawn"
-    ],
-    [
       "288",
-      "0",
+      "346",
       "drox's crest",
       "droxs-crest"
     ],
@@ -1917,18 +1864,6 @@
       "0",
       "tribute to the goddess",
       "offer-tribute"
-    ],
-    [
-      "626",
-      "0",
-      "mortal ignorance",
-      "ign"
-    ],
-    [
-      "0",
-      "0",
-      "mortal hope",
-      "hope"
     ],
     [
       "154",
@@ -2147,7 +2082,7 @@
       "cosmic-fragment"
     ],
     [
-      "0",
+      "210",
       "0",
       "blazing fragment",
       "blazing-fragment"
@@ -2159,19 +2094,19 @@
       "reality-fragment"
     ],
     [
-      "0",
+      "374",
       "0",
       "decaying fragment",
       "decaying-fragment"
     ],
     [
-      "455",
+      "0",
       "0",
       "devouring fragment",
       "devouring-fragment"
     ],
     [
-      "0",
+      "537",
       "0",
       "synthesising fragment",
       "synthesising-fragment"
@@ -2183,7 +2118,7 @@
       "lonely-fragment"
     ],
     [
-      "0",
+      "700",
       "0",
       "traumatic fragment",
       "traumatic-fragment"
@@ -2195,12 +2130,96 @@
       "reverent-fragment"
     ]
   ],
+  "threads": [
+    [
+      "202",
+      "186",
+      "tab_fragments"
+    ],
+    [
+      "368",
+      "0",
+      "tab_threads"
+    ],
+    [
+      "226",
+      "512",
+      "ultimatum thread",
+      "ultimatum-thread"
+    ],
+    [
+      "0",
+      "0",
+      "ritual thread",
+      "ritual-thread"
+    ],
+    [
+      "0",
+      "0",
+      "legion thread",
+      "legion-thread"
+    ],
+    [
+      "500",
+      "0",
+      "incursion thread",
+      "incursion-thread"
+    ],
+    [
+      "0",
+      "0",
+      "expedition thread",
+      "expedition-thread"
+    ],
+    [
+      "226",
+      "620",
+      "breach thread",
+      "breach-thread"
+    ],
+    [
+      "0",
+      "0",
+      "blight thread",
+      "blight-thread"
+    ],
+    [
+      "0",
+      "0",
+      "betrayal thread",
+      "betrayal-thread"
+    ],
+    [
+      "500",
+      "0",
+      "bestiary thread",
+      "bestiary-thread"
+    ],
+    [
+      "0",
+      "0",
+      "abyss thread",
+      "abyss-thread"
+    ]
+  ],
   "ultimatum": [
     [
+      "320",
+      "224",
+      "sinistral",
+      "sinistral-catalyst"
+    ],
+    [
       "409",
-      "223",
+      "224",
       "tainted",
       "tainted-catalyst"
+    ],
+    [
+      "0",
+      "0",
+      "dextral",
+      "dextral-catalyst"
     ],
     [
       "276",
