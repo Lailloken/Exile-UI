@@ -1,69 +1,4 @@
 {
-  "betrayal": [
-    [
-      "116",
-      "186",
-      "tab_fragments"
-    ],
-    [
-      "284",
-      "0",
-      "tab_scarabs"
-    ],
-    [
-      "452",
-      "0",
-      "tab_betrayal"
-    ],
-    [
-      "272",
-      "505",
-      "allflame ember of resplendence",
-      "allflame-ember-of-resplendence"
-    ],
-    [
-      "0",
-      "0",
-      "allflame ember of kulemak",
-      "allflame-ember-of-kulemak"
-    ],
-    [
-      "453",
-      "0",
-      "allflame ember of the ethereal",
-      "allflame-ember-of-the-ethereal"
-    ],
-    [
-      "0",
-      "0",
-      "allflame ember of propagation",
-      "allflame-ember-of-propagation"
-    ],
-    [
-      "272",
-      "613",
-      "allflame ember of the gilded",
-      "allflame-ember-of-the-gilded"
-    ],
-    [
-      "0",
-      "0",
-      "allflame ember of flesh",
-      "allflame-ember-of-flesh"
-    ],
-    [
-      "453",
-      "0",
-      "allflame ember of the wildwood",
-      "allflame-ember-of-the-wildwood"
-    ],
-    [
-      "0",
-      "0",
-      "allflame ember of toads",
-      "allflame-ember-of-toads"
-    ]
-  ],
   "blight": [
     [
       "65",
@@ -179,7 +114,7 @@
       "tab_currency3"
     ],
     [
-      "46",
+      "84",
       "248",
       "scroll fragment",
       ""
@@ -198,15 +133,15 @@
     ],
     [
       "375",
-      "0",
-      "enkindling orb",
-      "enkindling-orb"
+      "262",
+      "hinekora's lock",
+      "hinekoras-lock"
     ],
     [
       "0",
       "0",
-      "instilling orb",
-      "instilling-orb"
+      "mirror of kalandra",
+      "mirror"
     ],
     [
       "553",
@@ -233,7 +168,7 @@
       "gcp"
     ],
     [
-      "46",
+      "84",
       "338",
       "orb of transmutation",
       "transmute"
@@ -247,35 +182,23 @@
     [
       "0",
       "0",
-      "orb of annulment",
-      "annul"
-    ],
-    [
-      "0",
-      "0",
-      "orb of chance",
-      "chance"
+      "orb of augmentation",
+      "aug"
     ],
     [
       "375",
       "0",
-      "exalted orb",
-      "exalted"
+      "divine orb",
+      "divine"
     ],
     [
       "0",
       "0",
-      "mirror of kalandra",
-      "mirror"
+      "mirror shard",
+      "mirror-shard"
     ],
     [
       "553",
-      "0",
-      "regal orb",
-      "regal"
-    ],
-    [
-      "0",
       "0",
       "orb of alchemy",
       "alch"
@@ -293,7 +216,13 @@
       "blessed"
     ],
     [
-      "46",
+      "0",
+      "0",
+      "sacred orb",
+      "sacred-orb"
+    ],
+    [
+      "84",
       "416",
       "transmutation shard",
       ""
@@ -307,56 +236,26 @@
     [
       "0",
       "0",
-      "annulment shard",
-      "annulment-shard"
-    ],
-    [
-      "0",
-      "0",
-      "orb of augmentation",
-      "aug"
+      "regal orb",
+      "regal"
     ],
     [
       "375",
       "0",
-      "exalted shard",
-      "exalted-shard"
+      "orb of annulment",
+      "annul"
     ],
     [
       "0",
       "0",
-      "mirror shard",
-      "mirror-shard"
+      "exalted orb",
+      "exalted"
     ],
     [
       "553",
       "0",
-      "regal shard",
-      "regal-shard"
-    ],
-    [
-      "0",
-      "0",
       "alchemy shard",
       ""
-    ],
-    [
-      "0",
-      "0",
-      "chaos shard",
-      "chaos-shard"
-    ],
-    [
-      "0",
-      "0",
-      "divine orb",
-      "divine"
-    ],
-    [
-      "46",
-      "505",
-      "fracturing orb",
-      "fracturing-orb"
     ],
     [
       "0",
@@ -377,30 +276,43 @@
       "chrome"
     ],
     [
-      "553",
-      "0","orb of scouring",
+      "84",
+      "506",
+      "fracturing orb",
+      "fracturing-orb"
+    ],
+    [
+      "0",
+      "0",
+      "instilling orb",
+      "instilling-orb"
+    ],
+    [
+      "0",
+      "0",
+      "enkindling orb",
+      "enkindling-orb"
+    ],
+    [
+      "586",
+      "0",
+      "orb of scouring",
       "scour"
     ],
     [
       "0",
       "0",
-      "sacred orb",
-      "sacred-orb"
+      "orb of regret",
+      "regret"
     ],
     [
       "0",
       "0",
-      "stacked deck",
-      "stacked-deck"
+      "orb of unmaking",
+      "orb-of-unmaking"
     ],
     [
-      "0",
-      "0",
-      "vaal orb",
-      "vaal"
-    ],
-    [
-      "46",
+      "84",
       "582",
       "fracturing shard",
       "fracturing-shard"
@@ -414,38 +326,26 @@
     [
       "0",
       "0",
-      "orb of binding",
-      "orb-of-binding"
+      "orb of chance",
+      "chance"
+    ],
+    [
+      "586",
+      "0",
+      "stacked deck",
+      "stacked-deck"
     ],
     [
       "0",
       "0",
-      "hinekora's lock",
-      "hinekoras-lock"
-    ],
-    [
-      "553",
-      "0",
-      "orb of regret",
-      "regret"
+      "vaal orb",
+      "vaal"
     ],
     [
       "0",
       "0",
-      "orb of unmaking",
-      "orb-of-unmaking"
-    ],
-    [
-      "0",
-      "0",
-      "veiled exalted orb",
-      "veiled-exalted-orb"
-    ],
-    [
-      "0",
-      "0",
-      "veiled chaos orb",
-      "veiled-chaos-orb"
+      "reflecting mist",
+      "reflecting-mist"
     ]
   ],
   "currency2": [
@@ -533,8 +433,8 @@
     [
       "375",
       "0",
-      "maven's chisel of scarabs",
-      "mavens-chisel-of-scarabs"
+      "maven's chisel of threads",
+      "mavens-chisel-of-threads"
     ],
     [
       "0",
@@ -561,13 +461,15 @@
       "elders-exalted-orb"
     ],
     [
-      "153",
+      "375",
       "400",
+      "divine vessel",
+      "divine-vessel",
       "templar astrolabe",
       "templar-astrolabe"
     ],
     [
-      "414",
+      "0",
       "0",
       "maven's chisel of avarice",
       "mavens-chisel-of-avarice"
@@ -585,22 +487,28 @@
       "awakeners-orb"
     ],
     [
-      "69",
+      "46",
       "478",
-      "grasping astrolabe",
-      "grasping-astrolabe"
-    ],
-    [
-      "153",
-      "0",
       "lightless astrolabe",
       "lightless-astrolabe"
     ],
     [
-      "236",
       "0",
-      "timeless astrolabe",
-      "timeless-astrolabe"
+      "0",
+      "grasping astrolabe",
+      "grasping-astrolabe"
+    ],
+    [
+      "0",
+      "0",
+      "nameless astrolabe",
+      "nameless-astrolabe"
+    ],
+    [
+      "0",
+      "0",
+      "fungal astrolabe",
+      "fungal-astrolabe"
     ],
     [
       "552",
@@ -627,22 +535,28 @@
       "orb-of-conflict"
     ],
     [
-      "69",
+      "46",
       "554",
-      "fungal astrolabe",
-      "fungal-astrolabe"
+      "chaotic astrolabe",
+      "chaotic-astrolabe"
     ],
     [
-      "153",
       "0",
-      "deceptive astrolabe",
-      "deceptive-astrolabe"
+      "0",
+      "timeless astrolabe",
+      "timeless-astrolabe"
     ],
     [
-      "236",
       "0",
-      "fruiting astrolabe",
-      "fruiting-astrolabe"
+      "0",
+      "runic astrolabe",
+      "runic-astrolabe"
+    ],
+    [
+      "0",
+      "0",
+      "immortal astrolabe",
+      "immortal-astrolabe"
     ],
     [
       "552",
@@ -669,22 +583,16 @@
       "exceptional-eldritch-ember"
     ],
     [
-      "69",
+      "124",
       "630",
-      "nameless astrolabe",
-      "nameless-astrolabe"
+      "feral astrolabe",
+      "feral-astrolabe"
     ],
     [
-      "153",
       "0",
-      "chaotic astrolabe",
-      "chaotic-astrolabe"
-    ],
-    [
-      "236",
       "0",
-      "runic astrolabe",
-      "runic-astrolabe"
+      "royal astrolabe",
+      "royal-astrolabe"
     ],
     [
       "552",
@@ -728,22 +636,52 @@
       "tab_currency3"
     ],
     [
-      "153",
-      "254",
+      "46",
+      "248",
       "wild crystallised lifeforce",
       "wild-lifeforce"
     ],
     [
-      "236",
+      "0",
       "0",
       "vivid crystallised lifeforce",
       "vivid-lifeforce"
     ],
     [
-      "338",
       "0",
-      "tainted chaos orb",
-      "tainted-chaos-orb"
+      "0",
+      "primal crystallised lifeforce",
+      "primal-lifeforce"
+    ],
+    [
+      "0",
+      "0",
+      "sacred crystallised lifeforce",
+      "sacred-lifeforce"
+    ],
+    [
+      "375",
+      "0",
+      "crystallised rancour",
+      "sandswept-lifeforce"
+    ],
+    [
+      "0",
+      "0",
+      "volatile vaal orb",
+      "tainted-divine-orb"
+    ],
+    [
+      "553",
+      "0",
+      "tainted blacksmith's whetstone",
+      "tainted-blacksmiths-whetstone"
+    ],
+    [
+      "0",
+      "0",
+      "tainted armourer's scrap",
+      "tainted-armourers-scrap"
     ],
     [
       "0",
@@ -754,41 +692,35 @@
     [
       "0",
       "0",
-      "tainted blacksmith's whetstone",
-      "tainted-blacksmiths-whetstone"
+      "tainted chaos orb",
+      "tainted-chaos-orb"
     ],
     [
-      "590",
-      "0",
+      "46",
+      "325",
       "foulborn orb of augmentation",
       "foulborn-orb-of-augmentation"
     ],
     [
-      "675",
+      "0",
+      "0",
+      "foulborn regal orb",
+      "foulborn-regal-orb"
+    ],
+    [
+      "0",
       "0",
       "foulborn exalted orb",
       "foulborn-exalted-orb"
     ],
     [
-      "153",
-      "334",
-      "primal crystallised lifeforce",
-      "primal-lifeforce"
+      "0",
+      "0",
+      "flesh of xesht",
+      "flesh-of-xesht"
     ],
     [
-      "236",
-      "0",
-      "sacred crystallised lifeforce",
-      "sacred-lifeforce"
-    ],
-    [
-      "338",
-      "0",
-      "tainted armourer's scrap",
-      "tainted-armourers-scrap"
-    ],
-    [
-      "0",
+      "375",
       "0",
       "tainted divine teardrop",
       "tainted-divine-teardrop"
@@ -800,37 +732,7 @@
       "tainted-mythic-orb"
     ],
     [
-      "590",
-      "0",
-      "foulborn regal orb",
-      "foulborn-regal-orb"
-    ],
-    [
-      "675",
-      "0",
-      "flesh of xesht",
-      "blessing-general"
-    ],
-    [
-      "152",
-      "414",
-      "crystallised rancour",
-      "sandswept-lifeforce"
-    ],
-    [
-      "236",
-      "0",
-      "volatile vaal orb",
-      "tainted-divine-orb"
-    ],
-    [
-      "338",
-      "414",
-      "tainted orb of fusing",
-      "tainted-orb-of-fusing"
-    ],
-    [
-      "0",
+      "586",
       "0",
       "tainted jeweller's orb",
       "tainted-jewellers-orb"
@@ -842,34 +744,172 @@
       "tainted-chromatic-orb"
     ],
     [
-      "152",
-      "502",
+      "0",
+      "0",
+      "tainted orb of fusing",
+      "tainted-orb-of-fusing"
+    ],
+    [
+      "46",
+      "416",
+      "refracting fog",
+      "cluster-fog"
+    ],
+    [
+      "0",
+      "0",
+      "royal visage",
+      "royal-visage"
+    ],
+    [
+      "0",
+      "0",
+      "tempering orb",
+      "tempering-orb"
+    ],
+    [
+      "0",
+      "0",
+      "tailoring orb",
+      "tailoring-orb"
+    ],
+    [
+      "375",
+      "0",
+      "veiled exalted orb",
+      "veiled-exalted-orb"
+    ],
+    [
+      "0",
+      "0",
+      "veiled chaos orb",
+      "veiled-chaos-orb"
+    ],
+    [
+      "553",
+      "0",
+      "soul core of instability",
+      "soul-core-of-instability"
+    ],
+    [
+      "0",
+      "0",
+      "soul core of might",
+      "soul-core-of-might"
+    ],
+    [
+      "0",
+      "0",
+      "soul core of finesse",
+      "soul-core-of-finesse"
+    ],
+    [
+      "0",
+      "0",
+      "soul core of intellect",
+      "soul-core-of-intellect"
+    ],
+    [
+      "84",
+      "520",
       "karui enshrouding crystal",
       "karui-enshrouding-crystal"
     ],
     [
-      "236",
+      "0",
+      "0",
+      "imperial enshrouding crystal",
+      "imperial-enshrouding-crystal"
+    ],
+    [
+      "0",
       "0",
       "vaal enshrouding crystal",
       "vaal-enshrouding-crystal"
     ],
     [
-      "152",
-      "580",
-      "imperial enshrouding crystal",
-      "imperial-enshrouding-crystal"
+      "553",
+      "0",
+      "allflame ember of kulemak",
+      "allflame-ember-of-kulemak"
     ],
     [
-      "236",
       "0",
+      "0",
+      "allflame ember of resplendence",
+      "allflame-ember-of-resplendence"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of propagation",
+      "allflame-ember-of-propagation"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of flesh",
+      "allflame-ember-of-flesh"
+    ],
+    [
+      "84",
+      "596",
       "templar enshrouding crystal",
       "templar-enshrouding-crystal"
     ],
     [
-      "195",
-      "660",
+      "0",
+      "0",
       "maraketh enshrouding crystal",
       "maraketh-enshrouding-crystal"
+    ],
+    [
+      "0",
+      "0",
+      "afarud enshrouding crystal",
+      "afarud-enshrouding-crystal"
+    ],
+    [
+      "553",
+      "0",
+      "allflame ember of the wildwood",
+      "allflame-ember-of-the-wildwood"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of the ethereal",
+      "allflame-ember-of-the-ethereal"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of the gilded",
+      "allflame-ember-of-the-gilded"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of toads",
+      "allflame-ember-of-toads"
+    ],
+    [
+      "586",
+      "672",
+      "allflame ember of the cloister",
+      "allflame-ember-of-the-cloister"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of the multitude",
+      "allflame-ember-of-the-multitude"
+    ],
+    [
+      "0",
+      "0",
+      "allflame ember of the divine",
+      "allflame-ember-of-the-divine"
     ]
   ],
   "delirium": [
@@ -2153,713 +2193,6 @@
       "0",
       "reverent fragment",
       "reverent-fragment"
-    ]
-  ],
-  "scarabs": [
-    [
-      "116",
-      "186",
-      "tab_fragments"
-    ],
-    [
-      "284",
-      "0",
-      "tab_scarabs"
-    ],
-    [
-      "452",
-      "0",
-      "tab_betrayal"
-    ],
-    [
-      "78",
-      "252",
-      "cartography scarab of escalation",
-      "cartography-scarab-of-escalation"
-    ],
-    [
-      "0",
-      "0",
-      "cartography scarab of risk",
-      "cartography-scarab-of-risk"
-    ],
-    [
-      "0",
-      "0",
-      "cartography scarab of the multitude",
-      "cartography-scarab-of-the-multitude"
-    ],
-    [
-      "0",
-      "0",
-      "cartography scarab of corruption",
-      "cartography-scarab-of-corruption"
-    ],
-    [
-      "402",
-      "0",
-      "influencing scarab of the shaper",
-      "influencing-scarab-of-the-shaper"
-    ],
-    [
-      "0",
-      "0",
-      "influencing scarab of the elder",
-      "influencing-scarab-of-the-elder"
-    ],
-    [
-      "0",
-      "0",
-      "influencing scarab of hordes",
-      "influencing-scarab-of-hordes"
-    ],
-    [
-      "0",
-      "0",
-      "Influencing Scarab of Interference",
-      "influencing-scarab-of-conversion"
-    ],
-    [
-      "678",
-      "0",
-      "titanic scarab",
-      "titanic-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of treasures",
-      "titanic-scarab-of-treasures"
-    ],
-    [
-      "0",
-      "0",
-      "of legend",
-      "titanic-scarab-of-legend"
-    ],
-    [
-      "78",
-      "316",
-      "divination scarab of the cloister",
-      "divination-scarab-of-the-cloister"
-    ],
-    [
-      "0",
-      "0",
-      "divination scarab of plenty",
-      "divination-scarab-of-plenty"
-    ],
-    [
-      "0",
-      "0",
-      "divination scarab of pilfering",
-      "divination-scarab-of-pilfering"
-    ],
-    [
-      "402",
-      "0",
-      "trarthan scarab",
-      "trarthan-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "trarthan scarab of infamy",
-      "trarthan-scarab-of-infamy"
-    ],
-    [
-      "0",
-      "0",
-      "trarthan scarab of renown",
-      "trarthan-scarab-of-renown"
-    ],
-    [
-      "0",
-      "0",
-      "trarthan scarab of surprising alliances",
-      "trarthan-scarab-of-surprising-alliances"
-    ],
-    [
-      "78",
-      "378",
-      "bestiary scarab",
-      "bestiary-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of the herd",
-      "bestiary-scarab-of-the-herd"
-    ],
-    [
-      "0",
-      "0",
-      "of duplicating",
-      "bestiary-scarab-of-duplicating"
-    ],
-    [
-      "402",
-      "0",
-      "abyss scarab",
-      "abyss-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of multitudes",
-      "abyss-scarab-of-multitudes"
-    ],
-    [
-      "0",
-      "0",
-      "of crystals",
-      "abyss-scarab-of-crystals"
-    ],
-    [
-      "0",
-      "0",
-      "of descending",
-      "abyss-scarab-of-emptiness"
-    ],
-    [
-      "0",
-      "0",
-      "of the consort",
-      "abyss-scarab-of-the-consort"
-    ],
-    [
-      "78",
-      "442",
-      "betrayal scarab",
-      "betrayal-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of the allflame",
-      "betrayal-scarab-of-the-allflame"
-    ],
-    [
-      "0",
-      "0",
-      "of reinforcements",
-      "betrayal-scarab-of-reinforcements"
-    ],
-    [
-      "0",
-      "0",
-      "of unbreaking",
-      "betrayal-scarab-of-perpetuation"
-    ],
-    [
-      "402",
-      "0",
-      "blight scarab",
-      "blight-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of the blightheart",
-      "blight-scarab-of-the-blightheart"
-    ],
-    [
-      "0",
-      "0",
-      "of blooming",
-      "blight-scarab-of-blooming"
-    ],
-    [
-      "0",
-      "0",
-      "of invigoration",
-      "blight-scarab-of-invigoration"
-    ],
-    [
-      "78",
-      "504",
-      "incursion scarab",
-      "incursion-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of invasion",
-      "incursion-scarab-of-invasion"
-    ],
-    [
-      "0",
-      "0",
-      "of champions",
-      "incursion-scarab-of-champions"
-    ],
-    [
-      "0",
-      "0",
-      "of timelines",
-      "incursion-scarab-of-timelines"
-    ],
-    [
-      "402",
-      "0",
-      "breach scarab of the hive",
-      "breach-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "breach scarab of instability",
-      "breach-scarab-of-lordship"
-    ],
-    [
-      "0",
-      "0",
-      "breach scarab of the marshal",
-      "breach-scarab-of-splintering"
-    ],
-    [
-      "0",
-      "0",
-      "breach scarab of the incensed swarm",
-      "breach-scarab-of-snares"
-    ],
-    [
-      "0",
-      "0",
-      "breach scarab of resonant cascade",
-      "breach-scarab-of-resonant-cascade"
-    ],
-    [
-      "78",
-      "568",
-      "sulphite scarab",
-      "sulphite-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of fumes",
-      "sulphite-scarab-of-fumes"
-    ],
-    [
-      "402",
-      "0",
-      "delirium scarab",
-      "delirium-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of mania",
-      "delirium-scarab-of-mania"
-    ],
-    [
-      "0",
-      "0",
-      "of paranoia",
-      "delirium-scarab-of-paranoia"
-    ],
-    [
-      "0",
-      "0",
-      "of neuroses",
-      "delirium-scarab-of-neuroses"
-    ],
-    [
-      "0",
-      "0",
-      "of delusions",
-      "delirium-scarab-of-delusions"
-    ],
-    [
-      "78",
-      "630",
-      "ambush scarab",
-      "ambush-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of hidden compartments",
-      "ambush-scarab-of-hidden-compartments"
-    ],
-    [
-      "0",
-      "0",
-      "of potency",
-      "ambush-scarab-of-potency"
-    ],
-    [
-      "0",
-      "0",
-      "of containment",
-      "ambush-scarab-of-containment"
-    ],
-    [
-      "0",
-      "0",
-      "of discernment",
-      "ambush-scarab-of-discernment"
-    ],
-    [
-      "402",
-      "0",
-      "expedition scarab",
-      "expedition-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of runefinding",
-      "expedition-scarab-of-runefinding"
-    ],
-    [
-      "0",
-      "0",
-      "of verisium powder",
-      "expedition-scarab-of-verisium-powder"
-    ],
-    [
-      "0",
-      "0",
-      "of infusion",
-      "expedition-scarab-of-the-skald"
-    ],
-    [
-      "0",
-      "0",
-      "of archaeology",
-      "expedition-scarab-of-archaeology"
-    ],
-    [
-      "78",
-      "694",
-      "anarchy scarab",
-      "anarchy-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of gigantification",
-      "anarchy-scarab-of-gigantification"
-    ],
-    [
-      "0",
-      "0",
-      "of partnership",
-      "anarchy-scarab-of-partnership"
-    ],
-    [
-      "0",
-      "0",
-      "anarchy scarab of the exceptional",
-      "anarchy-scarab-of-the-exceptional"
-    ],
-    [
-      "402",
-      "0",
-      "harvest scarab",
-      "harvest-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of doubling",
-      "harvest-scarab-of-doubling"
-    ],
-    [
-      "0",
-      "0",
-      "of cornucopia",
-      "harvest-scarab-of-cornucopia"
-    ],
-    [
-      "78",
-      "758",
-      "beyond scarab",
-      "beyond-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of haemophilia",
-      "beyond-scarab-of-haemophilia"
-    ],
-    [
-      "0",
-      "0",
-      "of resurgence",
-      "beyond-scarab-of-resurgence"
-    ],
-    [
-      "0",
-      "0",
-      "of the invasion",
-      "beyond-scarab-of-the-invasion"
-    ],
-    [
-      "402",
-      "0",
-      "kalguuran scarab",
-      "kalguuran-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of guarded riches",
-      "kalguuran-scarab-of-guarded-riches"
-    ],
-    [
-      "0",
-      "0",
-      "of refinement",
-      "kalguuran-scarab-of-refinement"
-    ],
-    [
-      "0",
-      "0",
-      "of enriching",
-      "kalguuran-scarab-of-enriching"
-    ],
-    [
-      "78",
-      "820",
-      "domination scarab",
-      "domination-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of apparitions",
-      "domination-scarab-of-apparitions"
-    ],
-    [
-      "0",
-      "0",
-      "of evolution",
-      "domination-scarab-of-evolution"
-    ],
-    [
-      "0",
-      "0",
-      "of terrors",
-      "domination-scarab-of-terrors"
-    ],
-    [
-      "402",
-      "0",
-      "legion scarab",
-      "legion-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of officers",
-      "legion-scarab-of-officers"
-    ],
-    [
-      "0",
-      "0",
-      "of treasures",
-      "legion-scarab-of-command"
-    ],
-    [
-      "0",
-      "0",
-      "of eternal conflict",
-      "legion-scarab-of-eternal-conflict"
-    ],
-    [
-      "78",
-      "884",
-      "essence scarab",
-      "essence-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of ascent",
-      "essence-scarab-of-ascent"
-    ],
-    [
-      "0",
-      "0",
-      "of stability",
-      "essence-scarab-of-stability"
-    ],
-    [
-      "0",
-      "0",
-      "of calcification",
-      "essence-scarab-of-calcification"
-    ],
-    [
-      "0",
-      "0",
-      "of adaptation",
-      "essence-scarab-of-adaptation"
-    ],
-    [
-      "402",
-      "0",
-      "ritual scarab of selectiveness",
-      "ritual-scarab-of-selectiveness"
-    ],
-    [
-      "0",
-      "0",
-      "ritual scarab of wisps",
-      "ritual-scarab-of-wisps"
-    ],
-    [
-      "0",
-      "0",
-      "ritual scarab of abundance",
-      "ritual-scarab-of-abundance"
-    ],
-    [
-      "0",
-      "0",
-      "ritual scarab of corpses",
-      "ritual-scarab-of-corpses"
-    ],
-    [
-      "78",
-      "946",
-      "torment scarab",
-      "torment-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of peculiarity",
-      "torment-scarab-of-peculiarity"
-    ],
-    [
-      "0",
-      "0",
-      "of possession",
-      "torment-scarab-of-possession"
-    ],
-    [
-      "402",
-      "0",
-      "ultimatum scarab",
-      "ultimatum-scarab"
-    ],
-    [
-      "0",
-      "0",
-      "of bribing",
-      "ultimatum-scarab-of-bribing"
-    ],
-    [
-      "0",
-      "0",
-      "of dueling",
-      "ultimatum-scarab-of-dueling"
-    ],
-    [
-      "0",
-      "0",
-      "of catalysing",
-      "ultimatum-scarab-of-catalysing"
-    ],
-    [
-      "0",
-      "0",
-      "of inscription",
-      "ultimatum-scarab-of-inscription"
-    ],
-    [
-      "722",
-      "410",
-      "scarab of monstrous lineage",
-      "scarab-of-monstrous-lineage"
-    ],
-    [
-      "722",
-      "464",
-      "scarab of adversaries",
-      "scarab-of-adversaries"
-    ],
-    [
-      "722",
-      "518",
-      "scarab of divinity",
-      "scarab-of-divinity"
-    ],
-    [
-      "722",
-      "572",
-      "scarab of the dextral",
-      "scarab-of-the-dextral"
-    ],
-    [
-      "722",
-      "626",
-      "scarab of the sinistral",
-      "scarab-of-bisection"
-    ],
-    [
-      "722",
-      "680",
-      "scarab of wisps",
-      "scarab-of-wisps"
-    ],
-    [
-      "722",
-      "734",
-      "scarab of radiant storms",
-      "scarab-of-radiant-storms"
-    ],
-    [
-      "722",
-      "788",
-      "scarab of stability",
-      "scarab-of-stability"
-    ],
-    [
-      "785",
-      "438",
-      "horned scarab of bloodlines",
-      "horned-scarab-of-bloodlines"
-    ],
-    [
-      "785",
-      "492",
-      "horned scarab of nemeses",
-      "horned-scarab-of-nemeses"
-    ],
-    [
-      "785",
-      "546",
-      "horned scarab of preservation",
-      "horned-scarab-of-preservation"
-    ],
-    [
-      "785",
-      "600",
-      "horned scarab of awakening",
-      "horned-scarab-of-awakening"
-    ],
-    [
-      "785",
-      "654",
-      "horned scarab of tradition",
-      "horned-scarab-of-tradition"
-    ],
-    [
-      "785",
-      "708",
-      "horned scarab of glittering",
-      "horned-scarab-of-glittering"
-    ],
-    [
-      "785",
-      "762",
-      "horned scarab of pandemonium",
-      "horned-scarab-of-pandemonium"
     ]
   ],
   "ultimatum": [

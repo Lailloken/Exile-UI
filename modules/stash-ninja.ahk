@@ -66,8 +66,8 @@
 	{
 		If !oCheck
 			If !vars.poe_version
-				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "scarabs": [32, Round(height//160)], "betrayal": [20, Round(height * (1/80))]
-				, "breach": [20, Round(height * (1/80))], "currency1": [24, Round(height * (1/90))], "currency2": [24, Round(height * (1/90))], "currency3": [24, Round(height * (1/90))], "blight": [24, Round(height * (1/60))]
+				vars.stash := {"currency": {}, "tabs": {"delve": [20, Round(height * (1/80))], "essences": [24, 4], "fragments": [24, Round(height * (1/72))], "breach": [20, Round(height * (1/80))]
+				, "currency1": [24, Round(height * (1/90))], "currency2": [24, Round(height * (1/90))], "currency3": [24, Round(height * (1/90))], "blight": [24, Round(height * (1/60))]
 				, "delirium": [20, Round(height * (1/72))], "ultimatum": [20, Round(height * (1/90))]}
 				, "width": width, "buttons": Round(height * (1/36)), "buttons2": Round(height * (19/720))}
 				, json_data := Json.Load(LLK_FileRead("data\global\[stash-ninja] tabs" vars.poe_version ".json"))
@@ -411,8 +411,8 @@ Stash_PriceFetch(tab)
 		If vars.poe_version
 			types := {"abyss": ["Fragments", "Abyss", "Ritual"], "breach": ["Catalysts", "Fragments"], "currency": ["Currency"], "delirium": ["Delirium", "Fragments", "Ritual"], "essences": ["Essences"], "expedition": ["Expedition", "Verisium"], "fragments": ["Fragments", "Breach", "Ritual"], "idols": ["Idols"]
 			, "ritual": ["Ritual"], "runes": ["Runes"], "soulcores": ["SoulCores"], "verisium": ["Verisium"], "uncutgems": ["UncutGems"]}
-		Else types :=  {"fragments": ["Fragment"], "scarabs": ["Scarab"], "currency": ["Currency", "Astrolabe", "EnshroudingCrystal"], "divcards": ["DivinationCard"]
-			, "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"], "betrayal": ["AllflameEmber"]}
+		Else types :=  {"fragments": ["Fragment"], "currency": ["Currency", "Astrolabe", "EnshroudingCrystal", "Fragment", "AllflameEmber"], "divcards": ["DivinationCard"]
+			, "delve": ["Fossil", "Resonator"], "essences": ["Essence"], "blight": ["Oil"], "delirium": ["DeliriumOrb"]}
 
 	If (tab = "flush") ; when changing leagues, flush prices first to avoid old prices carrying over
 	{
