@@ -1,8 +1,16 @@
 [
   [
+	["1.66.0", 16600],
+	"november 14, 2026",
+	"--> in case you missed it <--\nread the latest announcement above about the ggg policy update",
+	"map-info:\n–> added support for the new explicit mods",
+	"stash-ninja:\n–> updated for 3.30"
+  ],
+  [
 	["1.65.4", 16504, 1],
 	"november 13, 2026",
-	"fixed an oversight that could lead to crashes(/highlight)\n--> reminder <--\nread the v1.65.3 release notes about ggg policy update(/highlight)"
+	"fixed an oversight that could lead to crashes(/highlight)",
+	"--> in case you missed it <--\nread the latest announcement above about the ggg policy update"
   ],
   [
 	["1.65.3", 16503, 1],
