@@ -980,7 +980,7 @@
     "mapinfo requirements": [
       "specify desired min values for each roll",
       [
-        "quantity, rarity, pack size, maps, scarabs, currency",
+        "atlas drops, rarity, pack size, maps, scarabs, currency",
         "item rarity, pack size, monster rarity, monster effectiveness, waystone drop chance"
       ]
     ],
