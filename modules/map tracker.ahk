@@ -49,7 +49,7 @@
 	If !IsObject(vars.maptracker)
 	{
 		If !vars.poe_version
-			vars.maptracker := {"keywords": [], "mechanics": {"blight": 1, "delirium": 1, "expedition": 1, "legion": 2, "ritual": 2, "harvest": 1, "incursion": 1, "bestiary": 1, "betrayal": 1, "delve": 1, "ultimatum": 1, "maven": 1}}
+			vars.maptracker := {"keywords": [], "mechanics": {"blight": 1, "delirium": 1, "expedition": 1, "legion": 2, "ritual": 2, "incursion": 1, "bestiary": 1, "betrayal": 1, "delve": 1, "ultimatum": 1, "maven": 1, "mirage": 1}}
 		Else vars.maptracker := {"keywords": [], "mechanics": {"delirium": 1, "expedition": 2, "ritual": 2}}
 		If vars.poe_version
 			vars.maptracker.leagues := [["ea standard", 20241206, 20250403], ["ea dawn", 20250404, 20250828], ["ea abyss", 20250829, 20251211], ["ea vaal", 20251212, 20260525], ["ea aldur", 20260529, 20261231]]
