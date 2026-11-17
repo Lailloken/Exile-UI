@@ -1,148 +1,175 @@
 {
   "_bases": {
     "Abyssal Axe": "4",
-    "Abyssal Sceptre": "24",
-    "Accumulator Wand": "35",
+    "Abyssal Sceptre": "25",
+    "Accumulator Wand": "36",
+    "Adherent's Crown": "37",
     "Aegis Tulgraft": "17",
     "Aetherwind Gloves": "16",
     "Agate Amulet": "1",
-    "Alder Spiked Shield": "28",
-    "Alloyed Spiked Shield": "28",
-    "Alternating Sceptre": "24",
+    "Al-Hezmin's Head": "37",
+    "Alder Spiked Shield": "29",
+    "Alloyed Spiked Shield": "29",
+    "Alternating Sceptre": "25",
     "Amber Amulet": "1",
     "Ambush Boots": "7",
     "Ambush Mitts": "16",
     "Ambusher": "10",
     "Amethyst Flask": "15",
-    "Amethyst Ring": "27",
-    "Anarchic Spiritblade": "31",
-    "Ancestral Club": "23",
+    "Amethyst Ring": "28",
+    "Anarchic Spiritblade": "32",
+    "Ancestor's Club": "37",
+    "Ancestral Club": "24",
     "Ancient Gauntlets": "16",
     "Ancient Greaves": "7",
     "Ancient Mask": "18",
-    "Ancient Spirit Shield": "28",
-    "Ancient Sword": "31",
-    "Angelic Kite Shield": "28",
+    "Ancient Spirit Shield": "29",
+    "Ancient Sword": "32",
+    "Angelic Kite Shield": "29",
     "Antique Gauntlets": "16",
     "Antique Greaves": "7",
-    "Antique Rapier": "32",
+    "Antique Rapier": "33",
     "Ape Talisman": "2",
     "Apex Cleaver": "4",
-    "Apex Rapier": "32",
+    "Apex Rapier": "33",
     "Apothecary's Gloves": "16",
     "Apprentice Gloves": "16",
     "Aquamarine Flask": "15",
+    "Arachnid Egg Sac": "37",
+    "Arachnid Fangs": "37",
+    "Arachnid Leg": "37",
     "Arcane Vestment": "6",
     "Arcanist Gloves": "16",
     "Arcanist Slippers": "7",
     "Archdemon Crown": "18",
-    "Archon Kite Shield": "28",
+    "Archon Kite Shield": "29",
     "Arena Plate": "6",
+    "Aristocrat's Torso": "37",
     "Arming Axe": "3",
-    "Artillery Quiver": "26",
-    "Ashbark Tincture": "34",
+    "Armoured Leg": "37",
+    "Artificial Appendage": "37",
+    "Artillery Quiver": "27",
+    "Ashbark Tincture": "35",
     "Ashscale Talisman": "2",
     "Assassin Bow": "8",
     "Assassin's Boots": "7",
     "Assassin's Garb": "6",
     "Assassin's Mitts": "16",
-    "Assembler Wand": "35",
+    "Assembled Eye Jewel": "20",
+    "Assembler Wand": "36",
     "Astral Leather": "6",
     "Astral Plate": "6",
     "Astrolabe Amulet": "1",
     "Atonement Mask": "18",
-    "Auric Mace": "23",
+    "Auric Mace": "24",
     "Aventail Helmet": "18",
     "Avian Twins Talisman": "2",
     "Awl": "9",
-    "Banishing Blade": "33",
-    "Barbed Club": "23",
+    "Bandit Rogue's Head": "37",
+    "Bandit Warrior's Head": "37",
+    "Bandit Witch's Head": "37",
+    "Banishing Blade": "34",
+    "Baran's Head": "37",
+    "Barbed Club": "24",
     "Barbute Helmet": "18",
-    "Baroque Round Shield": "28",
+    "Baroque Round Shield": "29",
     "Basalt Flask": "15",
-    "Baselard": "31",
+    "Baselard": "32",
     "Basemetal Treads": "7",
-    "Basket Rapier": "32",
-    "Bastard Sword": "33",
-    "Battered Foil": "32",
+    "Basket Rapier": "33",
+    "Bastard Sword": "34",
+    "Bat's Wings": "37",
+    "Battered Foil": "33",
     "Battered Helm": "18",
     "Battering Uulgraft": "17",
-    "Battery Staff": "29",
-    "Battle Buckler": "28",
-    "Battle Hammer": "23",
+    "Battery Staff": "30",
+    "Battle Buckler": "29",
+    "Battle Hammer": "24",
     "Battle Lamellar": "6",
     "Battle Plate": "6",
-    "Battle Sword": "31",
-    "Behemoth Mace": "23",
+    "Battle Sword": "32",
+    "Bear Head": "37",
+    "Behemoth Mace": "24",
     "Bismuth Flask": "15",
     "Black Maw Talisman": "2",
     "Black Widow Talisman": "2",
-    "Bladed Mace": "23",
-    "Blasting Blade": "33",
-    "Blasting Wand": "35",
-    "Blazing Arrow Quiver": "26",
+    "Blackened Lungs": "37",
+    "Blackguard's Leg": "37",
+    "Bladed Mace": "24",
+    "Blasting Blade": "34",
+    "Blasting Wand": "36",
+    "Blazing Arrow Quiver": "27",
+    "Blazing Skull": "37",
     "Blinder": "9",
     "Blizzard Crown": "18",
     "Blood Raiment": "6",
-    "Blood Sap Tincture": "34",
-    "Blood Sceptre": "24",
+    "Blood Sap Tincture": "35",
+    "Blood Sceptre": "25",
     "Blood Viper Talisman": "2",
+    "Bloodied Arm": "37",
     "Blue Pearl Amulet": "1",
-    "Blunt Arrow Quiver": "26",
-    "Blunt Force Condenser": "25",
+    "Blunt Arrow Quiver": "27",
+    "Blunt Force Condenser": "26",
+    "Boar Head": "37",
     "Boarding Axe": "3",
     "Bone Armour": "6",
     "Bone Bow": "8",
     "Bone Circlet": "18",
     "Bone Helmet": "18",
-    "Bone Ring": "27",
-    "Bone Spirit Shield": "28",
+    "Bone Ring": "28",
+    "Bone Spirit Shield": "29",
     "Bonespire Talisman": "2",
-    "Boom Mace": "23",
+    "Bonestalker's Ribcage": "37",
+    "Boom Mace": "24",
     "Boot Blade": "11",
     "Boot Knife": "11",
-    "Borealwood Tincture": "34",
-    "Branded Kite Shield": "28",
-    "Brass Maul": "25",
-    "Brass Spirit Shield": "28",
-    "Breach Ring": "27",
+    "Borealwood Tincture": "35",
+    "Branded Kite Shield": "29",
+    "Brass Maul": "26",
+    "Brass Spirit Shield": "29",
+    "Breach Ring": "28",
     "Breakrib Talisman": "2",
     "Brimstone Treads": "7",
     "Broad Axe": "3",
-    "Broad Sword": "31",
-    "Broadhead Arrow Quiver": "26",
+    "Broad Sword": "32",
+    "Broadhead Arrow Quiver": "27",
+    "Broken Bust": "37",
     "Bronze Gauntlets": "16",
     "Bronze Plate": "6",
-    "Bronze Sceptre": "24",
-    "Bronze Tower Shield": "28",
+    "Bronze Sceptre": "25",
+    "Bronze Tower Shield": "29",
     "Bronzescale Boots": "7",
     "Bronzescale Gauntlets": "16",
-    "Buckskin Tower Shield": "28",
+    "Brute's Arm": "37",
+    "Buckskin Tower Shield": "29",
     "Buckskin Tunic": "6",
-    "Burnished Foil": "32",
-    "Burnished Spiked Shield": "28",
+    "Burnished Foil": "33",
+    "Burnished Spiked Shield": "29",
     "Butcher Axe": "3",
     "Butcher Knife": "11",
-    "Butcher Sword": "33",
+    "Butcher Sword": "34",
     "Cabalist Regalia": "6",
-    "Calling Wand": "35",
+    "Calcified Leg": "37",
+    "Calling Wand": "36",
     "Callous Mask": "18",
-    "Capacity Rod": "30",
-    "Capricious Spiritblade": "31",
-    "Cardinal Round Shield": "28",
+    "Capacity Rod": "31",
+    "Capricious Spiritblade": "32",
+    "Captain's Leg": "37",
+    "Cardinal Round Shield": "29",
     "Carnal Armour": "6",
     "Carnal Boots": "7",
     "Carnal Mitts": "16",
-    "Carnal Sceptre": "24",
+    "Carnal Sceptre": "25",
     "Carrion Queen Talisman": "2",
-    "Carved Wand": "35",
+    "Carved Haunches": "37",
+    "Carved Wand": "36",
     "Carving Knife": "11",
     "Cat's Paw": "9",
-    "Cedar Tower Shield": "28",
+    "Cedar Tower Shield": "29",
     "Ceremonial Axe": "3",
-    "Ceremonial Kite Shield": "28",
-    "Ceremonial Mace": "23",
-    "Cerulean Ring": "27",
+    "Ceremonial Kite Shield": "29",
+    "Ceremonial Mace": "24",
+    "Cerulean Ring": "28",
     "Chain Belt": "5",
     "Chain Boots": "7",
     "Chain Gloves": "16",
@@ -150,15 +177,21 @@
     "Chainmail Doublet": "6",
     "Chainmail Tunic": "6",
     "Chainmail Vest": "6",
-    "Champion Kite Shield": "28",
-    "Charan's Sword": "31",
+    "Champion Kite Shield": "29",
+    "Champion's Banner": "37",
+    "Chaos Golem's Core": "37",
+    "Charan's Sword": "32",
+    "Charred Leg": "37",
     "Chest Splitter": "3",
     "Chestplate": "6",
     "Chieftain Talisman": "2",
+    "Chimera's Head": "37",
+    "Chimeral Eye": "37",
     "Chimeral Talisman": "2",
     "Chimerascale Boots": "7",
     "Chimerascale Gauntlets": "16",
-    "Chiming Spirit Shield": "28",
+    "Chiming Spirit Shield": "29",
+    "Chitinous Leg": "37",
     "Chrysalis Talisman": "2",
     "Citadel Bow": "8",
     "Citrine Amulet": "1",
@@ -169,25 +202,28 @@
     "Cloth Belt": "5",
     "Cloudwhisper Boots": "7",
     "Clutching Talisman": "2",
+    "Coagulated Essence": "37",
     "Cobalt Jewel": "19",
+    "Cobra Tail": "37",
     "Cobra Talisman": "2",
-    "Cogwork Ring": "27",
-    "Coiled Staff": "30",
-    "Coiled Wand": "35",
-    "Cold-attuned Buckler": "28",
+    "Cogwork Ring": "28",
+    "Coiled Staff": "31",
+    "Coiled Wand": "36",
+    "Cold-attuned Buckler": "29",
     "Colossal Hybrid Flask": "14",
     "Colossal Life Flask": "12",
     "Colossal Mana Flask": "13",
-    "Colossal Tower Shield": "28",
+    "Colossal Tower Shield": "29",
     "Colosseum Plate": "6",
-    "Colossus Mallet": "25",
+    "Colossus Mallet": "26",
     "Commander's Brigandine": "6",
     "Composite Bow": "8",
-    "Composite Ring": "27",
+    "Composite Ring": "28",
     "Compound Bow": "8",
-    "Compound Spiked Shield": "28",
+    "Compound Spiked Shield": "29",
     "Cone Helmet": "18",
-    "Congregator Wand": "35",
+    "Congregator Wand": "36",
+    "Conjoined Hound Head": "37",
     "Conjurer Boots": "7",
     "Conjurer Gloves": "16",
     "Conjurer's Vestment": "6",
@@ -195,51 +231,58 @@
     "Conquest Chainmail": "6",
     "Conquest Helmet": "18",
     "Conquest Lamellar": "6",
-    "Convening Wand": "35",
-    "Convoking Wand": "35",
+    "Constrictor's Head": "37",
+    "Construct's Head": "37",
+    "Convening Wand": "36",
+    "Convoking Wand": "36",
     "Copper Kris": "11",
     "Copper Plate": "6",
-    "Copper Sword": "31",
-    "Copper Tower Shield": "28",
+    "Copper Sword": "32",
+    "Copper Tower Shield": "29",
     "Coral Amulet": "1",
-    "Coral Ring": "27",
+    "Coral Ring": "28",
     "Cord Belt": "5",
     "Coronal Leather": "6",
-    "Coronal Maul": "25",
-    "Corroded Blade": "33",
-    "Corroded Tower Shield": "28",
-    "Corrugated Buckler": "28",
-    "Corsair Sword": "31",
+    "Coronal Maul": "26",
+    "Corroded Blade": "34",
+    "Corroded Tower Shield": "29",
+    "Corrugated Buckler": "29",
+    "Corrupted Carapace": "37",
+    "Corsair Sword": "32",
     "Corundum Flask": "15",
-    "Corvine Charm": "22",
-    "Courtesan Sword": "32",
-    "Crack Mace": "23",
+    "Corvine Charm": "23",
+    "Courtesan Sword": "33",
+    "Coven Queen's Crown": "37",
+    "Crack Mace": "24",
     "Craicic Talisman": "2",
-    "Crescent Staff": "29",
-    "Crested Tower Shield": "28",
+    "Crescent Blade": "37",
+    "Crescent Staff": "30",
+    "Crested Tower Shield": "29",
     "Crimson Jewel": "19",
     "Crimson Raiment": "6",
-    "Crimson Round Shield": "28",
+    "Crimson Round Shield": "29",
     "Croaker Talisman": "2",
     "Crude Bow": "8",
     "Crusader Boots": "7",
-    "Crusader Buckler": "28",
+    "Crusader Buckler": "29",
     "Crusader Chainmail": "6",
     "Crusader Gloves": "16",
     "Crusader Helmet": "18",
     "Crusader Plate": "6",
-    "Crushing Force Magnifier": "25",
-    "Cryonic Ring": "27",
+    "Crushing Force Magnifier": "26",
+    "Crustacean's Claw": "37",
+    "Cryonic Ring": "28",
     "Crypt Armour": "6",
     "Crystal Belt": "5",
-    "Crystal Sceptre": "24",
-    "Crystal Wand": "35",
-    "Curved Blade": "33",
-    "Cutlass": "31",
+    "Crystal Sceptre": "25",
+    "Crystal Wand": "36",
+    "Curved Blade": "34",
+    "Cutlass": "32",
     "Cutthroat's Garb": "6",
+    "Cutthroat's Head": "37",
     "Dagger Axe": "4",
     "Darksteel Treads": "7",
-    "Darkwood Sceptre": "24",
+    "Darkwood Sceptre": "25",
     "Deadhand Talisman": "2",
     "Death Bow": "8",
     "Decimation Bow": "8",
@@ -248,124 +291,145 @@
     "Deep One Talisman": "2",
     "Deerskin Boots": "7",
     "Deerskin Gloves": "16",
+    "Defaced Bust": "37",
     "Deicide Mask": "18",
     "Demon Crown": "18",
     "Demon Dagger": "11",
-    "Demon's Horn": "35",
+    "Demon's Horn": "36",
     "Desert Brigandine": "6",
+    "Desert Queen's Crown": "37",
+    "Desert Sword": "37",
     "Despot Axe": "4",
+    "Despot's Fist": "37",
+    "Dessicated Head": "37",
     "Destiny Leather": "6",
     "Destroyer Regalia": "6",
     "Devourer Talisman": "2",
+    "Devourer's Antenna": "37",
     "Devout Chainmail": "6",
     "Diamond Flask": "15",
-    "Diamond Ring": "27",
+    "Diamond Ring": "28",
     "Dire Pelt": "18",
     "Disapprobation Axe": "3",
+    "Diseased Wing": "37",
+    "Distended Stomach": "37",
     "Divine Crown": "18",
     "Divine Life Flask": "12",
     "Divine Mana Flask": "13",
     "Double Axe": "4",
     "Double Claw": "9",
-    "Dragon Mace": "23",
-    "Dragonbone Rapier": "32",
+    "Dragon Mace": "24",
+    "Dragonbone Rapier": "33",
     "Dragonscale Boots": "7",
     "Dragonscale Doublet": "6",
     "Dragonscale Gauntlets": "16",
-    "Dragoon Sword": "32",
+    "Dragoon Sword": "33",
     "Draining Eshgraft": "17",
-    "Dread Maul": "25",
-    "Dream Mace": "23",
+    "Dread Maul": "26",
+    "Dream Mace": "24",
     "Dreamquest Slippers": "7",
-    "Driftwood Club": "23",
-    "Driftwood Maul": "25",
-    "Driftwood Sceptre": "24",
-    "Driftwood Spiked Shield": "28",
-    "Driftwood Wand": "35",
-    "Dusk Blade": "31",
-    "Dusk Ring": "27",
+    "Driftwood Club": "24",
+    "Driftwood Maul": "26",
+    "Driftwood Sceptre": "25",
+    "Driftwood Spiked Shield": "29",
+    "Driftwood Wand": "36",
+    "Drox's Head": "37",
+    "Dusk Blade": "32",
+    "Dusk Ring": "28",
     "Duskwalk Slippers": "7",
     "Eagle Claw": "9",
-    "Ebony Tower Shield": "28",
-    "Eclipse Staff": "29",
+    "Eater of Worlds' Head": "37",
+    "Ebony Tower Shield": "29",
+    "Eclipse Staff": "30",
     "Eelskin Boots": "7",
     "Eelskin Gloves": "16",
     "Eelskin Tunic": "6",
-    "Elder Sword": "31",
-    "Elegant Foil": "32",
+    "Elder Sword": "32",
+    "Elder's Head": "37",
+    "Elegant Foil": "33",
     "Elegant Ringmail": "6",
-    "Elegant Round Shield": "28",
-    "Elegant Sword": "31",
+    "Elegant Round Shield": "29",
+    "Elegant Sword": "32",
+    "Elemental Essence": "37",
     "Embroidered Gloves": "16",
-    "Enameled Buckler": "28",
-    "Endothermic Buckler": "28",
-    "Engraved Greatsword": "33",
+    "Enameled Buckler": "29",
+    "Endothermic Buckler": "29",
+    "Engorged Eye": "37",
+    "Engraved Greatsword": "34",
     "Engraved Hatchet": "3",
-    "Engraved Wand": "35",
-    "Enthalpic Ring": "27",
+    "Engraved Wand": "36",
+    "Enslaver's Head": "37",
+    "Enthalpic Ring": "28",
+    "Eradicator's Head": "37",
     "Erupting Xophgraft": "17",
-    "Estoc": "32",
-    "Etched Greatsword": "33",
+    "Estoc": "33",
+    "Etched Greatsword": "34",
     "Etched Hatchet": "3",
-    "Etched Kite Shield": "28",
+    "Etched Kite Shield": "29",
     "Eternal Burgonet": "18",
     "Eternal Life Flask": "12",
     "Eternal Mana Flask": "13",
-    "Eternal Sword": "31",
+    "Eternal Sword": "32",
     "Ethereal Blade": "10",
     "Ethereal Bow": "8",
-    "Eventuality Rod": "30",
-    "Exhausting Spirit Shield": "28",
-    "Exothermic Tower Shield": "28",
-    "Exquisite Blade": "33",
+    "Eventuality Rod": "31",
+    "Exhausting Spirit Shield": "29",
+    "Exothermic Tower Shield": "29",
+    "Exquisite Blade": "34",
     "Exquisite Leather": "6",
     "Eye Gouger": "9",
     "Ezomyte Axe": "4",
-    "Ezomyte Blade": "33",
+    "Ezomyte Blade": "34",
     "Ezomyte Burgonet": "18",
     "Ezomyte Dagger": "11",
-    "Ezomyte Spiked Shield": "28",
-    "Ezomyte Staff": "30",
-    "Ezomyte Tower Shield": "28",
+    "Ezomyte Spiked Shield": "29",
+    "Ezomyte Staff": "31",
+    "Ezomyte Tower Shield": "29",
     "Faithful Helmet": "18",
-    "Fancy Foil": "32",
+    "Fancy Foil": "33",
     "Fangjaw Talisman": "2",
     "Farric Talisman": "2",
-    "Faun's Horn": "35",
-    "Feathered Arrow Quiver": "26",
+    "Faun's Horn": "36",
+    "Feathered Arrow Quiver": "27",
     "Fencer Helm": "18",
     "Fenumal Talisman": "2",
     "Festival Mask": "18",
-    "Fickle Spiritblade": "31",
+    "Fickle Spiritblade": "32",
     "Field Lamellar": "6",
     "Fiend Dagger": "11",
     "Fingerless Silk Gloves": "16",
-    "Fir Round Shield": "28",
-    "Fire Arrow Quiver": "26",
+    "Fir Round Shield": "29",
+    "Fire Arrow Quiver": "27",
     "Fishscale Gauntlets": "16",
     "Flame Hellion Talisman": "2",
     "Flamecaller Xophgraft": "17",
-    "Flanged Mace": "23",
-    "Flare Mace": "23",
+    "Flaming Furnace": "37",
+    "Flaming Goat Hoof": "37",
+    "Flaming Ribbon": "37",
+    "Flanged Mace": "24",
+    "Flare Mace": "24",
     "Flashfire Blade": "11",
+    "Flayed Arm": "37",
+    "Flayed Visage": "37",
     "Flaying Knife": "10",
+    "Flesh-fused Lantern": "37",
     "Fleshripper": "4",
     "Flickerflame Blade": "11",
     "Fluted Bascinet": "18",
     "Focused Amulet": "1",
-    "Footman Sword": "33",
-    "Formless Ring": "27",
-    "Fossilised Spirit Shield": "28",
-    "Foul Staff": "30",
+    "Footman Sword": "34",
+    "Formless Ring": "28",
+    "Fossilised Spirit Shield": "29",
+    "Foul Staff": "31",
     "Foundry Bow": "8",
     "Freezing Tulgraft": "17",
     "Fright Claw": "9",
-    "Fright Maul": "25",
+    "Fright Maul": "26",
     "Frontier Leather": "6",
     "Frost Hellion Talisman": "2",
     "Fugitive Boots": "7",
-    "Fugitive Ring": "27",
-    "Fulgurite Tincture": "34",
+    "Fugitive Ring": "28",
+    "Fulgurite Tincture": "35",
     "Full Chainmail": "6",
     "Full Dragonscale": "6",
     "Full Leather": "6",
@@ -375,222 +439,252 @@
     "Full Wyrmscale": "6",
     "Full Wyvernscale": "6",
     "Gale Crown": "18",
+    "Galvanic Tentacle": "37",
+    "Gargantuan Claws": "37",
     "Gargantuan Talisman": "2",
-    "Gavel": "23",
+    "Gavel": "24",
+    "Gelid Fangs": "37",
     "Gemini Claw": "9",
-    "Gemstone Sword": "31",
+    "Gemling Torso": "37",
+    "Gemstone Sword": "32",
     "General's Brigandine": "6",
+    "General's Head": "37",
     "General's Helmet": "18",
-    "Geodesic Ring": "27",
+    "Geodesic Ring": "28",
     "Ghastly Eye Jewel": "20",
-    "Ghostflame Blade": "31",
+    "Ghostflame Blade": "32",
+    "Ghostly Claw": "37",
     "Giant Life Flask": "12",
     "Giant Mana Flask": "13",
     "Giantslayer Helmet": "18",
     "Gilded Axe": "4",
-    "Gilded Buckler": "28",
+    "Gilded Buckler": "29",
     "Gilded Sallet": "18",
-    "Girded Tower Shield": "28",
+    "Girded Tower Shield": "29",
     "Gladiator Helmet": "18",
     "Gladiator Plate": "6",
-    "Gladius": "31",
+    "Gladiator's Heart": "37",
+    "Gladius": "32",
     "Glass Shank": "10",
-    "Gloam Ring": "27",
+    "Gloam Ring": "28",
     "Glorious Leather": "6",
     "Glorious Plate": "6",
-    "Gnarled Branch": "29",
-    "Goat's Horn": "35",
+    "Gnarled Branch": "30",
+    "Goat's Horn": "36",
     "Goathide Boots": "7",
-    "Goathide Buckler": "28",
+    "Goathide Buckler": "29",
     "Goathide Gloves": "16",
     "Goatman Talisman": "2",
+    "Goatman's Horn": "37",
     "Gold Amulet": "1",
     "Gold Flask": "15",
-    "Gold Ring": "27",
-    "Golden Buckler": "28",
+    "Gold Ring": "28",
+    "Golden Ankh": "37",
+    "Golden Buckler": "29",
     "Golden Kris": "11",
     "Golden Mask": "18",
     "Golden Plate": "6",
+    "Golemic Stone": "37",
     "Goliath Gauntlets": "16",
     "Goliath Greaves": "7",
     "Goliath Talisman": "2",
     "Gouger": "9",
-    "Graceful Sword": "31",
+    "Graceful Sword": "32",
     "Grand Life Flask": "12",
     "Grand Mana Flask": "13",
     "Grand Ringmail": "6",
     "Granite Flask": "15",
-    "Grappler": "31",
+    "Grappler": "32",
     "Grasping Mail": "6",
     "Great Crown": "18",
     "Great Helmet": "18",
-    "Great Mallet": "25",
+    "Great Mallet": "26",
     "Great Maw Talisman": "2",
     "Great White Claw": "9",
     "Greater Life Flask": "12",
     "Greater Mana Flask": "13",
     "Greatwolf Talisman": "2",
-    "Grinning Fetish": "24",
+    "Grinning Fetish": "25",
     "Gripped Gloves": "16",
     "Grizzly Pelt": "18",
     "Grove Bow": "8",
     "Guarding Gauntlets": "16",
     "Gut Ripper": "9",
     "Gutting Knife": "10",
+    "Hag's Head": "37",
+    "Hag's Stomach": "37",
+    "Hallowed Descry": "37",
     "Hallowed Hybrid Flask": "14",
     "Hallowed Life Flask": "12",
     "Hallowed Mana Flask": "13",
-    "Hammered Buckler": "28",
+    "Hammered Buckler": "29",
     "Harbinger Bow": "8",
     "Hardening Uulgraft": "17",
     "Harlequin Mask": "18",
-    "Harmonic Spirit Shield": "28",
-    "Harpy Rapier": "32",
+    "Harmonic Spirit Shield": "29",
+    "Harpy Rapier": "33",
     "Harpyskin Boots": "7",
     "Harpyskin Gloves": "16",
     "Haunted Bascinet": "18",
-    "Headman's Sword": "33",
+    "Headman's Sword": "34",
     "Headsman Axe": "4",
-    "Heat-attuned Tower Shield": "28",
-    "Heathen Wand": "35",
-    "Heavy Arrow Quiver": "26",
+    "Heat-attuned Tower Shield": "29",
+    "Heathen Wand": "36",
+    "Heavy Arrow Quiver": "27",
     "Heavy Belt": "5",
     "Hedron Bow": "8",
-    "Helical Ring": "27",
+    "Helical Ring": "28",
     "Hellion's Paw": "9",
+    "Heretical Tome": "37",
     "Hexclaw Talisman": "2",
     "Highborn Bow": "8",
-    "Highborn Staff": "29",
-    "Highland Blade": "33",
+    "Highborn Staff": "30",
+    "Highland Blade": "34",
+    "Hollowed Skull": "37",
     "Hollowpoint Dagger": "10",
     "Holy Chainmail": "6",
     "Honed Cleaver": "4",
-    "Hook Sword": "31",
-    "Horned Sceptre": "24",
+    "Hook Sword": "32",
+    "Horned Sceptre": "25",
     "Horned Talisman": "2",
     "Hubris Circlet": "18",
     "Hunter Hood": "18",
     "Hussar Brigandine": "6",
     "Hybrid Arachnid Talisman": "2",
+    "Hydra's Head": "37",
     "Hydrascale Boots": "7",
     "Hydrascale Gauntlets": "16",
     "Hypnotic Eye Jewel": "20",
-    "Imbued Wand": "35",
+    "Imbued Wand": "36",
     "Imp Crown": "18",
     "Imp Dagger": "11",
-    "Impact Force Propagator": "25",
+    "Impact Force Propagator": "26",
     "Impaling Uulgraft": "17",
     "Imperial Bow": "8",
-    "Imperial Buckler": "28",
+    "Imperial Buckler": "29",
     "Imperial Claw": "9",
-    "Imperial Maul": "25",
+    "Imperial Maul": "26",
     "Imperial Skean": "11",
-    "Imperial Staff": "29",
+    "Imperial Staff": "30",
+    "Incarnation of Dread's Head": "37",
+    "Incarnation of Fear's Head": "37",
+    "Incarnation of Neglect's Cube": "37",
     "Infantry Brigandine": "6",
+    "Infected Leg": "37",
     "Infernal Axe": "3",
     "Infernal Blade": "11",
-    "Infernal Sword": "33",
+    "Infernal Sword": "34",
+    "Infested Torso": "37",
     "Infiltrator Boots": "7",
     "Infiltrator Mitts": "16",
-    "Iolite Ring": "27",
+    "Inquisitor's Claw": "37",
+    "Inquisitor's Head": "37",
+    "Iolite Ring": "28",
     "Iron Circlet": "18",
     "Iron Flask": "15",
     "Iron Gauntlets": "16",
     "Iron Greaves": "7",
     "Iron Hat": "18",
     "Iron Mask": "18",
-    "Iron Ring": "27",
-    "Iron Sceptre": "24",
-    "Iron Staff": "30",
+    "Iron Ring": "28",
+    "Iron Sceptre": "25",
+    "Iron Staff": "31",
     "Ironscale Boots": "7",
     "Ironscale Gauntlets": "16",
-    "Ironwood Buckler": "28",
-    "Ironwood Tincture": "34",
+    "Ironwood Buckler": "29",
+    "Ironwood Tincture": "35",
     "Ivory Bow": "8",
-    "Ivory Spirit Shield": "28",
+    "Ivory Spirit Shield": "29",
     "Jade Amulet": "1",
     "Jade Chopper": "4",
     "Jade Flask": "15",
     "Jade Hatchet": "3",
-    "Jagged Foil": "32",
-    "Jagged Maul": "25",
+    "Jagged Foil": "33",
+    "Jagged Maul": "26",
     "Jasper Axe": "3",
     "Jasper Chopper": "4",
     "Jester Mask": "18",
-    "Jewelled Foil": "32",
-    "Jingling Spirit Shield": "28",
+    "Jewelled Foil": "33",
+    "Jingling Spirit Shield": "29",
     "Jolting Eshgraft": "17",
-    "Judgement Staff": "30",
+    "Judgement Staff": "31",
+    "Justicar's Helm": "37",
     "Karui Axe": "3",
     "Karui Chopper": "4",
-    "Karui Maul": "25",
-    "Karui Sceptre": "24",
-    "Keyblade": "33",
-    "Kinetic Wand": "35",
+    "Karui Maul": "26",
+    "Karui Sceptre": "25",
+    "Keyblade": "34",
+    "Kinetic Wand": "36",
+    "King Crab's Claw": "37",
     "Knight Helm": "18",
     "Labrys": "4",
-    "Lacewood Spirit Shield": "28",
-    "Lacquered Buckler": "28",
+    "Lacewood Spirit Shield": "29",
+    "Lacquered Buckler": "29",
     "Lacquered Garb": "6",
     "Lacquered Helmet": "18",
-    "Laminated Kite Shield": "28",
+    "Laminated Kite Shield": "29",
     "Lapis Amulet": "1",
     "Large Cluster Jewel": "21",
     "Large Hybrid Flask": "14",
     "Large Life Flask": "12",
     "Large Mana Flask": "13",
-    "Lathi": "29",
+    "Lathi": "30",
     "Latticed Ringmail": "6",
-    "Layered Kite Shield": "28",
-    "Lead Sceptre": "24",
+    "Layered Kite Shield": "29",
+    "Lead Sceptre": "25",
     "Leather Belt": "5",
     "Leather Cap": "18",
     "Leather Hood": "18",
     "Leatherscale Boots": "7",
     "Legion Boots": "7",
     "Legion Gloves": "16",
-    "Legion Hammer": "23",
+    "Legion Hammer": "24",
     "Legion Plate": "6",
-    "Legion Sword": "31",
+    "Legion Sword": "32",
     "Leviathan Gauntlets": "16",
     "Leviathan Greaves": "7",
     "Leyline Gloves": "16",
     "Lich's Circlet": "18",
     "Light Brigandine": "6",
-    "Linden Kite Shield": "28",
+    "Linden Kite Shield": "29",
     "Lion Pelt": "18",
-    "Lion Sword": "33",
-    "Lithe Blade": "33",
+    "Lion Sword": "34",
+    "Lion's Claws": "37",
+    "Lithe Blade": "34",
+    "Lithic Haunches": "37",
     "Lone Antler Talisman": "2",
     "Long Bow": "8",
-    "Long Staff": "29",
-    "Longsword": "33",
+    "Long Staff": "30",
+    "Longsword": "34",
     "Longtooth Talisman": "2",
     "Lordly Plate": "6",
     "Loricated Ringmail": "6",
+    "Lunar Bow": "37",
     "Lunaris Circlet": "18",
-    "Lupine Charm": "22",
+    "Lupine Charm": "23",
     "Lynx Talisman": "2",
-    "Maelstrom Staff": "30",
+    "Maelstrom Staff": "31",
     "Mage's Vestment": "6",
     "Magistrate Crown": "18",
     "Magma Hound Talisman": "2",
-    "Magmatic Tower Shield": "28",
-    "Mahogany Tower Shield": "28",
+    "Magmatic Tower Shield": "29",
+    "Mahogany Tower Shield": "29",
     "Majestic Pelt": "18",
     "Majestic Plate": "6",
     "Malign Fangs": "9",
-    "Mallet": "25",
+    "Mallet": "26",
     "Maltreatment Axe": "3",
     "Mandible Talisman": "2",
-    "Manifold Ring": "27",
-    "Maple Round Shield": "28",
+    "Manifold Ring": "28",
+    "Maple Round Shield": "29",
     "Maraketh Bow": "8",
     "Marble Amulet": "1",
+    "Mariner's Tricorne": "37",
     "Marshall's Brigandine": "6",
     "Martyr Boots": "7",
     "Martyr Gloves": "16",
-    "Meatgrinder": "25",
+    "Maven's Orrery": "37",
+    "Meatgrinder": "26",
     "Mechalarm Belt": "5",
     "Mechanical Belt": "5",
     "Medium Cluster Jewel": "21",
@@ -600,166 +694,190 @@
     "Mesh Boots": "7",
     "Mesh Gloves": "16",
     "Micro-Distillery Belt": "5",
-    "Midnight Blade": "31",
-    "Military Staff": "30",
+    "Midnight Blade": "32",
+    "Military Staff": "31",
     "Mind Cage": "18",
-    "Mirrored Spiked Shield": "28",
+    "Minotaur's Head": "37",
+    "Mirrored Spiked Shield": "29",
+    "Molten Core": "37",
     "Molten Xophgraft": "17",
     "Monkey Paw Talisman": "2",
     "Monkey Twins Talisman": "2",
-    "Moon Staff": "29",
+    "Moon Staff": "30",
     "Moonlit Circlet": "18",
-    "Moonstone Ring": "27",
-    "Morning Star": "25",
-    "Mosaic Kite Shield": "28",
+    "Moonstone Ring": "28",
+    "Morning Star": "26",
+    "Mosaic Kite Shield": "29",
     "Murder Boots": "7",
     "Murder Mitts": "16",
     "Murderous Eye Jewel": "20",
+    "Mycelium Core": "22",
     "Nailed Fist": "9",
-    "Nameless Ring": "27",
+    "Nameless Ring": "28",
     "Necromancer Circlet": "18",
     "Necromancer Silks": "6",
+    "Necromancer's Mask": "37",
     "Necrotic Armour": "6",
     "Nexus Gloves": "16",
     "Nightmare Bascinet": "18",
-    "Nightmare Mace": "23",
+    "Nightmare Mace": "24",
+    "Nightmarish Book of Depravity": "37",
+    "Nightmarish Core of the Unbreakable": "37",
+    "Nightmarish Head of Uhtred": "37",
+    "Nightmarish Wings of Catarina": "37",
+    "Nightmarish Wings of Lycia": "37",
     "Nightweave Robe": "6",
     "Nightwind Slippers": "7",
     "Noble Axe": "4",
     "Noble Claw": "9",
     "Noble Tricorne": "18",
+    "Noble's Head": "37",
     "Nubuck Boots": "7",
     "Nubuck Gloves": "16",
-    "Oak Buckler": "28",
-    "Oakbranch Tincture": "34",
+    "Oak Buckler": "29",
+    "Oakbranch Tincture": "35",
     "Occultist's Vestment": "6",
-    "Ochre Sceptre": "24",
+    "Ochre Sceptre": "25",
     "Octopus Talisman": "2",
     "Oiled Coat": "6",
     "Oiled Vest": "6",
-    "Omen Wand": "35",
+    "Omen Wand": "36",
     "Onyx Amulet": "1",
-    "Opal Ring": "27",
-    "Opal Sceptre": "24",
-    "Opal Wand": "35",
-    "Organic Ring": "27",
-    "Ornate Mace": "23",
-    "Ornate Quiver": "26",
+    "Opal Ring": "28",
+    "Opal Sceptre": "25",
+    "Opal Wand": "36",
+    "Organic Ring": "28",
+    "Ornate Mace": "24",
+    "Ornate Quiver": "27",
     "Ornate Ringmail": "6",
-    "Ornate Spiked Shield": "28",
-    "Ornate Sword": "33",
-    "Oscillating Sceptre": "24",
+    "Ornate Spiked Shield": "29",
+    "Ornate Sword": "34",
+    "Ornate Torso": "37",
+    "Oscillating Sceptre": "25",
+    "Osseous Scythe": "37",
+    "Osseous Talon": "37",
+    "Overseer's Whip": "37",
     "Padded Jacket": "6",
     "Padded Vest": "6",
-    "Pagan Wand": "35",
-    "Painted Buckler": "28",
-    "Painted Tower Shield": "28",
+    "Pagan Wand": "36",
+    "Painted Buckler": "29",
+    "Painted Tower Shield": "29",
     "Paladin Boots": "7",
     "Paladin Crown": "18",
     "Paladin Gloves": "16",
     "Paladin's Hauberk": "6",
     "Paua Amulet": "1",
-    "Paua Ring": "27",
+    "Paua Ring": "28",
     "Pearlescent Amulet": "1",
-    "Pecoraro": "32",
-    "Penetrating Arrow Quiver": "26",
+    "Pecoraro": "33",
+    "Penetrating Arrow Quiver": "27",
     "Penitent Mask": "18",
-    "Penumbra Ring": "27",
-    "Pernach": "23",
-    "Petrified Club": "23",
+    "Penumbra Ring": "28",
+    "Pernach": "24",
+    "Petrified Club": "24",
     "Phantom Boots": "7",
-    "Phantom Mace": "23",
+    "Phantom Mace": "24",
     "Phantom Mitts": "16",
+    "Phoenix's Head": "37",
     "Pig-Faced Bascinet": "18",
-    "Piledriver": "25",
-    "Pine Buckler": "28",
-    "Pinnacle Tower Shield": "28",
+    "Piledriver": "26",
+    "Pine Buckler": "29",
+    "Pinnacle Tower Shield": "29",
+    "Pit Fighter's Helm": "37",
     "Pitbull Talisman": "2",
     "Plague Mask": "18",
     "Plagued Arachnid Talisman": "2",
-    "Plank Kite Shield": "28",
+    "Plank Kite Shield": "29",
     "Plate Vest": "6",
     "Plated Gauntlets": "16",
     "Plated Greaves": "7",
-    "Plated Maul": "25",
+    "Plated Maul": "26",
     "Platinum Kris": "11",
-    "Platinum Sceptre": "24",
+    "Platinum Sceptre": "25",
     "Pneumatic Dagger": "10",
+    "Poacher's Leg": "37",
+    "Pocked Arm": "37",
+    "Pocked Leg": "37",
     "Poignard": "10",
-    "Poisonberry Tincture": "34",
-    "Polar Buckler": "28",
+    "Poisonberry Tincture": "35",
+    "Polar Buckler": "29",
     "Poleaxe": "4",
-    "Polished Spiked Shield": "28",
-    "Potentiality Rod": "30",
+    "Polished Spiked Shield": "29",
+    "Potentiality Rod": "31",
     "Praetor Crown": "18",
     "Precursor Gauntlets": "16",
     "Precursor Greaves": "7",
     "Prehistoric Claw": "9",
     "Preserving Gauntlets": "16",
     "Pressurised Dagger": "10",
-    "Primal Arrow Quiver": "26",
+    "Primal Arrow Quiver": "27",
     "Primal Skull Talisman": "2",
+    "Primate Foot": "37",
     "Prime Cleaver": "4",
-    "Primeval Rapier": "32",
-    "Primitive Staff": "29",
-    "Primordial Staff": "29",
+    "Primeval Rapier": "33",
+    "Primitive Staff": "30",
+    "Primordial Staff": "30",
     "Prismatic Jewel": "19",
-    "Prismatic Ring": "27",
-    "Prismatic Tincture": "34",
-    "Profane Wand": "35",
+    "Prismatic Ring": "28",
+    "Prismatic Tincture": "35",
+    "Profane Wand": "36",
     "Prong Dagger": "10",
-    "Prophecy Wand": "35",
+    "Prophecy Wand": "36",
     "Prophet Crown": "18",
+    "Prosthetic Leg": "37",
     "Psychotic Axe": "3",
-    "Quarterstaff": "29",
+    "Purifier's Head": "37",
+    "Quarterstaff": "30",
     "Quartz Flask": "15",
-    "Quartz Sceptre": "24",
-    "Quartz Wand": "35",
+    "Quartz Sceptre": "25",
+    "Quartz Wand": "36",
     "Quicksilver Flask": "15",
     "Quilted Jacket": "6",
     "Ranger Bow": "8",
-    "Ratcheting Ring": "27",
+    "Ratcheting Ring": "28",
     "Raven Mask": "18",
+    "Ravenous Skull": "37",
     "Rawhide Boots": "7",
     "Rawhide Gloves": "16",
-    "Rawhide Tower Shield": "28",
+    "Rawhide Tower Shield": "29",
     "Reaver Axe": "3",
     "Reaver Helmet": "18",
-    "Reaver Sword": "33",
-    "Rebuking Blade": "33",
-    "Reciprocation Staff": "29",
+    "Reaver Sword": "34",
+    "Rebuking Blade": "34",
+    "Reciprocation Staff": "30",
     "Recurve Bow": "8",
-    "Redwood Spiked Shield": "28",
+    "Redwood Spiked Shield": "29",
     "Reflex Bow": "8",
     "Regicide Mask": "18",
     "Reinforced Greaves": "7",
-    "Reinforced Kite Shield": "28",
-    "Reinforced Tower Shield": "28",
+    "Reinforced Kite Shield": "29",
+    "Reinforced Tower Shield": "29",
     "Replicating Eshgraft": "17",
+    "Resplendent Sceptre": "37",
     "Retch Talisman": "2",
     "Rhex Talisman": "2",
     "Rhoa Talisman": "2",
     "Ringmail Boots": "7",
     "Ringmail Coat": "6",
     "Ringmail Gloves": "16",
-    "Ritual Sceptre": "24",
+    "Ritual Sceptre": "25",
     "Riveted Boots": "7",
     "Riveted Gloves": "16",
-    "Rock Breaker": "23",
-    "Rosethorn Tincture": "34",
+    "Rock Breaker": "24",
+    "Rosethorn Tincture": "35",
     "Rot Head Talisman": "2",
     "Rotfeather Talisman": "2",
-    "Rotted Round Shield": "28",
+    "Rotted Round Shield": "29",
     "Royal Axe": "3",
     "Royal Bow": "8",
     "Royal Burgonet": "18",
     "Royal Plate": "6",
-    "Royal Sceptre": "24",
+    "Royal Sceptre": "25",
     "Royal Skean": "11",
-    "Royal Staff": "29",
+    "Royal Staff": "30",
     "Ruby Amulet": "1",
     "Ruby Flask": "15",
-    "Ruby Ring": "27",
+    "Ruby Ring": "28",
     "Runic Crest": "18",
     "Runic Crown": "18",
     "Runic Gages": "16",
@@ -772,10 +890,10 @@
     "Runic Sollerets": "7",
     "Rusted Coif": "18",
     "Rusted Hatchet": "3",
-    "Rusted Spike": "32",
-    "Rusted Sword": "31",
+    "Rusted Spike": "33",
+    "Rusted Sword": "32",
     "Rustic Sash": "5",
-    "Sabre": "31",
+    "Sabre": "32",
     "Sacred Chainmail": "6",
     "Sacred Hybrid Flask": "14",
     "Sacred Life Flask": "12",
@@ -784,13 +902,13 @@
     "Sadist Garb": "6",
     "Sage Gloves": "16",
     "Sage Slippers": "7",
-    "Sage Wand": "35",
+    "Sage Wand": "36",
     "Sage's Robe": "6",
     "Sai": "10",
     "Saint's Hauberk": "6",
     "Saintly Chainmail": "6",
     "Sallet": "18",
-    "Sambar Sceptre": "24",
+    "Sambar Sceptre": "25",
     "Samite Gloves": "16",
     "Samite Slippers": "7",
     "Samnite Helmet": "18",
@@ -799,7 +917,7 @@
     "Sand Spitter Talisman": "2",
     "Sanguine Raiment": "6",
     "Sapphire Flask": "15",
-    "Sapphire Ring": "27",
+    "Sapphire Ring": "28",
     "Saqawine Talisman": "2",
     "Satin Gloves": "16",
     "Satin Slippers": "7",
@@ -808,35 +926,47 @@
     "Scale Doublet": "6",
     "Scale Vest": "6",
     "Scare Mask": "18",
+    "Scarecrow's Pitchfork": "37",
     "Scarlet Raiment": "6",
-    "Scarlet Round Shield": "28",
+    "Scarlet Round Shield": "29",
     "Scholar Boots": "7",
+    "Scholar's Arm": "37",
+    "Scholar's Leg": "37",
     "Scholar's Robe": "6",
+    "Scorched Arm": "37",
+    "Scorpion Stinger": "37",
     "Scorpion Talisman": "2",
+    "Scout's Bow": "37",
     "Scrabbler Talisman": "2",
+    "Sea Witch's Tentacle": "37",
     "Seaglass Amulet": "1",
     "Searching Eye Jewel": "20",
+    "Searing Exarch's Descry": "37",
     "Secutor Helm": "18",
-    "Sekhem": "24",
+    "Sekhem": "25",
     "Sentinel Jacket": "6",
-    "Serpentine Staff": "30",
+    "Serpentine Staff": "31",
     "Serpentscale Boots": "7",
     "Serpentscale Gauntlets": "16",
-    "Serrated Arrow Quiver": "26",
-    "Serrated Foil": "32",
+    "Serrated Arrow Quiver": "27",
+    "Serrated Foil": "33",
+    "Severed Rhoa Head": "37",
+    "Severed Scythe-hand": "37",
+    "Severed Stinger": "37",
     "Shabby Jerkin": "6",
     "Shackled Boots": "7",
     "Shadow Axe": "4",
     "Shadow Fangs": "9",
-    "Shadow Sceptre": "24",
-    "Shadowed Ring": "27",
+    "Shadow Sceptre": "25",
+    "Shadowed Ring": "28",
     "Shagreen Boots": "7",
     "Shagreen Gloves": "16",
-    "Shagreen Tower Shield": "28",
+    "Shagreen Tower Shield": "29",
+    "Shaper's Head": "37",
     "Sharkskin Boots": "7",
     "Sharkskin Gloves": "16",
     "Sharkskin Tunic": "6",
-    "Sharktooth Arrow Quiver": "26",
+    "Sharktooth Arrow Quiver": "27",
     "Sharktooth Claw": "9",
     "Shield Crab Talisman": "2",
     "Short Bow": "8",
@@ -853,10 +983,17 @@
     "Simple Robe": "6",
     "Simplex Amulet": "1",
     "Sinner Tricorne": "18",
+    "Siren's Tentacle": "37",
+    "Sirus' Head": "37",
     "Skean": "11",
+    "Skeletal Archer's Arm": "37",
+    "Skeletal Beast Leg": "37",
+    "Skeletal Tail": "37",
+    "Skeletal Warrior's Leg": "37",
+    "Skeleton Wheel": "37",
     "Skinning Knife": "10",
     "Slaughter Knife": "11",
-    "Sledgehammer": "25",
+    "Sledgehammer": "26",
     "Sleek Coat": "6",
     "Slink Boots": "7",
     "Slink Gloves": "16",
@@ -864,53 +1001,63 @@
     "Small Hybrid Flask": "14",
     "Small Life Flask": "12",
     "Small Mana Flask": "13",
-    "Smallsword": "32",
+    "Smallsword": "33",
+    "Smouldering Leg": "37",
+    "Smuggler's Hand": "37",
     "Sniper Bow": "8",
-    "Solar Maul": "25",
+    "Solar Maul": "26",
+    "Solar Shield": "37",
     "Solarine Bow": "8",
     "Solaris Circlet": "18",
     "Soldier Boots": "7",
     "Soldier Gloves": "16",
     "Soldier Helmet": "18",
     "Soldier's Brigandine": "6",
-    "Somatic Wand": "35",
+    "Soldier's Head": "37",
+    "Somatic Wand": "36",
     "Sorcerer Boots": "7",
     "Sorcerer Gloves": "16",
     "Sorrow Mask": "18",
-    "Sovereign Spiked Shield": "28",
+    "Sovereign Spiked Shield": "29",
     "Sparkling Claw": "9",
     "Spectral Axe": "3",
-    "Spectral Sword": "33",
+    "Spectral Hood": "37",
+    "Spectral Sword": "34",
     "Spider Crab Talisman": "2",
+    "Spider Queen's Head": "37",
     "Spidersilk Robe": "6",
-    "Spike-Point Arrow Quiver": "26",
-    "Spiked Bundle": "28",
-    "Spiked Club": "23",
+    "Spike-Point Arrow Quiver": "27",
+    "Spiked Bundle": "29",
+    "Spiked Carapace": "37",
+    "Spiked Club": "24",
     "Spiked Gloves": "16",
-    "Spiked Round Shield": "28",
+    "Spiked Round Shield": "29",
     "Spiking Uulgraft": "17",
     "Spine Bow": "8",
+    "Spined Claws": "37",
     "Spinefuse Talisman": "2",
-    "Spiny Maul": "25",
-    "Spiny Round Shield": "28",
-    "Spiraled Foil": "32",
-    "Spiraled Wand": "35",
-    "Splendid Round Shield": "28",
-    "Splintered Tower Shield": "28",
+    "Spiny Maul": "26",
+    "Spiny Round Shield": "29",
+    "Spiraled Foil": "33",
+    "Spiraled Wand": "36",
+    "Splendid Round Shield": "29",
+    "Splintered Tower Shield": "29",
     "Splitnewt Talisman": "2",
-    "Sporebloom Tincture": "34",
+    "Sporebloom Tincture": "35",
     "Squalling Tulgraft": "17",
     "Squid Talisman": "2",
-    "Stabilising Sceptre": "24",
-    "Stag Sceptre": "24",
+    "Stabilising Sceptre": "25",
+    "Stag Head": "37",
+    "Stag Sceptre": "25",
+    "Statue Leg": "37",
     "Stealth Boots": "7",
     "Stealth Gloves": "16",
     "Steel Circlet": "18",
     "Steel Gauntlets": "16",
     "Steel Greaves": "7",
-    "Steel Kite Shield": "28",
-    "Steel Ring": "27",
-    "Steelhead": "25",
+    "Steel Kite Shield": "29",
+    "Steel Ring": "28",
+    "Steelhead": "26",
     "Steelscale Boots": "7",
     "Steelscale Gauntlets": "16",
     "Steelwood Bow": "8",
@@ -918,46 +1065,52 @@
     "Stiletto": "10",
     "Stoking Xophgraft": "17",
     "Stone Axe": "4",
-    "Stone Hammer": "23",
+    "Stone Hammer": "24",
     "Storming Eshgraft": "17",
     "Stormrider Boots": "7",
     "Strapped Boots": "7",
     "Strapped Leather": "6",
     "Strapped Mitts": "16",
     "Studded Belt": "5",
-    "Studded Round Shield": "28",
+    "Studded Round Shield": "29",
     "Stygian Vise": "5",
-    "Subsuming Spirit Shield": "28",
+    "Subsuming Spirit Shield": "29",
     "Sulphur Flask": "15",
     "Summoning Tulgraft": "17",
     "Sun Leather": "6",
     "Sun Plate": "6",
+    "Sun-bleached Breastplate": "37",
     "Sundering Axe": "4",
     "Sunfire Circlet": "18",
     "Supreme Leather": "6",
-    "Supreme Spiked Shield": "28",
-    "Synaptic Ring": "27",
+    "Supreme Spiked Shield": "29",
+    "Swordmaster's Blade": "37",
+    "Synaptic Ring": "28",
     "Syndicate's Garb": "6",
     "Talon Axe": "4",
-    "Tarnished Spirit Shield": "28",
+    "Tarnished Spirit Shield": "29",
     "Taurus Talisman": "2",
-    "Teak Round Shield": "28",
-    "Tempered Foil": "32",
-    "Tenderizer": "23",
-    "Tenebrous Ring": "27",
+    "Teak Round Shield": "29",
+    "Tempered Foil": "33",
+    "Templar Banner": "37",
+    "Templar Skull": "37",
+    "Tenderizer": "24",
+    "Tenebrous Ring": "28",
+    "Terrifying Maw": "37",
     "Terror Claw": "9",
-    "Terror Maul": "25",
+    "Terror Maul": "26",
+    "Thaumaturge's Head": "37",
     "Thicket Bow": "8",
     "Thief's Garb": "6",
-    "Thorium Spirit Shield": "28",
-    "Thorn Rapier": "32",
+    "Thorium Spirit Shield": "29",
+    "Thorn Rapier": "33",
     "Three Hands Talisman": "2",
     "Three Rat Talisman": "2",
     "Thresher Claw": "9",
     "Throat Stabber": "9",
     "Thwarting Gauntlets": "16",
-    "Tiger Hook": "31",
-    "Tiger Sword": "33",
+    "Tiger Hook": "32",
+    "Tiger Sword": "34",
     "Tiger Talisman": "2",
     "Tiger's Paw": "9",
     "Timber Axe": "4",
@@ -966,108 +1119,121 @@
     "Titan Gauntlets": "16",
     "Titan Greaves": "7",
     "Titan Plate": "6",
-    "Titanium Spirit Shield": "28",
+    "Titanium Spirit Shield": "29",
     "Tomahawk": "3",
     "Topaz Flask": "15",
-    "Topaz Ring": "27",
-    "Tornado Wand": "35",
+    "Topaz Ring": "28",
+    "Tornado Wand": "36",
     "Torture Cage": "18",
     "Torturer Garb": "6",
     "Torturer's Mask": "18",
-    "Totemic Maul": "25",
-    "Transfer-attuned Spirit Shield": "28",
-    "Transformer Staff": "29",
+    "Totemic Maul": "26",
+    "Totemic Visage": "37",
+    "Transfer-attuned Spirit Shield": "29",
+    "Transformer Staff": "30",
     "Trapper Boots": "7",
     "Trapper Mitts": "16",
     "Trapsetter Gloves": "16",
     "Tribal Circlet": "18",
-    "Tribal Club": "23",
-    "Tribal Maul": "25",
+    "Tribal Club": "24",
+    "Tribal Maul": "26",
     "Tricorne": "18",
     "Trisula": "10",
     "Triumphant Lamellar": "6",
     "Turquoise Amulet": "1",
-    "Twig Spirit Shield": "28",
-    "Twilight Blade": "31",
+    "Twig Spirit Shield": "29",
+    "Twilight Blade": "32",
     "Twilight Regalia": "6",
     "Twin Claw": "9",
-    "Two-Handed Sword": "33",
-    "Two-Point Arrow Quiver": "26",
-    "Two-Stone Ring": "27",
+    "Two-Handed Sword": "34",
+    "Two-Point Arrow Quiver": "27",
+    "Two-Stone Ring": "28",
     "Two-Toned Boots": "7",
-    "Tyrant's Sekhem": "24",
+    "Tyrant's Sekhem": "25",
     "Undying Flesh Talisman": "2",
     "Unset Amulet": "1",
-    "Unset Ring": "27",
+    "Unset Ring": "28",
     "Ursa Talisman": "2",
-    "Ursine Charm": "22",
+    "Ursine Charm": "23",
+    "Ursine Flesh": "37",
     "Ursine Pelt": "18",
+    "Vaal Appendage": "37",
     "Vaal Axe": "4",
-    "Vaal Blade": "31",
-    "Vaal Buckler": "28",
+    "Vaal Blade": "32",
+    "Vaal Buckler": "29",
     "Vaal Claw": "9",
     "Vaal Gauntlets": "16",
-    "Vaal Greatsword": "33",
+    "Vaal Greatsword": "34",
     "Vaal Greaves": "7",
     "Vaal Hatchet": "3",
     "Vaal Mask": "18",
-    "Vaal Rapier": "32",
+    "Vaal Rapier": "33",
     "Vaal Regalia": "6",
-    "Vaal Sceptre": "24",
-    "Vaal Spirit Shield": "28",
+    "Vaal Sceptre": "25",
+    "Vaal Spirit Shield": "29",
     "Vanguard Belt": "5",
-    "Variscite Blade": "31",
+    "Variscite Blade": "32",
     "Varnished Coat": "6",
     "Velour Boots": "7",
     "Velour Gloves": "16",
     "Velvet Gloves": "16",
     "Velvet Slippers": "7",
-    "Vermillion Ring": "27",
-    "Vile Arrow Quiver": "26",
-    "Vile Staff": "30",
+    "Venarius' Scripture": "37",
+    "Vendigo Claws": "37",
+    "Veritania's Head": "37",
+    "Vermillion Ring": "28",
+    "Vile Arrow Quiver": "27",
+    "Vile Staff": "31",
     "Vine Circlet": "18",
     "Viridian Jewel": "19",
     "Visored Sallet": "18",
     "Void Axe": "4",
     "Void Fangs": "9",
-    "Void Sceptre": "24",
+    "Void Sceptre": "25",
+    "Voidbearer's Leg": "37",
+    "Voltaic Apparatus": "37",
+    "Voltaic Skull": "37",
     "Vulture Talisman": "2",
-    "Walnut Spirit Shield": "28",
+    "Vulture's Gut": "37",
+    "Walnut Spirit Shield": "29",
     "War Axe": "3",
-    "War Buckler": "28",
-    "War Hammer": "23",
+    "War Buckler": "29",
+    "War Hammer": "24",
     "War Plate": "6",
-    "War Sword": "31",
+    "War Sword": "32",
+    "Warden's Arm": "37",
     "Warlock Boots": "7",
     "Warlock Gloves": "16",
     "Watcher Talisman": "2",
     "Waxed Garb": "6",
     "Wereclaw Talisman": "2",
-    "Whalebone Rapier": "32",
+    "Whalebone Rapier": "33",
     "Widowsilk Robe": "6",
     "Wild Leather": "6",
     "Windbreak Boots": "7",
     "Winter Crown": "18",
+    "Witch's Head": "37",
     "Wolf Alpha Talisman": "2",
     "Wolf Pelt": "18",
-    "Woodful Staff": "29",
+    "Woodful Staff": "30",
     "Woodsplitter": "4",
     "Wool Gloves": "16",
     "Wool Shoes": "7",
     "Wraith Axe": "3",
-    "Wraith Sword": "33",
+    "Wraith Claws": "37",
+    "Wraith Sword": "34",
     "Wrapped Boots": "7",
     "Wrapped Mitts": "16",
     "Wrist Chopper": "3",
     "Writhing Talisman": "2",
-    "Wyrm Mace": "23",
-    "Wyrmbone Rapier": "32",
+    "Wyrm Mace": "24",
+    "Wyrmbone Rapier": "33",
     "Wyrmscale Boots": "7",
     "Wyrmscale Doublet": "6",
     "Wyrmscale Gauntlets": "16",
     "Wyvernscale Boots": "7",
     "Wyvernscale Gauntlets": "16",
-    "Yew Spirit Shield": "28",
+    "Yew Spirit Shield": "29",
     "Zealot Boots": "7",
     "Zealot Gloves": "16",
     "Zealot Helmet": "18",
@@ -1095,6 +1261,7 @@
     "Jewels",
     "Abyss Jewels",
     "Cluster Jewels",
+    "Blightcore Jewels",
     "Charm Jewels",
     "One Hand Maces",
     "Sceptres",
@@ -1109,12 +1276,21 @@
     "Two Hand Swords",
     "Tinctures",
     "Wands",
+    "Visceras",
     "Heist Gear",
     "Heist Tools",
     "Heist Cloaks",
     "Heist Brooches"
   ],
   "Abyss Jewels": {
+    "Assembled Eye Jewel": {
+      "_tags": [
+        "abyss_jewel",
+        "abyss_jewel_special",
+        "default",
+        "not_for_sale"
+      ]
+    },
     "Ghastly Eye Jewel": {
       "_tags": [
         "abyss_jewel",
@@ -1369,6 +1545,15 @@
         "belt",
         "beltatlas1",
         "default",
+        "not_for_sale"
+      ]
+    }
+  },
+  "Blightcore Jewels": {
+    "Mycelium Core": {
+      "_tags": [
+        "default",
+        "jewel",
         "not_for_sale"
       ]
     }
@@ -12208,6 +12393,828 @@
         "default",
         "flask",
         "utility_flask"
+      ]
+    }
+  },
+  "Visceras": {
+    "Adherent's Crown": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Al-Hezmin's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Ancestor's Club": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Arachnid Egg Sac": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Arachnid Fangs": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Arachnid Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Aristocrat's Torso": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Armoured Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Artificial Appendage": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Bandit Rogue's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Bandit Warrior's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Bandit Witch's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Baran's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Bat's Wings": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Bear Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Blackened Lungs": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Blackguard's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Blazing Skull": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Bloodied Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Boar Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Bonestalker's Ribcage": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Broken Bust": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Brute's Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Calcified Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Captain's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Carved Haunches": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Champion's Banner": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Chaos Golem's Core": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Charred Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Chimera's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Chimeral Eye": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Chitinous Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Coagulated Essence": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Cobra Tail": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Conjoined Hound Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Constrictor's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Construct's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Corrupted Carapace": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Coven Queen's Crown": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Crescent Blade": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Crustacean's Claw": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Cutthroat's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Defaced Bust": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Desert Queen's Crown": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Desert Sword": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Despot's Fist": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Dessicated Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Devourer's Antenna": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Diseased Wing": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Distended Stomach": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Drox's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Eater of Worlds' Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Elder's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Elemental Essence": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Engorged Eye": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Enslaver's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Eradicator's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Flaming Furnace": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Flaming Goat Hoof": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Flaming Ribbon": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Flayed Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Flayed Visage": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Flesh-fused Lantern": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Galvanic Tentacle": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Gargantuan Claws": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Gelid Fangs": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Gemling Torso": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "General's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Ghostly Claw": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Gladiator's Heart": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Goatman's Horn": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Golden Ankh": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Golemic Stone": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Hag's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Hag's Stomach": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Hallowed Descry": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Heretical Tome": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Hollowed Skull": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Hydra's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Incarnation of Dread's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Incarnation of Fear's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Incarnation of Neglect's Cube": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Infected Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Infested Torso": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Inquisitor's Claw": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Inquisitor's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Justicar's Helm": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "King Crab's Claw": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Lion's Claws": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Lithic Haunches": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Lunar Bow": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Mariner's Tricorne": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Maven's Orrery": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Minotaur's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Molten Core": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Necromancer's Mask": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Nightmarish Book of Depravity": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Nightmarish Core of the Unbreakable": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Nightmarish Head of Uhtred": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Nightmarish Wings of Catarina": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Nightmarish Wings of Lycia": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Noble's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Ornate Torso": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Osseous Scythe": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Osseous Talon": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Overseer's Whip": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Phoenix's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Pit Fighter's Helm": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Poacher's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Pocked Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Pocked Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Primate Foot": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Prosthetic Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Purifier's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Ravenous Skull": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Resplendent Sceptre": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Scarecrow's Pitchfork": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Scholar's Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Scholar's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Scorched Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Scorpion Stinger": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Scout's Bow": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Sea Witch's Tentacle": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Searing Exarch's Descry": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Severed Rhoa Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Severed Scythe-hand": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Severed Stinger": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Shaper's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Siren's Tentacle": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Sirus' Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Skeletal Archer's Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Skeletal Beast Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Skeletal Tail": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Skeletal Warrior's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Skeleton Wheel": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Smouldering Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Smuggler's Hand": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Solar Shield": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Soldier's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Spectral Hood": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Spider Queen's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Spiked Carapace": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Spined Claws": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Stag Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Statue Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Sun-bleached Breastplate": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Swordmaster's Blade": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Templar Banner": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Templar Skull": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Terrifying Maw": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Thaumaturge's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Totemic Visage": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Ursine Flesh": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Vaal Appendage": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Venarius' Scripture": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Vendigo Claws": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Veritania's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Voidbearer's Leg": {
+      "_tags": [
+        "viscera_leg"
+      ]
+    },
+    "Voltaic Apparatus": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Voltaic Skull": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Vulture's Gut": {
+      "_tags": [
+        "viscera_body"
+      ]
+    },
+    "Warden's Arm": {
+      "_tags": [
+        "viscera_arm"
+      ]
+    },
+    "Witch's Head": {
+      "_tags": [
+        "viscera_head"
+      ]
+    },
+    "Wraith Claws": {
+      "_tags": [
+        "viscera_arm"
       ]
     }
   },
