@@ -5,7 +5,8 @@
       "level": "1",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to Accuracy Rating"
@@ -17,7 +18,8 @@
       "level": "52",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to Accuracy Rating"
@@ -29,7 +31,8 @@
       "level": "78",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to Accuracy Rating"
@@ -41,7 +44,8 @@
       "level": "85",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to Accuracy Rating"
@@ -53,7 +57,8 @@
       "level": "1",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -66,7 +71,8 @@
       "level": "42",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -79,7 +85,8 @@
       "level": "64",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -92,7 +99,8 @@
       "level": "77",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -105,7 +113,8 @@
       "level": "85",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -118,7 +127,8 @@
       "level": "1",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -131,7 +141,8 @@
       "level": "42",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -144,7 +155,8 @@
       "level": "64",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -157,7 +169,8 @@
       "level": "77",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -170,7 +183,8 @@
       "level": "85",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -183,7 +197,8 @@
       "level": "1",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -196,7 +211,8 @@
       "level": "42",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -209,7 +225,8 @@
       "level": "64",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -222,7 +239,8 @@
       "level": "77",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -235,7 +253,8 @@
       "level": "85",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -248,7 +267,8 @@
       "level": "36",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -262,7 +282,8 @@
       "level": "48",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -276,7 +297,8 @@
       "level": "64",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -290,7 +312,8 @@
       "level": "1",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -303,7 +326,8 @@
       "level": "38",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -316,7 +340,8 @@
       "level": "47",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -329,7 +354,8 @@
       "level": "59",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -342,7 +368,8 @@
       "level": "68",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -355,7 +382,8 @@
       "level": "83",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -368,7 +396,8 @@
       "level": "1",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -381,7 +410,8 @@
       "level": "38",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -394,7 +424,8 @@
       "level": "47",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -407,7 +438,8 @@
       "level": "59",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -420,7 +452,8 @@
       "level": "68",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -433,7 +466,8 @@
       "level": "83",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -446,7 +480,8 @@
       "level": "1",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -459,7 +494,8 @@
       "level": "38",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -472,7 +508,8 @@
       "level": "47",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -485,7 +522,8 @@
       "level": "59",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -498,7 +536,8 @@
       "level": "68",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -511,7 +550,8 @@
       "level": "83",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -524,7 +564,8 @@
       "level": "1",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -537,7 +578,8 @@
       "level": "38",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -550,7 +592,8 @@
       "level": "47",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -563,7 +606,8 @@
       "level": "59",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -576,7 +620,8 @@
       "level": "68",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -589,7 +634,8 @@
       "level": "83",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -602,7 +648,8 @@
       "level": "1",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -615,7 +662,8 @@
       "level": "38",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -628,7 +676,8 @@
       "level": "47",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -641,7 +690,8 @@
       "level": "59",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -654,7 +704,8 @@
       "level": "68",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -667,7 +718,8 @@
       "level": "83",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -680,7 +732,8 @@
       "level": "1",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -693,7 +746,8 @@
       "level": "38",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -706,7 +760,8 @@
       "level": "47",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -719,7 +774,8 @@
       "level": "59",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -732,7 +788,8 @@
       "level": "68",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -745,7 +802,8 @@
       "level": "83",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -758,7 +816,8 @@
       "level": "1",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -771,7 +830,8 @@
       "level": "38",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -784,7 +844,8 @@
       "level": "47",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -797,7 +858,8 @@
       "level": "59",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -810,7 +872,8 @@
       "level": "68",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -823,7 +886,8 @@
       "level": "83",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -836,7 +900,8 @@
       "level": "1",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -849,7 +914,8 @@
       "level": "38",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -862,7 +928,8 @@
       "level": "47",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -875,7 +942,8 @@
       "level": "59",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -888,7 +956,8 @@
       "level": "68",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -901,7 +970,8 @@
       "level": "83",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -914,7 +984,8 @@
       "level": "36",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -928,7 +999,8 @@
       "level": "45",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -942,7 +1014,8 @@
       "level": "53",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -956,7 +1029,8 @@
       "level": "65",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -970,7 +1044,8 @@
       "level": "77",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -984,7 +1059,8 @@
       "level": "1",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -997,7 +1073,8 @@
       "level": "40",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1010,7 +1087,8 @@
       "level": "51",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1023,7 +1101,8 @@
       "level": "62",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1036,7 +1115,8 @@
       "level": "72",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1049,7 +1129,8 @@
       "level": "84",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1062,7 +1143,8 @@
       "level": "1",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1075,7 +1157,8 @@
       "level": "40",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1088,7 +1171,8 @@
       "level": "51",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1101,7 +1185,8 @@
       "level": "62",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1114,7 +1199,8 @@
       "level": "72",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1127,7 +1213,8 @@
       "level": "84",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1140,7 +1227,8 @@
       "level": "1",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1153,7 +1241,8 @@
       "level": "40",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1166,7 +1255,8 @@
       "level": "51",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1179,7 +1269,8 @@
       "level": "62",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1192,7 +1283,8 @@
       "level": "72",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1205,7 +1297,8 @@
       "level": "84",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1218,7 +1311,8 @@
       "level": "1",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1231,7 +1325,8 @@
       "level": "40",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1244,7 +1339,8 @@
       "level": "51",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1257,7 +1353,8 @@
       "level": "62",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1270,7 +1367,8 @@
       "level": "72",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1283,7 +1381,8 @@
       "level": "84",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1296,7 +1395,8 @@
       "level": "1",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1309,7 +1409,8 @@
       "level": "40",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1322,7 +1423,8 @@
       "level": "51",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1335,7 +1437,8 @@
       "level": "62",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1348,7 +1451,8 @@
       "level": "72",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1361,7 +1465,8 @@
       "level": "84",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1374,7 +1479,8 @@
       "level": "1",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1387,7 +1493,8 @@
       "level": "40",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1400,7 +1507,8 @@
       "level": "51",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1413,7 +1521,8 @@
       "level": "62",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1426,7 +1535,8 @@
       "level": "72",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1439,7 +1549,8 @@
       "level": "84",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1452,7 +1563,8 @@
       "level": "1",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1465,7 +1577,8 @@
       "level": "40",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1478,7 +1591,8 @@
       "level": "51",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1491,7 +1605,8 @@
       "level": "62",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1504,7 +1619,8 @@
       "level": "72",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1517,7 +1633,8 @@
       "level": "84",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1530,7 +1647,8 @@
       "level": "1",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1543,7 +1661,8 @@
       "level": "40",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1556,7 +1675,8 @@
       "level": "51",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1569,7 +1689,8 @@
       "level": "62",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1582,7 +1703,8 @@
       "level": "72",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1595,7 +1717,8 @@
       "level": "84",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1608,7 +1731,8 @@
       "level": "35",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -1622,7 +1746,8 @@
       "level": "44",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -1636,7 +1761,8 @@
       "level": "52",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -1650,7 +1776,8 @@
       "level": "64",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -1664,7 +1791,8 @@
       "level": "76",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -1678,7 +1806,8 @@
       "level": "1",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -1691,7 +1820,8 @@
       "level": "37",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1704,7 +1834,8 @@
       "level": "48",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1717,7 +1848,8 @@
       "level": "60",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1730,7 +1862,8 @@
       "level": "70",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1743,7 +1876,8 @@
       "level": "82",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1756,7 +1890,8 @@
       "level": "1",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -1769,7 +1904,8 @@
       "level": "37",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1782,7 +1918,8 @@
       "level": "48",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1795,7 +1932,8 @@
       "level": "60",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1808,7 +1946,8 @@
       "level": "70",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1821,7 +1960,8 @@
       "level": "82",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1834,7 +1974,8 @@
       "level": "1",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -1847,7 +1988,8 @@
       "level": "37",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1860,7 +2002,8 @@
       "level": "48",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1873,7 +2016,8 @@
       "level": "60",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1886,7 +2030,8 @@
       "level": "70",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1899,7 +2044,8 @@
       "level": "82",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1912,7 +2058,8 @@
       "level": "1",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -1925,7 +2072,8 @@
       "level": "37",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1938,7 +2086,8 @@
       "level": "48",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1951,7 +2100,8 @@
       "level": "60",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1964,7 +2114,8 @@
       "level": "70",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1977,7 +2128,8 @@
       "level": "82",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -1990,7 +2142,8 @@
       "level": "1",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -2003,7 +2156,8 @@
       "level": "37",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2016,7 +2170,8 @@
       "level": "48",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2029,7 +2184,8 @@
       "level": "60",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2042,7 +2198,8 @@
       "level": "70",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2055,7 +2212,8 @@
       "level": "82",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2068,7 +2226,8 @@
       "level": "1",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -2081,7 +2240,8 @@
       "level": "37",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2094,7 +2254,8 @@
       "level": "48",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2107,7 +2268,8 @@
       "level": "60",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2120,7 +2282,8 @@
       "level": "70",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2133,7 +2296,8 @@
       "level": "82",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2146,7 +2310,8 @@
       "level": "1",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -2159,7 +2324,8 @@
       "level": "37",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2172,7 +2338,8 @@
       "level": "48",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2185,7 +2352,8 @@
       "level": "60",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2198,7 +2366,8 @@
       "level": "70",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2211,7 +2380,8 @@
       "level": "82",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2224,7 +2394,8 @@
       "level": "1",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -2237,7 +2408,8 @@
       "level": "37",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2250,7 +2422,8 @@
       "level": "48",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2263,7 +2436,8 @@
       "level": "60",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2276,7 +2450,8 @@
       "level": "70",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2289,7 +2464,8 @@
       "level": "82",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2302,7 +2478,8 @@
       "level": "35",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds 1 to ",
@@ -2315,7 +2492,8 @@
       "level": "44",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2329,7 +2507,8 @@
       "level": "52",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2343,7 +2522,8 @@
       "level": "64",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2357,7 +2537,8 @@
       "level": "76",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2371,7 +2552,8 @@
       "level": "1",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Axe Attacks"
@@ -2383,7 +2565,8 @@
       "level": "42",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Axe Attacks"
@@ -2395,7 +2578,8 @@
       "level": "64",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2408,7 +2592,8 @@
       "level": "77",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2421,7 +2606,8 @@
       "level": "85",
       "tags": [
         "axe",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2434,7 +2620,8 @@
       "level": "1",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Bow Attacks"
@@ -2446,7 +2633,8 @@
       "level": "42",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Bow Attacks"
@@ -2458,7 +2646,8 @@
       "level": "64",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2471,7 +2660,8 @@
       "level": "77",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2484,7 +2674,8 @@
       "level": "85",
       "tags": [
         "bow",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2497,7 +2688,8 @@
       "level": "1",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Claw Attacks"
@@ -2509,7 +2701,8 @@
       "level": "42",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Claw Attacks"
@@ -2521,7 +2714,8 @@
       "level": "64",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2534,7 +2728,8 @@
       "level": "77",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2547,7 +2742,8 @@
       "level": "85",
       "tags": [
         "claw",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2560,7 +2756,8 @@
       "level": "1",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Dagger Attacks"
@@ -2572,7 +2769,8 @@
       "level": "42",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Dagger Attacks"
@@ -2584,7 +2782,8 @@
       "level": "64",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2597,7 +2796,8 @@
       "level": "77",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2610,7 +2810,8 @@
       "level": "85",
       "tags": [
         "dagger",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2623,7 +2824,8 @@
       "level": "1",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Mace or Sceptre Attacks"
@@ -2635,7 +2837,8 @@
       "level": "42",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Mace or Sceptre Attacks"
@@ -2647,7 +2850,8 @@
       "level": "64",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2660,7 +2864,8 @@
       "level": "77",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2673,7 +2878,8 @@
       "level": "85",
       "tags": [
         "mace",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2686,7 +2892,8 @@
       "level": "1",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Staff Attacks"
@@ -2698,7 +2905,8 @@
       "level": "42",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Staff Attacks"
@@ -2710,7 +2918,8 @@
       "level": "64",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2723,7 +2932,8 @@
       "level": "77",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2736,7 +2946,8 @@
       "level": "85",
       "tags": [
         "staff",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2749,7 +2960,8 @@
       "level": "1",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Sword Attacks"
@@ -2761,7 +2973,8 @@
       "level": "42",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Sword Attacks"
@@ -2773,7 +2986,8 @@
       "level": "64",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2786,7 +3000,8 @@
       "level": "77",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2799,7 +3014,8 @@
       "level": "85",
       "tags": [
         "sword",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2812,7 +3028,8 @@
       "level": "1",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2 to 3 Added Physical Damage with Wand Attacks"
@@ -2824,7 +3041,8 @@
       "level": "42",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3 to 4 Added Physical Damage with Wand Attacks"
@@ -2836,7 +3054,8 @@
       "level": "64",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "4 to ",
@@ -2849,7 +3068,8 @@
       "level": "77",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2862,7 +3082,8 @@
       "level": "85",
       "tags": [
         "wand",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -2875,7 +3096,8 @@
       "level": "34",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds 1 to 3 Physical Damage to Attacks"
@@ -2887,7 +3109,8 @@
       "level": "45",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2901,7 +3124,8 @@
       "level": "61",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -2937,7 +3161,8 @@
       "level": "32",
       "tags": [
         "abyss_jewel_ranged",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Blind Enemies on Hit with Attacks"
@@ -2949,7 +3174,8 @@
       "level": "65",
       "tags": [
         "abyss_jewel_ranged",
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Blind Enemies on Hit with Attacks"
@@ -2962,7 +3188,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Attack Speed if you've dealt a Critical Strike Recently"
@@ -2974,7 +3201,8 @@
       "level": "50",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Attack Speed"
@@ -2985,7 +3213,8 @@
       "affix": "of Taunting",
       "level": "32",
       "tags": [
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Taunt Enemies on Hit with Attacks"
@@ -2996,7 +3225,8 @@
       "affix": "of Taunting",
       "level": "65",
       "tags": [
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Taunt Enemies on Hit with Attacks"
@@ -3022,20 +3252,6 @@
       ],
       "texts": [
         "% chance to Avoid Bleeding"
-      ],
-      "type": "Suffix"
-    },
-    "AbyssAvoidElementalAilmentsWhileElusiveJewel1": {
-      "affix": "of Escape",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "% chance to Avoid Elemental Ailments while you have Elusive"
       ],
       "type": "Suffix"
     },
@@ -3149,28 +3365,14 @@
       ],
       "type": "Suffix"
     },
-    "AbyssBlindedEnemiesCriticalStrikeChanceJewel1": {
-      "affix": "of Clouding",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Enemies Blinded by you have ",
-        "% reduced Critical Strike Chance"
-      ],
-      "type": "Suffix"
-    },
     "AbyssCastSpeedIfCriticalStrikeDealtRecentlyJewel1": {
       "affix": "of Abuse",
       "level": "25",
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Cast Speed if you've dealt a Critical Strike Recently"
@@ -3181,7 +3383,8 @@
       "affix": "of Retaliation",
       "level": "30",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Cast Speed if a Minion has been Killed Recently"
@@ -3193,7 +3396,8 @@
       "level": "50",
       "tags": [
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Cast Speed"
@@ -3207,7 +3411,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% Chance to Block Attack Damage if you were Damaged by a Hit Recently"
@@ -3219,7 +3424,8 @@
       "level": "50",
       "tags": [
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to gain Phasing for 4 seconds on Kill"
@@ -3231,7 +3437,8 @@
       "level": "80",
       "tags": [
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to gain Phasing for 4 seconds on Kill"
@@ -3242,7 +3449,8 @@
       "affix": "of Unholy Might",
       "level": "60",
       "tags": [
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Gain Unholy Might for 4 seconds on Melee Kill"
@@ -3253,7 +3461,8 @@
       "affix": "of Unholy Might",
       "level": "84",
       "tags": [
-        "abyss_jewel_melee"
+        "abyss_jewel_melee",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Gain Unholy Might for 4 seconds on Melee Kill"
@@ -3300,7 +3509,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "2% increased Cooldown Recovery Rate"
@@ -3314,7 +3524,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "3% increased Cooldown Recovery Rate"
@@ -3327,7 +3538,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Critical Strike Chance if you haven't dealt a Critical Strike Recently"
@@ -3351,7 +3563,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% to Critical Strike Multiplier if you've Killed Recently"
@@ -3375,7 +3588,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Damage if you've Killed Recently"
@@ -3387,6 +3601,7 @@
       "level": "1",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3399,6 +3614,7 @@
       "level": "60",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3411,6 +3627,7 @@
       "level": "1",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3423,6 +3640,7 @@
       "level": "60",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3435,6 +3653,7 @@
       "level": "1",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3447,6 +3666,7 @@
       "level": "60",
       "tags": [
         "abyss_jewel_caster",
+        "abyss_jewel_special",
         "default"
       ],
       "texts": [
@@ -3460,7 +3680,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Damage Penetrates 2% Elemental Resistances if you haven't Killed Recently"
@@ -3474,7 +3695,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% of Damage taken Recouped as Mana"
@@ -3488,7 +3710,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% of Damage taken Recouped as Mana"
@@ -3524,7 +3747,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Evasion Rating while moving"
@@ -3659,7 +3883,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3674,7 +3899,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3689,7 +3915,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3748,7 +3975,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3763,7 +3991,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3778,7 +4007,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -3826,7 +4056,8 @@
       "affix": "Fuelling",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions Regenerate ",
@@ -3838,7 +4069,8 @@
       "affix": "Lively",
       "level": "30",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions Regenerate ",
@@ -3850,7 +4082,8 @@
       "affix": "Exuberant",
       "level": "60",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions Regenerate ",
@@ -3858,27 +4091,13 @@
       ],
       "type": "Prefix"
     },
-    "AbyssHinderedEnemiesLifeRegenerationRateJewel1": {
-      "affix": "of Enervation",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Enemies Hindered by you have ",
-        "% reduced Life Regeneration rate"
-      ],
-      "type": "Suffix"
-    },
     "AbyssImpaleEffect1_": {
       "affix": "Skewering",
       "level": "75",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Impale Effect"
@@ -3890,7 +4109,8 @@
       "level": "86",
       "tags": [
         "abyss_jewel_melee",
-        "abyss_jewel_ranged"
+        "abyss_jewel_ranged",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Impale Effect"
@@ -3903,7 +4123,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Armour if you haven't Killed Recently"
@@ -3918,21 +4139,6 @@
       ],
       "texts": [
         " to Intelligence"
-      ],
-      "type": "Suffix"
-    },
-    "AbyssIntimidatedEnemiesStunDurationJewel1": {
-      "affix": "of Daunting",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Enemies Intimidated by you have ",
-        "% increased duration of stuns against them"
       ],
       "type": "Suffix"
     },
@@ -4053,7 +4259,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Regenerate ",
@@ -4072,21 +4279,6 @@
       ],
       "type": "Suffix"
     },
-    "AbyssMaimedEnemiesDamageOverTimeJewel1": {
-      "affix": "of Mangling",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Enemies Maimed by you take ",
-        "% increased Damage Over Time"
-      ],
-      "type": "Suffix"
-    },
     "AbyssManaRegenerationRateWhileMovingJewel1": {
       "affix": "of Praxis",
       "level": "1",
@@ -4094,7 +4286,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Mana Regeneration Rate while moving"
@@ -4105,7 +4298,8 @@
       "affix": "Tainted",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4118,7 +4312,8 @@
       "affix": "Clouded",
       "level": "42",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4131,7 +4326,8 @@
       "affix": "Darkened",
       "level": "54",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4144,7 +4340,8 @@
       "affix": "Malignant",
       "level": "65",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4157,7 +4354,8 @@
       "affix": "Vile",
       "level": "75",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4170,7 +4368,8 @@
       "affix": "Malicious",
       "level": "84",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4183,7 +4382,8 @@
       "affix": "Frosted",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4196,7 +4396,8 @@
       "affix": "Freezing",
       "level": "39",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4209,7 +4410,8 @@
       "affix": "Frozen",
       "level": "48",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4222,7 +4424,8 @@
       "affix": "Glaciated",
       "level": "58",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4235,7 +4438,8 @@
       "affix": "Polar",
       "level": "70",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4248,7 +4452,8 @@
       "affix": "Entombing",
       "level": "82",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4261,7 +4466,8 @@
       "affix": "Heated",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4274,7 +4480,8 @@
       "affix": "Flaming",
       "level": "39",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4287,7 +4494,8 @@
       "affix": "Scorching",
       "level": "48",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4300,7 +4508,8 @@
       "affix": "Incinerating",
       "level": "58",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4313,7 +4522,8 @@
       "affix": "Blasting",
       "level": "70",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4326,7 +4536,8 @@
       "affix": "Cremating",
       "level": "82",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4339,7 +4550,8 @@
       "affix": "Humming",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal 1 to ",
@@ -4351,7 +4563,8 @@
       "affix": "Sparking",
       "level": "39",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4364,7 +4577,8 @@
       "affix": "Arcing",
       "level": "48",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4377,7 +4591,8 @@
       "affix": "Shocking",
       "level": "58",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4390,7 +4605,8 @@
       "affix": "Discharging",
       "level": "70",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4403,7 +4619,8 @@
       "affix": "Electrocuting",
       "level": "82",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4416,7 +4633,8 @@
       "affix": "Glinting",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4429,7 +4647,8 @@
       "affix": "Gleaming",
       "level": "42",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4442,7 +4661,8 @@
       "affix": "Annealed",
       "level": "54",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4455,7 +4675,8 @@
       "affix": "Razor-sharp",
       "level": "63",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4468,7 +4689,8 @@
       "affix": "Tempered",
       "level": "72",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4481,7 +4703,8 @@
       "affix": "Flaring",
       "level": "83",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4494,7 +4717,8 @@
       "affix": "of Training",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4508,7 +4732,8 @@
       "affix": "of Bloodletting",
       "level": "60",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4520,7 +4745,8 @@
       "affix": "of Stifling",
       "level": "32",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4532,7 +4758,8 @@
       "affix": "of Stifling",
       "level": "65",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4544,7 +4771,8 @@
       "affix": "of Distraction",
       "level": "32",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4556,7 +4784,8 @@
       "affix": "of Distraction",
       "level": "65",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4568,7 +4797,8 @@
       "affix": "of Righteousness",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4580,7 +4810,8 @@
       "affix": "of Authority",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions deal ",
@@ -4592,7 +4823,8 @@
       "affix": "of Acclimatisation",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4604,7 +4836,8 @@
       "affix": "of Combustion",
       "level": "60",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4616,7 +4849,8 @@
       "affix": "of Fortitude",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4628,7 +4862,8 @@
       "affix": "of Vampirism",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions Leech ",
@@ -4640,7 +4875,8 @@
       "affix": "of Longevity",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions Regenerate ",
@@ -4652,7 +4888,8 @@
       "affix": "of Orchestration",
       "level": "1",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4664,7 +4901,8 @@
       "affix": "of Venom",
       "level": "60",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4676,7 +4914,8 @@
       "affix": "of Delaying",
       "level": "32",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4688,7 +4927,8 @@
       "affix": "of Delaying",
       "level": "65",
       "tags": [
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Minions have ",
@@ -4702,7 +4942,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Movement Speed if you've Killed Recently"
@@ -4716,7 +4957,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% increased Movement Speed if you haven't taken Damage Recently"
@@ -4729,7 +4971,8 @@
       "tags": [
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Gain ",
@@ -4737,25 +4980,12 @@
       ],
       "type": "Suffix"
     },
-    "AbyssSelfCurseEffectOnConsecratedGroundJewel1__": {
-      "affix": "of the Sanctum",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "% reduced Effect of Curses on you while on Consecrated Ground"
-      ],
-      "type": "Suffix"
-    },
     "AbyssSpellAddedChaosDamageJewel1": {
       "affix": "of Dishonour",
       "level": "33",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -4768,7 +4998,8 @@
       "affix": "of Harm",
       "level": "48",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -4781,7 +5012,8 @@
       "affix": "of Malevolence",
       "level": "57",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -4794,7 +5026,8 @@
       "affix": "of Malice",
       "level": "68",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -4807,7 +5040,8 @@
       "affix": "of Sin",
       "level": "79",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -4821,7 +5055,8 @@
       "level": "1",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4834,7 +5069,8 @@
       "level": "42",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4847,7 +5083,8 @@
       "level": "54",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4860,7 +5097,8 @@
       "level": "65",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4873,7 +5111,8 @@
       "level": "75",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4886,7 +5125,8 @@
       "level": "84",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4899,7 +5139,8 @@
       "level": "1",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4912,7 +5153,8 @@
       "level": "42",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4925,7 +5167,8 @@
       "level": "54",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4938,7 +5181,8 @@
       "level": "65",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4951,7 +5195,8 @@
       "level": "75",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4964,7 +5209,8 @@
       "level": "84",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4977,7 +5223,8 @@
       "level": "1",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -4990,7 +5237,8 @@
       "level": "42",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5003,7 +5251,8 @@
       "level": "54",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5016,7 +5265,8 @@
       "level": "65",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5029,7 +5279,8 @@
       "level": "75",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5042,7 +5293,8 @@
       "level": "84",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5054,7 +5306,8 @@
       "affix": "of Sleet",
       "level": "30",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5067,7 +5320,8 @@
       "affix": "of Ice",
       "level": "43",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5080,7 +5334,8 @@
       "affix": "of Rime",
       "level": "55",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5093,7 +5348,8 @@
       "affix": "of Floe",
       "level": "66",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5106,7 +5362,8 @@
       "affix": "of Glaciation",
       "level": "77",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5120,7 +5377,8 @@
       "level": "1",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5133,7 +5391,8 @@
       "level": "39",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5146,7 +5405,8 @@
       "level": "48",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5159,7 +5419,8 @@
       "level": "58",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5172,7 +5433,8 @@
       "level": "70",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5185,7 +5447,8 @@
       "level": "82",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5198,7 +5461,8 @@
       "level": "1",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5211,7 +5475,8 @@
       "level": "39",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5224,7 +5489,8 @@
       "level": "48",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5237,7 +5503,8 @@
       "level": "58",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5250,7 +5517,8 @@
       "level": "70",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5263,7 +5531,8 @@
       "level": "82",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5276,7 +5545,8 @@
       "level": "1",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5289,7 +5559,8 @@
       "level": "39",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5302,7 +5573,8 @@
       "level": "48",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5315,7 +5587,8 @@
       "level": "58",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5328,7 +5601,8 @@
       "level": "70",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5341,7 +5615,8 @@
       "level": "82",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5353,7 +5628,8 @@
       "affix": "of Coals",
       "level": "30",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5366,7 +5642,8 @@
       "affix": "of Cinders",
       "level": "43",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5379,7 +5656,8 @@
       "affix": "of Flames",
       "level": "55",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5392,7 +5670,8 @@
       "affix": "of Immolation",
       "level": "66",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5405,7 +5684,8 @@
       "affix": "of Ashes",
       "level": "77",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5419,7 +5699,8 @@
       "level": "1",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5432,7 +5713,8 @@
       "level": "39",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5445,7 +5727,8 @@
       "level": "48",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5458,7 +5741,8 @@
       "level": "58",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5471,7 +5755,8 @@
       "level": "70",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5484,7 +5769,8 @@
       "level": "82",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5497,7 +5783,8 @@
       "level": "1",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5510,7 +5797,8 @@
       "level": "39",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5523,7 +5811,8 @@
       "level": "48",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5536,7 +5825,8 @@
       "level": "58",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5549,7 +5839,8 @@
       "level": "70",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5562,7 +5853,8 @@
       "level": "82",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5575,7 +5867,8 @@
       "level": "1",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5588,7 +5881,8 @@
       "level": "39",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5601,7 +5895,8 @@
       "level": "48",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5614,7 +5909,8 @@
       "level": "58",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5627,7 +5923,8 @@
       "level": "70",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5640,7 +5937,8 @@
       "level": "82",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5652,7 +5950,8 @@
       "affix": "of Static",
       "level": "30",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5665,7 +5964,8 @@
       "affix": "of Electricity",
       "level": "43",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5678,7 +5978,8 @@
       "affix": "of Voltage",
       "level": "55",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5691,7 +5992,8 @@
       "affix": "of Discharge",
       "level": "66",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5704,7 +6006,8 @@
       "affix": "of Arcing",
       "level": "77",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5718,7 +6021,8 @@
       "level": "1",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -5731,7 +6035,8 @@
       "level": "39",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5744,7 +6049,8 @@
       "level": "48",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5757,7 +6063,8 @@
       "level": "58",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5770,7 +6077,8 @@
       "level": "70",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5783,7 +6091,8 @@
       "level": "82",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5796,7 +6105,8 @@
       "level": "1",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -5809,7 +6119,8 @@
       "level": "39",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5822,7 +6133,8 @@
       "level": "48",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5835,7 +6147,8 @@
       "level": "58",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5848,7 +6161,8 @@
       "level": "70",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5861,7 +6175,8 @@
       "level": "82",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5874,7 +6189,8 @@
       "level": "1",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "1 to ",
@@ -5887,7 +6203,8 @@
       "level": "39",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5900,7 +6217,8 @@
       "level": "48",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5913,7 +6231,8 @@
       "level": "58",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5926,7 +6245,8 @@
       "level": "70",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5939,7 +6259,8 @@
       "level": "82",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -5951,7 +6272,8 @@
       "affix": "of Heft",
       "level": "32",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5964,7 +6286,8 @@
       "affix": "of Force",
       "level": "45",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5977,7 +6300,8 @@
       "affix": "of Weight",
       "level": "56",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -5990,7 +6314,8 @@
       "affix": "of Impact",
       "level": "65",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -6003,7 +6328,8 @@
       "affix": "of Collision",
       "level": "78",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "Adds ",
@@ -6017,7 +6343,8 @@
       "level": "1",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6030,7 +6357,8 @@
       "level": "42",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6043,7 +6371,8 @@
       "level": "54",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6056,7 +6385,8 @@
       "level": "63",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6069,7 +6399,8 @@
       "level": "72",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6082,7 +6413,8 @@
       "level": "83",
       "tags": [
         "dual_wielding_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6095,7 +6427,8 @@
       "level": "1",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6108,7 +6441,8 @@
       "level": "42",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6121,7 +6455,8 @@
       "level": "54",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6134,7 +6469,8 @@
       "level": "63",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6147,7 +6483,8 @@
       "level": "72",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6160,7 +6497,8 @@
       "level": "83",
       "tags": [
         "shield_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6173,7 +6511,8 @@
       "level": "1",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6186,7 +6525,8 @@
       "level": "42",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6199,7 +6539,8 @@
       "level": "54",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6212,7 +6553,8 @@
       "level": "63",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6225,7 +6567,8 @@
       "level": "72",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6238,7 +6581,8 @@
       "level": "83",
       "tags": [
         "two_handed_mod",
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         " to ",
@@ -6253,7 +6597,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% Chance to Block Spell Damage if you were Damaged by a Hit Recently"
@@ -6267,7 +6612,8 @@
         "abyss_jewel_melee",
         "abyss_jewel_ranged",
         "abyss_jewel_caster",
-        "abyss_jewel_summoner"
+        "abyss_jewel_summoner",
+        "abyss_jewel_special"
       ],
       "texts": [
         "+2% Chance to Block Spell Damage if you were Damaged by a Hit Recently"
@@ -6278,7 +6624,8 @@
       "affix": "of Hindering",
       "level": "32",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Hinder Enemies on Hit with Spells"
@@ -6289,7 +6636,8 @@
       "affix": "of Hindering",
       "level": "65",
       "tags": [
-        "abyss_jewel_caster"
+        "abyss_jewel_caster",
+        "abyss_jewel_special"
       ],
       "texts": [
         "% chance to Hinder Enemies on Hit with Spells"
@@ -6326,20 +6674,6 @@
       ],
       "texts": [
         " to Strength"
-      ],
-      "type": "Suffix"
-    },
-    "AbyssWitheredEnemiesAllResistanceJewel1___": {
-      "affix": "of Languishing",
-      "level": "84",
-      "tags": [
-        "abyss_jewel_melee",
-        "abyss_jewel_ranged",
-        "abyss_jewel_caster",
-        "abyss_jewel_summoner"
-      ],
-      "texts": [
-        "Enemies Withered by you have -2% to all Resistances"
       ],
       "type": "Suffix"
     },
@@ -6762,7 +7096,7 @@
         "body_armour"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 1 Arcane Surge"
+        "Socketed Gems are Supported by Level 1 Arcane Surge Support"
       ],
       "type": "Suffix"
     },
@@ -7080,7 +7414,7 @@
         "helmet"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Chaos Resistance"
+        "Enemies within 6 metres have -9% to Chaos Resistance"
       ],
       "type": "Suffix"
     },
@@ -7091,7 +7425,7 @@
         "helmet"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Cold Resistance"
+        "Enemies within 6 metres have -9% to Cold Resistance"
       ],
       "type": "Suffix"
     },
@@ -7102,7 +7436,7 @@
         "helmet"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Fire Resistance"
+        "Enemies within 6 metres have -9% to Fire Resistance"
       ],
       "type": "Suffix"
     },
@@ -7113,7 +7447,7 @@
         "helmet"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Lightning Resistance"
+        "Enemies within 6 metres have -9% to Lightning Resistance"
       ],
       "type": "Suffix"
     },
@@ -7124,7 +7458,7 @@
         "helmet"
       ],
       "texts": [
-        "Nearby Enemies take 9% increased Physical Damage"
+        "Enemies within 6 metres take 9% increased Physical Damage"
       ],
       "type": "Suffix"
     },
@@ -9212,7 +9546,7 @@
       ],
       "texts": [
         "Damaging Ailments deal damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Prefix",
       "weights": [
@@ -18916,7 +19250,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Life"
       ],
       "type": "Suffix"
@@ -18928,7 +19262,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Life"
       ],
       "type": "Suffix"
@@ -18940,7 +19274,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Life"
       ],
       "type": "Suffix"
@@ -18952,7 +19286,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Life"
       ],
       "type": "Suffix"
@@ -18964,7 +19298,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Mana"
       ],
       "type": "Suffix"
@@ -18976,7 +19310,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Mana"
       ],
       "type": "Suffix"
@@ -18988,7 +19322,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Mana"
       ],
       "type": "Suffix"
@@ -19000,7 +19334,7 @@
         "default"
       ],
       "texts": [
-        "Hinders nearby Enemies with ",
+        "Hinders Enemies within 3 metres with ",
         "% reduced Movement Speed if used while not on Full Mana"
       ],
       "type": "Suffix"
@@ -21272,7 +21606,7 @@
         "shield_elder"
       ],
       "texts": [
-        "% Chance to Block Attack Damage if there are at least 5 nearby Enemies"
+        "% Chance to Block Attack Damage if there are at least 5 Enemies within 6 metres"
       ],
       "type": "Suffix"
     },
@@ -21283,7 +21617,7 @@
         "shield_elder"
       ],
       "texts": [
-        "% Chance to Block Attack Damage if there are at least 5 nearby Enemies"
+        "% Chance to Block Attack Damage if there are at least 5 Enemies within 6 metres"
       ],
       "type": "Suffix"
     },
@@ -21954,7 +22288,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Concentrated Effect",
+        "Socketed Gems are Supported by Level 16 Concentrated Effect Support",
         "% increased Area Damage"
       ],
       "type": "Prefix"
@@ -21966,7 +22300,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Concentrated Effect",
+        "Socketed Gems are Supported by Level 18 Concentrated Effect Support",
         "% increased Area Damage"
       ],
       "type": "Prefix"
@@ -21978,7 +22312,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Concentrated Effect",
+        "Socketed Gems are Supported by Level 20 Concentrated Effect Support",
         "% increased Area Damage"
       ],
       "type": "Prefix"
@@ -22154,7 +22488,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 16 Increased Area of Effect Support",
         "% increased Area of Effect"
       ],
       "type": "Prefix"
@@ -22166,7 +22500,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 18 Increased Area of Effect Support",
         "% increased Area of Effect"
       ],
       "type": "Prefix"
@@ -22178,7 +22512,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 20 Increased Area of Effect Support",
         "% increased Area of Effect"
       ],
       "type": "Prefix"
@@ -23394,7 +23728,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Chance To Bleed",
+        "Socketed Gems are Supported by Level 16 Chance to Bleed Support",
         "% increased Damage with Bleeding"
       ],
       "type": "Suffix"
@@ -23406,7 +23740,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Chance To Bleed",
+        "Socketed Gems are Supported by Level 18 Chance to Bleed Support",
         "% increased Damage with Bleeding"
       ],
       "type": "Suffix"
@@ -23418,7 +23752,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Chance To Bleed",
+        "Socketed Gems are Supported by Level 20 Chance to Bleed Support",
         "% increased Damage with Bleeding"
       ],
       "type": "Suffix"
@@ -23511,7 +23845,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 16 Blind",
+        "Socketed Gems are Supported by Level 16 Blind Support",
         "% Global chance to Blind Enemies on hit"
       ],
       "type": "Suffix"
@@ -23523,7 +23857,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Blind",
+        "Socketed Gems are Supported by Level 18 Blind Support",
         "% Global chance to Blind Enemies on hit"
       ],
       "type": "Suffix"
@@ -23535,7 +23869,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Blind",
+        "Socketed Gems are Supported by Level 20 Blind Support",
         "% Global chance to Blind Enemies on hit"
       ],
       "type": "Suffix"
@@ -24098,7 +24432,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Chance To Bleed",
+        "Socketed Gems are Supported by Level 18 Chance to Bleed Support",
         "10% chance to cause Bleeding on Hit"
       ],
       "type": "Suffix"
@@ -24115,7 +24449,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Chance To Bleed",
+        "Socketed Gems are Supported by Level 20 Chance to Bleed Support",
         "15% chance to cause Bleeding on Hit"
       ],
       "type": "Suffix"
@@ -24287,7 +24621,7 @@
         "sceptre_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Elemental Proliferation",
+        "Socketed Gems are Supported by Level 18 Elemental Proliferation Support",
         "% chance to Freeze, Shock and Ignite"
       ],
       "type": "Suffix"
@@ -24299,7 +24633,7 @@
         "sceptre_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Elemental Proliferation",
+        "Socketed Gems are Supported by Level 20 Elemental Proliferation Support",
         "% chance to Freeze, Shock and Ignite"
       ],
       "type": "Suffix"
@@ -24311,7 +24645,7 @@
         "sceptre_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Unbound Ailments",
+        "Socketed Gems are Supported by Level 18 Unbound Ailments Support",
         "% chance to Freeze, Shock and Ignite"
       ],
       "type": "Suffix"
@@ -24323,7 +24657,7 @@
         "sceptre_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Unbound Ailments",
+        "Socketed Gems are Supported by Level 20 Unbound Ailments Support",
         "% chance to Freeze, Shock and Ignite"
       ],
       "type": "Suffix"
@@ -24681,7 +25015,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Maim",
+        "Socketed Gems are Supported by Level 18 Maim Support",
         "15% chance to Maim on Hit"
       ],
       "type": "Suffix"
@@ -24698,7 +25032,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Maim",
+        "Socketed Gems are Supported by Level 20 Maim Support",
         "20% chance to Maim on Hit"
       ],
       "type": "Suffix"
@@ -24713,7 +25047,7 @@
         "claw_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Chance to Poison",
+        "Socketed Gems are Supported by Level 18 Chance to Poison Support",
         "15% chance to Poison on Hit"
       ],
       "type": "Suffix"
@@ -24728,7 +25062,7 @@
         "claw_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Chance to Poison",
+        "Socketed Gems are Supported by Level 20 Chance to Poison Support",
         "20% chance to Poison on Hit"
       ],
       "type": "Suffix"
@@ -25893,7 +26227,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Cold Penetration",
+        "Socketed Gems are Supported by Level 16 Cold Penetration Support",
         "% increased Cold Damage"
       ],
       "type": "Prefix"
@@ -25906,7 +26240,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Cold Penetration",
+        "Socketed Gems are Supported by Level 18 Cold Penetration Support",
         "% increased Cold Damage"
       ],
       "type": "Prefix"
@@ -25919,7 +26253,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Cold Penetration",
+        "Socketed Gems are Supported by Level 20 Cold Penetration Support",
         "% increased Cold Damage"
       ],
       "type": "Prefix"
@@ -26567,7 +26901,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Increased Critical Damage",
+        "Socketed Gems are Supported by Level 18 Increased Critical Damage Support",
         "% to Global Critical Strike Multiplier"
       ],
       "type": "Suffix"
@@ -26586,7 +26920,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Increased Critical Damage",
+        "Socketed Gems are Supported by Level 20 Increased Critical Damage Support",
         "% to Global Critical Strike Multiplier"
       ],
       "type": "Suffix"
@@ -26827,7 +27161,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Increased Critical Strikes",
+        "Socketed Gems are Supported by Level 18 Increased Critical Strikes Support",
         "% increased Spell Critical Strike Chance"
       ],
       "type": "Suffix"
@@ -26841,7 +27175,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Increased Critical Strikes",
+        "Socketed Gems are Supported by Level 20 Increased Critical Strikes Support",
         "% increased Spell Critical Strike Chance"
       ],
       "type": "Suffix"
@@ -26884,7 +27218,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Increased Critical Strikes",
+        "Socketed Gems are Supported by Level 18 Increased Critical Strikes Support",
         "% increased Critical Strike Chance"
       ],
       "type": "Suffix"
@@ -26903,7 +27237,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Increased Critical Strikes",
+        "Socketed Gems are Supported by Level 20 Increased Critical Strikes Support",
         "% increased Critical Strike Chance"
       ],
       "type": "Suffix"
@@ -28057,7 +28391,7 @@
         "deepwater_sword"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Combustion",
+        "Socketed Gems are Supported by Level 20 Combustion Support",
         "% increased Burning Damage"
       ],
       "type": "Prefix"
@@ -28636,7 +28970,7 @@
         "sceptre_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Elemental Focus",
+        "Socketed Gems are Supported by Level 16 Elemental Focus Support",
         "% increased Elemental Damage"
       ],
       "type": "Prefix"
@@ -28648,7 +28982,7 @@
         "sceptre_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Elemental Focus",
+        "Socketed Gems are Supported by Level 18 Elemental Focus Support",
         "% increased Elemental Damage"
       ],
       "type": "Prefix"
@@ -28660,7 +28994,7 @@
         "sceptre_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Elemental Focus",
+        "Socketed Gems are Supported by Level 20 Elemental Focus Support",
         "% increased Elemental Damage"
       ],
       "type": "Prefix"
@@ -28985,7 +29319,7 @@
         "helmet_basilisk"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Chaos Resistance"
+        "Enemies within 6 metres have -9% to Chaos Resistance"
       ],
       "type": "Suffix"
     },
@@ -28996,7 +29330,7 @@
         "helmet_eyrie"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Cold Resistance"
+        "Enemies within 6 metres have -9% to Cold Resistance"
       ],
       "type": "Suffix"
     },
@@ -29007,7 +29341,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Nearby Enemies take 6% increased Elemental Damage"
+        "Enemies within 6 metres take 6% increased Elemental Damage"
       ],
       "type": "Suffix"
     },
@@ -29018,7 +29352,7 @@
         "helmet_adjudicator"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Fire Resistance"
+        "Enemies within 6 metres have -9% to Fire Resistance"
       ],
       "type": "Suffix"
     },
@@ -29029,7 +29363,7 @@
         "helmet_crusader"
       ],
       "texts": [
-        "Nearby Enemies have -9% to Lightning Resistance"
+        "Enemies within 6 metres have -9% to Lightning Resistance"
       ],
       "type": "Suffix"
     },
@@ -29040,7 +29374,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Nearby Enemies take 9% increased Physical Damage"
+        "Enemies within 6 metres take 9% increased Physical Damage"
       ],
       "type": "Suffix"
     },
@@ -29250,7 +29584,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29264,7 +29598,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29279,7 +29613,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29294,7 +29628,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29306,7 +29640,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29318,7 +29652,7 @@
       ],
       "texts": [
         "Bleeding you inflict deals Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29331,7 +29665,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29344,7 +29678,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29357,7 +29691,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29370,7 +29704,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29382,7 +29716,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29394,7 +29728,7 @@
       ],
       "texts": [
         "Ignites you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29409,7 +29743,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29424,7 +29758,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29437,7 +29771,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29450,7 +29784,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29462,7 +29796,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -29474,7 +29808,7 @@
       ],
       "texts": [
         "Poisons you inflict deal Damage ",
-        "% faster"
+        "% Faster"
       ],
       "type": "Suffix"
     },
@@ -30154,7 +30488,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Fire Penetration",
+        "Socketed Gems are Supported by Level 16 Fire Penetration Support",
         "% increased Fire Damage"
       ],
       "type": "Prefix"
@@ -30167,7 +30501,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Fire Penetration",
+        "Socketed Gems are Supported by Level 18 Fire Penetration Support",
         "% increased Fire Damage"
       ],
       "type": "Prefix"
@@ -30180,7 +30514,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Fire Penetration",
+        "Socketed Gems are Supported by Level 20 Fire Penetration Support",
         "% increased Fire Damage"
       ],
       "type": "Prefix"
@@ -31540,7 +31874,7 @@
         "belt_shaper"
       ],
       "texts": [
-        "Grants Level 22 Intimidating Cry Skill"
+        "Grants Level 22 Intimidating Cry"
       ],
       "type": "Prefix"
     },
@@ -31551,7 +31885,7 @@
         "amulet_elder"
       ],
       "texts": [
-        "Grants Level 22 Anger Skill"
+        "Grants Level 22 Anger"
       ],
       "type": "Suffix"
     },
@@ -31562,7 +31896,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Clarity Skill"
+        "Grants Level 22 Clarity"
       ],
       "type": "Suffix"
     },
@@ -31573,7 +31907,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Grants Level 20 Decoy Totem Skill"
+        "Grants Level 20 Decoy Totem"
       ],
       "type": "Suffix"
     },
@@ -31584,7 +31918,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Determination Skill"
+        "Grants Level 22 Determination"
       ],
       "type": "Suffix"
     },
@@ -31595,7 +31929,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Discipline Skill"
+        "Grants Level 22 Discipline"
       ],
       "type": "Suffix"
     },
@@ -31606,7 +31940,7 @@
         "belt_elder"
       ],
       "texts": [
-        "Grants Level 22 Enduring Cry Skill"
+        "Grants Level 22 Enduring Cry"
       ],
       "type": "Prefix"
     },
@@ -31617,7 +31951,7 @@
         "amulet_elder"
       ],
       "texts": [
-        "Grants Level 15 Envy Skill"
+        "Grants Level 15 Envy"
       ],
       "type": "Suffix"
     },
@@ -31628,7 +31962,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Grace Skill"
+        "Grants Level 22 Grace"
       ],
       "type": "Suffix"
     },
@@ -31639,7 +31973,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Haste Skill"
+        "Grants Level 22 Haste"
       ],
       "type": "Suffix"
     },
@@ -31650,7 +31984,7 @@
         "amulet_elder"
       ],
       "texts": [
-        "Grants Level 22 Hatred Skill"
+        "Grants Level 22 Hatred"
       ],
       "type": "Suffix"
     },
@@ -31661,7 +31995,7 @@
         "ring_elder"
       ],
       "texts": [
-        "Grants Level 22 Herald of Ash Skill"
+        "Grants Level 22 Herald of Ash"
       ],
       "type": "Suffix"
     },
@@ -31672,7 +32006,7 @@
         "ring_shaper"
       ],
       "texts": [
-        "Grants Level 22 Herald of Ice Skill"
+        "Grants Level 22 Herald of Ice"
       ],
       "type": "Suffix"
     },
@@ -31683,7 +32017,7 @@
         "ring_shaper"
       ],
       "texts": [
-        "Grants Level 22 Herald of Thunder Skill"
+        "Grants Level 22 Herald of Thunder"
       ],
       "type": "Suffix"
     },
@@ -31694,7 +32028,7 @@
         "belt_elder"
       ],
       "texts": [
-        "Grants Level 22 Rallying Cry Skill"
+        "Grants Level 22 Rallying Cry"
       ],
       "type": "Prefix"
     },
@@ -31705,7 +32039,7 @@
         "amulet_shaper"
       ],
       "texts": [
-        "Grants Level 22 Vitality Skill"
+        "Grants Level 22 Vitality"
       ],
       "type": "Suffix"
     },
@@ -31716,7 +32050,7 @@
         "amulet_elder"
       ],
       "texts": [
-        "Grants Level 22 Wrath Skill"
+        "Grants Level 22 Wrath"
       ],
       "type": "Suffix"
     },
@@ -31839,7 +32173,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Immolate",
+        "Socketed Gems are Supported by Level 16 Immolate Support",
         "% increased Ignite Duration on Enemies"
       ],
       "type": "Suffix"
@@ -31851,7 +32185,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Immolate",
+        "Socketed Gems are Supported by Level 18 Immolate Support",
         "% increased Ignite Duration on Enemies"
       ],
       "type": "Suffix"
@@ -31863,7 +32197,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Immolate",
+        "Socketed Gems are Supported by Level 20 Immolate Support",
         "% increased Ignite Duration on Enemies"
       ],
       "type": "Suffix"
@@ -32182,7 +32516,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 16 Additional Accuracy",
+        "Socketed Gems are Supported by Level 16 Additional Accuracy Support",
         "% increased Global Accuracy Rating"
       ],
       "type": "Suffix"
@@ -32194,7 +32528,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Additional Accuracy",
+        "Socketed Gems are Supported by Level 18 Additional Accuracy Support",
         "% increased Global Accuracy Rating"
       ],
       "type": "Suffix"
@@ -32206,7 +32540,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Additional Accuracy",
+        "Socketed Gems are Supported by Level 20 Additional Accuracy Support",
         "% increased Global Accuracy Rating"
       ],
       "type": "Suffix"
@@ -32373,7 +32707,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Faster Attacks",
+        "Socketed Gems are Supported by Level 16 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -32385,7 +32719,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Faster Attacks",
+        "Socketed Gems are Supported by Level 18 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -32397,7 +32731,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Faster Attacks",
+        "Socketed Gems are Supported by Level 20 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -32409,7 +32743,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Burning Damage",
+        "Socketed Gems are Supported by Level 16 Burning Damage Support",
         "% increased Burning Damage"
       ],
       "type": "Suffix"
@@ -32421,7 +32755,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Burning Damage",
+        "Socketed Gems are Supported by Level 18 Burning Damage Support",
         "% increased Burning Damage"
       ],
       "type": "Suffix"
@@ -32433,7 +32767,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Burning Damage",
+        "Socketed Gems are Supported by Level 20 Burning Damage Support",
         "% increased Burning Damage"
       ],
       "type": "Suffix"
@@ -32545,7 +32879,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Faster Casting",
+        "Socketed Gems are Supported by Level 18 Faster Casting Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32559,7 +32893,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Faster Casting",
+        "Socketed Gems are Supported by Level 20 Faster Casting Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32584,7 +32918,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Spell Echo",
+        "Socketed Gems are Supported by Level 18 Spell Echo Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32598,7 +32932,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Spell Echo",
+        "Socketed Gems are Supported by Level 20 Spell Echo Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32735,7 +33069,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Faster Casting",
+        "Socketed Gems are Supported by Level 16 Faster Casting Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32747,7 +33081,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Faster Casting",
+        "Socketed Gems are Supported by Level 18 Faster Casting Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32759,7 +33093,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Faster Casting",
+        "Socketed Gems are Supported by Level 20 Faster Casting Support",
         "% increased Cast Speed"
       ],
       "type": "Suffix"
@@ -32771,7 +33105,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Hypothermia",
+        "Socketed Gems are Supported by Level 16 Hypothermia Support",
         "% increased Effect of Cold Ailments"
       ],
       "type": "Suffix"
@@ -32783,7 +33117,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Hypothermia",
+        "Socketed Gems are Supported by Level 18 Hypothermia Support",
         "% increased Effect of Cold Ailments"
       ],
       "type": "Suffix"
@@ -32795,7 +33129,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Hypothermia",
+        "Socketed Gems are Supported by Level 20 Hypothermia Support",
         "% increased Effect of Cold Ailments"
       ],
       "type": "Suffix"
@@ -32851,7 +33185,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 15 More Duration",
+        "Socketed Gems are Supported by Level 15 More Duration Support",
         "% increased Skill Effect Duration"
       ],
       "type": "Suffix"
@@ -34162,7 +34496,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Innervate",
+        "Socketed Gems are Supported by Level 16 Innervate Support",
         "% increased Effect of Lightning Ailments"
       ],
       "type": "Suffix"
@@ -34174,7 +34508,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Innervate",
+        "Socketed Gems are Supported by Level 18 Innervate Support",
         "% increased Effect of Lightning Ailments"
       ],
       "type": "Suffix"
@@ -34186,7 +34520,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Innervate",
+        "Socketed Gems are Supported by Level 20 Innervate Support",
         "% increased Effect of Lightning Ailments"
       ],
       "type": "Suffix"
@@ -34422,7 +34756,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Suffix"
     },
@@ -34437,7 +34771,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Suffix"
     },
@@ -34450,7 +34784,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Suffix"
     },
@@ -34463,7 +34797,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Suffix"
     },
@@ -34478,7 +34812,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Prefix"
     },
@@ -34493,7 +34827,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Prefix"
     },
@@ -34506,7 +34840,7 @@
         "helmet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Prefix"
     },
@@ -34518,7 +34852,7 @@
         "amulet"
       ],
       "texts": [
-        "% increased Rarity of Items found"
+        "% to Item Rarity"
       ],
       "type": "Prefix"
     },
@@ -35545,7 +35879,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Lightning Penetration",
+        "Socketed Gems are Supported by Level 16 Lightning Penetration Support",
         "% increased Lightning Damage"
       ],
       "type": "Prefix"
@@ -35559,7 +35893,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Lightning Penetration",
+        "Socketed Gems are Supported by Level 18 Lightning Penetration Support",
         "% increased Lightning Damage"
       ],
       "type": "Prefix"
@@ -35573,7 +35907,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Lightning Penetration",
+        "Socketed Gems are Supported by Level 20 Lightning Penetration Support",
         "% increased Lightning Damage"
       ],
       "type": "Prefix"
@@ -35834,7 +36168,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "15% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -35847,7 +36181,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "5% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -35860,7 +36194,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "10% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -39590,7 +39924,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Faster Attacks",
+        "Socketed Gems are Supported by Level 18 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39608,7 +39942,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Faster Attacks",
+        "Socketed Gems are Supported by Level 20 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39626,7 +39960,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Multistrike",
+        "Socketed Gems are Supported by Level 18 Multistrike Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39644,7 +39978,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Multistrike",
+        "Socketed Gems are Supported by Level 20 Multistrike Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39680,7 +40014,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Faster Attacks",
+        "Socketed Gems are Supported by Level 18 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39692,7 +40026,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Faster Attacks",
+        "Socketed Gems are Supported by Level 20 Faster Attacks Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39728,7 +40062,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Momentum",
+        "Socketed Gems are Supported by Level 18 Momentum Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -39740,7 +40074,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Momentum",
+        "Socketed Gems are Supported by Level 20 Momentum Support",
         "% increased Attack Speed"
       ],
       "type": "Suffix"
@@ -40770,7 +41104,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Added Fire Damage",
+        "Socketed Gems are Supported by Level 16 Added Fire Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -40789,7 +41123,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Added Fire Damage",
+        "Socketed Gems are Supported by Level 18 Added Fire Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -40808,7 +41142,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Added Fire Damage",
+        "Socketed Gems are Supported by Level 20 Added Fire Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41502,7 +41836,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Brutality",
+        "Socketed Gems are Supported by Level 16 Brutality Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41520,7 +41854,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Brutality",
+        "Socketed Gems are Supported by Level 18 Brutality Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41538,7 +41872,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Brutality",
+        "Socketed Gems are Supported by Level 20 Brutality Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41556,7 +41890,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Melee Physical Damage",
+        "Socketed Gems are Supported by Level 16 Melee Physical Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41574,7 +41908,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Melee Physical Damage",
+        "Socketed Gems are Supported by Level 18 Melee Physical Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41592,7 +41926,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Melee Physical Damage",
+        "Socketed Gems are Supported by Level 20 Melee Physical Damage Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41610,7 +41944,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Ruthless",
+        "Socketed Gems are Supported by Level 16 Ruthless Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41628,7 +41962,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Ruthless",
+        "Socketed Gems are Supported by Level 18 Ruthless Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -41646,7 +41980,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Ruthless",
+        "Socketed Gems are Supported by Level 20 Ruthless Support",
         "% increased Physical Damage"
       ],
       "type": "Prefix"
@@ -42443,7 +42777,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "15% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -42455,7 +42789,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "5% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -42467,7 +42801,7 @@
       ],
       "texts": [
         "% increased Global Accuracy Rating",
-        "10% increased Light Radius"
+        "% increased Light Radius"
       ],
       "type": "Suffix"
     },
@@ -44467,7 +44801,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 16 Trap and Mine Damage Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -44479,7 +44813,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 18 Trap and Mine Damage Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -44491,7 +44825,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 20 Trap and Mine Damage Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -44503,7 +44837,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Blastchain Mine",
+        "Socketed Gems are Supported by Level 18 Blastchain Mine Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -44515,7 +44849,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Blastchain Mine",
+        "Socketed Gems are Supported by Level 20 Blastchain Mine Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -44527,7 +44861,7 @@
         "helmet_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Blastchain Mine",
+        "Socketed Gems are Supported by Level 22 Blastchain Mine Support",
         "% increased Mine Damage"
       ],
       "type": "Suffix"
@@ -45170,7 +45504,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Minion Damage",
+        "Socketed Gems are Supported by Level 16 Minion Damage Support",
         "Minions deal ",
         "% increased Damage"
       ],
@@ -45183,7 +45517,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Minion Damage",
+        "Socketed Gems are Supported by Level 18 Minion Damage Support",
         "Minions deal ",
         "% increased Damage"
       ],
@@ -45196,7 +45530,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Minion Damage",
+        "Socketed Gems are Supported by Level 20 Minion Damage Support",
         "Minions deal ",
         "% increased Damage"
       ],
@@ -45222,7 +45556,7 @@
         "weapon_can_roll_minion_modifiers"
       ],
       "texts": [
-        "Grants Level 1 Convocation Skill"
+        "Grants Level 1 Convocation"
       ],
       "type": "Suffix"
     },
@@ -45269,7 +45603,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Minion Life",
+        "Socketed Gems are Supported by Level 16 Minion Life Support",
         "Minions have ",
         "% increased maximum Life"
       ],
@@ -45282,7 +45616,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Minion Life",
+        "Socketed Gems are Supported by Level 18 Minion Life Support",
         "Minions have ",
         "% increased maximum Life"
       ],
@@ -45295,7 +45629,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Minion Life",
+        "Socketed Gems are Supported by Level 20 Minion Life Support",
         "Minions have ",
         "% increased maximum Life"
       ],
@@ -45871,7 +46205,7 @@
         "body_armour_eyrie"
       ],
       "texts": [
-        "Nearby Enemies are Blinded"
+        "Enemies within 3.5 metres are Blinded"
       ],
       "type": "Prefix"
     },
@@ -47973,7 +48307,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Chance to Poison",
+        "Socketed Gems are Supported by Level 16 Chance to Poison Support",
         "% increased Damage with Poison"
       ],
       "type": "Suffix"
@@ -47985,7 +48319,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Chance to Poison",
+        "Socketed Gems are Supported by Level 18 Chance to Poison Support",
         "% increased Damage with Poison"
       ],
       "type": "Suffix"
@@ -47997,7 +48331,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Chance to Poison",
+        "Socketed Gems are Supported by Level 20 Chance to Poison Support",
         "% increased Damage with Poison"
       ],
       "type": "Suffix"
@@ -48010,7 +48344,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Chance to Poison",
+        "Socketed Gems are Supported by Level 18 Chance to Poison Support",
         "% increased Damage with Poison"
       ],
       "type": "Suffix"
@@ -48023,7 +48357,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Chance to Poison",
+        "Socketed Gems are Supported by Level 20 Chance to Poison Support",
         "% increased Damage with Poison"
       ],
       "type": "Suffix"
@@ -48036,7 +48370,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Critical Strike Affliction",
+        "Socketed Gems are Supported by Level 18 Critical Strike Affliction Support",
         "% increased Poison Duration"
       ],
       "type": "Suffix"
@@ -48049,7 +48383,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Critical Strike Affliction",
+        "Socketed Gems are Supported by Level 20 Critical Strike Affliction Support",
         "% increased Poison Duration"
       ],
       "type": "Suffix"
@@ -48383,7 +48717,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Slower Projectiles",
+        "Socketed Gems are Supported by Level 16 Slower Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Prefix"
@@ -48395,7 +48729,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Slower Projectiles",
+        "Socketed Gems are Supported by Level 18 Slower Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Prefix"
@@ -48407,7 +48741,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Slower Projectiles",
+        "Socketed Gems are Supported by Level 20 Slower Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Prefix"
@@ -48479,7 +48813,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 16 Faster Projectiles",
+        "Socketed Gems are Supported by Level 16 Faster Projectiles Support",
         "% increased Projectile Speed"
       ],
       "type": "Prefix"
@@ -48491,7 +48825,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Faster Projectiles",
+        "Socketed Gems are Supported by Level 18 Faster Projectiles Support",
         "% increased Projectile Speed"
       ],
       "type": "Prefix"
@@ -48503,7 +48837,7 @@
         "gloves_elder"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Faster Projectiles",
+        "Socketed Gems are Supported by Level 20 Faster Projectiles Support",
         "% increased Projectile Speed"
       ],
       "type": "Prefix"
@@ -51897,7 +52231,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Controlled Destruction",
+        "Socketed Gems are Supported by Level 16 Controlled Destruction Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -51911,7 +52245,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Controlled Destruction",
+        "Socketed Gems are Supported by Level 18 Controlled Destruction Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -51925,7 +52259,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Controlled Destruction",
+        "Socketed Gems are Supported by Level 20 Controlled Destruction Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -51939,7 +52273,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Efficacy",
+        "Socketed Gems are Supported by Level 16 Efficacy Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -51953,7 +52287,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Efficacy",
+        "Socketed Gems are Supported by Level 18 Efficacy Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -51967,7 +52301,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Efficacy",
+        "Socketed Gems are Supported by Level 20 Efficacy Support",
         "% increased Spell Damage"
       ],
       "type": "Prefix"
@@ -52857,7 +53191,7 @@
         "staff_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 1 Arcane Surge"
+        "Socketed Gems are Supported by Level 1 Arcane Surge Support"
       ],
       "type": "Prefix"
     },
@@ -52870,7 +53204,7 @@
         "2h_sword_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Cast On Critical Strike"
+        "Socketed Gems are Supported by Level 18 Cast On Critical Strike Support"
       ],
       "type": "Prefix"
     },
@@ -52883,7 +53217,7 @@
         "2h_sword_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Cast On Critical Strike"
+        "Socketed Gems are Supported by Level 20 Cast On Critical Strike Support"
       ],
       "type": "Prefix"
     },
@@ -52894,7 +53228,7 @@
         "shield_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 5 Cast when Damage Taken"
+        "Socketed Gems are Supported by Level 5 Cast when Damage Taken Support"
       ],
       "type": "Suffix"
     },
@@ -52909,7 +53243,7 @@
         "warstaff_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Cast On Melee Kill"
+        "Socketed Gems are Supported by Level 18 Cast on Melee Kill Support"
       ],
       "type": "Prefix"
     },
@@ -52924,7 +53258,7 @@
         "warstaff_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Cast On Melee Kill"
+        "Socketed Gems are Supported by Level 20 Cast on Melee Kill Support"
       ],
       "type": "Prefix"
     },
@@ -52936,7 +53270,7 @@
         "warstaff_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Cast While Channelling"
+        "Socketed Gems are Supported by Level 18 Cast while Channelling Support"
       ],
       "type": "Prefix"
     },
@@ -52948,7 +53282,7 @@
         "warstaff_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Cast While Channelling"
+        "Socketed Gems are Supported by Level 20 Cast while Channelling Support"
       ],
       "type": "Prefix"
     },
@@ -52963,7 +53297,7 @@
         "warstaff_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 10 Endurance Charge on Melee Stun"
+        "Socketed Gems are Supported by Level 10 Endurance Charge on Melee Stun Support"
       ],
       "type": "Prefix"
     },
@@ -52974,7 +53308,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Fortify"
+        "Socketed Gems are Supported by Level 20 Fortify Support"
       ],
       "type": "Prefix"
     },
@@ -52989,7 +53323,7 @@
         "warstaff_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 1 Fortify"
+        "Socketed Gems are Supported by Level 1 Fortify Support"
       ],
       "type": "Prefix"
     },
@@ -53003,7 +53337,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 16 Increased Area of Effect Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53018,7 +53352,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 18 Increased Area of Effect Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53033,7 +53367,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Increased Area of Effect",
+        "Socketed Gems are Supported by Level 20 Increased Area of Effect Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53046,7 +53380,7 @@
         "warstaff_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 1 Inspiration"
+        "Socketed Gems are Supported by Level 1 Inspiration Support"
       ],
       "type": "Prefix"
     },
@@ -53057,8 +53391,8 @@
         "body_armour_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 10 Item Rarity",
-        "% increased Rarity of Items found from Slain Unique Enemies"
+        "Socketed Gems are Supported by Level 10 Item Rarity Support",
+        "% to Item Rarity from Slain Unique Enemies"
       ],
       "type": "Suffix"
     },
@@ -53069,8 +53403,8 @@
         "body_armour_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 15 Item Rarity",
-        "% increased Rarity of Items found from Slain Unique Enemies"
+        "Socketed Gems are Supported by Level 15 Item Rarity Support",
+        "% to Item Rarity from Slain Unique Enemies"
       ],
       "type": "Suffix"
     },
@@ -53081,7 +53415,7 @@
         "helmet_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Less Duration"
+        "Socketed Gems are Supported by Level 20 Less Duration Support"
       ],
       "type": "Prefix"
     },
@@ -53092,7 +53426,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Multiple Projectiles",
+        "Socketed Gems are Supported by Level 16 Multiple Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
@@ -53104,7 +53438,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Multiple Projectiles",
+        "Socketed Gems are Supported by Level 18 Multiple Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
@@ -53116,7 +53450,7 @@
         "wand_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Multiple Projectiles",
+        "Socketed Gems are Supported by Level 20 Multiple Projectiles Support",
         "% increased Projectile Damage"
       ],
       "type": "Suffix"
@@ -53128,7 +53462,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 15 Life Leech"
+        "Socketed Gems are Supported by Level 15 Life Leech Support"
       ],
       "type": "Prefix"
     },
@@ -53139,7 +53473,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 15 Mana Leech"
+        "Socketed Gems are Supported by Level 15 Mana Leech Support"
       ],
       "type": "Prefix"
     },
@@ -53156,7 +53490,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 16 Melee Splash",
+        "Socketed Gems are Supported by Level 16 Melee Splash Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53174,7 +53508,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Melee Splash",
+        "Socketed Gems are Supported by Level 18 Melee Splash Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53192,7 +53526,7 @@
         "rune_dagger_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Melee Splash",
+        "Socketed Gems are Supported by Level 20 Melee Splash Support",
         "% increased Area Damage"
       ],
       "type": "Suffix"
@@ -53206,7 +53540,7 @@
         "bow_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 10 Momentum"
+        "Socketed Gems are Supported by Level 10 Momentum Support"
       ],
       "type": "Prefix"
     },
@@ -53218,7 +53552,7 @@
         "warstaff_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 10 Power Charge On Critical Strike"
+        "Socketed Gems are Supported by Level 10 Power Charge On Critical Support"
       ],
       "type": "Prefix"
     },
@@ -53231,7 +53565,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Spell Cascade",
+        "Socketed Gems are Supported by Level 16 Spell Cascade Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53245,7 +53579,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Spell Cascade",
+        "Socketed Gems are Supported by Level 18 Spell Cascade Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53259,7 +53593,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Spell Cascade",
+        "Socketed Gems are Supported by Level 20 Spell Cascade Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53277,7 +53611,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Ancestral Call",
+        "Socketed Gems are Supported by Level 16 Ancestral Call Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53295,7 +53629,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Ancestral Call",
+        "Socketed Gems are Supported by Level 18 Ancestral Call Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53313,7 +53647,7 @@
         "rune_dagger_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Ancestral Call",
+        "Socketed Gems are Supported by Level 20 Ancestral Call Support",
         "% increased Area of Effect"
       ],
       "type": "Suffix"
@@ -53325,7 +53659,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Volley",
+        "Socketed Gems are Supported by Level 16 Volley Support",
         "% increased Projectile Speed"
       ],
       "type": "Suffix"
@@ -53337,7 +53671,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Volley",
+        "Socketed Gems are Supported by Level 18 Volley Support",
         "% increased Projectile Speed"
       ],
       "type": "Suffix"
@@ -53349,7 +53683,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Volley",
+        "Socketed Gems are Supported by Level 20 Volley Support",
         "% increased Projectile Speed"
       ],
       "type": "Suffix"
@@ -53408,7 +53742,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Ballista Totem",
+        "Socketed Gems are Supported by Level 18 Ballista Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53420,7 +53754,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Ballista Totem",
+        "Socketed Gems are Supported by Level 20 Ballista Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53432,7 +53766,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Ballista Totem",
+        "Socketed Gems are Supported by Level 22 Ballista Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53444,7 +53778,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Spell Totem",
+        "Socketed Gems are Supported by Level 18 Spell Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53456,7 +53790,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Spell Totem",
+        "Socketed Gems are Supported by Level 20 Spell Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53468,7 +53802,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Spell Totem",
+        "Socketed Gems are Supported by Level 22 Spell Totem Support",
         "% increased Totem Damage"
       ],
       "type": "Suffix"
@@ -53480,7 +53814,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Ballista Totem",
+        "Socketed Gems are Supported by Level 18 Ballista Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53492,7 +53826,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Ballista Totem",
+        "Socketed Gems are Supported by Level 20 Ballista Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53504,7 +53838,7 @@
         "boots_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Ballista Totem",
+        "Socketed Gems are Supported by Level 22 Ballista Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53516,7 +53850,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Spell Totem",
+        "Socketed Gems are Supported by Level 18 Spell Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53528,7 +53862,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Spell Totem",
+        "Socketed Gems are Supported by Level 20 Spell Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53540,7 +53874,7 @@
         "boots_elder"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Spell Totem",
+        "Socketed Gems are Supported by Level 22 Spell Totem Support",
         "% increased Totem Placement speed"
       ],
       "type": "Suffix"
@@ -53552,7 +53886,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Advanced Traps",
+        "Socketed Gems are Supported by Level 16 Advanced Traps Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53564,7 +53898,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Advanced Traps",
+        "Socketed Gems are Supported by Level 18 Advanced Traps Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53576,7 +53910,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Advanced Traps",
+        "Socketed Gems are Supported by Level 20 Advanced Traps Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53588,7 +53922,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 16 Trap and Mine Damage Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53600,7 +53934,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 18 Trap and Mine Damage Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53612,7 +53946,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Trap And Mine Damage",
+        "Socketed Gems are Supported by Level 20 Trap and Mine Damage Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53624,7 +53958,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Trap",
+        "Socketed Gems are Supported by Level 18 Trap Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53636,7 +53970,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Trap",
+        "Socketed Gems are Supported by Level 20 Trap Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53648,7 +53982,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 22 Trap",
+        "Socketed Gems are Supported by Level 22 Trap Support",
         "% increased Trap Damage"
       ],
       "type": "Suffix"
@@ -53660,7 +53994,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 16 Advanced Traps",
+        "Socketed Gems are Supported by Level 16 Advanced Traps Support",
         "% increased Trap Throwing Speed"
       ],
       "type": "Suffix"
@@ -53672,7 +54006,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 18 Advanced Traps",
+        "Socketed Gems are Supported by Level 18 Advanced Traps Support",
         "% increased Trap Throwing Speed"
       ],
       "type": "Suffix"
@@ -53684,7 +54018,7 @@
         "gloves_shaper"
       ],
       "texts": [
-        "Socketed Gems are Supported by Level 20 Advanced Traps",
+        "Socketed Gems are Supported by Level 20 Advanced Traps Support",
         "% increased Trap Throwing Speed"
       ],
       "type": "Suffix"
@@ -54304,7 +54638,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 18 Elemental Damage with Attacks",
+        "Socketed Gems are Supported by Level 18 Elemental Damage with Attacks Support",
         "% increased Elemental Damage with Attack Skills"
       ],
       "type": "Prefix"
@@ -54323,7 +54657,7 @@
         "wand_shaper"
       ],
       "texts": [
-        "Socketed Gems are supported by Level 20 Elemental Damage with Attacks",
+        "Socketed Gems are Supported by Level 20 Elemental Damage with Attacks Support",
         "% increased Elemental Damage with Attack Skills"
       ],
       "type": "Prefix"

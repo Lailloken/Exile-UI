@@ -1,5 +1,13 @@
 [
   [
+	["1.66.1", 16601],
+	"november 18, 2026",
+	"map-info:\n–> replaced item quant with atlas drops\n–> summary part at the bottom wasn't displaying",
+	"map-tracker:\n–> added support for tracking mirages\n–> added support for tracking the umbra boss-fight",
+	"item-info:\n–> updated item bases and mods\n–> updated unique drop-tiers",
+	"betrayal-info:\n–> updated for 3.30"
+  ],
+  [
 	["1.66.0", 16600],
 	"november 14, 2026",
 	"--> in case you missed it <--\nread the latest announcement above about the ggg policy update",

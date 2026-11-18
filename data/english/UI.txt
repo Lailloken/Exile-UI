@@ -357,6 +357,7 @@
 		mechanic_infamous		=	"infamous merc"
 		mechanic_graftblood		=	"high graftblood"
 		mechanic_hideout		=	"hideout"			;## refers to random hideout spawns in PoE1 maps
+		mechanic_mirage		=	"mirage"
 
 		msg_clientswitch		=	"switch clients?"	;## window text for when you switch between games while the tool is running
 		msg_clientswitch		=	"you have switched to a different game-client, do you want the tool to switch/restart as well?"

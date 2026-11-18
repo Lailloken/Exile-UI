@@ -47,7 +47,7 @@
 	settings.mapinfo.position := !Blank(check := ini.settings.position) ? check : 2
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "000000", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "FFFF00"]
-	settings.mapinfo.roll_types := (!vars.poe_version ? ["quantity", "rarity", "pack size", "maps", "scarabs", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
+	settings.mapinfo.roll_types := (!vars.poe_version ? ["atlasdrops", "rarity", "pack size", "maps", "scarabs", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
 	For index, val in settings.mapinfo.roll_types
 		settings.mapinfo.roll_requirements[val] := !Blank(check := ini.UI[val " requirement"]) ? check : ""
 }
@@ -69,7 +69,7 @@ Mapinfo_GUI(mode := 1)
 	hwnd_old := vars.hwnd.mapinfo.main, vars.hwnd.mapinfo := {"main": mapinfo}, mod_count := 0
 
 	If !vars.poe_version
-		summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.quantity . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3) " | " map.packsize . Lang_Trans("maps_stats", 4)
+		summary := summary0 := map.mods . Lang_Trans("maps_stats", 1) " | " map.atlasdrops . Lang_Trans("maps_stats", 2) " | " map.rarity . Lang_Trans("maps_stats", 3) " | " map.packsize . Lang_Trans("maps_stats", 4)
 	Else summary := summary0 := map.mods . Lang_Trans("maps_stats2", 1) " | " map.rarity . Lang_Trans("maps_stats2", 2) " | " map.packsize . Lang_Trans("maps_stats2", 3) " | " map.monsterrarity . Lang_Trans("maps_stats2", 4) " | " map.monstereffect . Lang_Trans("maps_stats2", 5)
 		, summary1 := map.waystones Lang_Trans("maps_stats2", 6) " | " map.revives " " Lang_Trans("mapinfo_rip")
 
@@ -201,7 +201,7 @@ Mapinfo_GUI(mode := 1)
 	}
 
 	panels := 0, rolls := settings.mapinfo.roll_types.Clone(), rolls.InsertAt(1, "mods")
-	If (map.mods + map.quantity > 0)
+	If (map.mods + map.atlasdrops > 0)
 	{
 		;Gui, %GUI_name%: Add, Text, % "xs BackgroundTrans x1 y" yControl + hControl " Section HWNDhwnd Center w" width + settings.mapinfo.fHeight*2 - 3, % summary
 		For index, vSum in summary_array0
@@ -433,7 +433,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 		Else If InStr(A_LoopField, Lang_Trans("items_maptier"))
 			tier := SubStr(A_LoopField, -1), tier += 0
 		Else
-			For index, val in ["quantity", "rarity", "packsize", "maps", "scarabs", "currency"]
+			For index, val in ["atlasdrops", "rarity", "packsize", "maps", "scarabs", "currency"]
 			{
 				If StrMatch(A_LoopField, Lang_Trans("items_map" val))
 					%val% := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), %val% := StrReplace(StrReplace(%val%, "%"), "+")
@@ -507,7 +507,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 			map.tag := val
 			Break
 		}
-	map.quantity := quantity, map.rarity := rarity, map.packsize := packsize, map.maps := maps, map.scarabs := scarabs, map.currency := currency, map.name := name, map.name_copy := name_copy, map.mods := mod_count, map.english := item.name "`n" item.itembase
+	map.atlasdrops := atlasdrops, map.rarity := rarity, map.packsize := packsize, map.maps := maps, map.scarabs := scarabs, map.currency := currency, map.name := name, map.name_copy := name_copy, map.mods := mod_count, map.english := item.name "`n" item.itembase
 	If content.Count()
 		map.content := content.Clone()
 	Return 1
