@@ -139,8 +139,6 @@
     ],
     [
       "follow wall, (color:ff00ff)find_2 (img:arena) exits:",
-      "(hint)_ - (color:red)3.30_note: if arena:fairgraves is blocking an",
-      "(hint)__ _exit, kill (color:white)him and (color:cc99ff)skip_this_&_next_page",
       "(hint)_ - (color:ff00ff)if (color:cc99ff)cavern 1st: (img:in-out2) (color:ffffff)for (img:waypoint) || enter (img:arena) ship...",
       "(hint)_ - (color:ff00ff)else: set (img:portal) || enter (img:arena) cavern, (img:waypoint) to (img:town)",
       "(enter (img:portal) ,) enter areaid1_1_9a ;; ship graveyard cave"
@@ -152,10 +150,7 @@
     ],
     [
       "kill fairgraves",
-      "(color:ff00ff)if he blocked the exit:",
-      "(hint)_ - enter areaid1_1_11_1 ;; cavern of wrath",
-      "(hint)_ - (img:waypoint) to areaid1_1_town (img:town) ;; lioneye's watch",
-      "(color:ff00ff)else (color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
+      "(color:cc99ff)relog: areaid1_1_town ;; lioneye's watch"
     ],
     [
       "(img:quest) bestel: (quest:book)",
@@ -895,7 +890,7 @@
     ],
     [
       "leaguestart: optional: (img:quest) <belt/amu>: get (img:waypoint)",
-      "enter areaid2_6_4 ;; mud flats"
+      "talk to (img:quest) ailith: areaid2_6_4 ;; mud flats"
     ],
     [
       "go (img:2), kill queen (quest:(eye))",
