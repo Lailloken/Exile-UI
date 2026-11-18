@@ -99,6 +99,7 @@
 		maps_cortex			=	"cortex"
 		maps_saresh			=	"saresh (black barya)"
 		maps_zorath			=	"zorath (abyss)"
+		maps_covenqueen		=	"coven queen"
 
 
 		maps_ritualboss		=	"king in the mists"		;## PoE1 and PoE2
