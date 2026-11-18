@@ -15,35 +15,35 @@
         "timed crafting:\nboots"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique gloves",
+        "trapped chest:\ngloves"
       ]
     }
   },
   "cameria": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
+        "allflame embers:\ntoads",
         "ring"
       ],
       "fortification": [
-        "trapped chest:\njewel",
+        "trapped chest:\njewels",
         "trapped chest:\nrings"
       ],
       "research": [
-        "crafting bench:\njewel",
+        "crafting bench:\njewels",
         "timed crafting:\nring"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique axes",
+        "trapped chest:\naxes"
       ]
     }
   },
   "elreon": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
+        "allflame embers:\ndivine",
         "shield"
       ],
       "fortification": [
@@ -55,8 +55,8 @@
         "timed crafting:\nshield"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique staves",
+        "trapped chest:\nstaves"
       ]
     }
   },
@@ -67,7 +67,7 @@
         "body armor"
       ],
       "fortification": [
-        "trapped chest:\ndiv card",
+        "trapped chest:\ndiv cards",
         "trapped chest:\nbody armors"
       ],
       "research": [
@@ -75,15 +75,15 @@
         "timed crafting:\nbody armors"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique sceptres/wands",
+        "trapped chest:\nsceptres/wands"
       ]
     }
   },
   "guff": {
     "rewards": {
       "transportation": [
-        "misc. currency",
+        "random currency",
         "gloves"
       ],
       "fortification": [
@@ -95,8 +95,8 @@
         "timed crafting:\ngloves"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique shields",
+        "trapped chest:\nshields"
       ]
     }
   },
@@ -107,16 +107,16 @@
         "higher-rarity items"
       ],
       "fortification": [
-        "allflame embers:\ntype?",
+        "allflame embers:\nflesh",
         "mixed items"
       ],
       "research": [
-        "crafting bench:\ninfluence",
-        "allflame embers:\ntype?"
+        "crafting bench:\ninfluence exalts",
+        "allflame embers"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique maces",
+        "trapped chest:\nmaces"
       ]
     }
   },
@@ -127,7 +127,7 @@
         "belt"
       ],
       "fortification": [
-        "crafting bench:\ninfluenced gear",
+        "crafting bench:\ninfluence exalts",
         "trapped chest:\nbelts"
       ],
       "research": [
@@ -135,8 +135,8 @@
         "timed crafting:\nbelts"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique body armor",
+        "trapped chest:\nbody armor"
       ]
     }
   },
@@ -155,8 +155,8 @@
         "timed crafting:\njewels"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique amulets",
+        "trapped chest:\namulets"
       ]
     }
   },
@@ -167,23 +167,23 @@
         "basic currency"
       ],
       "fortification": [
-        "allflame embers:\ntype?",
+        "allflame embers:\ngilded",
         "quality currency"
       ],
       "research": [
         "unique vendor\n(gold prices)",
-        "allflame embers:\ntype?"
+        "allflame embers"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique rings",
+        "trapped chest:\nrings"
       ]
     }
   },
   "jorgin": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
+        "allflame embers:\nresplendence",
         "amulet"
       ],
       "fortification": [
@@ -195,19 +195,19 @@
         "timed crafting:\namulet"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique belts",
+        "trapped chest:\nbelts"
       ]
     }
   },
   "korell": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
+        "allflame embers:\ncloister",
         "helmet"
       ],
       "fortification": [
-        "crafting bench:\nessence gear",
+        "trapped chest:\nessence gear",
         "trapped chest:\nhelmets"
       ],
       "research": [
@@ -215,28 +215,28 @@
         "timed crafting\nhelmets"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique boots",
+        "trapped chest:\nboots"
       ]
     }
   },
   "leo": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
+        "allflame embers:\nmultitude",
         "flask"
       ],
       "fortification": [
-        "trapped chest:\nvaaled unique",
+        "trapped chest:\nvaaled uniques",
         "trapped chest:\nflasks"
       ],
       "research": [
         "crafting bench:\ndjinn vaal orb",
-        "allflame embers:\ntype?"
+        "allflame embers"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique helmets",
+        "trapped chest:\nhelmets"
       ]
     }
   },
@@ -255,8 +255,8 @@
         "fractured item"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique items",
+        "trapped chest:\nitems (random class)"
       ]
     }
   },
@@ -267,44 +267,44 @@
         "map"
       ],
       "fortification": [
-        "various threads",
+        "threads",
         "trapped chest:\nmaps"
       ],
       "research": [
-        "trapped chest:\nvarious threads",
-        "allflame embers:\ntype?"
+        "trapped chest:\nthreads",
+        "allflame embers"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique maps",
+        "trapped chest:\nmaps"
       ]
     }
   },
   "tora": {
     "rewards": {
       "transportation": [
-        "qual. gems /\nexp. lens",
+        "qual. gems /\nfacetor's lens",
         "skill/support gems"
       ],
       "fortification": [
-        "trapped chest:\ngem",
+        "trapped chest:\ngems",
         "trapped chest:\ngems"
       ],
       "research": [
-        "crafting bench:\ngem",
-        "allflame embers:\ntype?"
+        "crafting bench:\ngems",
+        "allflame embers"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique bows",
+        "trapped chest:\nbows"
       ]
     }
   },
   "vagan": {
     "rewards": {
       "transportation": [
-        "allflame embers:\ntype?",
-        "allflame embers:\ntype?"
+        "allflame embers:\nwildwood",
+        "allflame embers"
       ],
       "fortification": [
         "trapped chest:\nenshrouded uniques",
@@ -315,15 +315,15 @@
         "timed crafting:\nweapon"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique swords",
+        "trapped chest:\nswords"
       ]
     }
   },
   "vorici": {
     "rewards": {
       "transportation": [
-        "currency stack",
+        "currency stacks",
         "apply chromatics:\n10 / 15 / 20 / 30"
       ],
       "fortification": [
@@ -335,8 +335,8 @@
         "apply fusings:\n10 / 15 / 20 / 30"
       ],
       "intervention": [
-        "trapped chest:\nuniques (class?)",
-        "trapped chest:\nrandom items (class?)"
+        "trapped chest:\nunique daggers + claws",
+        "trapped chest:\ndaggers + claws"
       ]
     }
   }
