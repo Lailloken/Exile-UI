@@ -1271,7 +1271,7 @@ Exchange(cHWND := "", hotkey := "")
 	}
 
 	wDays := Round(wUI2 / 7), wUI2 := wDays * 7 - 6
-	If !vars.pixels.inventory && dates.Count()
+	If (1 = 2) && dates.Count()
 	{
 		date_selection := (vars.exchange.date ? vars.exchange.date : dates.MaxIndex())
 		Gui, %GUI_name%: Font, % "s" settings.exchange.fSize
@@ -1388,7 +1388,7 @@ Exchange(cHWND := "", hotkey := "")
 	Gui, %GUI_name%: Add, Text, % "xp-1 yp-1 wp+2 hp+2 Border Hidden"
 	vars.hwnd.exchange.amount1 := hwnd, vars.hwnd.exchange.amount2 := hwnd1, vars.hwnd.exchange.order := hwnd2
 
-	If !vars.pixels.inventory && dates.Count() && settings.exchange.graphs
+	If (1 = 2) && dates.Count() && settings.exchange.graphs
 	{
 		trades := [], day := dates[date_selection], graph := [], balance := min := max := 0
 		For index1, transaction in day.object
@@ -1437,7 +1437,7 @@ Exchange(cHWND := "", hotkey := "")
 
 	Gui, %GUI_name%: Show, % "NA x10000 y10000"
 	WinGetPos,,, wWin, hWin, ahk_id %hwnd_exchange%
-	Gui, %GUI_name%: Show, % "NA x" vars.client.x + vars.client.w/2 - wUI/2 - (vars.pixels.inventory ? vars.client.h * 0.3083 : 0) - (transactions.Count() ? wUI2 : 0) " y" vars.client.y + vars.client.h * 0.1055
+	Gui, %GUI_name%: Show, % "NA x" vars.client.x + vars.client.w/2 - wUI/2 - (1 ? vars.client.h * 0.3083 : 0) - (transactions.Count() ? wUI2 : 0) " y" vars.client.y + vars.client.h * 0.1055
 
 	vars.exchange.inventory := vars.pixels.inventory, vars.exchange.coords := {}
 	LLK_Overlay(hwnd_exchange, "show",, GUI_name), LLK_Overlay(hwnd_old, "destroy")
@@ -1449,7 +1449,7 @@ Exchange(cHWND := "", hotkey := "")
 		vars.exchange.coords[key] := [x, x + w, y, y + h]
 	}
 
-	vars.exchange.coords.screenshot := [vars.client.w/2 - wUI/2 + vars.client.h * 0.03125 - (vars.pixels.inventory ? vars.client.h * 0.3083 : 0), Ceil(vars.client.h * 0.206), vars.client.h * 0.6625, Ceil(vars.client.h * 0.033)]
+	vars.exchange.coords.screenshot := [vars.client.w/2 - wUI/2 + vars.client.h * 0.03125 - (1 ? vars.client.h * 0.3083 : 0), Ceil(vars.client.h * 0.206), vars.client.h * 0.6625, Ceil(vars.client.h * 0.033)]
 	wait := 0
 }
 
