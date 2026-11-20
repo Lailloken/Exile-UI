@@ -1963,6 +1963,11 @@ Lootfilter_Match(array, dev_check := 0)
 						;If (operator = ">=" && lvl < value) || (operator = ">" && lvl <= value) || (operator = "<=" && lvl > value) || (operator = "<" && lvl >= value) || (!operator && lvl != value)
 						;	Return
 						object.multimatches := 1
+					Case (key = "fated"):
+						isfated := 0
+						If !InStr(search.clipboard, "Fated ", 1) && !dev_check
+							Return
+						isfated := 1
 					Case (key = "basedefencepercentile"):
 					Case (key = "droplevel"):
 					Case (key = "width"):
