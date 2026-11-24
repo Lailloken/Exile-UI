@@ -1105,6 +1105,9 @@ News(mode := "")
 	If !vars.news.unread && (IsNumber(now) && now < 7) && vars.news.file.timestamp && (vars.news.file.timestamp != vars.news.last_read)
 		vars.news.unread := 1
 	vars.news.wait := 0
+
+	If WinExist("ahk_id " vars.hwnd.settings.main) && (vars.settings.active = "updater")
+		Settings_menu("updater")
 }
 
 Resolution_check()
