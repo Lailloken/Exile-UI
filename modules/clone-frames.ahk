@@ -170,11 +170,11 @@ Cloneframes_SettingsRefresh(name := "")
 	GuiControl, % style "Hidden", % vars.hwnd.settings.opacity
 	GuiControl,, % vars.hwnd.settings.opacity, % vars.cloneframes.list[name].opacity
 	GuiControl, % style "Hidden", % vars.hwnd.settings.xSource
-	GuiControl, % vars.hwnd.settings.main ": "(style = "+" ? "+cWhite" : "+cLime"), % "clone-frame editing:"
-	GuiControl, % vars.hwnd.settings.main ": movedraw", % "clone-frame editing:"
-	GuiControl, % (style = "+") ? "-g +cGray" : "+gSettings_cloneframes2 +cLime", % vars.hwnd.settings.save
+	GuiControl, % "+c" (style = "+" ? "White" : "Lime"), % vars.hwnd.settings.edit_text
+	GuiControl, % "movedraw", % vars.hwnd.settings.edit_text
+	GuiControl, % (style = "+") ? "-g +c" settings.general.cDisabled : "+gSettings_cloneframes2 +cLime", % vars.hwnd.settings.save
 	GuiControl, movedraw, % vars.hwnd.settings.save
-	GuiControl, % (style = "+") ? "-g +cGray" : "+gSettings_cloneframes2 +cRed", % vars.hwnd.settings.discard
+	GuiControl, % (style = "+") ? "-g +c" settings.general.cDisabled : "+gSettings_cloneframes2 +cRed", % vars.hwnd.settings.discard
 	GuiControl, movedraw, % vars.hwnd.settings.discard
 }
 
@@ -209,7 +209,7 @@ Cloneframes_SettingsApply(cHWND, hotkey := "")
 
 	If Blank(vars.cloneframes.editing)
 		Return
-	check := LLK_HasVal(vars.cloneframes.scroll, cHWND), editing := vars.cloneframes.editing, group := vars.cloneframes.list[editing].group
+	check := StrReplace(LLK_HasVal(vars.cloneframes.scroll, cHWND), "|"), editing := vars.cloneframes.editing, group := vars.cloneframes.list[editing].group
 
 	original_value := vars.cloneframes.list[editing][check]
 	value := InStr(hotkey, "wheel") ? vars.cloneframes.list[editing][check] + (InStr(hotkey, "WheelUp") ? 1 : -1) : LLK_ControlGet(cHWND), value := Blank(value) ? 0 : value

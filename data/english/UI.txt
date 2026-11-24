@@ -103,6 +103,7 @@
 		global_delete			=	"deleted"
 		global_scan			=	"scanning..."
 		global_scan			=	"scan"
+		global_scan			=	"scans"
 		global_match			=	"no match"
 		global_match			=	"not specific enough"
 		global_match			=	"too many matches"		;## when search results don't fit on screen
@@ -327,6 +328,7 @@
 		global_contrast		=	"contrast"		;## setting for additional contrast around buttons
 		global_manual			=	"manual"			;## opposite of automatic
 		global_menu			=	"menu"
+		global_override		=	"override"
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -737,7 +739,6 @@
 		quickpob_fail			=	"start-up aborted"
 		quickpob_fail			=	"build timed out"
 		quickpob_loading		=	"waiting for;build to load..."
-		quickpob_snip			=	"snip offset:"
 
 
 
@@ -1107,7 +1108,7 @@
 		m_clone_exitedit		=	"exit edit-mode first"
 		m_clone_errorborders	=	"invalid frame borders"
 		m_clone_closetoggle		=	"close button"
-		m_clone_town			=	"clone-frames are hidden in hideouts and towns unless this settings section is open"
+		m_clone_town			=	"clone-frames are hidden in hideouts and towns unless this section is open"
 
 
 
@@ -1119,7 +1120,7 @@
 		m_exchange_currency		=	"currency exchange features"
 		m_exchange_balance		=	"balance graphs"
 		m_async_trade			=	"async trading features"
-		m_async_name			=	"full item names"
+		m_async_fullname		=	"full names"
 		m_async_minchange		=	"min. price change:"				;## used for 'quick reprice' feature: new price needs to be at least x% lower than the current price
 
 
@@ -1165,7 +1166,6 @@
 		m_iteminfo_ilvl		=	"display item-lvl requirements"
 		m_iteminfo_highlight	=	"highlight customization:"
 		m_iteminfo_fractured	=	"fr"								;## this abbreviation for "fractured" should always have a length of 2 (max 3 if really necessary)
-		m_iteminfo_overridetier	=	"override tier/ilvl"
 		m_iteminfo_rules		=	"global rules/overrides:"
 		m_iteminfo_rules		=	"weapon res"						;## as in ele-resistance mods on weapons (which are generally undesired)
 		m_iteminfo_rules		=	"attack dmg"
@@ -1297,7 +1297,6 @@
 ;## these strings are displayed/required in the "minor qol tools" section of the settings menu
 		m_qol_alarm			=	"alarm/timer widget:"
 		m_qol_notepad			=	"notepad:"
-		m_qol_widget			=	"widget opacity:"
 		m_qol_widgetcolor		=	"widget colors:"
 		m_qol_lab				=	"lab overlay"
 		m_qol_quickpob			=	"quick pob"

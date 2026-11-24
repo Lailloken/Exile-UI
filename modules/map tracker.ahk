@@ -112,7 +112,7 @@ Maptracker(cHWND := "", hotkey := "")
 		}
 		If (check = "character")
 		{
-			LLK_ToolTip(settings.general.character "`n" vars.log.character_class " (" vars.log.level ")" . (settings.general.build ? "`n" settings.general.build : "") . (settings.maptracker.league ? "`n" Maptracker_League() : ""), 0,,, "maptracker_charinfo",,,,, 1)
+			LLK_ToolTip(LLK_StringCase(settings.general.character "`n" vars.log.character_class " (" vars.log.level ")" . (settings.general.build ? "`n" settings.general.build : "") . (settings.maptracker.league ? "`n" Maptracker_League() : "")), 0,,, "maptracker_charinfo",,,,, 1)
 			KeyWait, LButton
 			LLK_Overlay(vars.hwnd.tooltip_maptracker_charinfo, "destroy")
 			Return

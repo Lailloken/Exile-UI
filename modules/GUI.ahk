@@ -482,7 +482,7 @@ Gui_Label(GUI_name, options, text := " ", tooltip := "", global_hwnd := "", corn
 		corners := [1, 1, 1, 1]
 
 	If IsObject(global_hwnd)
-		hwnd_back := global_hwnd.2, global_hwnd := global_hwnd.1
+		hwnd_back := global_hwnd.2, hwnd_toggle := global_hwnd.3, global_hwnd := global_hwnd.1
 
 	If Blank(color)
 		color := (settings.general.fill ? settings.general.cButtons2 : 0)
@@ -493,6 +493,10 @@ Gui_Label(GUI_name, options, text := " ", tooltip := "", global_hwnd := "", corn
 	Gui, %GUI_name%: Add, Text, % options " BackgroundTrans HWNDhwnd_text" (Blank(enabled) ? "" : " c" (enabled ? vars.settings.cEnabled : (Blank(tColor) ? settings.general.cDisabled : tColor))), % text
 	If !(no_border && !color)
 		Gui, %GUI_name%: Add, Pic, % (RegExMatch(options, "i)(^|\s)hidden($|\s)") ? "Hidden " : "") "xp yp BackgroundTrans HWNDhwnd_pic", % "HBitmap:" Gui_BackgroundPanel(hwnd_text, (IsObject(corners) ? corners : 0), radius, border, color)
+
+	If hwnd_toggle
+		Gui, %GUI_name%: Add, Pic, % "xp yp HWNDhwnd_toggle", % "HBitmap:" Gui_BackgroundPanel([hwnd_pic], corners, radius,, color)
+
 	If tooltip
 		vars.hwnd.help_tooltips[tooltip] := hwnd_text
 
@@ -509,7 +513,7 @@ Gui_Label(GUI_name, options, text := " ", tooltip := "", global_hwnd := "", corn
 			object[val] := {}
 		object := object[val]
 	}
-	Return {"text": hwnd_text, "back": hwnd_pic}
+	Return {"text": hwnd_text, "back": hwnd_pic, "toggle": hwnd_toggle}
 }
 
 Gui_MenuWidget(cHWND := "", mode := "", hotkey := 1)

@@ -380,7 +380,7 @@
       "hold down <alt> to temporarily hide the overlay"
     ],
     "exchange async name": [
-      "trade logs will show names in addition to the base type"
+      "trade logs will show item names in addition to the base type"
     ],
     "exchange async minchange": [
       "the first repricing option will be x% lower than the current price, and the other options will use 5% increments",
@@ -892,8 +892,8 @@
       "right-click to open the snipping tool and screen-cap a unique ui element of the mechanic"
     ],
     "maptracker portal reminder": [
-      "when using a portal scroll, a tooltip will tell you to double-check completion of map content",
-      "requires you to specify the correct in-game hotkey"
+      "when you use a portal scroll, a tooltip will tell you to double-check completion of map content",
+      "you have to specify the correct in-game hotkey below"
     ],
     "maptracker portal hotkey": [
       "enter the in-game hotkey for <portal scroll>",
@@ -1017,7 +1017,7 @@
       "the notification will be docked to one of the client's edges"
     ],
     "notepad enable": [
-      "notepad tool with individual tabs, and floating widgets that can be used as sticky-notes",
+      "notepad tool with individual tabs and floating widgets that can be used as sticky-notes",
       "adds a button to the menu-widget: click it to toggle the notepad, right-click it to create a single-use sticky note"
     ],
     "notepad default color": [
@@ -1039,7 +1039,7 @@
       "(/highlight)unless stated otherwise, these will pop up whenever you enter a hideout"
     ],
     "lab enable": [
-      "simple lab layout overlay and tracker for casual runs",
+      "simple lab layout overlay and tracker (based on poelab.com) for casual runs",
       "while in lab or the aspirants' plaza, hold down the <widget-key> to activate the overlay"
     ],
     "TLDR enable": [
@@ -1089,13 +1089,10 @@
       "you can click the top part of a widget (item name & base) to manually toggle between modes",
       "(/highlight)if you create multiple widgets, the new one will use the same mode as the previous one."
     ],
-    "quickpob snip": [
-      "this feature scans pob for the item frame and creates a movable overlay widget",
-      "you have to calibrate it once so it knows where to search for the frame"
-    ],
     "quickpob snip offset": [
-      "launch pob and open the <items> tab/section",
-      "long-click this button:\na teal square will follow the cursor. align its top-left corner with the top-left corner of the <craft item...> button in pob"
+      "this feature scans pob for the item frame and creates a movable overlay widget",
+      "you have to calibrate it once so it knows where to search for the frame",
+      "1) launch pob and open the <items> tab\n2) long-click this button:\na teal square will follow the cursor. align its top-left corner with the top-left corner of the <craft item...> button in pob"
     ],
     "runeshaping auto-correct input": [
       "type in one or more (comma-separated) strings that need to be replaced because of recurring ocr inaccuracies"
@@ -1278,7 +1275,7 @@
     ],
     "stash config": [
       "to configure individual tabs, open them in game and hold down the <omni-key> over an item in the tab",
-      "once the stash-ninja overlay is active, settings for the active tab will appear below"
+      "once the stash-ninja overlay is active, settings for the active tab will appear here"
     ],
     "stash gap": [
       "if price tags don't align with the in-game grid, fine-tune this value to improve positioning",
