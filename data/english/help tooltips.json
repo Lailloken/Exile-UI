@@ -969,7 +969,7 @@
     ],
     "mapinfo roll highlight": [
       [
-        "highlights map rolls (quant, rarity, etc.) if they're above certain values",
+        "highlights map rolls (atlas drops, rarity, etc.) if they're above certain values",
         "highlights map rolls (item rarity, pack size, etc.) if they're above certain values"
       ]
     ],
@@ -980,7 +980,7 @@
     "mapinfo requirements": [
       "specify desired min values for each roll",
       [
-        "atlas drops, rarity, pack size, maps, scarabs, currency",
+        "atlas drops, rarity, pack size, maps, threads, currency",
         "item rarity, pack size, monster rarity, monster effectiveness, waystone drop chance"
       ]
     ],

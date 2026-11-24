@@ -47,7 +47,7 @@
 	settings.mapinfo.position := !Blank(check := ini.settings.position) ? check : 2
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "000000", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "FFFF00"]
-	settings.mapinfo.roll_types := (!vars.poe_version ? ["atlasdrops", "rarity", "pack size", "maps", "scarabs", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
+	settings.mapinfo.roll_types := (!vars.poe_version ? ["atlasdrops", "rarity", "pack size", "maps", "threads", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
 	For index, val in settings.mapinfo.roll_types
 		settings.mapinfo.roll_requirements[val] := !Blank(check := ini.UI[val " requirement"]) ? check : ""
 }
@@ -74,7 +74,7 @@ Mapinfo_GUI(mode := 1)
 		, summary1 := map.waystones Lang_Trans("maps_stats2", 6) " | " map.revives " " Lang_Trans("mapinfo_rip")
 
 	If !vars.poe_version
-		Loop, Parse, % "maps,scarabs,currency", `,
+		Loop, Parse, % "maps,threads,currency", `,
 			add := " | " (!Blank(map[A_LoopField]) ? map[A_LoopField] . Lang_Trans("maps_stats", 4 + A_Index) : 0), summary .= add, summary1 .= StrReplace(add, Blank(summary1) ? " | " : "")
 
 	dimensions := [], summary_array := StrSplit(summary, "|", A_Space), summary_array0 := StrSplit(summary0, "|", A_Space), summary_array1 := StrSplit(summary1, "|", A_Space)
@@ -433,7 +433,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 		Else If InStr(A_LoopField, Lang_Trans("items_maptier"))
 			tier := SubStr(A_LoopField, -1), tier += 0
 		Else
-			For index, val in ["atlasdrops", "rarity", "packsize", "maps", "scarabs", "currency"]
+			For index, val in ["atlasdrops", "rarity", "packsize", "maps", "threads", "currency"]
 			{
 				If StrMatch(A_LoopField, Lang_Trans("items_map" val))
 					%val% := SubStr(A_LoopField, InStr(A_LoopField, ":") + 2), %val% := StrReplace(StrReplace(%val%, "%"), "+")
@@ -507,7 +507,7 @@ Mapinfo_Parse(mode := 1, poe_version := "")
 			map.tag := val
 			Break
 		}
-	map.atlasdrops := atlasdrops, map.rarity := rarity, map.packsize := packsize, map.maps := maps, map.scarabs := scarabs, map.currency := currency, map.name := name, map.name_copy := name_copy, map.mods := mod_count, map.english := item.name "`n" item.itembase
+	map.atlasdrops := atlasdrops, map.rarity := rarity, map.packsize := packsize, map.maps := maps, map.threads := threads, map.currency := currency, map.name := name, map.name_copy := name_copy, map.mods := mod_count, map.english := item.name "`n" item.itembase
 	If content.Count()
 		map.content := content.Clone()
 	Return 1

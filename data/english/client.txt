@@ -130,9 +130,9 @@
 
 
 ;## these strings are shown in the map-info panel
-		maps_stats_full		=	"mods#atlas drops#rarity#pack size#maps#scarabs#currency"			;## map rolls/multipliers
+		maps_stats_full		=	"mods#atlas drops#rarity#pack size#maps#threads#currency"			;## map rolls/multipliers
 		maps_stats_full2		=	"mods#rarity#pack size#monster rarity#effectiveness#waystones"		;## map rolls/multipliers
-		maps_stats			=	"x#a#r#p#m#s#c"											;## x = multiplication-sign, see above for the rest
+		maps_stats			=	"x#a#r#p#m#t#c"											;## x = multiplication-sign, see above for the rest
 		maps_stats2			=	"x#r#p#r#e#w"												;## x = multiplication-sign, see above for the rest
 
 
@@ -299,7 +299,7 @@
 
 
 		items_mapmaps			=	"More Maps:"					;## PoE1 only (whole block), T17 maps received various multipliers in 3.24.1
-		items_mapscarabs		=	"More Scarabs:"
+		items_mapthreads		=	"More Threads:"
 		items_mapcurrency		=	"More Currency:"
 
 
