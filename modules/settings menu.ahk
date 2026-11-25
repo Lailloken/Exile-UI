@@ -6490,7 +6490,7 @@ Settings_updater()
 				style := (A_Index = 2 ? "Section xs" : "ys x+" settings.general.fWidth/2) . (RegExMatch(key, "i)major.changes|new.feature") ? " cFFFF00" : "")
 				hwnd := Gui_Label(GUI, style, " " StrReplace(key, "&", "&&") " ", "settings_recentchanges " key,, slop)
 				ControlGetPos, xControl, yControl, wControl, hControl,, % "ahk_id " hwnd.back
-				If (xControl + wControl <= vars.settings.x_anchor + settings.general.fWidth * vars.settings.min_width * 1.33)
+				If (xControl + wControl <= vars.settings.x_anchor + settings.general.fHeight//2 * vars.settings.min_width * 1.33)
 					Break
 				Else
 				{

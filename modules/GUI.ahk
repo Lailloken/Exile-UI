@@ -286,7 +286,7 @@ Gui_HelpToolTip(HWND_key)
 		lootfilter := settings.lootfilter.profile, database := (!IsObject(vars.help.lootfilter.rollback) ? vars.help2 : vars.help)
 	Else database := (donation ? vars.settings.donations : (!IsObject(vars.help[check][control]) ? vars.help2 : vars.help))
 
-	tooltip_width := (check = "settings") ? 34*settings.general.fWidth : (wWin - 2) * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
+	tooltip_width := (check = "settings") ? 34*settings.general.fWidth : wWin * (check = "cheatsheets" && vars.cheatsheet_menu.type = "advanced" ? 0.5 : InStr("leveltrackereditor, sanctum", check) ? 0.75 : 1)
 	tooltip_width := (check = "actdecoder") ? 600 * Max(settings.actdecoder.sLayouts, 1) : (RegExMatch(check, "i)anoints|gemcutting") ? settings.general.fWidth * 50 : tooltip_width)
 	tooltip_width := (check = "cheatsheet" ? settings.general.fWidth * 40 : tooltip_width)
 
@@ -304,10 +304,11 @@ Gui_HelpToolTip(HWND_key)
 	If !tooltip_width
 		Return
 
-	toggle := !toggle, GUI_name := "help_tooltip" toggle
-	Gui, %GUI_name%: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDtooltip
-	Gui, %GUI_name%: Color, 101030
-	Gui, %GUI_name%: Margin, 0, 0
+	toggle := !toggle, GUI_name := "help_tooltip" toggle, fHeight := settings.general.fHeight
+	Gui, %GUI_name%: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +E0x20 +E0x02000000 +E0x00080000 HWNDtooltip
+	Gui, %GUI_name%: Color, Purple
+	WinSet, TransColor, Purple
+	Gui, %GUI_name%: Margin, % fHeight//2, % fHeight//3
 	Gui, %GUI_name%: Font, % "s" settings.general.fSize - 2 " cWhite", % vars.system.font
 	hwnd_old := vars.hwnd.help_tooltips.main, vars.hwnd.help_tooltips.main := tooltip, vars.general.active_tooltip := vars.general.cMouse
 
@@ -335,9 +336,9 @@ Gui_HelpToolTip(HWND_key)
 			For index, text in val
 				If (index > 1)
 				{
-					Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w"tooltip_width - settings.general.fWidth, % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
-					Gui, %GUI_name%: Add, Text, % (index = 2 ? "x0 y0" : "xs") " Section Border BackgroundTrans hp+"settings.general.fWidth " w"tooltip_width, % ""
-					Gui, %GUI_name%: Add, Text, % "HWNDhwnd xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w"tooltip_width - settings.general.fWidth . (InStr(text, "(/highlight)") ? " cFFFF00" : ""), % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
+					If (index != 2)
+						Gui, %GUI_name%: Add, Text, % "xs w" tooltip_width " h2 Border BackgroundTrans"
+					Gui, %GUI_name%: Add, Text, % "Section " (index = 2 ? "x" fHeight//2 " y" fHeight//3 : "xs") " w" tooltip_width (InStr(text, "(/highlight)") ? " cFFFF00" : "") " BackgroundTrans", % StrReplace(StrReplace(text, "&", "&&"), "(/highlight)")
 				}
 		}
 	Else If lootfilter
@@ -399,9 +400,9 @@ Gui_HelpToolTip(HWND_key)
 		}
 		For index, val in text
 		{
-			Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden w" tooltip_width - settings.general.fWidth, % val.1
-			Gui, %GUI_name%: Add, Text, % (index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+" settings.general.fWidth " w" tooltip_width, % ""
-			Gui, %GUI_name%: Add, Text, % "xp+" settings.general.fWidth/2 " yp+"settings.general.fWidth/2 " w" tooltip_width - settings.general.fWidth . (val.2 ? " c" val.2 : "") . alignment, % val.1
+			If (index != 1)
+				Gui, %GUI_name%: Add, Text, % "xs w" tooltip_width " h2 Border BackgroundTrans"
+			Gui, %GUI_name%: Add, Text, % "Section " (index = 1 ? "x" fHeight//2 " y" fHeight//3 : "xs") " w" tooltip_width . (val.2 ? " c" val.2 : "") . alignment " BackgroundTrans", % val.1
 		}
 	}
 	Else For index, text in target_array
@@ -416,12 +417,17 @@ Gui_HelpToolTip(HWND_key)
 			text := StrReplace(text, "(/" remove ")")
 		Gui, %GUI_name%: Font, % font
 		settings_selection := (check = "settings" && RegexMatch(control, "i)^selection\s") ? 1 : 0)
-		Gui, %GUI_name%: Add, Text, % "x0 y-1000 Hidden" (settings_selection ? "" : " w"tooltip_width - settings.general.fWidth), % LLK_StringCase(text)
-		Gui, %GUI_name%: Add, Text, % (A_Index = 1 ? "Section x0 y0" : "Section xs") " Border BackgroundTrans hp+"settings.general.fWidth (settings_selection ? " wp+" settings.general.fWidth : " w"tooltip_width), % ""
-		Gui, %GUI_name%: Add, Text, % (InStr(control, "recentchanges") ? "" : "Center ") "xp+"settings.general.fWidth/2 " yp+"settings.general.fWidth/2 . (settings_selection ? "" : " w"tooltip_width - settings.general.fWidth) . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color), % LLK_StringCase(text)
+		If (A_Index != 1)
+			Gui, %GUI_name%: Add, Text, % "xs w" tooltip_width - 2*(fHeight//2) " h2 Border BackgroundTrans"
+		Gui, %GUI_name%: Add, Text, % "Section " (A_Index = 1 ? "x" fHeight//2 " y" fHeight//3 : "xs") . (InStr(control, "recentchanges") ? "" : " Center ") . (settings_selection ? "" : " w" tooltip_width - 2*(fHeight//2)) . (vars.lab.room.2 && InStr(text, vars.lab.room.2) ? " cLime" : " c" color) " BackgroundTrans", % LLK_StringCase(text)
 	}
 
 	Gui, %GUI_name%: Show, NA AutoSize x10000 y10000
+
+	Gui, %GUI_name%: Add, Pic, % "x0 y0", % "HBitmap:" Gui_BackgroundPanel(tooltip, settings.general.slop, settings.general.radius)
+	WinSet, Redraw,, % "ahk_id " tooltip
+	Sleep 50
+
 	WinGetPos,,, width, height, ahk_id %tooltip%
 	xPos := (check = "settings") ? vars.settings.x + vars.settings.wSelection - 1 : xWin + (check = "leveltrackereditor" ? (wWin - 2)//8 : 0)
 	yPos := InStr(control, "updater changelog") && (height > vars.monitor.h - (y + h)) ? y - height - 1 : (y + h + height + 1 > vars.monitor.y + vars.monitor.h) ? y - height : y + h
