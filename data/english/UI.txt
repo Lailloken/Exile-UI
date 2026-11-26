@@ -362,7 +362,7 @@
 		mechanic_mirage		=	"mirage"
 
 		msg_clientswitch		=	"switch clients?"	;## window text for when you switch between games while the tool is running
-		msg_clientswitch		=	"you have switched to a different game-client, do you want the tool to switch/restart as well?"
+		msg_clientswitch		=	"you have switched to a different game client, do you want the tool to switch/restart as well?"
 		msg_clientswitch		=	"if not, launch the correct client and then click <no>"
 
 		msg_langswitch			=	"The game was launched with a different language setting."

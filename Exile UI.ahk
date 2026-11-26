@@ -747,7 +747,7 @@ Loop()
 		If !vars.hwnd.poe_client
 			If (client_tick = 5)
 			{
-				If Gui_MsgBox("switch client", "exile ui: " Lang_Trans("msg_clientswitch"), [Lang_Trans("msg_clientswitch", 2), Lang_Trans("msg_clientswitch", 3)],, ["yes", "no"])
+				If Gui_MsgBox("switch client", "exile ui: " Lang_Trans("msg_clientswitch"), [Lang_Trans("msg_clientswitch", 2), Lang_Trans("msg_clientswitch", 3)],, ["yes", "no"], "Center")
 					LLK_Restart()
 				Else
 				{

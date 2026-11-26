@@ -681,25 +681,26 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 	If !IsObject(vars.MsgBox)
 		vars.MsgBox := {}
 
-	GUI := "MsgBox_" LLK_StringReplace(usecase, [[" ", "_"], ["-", "_"]])
-	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow +Border HWNDhwnd_msgbox +E0x02000000 +E0x00080000
-	Gui, %GUI%: Color, Black
-	Gui, %GUI%: Margin, -1, -1
-	Gui, %GUI%: Font, % "s" settings.general.fSize " cWhite", % vars.system.font
-	vars.MsgBox[usecase] := {"hwnd": {"main": hwnd_msgbox}, "name": GUI}, dimensions := []
+	GUI := "MsgBox_" LLK_StringReplace(usecase, [[" ", "_"], ["-", "_"]]), fHeight := settings.general.fHeight
+	Gui, %GUI%: New, -DPIScale -Caption +LastFound +AlwaysOnTop +ToolWindow HWNDhwnd_msgbox +E0x02000000 +E0x00080000
+	Gui, %GUI%: Color, Purple
+	WinSet, TransColor, Purple
+	Gui, %GUI%: Margin, % fHeight//2, % fHeight//3
+	Gui, %GUI%: Font, % "Bold s" settings.general.fSize " cWhite", % vars.system.font
+	vars.MsgBox[usecase] := {"hwnd": {"main": hwnd_msgbox}, "name": GUI}, dimensions := [], wUnits := 48
 
 	If RegExMatch(title, "i)^\(color:.*\)")
 		color := SubStr(title, InStr(title, ":") + 1), color := SubStr(color, 1, InStr(color, ")") - 1), title := SubStr(title, InStr(title, ")") + 1)
-	Gui, %GUI%: Add, Text, % "Section x-1 y-1 w" 48*settings.general.fWidth " Center Border BackgroundTrans HWNDhwnd" (nodrag ? "" : " gGui_MsgBox") . (color ? " c" color : ""), % LLK_StringCase(title)
-	Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background404040 cBlack", 100
-	vars.MsgBox[usecase].hwnd.title := hwnd, vars.MsgBox[usecase].hwnd.close := hwnd1
+	Gui, %GUI%: Add, Text, % "Section x" fHeight//2 " y" fHeight//3 " w" wUnits*settings.general.fWidth " Center BackgroundTrans HWNDhwnd" (nodrag ? "" : " gGui_MsgBox") . (color ? " c" color : ""), % LLK_StringCase(title)
+	vars.MsgBox[usecase].hwnd.title := hwnd
+	Gui, %GUI%: Font, norm
 
 	For index, val in text
 	{
 		If RegExMatch(val, "\(color:.*\)")
 			color := SubStr(val, InStr(val, "(color:") + 7), color := SubStr(color, 1, InStr(color, ")") - 1), val := StrReplace(val, "(color:" color ")"), color .= " "
 		Else color := "White "
-		Gui, %GUI%: Add, Text, % "Section xs" (index = 1 ? " x" settings.general.fWidth - 1 " y+" settings.general.fWidth : " y+" Round(0.4*settings.general.fHeight)) " w" 46*settings.general.fWidth " BackgroundTrans c" color . align, % (nodrag ? val : LLK_StringCase(val))
+		Gui, %GUI%: Add, Text, % "Section xs y+" (index = 1 ? settings.general.fHeight : Round(0.4*settings.general.fHeight)) " w" wUnits*settings.general.fWidth " BackgroundTrans c" color . align, % (nodrag ? val : LLK_StringCase(val))
 	}
 
 	If !choices.Count()
@@ -709,14 +710,13 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 	LLK_PanelDimensions(dimensions, settings.general.fSize, wButtons, hButtons)
 
 	For index, val in choices
-	{
-		Gui, %GUI%: Add, Text, % (index = 1 ? "Section xs x" 24*settings.general.fWidth - (choices.Count() = 1 ? wButtons/2 : wButtons + settings.general.fWidth//2) " y+" settings.general.fHeight//2 : "ys x+" settings.general.fWidth) " w" wButtons " Center Border BackgroundTrans HWNDhwnd gGUI_MsgBox", % ((check := Lang_Trans("global_" val)) ? check : val)
-		Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
-		vars.MsgBox[usecase].hwnd[val] := hwnd
-	}
+		Gui_Label(GUI, (index = 1 ? "Section xs x" fHeight//2 + (wUnits/2)*settings.general.fWidth - (choices.Count() = 1 ? wButtons/2 : wButtons + settings.general.fWidth//2) " y+" settings.general.fHeight//2 : "ys x+" settings.general.fWidth) " w" wButtons " Center gGUI_MsgBox", ((check := Lang_Trans("global_" val)) ? check : val),, "MsgBox." usecase ".hwnd." val, settings.general.slop, settings.general.radius,, settings.general.cButtons)
 
 	Gui, %GUI%: Add, Text, % "xs y+1 w10 h" settings.general.fHeight//2 " BackgroundTrans"
-	Gui, %GUI%: Show, % "NA x10000 y10000 w" 48*settings.general.fWidth - 2
+	Gui, %GUI%: Show, % "NA x10000 y10000 AutoSize"
+	Gui, %GUI%: Add, Pic, % "x0 y0", % "HBitmap:" Gui_BackgroundPanel(hwnd_msgbox, settings.general.slop, 2*settings.general.radius)
+	WinSet, Redraw,, % "ahk_id " hwnd_msgbox
+	Sleep 50
 	WinGetPos,,, Width, Height, ahk_id %hwnd_msgbox%
 	Gui, %GUI%: Add, Progress, % "Disabled x-1 y" settings.general.fHeight - 2 " w" width " h" height - settings.general.fHeight + 1 " Border Background404040 cBlack", 100
 
