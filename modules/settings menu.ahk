@@ -256,6 +256,7 @@ Settings_addons(mode := 0)
 	static fSize, wEnable
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight
+	cDisabled := settings.general.cDisabled
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_addons2", " " Lang_Trans("global_enable") " ", "settings_addons enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.addons)
 	;hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder"}
 
@@ -281,7 +282,7 @@ Settings_addons(mode := 0)
 	deletion := LLK_HasKey(vars.addons.list, "deleted",,,, 1)
 
 	Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cFF8000 BackgroundTrans", % Lang_Trans("m_addons_warning")
-	Gui_Label(GUI, "Section xs " (deletion ? "cGray" : "gSettings_addons2"), " " Lang_Trans("global_import") " ", (!deletion ? "settings_addons import" : ""), "hwnd.settings.import", slop,,, (deletion ? 0 : cButtons))
+	Gui_Label(GUI, "Section xs " (deletion ? "c" cDisabled : "gSettings_addons2"), " " Lang_Trans("global_import") " ", (!deletion ? "settings_addons import" : ""), "hwnd.settings.import", slop,,, (deletion ? 0 : cButtons))
 
 	Gui_Label(GUI, (deletion ? "" : "Hidden ") "ys gSettings_addons2 cRed", " " Lang_Trans("global_restart") " ",, ["hwnd.settings.restart", "_bar"], slop,, "push FF0000", cButtons)
 	If vars.addons.list.Count()
@@ -294,7 +295,7 @@ Settings_addons(mode := 0)
 	For key, val in vars.addons.list
 	{
 		vars.addons.list[key].enabled_provisional := val.enabled, label := ((deleted := val.deleted) ? Lang_Trans("global_delete", 3) : Lang_Trans("global_enable"))
-		Gui_Label(GUI, "Section xs w" wEnable " Center c" (deleted ? "Red" : (val.enabled ? "Lime" : "Gray") " gSettings_addons2"), label,, ["hwnd.settings.enable_" key, "_bar"], [slop, 0, slop, 0],, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
+		Gui_Label(GUI, "Section xs w" wEnable " Center c" (deleted ? "Red" : (val.enabled ? "Lime" : cDisabled) " gSettings_addons2"), label,, ["hwnd.settings.enable_" key, "_bar"], [slop, 0, slop, 0],, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
 		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["enable_" key "_bar"]], [slop, 0, slop, 0],, "push FF0000", cButtons)
 
 		Gui_Label(GUI, "ys x+0 w" fHeight " Center" (deleted ? "" : " gSettings_addons2"), "x", (deleted ? "" : "settings_addons delete" handle), ["hwnd.settings.delete_" key, "_bar"],,, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
@@ -310,7 +311,7 @@ Settings_addons(mode := 0)
 		Gui_Label(GUI, "xp-1 yp-1 w" fHeight (!deleted && val.enabled ? " gSettings_addons2" : ""),,, ["hwnd.settings.settings_" key, "_bar"], [0, slop, 0, slop],, (deleted ? "push FF0000" : ""), (deleted ? 0 : cButtons))
 		Gui, %GUI%: Add, Pic, % "xp yp BackgroundTrans", % "HBitmap:" Gui_BackgroundPanel([vars.hwnd.settings["settings_" key "_bar"]], [0, slop, 0, slop],, "push FF0000", cButtons)
 		vars.hwnd.help_tooltips["settings_addons settings" handle] := (!deleted && val.enabled ? hwnd : ""), handle .= "|"
-		Gui, %GUI%: Add, Text, % "ys hp BackgroundTrans c" (deleted ? "Red" : (val.enabled ? "White" : "Gray")), % LLK_StringCase(key)
+		Gui, %GUI%: Add, Text, % "ys hp BackgroundTrans c" (deleted ? "Red" : (val.enabled ? "White" : cDisabled)), % LLK_StringCase(key)
 	}
 }
 
@@ -454,7 +455,7 @@ Settings_addons2(cHWND)
 		;######################################################
 		Case InStr(check, "enable_"):
 		vars.addons.list[control].enabled_provisional := !vars.addons.list[control].enabled_provisional, toggle := (vars.addons.list[control].enabled != vars.addons.list[control].enabled_provisional ? "+" : "-")
-		GuiControl, % "+c" (vars.addons.list[control].enabled_provisional ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (vars.addons.list[control].enabled_provisional ? "Lime" : settings.general.cDisabled), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		GuiControl, % toggle "Hidden", % vars.hwnd.settings[check "_bar"]
 		GuiControl, % toggle "Hidden", % vars.hwnd.settings["delete_" control "_bar"]
@@ -1198,7 +1199,7 @@ Settings_client2(cHWND := "")
 
 		Case (check = "blackbars"):
 		vars.settings.blackbars_provisional := !vars.settings.blackbars_provisional
-		GuiControl, % "+c" (vars.settings.blackbars_provisional ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (vars.settings.blackbars_provisional ? "Lime" : settings.general.cDisabled), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		GuiControl, -Hidden, % vars.hwnd.settings.apply
 		GuiControl, -Hidden, % vars.hwnd.settings.apply_bar
@@ -1231,7 +1232,7 @@ Settings_client2(cHWND := "")
 		GuiControl, Text, % vars.hwnd.settings.custom_resolution, % ddl_state
 		GuiControl, -Hidden, % vars.hwnd.settings.apply
 		GuiControl, -Hidden, % vars.hwnd.settings.apply_bar
-		GuiControl, % "+c" (state ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (state ? "Lime" : settings.general.cDisabled), % cHWND
 		GuiControl, % "movedraw", % cHWND
 
 		Case (check = "ClientFiller"):
@@ -1259,7 +1260,7 @@ Settings_client2(cHWND := "")
 
 		Case (check = "ClientFillerSplit"):
 		IniWrite, % (settings.general.ClientFillerSplit := !settings.general.ClientFillersplit), % "ini" vars.poe_version "\config.ini", Settings, split-screen mode
-		GuiControl, % "+c" (settings.general.ClientFillerSplit ? "Lime" : "Gray"), % cHWND
+		GuiControl, % "+c" (settings.general.ClientFillerSplit ? "Lime" : settings.general.cDisabled), % cHWND
 		GuiControl, % "movedraw", % cHWND
 		Gui_ClientFiller()
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
@@ -1385,7 +1386,7 @@ Settings_cloneframes()
 		If vars.poe_version
 		{
 			Gui, %GUI%: Font, % "s" settings.general.fSize - 2
-			Gui, %GUI%: Add, Text, % "Section xs x" xHeader1 - 1 " y+" settings.general.fWidth/2 " w" xInfo + wInfo - xHeader1 " hp 0x200 Center Border BackgroundTrans HWNDhwnd gSettings_cloneframes2" (settings.cloneframes.closebutton_toggle ? " cLime" : " cGray"), % " " Lang_Trans("m_clone_closetoggle") " "
+			Gui, %GUI%: Add, Text, % "Section xs x" xHeader1 - 1 " y+" settings.general.fWidth/2 " w" xInfo + wInfo - xHeader1 " hp 0x200 Center Border BackgroundTrans HWNDhwnd gSettings_cloneframes2" (settings.cloneframes.closebutton_toggle ? " cLime" : " c" settings.general.cDisabled), % " " Lang_Trans("m_clone_closetoggle") " "
 			Gui, %GUI%: Add, Progress, % "Disabled xp yp wp hp Border HWNDhwnd1 Background" vars.settings.cButtons2 " c" vars.settings.cButtons, 100
 			vars.hwnd.settings.closebutton_toggle := hwnd, vars.hwnd.help_tooltips["settings_cloneframes close button toggle"] := hwnd1
 		}
@@ -1877,18 +1878,18 @@ Settings_general2(cHWND := "")
 			}
 		Case "dev_env":
 			IniWrite, % (settings.general.dev_env := !settings.general.dev_env), % "ini" vars.poe_version "\config.ini", Settings, dev env
-			GuiControl, % "+c" (settings.general.dev_env ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.general.dev_env ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "kill_timeout":
 			input := Gui_Slider(cHWND, [0, settings.general.kill.2, 10], 20)
 			IniWrite, % (settings.general.kill.1 := Blank(input) ? 0 : input), % "ini\config.ini", Settings, kill script		;these are still split into 2 for back-compat
 			IniWrite, % (settings.general.kill.2 := Blank(input) ? 0 : input), % "ini\config.ini", Settings, kill-timeout
-			GuiControl, % "+c" (input ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (input ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "browser":
 			settings.features.browser := !settings.features.browser
 			IniWrite, % settings.features.browser, % "ini" vars.poe_version "\config.ini", settings, enable browser features
-			GuiControl, % "+c" (settings.features.browser ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.features.browser ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "capslock":
 			IniWrite, % !settings.general.capslock, % "ini" vars.poe_version "\config.ini", settings, enable capslock-toggling
@@ -1897,7 +1898,7 @@ Settings_general2(cHWND := "")
 			ExitApp
 		Case "animations":
 			IniWrite, % (settings.general.animations := !settings.general.animations), % "ini" vars.poe_version "\config.ini", settings, animations
-			GuiControl, % "+c" (settings.general.animations ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.general.animations ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "language":
 			If Blank(input := Gui_DropDownList(vars.ddl.lang_select, LLK_WinGetPos(cHWND, "array"), "Center",, "Center"))
@@ -2113,15 +2114,15 @@ Settings_hotkeys2(cHWND)
 			Settings_menu("hotkeys", 1)
 		Case "tabblock":
 			vars.settings.tabblock_provisional := !vars.settings.tabblock_provisional
-			GuiControl, % "+c" (vars.settings.tabblock_provisional ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (vars.settings.tabblock_provisional ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "emergencykey_ctrl":
 			vars.settings[check "_provisional"] := !vars.settings[check "_provisional"]
-			GuiControl, % "+c" (vars.settings[check "_provisional"] ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (vars.settings[check "_provisional"] ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "emergencykey_alt":
 			vars.settings[check "_provisional"] := !vars.settings[check "_provisional"]
-			GuiControl, % "+c" (vars.settings[check "_provisional"] ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (vars.settings[check "_provisional"] ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		Case "apply":
 			If settings.hotkeys.rebound_c && Blank(LLK_ControlGet(vars.hwnd.settings.omnikey2))
@@ -3542,7 +3543,7 @@ Settings_macros2(cHWND)
 
 		Case (check = "animations"):
 			IniWrite, % (settings.macros.animations := !settings.macros.animations), % "ini" vars.poe_version, settings, animations
-			GuiControl, % "+c" (settings.macros.animations ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.macros.animations ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 
 		Case InStr(check, "fasttravel_"):
@@ -4692,7 +4693,7 @@ Settings_notifications2(cHWND)
 			If !(type := (LLK_HasVal(settings.notifications.event_list, control) ? "events" : (LLK_HasVal(settings.notifications.event_list2, control) ? "features" : "")))
 				Return
 			IniWrite, % (settings.notifications[type][control] := !settings.notifications[type][control]), % "ini" vars.poe_version "\notifications.ini", % type, % control
-			GuiControl, % "+c" (settings.notifications[type][control] ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.notifications[type][control] ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 			If (control != "hideout")
 				Return
@@ -4700,7 +4701,7 @@ Settings_notifications2(cHWND)
 				IniWrite, % (settings.notifications.events.hideout_t1 := 1), % "ini" vars.poe_version "\notifications.ini", events, % "hideout T1"
 			Loop 3
 			{
-				GuiControl, % "+c" (settings.notifications.events.hideout && settings.notifications.events["hideout_t" A_Index] ? "Lime" : "Gray"), % vars.hwnd.settings["hideouttier_" A_Index]
+				GuiControl, % "+c" (settings.notifications.events.hideout && settings.notifications.events["hideout_t" A_Index] ? "Lime" : settings.general.cDisabled), % vars.hwnd.settings["hideouttier_" A_Index]
 				GuiControl, % "movedraw", % vars.hwnd.settings["hideouttier_" A_Index]
 			}
 
@@ -4716,7 +4717,7 @@ Settings_notifications2(cHWND)
 					IniWrite, % (enabled := settings.lootfilter.notify := (!settings.lootfilter.notify ? 4 : 0)), % "ini" vars.poe_version "\lootfilter.ini", settings, sync notification
 				Else If (control = "updater")
 					IniWrite, % (enabled := settings.updater.notify := !settings.updater.notify), % "ini\config.ini", settings, update notification
-				GuiControl, % "+c" (enabled ? "Lime" : "Gray"), % cHWND
+				GuiControl, % "+c" (enabled ? "Lime" : settings.general.cDisabled), % cHWND
 				GuiControl, % "movedraw", % cHWND
 			}
 
@@ -4724,12 +4725,12 @@ Settings_notifications2(cHWND)
 			If !settings.notifications.events.hideout
 				Return
 			IniWrite, % (settings.notifications.events["hideout_t" control] := !settings.notifications.events["hideout_t" control]), % "ini" vars.poe_version "\notifications.ini", events, % "hideout T" control
-			GuiControl, % "+c" (settings.notifications.events["hideout_t" control] ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.notifications.events["hideout_t" control] ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 			If !(settings.notifications.events.hideout_t1 + settings.notifications.events.hideout_t2 + settings.notifications.events.hideout_t3)
 			{
 				IniWrite, % (settings.notifications.events.hideout := 0), % "ini" vars.poe_version "\notifications.ini", events, % "hideout"
-				GuiControl, % "+cGray", % vars.hwnd.settings["enable_hideout"]
+				GuiControl, % "+c" settings.general.cDisabled, % vars.hwnd.settings["enable_hideout"]
 				GuiControl, % "movedraw", % vars.hwnd.settings["enable_hideout"]
 			}
 
@@ -6650,7 +6651,7 @@ Settings_updater2(cHWND := "")
 		Else
 		{
 			IniWrite, % (settings.updater.notify := !settings.updater.notify), ini\config.ini, settings, update notification
-			GuiControl, % "+c" (settings.updater.notify ? "Lime" : "Gray"), % cHWND
+			GuiControl, % "+c" (settings.updater.notify ? "Lime" : settings.general.cDisabled), % cHWND
 			GuiControl, % "movedraw", % cHWND
 		}
 	}

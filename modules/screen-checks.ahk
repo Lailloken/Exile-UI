@@ -252,7 +252,7 @@ Screenchecks_Info(name) ;holding the <info> button to view instructions
 		Return
 
 	Gui, screencheck_info: New, -Caption -DPIScale +LastFound +AlwaysOnTop +ToolWindow +Border +E0x20 +E0x02000000 +E0x00080000 HWNDscreencheck_info
-	Gui, screencheck_info: Color, 101030
+	Gui, screencheck_info: Color, % settings.general.cButtons2
 	Gui, screencheck_info: Margin, % settings.general.fWidth/2, % settings.general.fWidth/2
 	Gui, screencheck_info: Font, % "s"settings.general.fSize - 2 " cWhite", % vars.system.font
 	vars.hwnd.screencheck_info := {"main": screencheck_info}

@@ -45,7 +45,7 @@ Notification(type := "")
 
 	If (type = "hideout")
 		text .= " (" Lang_Trans("global_tiers", tier) ")"
-	LLK_ToolTip(text, settings.notifications.duration, 10000, 10000, "notifications_" type, color, settings.notifications.fSize, (position = 4 ? "Right" : ""), settings.notifications.opacity * 51,, background)
+	LLK_ToolTip(text, settings.notifications.duration, 10000, 10000, "notifications_" type, color, settings.notifications.fSize, (position = 4 ? "Right" : ""), settings.notifications.opacity * 51,, background,,, ["000000", "000000"])
 	WinGetPos,,, Width, Height, % "ahk_id" vars.hwnd["tooltip_notifications_" type]
 	count := LLK_HasKey(vars.hwnd, "tooltip_notifications_", 1,, 1).Count()
 

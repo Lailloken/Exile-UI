@@ -718,7 +718,6 @@ Gui_MsgBox(usecase, title := "exile ui", text := "[]", coords := "[]", choices :
 	WinSet, Redraw,, % "ahk_id " hwnd_msgbox
 	Sleep 50
 	WinGetPos,,, Width, Height, ahk_id %hwnd_msgbox%
-	Gui, %GUI%: Add, Progress, % "Disabled x-1 y" settings.general.fHeight - 2 " w" width " h" height - settings.general.fHeight + 1 " Border Background404040 cBlack", 100
 
 	xPos := (Blank(coords.1) ? vars.monitor.x + vars.monitor.w//2 - width/2 : coords.1), yPos := (Blank(coords.2) ? vars.monitor.y + vars.monitor.h//2 - height/2 : coords.2)
 	Gui, %GUI%: Show, % "x" (Blank(xPos) ? "Center" : xPos) " y" (Blank(yPos) ? "Center" : yPos) 
@@ -1246,7 +1245,7 @@ LLK_Progress(HWND_bar, key, HWND_control := "", key_wait := 1, reset_state := 0,
 	Return 0
 }
 
-LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "White", size := "", align := "", trans := "", center := 0, background := "", center_text := 0, width := 0)
+LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "White", size := "", align := "", trans := "", center := 0, background := "", center_text := 0, width := 0, border := "[]")
 {
 	local
 	global vars, settings
@@ -1268,15 +1267,19 @@ LLK_ToolTip(message, duration := 1, x := "", y := "", name := "", color := "Whit
 	xPos := InStr(x, "+") || InStr(x, "+-") ? vars.general.xMouse + StrReplace(x, "+") : (x != "") ? x : vars.general.xMouse
 	yPos := InStr(y, "+") || InStr(y, "+-") ? vars.general.yMouse + StrReplace(y, "+") : (y != "") ? y : vars.general.yMouse
 
-	Gui, tooltip%name%: New, % "-DPIScale +E0x20 +LastFound +AlwaysOnTop +ToolWindow -Caption +Border +E0x02000000 +E0x00080000 HWNDhwnd"
-	Gui, tooltip%name%: Color, % Blank(background) ? "Black" : background
-	Gui, tooltip%name%: Margin, % settings.general.fwidth / 2, 0
-	WinSet, Transparent, % trans
+	Gui, tooltip%name%: New, % "-DPIScale +E0x20 +LastFound +AlwaysOnTop +ToolWindow -Caption +E0x02000000 +E0x00080000 HWNDhwnd"
+	Gui, tooltip%name%: Color, Purple
+	Gui, tooltip%name%: Margin, % settings.general.fHeight//2, % settings.general.fHeight//3
+	WinSet, TransColor, % "Purple" (trans != 255 ? " " trans : "")
 	Gui, tooltip%name%: Font, % "s" size* (name = "update" ? 1.4 : 1) " cWhite", % vars.system.font
 	vars.hwnd["tooltip_" name] := hwnd
 
-	Gui, tooltip%name%: Add, Text, % (width ? "w" width " " : "") "c"color align (center_text ? " Center" : ""), % message
-	Gui, tooltip%name%: Show, % "NA x10000 y10000"
+	Gui, tooltip%name%: Add, Text, % (width ? "w" width " " : "") "c"color align (center_text ? " Center" : "") " BackgroundTrans", % message
+	Gui, tooltip%name%: Add, Text, % "xp y+0 w2 h2 BackgroundTrans"
+	Gui, tooltip%name%: Show, % "NA x10000 y10000 AutoSize"
+	Gui, tooltip%name%: Add, Pic, % "x0 y0", % "HBitmap:" Gui_BackgroundPanel(hwnd, settings.general.slop, settings.general.radius, border, background)
+	WinSet, Redraw,, % "ahk_id " hwnd
+	Sleep 50
 	WinGetPos,,, w, h, ahk_id %hwnd%
 
 	If center
