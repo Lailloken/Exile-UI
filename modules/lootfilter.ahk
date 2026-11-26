@@ -792,7 +792,7 @@ Lootfilter_Editor(cHWND := "")
 	While !Mod(3 * wProfiles - 2, 2)
 		wProfiles += 1
 	Gui, %GUI%: Font, % "s" settings.lootfilter.fSize - 2
-	Gui, %GUI%: Add, Text, % "ys x+" margin " w" wDDL " 0x200 hp Border HWNDhwnd " (show_apply ? "cGray" : "gLootfilter_Editor"), % " " vars.ddl.filter_pick.current
+	Gui, %GUI%: Add, Text, % "ys x+" margin " w" wDDL " hp Border HWNDhwnd " (show_apply ? "cGray" : "gLootfilter_Editor"), % " " vars.ddl.filter_pick.current
 	vars.hwnd.lootfilter.filter_select := hwnd, vars.hwnd.help_tooltips["lootfilter_filter select"] := (vars.lootfilter.modifications_pending.Count() > 1 ? "" : hwnd)
 
 	Gui, %GUI%: Add, Pic, % "ys x+-1 hp-2 w-1 Border gLootfilter_Editor HWNDhwnd", % "HBitmap:*" vars.pics.global.reload

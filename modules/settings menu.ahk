@@ -795,7 +795,7 @@ Settings_cheatsheets()
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 
 	DDL := [Lang_Trans("m_cheat_images"), Lang_Trans("m_cheat_app"), Lang_Trans("m_cheat_advanced")]
-	Gui_Label(GUI, "ys x+0 w" wDDL " h" fHeight - 2 " 0x200 Center gSettings_cheatsheets2", DDL.1, "settings_cheatsheets types", "hwnd.settings.type", [0, slop, 0, slop],,, cButtons)
+	Gui_Label(GUI, "ys x+0 w" wDDL " h" fHeight - 2 " Center gSettings_cheatsheets2", DDL.1, "settings_cheatsheets types", "hwnd.settings.type", [0, slop, 0, slop],,, cButtons)
 	vars.ddl.cheatsheet_type := {"cHWND": vars.hwnd.settings.type, "current": Lang_Trans("m_cheat_images"), "list": DDL.Clone(), "fSize": settings.general.fSize - 2, "color": cButtons}
 	Gui, %GUI%: Add, Button, % "Hidden xp yp wp hp Default HWNDhwnd2 gSettings_cheatsheets2", ok
 	vars.hwnd.settings.add := hwnd2
@@ -1013,7 +1013,7 @@ Settings_client()
 		LLK_PanelDimensions([Lang_Trans("m_general_screenfiller")], fSize, wFiller, hFiller)
 		LLK_PanelDimensions([Lang_Trans("m_general_postaskbar")], fSize, wTaskbar, hTaskbar)
 		LLK_PanelDimensions([Lang_Trans("m_general_screenfiller", 2)], fSize, wSplit, hSplit)
-		LLK_PanelDimensions([" " Lang_Trans("m_general_language", 2), " " Lang_Trans("m_general_display", 1)], fSize, wLanguage, hLanguage,,, 0)
+		LLK_PanelDimensions([" " Lang_Trans("m_general_language", 2,, 1), " " Lang_Trans("m_general_display", 1,, 1)], fSize, wLanguage, hLanguage,,, 0)
 		LLK_PanelDimensions([(settings.general.lang_client = "unknown" ? Lang_Trans("m_general_language", 3) : settings.general.lang_client), Lang_Trans("m_general_display", (fullscreen = "true") ? 2 : !vars.client.borderless ? 3 : 4)], fSize, wWindow, hWindow)
 
 		If (wResolution < settings.general.fWidth * 8)
@@ -1037,10 +1037,10 @@ Settings_client()
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_general_client", 2)
 	Gui, %GUI%: Font, norm
 
-	Gui, %GUI%: Add, Text, % "ys cLime BackgroundTrans", % "path of exile " (vars.poe_version ? 2 : 1)
+	Gui_Label(GUI, "ys cLime", " path of exile " (vars.poe_version ? 2 : 1) " ",,, slop)
 	If vars.client.stream
 		Return
-	Gui_Label(GUI, "Section xs w" wLanguage, " " Lang_Trans("m_general_language", 2),,, [slop, 0, 0, 0])
+	Gui_Label(GUI, "Section xs w" wLanguage, " " Lang_Trans("m_general_language", 2,, 1),,, [slop, 0, 0, 0])
 	Gui_Label(GUI, "ys x+0 w" wWindow " c" (settings.general.lang_client = "unknown" ? "Red" : "Lime"), " " (settings.general.lang_client = "unknown" ? Lang_Trans("m_general_language", 3) : settings.general.lang_client), (!InStr("unknown,english", settings.general.lang_client) ? "settings_lang contributors" : ""),, [0, slop, 0, 0],,, 0)
 
 	If (settings.general.lang_client = "unknown")
@@ -1049,7 +1049,7 @@ Settings_client()
 		vars.hwnd.help_tooltips["settings_lang unknown"] := hwnd
 	}
 
-	Gui_Label(GUI, "Section xs y+0 w" wLanguage, " " Lang_Trans("m_general_display", 1),,, [0, 0, slop, 0])
+	Gui_Label(GUI, "Section xs y+0 w" wLanguage, " " Lang_Trans("m_general_display", 1,, 1),,, [0, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 w" wWindow " cLime", " " Lang_Trans("m_general_display", (fullscreen = "true") ? 2 : !vars.client.borderless ? 3 : 4),,, [0, 0, 0, slop],,, 0)
 
 	If !vars.log.latest_location
@@ -1088,7 +1088,7 @@ Settings_client()
 
 	If vars.general.safe_mode
 		vars.general.available_resolutions := StrReplace(vars.general.available_resolutions, vars.monitor.h "|")
-	Gui_Label(GUI, "x+0 yp wp h" settings.general.fHeight - 2 " 0x200 Center gSettings_client2", vars.client.h, "settings_force resolution||", "hwnd.settings.custom_resolution", [0, 0, 0, (slop && fullscreen != "true")],,, cButtons)
+	Gui_Label(GUI, "x+0 yp wp h" settings.general.fHeight - 2 " Center gSettings_client2", vars.client.h, "settings_force resolution||", "hwnd.settings.custom_resolution", [0, 0, 0, (slop && fullscreen != "true")],,, cButtons)
 	vars.ddl.custom_resolution := {"cHWND": vars.hwnd.settings.custom_resolution, "current": vars.client.h, "list": StrSplit(Trim(vars.general.available_resolutions, "|"), "|", " "), "fSize": fSize, "color": cButtons}
 
 	If (fullscreen = "true")
@@ -1762,7 +1762,7 @@ Settings_general()
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("global_theme"), Lang_Trans("global_design")], fSize, wTheme, hTheme)
+		LLK_PanelDimensions([Lang_Trans("global_theme") " ", Lang_Trans("global_design") " "], fSize, wTheme, hTheme,,, 0)
 		LLK_PanelDimensions([Lang_Trans("global_gray"), Lang_Trans("global_new")], fSize, wGray, hGray)
 		LLK_PanelDimensions([Lang_Trans("global_blue"), Lang_Trans("global_old")], fSize, wBlue, hBlue)
 		LLK_PanelDimensions([Lang_Trans("global_choc"), Lang_Trans("global_fill")], fSize, wChoc, hChoc)
@@ -1779,9 +1779,10 @@ Settings_general()
 		If (A_LoopFileName = "client.txt")
 			parse := StrReplace(StrReplace(A_LoopFilePath, "data\"), "\client.txt"), DDL.Push(parse)
 	If (dev || DDL.Count() > 1)
-		Gui_Label(GUI, "ys", " " Lang_Trans("m_general_language",,, 1) " ", "settings_lang language",, [1, 0, 1, 0])
-		, Gui_Label(GUI, "ys x+0 Center gSettings_general2 cLime", " " settings.general.lang " ", "settings_lang translators", "hwnd.settings.language", [0, 1, 0, 1],,, cButtons)
-		, vars.ddl.lang_select := {"cHWND": hwnd, "current": settings.general.lang, "list": DDL.Clone(), "fSize": settings.general.fSize, "color": cButtons}
+		LLK_PanelDimensions(ddl, fSize, wDDL, hDDL)
+		, Gui_Label(GUI, "ys", " " Lang_Trans("m_general_language",,, 1) " ", "settings_lang language",, [1, 0, 1, 0])
+		, Gui_Label(GUI, "ys x+0 w" wDDL " Center gSettings_general2 cLime", settings.general.lang, "settings_lang translators", "hwnd.settings.language", [0, 1, 0, 1],,, cButtons)
+		, vars.ddl.lang_select := {"cHWND": vars.hwnd.settings.language, "current": settings.general.lang, "list": DDL.Clone(), "fSize": settings.general.fSize, "color": cButtons}
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_general_settings")
@@ -4576,8 +4577,8 @@ Settings_notifications()
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("global_duration"), Lang_Trans("global_opacity",,, 1)], fSize, wDuration, hDuration)
-		LLK_PanelDimensions([Lang_Trans("global_font",,, 1), Lang_Trans("global_position")], fSize, wFont, hFont)
+		LLK_PanelDimensions([Lang_Trans("global_duration") " ", Lang_Trans("global_opacity",,, 1) " "], fSize, wDuration, hDuration,,, 0)
+		LLK_PanelDimensions([Lang_Trans("global_font",,, 1) " ", Lang_Trans("global_position") " "], fSize, wFont, hFont,,, 0)
 
 		dimensions := []
 		For i, v in ["", 2]
@@ -4592,24 +4593,24 @@ Settings_notifications()
 
 		For index, val in ["top", "bottom", "left", "right"]
 			DDL.Push(Lang_Trans("m_general_pos" val))
-		LLK_PanelDimensions(DDL, fSize, wDDL, hDDL), wDDL := Max(wDDL, 7*fWidth)
+		LLK_PanelDimensions(DDL, fSize, wDDL, hDDL), wDDL := Max(wDDL, 2*fHeight + 3*fWidth)
 	}
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section x" x_anchor " y" vars.settings.ySelection " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui_Label(GUI, "Section xs w" wFont " Right", Lang_Trans("global_font",,, 1) " ",,, [slop, 0, 0, 0])
-	Gui_Label(GUI, "ys x+0 w" 2*fWidth " Center gSettings_notifications2", "–", "settings_font-size", "hwnd.settings.font_minus",,,, cButtons)
-	Gui_Label(GUI, "ys x+0 w" wDDL - 4*fWidth " Center gSettings_notifications2", settings.notifications.fSize, "settings_font-size|", "hwnd.settings.font_reset",,,, cButtons)
-	Gui_Label(GUI, "ys x+0 w" 2*fWidth " Center gSettings_notifications2", "+", "settings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, 0],,, cButtons)
+	Gui_Label(GUI, "Section xs w" wFont " Center", Lang_Trans("global_font",,, 1),,, [slop, 0, 0, 0])
+	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_notifications2", "–", "settings_font-size", "hwnd.settings.font_minus",,,, cButtons)
+	Gui_Label(GUI, "ys x+0 w" wDDL - 2*fHeight " Center gSettings_notifications2", settings.notifications.fSize, "settings_font-size|", "hwnd.settings.font_reset",,,, cButtons)
+	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_notifications2", "+", "settings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, 0],,, cButtons)
 
-	Gui_Label(GUI, "xs y+0 w" wFont " Right", Lang_Trans("global_position") " ",,, [0, 0, slop, 0])
+	Gui_Label(GUI, "xs y+0 w" wFont " Center", Lang_Trans("global_position"),,, [0, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 yp w" wDDL " Center gSettings_notifications2", DDL[settings.notifications.position], "settings_map-events position", "hwnd.settings.position_notifications", [0, 0, 0, slop],,, cButtons)
-	vars.ddl.position_notifications := {"cHWND": hwnd, "current": DDL[settings.notifications.position], "list": DDL.Clone(), "color": cButtons, "fSize": fSize}
+	vars.ddl.position_notifications := {"cHWND": vars.hwnd.settings.position_notifications, "current": DDL[settings.notifications.position], "list": DDL.Clone(), "color": cButtons, "fSize": fSize}
 
 	For index, val in ["duration", "opacity"]
-		Gui_Label(GUI, (index = 1 ? "Section ys" : "xs y+0") " w" wDuration " Right", Lang_Trans("global_" val,,, 1) " ",,, [(slop && A_Index = 1), 0, (slop && A_Index = 2), 0])
+		Gui_Label(GUI, (index = 1 ? "Section ys" : "xs y+0") " w" wDuration " Center", Lang_Trans("global_" val,,, 1),,, [(slop && A_Index = 1), 0, (slop && A_Index = 2), 0])
 		, Gui_Label(GUI, "ys yp x+0 w" 3*fWidth " Center gSettings_notifications2", settings.notifications[val], "settings_slider general" handle, "hwnd.settings." val, [0, (slop && A_Index = 1), 0, (slop && A_Index = 2)],,, cButtons), handle .= "|"
 
 	mechanics := {}, handle := ""
@@ -5026,7 +5027,7 @@ Settings_qol2(cHWND)
 		WinGet, pob_path, ProcessPath, % "ahk_exe " settings.quickpob.exe.2
 		If !pob_path
 			LLK_ToolTip(Lang_Trans("global_fail"),,,,, "FF8000")
-		Else If Gui_MsgBox("pob path", Lang_Trans("m_qol_findpob"), [Lang_Trans("m_qol_findpob", 2), "(color:aqua)" LLK_StringCase(pob_path)],, ["yes", "no"])
+		Else If Gui_MsgBox("pob path", Lang_Trans("m_qol_findpob"), [Lang_Trans("m_qol_findpob", 2), "(color:aqua)" LLK_StringCase(pob_path)],, ["yes", "no"], "Center")
 		{
 			IniWrite, % """" (settings.quickpob.exe.1 := pob_path) """", % "ini" vars.poe_version "\qol tools.ini", quickpob, install folder
 			Settings_menu("minor qol tools")
@@ -6667,8 +6668,8 @@ Settings_CharTracking(mode, wEdits := "", yCoord := 0)
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_info")], fSize, wChar, hChar)
-		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_league"), Lang_Trans("global_info")], fSize, wChar2, hChar2)
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_info") " "], fSize, wChar, hChar,,, 0)
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " ", Lang_Trans("global_info") " "], fSize, wChar2, hChar2,,, 0)
 	}
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, profile := settings.leveltracker.profile, x_anchor := vars.settings.x_anchor, line1 := vars.settings.line1
@@ -6819,12 +6820,12 @@ Settings_LeagueSelection(ByRef yCoord, ByRef width)
 	If (fSize != settings.general.fSize) || (widths_count != objects[(vars.poe_version ? 3 : 4)].Count())
 	{
 		fSize := settings.general.fSize, widths := []
-		LLK_PanelDimensions([Lang_Trans("m_general_character"), Lang_Trans("global_league")], fSize, wLeague, hLeague)
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " "], fSize, wLeague, hLeague,,, 0)
 	}
 	widths_count := objects[(vars.poe_version ? 3 : 4)].Count()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4
-	hwnd := Gui_Label(GUI, "Section xs x" x_anchor " w" wLeague " h" settings.general.fHeight * vars.leagues.Count() - 2 " 0x200 Center", Lang_Trans("global_league") , "settings_league selection",, [slop, 0, slop, 0], radius), handle := "|"
+	hwnd := Gui_Label(GUI, "Section xs x" x_anchor " w" wLeague " h" settings.general.fHeight * vars.leagues.Count() - 2 " 0x200 Center", Lang_Trans("global_league"), "settings_league selection",, [slop, 0, slop, 0], radius), handle := "|"
 	ControlGetPos, xFirst, yFirst, wFirst, hFirst,, % "ahk_id " hwnd.back
 
 	Gui, %GUI%: Font, % "s" fSize - (vars.poe_version ? 0 : 2)

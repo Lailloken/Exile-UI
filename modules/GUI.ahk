@@ -183,8 +183,9 @@ Gui_DropDownList(object, coord_array, align := "", altsubmit := 0, prev_align :=
 	global vars, settings, json
 
 	type := object.type
-	Gui, DDL: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +Border +E0x02000000 +E0x00080000 HWNDhwnd_ddl, Exile UI: Drop-Down List
-	Gui, DDL: Color, % object.color
+	Gui, DDL: New, -Caption -DPIScale +LastFound +ToolWindow +AlwaysOnTop +E0x02000000 +E0x00080000 HWNDhwnd_ddl, Exile UI: Drop-Down List
+	Gui, DDL: Color, Purple
+	WinSet, TransColor, Purple
 	Gui, DDL: Font, % "s" object.fSize " cWhite", % vars.system.font
 	Gui, DDL: Margin, % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0), % (object.type = "minimap" ? settings.lootfilter.fWidth//2 : 0)
 
@@ -193,20 +194,23 @@ Gui_DropDownList(object, coord_array, align := "", altsubmit := 0, prev_align :=
 	Else If (object.list.Count() = 1)
 		object.list.InsertAt(1, "")
 
-	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, HWNDs := [], wList := Max(wList - 2, coord_array.3 - 2), hList := Max(hList - 2, coord_array.4 - 2)
+	LLK_PanelDimensions(object.list, object.fSize, wList, hList), controls := {}, HWNDs := [], wList := Max(wList, coord_array.3), hList := Max(hList, coord_array.4)
 	For index, val in object.list
 	{
 		If (type = "minimap")
 		{
 			If !vars.pics.lootfilter[val]
 				vars.pics.lootfilter[val] := LLK_ImageCache("img\GUI\lootfilter\" val ".png",, settings.lootfilter.fHeight2 - 2)
-			Gui, DDL: Add, Pic, % (A_Index = 1 ? "Section" : "ys") " HWNDhwnd", % "HBitmap:*" vars.pics.lootfilter[val]
+			Gui, DDL: Add, Pic, % (A_Index = 1 ? "Section" : "ys") " HWNDhwnd BackgroundTrans", % "HBitmap:*" vars.pics.lootfilter[val]
 		}
-		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : " x0 y0") " w" wList " h" hList " 0x200 HWNDhwnd" (val = object.current ? " cLime" : "") . (align ? " " align : ""), % (!align ? " " : "") . val . (align = "right" ? " " : "")
+		Else Gui, DDL: Add, Text, % "Section" (A_Index != 1 ? " xs" : " x0 y-1") " w" wList " h" hList " 0x200 HWNDhwnd BackgroundTrans" (val = object.current ? " cLime" : "") . (align ? " " align : ""), % (!align ? " " : "") . val . (align = "right" ? " " : "")
 		controls[hwnd] := val, HWNDs.Push(hwnd)
 	}
 
-	Gui, DDL: Show, % "NA x10000 y10000"
+	Gui, DDL: Show, % "NA x10000 y10000 AutoSize"
+	Gui, DDL: Add, Pic, % "x0 y0", % "HBitmap:" Gui_BackgroundPanel(hwnd_ddl, settings.general.slop, settings.general.radius,, settings.general.cButtons)
+	WinSet, Redraw,, % "ahk_id " hwnd_ddl
+	Sleep 50
 	WinGetPos, x, y, w, h, % "ahk_id " hwnd_ddl
 
 	xPos := (type = "minimap" ? coord_array.1 + coord_array.3//2 - w//2 : coord_array.1), yPos := coord_array.2, Gui_CheckBounds(xPos, yPos, w, h)

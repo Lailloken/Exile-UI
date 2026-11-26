@@ -982,7 +982,7 @@
 		m_general_permissions	=	"write-permissions test:"
 		m_general_start		=	"start test"
 		m_general_admin		=	"restart as admin"
-		m_general_menuwidget	=	"menu-widget:"
+		m_general_menuwidget	=	"widget-size:"
 		m_general_animations	=	"disable ui animations"
 		m_general_input		=	"input method:"						;## keyboard or controller
 		m_general_input		=	"input:"
