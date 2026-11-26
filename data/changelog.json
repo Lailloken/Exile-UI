@@ -1,5 +1,12 @@
 [
   [
+	["1.66.2", 16602],
+	"november 26, 2026",
+	"map-info:\n–> replaced scarab drop-multi with threads",
+	"vaal street:\n–> fixed incorrect overlay position",
+	"settings:\n–> full menu now uses the new design (also fixes poe2 exclusive sections)"
+  ],
+  [
 	["1.66.1", 16601],
 	"november 18, 2026",
 	"map-info:\n–> replaced item quant with atlas drops\n–> summary part at the bottom wasn't displaying",
