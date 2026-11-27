@@ -56,7 +56,7 @@
 ;## these don't necessarily have to be translated, it's up to the translator(s)
 ;## the feature-names are used here and there, so make sure to be consistent across each mention
 		ms_header				=	"features"
-		ms_header2			=	"misc. settings"
+		ms_header2			=	"misc. settings"	;## miscellaneous
 		ms_general			=	"general"
 		ms_actdecoder			=	"act-decoder"
 		ms_addons				=	"add-ons"
@@ -329,6 +329,8 @@
 		global_manual			=	"manual"			;## opposite of automatic
 		global_menu			=	"menu"
 		global_override		=	"override"
+		global_web			=	"web"			;## as in website or weblink
+		global_misc			=	"misc."			;## miscellaneous
 
 		mechanic_bestiary		=	"bestiary"
 		mechanic_betrayal		=	"betrayal"
@@ -1258,7 +1260,6 @@
 
 ;## these strings are displayed/required in the "map-info" section of the settings menu
 		m_mapinfo_sidepanel			=	"side-panel"
-		m_mapinfo_mapmods			=	"map-mods:"
 		m_mapinfo_header			=	"header"								;## as in line at the top of a section/paragraph
 		m_mapinfo_logbooks			=	"logbooks:"
 		m_mapinfo_modsettings		=	"map-mod settings:"

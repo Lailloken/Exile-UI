@@ -47,9 +47,10 @@
 	settings.mapinfo.position := !Blank(check := ini.settings.position) ? check : 2
 	settings.mapinfo.roll_highlight := !Blank(check := ini.settings["highlight map rolls"]) ? check : 0, settings.mapinfo.roll_requirements := {}
 	settings.mapinfo.roll_colors := [!Blank(check := ini.UI["map rolls text color"]) ? check : "000000", !Blank(check1 := ini.UI["map rolls back color"]) ? check1 : "FFFF00"]
-	settings.mapinfo.roll_types := (!vars.poe_version ? ["atlasdrops", "rarity", "pack size", "maps", "threads", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones"])
+	settings.mapinfo.roll_types := (!vars.poe_version ? ["atlasdrops", "rarity", "pack size", "maps", "threads", "currency"] : ["rarity", "pack size", "monster rarity", "effectiveness", "waystones", ""])
 	For index, val in settings.mapinfo.roll_types
-		settings.mapinfo.roll_requirements[val] := !Blank(check := ini.UI[val " requirement"]) ? check : ""
+		If val
+			settings.mapinfo.roll_requirements[val] := !Blank(check := ini.UI[val " requirement"]) ? check : ""
 }
 
 Mapinfo_GUI(mode := 1)

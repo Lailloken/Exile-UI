@@ -70,7 +70,7 @@
 	settings.quickpob := {"exe": ["", "Path of Building" (vars.poe_version ? "-PoE2" : "") ".exe"]}
 	settings.quickpob.exe.1 := (!Blank(check := ini.quickpob["install folder"]) ? check : "")
 	If !FileExist(settings.quickpob.exe.1)
-		settings.quickpob.exe.1 := ""
+		settings.quickpob.exe.1 := 0
 	settings.quickpob.hotkey := (!Blank(check := ini.quickpob.hotkey) ? check : "")
 	settings.quickpob.hotkey_alt := (!Blank(check := ini.quickpob["alt modifier"]) ? check : 0)
 	settings.quickpob.hotkey_ctrl := (!Blank(check := ini.quickpob["ctrl modifier"]) ? check : 0)

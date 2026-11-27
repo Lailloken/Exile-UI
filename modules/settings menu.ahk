@@ -5,13 +5,16 @@
 	static fSize, wOpacity
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth
-	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_actdecoder2", " " Lang_Trans("global_enable") " ", "settings_actdecoder enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.actdecoder)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Act‐Decoder"}
+	enabled := settings.features.actdecoder
 
-	If !settings.features.actdecoder
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_actdecoder2", " " Lang_Trans("global_enable") " ", "settings_actdecoder enable", "hwnd.settings.enable", slop,,, cButtons, enabled)
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, !enabled, 0, !enabled],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Act‐Decoder"}
+
+	If !enabled
 		Return
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",, [0, slop, 0, slop],,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
 	FileDelete, % "img\GUI\act-decoder\Exile-UI*"
 	Loop, Files, % "img\GUI\act-decoder\Exile-UI*", D
 		FileRemoveDir, % A_LoopFilePath, 1
@@ -78,11 +81,8 @@
 	Gui_Label(GUI, "ys x+0 w" 2*fWidth " Center gSettings_actdecoder2", "+", "settings_actdecoder layouts locked zoom|||", "hwnd.settings.zoneszoom_plus", [0, 0, 0, slop],,, cButtons)
 
 	If !Blank(settings.actdecoder.xLayouts . settings.actdecoder.yLayouts)
-	{
-		Gui_Label(GUI, "Section xs x" x_anchor " gSettings_actdecoder2", " " Lang_Trans("global_reset", 3) " ", "settings_actdecoder position reset", "hwnd.settings.reset_position", slop,,, cButtons)
-		Gui, %GUI%: Add, Progress, % "Disabled ys x+-1 w4 hp Vertical Range0-500 HWNDhwnd BackgroundBlack cRed", 0
-		vars.hwnd.settings.reset_position_bar := hwnd
-	}
+		Gui_Label(GUI, "Section xs x" x_anchor, " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+		, Gui_Label(GUI, "ys x+0 gSettings_actdecoder2", " " Lang_Trans("global_reset", 3) " ", "settings_actdecoder position reset", "hwnd.settings.reset_position", [0, 1, 0, 1],,, cButtons)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs x" x_anchor " y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_credits") . Lang_Trans("global_colon")
@@ -257,6 +257,7 @@ Settings_addons(mode := 0)
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight
 	cDisabled := settings.general.cDisabled
+
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_addons2", " " Lang_Trans("global_enable") " ", "settings_addons enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.addons)
 	;hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder"}
 
@@ -505,11 +506,13 @@ Settings_anoints()
 	global vars, settings, db
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
+	enabled := settings.features.anoints
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_anoints2", " " Lang_Trans("global_enable") " ", "settings_anoints enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.anoints)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Enchant-Finder"}
 
-	If !settings.features.anoints
+	If !enabled
 		Return
 
 	Gui, %GUI%: Font, bold underline
@@ -532,7 +535,7 @@ Settings_anoints()
 	Gui_Label(GUI, "ys x+0", " " vars.anoints.timestamp " ",,,,,, 0)
 
 	Gui, %GUI%: Add, Pic, % "ys x+3 yp+1 w" fHeight - 4 " h-1 BackgroundTrans HWNDhwnd", % "HBitmap:*" vars.pics.global.reload
-	Gui_Label(GUI, "xp-3 yp-1 w" fHeight " gSettings_anoints2",, "settings_anoints update|", "hwnd.settings.update", [0, slop, 0, slop]), vars.hwnd.help_tooltips["settings_anoints update"] := hwnd
+	Gui_Label(GUI, "xp-3 yp-1 w" fHeight " gSettings_anoints2",, "settings_anoints update|", "hwnd.settings.update", [0, slop, 0, slop],,, settings.general.cButtons2), vars.hwnd.help_tooltips["settings_anoints update"] := hwnd
 }
 
 Settings_anoints2(cHWND)
@@ -594,8 +597,10 @@ Settings_betrayal()
 	static fSize, wColumn, columns, columns2
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight
+
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_betrayal2", " " Lang_Trans("global_enable") " ", "settings_betrayal enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.betrayal)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Betrayal-Info"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Betrayal-Info"}
 
 	If !settings.features.betrayal
 		Return
@@ -749,7 +754,8 @@ Settings_cheatsheets()
 	fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
 
 	Gui_Label(GUI, "Section x" x_anchor " y" ySelection " gSettings_cheatsheets2", " " Lang_Trans("global_enable") " ", "settings_cheatsheets enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.cheatsheets)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons)
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons)
 	vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Cheat-sheet-Overlay-Toolkit"}
 
 	If !settings.features.cheatsheets
@@ -1001,7 +1007,9 @@ Settings_client()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, vars.settings.borderless_provisional := vars.client.borderless, vars.settings.blackbars_provisional := settings.general.blackbars
 	cButtons := settings.general.cButtons, slop := settings.general.slop, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight, radius := settings.general.radius, xMargin := vars.settings.xMargin
 	fullscreen := vars.client.fullscreen
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki && setup guide ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki"}
+
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki && setup guide ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki"}
 
 	If (fSize != settings.general.fSize)
 	{
@@ -1139,7 +1147,7 @@ Settings_client()
 	If (vars.client.h0 / vars.client.w0 < (5/12))
 	{
 		settings.general.blackbars := LLK_IniRead("ini" vars.poe_version "\config.ini", "Settings", "black-bar compensation", 0)
-		Gui_Label(GUI, (fullscreen = "false" || settings.general.FillerAvailable ? "ys" : "Section xs") " Center gSettings_client2", " " Lang_Trans("m_general_ultrawidebars") " ", "settings_black bars", "hwnd.settings.blackbars", slop,,, cButtons, vars.settings.blackbars_provisional)
+		Gui_Label(GUI, "Section xs Center gSettings_client2", " " Lang_Trans("m_general_ultrawidebars") " ", "settings_black bars", "hwnd.settings.blackbars", slop,,, cButtons, vars.settings.blackbars_provisional)
 	}
 }
 
@@ -1279,7 +1287,9 @@ Settings_cloneframes()
 	Init_cloneframes()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, xMargin := settings.general.fWidth * 0.75, slop := settings.general.slop, cButtons := settings.general.cButtons
 	fWidth := settings.general.fWidth, fHeight := settings.general.fHeight, xMax := x_anchor + vars.settings.min_width * fWidth
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Clone-frames"}
+
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Clone-frames"}
 
 	If vars.general.MultiThreading && (vars.cloneframes.list.Count() > 1)
 	{
@@ -1574,10 +1584,12 @@ Settings_donations()
 
 	LLK_PanelDimensions(dimensions, settings.general.fSize - 2, width, height), columns := 4, slop := settings.general.slop, cButtons := settings.general.cButtons
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " more info ", "settings_donations howto",, slop,,, cButtons)
+
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " more info ", "settings_donations howto",,,,, cButtons)
 	vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/discussions/407"}
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ko-fi.com ", "settings_donations kofi",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://ko-fi.com/lailloken"
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ko-fi.com ", "settings_donations kofi",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://ko-fi.com/lailloken"
 
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % "special thanks to these exiles who help me stay sane:"
 	Gui, %GUI%: Font, % "s" settings.general.fSize - 2
@@ -1624,7 +1636,8 @@ Settings_exchange()
 			wAsync := target_width - wEnable, wPercent := 4*fWidth
 		Else wPercent := target_width - (wName + wChange)
 	}
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street"}
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Vaal-Street"}
 
 	Gui_Label(GUI, "Section xs y+" vars.settings.spacing " w" wEnable " Center gSettings_exchange2", Lang_Trans("global_enable"), "settings_exchange enable", "hwnd.settings.enable", [slop, 0, (slop && !settings.features.exchange), 0],,, cButtons, settings.features.exchange)
 	Gui_Label(GUI, "ys x+0" (settings.features.exchange ? " w" wExchange : " c" cDisabled), " " Lang_Trans("m_exchange_currency") " ", "settings_exchange enable|",, [0, slop, 0, (slop && !settings.features.exchange)])
@@ -1757,7 +1770,9 @@ Settings_general()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, slop := settings.general.slop, dev := settings.general.dev
 	fWidth := settings.general.fWidth, fHeight := settings.general.fHeight
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki && setup guide ", "settings_website",, 1,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki"}
+
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki && setup guide ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki"}
 
 	If (fSize != settings.general.fSize)
 	{
@@ -1774,16 +1789,6 @@ Settings_general()
 		Else wCustom := wContrast - 2*fHeight
 	}
 
-	DDL := []
-	Loop, Files, data\*, R
-		If (A_LoopFileName = "client.txt")
-			parse := StrReplace(StrReplace(A_LoopFilePath, "data\"), "\client.txt"), DDL.Push(parse)
-	If (dev || DDL.Count() > 1)
-		LLK_PanelDimensions(ddl, fSize, wDDL, hDDL)
-		, Gui_Label(GUI, "ys", " " Lang_Trans("m_general_language",,, 1) " ", "settings_lang language",, [1, 0, 1, 0])
-		, Gui_Label(GUI, "ys x+0 w" wDDL " Center gSettings_general2 cLime", settings.general.lang, "settings_lang translators", "hwnd.settings.language", [0, 1, 0, 1],,, cButtons)
-		, vars.ddl.lang_select := {"cHWND": vars.hwnd.settings.language, "current": settings.general.lang, "list": DDL.Clone(), "fSize": settings.general.fSize, "color": cButtons}
-
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_general_settings")
 	Gui, %GUI%: Font, norm
@@ -1796,9 +1801,10 @@ Settings_general()
 	Gui_Label(GUI, "ys", " " Lang_Trans("m_general_autoclose",,, 1) " ",,, [1, 0, 1, 0])
 	Gui_Label(GUI, "ys x+0 w" 3 * fWidth " Center gSettings_general2", settings.general.kill.2, "settings_kill time", "hwnd.settings.kill_timeout", [0, 1, 0, 1],,, cButtons, settings.general.kill.1)
 
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
 	If !vars.poe_version
-		Gui_Label(GUI, "Section xs gSettings_general2", " " Lang_Trans("m_general_browser") " ", "settings_browser features", "hwnd.settings.browser", 1,,, cButtons, settings.features.browser)
-	Gui_Label(GUI, (vars.poe_version ? "Section xs" : "ys") " gSettings_general2", " " Lang_Trans("m_general_capslock") " ", "settings_capslock toggling", "hwnd.settings.capslock", 1,,, cButtons, settings.general.capslock)
+		Gui_Label(GUI, "ys x+0 gSettings_general2", " " Lang_Trans("m_general_browser") " ", "settings_browser features", "hwnd.settings.browser",,,, cButtons, settings.features.browser)
+	Gui_Label(GUI, "ys x+0 gSettings_general2", " " Lang_Trans("m_general_capslock") " ", "settings_capslock toggling", "hwnd.settings.capslock", [0, 1, 0, 1],,, cButtons, settings.general.capslock)
 
 	;If dev
 	;	Gui_Label(GUI, "Section xs gSettings_general2", " dev branch ",, "hwnd.settings.dev_env", 1,,, cButtons, settings.general.dev_env)
@@ -1806,6 +1812,17 @@ Settings_general()
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section x" vars.settings.x_anchor " y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
+
+	DDL := []
+	Loop, Files, data\*, R
+		If (A_LoopFileName = "client.txt")
+			parse := StrReplace(StrReplace(A_LoopFilePath, "data\"), "\client.txt"), DDL.Push(parse)
+	If (dev || DDL.Count() > 1)
+		LLK_PanelDimensions(ddl, fSize, wDDL, hDDL)
+		, Gui_Label(GUI, "ys", " " Lang_Trans("m_general_language",,, 1) " ", "settings_lang language",, [1, 0, 1, 0])
+		, Gui_Label(GUI, "ys x+0 w" wDDL " Center gSettings_general2 cLime", settings.general.lang, "settings_lang translators", "hwnd.settings.language", [0, 1, 0, 1],,, cButtons)
+		, vars.ddl.lang_select := {"cHWND": vars.hwnd.settings.language, "current": settings.general.lang, "list": DDL.Clone(), "fSize": settings.general.fSize, "color": cButtons}
+
 
 	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_font",,, 1) " ",,, [1, 0, 1, 0])
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_general2", "–", "settings_font-size", "hwnd.settings.font_minus",,,, cButtons)
@@ -2016,8 +2033,9 @@ Settings_hotkeys()
 	vars.settings.tabblock_provisional := settings.hotkeys.tabblock, vars.settings.emergencykey_ctrl_provisional := settings.hotkeys.emergencykey_ctrl, vars.settings.emergencykey_alt_provisional := settings.hotkeys.emergencykey_alt
 	fWidth := settings.general.fWidth, fHeight := settings.general.fHeight, spacing := vars.settings.spacing, rebound_c := settings.hotkeys.rebound_c
 
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " ahk: key list ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://www.autohotkey.com/docs/v1/KeyList.htm"}
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: formatting ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/Hotkeys.htm"
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website",,,,, cButtons), vars.URLs := {(hwnd.text): "https://www.autohotkey.com/docs/v1/KeyList.htm"}
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: formatting ", "settings_website|",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/Hotkeys.htm"
 
 	If !vars.client.stream || settings.features.leveltracker
 	{
@@ -2195,7 +2213,8 @@ Settings_iteminfo()
 	}
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_iteminfo2", " " Lang_Trans("global_enable") " ", "settings_iteminfo enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.iteminfo)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Item-info"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Item-info"}
 
 	If !settings.features.iteminfo
 		Return
@@ -2264,12 +2283,14 @@ Settings_iteminfo()
 				,,,, cButtons, [(settings.iteminfo.affixinfo = key), "White"])
 
 	Gui_Label(GUI, "ys x+0 gSettings_iteminfo2", " " Lang_Trans("global_off") " ", "settings_iteminfo affix-info off", "hwnd.settings.affixinfo_0", [0, slop, 0, slop],,, cButtons, [(settings.iteminfo.affixinfo = 0), "White"])
-	If vars.poe_version
-		Gui_Label(GUI, "Section xs gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_qualscaling") " ", "settings_iteminfo quality scaling", "hwnd.settings.qual_scaling", slop,,, cButtons, settings.iteminfo.qual_scaling)
-	Else Gui_Label(GUI, "Section xs gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_stattrack") " ", "settings_iteminfo league-start", "hwnd.settings.compare", slop,,, cButtons, settings.iteminfo.compare)
 
-	If !settings.iteminfo.compare
-		Gui_Label(GUI, "ys gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_basestats") " ", "settings_iteminfo base-info", "hwnd.settings.itembase", slop,,, cButtons, settings.iteminfo.itembase)
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	If !stats
+		Gui_Label(GUI, "ys x+0 gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_basestats") " ", "settings_iteminfo base-info", "hwnd.settings.itembase",,,, cButtons, settings.iteminfo.itembase)
+
+	If vars.poe_version
+		Gui_Label(GUI, "ys x+0 gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_qualscaling") " ", "settings_iteminfo quality scaling", "hwnd.settings.qual_scaling", [0, 1, 0, 1],,, cButtons, settings.iteminfo.qual_scaling)
+	Else Gui_Label(GUI, "ys x+0 gSettings_iteminfo2", " " Lang_Trans("m_iteminfo_stattrack") " ", "settings_iteminfo league-start", "hwnd.settings.compare", [0, 1, 0, 1],,, cButtons, settings.iteminfo.compare)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs Center BackgroundTrans y+"vars.settings.spacing, % Lang_Trans("global_ui")
@@ -2562,7 +2583,8 @@ Settings_leveltracker()
 	cButtons2 := settings.general.cButtons2, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight, xMargin := vars.settings.xMargin, radius := settings.general.radius
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_leveltracker2", " " Lang_Trans("global_enable") " ", "settings_leveltracker enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.leveltracker)
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Act‐Tracker"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Act‐Tracker"}
 	If !settings.features.leveltracker
 		Return
 
@@ -3168,7 +3190,8 @@ Settings_lootfilter()
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_lootfilter2", " " Lang_Trans("global_enable") " ", "settings_lootfilter enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.lootfilter)
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/FilterSpoon"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/FilterSpoon"}
 	If !settings.features.lootfilter
 		Return
 
@@ -3188,10 +3211,10 @@ Settings_lootfilter()
 		Gui_Label(GUI, "ys x+0 w" wALT " Center gSettings_lootfilter2", Lang_Trans("global_" val), "settings_lootfilter modifier keys" (index = 2 ? "|" : ""), "hwnd.settings.modifierkey_" val
 			, [0, (index = 2 && slop), 0, (index = 2 && slop)],,, cButtons, [(settings.lootfilter.modifier_key = val), "White"])
 
-	Gui_Label(GUI, "Section xs gSettings_lootfilter2", " " Lang_Trans("global_notification") " ", "settings_lootfilter notification", "hwnd.settings.notify", [slop, (!notify && slop), slop, (!notify && slop)],,, cButtons, notify)
-
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_lootfilter2", " " Lang_Trans("global_notification") " ", "settings_lootfilter notification", "hwnd.settings.notify", [0, !notify, 0, !notify],,, cButtons, notify)
 	If notify
-		Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center", notify, "settings_slider general", "hwnd.settings.notify_hours", [0, slop, 0, slop],,, cButtons)
+		Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center gSettings_lootfilter2", notify, "settings_slider general", "hwnd.settings.notify_hours", [0, slop, 0, slop],,, cButtons)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
@@ -3437,10 +3460,12 @@ Settings_macros()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.xMargin, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth
 	fHeight := settings.general.fHeight, radius := settings.general.radius
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros"}
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " poe.wiki: chat ", "settings_website||",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",,,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Chat-Macros"}
+
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",,,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " poe.wiki ", "settings_website||",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://www.poe" StrReplace(vars.poe_version, " ") "wiki.net/wiki/Chat#Commands"
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs Center y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
@@ -3622,7 +3647,7 @@ Settings_mapinfo()
 {
 	local
 	global vars, settings, db
-	static fSize, wDDL
+	static fSize, wDDL, wMapRolls
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.xMargin, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight
 	fWidth := settings.general.fWidth
@@ -3634,7 +3659,8 @@ Settings_mapinfo()
 	}
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_mapinfo2", " " Lang_Trans("global_enable") " ", "settings_mapinfo enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.mapinfo)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Map-info-panel"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Map-info-panel"}
 
 	If !settings.features.mapinfo
 		Return
@@ -3643,6 +3669,7 @@ Settings_mapinfo()
 	{
 		fSize := settings.general.fSize
 		LLK_PanelDimensions([Lang_Trans("m_general_posleft"), Lang_Trans("m_general_posright"), Lang_Trans("m_general_postop"), Lang_Trans("m_general_posbottom")], fSize, wDDL, hDDL)
+		LLK_PanelDimensions([Lang_Trans("m_mapinfo_maprolls")], fSize, wMapRolls, h), wMapRolls := Max(wMapRolls, 5*fWidth + 2*fHeight)
 	}
 
 	Gui, %GUI%: Font, bold underline
@@ -3660,7 +3687,8 @@ Settings_mapinfo()
 	Gui_Label(GUI, "ys x+0 w" wDDL " Center gSettings_mapinfo2 cLime", current, "settings_mapinfo position", "hwnd.settings.position", [0, slop, 0, slop],,, cButtons)
 	vars.ddl.mapinfo_position := {"current": current, "cHWND": vars.hwnd.settings.position, "list": DDL.Clone(), "color": vars.settings.cButtons, "fSize": fSize}
 
-	Gui_Label(GUI, "ys gSettings_mapinfo2", " " Lang_Trans("m_mapinfo_sidepanel") " ", "settings_mapinfo tab", "hwnd.settings.tabtoggle", slop,,, cButtons, settings.mapinfo.tabtoggle)
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_mapinfo2", " " Lang_Trans("m_mapinfo_sidepanel") " ", "settings_mapinfo tab", "hwnd.settings.tabtoggle", [0, 1, 0, 1],,, cButtons, settings.mapinfo.tabtoggle)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
@@ -3671,7 +3699,7 @@ Settings_mapinfo()
 	Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center gSettings_mapinfo2", settings.mapinfo.fSize, "settings_font-size|", "hwnd.settings.font_reset",,,, cButtons)
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_mapinfo2", "+", "settings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, slop],,, cButtons)
 
-	Gui_Label(GUI, "Section xs", " " Lang_Trans("m_mapinfo_mapmods",,, 1) " ", "settings_mapinfo mapmod colors",, [slop, 0, slop, 0]), handle := "", highlight := settings.mapinfo.roll_highlight
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_maps") " ", "settings_mapinfo mapmod colors",, [slop, 0, slop, 0]), handle := "", highlight := settings.mapinfo.roll_highlight
 	Loop 4
 		Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_mapinfo2 c" settings.mapinfo.color[A_Index], A_Index, "settings_mapinfo colors" handle, "hwnd.settings.color_" A_Index, (A_Index = 4 ? [0, slop, 0, slop] : 0),,, cButtons), handle .= "|"
 
@@ -3683,24 +3711,27 @@ Settings_mapinfo()
 		xMax := Max(xMax, LLK_ControlGetPos(vars.hwnd.settings.colorlogbook_4).xMax)
 	}
 
-	count := settings.mapinfo.roll_types.Count(), width := count * (fHeight + 3*fWidth) - 2*fHeight - 5*fWidth
-	Gui_Label(GUI, "Section xs gSettings_mapinfo2" (highlight ? " w" width " Center" : ""), " " Lang_Trans("m_mapinfo_maprolls") " ", "settings_mapinfo roll highlight", "hwnd.settings.roll_highlight", [slop, (slop && !highlight), (slop && !highlight), (slop && !highlight)],,, cButtons, highlight)
+	count := settings.mapinfo.roll_types.Count()
+	Gui_Label(GUI, "Section xs gSettings_mapinfo2" (highlight ? " w" wMapRolls " Center" : ""), " " Lang_Trans("m_mapinfo_maprolls") " ", "settings_mapinfo roll highlight", "hwnd.settings.roll_highlight", [1, !highlight,!highlight, !highlight],,, cButtons, highlight)
 	If settings.mapinfo.roll_highlight
 	{
-		Gui_Label(GUI, "ys x+0 w" 5*fWidth " Center c" settings.mapinfo.roll_colors.1, "117" Lang_Trans("maps_stats", 2), "settings_mapinfo roll colors",,,,, settings.mapinfo.roll_colors.2)
-		Gui_Label(GUI, "ys x+0 w" fHeight " gSettings_mapinfo2",, "settings_mapinfo roll colors|", "hwnd.settings.rollcolor_1",,, "push 000000", settings.mapinfo.roll_colors.1)
-		Gui_Label(GUI, "ys x+0 w" fHeight " gSettings_mapinfo2",, "settings_mapinfo roll colors||", "hwnd.settings.rollcolor_2", [0, slop, 0, 0],, "push 000000", settings.mapinfo.roll_colors.2)
+		Gui_Label(GUI, "xs y+0 w" 5*fWidth " Center c" settings.mapinfo.roll_colors.1, "117" Lang_Trans("maps_stats", 2), "settings_mapinfo roll colors",, [0, 0, 1, 0],,, settings.mapinfo.roll_colors.2)
+		Gui_Label(GUI, "yp x+0 w" fHeight " gSettings_mapinfo2",, "settings_mapinfo roll colors|", "hwnd.settings.rollcolor_1",,, "push 000000", settings.mapinfo.roll_colors.1)
+		Gui_Label(GUI, "yp x+0 w" fHeight " gSettings_mapinfo2",, "settings_mapinfo roll colors||", "hwnd.settings.rollcolor_2",,, "push 000000", settings.mapinfo.roll_colors.2)
 		handle := "", xMax := Max(xMax, LLK_ControlGetPos(vars.hwnd.settings.rollcolor_2).xMax)
 
 		For index, val in settings.mapinfo.roll_types
 		{
-			label := Lang_Trans("maps_stats" . StrReplace(vars.poe_version, " "), A_Index + 1)
-			Gui_Label(GUI, (A_Index = 1 ? "Section xs y+0" : "ys x+0") " w" fHeight " Center", label, "settings_mapinfo requirements" handle,, [0, 0, (A_Index = 1 && slop), 0])
-			Gui_Label(GUI, "ys x+0 w" 3*fWidth,, "settings_mapinfo requirements|" handle,, [0, 0, 0, (index = count && slop)],,, "0x50" cButtons)
+			label := (val ? Lang_Trans("maps_stats" . StrReplace(vars.poe_version, " "), A_Index + 1) : "")
+			Gui_Label(GUI, (InStr("14", A_Index) ? "Section " (A_Index = 1 ? "ys x+0" : "xs y+0") : "ys x+0") " w" fHeight " Center", label, "settings_mapinfo requirements" handle,,,,, (val ? "" : settings.general.cButtons2))
+			Gui_Label(GUI, "ys x+0 w" 3*fWidth,, "settings_mapinfo requirements|" handle,, [0, (A_Index = 3), 0, (A_Index = 6)],,, (val ? "0x50" cButtons : settings.general.cButtons2)), handle .= "||"
 			Gui, %GUI%: Font, % "s" settings.general.fSize - 4
-			Gui, %GUI%: Add, Edit, % "xp yp wp hp Center cBlack Number HWNDhwnd1 Limit3 gSettings_mapinfo2", % settings.mapinfo.roll_requirements[val]
+			If val
+			{
+				Gui, %GUI%: Add, Edit, % "xp yp wp hp Center cBlack Number HWNDhwnd1 Limit3 gSettings_mapinfo2", % settings.mapinfo.roll_requirements[val]
+				vars.hwnd.settings["thresh_" val] := hwnd1
+			}
 			Gui, %GUI%: Font, % "s" settings.general.fSize
-			vars.hwnd.settings["thresh_" val] := hwnd1, handle .= "||"
 		}
 	}
 
@@ -3908,20 +3939,21 @@ Settings_maptracker()
 	static fSize, wMaps, wOn, wKills, wContent, wMapinfo, wSideArea, wLoot, wColumns, wContentHeader
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
-	radius := settings.general.radius, kills := settings.maptracker.kills, mechanics := settings.maptracker.mechanics, cButtons2 := settings.general.cButtons2
+	radius := settings.general.radius, kills := settings.maptracker.kills, mechanics := settings.maptracker.mechanics, cButtons2 := settings.general.cButtons2, enabled := settings.features.maptracker
 	If (settings.general.lang_client = "unknown")
 	{
 		Settings_unsupported()
 		Return
 	}
 
-	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_maptracker2", " " Lang_Trans("global_enable") " ", "settings_maptracker enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.maptracker)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Map‐Tracker"}
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_maptracker2", " " Lang_Trans("global_enable") " ", "settings_maptracker enable", "hwnd.settings.enable", slop,,, cButtons, enabled)
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, !enabled, 0, !enabled],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Map‐Tracker"}
 
 	If !settings.features.maptracker
 		Return
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize, columns := [[], [], [], []], column := 1, wColumns := [], column2 := 1
@@ -3960,14 +3992,14 @@ Settings_maptracker()
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Font, norm
 
-	Gui_Label(GUI, "ys gSettings_maptracker2", " " Lang_Trans("m_maptracker_pausehide") " ", "settings_maptracker hide", "hwnd.settings.hide", slop,,, cButtons, settings.maptracker.hide)
-
 	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_panelsize") " ",,, [slop, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_maptracker2", "–", "settings_font-size", "hwnd.settings.font_minus",,,, cButtons)
 	Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center gSettings_maptracker2", settings.maptracker.fSize, "settings_font-size|", "hwnd.settings.font_reset",,,, cButtons)
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_maptracker2", "+", "setings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, slop],,, cButtons)
 
-	Gui_Label(GUI, "ys gSettings_maptracker2", " " Lang_Trans("m_maptracker_bosstags") " ", "settings_maptracker rename", "hwnd.settings.rename", slop,,, cButtons, settings.maptracker.rename)
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_maptracker2", " " Lang_Trans("m_maptracker_bosstags") " ", "settings_maptracker rename", "hwnd.settings.rename",,,, cButtons, settings.maptracker.rename)
+	Gui_Label(GUI, "ys x+0 gSettings_maptracker2", " " Lang_Trans("m_maptracker_pausehide") " ", "settings_maptracker hide", "hwnd.settings.hide", [0, 1, 0, 1],,, cButtons, settings.maptracker.hide)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "xs Section y+"vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_maptracker_tracking")
@@ -4014,7 +4046,7 @@ Settings_maptracker()
 				vars.hwnd.settings["mechanic_"mechanic] := hwnd, vars.hwnd.help_tooltips["settings_maptracker dialoguemechanic"handle] := hwnd1, handle .= "|"
 			}
 
-		Gui_Label(GUI, "Section xs" (!added ? " x" x_anchor : "") " w" wContentHeader " Center", " " Lang_Trans("maptracker_content") . Lang_Trans("global_colon") " " Lang_Trans("m_maptracker_dialogue",,, 1), "settings_maptracker dialogue tracking",, [slop, slop, 0, 0])
+		Gui_Label(GUI, "Section xs" (!added ? " x" x_anchor : "") " w" wContentHeader, " " Lang_Trans("maptracker_content") . Lang_Trans("global_colon") " " Lang_Trans("m_maptracker_dialogue",,, 1), "settings_maptracker dialogue tracking",, [slop, slop, 0, 0])
 
 		added := 0, ingame_dialogs := vars.maptracker.dialog := InStr(LLK_FileRead(vars.system.config), "output_all_dialogue_to_chat=true") ? 1 : 0, dialogs := LLK_HasVal(vars.maptracker.mechanics, 1,,, 1), column := 1
 		For mechanic, type in vars.maptracker.mechanics
@@ -4029,7 +4061,7 @@ Settings_maptracker()
 		If Mod(added, 4)
 			width := wContentHeader - (LLK_ControlGetPos(hwnd.back).xMax - x_anchor), Gui_Label(GUI, "ys x+0 w" width,,,, [0, 0, 0, slop],,, cButtons2)
 
-		Gui_Label(GUI, "Section xs w" wContentHeader " Center", " " Lang_Trans("maptracker_content") . Lang_Trans("global_colon") " " Lang_Trans("m_maptracker_screen",,, 1), "settings_maptracker screen tracking",, [slop, slop, 0, 0])
+		Gui_Label(GUI, "Section xs w" wContentHeader, " " Lang_Trans("maptracker_content") . Lang_Trans("global_colon") " " Lang_Trans("m_maptracker_screen",,, 1), "settings_maptracker screen tracking",, [slop, slop, 0, 0])
 		handle := "", added := 0, screens := LLK_HasVal(vars.maptracker.mechanics, 2,,, 1), column := 1
 		For mechanic, type in vars.maptracker.mechanics
 		{
@@ -4624,7 +4656,7 @@ Settings_notifications()
 	vars.hwnd.help_tooltips["settings_notifications events about"] := hwnd
 
 	If vars.poe_version
-		Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cYellow BackgroundTrans", % "poe2 doesn't have notable in-game events (as far as i know)"
+		Gui, %GUI%: Add, Text, % "Section xs w" settings.general.fWidth * vars.settings.min_width " cYellow BackgroundTrans", % "poe 2 doesn't have notable in-game events (as far as i know)"
 	For key, val in mechanics
 	{
 		Gui_Label(GUI, "Section xs w" (val = "hideout" ? wHideout : wList) " gSettings_notifications2", " " key, "settings_map-events enable event" handle, "hwnd.settings.enable_" val, [slop, 0, slop, 0],,, cButtons, settings.notifications.events[val])
@@ -4820,10 +4852,11 @@ Settings_qol()
 		wPath := target_width - wHotkey
 	}
 
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Minor-Features"}
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0]), quickpob := settings.qol.quickpob
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, !quickpob, 0, !quickpob],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Minor-Features"}
 
-	If settings.qol.quickpob
-		hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	If quickpob
+		hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
 
 	hwnd := Gui_Label(GUI, "Section xs y+" vars.settings.spacing " w" wEnable " Center gSettings_qol2", Lang_Trans("global_enable"), "settings_alarm enable", "hwnd.settings.enable_alarm", [slop, 0, (slop && !settings.qol.alarm), 0],,, cButtons, settings.qol.alarm).text
 	Gui_Label(GUI, "ys x+0" (settings.qol.alarm ? " w" wAlarm : " c" cDisabled), " " Lang_Trans("m_qol_alarm",,, 1) " ", "settings_alarm enable|",, [0, slop, 0, (slop && !settings.qol.alarm)])
@@ -4910,12 +4943,12 @@ Settings_qol()
 		If wFiller4
 			Gui_Label(GUI, "ys x+0 w" wFiller4,,,,,,, cButtons2)
 
-		Gui_Label(GUI, "Section xs y+0 w" wHotkey " Center", Lang_Trans("global_folder"),,, [0, 0, slop, 0])
+		Gui_Label(GUI, "Section xs y+0 w" wHotkey " Center", Lang_Trans("global_folder"),,, [0, 0, slop, 0],,,, [settings.quickpob.exe.1, "FFFF00"])
 
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 		path := SubStr(settings.quickpob.exe.1, 1, InStr(settings.quickpob.exe.1, "\",, 0) - 1), path := (StrLen(path) > 30 ? SubStr(path, 1, 30) "..." : path)
 		label := (settings.quickpob.exe.1 ? LLK_StringCase(path) : Lang_Trans("global_setup", 2))
-		Gui_Label(GUI, "ys x+0 w" wPath " hp-2 Center 0x200 gSettings_qol2", label, "settings_quickpob locate install", "hwnd.settings.locate_install", [0, 0, 0, slop],,, cButtons, [(settings.quickpob.exe.1), "FFFF00"])
+		Gui_Label(GUI, "ys x+0 w" wPath " hp-2 Center 0x200 gSettings_qol2", label, "settings_quickpob locate install", "hwnd.settings.locate_install", [0, 0, 0, slop],,, cButtons)
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 	}
 }
@@ -5143,7 +5176,8 @@ Settings_runeshaping()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_runeshaping2", " " Lang_Trans("global_enable") " ", "settings_runeshaping enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.runeshaping)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Rune‐Ninja"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Rune‐Ninja"}
 
 	If !settings.features.runeshaping
 		Return
@@ -5165,10 +5199,11 @@ Settings_runeshaping()
 	Gui_Label(GUI, "ys", " " Lang_Trans("global_hold_ctrl") " ",,, [slop, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 w" wOnOff " Center gSettings_runeshaping2", Lang_Trans("global_" (settings.runeshaping.hold_ctrl ? "on" : "off")), "settings_runeshaping hold ctrl", "hwnd.settings.hold_ctrl", [0, slop, 0, slop],,, cButtons, settings.runeshaping.hold_ctrl)
 
-	Gui_Label(GUI, "Section xs gSettings_runeshaping2", " " Lang_Trans("global_troubleshoot") " ", "settings_runeshaping debug", "hwnd.settings.debug", slop,,, cButtons, settings.runeshaping.debug)
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_runeshaping2", " " Lang_Trans("global_troubleshoot") " ", "settings_runeshaping debug", "hwnd.settings.debug", [0, 1, 0, 1],,, cButtons, settings.runeshaping.debug)
 	If settings.runeshaping.debug
 	{
-		Gui_Label(GUI, "Section xs y+" vars.settings.spacing " w" fHeight + 34*fWidth - 2 " Center", Lang_Trans("m_runeshaping_correction",,, 1), "settings_runeshaping dictionary",, [slop, slop, 0, 0])
+		Gui_Label(GUI, "Section xs y+" vars.settings.spacing " w" fHeight + 30*fWidth - 2 " Center", Lang_Trans("m_runeshaping_correction",,, 1), "settings_runeshaping dictionary",, [slop, slop, 0, 0])
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 4
 
 		Gui, %GUI%: Add, Button, % "Hidden ys hp Default HWNDhwnd gSettings_runeshaping2", ok
@@ -5178,7 +5213,7 @@ Settings_runeshaping()
 			Loop, % (index = settings.runeshaping.autocorrect.MaxIndex() && settings.runeshaping.autocorrect.Count() ? 2 : 1)
 			{
 				Gui_Label(GUI, "Section xs y+0 w" fHeight " h" fHeight - 2 " Center 0x200", count + 1,,, [0, 0, (slop && A_Index = 2), 0],,, 0)
-				Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 17 " hp Border BackgroundTrans"
+				Gui, %GUI%: Add, Text, % "ys x+-1 w" settings.general.fWidth * 15 " hp Border BackgroundTrans"
 				Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd Lowercase gSettings_runeshaping2", % (A_Index = 1 ? array.1 : "")
 				Gui, %GUI%: Add, Text, % "ys x+-1 wp hp Border BackgroundTrans"
 				Gui, %GUI%: Add, Edit, % "xp yp wp hp Border cBlack HWNDhwnd1 gSettings_runeshaping2", % (A_Index = 1 ? array.2 : "")
@@ -5304,7 +5339,8 @@ Settings_sanctum()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_sanctum2", " " Lang_Trans("global_enable") " ", "settings_sanctum enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.sanctum)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Sanctum-and-Sekhema-Planner"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Sanctum-and-Sekhema-Planner"}
 
 	If !settings.features.sanctum
 		Return
@@ -5320,7 +5356,8 @@ Settings_sanctum()
 
 	Gui_Label(GUI, "ys gSettings_sanctum2", " " Lang_Trans("m_sanctum_relicmanager") " ", "settings_sanctum relics", "hwnd.settings.relics", slop,,, cButtons, settings.sanctum.relics)
 	If !vars.poe_version
-		Gui_Label(GUI, "Section xs gSettings_sanctum2", " " Lang_Trans("m_sanctum_cheatsheet") " ", "settings_sanctum cheatsheet", "hwnd.settings.cheatsheet", slop,,, cButtons, settings.sanctum.cheatsheet)
+		Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+		, Gui_Label(GUI, "ys x+0 gSettings_sanctum2", " " Lang_Trans("m_sanctum_cheatsheet") " ", "settings_sanctum cheatsheet", "hwnd.settings.cheatsheet", [0, 1, 0, 1],,, cButtons, settings.sanctum.cheatsheet)
 }
 
 Settings_sanctum2(cHWND := "")
@@ -5384,7 +5421,8 @@ Settings_screenchecks()
 	global vars, settings
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Screen-checks"}
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Screen-checks"}
 
 	For key in (active_pixel := Settings_ScreenChecksValid("pixel").1)
 	{
@@ -5590,9 +5628,10 @@ Settings_searchstrings()
 		LLK_PanelDimensions([Lang_Trans("global_hotkey",,, 1) " ", Lang_Trans("global_save") " "], fSize, wHotkey, hHotkey,,, 0)
 	}
 
-	hwnd := Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Search-strings"}
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " poe.re ", "settings_searchstrings poe-regex",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://poe" StrReplace(vars.poe_version, " ") ".re"
-	hwnd_last := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd_last.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection, " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",,,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Search-strings"}
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " poe.re ", "settings_searchstrings poe-regex",,,,, cButtons), vars.URLs[hwnd.text] := "https://poe" StrReplace(vars.poe_version, " ") ".re"
+	hwnd_last := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd_last.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
 
 	For string, val in vars.searchstrings.list
 	{
@@ -5768,7 +5807,8 @@ Settings_stash()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_stash2", " " Lang_Trans("global_enable") " ", "settings_stash enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.stash)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Stash‐Ninja"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Stash‐Ninja"}
 
 	If !settings.features.stash
 		Return
@@ -5798,9 +5838,9 @@ Settings_stash()
 	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_league") " ",,, [slop, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 gSettings_stash2 cLime", " " league " ", "settings_league selection other", "hwnd.settings.league_select", [0, slop, 0, slop],,, cButtons)
 
-	Gui_Label(GUI, "ys gSettings_stash2", " " Lang_Trans("m_stash_pricehistory") " ", "settings_stash history", "hwnd.settings.history", slop,,, cButtons, settings.stash.history)
-
-	Gui_Label(GUI, "Section xs gSettings_stash2", " " Lang_Trans("m_stash_globalprofiles") " ", "settings_stash global profiles", "hwnd.settings.use_global", slop,,, cButtons, settings.stash.use_global)
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_stash2", " " Lang_Trans("m_stash_globalprofiles") " ", "settings_stash global profiles", "hwnd.settings.use_global",,,, cButtons, settings.stash.use_global)
+	Gui_Label(GUI, "ys x+0 gSettings_stash2", " " Lang_Trans("m_stash_pricehistory") " ", "settings_stash history", "hwnd.settings.history", [0, 1, 0, 1],,, cButtons, settings.stash.history)
 	If settings.stash.use_global
 		Settings_stash_profiles(GUI, "global")
 
@@ -6098,7 +6138,8 @@ Settings_statlas()
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, slop := settings.general.slop, cButtons := settings.general.cButtons, fHeight := settings.general.fHeight, fWidth := settings.general.fWidth
 
 	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection " gSettings_statlas2", " " Lang_Trans("global_enable") " ", "settings_statlas enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.statlas)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Statlas"}
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, 1, 0, 1],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/Statlas"}
 
 	If !settings.features.statlas
 		Return
@@ -6113,7 +6154,9 @@ Settings_statlas()
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_statlas2", "+", "settings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, slop],,, cButtons)
 	
 	Gui_Label(GUI, "ys gSettings_statlas2", " " Lang_Trans("ms_mapping tracker") " ", "settings_statlas maptracker", "hwnd.settings.maptracker", slop,,, cButtons, settings.statlas.maptracker)
-	Gui_Label(GUI, "Section xs gSettings_statlas2", " " Lang_Trans("global_troubleshoot") " ", "settings_statlas troubleshoot", "hwnd.settings.debug", slop,,, cButtons, settings.statlas.debug)
+
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_statlas2", " " Lang_Trans("global_troubleshoot") " ", "settings_statlas troubleshoot", "hwnd.settings.debug", [0, 1, 0, 1],,, cButtons, settings.statlas.debug)
 }
 
 Settings_statlas2(cHWND)
@@ -6165,20 +6208,21 @@ Settings_TLDR()
 	static fSize, wHotkey, wShared, wExclusive, wStyle
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := vars.settings.line1, shared := settings.TLDR.hotkey_shared, slop := settings.general.slop, cButtons := settings.general.cButtons
-	fHeight := settings.general.fHeight, radius := settings.general.radius, fWidth := settings.general.fWidth
+	fHeight := settings.general.fHeight, radius := settings.general.radius, fWidth := settings.general.fWidth, enabled := settings.features.TLDR
 
-	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection . (vars.client.h <= 720 ? "" : " gSettings_TLDR2"), " " Lang_Trans("global_enable") " ", "settings_TLDR enable", "hwnd.settings.enable", slop,,, cButtons, settings.features.TLDR)
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " wiki page ", "settings_website",, slop,,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/TLDR‐Tooltips"}
+	Gui_Label(GUI, "Section x" x_anchor " y" vars.settings.ySelection . (vars.client.h <= 720 ? "" : " gSettings_TLDR2"), " " Lang_Trans("global_enable") " ", "settings_TLDR enable", "hwnd.settings.enable", slop,,, cButtons, enabled)
+	Gui_Label(GUI, "ys", " " Lang_Trans("global_web") " ",,, [1, 0, 1, 0])
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " wiki page ", "settings_website",, [0, !enabled, 0, !enabled],,, cButtons), vars.URLs := {(hwnd.text): "https://github.com/Lailloken/Exile-UI/wiki/TLDR‐Tooltips"}
 
 	If (vars.client.h <= 720)
 	{
 		Gui, %GUI%: Add, Text, % "xs Section cRed w" settings.general.fWidth * vars.settings.min_width " y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("m_ocr_unsupported")
 		Return
 	}
-	If !settings.features.TLDR
+	If !enabled
 		Return
 
-	hwnd := Gui_Label(GUI, "ys gURL cAqua", " ahk: key list ", "settings_website|",, slop,,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
+	hwnd := Gui_Label(GUI, "ys x+0 gURL cAqua", " ahk: key list ", "settings_website|",, [0, 1, 0, 1],,, cButtons), vars.URLs[hwnd.text] := "https://www.autohotkey.com/docs/v1/KeyList.htm"
 	If (settings.general.lang_client != "english") && !vars.client.stream
 	{
 		Settings_unsupported()
@@ -6188,10 +6232,10 @@ Settings_TLDR()
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("ms_hotkeys"), Lang_Trans("global_save")], fSize, wHotkey, hHotkey)
-		LLK_PanelDimensions([Lang_Trans("global_shared"), Lang_Trans("global_separate")], fSize, wShared, hShared), wShared := Max(wShared, 8*settings.general.fWidth)
-		LLK_PanelDimensions([Lang_Trans("m_hotkeys_exclusive")], fSize, wExclusive, hExclusive)
-		LLK_PanelDimensions([Lang_Trans("global_style") " 7", Lang_Trans("global_regular")], fSize, wStyle, hStyle)
+		LLK_PanelDimensions([Lang_Trans("ms_hotkeys"), Lang_Trans("global_save")], fSize, wHotkey, hHotkey), wHotkey -= 2
+		LLK_PanelDimensions([Lang_Trans("global_shared"), Lang_Trans("global_separate")], fSize, wShared, hShared), wShared := Max(wShared - 2, 8*settings.general.fWidth)
+		LLK_PanelDimensions([Lang_Trans("m_hotkeys_exclusive")], fSize, wExclusive, hExclusive), wExclusive -= 2
+		LLK_PanelDimensions([Lang_Trans("global_style") " 7", Lang_Trans("global_regular")], fSize, wStyle, hStyle), wStyle -= 2
 	}
 	If !settings.TLDR.hotkey_shared && !Blank(settings.TLDR.hotkey)
 		wHotkey1 := Max(wHotkey, wExclusive)
@@ -6225,13 +6269,14 @@ Settings_TLDR()
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 	}
 
-	Gui_Label(GUI, "Section xs gSettings_TLDR2", " " Lang_Trans("global_troubleshoot") " ", "settings_TLDR debug", "hwnd.settings.debug", slop,,, cButtons, settings.TLDR.debug)
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_misc") " ",,, [1, 0, 1, 0])
+	Gui_Label(GUI, "ys x+0 gSettings_TLDR2", " " Lang_Trans("global_troubleshoot") " ", "settings_TLDR debug", "hwnd.settings.debug", [0, 1, 0, 1],,, cButtons, settings.TLDR.debug)
 
 	Gui, %GUI%: Font, bold underline
 	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " BackgroundTrans", % Lang_Trans("global_ui")
 	Gui, %GUI%: Font, norm
 
-	Gui_Label(GUI, "ys", " " Lang_Trans("global_font") " ",,, [slop, 0, slop, 0])
+	Gui_Label(GUI, "Section xs", " " Lang_Trans("global_font") " ",,, [slop, 0, slop, 0])
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_TLDR2", "–", "settings_font-size", "hwnd.settings.font_minus",,,, cButtons)
 	Gui_Label(GUI, "ys x+0 w" 3*fWidth " Center gSettings_TLDR2", settings.TLDR.fSize, "settings_font-size|", "hwnd.settings.font_reset",,,, cButtons)
 	Gui_Label(GUI, "ys x+0 w" fHeight " Center gSettings_TLDR2", "+", "settings_font-size||", "hwnd.settings.font_plus", [0, slop, 0, slop],,, cButtons)
