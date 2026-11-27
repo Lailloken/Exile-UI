@@ -331,7 +331,7 @@ Legion_Parse()
 	global vars, settings, db
 
 	leaders := vars.lang.seed_conquerors, item := vars.omnikey.item
-	jewels := ["glorious vanity", "lethal pride", "brutal restraint", "militant faith", "elegant hubris"], vars.legion.selection := ""
+	jewels := ["glorious vanity", "lethal pride", "brutal restraint", "militant faith", "elegant hubris", "heroic tragedy"], vars.legion.selection := ""
 
 	For index, val in jewels
 		For index1, val1 in vars.lang["seed_" val]
@@ -343,9 +343,6 @@ Legion_Parse()
 		LLK_ToolTip(Lang_Trans("lvltracker_importerror", 2), 1.5,,,, "red")
 		Return 0
 	}
-
-	If !IsObject(db.legion)
-		DB_Load("legion")
 
 	Loop, Parse, Clipboard, `n, `r
 	{
@@ -360,6 +357,11 @@ Legion_Parse()
 	}
 
 	vars.legion.seed := seed, vars.legion.jewel_number := LLK_HasVal(jewels, vars.legion.jewel) ;the url for vilsol's calculator uses numbers to specify the jewel-type
+	Return
+
+	If !IsObject(db.legion)
+		DB_Load("legion")
+
 	If (vars.legion.data.1 != vars.legion.jewel || vars.legion.data.2 != vars.legion.seed)
 	{
 		vars.legion.data := [vars.legion.jewel, vars.legion.seed, []]
