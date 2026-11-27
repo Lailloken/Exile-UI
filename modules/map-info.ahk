@@ -540,7 +540,7 @@ Mapinfo_Parse2(mode)
 	vars.mapinfo.categories := db.mapinfo["mod types"].Clone(), vars.mapinfo.active_map := {}
 	For index, category in vars.mapinfo.categories
 		vars.mapinfo.active_map[category] := []
-	mod_count := 0, map_mods := {}, map := vars.mapinfo.active_map, mods := db.mapinfo.mods, parsed_lines := {}, map.mods := map.waystones := map.quantity := map.rarity := map.monstereffect := map.monsterrarity := map.packsize := 0
+	mod_count := 0, map_mods := {}, map := vars.mapinfo.active_map, mods := db.mapinfo.mods, parsed_lines := {}, map.mods := map.atlasdrops := map.waystones := map.quantity := map.rarity := map.monstereffect := map.monsterrarity := map.packsize := 0
 
 	For key in map
 		Loop 6
