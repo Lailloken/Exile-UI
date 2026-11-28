@@ -111,11 +111,11 @@
       "(/highlight)controller support is low-priority and based on individual requests"
     ],
     "active character": [
-      "optional: enter the name of your current character",
+      "optional: type in the name of your current character, then press <enter>",
       "this enables level tracking and e-exp calculations"
     ],
     "active character status": [
-      "orange: no name specified",
+      "gray: no name specified",
       "yellow: char not found / waiting for level-up",
       "green: char found, tracking active"
     ],
@@ -125,7 +125,7 @@
     ],
     "ascendancy": [
       "the game only logs ascendancies when a character levels up",
-      "this label will be out of sync if you have recently (re)specced but not leveled up yet: in that case, click the refresh button"
+      "this label will be out of sync if you have recently (re)specced but not leveled up yet: in that case, click the <update> button"
     ],
     "active build": [
       "optional: enter a description for the current build",
@@ -684,7 +684,7 @@
         "examples: salvage & reforging bench"
       ],
       [
-        "if a pob import with gems is present and league-start is disabled, some gem-quests may be replaced with hideout lilly instead"
+        "if a pob import with gems is present and <new league> is disabled, some gem-quests may be replaced with hideout lilly instead"
       ],
       "(/highlight)toggling this will reset your progress:\nyou can long-click the > button in the guide-overlay to re-sync it to the current zone"
     ],
@@ -697,7 +697,7 @@
       "(/highlight)they will be marked with a plus-sign in the guide",
       [
         "examples: act secrets, strongboxes, gear quests, guaranteed drops, vendor recipes",
-        "examples: jeweller's/artificer's orbs, league rewards, gems, jewelry, flasks, a4 treasure map"
+        "examples: jeweller's/artificer's orbs, league rewards, gems, jewelry, flasks"
       ]
     ],
     "leveltracker reset": [
@@ -731,11 +731,10 @@
       "long-right-click to delete pob data"
     ],
     "leveltracker hotkeys enable": [
-      "allows you to switch guide-pages by using customizable hotkeys",
-      ">> left edit-field: previous guide page\n>> right edit-field: next guide page"
+      "allows you to switch guide-pages by using customizable hotkeys"
     ],
     "leveltracker hotkeys": [
-      "type in a key-name and press <enter>",
+      "left edit-field: previous guide page\nright edit-field: next guide page",
       "don't bind it to modifier-keys or keys used for chatting"
     ],
     "leveltracker auto tracking": [

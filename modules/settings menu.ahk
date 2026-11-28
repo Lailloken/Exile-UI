@@ -2577,7 +2577,7 @@ Settings_leveltracker()
 {
 	local
 	global vars, settings, db
-	static fSize, wLeague, wChar, DDL, wDDL, wQuests, wManual, wPoB, wTrees
+	static fSize, wLeague, wChar, DDL, wDDL, wQuests, wManual, wPoB, wTrees, wHotkeys, wHotkeys2
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, x_anchor := vars.settings.x_anchor, margin := Round(settings.general.fWidth/4), slop := settings.general.slop, cButtons := settings.general.cButtons
 	cButtons2 := settings.general.cButtons2, fWidth := settings.general.fWidth, fHeight := settings.general.fHeight, xMargin := vars.settings.xMargin, radius := settings.general.radius
@@ -2588,6 +2588,19 @@ Settings_leveltracker()
 	If !settings.features.leveltracker
 		Return
 
+	If (fSize != settings.general.fSize)
+	{
+		fSize := settings.general.fSize
+		LLK_PanelDimensions([Lang_Trans("m_lvltracker_quests") " + " Lang_Trans("m_lvltracker_quests", 2), Lang_Trans("m_lvltracker_leaguestart"), Lang_Trans("m_lvltracker_optionals")], fSize, wQuests, hQuests), wQuests -= 2
+		LLK_PanelDimensions([Lang_Trans("global_manual"), Lang_Trans("global_menu")], fSize, wManual, hManual), LLK_PanelDimensions([Lang_Trans("global_folder"), "pob hotkey"], fSize, wPoB, hPoB)
+		LLK_PanelDimensions([Lang_Trans("global_tree", 2), Lang_Trans("global_save")], fSize, wTrees, hTrees)
+		DDL := [Lang_Trans("global_none"), Lang_Trans("m_lvltracker_bandits"), Lang_Trans("m_lvltracker_bandits", 2), Lang_Trans("m_lvltracker_bandits", 3)]
+		LLK_PanelDimensions(DDL, fSize, wDDL, hDDL)
+		LLK_PanelDimensions([Lang_Trans("m_lvltracker_pagehotkeys"), Lang_Trans("global_save")], fSize, wHotkeys, h), wHotkeys -= 2, wHotkeys2 := Max(wHotkeys, 16*fWidth)
+		While Mod(wHotkeys2, 2)
+			wHotkeys2 += 1
+	}
+
 	If !IsObject(db.leveltracker)
 		DB_Load("leveltracker")
 
@@ -2597,9 +2610,11 @@ Settings_leveltracker()
 	Gui, %GUI%: Add, Button, % "ys Hidden hp Default gSettings_leveltracker2 HWNDhwnd w" settings.general.fWidth, ok
 	vars.hwnd.settings.apply_button := hwnd, timer := settings.leveltracker.timer, fade := settings.leveltracker.fade
 
+	Gui_Label(GUI, "Section xs gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_autotracking") " ", "settings_leveltracker auto tracking", "hwnd.settings.autotrack", slop,,, cButtons, settings.leveltracker.autotrack)
+
 	If !vars.client.stream
 	{
-		Gui_Label(GUI, "Section xs gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_timer") " ", "settings_leveltracker timer", "hwnd.settings.timer", (!timer ? slop : [slop, 0, slop, 0]),,, cButtons, timer)
+		Gui_Label(GUI, "ys gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_timer") " ", "settings_leveltracker timer", "hwnd.settings.timer", (!timer ? slop : [slop, 0, slop, 0]),,, cButtons, timer)
 		If settings.leveltracker.timer
 			Gui_Label(GUI, "ys x+0 gSettings_leveltracker2", " " Lang_Trans("global_flash") " ", "settings_leveltracker timer flash", "hwnd.settings.timer_flash", [0, slop, 0, slop],,, cButtons, settings.leveltracker.timer_flash)
 	}
@@ -2616,24 +2631,22 @@ Settings_leveltracker()
 		Gui_Label(GUI, "ys x+0 gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_fadeout", 2) " ", "settings_leveltracker fade mouse", "hwnd.settings.fade_hover", [0, slop, 0, slop],,, cButtons, settings.leveltracker.fade_hover)
 	}
 
-	Gui_Label(GUI, "ys gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_lvltips") " ", "settings_leveltracker recommendation", "hwnd.settings.recommend", slop,,, cButtons, settings.leveltracker.recommend)
-	
-	Gui_Label(GUI, (fade ? "Section xs" : "ys") " gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_autotracking") " ", "settings_leveltracker auto tracking", "hwnd.settings.autotrack", slop,,, cButtons, settings.leveltracker.autotrack)
+	Gui_Label(GUI, (fade ? "Section xs" : "ys") " gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_lvltips") " ", "settings_leveltracker recommendation", "hwnd.settings.recommend", slop,,, cButtons, settings.leveltracker.recommend)
 
 	If !vars.client.stream && !vars.poe_version
 		Gui_Label(GUI, (!fade ? "Section xs" : "ys") " gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_gear") " ", "settings_leveltracker geartracker", "hwnd.settings.geartracker", slop,,, cButtons, settings.leveltracker.geartracker)
 
 	line_break := (vars.poe_version && !settings.leveltracker.fade), hotkeys := settings.leveltracker.hotkeys
-	Gui_Label(GUI, "Section " (line_break ? "xs" : "ys") . (hotkeys ? " w" settings.general.fWidth * 16  : "") " Center gSettings_leveltracker2", " " Lang_Trans("m_lvltracker_pagehotkeys") " ", "settings_leveltracker hotkeys enable", "hwnd.settings.hotkeys_enable", (!hotkeys ? slop : [slop, slop, 0, 0]),,, cButtons, hotkeys)
+	Gui_Label(GUI, "Hidden Section " (line_break ? "xs" : "ys") " w" (hotkeys ? wHotkeys2 : wHotkeys) " Center cRed gSettings_leveltracker2", Lang_Trans("global_save"),, ["hwnd.settings.hotkeys_save", "_bar"], (!hotkeys ? 1 : [1, 1, 0, 0]),, "push FF0000", cButtons)
+	Gui_Label(GUI, "xp yp w" (hotkeys ? wHotkeys2 : wHotkeys) " Center gSettings_leveltracker2", Lang_Trans("m_lvltracker_pagehotkeys"), "settings_leveltracker hotkeys enable", "hwnd.settings.hotkeys_enable", (!hotkeys ? 1 : [1, 1, 0, 0]),,, cButtons, hotkeys)
 
 	If settings.leveltracker.hotkeys
 	{
-		width := settings.general.fWidth * 8
-		Gui_Label(GUI, "xs y+0 w" width,, "settings_leveltracker hotkeys",, [0, 0, slop, 0],,, "0x50" cButtons)
+		Gui_Label(GUI, "xs y+0 w" wHotkeys2//2,, "settings_leveltracker hotkeys",, [0, 0, slop, 0],,, "0x50" cButtons)
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 		Gui, %GUI%: Add, Edit, % "xp yp wp hp Center cBlack HWNDhwnd1 gSettings_leveltracker2", % settings.leveltracker.hotkey_1
 		Gui, %GUI%: Font, % "s" settings.general.fSize
-		Gui_Label(GUI, "yp x+0 w" width,, "settings_leveltracker hotkeys|",, [0, 0, 0, slop],,, "0x50" cButtons)
+		Gui_Label(GUI, "yp x+0 w" wHotkeys2//2,, "settings_leveltracker hotkeys|",, [0, 0, 0, slop],,, "0x50" cButtons)
 		Gui, %GUI%: Font, % "s" settings.general.fSize - 2
 		Gui, %GUI%: Add, Edit, % "xp yp wp hp Center cBlack HWNDhwnd2 gSettings_leveltracker2", % settings.leveltracker.hotkey_2
 		Gui, %GUI%: Font, % "s" settings.general.fSize
@@ -2673,17 +2686,6 @@ Settings_leveltracker()
 	}
 
 	handle := "", bandits := ["none", "alira", "kraityn", "oak"], profile := settings.leveltracker.profile, files := 0, info := settings.leveltracker["guide" profile].info
-	If (fSize != settings.general.fSize)
-	{
-		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("m_lvltracker_leaguestart"), Lang_Trans("m_lvltracker_optionals")], fSize, wLeague, hLeague)
-		LLK_PanelDimensions([Lang_Trans("m_lvltracker_quests"), "+ " Lang_Trans("m_lvltracker_quests", 2)], fSize, wQuests, hQuests)
-		LLK_PanelDimensions([Lang_Trans("global_manual"), Lang_Trans("global_menu")], fSize, wManual, hManual), LLK_PanelDimensions([Lang_Trans("global_folder"), "pob hotkey"], fSize, wPoB, hPoB)
-		LLK_PanelDimensions([Lang_Trans("global_tree", 2), Lang_Trans("global_save")], fSize, wTrees, hTrees)
-		DDL := [Lang_Trans("global_none"), Lang_Trans("m_lvltracker_bandits"), Lang_Trans("m_lvltracker_bandits", 2), Lang_Trans("m_lvltracker_bandits", 3)]
-		LLK_PanelDimensions(DDL, fSize, wDDL, hDDL)
-	}
-
 	If max_index
 	{
 		custom := settings.leveltracker["guide" profile].info.custom, pob := vars.leveltracker["pob" profile].Count()
@@ -2715,9 +2717,9 @@ Settings_leveltracker()
 			Else Gui_Label(GUI, "ys x+0 gSettings_leveltracker2", " " Lang_Trans("global_enable") " ", "settings_leveltracker gems all", "hwnd.settings.gems_all", [0, slop, 0, slop],,, cButtons, info.gems_all)
 		}
 
-		Gui_Label(GUI, "Section xs w" wQuests " h" 2*fHeight - 2 " Center", Lang_Trans("m_lvltracker_quests") "`n+ " Lang_Trans("m_lvltracker_quests", 2),,, [slop, 0, slop, 0], radius)
-		Gui_Label(GUI, "ys x+0 w" wLeague " Center gSettings_leveltracker2", Lang_Trans("m_lvltracker_leaguestart"), "settings_leveltracker leaguestart", "hwnd.settings.leaguestart", [0, slop, 0, 0],,, cButtons, info.leaguestart)
-		Gui_Label(GUI, "xp y+0 w" wLeague " Center gSettings_leveltracker2", Lang_Trans("m_lvltracker_optionals"), "settings_leveltracker optionals", "hwnd.settings.optionals", [0, 0, 0, slop],,, cButtons, info.optionals)
+		Gui_Label(GUI, "Section xs w" wQuests " Center", Lang_Trans("m_lvltracker_quests") " + " Lang_Trans("m_lvltracker_quests", 2),,, [1, 1, 0, 0], radius)
+		Gui_Label(GUI, "xs y+0 w" wQuests " Center gSettings_leveltracker2", Lang_Trans("m_lvltracker_leaguestart"), "settings_leveltracker leaguestart", "hwnd.settings.leaguestart",,,, cButtons, info.leaguestart)
+		Gui_Label(GUI, "xp y+0 w" wQuests " Center gSettings_leveltracker2", Lang_Trans("m_lvltracker_optionals"), "settings_leveltracker optionals", "hwnd.settings.optionals", [0, 0, 1, 1],,, cButtons, info.optionals)
 
 		Settings_CharTracking("leveltracker")
 
@@ -2915,32 +2917,38 @@ Settings_leveltracker2(cHWND := "")
 	{
 		GuiControl, % "+c" (LLK_ControlGet(cHWND) != settings.leveltracker[check] ? "Red" : "Black"), % cHWND
 		GuiControl, movedraw, % cHWND
+		modified := (LLK_ControlGet(vars.hwnd.settings.hotkey_1) != settings.leveltracker.hotkey_1 || LLK_ControlGet(vars.hwnd.settings.hotkey_2) != settings.leveltracker.hotkey_2)
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.hotkeys_save
+		GuiControl, % (modified ? "-" : "+") "Hidden", % vars.hwnd.settings.hotkeys_save_bar
 	}
-	Else If (check = "apply_button")
+	Else If (check = "hotkeys_save")
 	{
-		ControlGetFocus, hwnd, % "ahk_id " vars.hwnd.settings.main
-		ControlGet, hwnd, HWND,, % hwnd
-		If !InStr(vars.hwnd.settings.hotkey_1 "," vars.hwnd.settings.hotkey_2, hwnd)
-			Return
-		input0 := LLK_ControlGet(hwnd)
-
-		If (StrLen(input0) > 1)
-			Loop, Parse, % "^!+#"
-				input := (A_Index = 1) ? input0 : input, input := StrReplace(input, A_LoopField)
-
-		If !GetKeyVK(input)
+		For outer in [1, 2]
 		{
-			WinGetPos, x, y, w, h, ahk_id %hwnd%
-			LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5, x, y + h - 1,, "Red")
-			Return
+			input%outer% := input := LLK_ControlGet(vars.hwnd.settings["hotkey_" outer])
+			If (StrLen(input%outer%) > 1)
+				Loop, Parse, % "^!+#"
+					input := (A_Index = 1 ? input%outer% : input), input := StrReplace(input, A_LoopField)
+
+			If !GetKeyVK(input) || (input1 = input2)
+			{
+				WinGetPos, x, y, w, h, % "ahk_id " vars.hwnd.settings["hotkey_" outer]
+				LLK_ToolTip(Lang_Trans("m_hotkeys_error"), 1.5, x, y + h - 1,, "Red")
+				Return
+			}
 		}
+		
 		settings.leveltracker.hotkey_01 := settings.leveltracker.hotkey_1, settings.leveltracker.hotkey_02 := settings.leveltracker.hotkey_2
-		control := (hwnd = vars.hwnd.settings.hotkey_1) ? 1 : 2
-		IniWrite, % (settings.leveltracker["hotkey_" control] := input0), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "hotkey " control
+		Loop 2
+			IniWrite, % (settings.leveltracker["hotkey_" A_Index] := input%A_Index%), % "ini" vars.poe_version "\leveling tracker.ini", settings, % "hotkey " A_Index
 		Leveltracker_Hotkeys("refresh")
 
-		GuiControl, +cBlack, % hwnd
-		GuiControl, movedraw, % hwnd
+		GuiControl, +cBlack, % vars.hwnd.settings.hotkey_1
+		GuiControl, +cBlack, % vars.hwnd.settings.hotkey_2
+		GuiControl, movedraw, % vars.hwnd.settings.hotkey_1
+		GuiControl, movedraw, % vars.hwnd.settings.hotkey_2
+		GuiControl, +Hidden, % vars.hwnd.settings.hotkeys_save
+		GuiControl, +Hidden, % vars.hwnd.settings.hotkeys_save_bar
 	}
 	Else If (check = "treeclear")
 	{
@@ -5820,7 +5828,7 @@ Settings_stash()
 	}
 
 	Gui, %GUI%: Font, underline bold
-	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " h" settings.general.fHeight " 0x200 BackgroundTrans", % Lang_Trans("global_general")
+	Gui, %GUI%: Add, Text, % "Section xs y+" vars.settings.spacing " 0x200 BackgroundTrans", % Lang_Trans("global_general")
 	Gui, %GUI%: Add, Button, % "xp yp wp hp Hidden Default HWNDhwnd gSettings_stash2", OK
 	Gui, %GUI%: Font, norm
 	vars.hwnd.settings.apply_button := hwnd, league := Lang_Trans("global_league_" settings.general.league.1) " " Lang_Trans("global_league_" settings.general.league[vars.poe_version ? 3 : 4])
@@ -6713,37 +6721,44 @@ Settings_CharTracking(mode, wEdits := "", yCoord := 0)
 	If (fSize != settings.general.fSize)
 	{
 		fSize := settings.general.fSize
-		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_info") " "], fSize, wChar, hChar,,, 0)
-		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " ", Lang_Trans("global_info") " "], fSize, wChar2, hChar2,,, 0)
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_info") " ", " " Lang_Trans("global_update") " "], fSize, wChar, hChar,,, 0), wChar -= 2
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " ", Lang_Trans("global_info") " ", " " Lang_Trans("global_update") " "], fSize, wChar2, hChar2,,, 0), wChar2 -= 2
 	}
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4, profile := settings.leveltracker.profile, x_anchor := vars.settings.x_anchor, line1 := vars.settings.line1
 	char := settings.leveltracker["guide" profile].info.character, fHeight := settings.general.fHeight, slop := settings.general.slop, build := settings.maptracker.character, radius := settings.general.radius
-	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2
+	cButtons := settings.general.cButtons, cButtons2 := settings.general.cButtons2, level := (mode = "general" || mode = "leveltracker" && settings.general.character = char ? vars.log.level : "")
 	If (mode = "general")
-		color := " " (vars.log.level ? "cLime" : (settings.general.character ? "cYellow" : "cFF8000"))
-	Else color := " " (vars.log.level && settings.general.character = char ? "cLime" : (char ? "cYellow" : "cFF8000"))
+		color := " " (vars.log.level ? "cLime" : (settings.general.character ? "cYellow" : "c" settings.general.cDisabled))
+	Else color := " " (vars.log.level && settings.general.character = char ? "cLime" : (char ? "cYellow" : "c" settings.general.cDisabled))
 
-	wEdits := (!wEdits ? settings.general.fWidth2 * 15 : wEdits - (mode = "general" ? wChar2 : wChar))
-	If (valid_char := (mode = "general" && vars.log.level || mode = "leveltracker" && vars.log.level && settings.general.character = char))
+	wEdits := (!wEdits ? settings.general.fWidth2 * 18 : wEdits - (mode = "general" ? wChar2 : wChar))
+	If (valid_char := (mode = "general" && settings.general.character || mode = "leveltracker" && vars.log.level && settings.general.character && settings.general.character = char))
 		LLK_PanelDimensions([vars.log.character_class " (" vars.log.level ")"], settings.general.fSize - 4, wClass, hClass), wEdits := Max(wEdits, wClass)
 
-	style := (mode = "general" ? "xs x" x_anchor . (yCoord ? " y" yCoord + line1 : " y+" line1) : "ys x+" vars.settings.xMargin//2)
-	Gui_Label(GUI, "Section " style " w" (mode = "general" ? wChar2 : wChar) . (valid_char ? " h" 2*fHeight " 0x200" : "") " Center" color
-		, Lang_Trans("m_general_character"), "settings_" (mode = "general" ? "active character status" : "leveltracker character status"),, [slop, 0, (mode = "general" && slop && (!build || !valid_char)), 0], radius)
+	style := (mode = "general" ? "xs x" x_anchor . (yCoord ? " y" yCoord + line1 : " y+" line1) : "ys")
+	Gui_Label(GUI, "Section " style " w" (mode = "general" ? wChar2 : wChar) " Center" color
+		, Lang_Trans("m_general_character"), "settings_" (mode = "general" ? "active character status" : "leveltracker character status"),, [1, 0, (mode = "general" && !settings.general.character), 0], radius)
+	Gui, %GUI%: Add, Button, % "Hidden xp yp wp hp Default HWNDhwnd gSettings_CharTracking2", ok
+	vars.hwnd.settings.save_buildinfo := hwnd
 
-	Gui_Label(GUI, "ys x+0 w" wEdits,, "settings_" (mode = "general" ? "active character" : "leveltracker character info"),, (mode = "general" && !settings.general.character || mode = "leveltracker" && !char ? [0, slop, 0, ( mode = "general" ? slop : 0)] : ""),,, "0x50" cButtons2)
+	If (mode = "general" && settings.general.character || mode = "leveltracker")
+		Gui_Label(GUI, (mode = "leveltracker" && !char ? "Hidden " : "") "xp y+0 w" (mode = "general" ? wChar2 : wChar) " Center gSettings_CharTracking2", Lang_Trans("global_update"), "settings_active character whois", ["hwnd.settings.refresh_class", "_bar"], [0, 0, !build, 0],,, cButtons)
+		, Gui_Label(GUI, (mode = "leveltracker" && !char ? "" : "Hidden ") "xp yp wp",,, ["hwnd.settings.filler", "_bar"])
+
+	Gui_Label(GUI, "ys x+0 w" wEdits,, "settings_" (mode = "general" ? "active character" : "leveltracker character info"),, [0, 1, 0, (mode = "general" && !settings.general.character)],,, "0x50" cButtons2)
 
 	Gui, %GUI%: Font, % "s" settings.general.fSize - (mode = "general" ? 2 : 4)
 	char_text := (mode = "general" ? settings.general.character : settings.leveltracker["guide" profile].info.character)
 	Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2", % char_text
-	If valid_char
-		Gui_Label(GUI, "xs xp y+0 wp hp 0x200", " " Lang_Trans("system_parenthesis",, [vars.log.level]) " " vars.log.character_class, "settings_ascendancy",,,,, 0)
+
+	If (mode = "general" && settings.general.character || mode = "leveltracker")
+		Gui_Label(GUI, "xs xp y+0 wp h" fHeight - 2 " 0x200", " " Lang_Trans("system_parenthesis",, [(level ? level : "00")]) " " (level ? vars.log.character_class : Lang_Trans("m_permission_unknown")), "settings_ascendancy",, [0, 0, 0, !build],,, 0)
 	Gui, %GUI%: Font, % "s" settings.general.fSize
 	vars.hwnd.settings.charinfo := hwnd1
 	ControlGetPos, xEdit1, yEdit1, wEdit1, hEdit1,, ahk_id %hwnd1%
 
-	If (mode = "general" && settings.general.character || mode = "leveltracker" && char)
+	If bla && (mode = "general" && settings.general.character || mode = "leveltracker" && char)
 	{
 		Gui, %GUI%: Add, Pic, % "ys x+4 " (valid_char ? "y" yEdit1 + 1 + fHeight//2 : "yp+2") " w" fHeight - 4 " h-1 BackgroundTrans HWNDhwnd1", % "HBitmap:*" vars.pics.global.reload
 		Gui_Label(GUI, "xp-4 y" yEdit1 " w" fHeight + 3 + (fHeight//10) . (valid_char ? " h" 2*fHeight : "") " gSettings_CharTracking2",, "settings_active character whois|", ["hwnd.settings.refresh_class", "_bar"], [0, slop, 0, slop], radius,, (valid_char ? cButtons : ""))
@@ -6759,15 +6774,7 @@ Settings_CharTracking(mode, wEdits := "", yCoord := 0)
 		Gui, %GUI%: Add, Edit, % "xp yp wp hp cBlack HWNDhwnd1 LowerCase gSettings_CharTracking2", % build_text
 		Gui, %GUI%: Font, % "s" settings.general.fSize
 		vars.hwnd.settings.buildinfo := hwnd1
-		ControlGetPos, xEdit2, yEdit2, wEdit2, hEdit2,, ahk_id %hwnd1%
 	}
-	Else yEdit2 := yEdit1, hEdit2 := hEdit1, no_info := 1
-
-	height := (no_info && valid_char ?  2*fHeight - 3 : yEdit2 + hEdit2 - yEdit1 - 2)
-	Gui, %GUI%: Add, Pic, % "Hidden ys x" xEdit1 + wEdit1 + 4 . (valid_char || mode = "leveltracker" ? " y" yEdit1 - fHeight//2 + height//2 : " yp+2") " w" fHeight - 4 " h-1 BackgroundTrans HWNDhwnd1", % "HBitmap:*" vars.pics.global.checkmark
-	Gui_Label(GUI, "Hidden xp-4 y" yEdit1 " w" fHeight + 3 + (fHeight//10) " h" height " gSettings_CharTracking2",,, ["hwnd.settings.save_buildinfo", "_bar"], [0, slop, 0, slop], radius,, (valid_char || mode = "leveltracker" ? cButtons : ""))
-	vars.hwnd.settings.save_buildinfo_pic := hwnd1
-	Gui, %GUI%: Add, Text, % "yp x+-1 w1 hp BackgroundTrans"
 }
 
 Settings_CharTracking2(cHWND)
@@ -6785,9 +6792,11 @@ Settings_CharTracking2(cHWND)
 	{
 		KeyWait, LButton
 		KeyWait, RButton
+		If !(char := LLK_ControlGet(vars.hwnd.settings.charinfo))
+			Return (char_wait := 0)
 		WinActivate, % "ahk_id " vars.hwnd.poe_client
 		WinWaitActive, % "ahk_id " vars.hwnd.poe_client
-		Clipboard := "/whois " LLK_ControlGet(vars.hwnd.settings.charinfo)
+		Clipboard := "/whois " char
 		ClipWait, 0.1
 		SendInput, {Enter}
 		Sleep, 100
@@ -6801,20 +6810,16 @@ Settings_CharTracking2(cHWND)
 		If (active = "leveling tracker" && charinfo . buildinfo != settings.leveltracker["guide" profile].info.character . settings.leveltracker["guide" profile].info.name)
 		|| (active = "general" && charinfo . buildinfo != settings.general.character . settings.general.build)
 		{
-			GuiControl, % "-Hidden", % vars.hwnd.settings.save_buildinfo
-			GuiControl, % "-Hidden", % vars.hwnd.settings.save_buildinfo_bar
-			GuiControl, % "-Hidden", % vars.hwnd.settings.save_buildinfo_pic
+			GuiControl, % "-Hidden", % vars.hwnd.settings.filler
+			GuiControl, % "-Hidden", % vars.hwnd.settings.filler_bar
 			GuiControl, % "+Hidden", % vars.hwnd.settings.refresh_class
-			GuiControl, % "+Hidden", % vars.hwnd.settings.refresh_class_pic
 			GuiControl, % "+Hidden", % vars.hwnd.settings.refresh_class_bar
 		}
 		Else
 		{
-			GuiControl, % "+Hidden", % vars.hwnd.settings.save_buildinfo
-			GuiControl, % "+Hidden", % vars.hwnd.settings.save_buildinfo_bar
-			GuiControl, % "+Hidden", % vars.hwnd.settings.save_buildinfo_pic
+			GuiControl, % "+Hidden", % vars.hwnd.settings.filler
+			GuiControl, % "+Hidden", % vars.hwnd.settings.filler_bar
 			GuiControl, % "-Hidden", % vars.hwnd.settings.refresh_class
-			GuiControl, % "-Hidden", % vars.hwnd.settings.refresh_class_pic
 			GuiControl, % "-Hidden", % vars.hwnd.settings.refresh_class_bar
 		}
 	}
@@ -6865,16 +6870,18 @@ Settings_LeagueSelection(ByRef yCoord, ByRef width)
 	If (fSize != settings.general.fSize) || (widths_count != objects[(vars.poe_version ? 3 : 4)].Count())
 	{
 		fSize := settings.general.fSize, widths := []
-		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " "], fSize, wLeague, hLeague,,, 0)
+		LLK_PanelDimensions([Lang_Trans("m_general_character") " ", Lang_Trans("global_league") " ", " " Lang_Trans("global_update") " "], fSize, wLeague, hLeague,,, 0)
 	}
 	widths_count := objects[(vars.poe_version ? 3 : 4)].Count()
 
 	GUI := "settings_menu" vars.settings.GUI_toggle, margin := settings.general.fWidth/4
-	hwnd := Gui_Label(GUI, "Section xs x" x_anchor " w" wLeague " h" settings.general.fHeight * vars.leagues.Count() - 2 " 0x200 Center", Lang_Trans("global_league"), "settings_league selection",, [slop, 0, slop, 0], radius), handle := "|"
+	hwnd := Gui_Label(GUI, "Section xs x" x_anchor " w" wLeague " Center", Lang_Trans("global_league"), "settings_league selection",, [1, 0, 0, 0], radius)
+	Gui_Label(GUI, "xp y+0 w" wLeague " Center gSettings_LeagueSelection2", Lang_Trans("global_update"), "settings_league update", "hwnd.settings.league_update", [0, 0, 1, 0],,, cButtons)
+	handle := "|"
 	ControlGetPos, xFirst, yFirst, wFirst, hFirst,, % "ahk_id " hwnd.back
 
 	Gui, %GUI%: Font, % "s" fSize - (vars.poe_version ? 0 : 2)
-	Loop, % (vars.poe_version ? 3 : 4)
+	Loop, % (loops := (vars.poe_version ? 3 : 4))
 	{
 		outer := A_Index
 		If Blank(widths[outer])
@@ -6885,16 +6892,15 @@ Settings_LeagueSelection(ByRef yCoord, ByRef width)
 			LLK_PanelDimensions(dimensions, fSize - (vars.poe_version ? 0 : 2), width, height), widths[outer] := width
 		}
 		For key in objects[outer]
-			Gui_Label(GUI, (A_Index = 1 ? "Section ys x+0" : "xs y+0") " w" widths[outer] " h" settings.general.fHeight - 2 " 0x200 Center gSettings_LeagueSelection2" (key = league[outer] ? " cLime" : ""), Lang_Trans("global_league_" key), "settings_league selection" handle, "hwnd.settings.leagueselect_" outer "|" key, [0, 0, (slop && count_prev && A_Index = objects[outer].Count() && A_Index > count_prev ? 1 : 0), slop && objects[outer + 1].Count() && (A_Index = objects[outer].Count() && objects[outer].Count() > objects[outer + 1].Count())],,, cButtons)
+			hwnd := Gui_Label(GUI, (A_Index = 1 ? "Section ys x+0" : "xs y+0") " w" widths[outer] " h" settings.general.fHeight - 2 " 0x200 Center gSettings_LeagueSelection2" (key = league[outer] ? " cLime" : "")
+				, Lang_Trans("global_league_" key), "settings_league selection" handle, "hwnd.settings.leagueselect_" outer "|" key, [0, (outer = loops && A_Index = 1), (count_prev && A_Index = objects[outer].Count() && A_Index > count_prev ? 1 : 0)
+				, ((objects[outer + 1].Count() && objects[outer].Count() > objects[outer + 1].Count() || !objects[outer + 1].Count()) && A_Index = objects[outer].Count())],,, cButtons)
 			, handle .= "|", count := A_Index
 		count_prev := count
 	}
 
 	height := settings.general.fHeight * count
-	Gui, %GUI%: Add, Pic, % "ys x+4 " (count > 1 ? "y" yFirst + (count - 1) + (count - 1) * settings.general.fHeight/2 : "yp+2") " w" settings.general.fHeight - 4 " h-1 BackgroundTrans HWNDhwnd1", % "HBitmap:*" vars.pics.global.reload
-	vars.hwnd.help_tooltips["settings_league update"] := hwnd1
-	hwnd := Gui_Label(GUI, "xp-4 y" yFirst " w" fHeight + 3 + (fHeight//10) " h" height - 2 " gSettings_LeagueSelection2",, "settings_league update|", "hwnd.settings.league_update", [0, slop, 0, slop], radius,, (count > 1 ?cButtons : ""))
-	yCoord := yFirst + Max(hFirst, height), width := LLK_ControlGetPos(hwnd.back).x - xFirst
+	yCoord := yFirst + Max(2*hFirst, height), width := LLK_ControlGetPos(hwnd.back).xMax - xFirst
 	Gui, %GUI%: Font, % "s" fSize
 }
 
